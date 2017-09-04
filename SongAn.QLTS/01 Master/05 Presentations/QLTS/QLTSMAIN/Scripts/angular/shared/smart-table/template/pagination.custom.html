@@ -1,0 +1,55 @@
+﻿<!--<nav ng-if="pages.length >= 2">
+    <ul class="pagination">
+        <li>
+            <a ng-click="selectPage(1)">First</a>
+        </li>
+        <li>
+            <a ng-click="selectPage(currentPage - 1)">&lt;</a>
+        </li>
+        <li>
+            <span><page-select el-class=""></page-select> / {{numPages}}</span>
+        </li> 
+        <li>
+            <a ng-click="selectPage(currentPage + 1)">&gt;</a>
+        </li>
+        <li><a ng-click="selectPage(numPages)">Last</a></li>
+    </ul>
+</nav>-->
+
+<nav ng-if="numPages >= 2">
+    <ul class="pagination pagination-sm">
+        <li ng-if="currentPage>1">
+            <a href="javascript:void(0);" ng-click="selectPage(1)"><i class="fa fa-fw fa-step-backward"></i></a>
+        </li>
+        <li ng-if="currentPage>1">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage-1)"><i class="fa fa-fw fa-caret-left"></i></a>
+        </li>
+        <li ng-if="currentPage>3">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage-3)" ng-bind="currentPage-3"></a>
+        </li>
+        <li ng-if="currentPage>2">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage-2)" ng-bind="currentPage-2"></a>
+        </li>
+        <li ng-if="currentPage>1">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage-1)" ng-bind="currentPage-1"></a>
+        </li>
+        <li class="active">
+            <a href="javascript:void(0);" ng-bind="currentPage"></a>
+        </li>
+        <li ng-if="currentPage<=numPages-1">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage+1)" ng-bind="currentPage+1"></a>
+        </li>
+        <li ng-if="currentPage<=numPages-2">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage+2)" ng-bind="currentPage+2"></a>
+        </li>
+        <li ng-if="currentPage<numPages">
+            <a href="javascript:void(0);" ng-click="selectPage(currentPage+1)"><i class="fa fa-fw fa-caret-right"></i></a>
+        </li>
+        <li ng-if="currentPage<numPages">
+            <a href="javascript:void(0);" ng-click="selectPage(numPages)"><i class="fa fa-fw fa-step-forward"></i></a>
+        </li>
+        <li>
+            <span ng-bind="'Trang '+currentPage+'/'+numPages"></span>
+        </li>
+    </ul>
+</nav>

@@ -1,0 +1,168 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 Utilities", "00 Utilities", "{CCA2F185-D62D-4ECF-8C1B-B017FF4D87C9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 DataAccess Layer", "02 DataAccess Layer", "{490B5291-9363-4CD1-A1E0-B88A65B5FBBB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 Business Layer", "03 Business Layer", "{3D50FF2B-0E0D-440A-90F1-743185D88132}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 WebApis", "04 WebApis", "{19CCD32A-2343-43FB-AC0C-B9BED3BB5B65}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 Presentations", "05 Presentations", "{574207B5-A279-4FBC-94E0-41422329C642}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTSMAIN", "05 Presentations\QLTS\QLTSMAIN\QLTSMAIN.csproj", "{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Main", "02 DataAccess Layer\Data.Main\Data.Main.csproj", "{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.Main", "03 Business Layer\Biz.Main\Biz.Main.csproj", "{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLTSAPI", "04 WebApis\QLTSAPI\QLTSAPI.csproj", "{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 Entity Layer", "01 Entity Layer", "{6A6470E4-A10E-40B2-83D0-28EF29786B4E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Util.Common", "00 Utilities\Util.Common\Util.Common.csproj", "{C1722BE3-C482-4E38-930E-2DEF7987DAED}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.QLTS_MAIN", "01 Entity Layer\Entity.QLTS_MAIN\Entity.QLTS_MAIN.csproj", "{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Repository", "02 DataAccess Layer\Data.Repository\Data.Repository.csproj", "{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Biz.QLTS", "03 Business Layer\Biz.QLTS\Biz.QLTS.csproj", "{5D6FF0AB-0342-4110-A004-356D4E7772AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.QLTS", "02 DataAccess Layer\Data.QLTS\Data.QLTS.csproj", "{36B1F8EE-22F7-4A45-9114-D71DED146490}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.Main", "04 WebApis\Api.Main\Api.Main.csproj", "{E6568342-3BF9-48BA-8835-E689D432A535}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api.QLTS", "04 WebApis\Api.QLTS\Api.QLTS.csproj", "{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity.QLTS", "01 Entity Layer\Entity.QLTS\Entity.QLTS.csproj", "{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1722BE3-C482-4E38-930E-2DEF7987DAED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1722BE3-C482-4E38-930E-2DEF7987DAED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1722BE3-C482-4E38-930E-2DEF7987DAED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1722BE3-C482-4E38-930E-2DEF7987DAED}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D6FF0AB-0342-4110-A004-356D4E7772AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D6FF0AB-0342-4110-A004-356D4E7772AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D6FF0AB-0342-4110-A004-356D4E7772AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D6FF0AB-0342-4110-A004-356D4E7772AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36B1F8EE-22F7-4A45-9114-D71DED146490}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36B1F8EE-22F7-4A45-9114-D71DED146490}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36B1F8EE-22F7-4A45-9114-D71DED146490}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36B1F8EE-22F7-4A45-9114-D71DED146490}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E6568342-3BF9-48BA-8835-E689D432A535}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E6568342-3BF9-48BA-8835-E689D432A535}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E6568342-3BF9-48BA-8835-E689D432A535}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E6568342-3BF9-48BA-8835-E689D432A535}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5} = {574207B5-A279-4FBC-94E0-41422329C642}
+		{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D} = {490B5291-9363-4CD1-A1E0-B88A65B5FBBB}
+		{9ECEE33B-587F-4849-A2CF-9FB5BED47B58} = {3D50FF2B-0E0D-440A-90F1-743185D88132}
+		{29E5E8B1-C2EE-400B-A3B3-DFE4EF4FE051} = {19CCD32A-2343-43FB-AC0C-B9BED3BB5B65}
+		{C1722BE3-C482-4E38-930E-2DEF7987DAED} = {CCA2F185-D62D-4ECF-8C1B-B017FF4D87C9}
+		{4FA29FF2-F8A0-4B89-8BBC-2320C07B970B} = {6A6470E4-A10E-40B2-83D0-28EF29786B4E}
+		{1A5E7772-E937-46E2-A4B2-DD8E071E16F5} = {490B5291-9363-4CD1-A1E0-B88A65B5FBBB}
+		{5D6FF0AB-0342-4110-A004-356D4E7772AC} = {3D50FF2B-0E0D-440A-90F1-743185D88132}
+		{36B1F8EE-22F7-4A45-9114-D71DED146490} = {490B5291-9363-4CD1-A1E0-B88A65B5FBBB}
+		{E6568342-3BF9-48BA-8835-E689D432A535} = {19CCD32A-2343-43FB-AC0C-B9BED3BB5B65}
+		{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5} = {19CCD32A-2343-43FB-AC0C-B9BED3BB5B65}
+		{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A} = {6A6470E4-A10E-40B2-83D0-28EF29786B4E}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 13
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = http://serversa:8080/tfs/ehis
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = 00\u0020Utilities\\Util.Common\\Util.Common.csproj
+		SccProjectTopLevelParentUniqueName1 = QLTS_Master.sln
+		SccProjectName1 = 00\u0020Utilities/Util.Common
+		SccLocalPath1 = 00\u0020Utilities\\Util.Common
+		SccProjectUniqueName2 = 01\u0020Entity\u0020Layer\\Entity.QLTS\\Entity.QLTS.csproj
+		SccProjectTopLevelParentUniqueName2 = QLTS_Master.sln
+		SccProjectName2 = 01\u0020Entity\u0020Layer/Entity.QLTS
+		SccLocalPath2 = 01\u0020Entity\u0020Layer\\Entity.QLTS
+		SccProjectUniqueName3 = 01\u0020Entity\u0020Layer\\Entity.QLTS_MAIN\\Entity.QLTS_MAIN.csproj
+		SccProjectTopLevelParentUniqueName3 = QLTS_Master.sln
+		SccProjectName3 = 01\u0020Entity\u0020Layer/Entity.QLTS_MAIN
+		SccLocalPath3 = 01\u0020Entity\u0020Layer\\Entity.QLTS_MAIN
+		SccProjectUniqueName4 = 02\u0020DataAccess\u0020Layer\\Data.Main\\Data.Main.csproj
+		SccProjectTopLevelParentUniqueName4 = QLTS_Master.sln
+		SccProjectName4 = 02\u0020DataAccess\u0020Layer/Data.Main
+		SccLocalPath4 = 02\u0020DataAccess\u0020Layer\\Data.Main
+		SccProjectUniqueName5 = 02\u0020DataAccess\u0020Layer\\Data.QLTS\\Data.QLTS.csproj
+		SccProjectTopLevelParentUniqueName5 = QLTS_Master.sln
+		SccProjectName5 = 02\u0020DataAccess\u0020Layer/Data.QLTS
+		SccLocalPath5 = 02\u0020DataAccess\u0020Layer\\Data.QLTS
+		SccProjectUniqueName6 = 02\u0020DataAccess\u0020Layer\\Data.Repository\\Data.Repository.csproj
+		SccProjectTopLevelParentUniqueName6 = QLTS_Master.sln
+		SccProjectName6 = 02\u0020DataAccess\u0020Layer/Data.Repository
+		SccLocalPath6 = 02\u0020DataAccess\u0020Layer\\Data.Repository
+		SccProjectUniqueName7 = 03\u0020Business\u0020Layer\\Biz.Main\\Biz.Main.csproj
+		SccProjectTopLevelParentUniqueName7 = QLTS_Master.sln
+		SccProjectName7 = 03\u0020Business\u0020Layer/Biz.Main
+		SccLocalPath7 = 03\u0020Business\u0020Layer\\Biz.Main
+		SccProjectUniqueName8 = 03\u0020Business\u0020Layer\\Biz.QLTS\\Biz.QLTS.csproj
+		SccProjectTopLevelParentUniqueName8 = QLTS_Master.sln
+		SccProjectName8 = 03\u0020Business\u0020Layer/Biz.QLTS
+		SccLocalPath8 = 03\u0020Business\u0020Layer\\Biz.QLTS
+		SccProjectUniqueName9 = 04\u0020WebApis\\Api.Main\\Api.Main.csproj
+		SccProjectTopLevelParentUniqueName9 = QLTS_Master.sln
+		SccProjectName9 = 04\u0020WebApis/Api.Main
+		SccLocalPath9 = 04\u0020WebApis\\Api.Main
+		SccProjectUniqueName10 = 04\u0020WebApis\\Api.QLTS\\Api.QLTS.csproj
+		SccProjectTopLevelParentUniqueName10 = QLTS_Master.sln
+		SccProjectName10 = 04\u0020WebApis/Api.QLTS
+		SccLocalPath10 = 04\u0020WebApis\\Api.QLTS
+		SccProjectUniqueName11 = 04\u0020WebApis\\QLTSAPI\\QLTSAPI.csproj
+		SccProjectTopLevelParentUniqueName11 = QLTS_Master.sln
+		SccProjectName11 = 04\u0020WebApis/QLTSAPI
+		SccLocalPath11 = 04\u0020WebApis\\QLTSAPI
+		SccProjectUniqueName12 = 05\u0020Presentations\\QLTS\\QLTSMAIN\\QLTSMAIN.csproj
+		SccProjectTopLevelParentUniqueName12 = QLTS_Master.sln
+		SccProjectName12 = 05\u0020Presentations/QLTS/QLTSMAIN
+		SccLocalPath12 = 05\u0020Presentations\\QLTS\\QLTSMAIN
+	EndGlobalSection
+EndGlobal

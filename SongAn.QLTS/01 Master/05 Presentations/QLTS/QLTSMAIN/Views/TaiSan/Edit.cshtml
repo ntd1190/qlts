@@ -1,0 +1,337 @@
+﻿@{
+    /*****************************************************************************
+  1. Create Date : 2017.06.16
+  2. Creator     : Nguyen Thanh Binh
+  3. Description : khophieunhap/edit
+  4. History     : 2017.06.16 (Nguyen Thanh Binh) - thiết kế giao diện
+                   2017.06.28 (Nguyen Thanh Binh) - update, thêm thông tin ngày nhập, người nhận hang, thủ kho
+  *****************************************************************************/
+    ViewBag.Title = "Thông tin tài sản";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+    ViewBag.isEdit = ViewBag.isEdit ?? 0;
+}
+<div class="container-fluid">
+    <div class="panel panel-default with-nav-tabs" ng-controller="TaiSanEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({isEdit:@(ViewBag.isEdit),TaiSanId:@(ViewBag.id),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/taisan/"))'})">
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="javascript:void(0);" data-target="#ThongTinChung" data-toggle="tab">Thông tin chung</a></li>
+                <li><a href="javascript:void(0);" data-target="#ThongTinKeKhai" data-toggle="tab">Thông tin kê khai</a></li>
+                <li><a href="javascript:void(0);" data-target="#ThongTinCongKhai" data-toggle="tab">Thông tin công khai</a></li>
+                <li><a href="javascript:void(0);" data-target="#ThongTinKhac" data-toggle="tab">Thông tin khác</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <!-- #ThongTinChung -->
+                <div class="tab-pane fade in active" id="ThongTinChung">
+                    <h4>Thông tin chung</h4>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Mã tài sản</span><span class="text-danger"> (*)</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.MaTaiSan" />
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group form-group-sm">
+                                <span>Tên tài sản</span><span class="text-danger"> (*)</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.TenTaiSan" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Đơn vị tính</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.DonViTinh" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Dự án</span>
+                                <cbo-du-an data-value="ctrl.data.TaiSan.DuAnId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/duan/showview?viewname=cboduan"></cbo-du-an>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Số QĐTC</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.SoQDTC" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Phương thúc HT</span>
+                                <cbo-phuong-thuc data-value="ctrl.data.TaiSan.PhuongThucId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phuongthuc/showview?viewname=cbophuongthuc"></cbo-phuong-thuc>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Loại tài sản</span><span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span>
+                                <cbo-loai-tai-san on-Selected="ctrl.action.getLoaiTaiSan(data)" data-value="ctrl.data.TaiSan.LoaiId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaitaisan/showview?viewname=cboloaitaisan"></cbo-loai-tai-san>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Năm Sản xuất</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NamSanXuat" maxlength="4" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Nước Sản xuất</span>
+                                <cbo-nuoc-san-xuat data-value="ctrl.data.TaiSan.NuocSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nuocsanxuat/showview?viewname=cbonuocsanxuat"></cbo-nuoc-san-xuat>
+                            </div>
+                        </div>
+                        @*<div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Tài sản</span>
+                                <cbo-tai-san data-value="" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"></cbo-tai-san>
+                            </div>
+                        </div>*@
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Hãng sản xuất</span>
+                                <cbo-hang-san-xuat data-value="ctrl.data.TaiSan.HangSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hangsanxuat/showview?viewname=cbohangsanxuat"></cbo-hang-san-xuat>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Nhãn hiệu</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NhanHieu" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Ngày mua</span>
+                                <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayMua" />
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm">
+                                <span>Ngày ghi tăng</span>
+                                <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayGhiTang" />
+                            </div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.addNguyenGia()"><i class="fa fa-fw fa-plus"></i>New (F2)</button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-condensed table-hover table-striped">
+                            <thead class="text-primary">
+                                <tr>
+                                    <th class="text-center" style="width: 50px;"></th>
+                                    <th class="text-center">Nguồn hình thành</th>
+                                    <th class="text-center" style="width: 200px">Giá trị</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="row in ctrl.data.listNguyenGia" ng-class="row.isError ? 'danger':''">
+                                    <td class="text-center">
+                                        <a class="btn btn-xs btn-danger" ng-click="ctrl.action.removeNguyenGia($index)"><i class="fa fa-remove"></i></a>
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <cbo-nguon-ngan-sach data-value="row.NguonNganSachId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nguonngansach/showview?viewname=cbonguonngansach"></cbo-nguon-ngan-sach>
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <input type="text" class="form-control text-right" ng-model="row.GiaTri" number-format />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td></td>
+                                    <td class="text-right">Tổng cộng</td>
+                                    <td class="text-right"><span ng-bind="ctrl.data.listNguyenGia|sumOfValue:'GiaTri'|number:'':'':2"></span></td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <h4>Thông tin chung</h4>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày mua</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control datetimepicker date" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày ghi tăng</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày bắt đầu SD</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Năm theo dõi</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Giá trị còn lại</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Thông tin hao mòn</h4>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày BĐ tính HM</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayBDHaoMon" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày tính hao mòn</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control datetimepicker date" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Số năm sử dụng</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Tỷ lệ hao mòn (%)</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Hao mòn năm</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Hao mòn lũy kế</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Số năm sử dụng còn lại</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày KT tính HM</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control datetimepicker date" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <h4>Thông tin khấu hao</h4>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Ngày tính khấu hao</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control datetimepicker date" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Kỳ tính khấu hao</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Giá trị tính khấu hao</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Số tháng TKH</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Số tháng TKH còn lại</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Tỷ lệ khấu hao tháng (%)</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Khấu hao tháng</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm">
+                                <span class="col-sm-4">Khấu hao lũy kế</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div><!-- /#ThongTinChung -->
+                <!-- #chung.tab-pane -->
+                <div class="tab-pane fade in" id="ThongTinKeKhai">
+                    <fieldset>
+                        <legend>Thông tin kê khai</legend>
+                        Thông tin kê khai
+                    </fieldset>
+
+                </div><!-- /#chung.tab-pane -->
+
+            </div>
+        </div>
+    </div>
+</div>
+@section ImportStyles{
+    @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
+}
+@section SetupStyles{
+    <style>
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+
+        .form-group.row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    </style>
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/TaiSan/controller/TaiSanEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
+    @{Html.RenderPartial("~/views/taiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/DuAn/cboDuAn.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhuongThuc/cboPhuongThuc.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/HangSanXuat/cboHangSanXuat.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NguonNganSach/cboNguonNganSach.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
