@@ -25,19 +25,19 @@
         var _tableState;
         var userInfo;
         var linkUrl = '';
-        var phieuDeNghiId = 0;
+        var phieuGhiTangId = 0;
 
         /*** VIEW MODEL ***/
 
         vm.controllerId = 'GhiTangEditCtrl';
-        vm.getphieuDeNghiId = function () {
-            return phieuDeNghiId || 0;
+        vm.getphieuGhiTangId = function () {
+            return phieuGhiTangId || 0;
         }
 
         vm.error = {};
 
         vm.data = {};
-        vm.data.phieuDeNghi = {};
+        vm.data.phieuGhiTang = {};
         vm.data.listChiTiet = [];
         vm.data.fullDateString = '';
         vm.data.linkUrl = '';
@@ -68,17 +68,16 @@
                 vm.data.linkUrl = config.linkUrl;
             }
 
-            if (config && config.deNghiId) {
-                phieuDeNghiId = config.deNghiId;
-                if (config.deNghiId > 0) {
-                    getPhieuDeNghiById(config.deNghiId);
+            if (config && config.ghiTangId) {
+                phieuGhiTangId = config.ghiTangId;
+                if (config.ghiTangId > 0) {
+                    getphieuGhiTangById(config.ghiTangId);
                     vm.data.Tilte = 'Sửa';
                 }
             }
-            else if (config && config.deNghiId === 0) {
-                vm.data.phieuDeNghi.Ngay = moment().format('DD/MM/YYYY');
-                vm.data.phieuDeNghi.PhanLoaiId = $("#cbxPhanLoai option:first").val();
-                vm.data.phieuDeNghi.PhongBanId = $("#cbxPhongBan option:first").val();
+            else if (config && config.ghiTangId === 0) {
+                vm.data.phieuGhiTang.NgayChungTu = moment().format('DD/MM/YYYY');
+                vm.data.phieuGhiTang.NgayGhiTang = moment().format('DD/MM/YYYY');
                 CreateListChiTiet();
             }
 
@@ -100,13 +99,13 @@
 
         vm.action.save = function () {
 
-            var obj = InvalidateDataPhieuDeNghi();
+            var obj = InvalidateDataphieuGhiTang();
 
             if (obj == null)
                 return;
-            if (!InvalidateDataPhieuDeNghiChiTiet())
+            if (!InvalidateDataphieuGhiTangChiTiet())
                 return;
-            if (phieuDeNghiId > 0) {
+            if (phieuGhiTangId > 0) {
                 update();
             }
             else {
@@ -114,9 +113,9 @@
             }
         };
 
-        vm.action.removePhieuDeNghi = function () {
+        vm.action.removephieuGhiTang = function () {
 
-            if (phieuDeNghiId <= 0) {
+            if (phieuGhiTangId <= 0) {
                 alert("Phiếu này không tồn tại trong hệ thống!");
                 return;
             }
@@ -127,7 +126,7 @@
 
             var DeNghiTrangCapListSelected = new Array();
 
-            DeNghiTrangCapListSelected.push(phieuDeNghiId);
+            DeNghiTrangCapListSelected.push(phieuGhiTangId);
 
             var ids = DeNghiTrangCapListSelected.join(',');
             if (ids.length > 0) {
@@ -144,19 +143,25 @@
         };
         vm.action.keyPressDeNghi = function (value, fromId, ToId, event) {
 
-            var obj = vm.data.phieuDeNghi;
+            var obj = vm.data.phieuGhiTang;
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
-                if (fromId == 'txtNgayLap') {
-                    vm.error.NgayLap = utility.checkInValid(obj.Ngay, 'isEmpty');
-                    if (vm.error.NgayLap) {
+                if (fromId == 'txtNgayChungTu') {
+                    vm.error.NgayChungTu = utility.checkInValid(obj.NgayChungTu, 'isEmpty');
+                    if (vm.error.NgayChungTu) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
-                else if (fromId == 'txtSoPhieu') {
-                    vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
-                    if (vm.error.SoPhieu) {
+                else if (fromId == 'txtNgayGhiTang') {
+                    vm.error.NgayGhiTang = utility.checkInValid(obj.NgayGhiTang, 'isEmpty');
+                    if (vm.error.NgayGhiTang) {
+                        $("#" + fromId).focus();
+                    } else $("#" + ToId).focus();
+                }
+                else if (fromId == 'txtSoChungTu') {
+                    vm.error.SoChungTu = utility.checkInValid(obj.SoChungTu, 'isEmpty');
+                    if (vm.error.SoChungTu) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
@@ -230,8 +235,8 @@
 
         function CreateListChiTiet() {
             var chitiet = {};
-            chitiet.PhieuDeNghiChiTiet = 0;
-            chitiet.DeNghiId = 0;
+            chitiet.phieuGhiTangChiTiet = 0;
+            chitiet.ghiTangId = 0;
             chitiet.TenTaiSan = "";
             chitiet.Mota = "";
             chitiet.LoaiId = 0;
@@ -248,18 +253,18 @@
 
         function insert() {
             utility.addloadding($('body'));
-            vm.data.phieuDeNghi.CoSoId = userInfo.CoSoId;
+            vm.data.phieuGhiTang.CoSoId = userInfo.CoSoId;
 
-            var phieuDeNghi = utility.clone(vm.data.phieuDeNghi);
+            var phieuGhiTang = utility.clone(vm.data.phieuGhiTang);
             var data = {};
-            data.phieuDeNghi = angular.toJson(phieuDeNghi);
+            data.phieuGhiTang = angular.toJson(phieuGhiTang);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
             GhiTangService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'denghitrangcap/edit/' + result.data.data[0].DeNghiIdI;
+                    window.location = vm.data.linkUrl + 'denghitrangcap/edit/' + result.data.data[0].ghiTangIdI;
 
                 }, function error(result) {
                     console.log(result);
@@ -274,12 +279,12 @@
 
         function update() {
             utility.addloadding($('body'));
-            vm.data.phieuDeNghi.CoSoId = userInfo.CoSoId;
+            vm.data.phieuGhiTang.CoSoId = userInfo.CoSoId;
 
-            var phieuDeNghi = utility.clone(vm.data.phieuDeNghi);
+            var phieuGhiTang = utility.clone(vm.data.phieuGhiTang);
             var data = {};
-            data.deNghiId = phieuDeNghiId;
-            data.phieuDeNghi = angular.toJson(phieuDeNghi);
+            data.ghiTangId = phieuGhiTangId;
+            data.phieuGhiTang = angular.toJson(phieuGhiTang);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
             GhiTangService.update(data)
@@ -297,8 +302,8 @@
                 });
         }
 
-        function InvalidateDataPhieuDeNghi() {
-            var obj = vm.data.phieuDeNghi;
+        function InvalidateDataphieuGhiTang() {
+            var obj = vm.data.phieuGhiTang;
 
             vm.error.NgayLap = utility.checkInValid(obj.Ngay, 'isEmpty');
             if (vm.error.NgayLap) {
@@ -320,7 +325,7 @@
             return 1;
         }
 
-        function InvalidateDataPhieuDeNghiChiTiet() {
+        function InvalidateDataphieuGhiTangChiTiet() {
             var hasError = false;
             if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0) { return true; }
             for (var index = 0; index < vm.data.listChiTiet.length; index++) {
@@ -343,24 +348,24 @@
             return !hasError;
         }
 
-        function getPhieuDeNghiById(id) {
+        function getphieuGhiTangById(id) {
 
             GhiTangService.GetPageHeaderById(id)
                 .then(function success(result) {
                     console.log(result);
-                    delete vm.data.phieuDeNghi;
+                    delete vm.data.phieuGhiTang;
 
                     if (result.data && result.data.data && result.data.data.length) {
-                        vm.data.phieuDeNghi = result.data.data[0];
+                        vm.data.phieuGhiTang = result.data.data[0];
 
-                        getPhieuDeNghiChiTietById(vm.data.phieuDeNghi.DeNghiId);
+                        getphieuGhiTangChiTietById(vm.data.phieuGhiTang.ghiTangId);
                     }
                 }, function error(result) {
                     console.log(result);
                 });
         }
 
-        function getPhieuDeNghiChiTietById(id) {
+        function getphieuGhiTangChiTietById(id) {
 
             GhiTangService.GetPageDetail(id)
                 .then(function success(result) {
@@ -377,7 +382,7 @@
         }
 
         function reset() {
-            vm.data.phieuDeNghi = {};
+            vm.data.phieuGhiTang = {};
             vm.data.listChiTiet = "";
         }
 

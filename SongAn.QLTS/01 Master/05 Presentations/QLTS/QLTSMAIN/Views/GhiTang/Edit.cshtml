@@ -14,28 +14,28 @@
             <form class="form-horizontal">
                 <div class="row">
                     <div class="col-sm-4">
-                        <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.SoChungTu?'has-error':''">
                             <label class="control-label col-sm-6">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDeNghi.SoPhieu" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtSoPhieu','cbxPhanLoai',$event)" />
+                                <input type="text" id="txtSoChungTu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDeNghi.SoChungTu" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.SoChungTu,'txtSoChungTu','txtNgayLap',$event)" />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayChungTu?'has-error':''">
                             <label class="control-label col-sm-5">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.Ngay" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtNgayLap','txtSoPhieu',$event)" />
+                                <input type="text" id="txtNgayChungTu" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.NgayChungTu" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.SoChungTu,'txtNgayChungTu','txtNgayGhiTang',$event)" />
                             </div>
                         </div>
                     </div>
 
                     <div class="col-sm-4">
-                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayGhiTang?'has-error':''">
                             <label class="control-label col-sm-5">Ngày ghi tăng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-6">
-                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.Ngay" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtNgayLap','txtSoPhieu',$event)" />
+                                <input type="text" id="txtNgayGhiTang" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.NgayGhiTang" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.SoChungTu,'txtNgayGhiTang','txtNoiDung',$event)" />
                             </div>
                         </div>
                     </div>
@@ -64,16 +64,7 @@
                     <tr>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
-                        <th class="text-center" style="min-width: 200px; vertical-align:middle">Tên tài sản   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 200px; vertical-align:middle">Mô tả đặc điểm</th>
-                        <th class="text-center" style="min-width: 220px; vertical-align:middle">Loại tài sản <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng      <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 150px; vertical-align:middle">Phương thức   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày đề nghị   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 100px; vertical-align:middle">Dự toán        <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 160px; vertical-align:middle">Dự toán được duyệt<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 100px; vertical-align:middle">Ghi chú</th>
+                        
                     </tr>
                 </thead>
                 <tbody>
@@ -82,7 +73,7 @@
                             <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
                     </tr>
-                    <tr ng-repeat="DenNghiTrangCapChiTiet in ctrl.data.listChiTiet" ng-class="DenNghiTrangCapChiTiet.isError ? 'danger':''">
+                    <tr ng-repeat="GhiTangChiTiet in ctrl.data.listChiTiet" ng-class="GhiTangChiTiet.isError ? 'danger':''">
                         <td class="text-center">{{$index + 1}}</td>
                         <td class="text-center">
                             <a class="btn btn-xs btn-danger"
@@ -90,57 +81,10 @@
                                 <i class="fa fa-remove"></i>
                             </a>
                         </td>
-                        <td class="form-group form-group-sm">
-                            <!--ten tai san-->
-                            <input type="text" id="txtTenTaiSan{{$index}}" class="form-control text-left" ng-model="DenNghiTrangCapChiTiet.TenTaiSan" ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.TenTaiSan,'txtTenTaiSan'+$index,'txtMoTa'+$index,$index,$event)" />
-                        </td>
-                        <td class="form-group form-group-sm">
-                            <!--mo ta-->
-                            <input type="text" id="txtMoTa{{$index}}" class="form-control text-left " ng-model="DenNghiTrangCapChiTiet.MoTa" ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.MoTa,'txtMoTa'+$index,'cbxLoaiTaiSan'+$index,$index,$event)" />
-                        </td>
-                        <td class="form-group form-group-sm">
-                            <!--loai tai san-->
-                            <cbo-loai-tai-san id="cbxLoaiTaiSan{{$index}}" data-value="DenNghiTrangCapChiTiet.LoaiId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaitaisan/showview?viewname=cboloaitaisan"></cbo-loai-tai-san>
-                        </td>
-                        <td class="text-right form-group form-group-sm">
-                            <!--soluong-->
-                            <input type="text" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="DenNghiTrangCapChiTiet.SoLuong" number-format ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.SoLuong,'txtSoLuong'+$index,'txtDonViTinh'+$index,$index,$event)" />
-                        </td>
-                        <td class="form-group form-group-sm">
-                            <!--dvtinh-->
-                            <input type="text" id="txtDonViTinh{{$index}}" class="form-control text-left " ng-model="DenNghiTrangCapChiTiet.DonViTinh" ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.DonViTinh,'txtDonViTinh'+$index,'cbxPhuongThuc'+$index,$index,$event)" />
-                        </td>
-                        <td class="form-group form-group-sm">
-                            <!--phuong thuc-->
-                            <select class="form-control" id="cbxPhuongThuc{{$index}}" style="padding:0px 10px" data-placeholder="Phương thức" ng-model="DenNghiTrangCapChiTiet.PhuongThucId">
-                                <option value="1">Mua sắm</option>
-                                <option value="2">Nhận bằng hiện vật</option>
-                                <option value="3">Xây mới</option>
-                            </select>
-                        </td>
-
-                        <td class="form-group form-group-sm">
-                            <!--ngay de nghi-->
-                            <input type="text" id="txtNgayDeNghi{{$index}}" class="form-control datetimepicker date" ng-model="DenNghiTrangCapChiTiet.NgayDeNghi" ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.NgayDeNghi,'txtNgayDeNghi'+$index,'txtDuToan'+$index,$index,$event)" />
-                        </td>
-                        <td class="text-right form-group form-group-sm">
-                            <input type="text" id="txtDuToan{{$index}}" class="form-control text-right" ng-model="DenNghiTrangCapChiTiet.DuToan" number-format ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.DuToan,'txtDuToan','txtDuToanDuocDuyet'+$index,$index,$event)" />
-                        </td>
-                        <td class="text-right form-group form-group-sm">
-                            <input type="text" id="txtDuToanDuocDuyet{{$index}}" class="form-control text-right" ng-model="DenNghiTrangCapChiTiet.DuToanDuocDuyet" number-format ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.DuToanDuocDuyet,'txtDuToanDuocDuyet'+$index,'txtGhiChu'+$index,$index,$event)" />
-                        </td>
-                        <td class="text-center form-group form-group-sm">
-                            <input type="text" id="txtGhiChu{{$index}}" class="form-control text-right" ng-model="DenNghiTrangCapChiTiet.GhiChu" ng-keypress="ctrl.action.keyPress(DenNghiTrangCapChiTiet.GhiChu,'txtGhiChu'+$index,'txtTenTaiSan',$index,$event)" />
-                        </td>
+                        
                     </tr>
                 </tbody>
-                @*<tfoot>
-                        <tr>
-                            <td colspan="100" class="text-center">
-                                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
-                            </td>
-                        </tr>
-                    </tfoot>*@
+                
             </table>
         </div>
 
