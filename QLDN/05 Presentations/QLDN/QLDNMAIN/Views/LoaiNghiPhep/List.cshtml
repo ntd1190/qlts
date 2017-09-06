@@ -1,0 +1,158 @@
+﻿
+@{
+    ViewBag.Title = "Loại nghỉ phép";
+}
+
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default" ng-controller="LoaiNghiPhepFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({controllerId:'LoaiNghiPhepFilterCtrl', userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o no-margin"></i>Loại ngày phép</span>
+
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.search():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div><!-- / panel tìm kiếm -->
+    <!-- panel Danh sách loại nghỉ phép -->
+    <div class="panel panel-default" ng-controller="LoaiNghiPhepListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'LoaiNghiPhepListCtrl', userInfo: @ViewBag.userInfo})">
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách loại nghỉ phép</h3>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listLoaiNghiPhep" st-pipe="ctrl.action.getPage">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th style="width: 50px;"></th>
+                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" style="width:{{cot.DoRong}}">{{cot.TenCot}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger">
+                            <span ng-bind="{{ctrl.data.error.message}}"></span>
+                        </td>
+                    </tr>
+
+                    <tr ng-repeat="loainghiphep in ctrl.data.listLoaiNghiPhep" ng-class="(loainghiphep.isSelected==true)?'info':''">
+                        <td class="text-primary text-center" st-select-row="loainghiphep" st-select-mode="multiple"><i class="fa fa-fw" ng-class="loainghiphep.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" ng-switch="cot.MaCot" ng-class="(ctrl.action.checkInValid(loainghiphep[cot.MaCot], 'isNumber')==true)?'text-left':'text-right'">
+                            <a href="javascript:void(0)" ng-click="ctrl.action.view(loainghiphep.LoaiNghiPhepId)" ng-switch-when="MaLoaiNghiPhep" ng-bind="::loainghiphep[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-click="ctrl.action.view(loainghiphep.LoaiNghiPhepId)" ng-switch-when="TenLoaiPhep" ng-bind="::loainghiphep[cot.MaCot]"></a>
+                            <span ng-switch-default ng-bind="::loainghiphep[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+
+                  
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#LoaiNghiPhepEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</a>
+        </div>
+    </div><!-- /panel danh sách nghỉ phép -->
+    <!-- popup cập nhật nghỉ phép -->
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="LoaiNghiPhepEditPopup" ng-controller="LoaiNghiPhepEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.LoaiNghiPhepEditPopup, userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Thông tin loại nghỉ phép</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#LoaiNghiPhepEditPopup" ng-click="ctrl.action.closeEdit()">
+                    <i class="fa fa-fw fa-remove">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 600px;height: 250px;">
+            <form class="form-horizontal">
+                <!-- Input row Mã loại nghỉ phép-->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaLoaiNghiPhep}">
+                    <label class="control-label col-sm-3">Mã loại</label>
+                    <div class="col-sm-9">
+                        <input id="txtMaLoai" name="txtMaLoai" class="form-control" ng-model="ctrl.data.objLoaiNghiPhep.MaLoaiNghiPhep" required ng-keypress="ctrl.action.keyPress(ctrl.data.objLoaiNghiPhep.MaLoaiNghiPhep,'txtMaLoai','txtTenLoai',$event)" />
+                    </div>
+                </div>
+
+                <!-- Input row Tên loại nghỉ phép-->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenLoaiPhep}">
+                    <label class="control-label col-sm-3">Tên loại </label>
+                    <div class="col-sm-9">
+                        <input id="txtTenLoai" name="txtTenLoai" class="form-control" ng-model="ctrl.data.objLoaiNghiPhep.TenLoaiPhep" required ng-keypress="ctrl.action.keyPress(ctrl.data.objLoaiNghiPhep.TenLoaiPhep,'txtTenLoai','txtSoNgay',$event)" />
+                    </div>
+                </div>
+
+                <!-- Input row Số ngày -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidSoNgay}">
+                    <label class="control-label col-sm-3">Số ngày</label>
+                    <div class="col-sm-9">
+                        <input id="txtSoNgay" name="txtSoNgay" class="form-control" ng-model="ctrl.data.objLoaiNghiPhep.SoNgay" required ng-keypress="ctrl.action.keyPress(ctrl.data.objLoaiNghiPhep.SoNgay,'txtSoNgay','txtGhiChu',$event)" />
+                    </div>
+                </div>         
+
+              
+                <!-- Input row Ghi chú -->
+                <div class="row form-group form-group-sm" >
+                    <label class="control-label col-sm-3">Ghi chú</label>
+                    <div class="col-sm-9">
+                        <input id="txtGhiChu" name="txtGhiChu" class="form-control" ng-model="ctrl.data.objLoaiNghiPhep.GhiChu" required ng-keypress="ctrl.action.keyPress(ctrl.data.objLoaiNghiPhep.GhiChu,'txtGhiChu','btnLuu',$event)" />
+                    </div>
+                </div>
+            </form>            
+        </div>
+
+        <div class="panel-footer">
+            <button type="button" id="btnLuu" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()" ng-if="ctrl.data.showButtonSave">Lưu (F8)</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnReset" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnClose" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#LoaiNghiPhepEditPopup" ng-click="ctrl.action.closeEdit()">Đóng</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrl.action.deleteOne(ctrl.data.objLoaiNghiPhep)" ng-if="ctrl.data.objLoaiNghiPhep.LoaiNghiPhepId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnH" class="btn btn-sm btn-default" ng-click="ctrl.action.GetListLuocSu(ctrl.data.objLoaiNghiPhep.LoaiNghiPhepId)" ng-if="ctrl.data.objLoaiNghiPhep.LoaiNghiPhepId!=0">H</button>
+        </div>
+    </div><!-- /popup cập nhật nghỉ phép -->
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/LoaiNghiPhep/List/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/LoaiNghiPhep/List/service/LoaiNghiPhepService.js"></script>
+    <script src="~/Scripts/angular/LoaiNghiPhep/List/controller/LoaiNghiPhepFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/LoaiNghiPhep/List/controller/LoaiNghiPhepListCtrl.js"></script>
+    <script src="~/Scripts/angular/LoaiNghiPhep/List/controller/LoaiNghiPhepEditCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+
+}
+

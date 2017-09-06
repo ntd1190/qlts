@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Báo cáo xuất nhâp tôn";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default hidden-print">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o no-margin"></i>Tổng hợp xuất nhập tồn</span>
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse fade" id="panelTimkiemCollapse" ng-controller="KhoXuatNhapTonFilterCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'KhoXuatNhapTonFilterCtrl',userInfo: @ViewBag.userInfo})">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <!-- search field -->
+                    <div class="row form-group form-group-sm">
+                        <label for="txtNhanVien" class="control-label col-sm-2">Từ ngày</label>
+                        <div class="form-inline col-sm-10">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayTu" />
+                            <span>~</span>
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayDen" />
+                        </div>
+                    </div>
+                 
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Kho hàng hóa</label>
+                        <div class="col-sm-10">
+                            <div class="form-control auto-height">
+                                <a class="pull-right" href="javascript:void(0)" ng-click="ctrl.action.clearListKhoKhoHang()"><i class="fa fa-fw fa-remove"></i></a>
+                                <a href="javascript:void(0)" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoKhoHangListPopup}}">
+                                    <div>
+                                        <i class="fa fa-fw fa-search"></i>
+                                        <span style="margin-right: 5px;" ng-repeat="kho in ctrl.data.listKhoKhoHang" ng-bind="kho.TenKho+','"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lặp lại</a>
+            </div>
+        </div>
+    </div><!-- / panel tìm kiếm -->
+    <!-- panel Danh sách kỳ -->
+    <div class="panel panel-default" ng-controller="KhoXuatNhapTonListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'KhoXuatNhapTonListCtrl',loadListCot:true,userInfo: @ViewBag.userInfo})">
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Báo cáo tổng hợp xuất nhập tồn</h3>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i style="float:left"><span ng-bind="ctrl.data.TenKho"></span></i>
+                <i style="float:right"><span ng-bind="ctrl.data.TuNgay"></span> ~ <span ng-bind="ctrl.data.DenNgay"></span></i>
+            </h4>
+        </div>
+
+        <div id="tableToExport" class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listKhoXuatNhapTon" st-pipe="ctrl.action.getPage">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" rowspan="2">#</th>
+                        <th class="text-center" rowspan="2">Mã mặt hàng</th>
+                        <th class="text-center" rowspan="2">Tên mặt hàng</th>
+                        <th class="text-center" rowspan="2">ĐVT</th>
+                        <th class="text-center" rowspan="2">Lô</th>
+                        <th class="text-center" colspan="2">Tồn đầu kỳ</th>
+                        <th class="text-center" colspan="2">Nhập trong kỳ</th>
+                        <th class="text-center" colspan="2">Xuất trong kỳ</th>
+                        <th class="text-center" colspan="2">Tồn cuối kỳ</th>
+                    </tr>
+                    <tr style="font-weight:bold">
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        @*<td class="text-center">GXBQ</td>*@
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="chitiet in ctrl.data.listKhoXuatNhapTon">
+                        <td class="text-center" ng-bind="$index+1"></td>
+                        @*<td><a href="/QLDNKHO/khothekho/Chitiet/{{chitiet.HangHoaId}}" ng-bind="chitiet.MaHangHoa"></a></td>
+                        <td><a href="/QLDNKHO/KhoTongHopXuatNhapTonTheoKy/Chitiet/{{chitiet.HangHoaId}}" ng-bind="chitiet.TenHangHoa"></a></td>*@
+                        <td><a href="/QLDNKHO/khothekho/ChitietXT?id={{chitiet.HangHoaId}}&dtF={{chitiet.tungay1}}&dt={{chitiet.denngay1}}" ng-bind="chitiet.MaHangHoa"></a></td>
+                        <td><a href="/QLDNKHO/khothekho/ChitietXT?id={{chitiet.HangHoaId}}&dtF={{chitiet.tungay1}}&dt={{chitiet.denngay1}}" ng-bind="chitiet.TenHangHoa"></a></td>
+                        @*<td ng-bind="chitiet.MaHangHoa"> </td>
+                        <td ng-bind="chitiet.TenHangHoa"></td>*@
+                        <td ng-bind="chitiet.DonViTinh"></td>
+                        <td ng-bind="chitiet.LoHang"></td>
+                        <td class="text-right" ng-bind="chitiet.TonDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.Nhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TienNhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.Xuat|number"></td>
+                        @*<td class="text-right" ng-bind="chitiet.DGXuatBQ|number"></td>*@
+                        <td class="text-right" ng-bind="chitiet.TienXuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TonCuoi|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuCuoi|number"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="text-primary">
+                    <tr>
+                        <td class="text-right" colspan="4">Tổng cộng</td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listKhoXuatNhapTon|sumOfValue:'DuDau'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listKhoXuatNhapTon|sumOfValue:'TienNhap'|number"></td>
+                        <td></td>
+                        @*<td></td>*@
+                        <td class="text-right" ng-bind="ctrl.data.listKhoXuatNhapTon|sumOfValue:'TienXuat'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listKhoXuatNhapTon|sumOfValue:'DuCuoi'|number"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a>
+        </div>
+
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#TongHopXuatNhapTonTheoKyEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+        </div>
+    </div><!-- /panel danh sách kỳ -->
+   
+    @{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:mainCtrl.controllerId.KhoKhoHangListPopup,isSelectOne:true,showTable:true,userInfo:" + ViewBag.userInfo + "}" } });}
+    
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+
+    <!-- Nhan Vien Popup controller -->
+
+    <script src="~/Scripts/angular/KhoXuatNhapTon/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoXuatNhapTon/controller/KhoXuatNhapTonListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoXuatNhapTon/controller/KhoXuatNhapTonFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoXuatNhapTon/service/KhoXuatNhapTonService.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/utility.js"></script>
+    <!-- Utility -->
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+
+    @{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+
+
+}
+

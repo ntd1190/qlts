@@ -1,0 +1,623 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\..\..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props" Condition="Exists('..\..\..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24F39B7F-D902-4D3E-B22C-7ADA4C8533F5}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SongAn.QLDN.UI.QLDNMAIN</RootNamespace>
+    <AssemblyName>SongAn.QLDN.UI.QLDNMAIN</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="CrystalDecisions.ReportSource, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Shared, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="CrystalDecisions.Web, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Webpages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\..\..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\..\..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="CrystalReport\CrystalImageHandler.aspx" />
+    <Content Include="CrystalReport\ReportPage.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="lib\angular-smart-table\smart-table.min.js" />
+    <Content Include="lib\angular-storage\ngStorage.min.js" />
+    <Content Include="lib\angular-ui\angular-ui-router.min.js" />
+    <Content Include="lib\angular\angular-animate.js" />
+    <Content Include="lib\angular\angular-animate.min.js" />
+    <Content Include="lib\angular\angular-aria.js" />
+    <Content Include="lib\angular\angular-aria.min.js" />
+    <Content Include="lib\angular\angular-cookies.js" />
+    <Content Include="lib\angular\angular-cookies.min.js" />
+    <Content Include="lib\angular\angular-csp.css" />
+    <Content Include="lib\angular\angular-loader.js" />
+    <Content Include="lib\angular\angular-loader.min.js" />
+    <Content Include="lib\angular\angular-message-format.js" />
+    <Content Include="lib\angular\angular-message-format.min.js" />
+    <Content Include="lib\angular\angular-messages.js" />
+    <Content Include="lib\angular\angular-messages.min.js" />
+    <Content Include="lib\angular\angular-mocks.js" />
+    <Content Include="lib\angular\angular-parse-ext.js" />
+    <Content Include="lib\angular\angular-parse-ext.min.js" />
+    <Content Include="lib\angular\angular-resource.js" />
+    <Content Include="lib\angular\angular-resource.min.js" />
+    <Content Include="lib\angular\angular-route.js" />
+    <Content Include="lib\angular\angular-route.min.js" />
+    <Content Include="lib\angular\angular-sanitize.js" />
+    <Content Include="lib\angular\angular-sanitize.min.js" />
+    <Content Include="lib\angular\angular-scenario.js" />
+    <Content Include="lib\angular\angular-touch.js" />
+    <Content Include="lib\angular\angular-touch.min.js" />
+    <Content Include="lib\angular\angular.js" />
+    <Content Include="lib\angular\angular.min.js" />
+    <Content Include="lib\angular\version.txt" />
+    <Content Include="lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker-standalone.css" />
+    <Content Include="lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
+    <Content Include="lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
+    <Content Include="lib\bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.css" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css" />
+    <Content Include="lib\bootstrap\css\essentials.css" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="lib\bootstrap\js\bootstrap.js" />
+    <Content Include="lib\bootstrap\js\bootstrap.min.js" />
+    <Content Include="lib\bootstrap\js\npm.js" />
+    <Content Include="lib\font-awesome\css\font-awesome.css" />
+    <Content Include="lib\font-awesome\css\font-awesome.min.css" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="lib\images\DANG NHAP.png" />
+    <Content Include="lib\images\header.jpg" />
+    <Content Include="lib\images\icon_signup.png" />
+    <Content Include="lib\images\lock_key_icon.png" />
+    <Content Include="lib\images\login-system-icon-13.png" />
+    <Content Include="lib\images\Login.png" />
+    <Content Include="lib\images\logo%402x.png" />
+    <Content Include="lib\images\logo.png" />
+    <Content Include="lib\images\LOGO_ICON.png" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\jquery.mask.js" />
+    <Content Include="lib\jQuery-Mask-Plugin-master\jquery.mask.min.js" />
+    <Content Include="lib\jquery-ui\jquery-ui.min.js" />
+    <Content Include="lib\jquery\jquery-3.1.1.js" />
+    <Content Include="lib\metisMenu\metisMenu.css" />
+    <Content Include="lib\metisMenu\metisMenu.js" />
+    <Content Include="lib\metisMenu\metisMenu.min.css" />
+    <Content Include="lib\metisMenu\metisMenu.min.js" />
+    <Content Include="lib\modernizr\modernizr-2.6.2.js" />
+    <Content Include="lib\moment\locales.js" />
+    <Content Include="lib\moment\locales.min.js" />
+    <Content Include="lib\moment\moment-with-locales.js" />
+    <Content Include="lib\moment\moment-with-locales.min.js" />
+    <Content Include="lib\moment\moment.min.js" />
+    <Content Include="lib\moment\tests.js" />
+    <Content Include="lib\moment\vi.js" />
+    <Content Include="lib\sb-admin\css\sb-admin-2.css" />
+    <Content Include="lib\sb-admin\css\sb-admin-2.min.css" />
+    <Content Include="lib\sb-admin\js\sb-admin-2.js" />
+    <Content Include="lib\sb-admin\js\sb-admin-2.min.js" />
+    <Content Include="lib\timepicki\jquery.datetimepicker.full.min.js" />
+    <Content Include="lib\timepicki\jquery.datetimepicker.min.css" />
+    <Content Include="Scripts\angular\app\app.js" />
+    <Content Include="Scripts\angular\app\controllers\LoginCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\NguoiDungCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\NguoiDungEditCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\NhanVienInfoChung.js" />
+    <Content Include="Scripts\angular\app\controllers\NhanVienInfoLuong.js" />
+    <Content Include="Scripts\angular\app\controllers\NhanVienListCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\NhanVienListPopup.js" />
+    <Content Include="Scripts\angular\app\controllers\PhongBanListCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\ProfileCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\TuyChonCotCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\VaiTroCtrl.js" />
+    <Content Include="Scripts\angular\app\directives\datetimepicker.directive.js" />
+    <Content Include="Scripts\angular\app\models\AccountService.js" />
+    <Content Include="Scripts\angular\app\models\keyCodes.js" />
+    <Content Include="Scripts\angular\app\models\LuongService.js" />
+    <Content Include="Scripts\angular\app\models\NguoiDungService.js" />
+    <Content Include="Scripts\angular\app\models\NhanVienService.js" />
+    <Content Include="Scripts\angular\app\models\PhongBanService.js" />
+    <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
+    <Content Include="Scripts\angular\app\models\utility.js" />
+    <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\ChiTiet\BangLuongChiTietListCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\List\controller\BangLuongCaNhanFilterCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\List\controller\BangLuongCaNhanListCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\List\controller\BangLuongNhanVienListCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\List\controller\BangLuongNhanVienFilterCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\ReportTheoBangLuong\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\ReportTheoBangLuong\controller\ReportTheoBangLuongCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\ReportTheoCaNhan\controller\ReportTheoCaNhanCtrl.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\Service\BangLuongCaNhanService.js" />
+    <Content Include="Scripts\angular\BangLuongCaNhan\Service\BangLuongNhanVienService.js" />
+    <Content Include="Scripts\angular\BangLuong\List\controller\BangLuongEditCtrl.js" />
+    <Content Include="Scripts\angular\BangLuong\List\controller\BangLuongFilterCtrl.js" />
+    <Content Include="Scripts\angular\BangLuong\List\controller\BangLuongListCtrl.js" />
+    <Content Include="Scripts\angular\BangLuong\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\BangLuong\List\service\BangLuongService.js" />
+    <Content Include="Scripts\angular\BaoHiemXaHoi\controller\BaoHiemXaHoiEditCtrl.js" />
+    <Content Include="Scripts\angular\BaoHiemXaHoi\service\BaoHiemXaHoiService.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\ChamCongFilterCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\ChamCongListCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\service\ChamCongService.js" />
+    <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhListPopup.js" />
+    <Content Include="Scripts\angular\ChucNangList\controller\ChucNangEditCtrl.js" />
+    <Content Include="Scripts\angular\ChucNangList\controller\ChucNangListCtrl.js" />
+    <Content Include="Scripts\angular\ChucNangList\service\ChucNangService.js" />
+    <Content Include="Scripts\angular\ChucVu\ChucVuListCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\ChucVuService.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\ChamCongFilterCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\controller\ChamCongListCtrl.js" />
+    <Content Include="Scripts\angular\ChamCong\service\ChamCongService.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuEditCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuFilterCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuListCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\service\ChucVuService.js" />
+    <Content Include="Scripts\angular\ChucVu\List\template\chuc-vu-list.template.html" />
+    <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhEditCtrl.js" />
+    <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhListCtrl.js" />
+    <Content Include="Scripts\angular\ChiNhanh\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ChiNhanh\service\ChiNhanhService.js" />
+    <Content Include="Scripts\angular\QuanHeGiaDinh\controller\QuanHeGiaDinhEditCtrl.js" />
+    <Content Include="Scripts\angular\QuanHeGiaDinh\controller\QuanHeGiaDinhListCtrl.js" />
+    <Content Include="Scripts\angular\QuanHeGiaDinh\service\QuanHeGiaDinhService.js" />
+    <Content Include="Scripts\angular\LichSuBanThan\controller\LichSuBanThanEditCtrl.js" />
+    <Content Include="Scripts\angular\LichSuBanThan\controller\LichSuBanThanListCtrl.js" />
+    <Content Include="Scripts\angular\LichSuBanThan\service\LichSuBanThanService.js" />
+    <Content Include="Scripts\angular\HocVan\controller\HocVanEditCtrl.js" />
+    <Content Include="Scripts\angular\HocVan\controller\HocVanListCtrl.js" />
+    <Content Include="Scripts\angular\HocVan\service\HocVanService.js" />
+    <Content Include="Scripts\angular\CongViecTruocDay\controller\CongViecTruocDayEditCtrl.js" />
+    <Content Include="Scripts\angular\CongViecTruocDay\controller\CongViecTruocDayListCtrl.js" />
+    <Content Include="Scripts\angular\CongViecTruocDay\service\CongViecTruocDayService.js" />
+    <Content Include="Scripts\angular\CongViec\controller\BaoCaoCongViecFilterCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungEditCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungFilterCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungListCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\service\NguoiDungService.js" />
+    <Content Include="Scripts\angular\DuAn\controller\DuAnListPopCtrl.js" />
+    <Content Include="Scripts\angular\ImportExcel\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ImportExcel\service\ImportExcelService.js" />
+    <Content Include="Scripts\angular\DuAn\controller\DuAnEditCtrl.js" />
+    <Content Include="Scripts\angular\DuAn\controller\DuAnFilterCtrl.js" />
+    <Content Include="Scripts\angular\DuAn\controller\DuAnListCtrl.js" />
+    <Content Include="Scripts\angular\DuAn\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\DuAn\service\DuAnService.js" />
+    <Content Include="Scripts\angular\CongViec\controller\CongViecEditCtrl.js" />
+    <Content Include="Scripts\angular\CongViec\controller\CongViecFilterCtrl.js" />
+    <Content Include="Scripts\angular\CongViec\controller\CongViecListCtrl.js" />
+    <Content Include="Scripts\angular\CongViec\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\CongViec\service\CongViecService.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\controller\LoaiNghiPhepEditCtrl.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\controller\LoaiNghiPhepFilterCtrl.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\controller\LoaiNghiPhepListCtrl.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\service\LoaiNghiPhepService.js" />
+    <Content Include="Scripts\angular\LoaiNghiPhep\List\template\nghi-phep-list.template.html" />
+    <Content Include="Scripts\angular\LuongPhuCap\controller\LuongPhuCapEditCtrl.js" />
+    <Content Include="Scripts\angular\LuongPhuCap\service\LuongPhuCapService.js" />
+    <Content Include="Scripts\angular\NhanVien\Edit\MainCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\Edit\ThongTinNhanVienEditCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListListCtrl.js" />
+    <Content Include="Scripts\angular\PhanQuyen\controller\PhanQuyenListCtrl.js" />
+    <Content Include="Scripts\angular\PhanQuyen\service\PhanQuyenService.js" />
+    <Content Include="Scripts\angular\PheDuyet\controller\PheDuyetFilterCtrl.js" />
+    <Content Include="Scripts\angular\PheDuyet\controller\PheDuyetListCtrl.js" />
+    <Content Include="Scripts\angular\PheDuyet\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\PheDuyet\service\PheDuyetService.js" />
+    <Content Include="Scripts\angular\Issue\controller\IssueEditCtrl.js" />
+    <Content Include="Scripts\angular\Issue\controller\IssueFilterCtrl.js" />
+    <Content Include="Scripts\angular\Issue\controller\IssueListCtrl.js" />
+    <Content Include="Scripts\angular\Issue\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\Issue\service\IssueService.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangFilterCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\PopUp\TinhHuyenTramListCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\PopUp\TinhHuyenTramService.js" />
+    <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\mockup\TuyChonCotService.js" />
+    <Content Include="Scripts\angular\KhenThuong\controller\KhenThuongEditCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuong\controller\KhenThuongListCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuong\service\KhenThuongService.js" />
+    <Content Include="Scripts\angular\PhepNam\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\PhepNam\controller\MainEditCtrl.js" />
+    <Content Include="Scripts\angular\PhepNam\controller\PhepNamEditCtrl.js" />
+    <Content Include="Scripts\angular\PhepNam\controller\PhepNamFilter.js" />
+    <Content Include="Scripts\angular\PhepNam\controller\PhepNamListCtrl.js" />
+    <Content Include="Scripts\angular\PhepNam\service\PhepNamService.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\Duyet\PhieuCongTacDuyetCtrl.js" />
+    <Content Include="Scripts\angular\NgayNghi\controller\NgayNghiEditCtrl.js" />
+    <Content Include="Scripts\angular\NgayNghi\controller\NgayNghiListCtrl.js" />
+    <Content Include="Scripts\angular\NgayNghi\service\NgayNghiService.js" />
+    <Content Include="Scripts\angular\QuanLyHopDong\controller\QuanLyHopDongEditCtrl.js" />
+    <Content Include="Scripts\angular\QuanLyHopDong\controller\QuanLyHopDongListCtrl.js" />
+    <Content Include="Scripts\angular\QuanLyHopDong\service\QuanLyHopDongService.js" />
+    <Content Include="Scripts\angular\QuaTrinhCongTac\Edit\QuaTrinhCongTacEditCtrl.js" />
+    <Content Include="Scripts\angular\QuaTrinhCongTac\List\QuaTrinhCongTacListCtrl.js" />
+    <Content Include="Scripts\angular\QuaTrinhCongTac\service\QuaTrinhCongTacService.js" />
+    <Content Include="Scripts\angular\shared\directive\keyboard.directive.js" />
+    <Content Include="Scripts\angular\shared\directive\number-format.js" />
+    <Content Include="Scripts\angular\shared\service\xlsx.full.min.js" />
+    <Content Include="Scripts\angular\TamUng\controller\TamUngEditCtrl.js" />
+    <Content Include="Scripts\angular\TamUng\controller\TamUngListCtrl.js" />
+    <Content Include="Scripts\angular\TamUng\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\TamUng\service\TamUngService.js" />
+    <Content Include="Scripts\angular\KyLuat\controller\KyLuatEditCtrl.js" />
+    <Content Include="Scripts\angular\KyLuat\controller\KyLuatListCtrl.js" />
+    <Content Include="Scripts\angular\KyLuat\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\KyLuat\service\KyLuatService.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\controller\NghiPhepEditCtrl.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\controller\NghiPhepFilterCtrl.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\controller\NghiPhepListCtrl.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\mockup\LoaiNghiPhepListCtrl.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\mockup\LoaiNghiPhepService.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\service\NghiPhepService.js" />
+    <Content Include="Scripts\angular\NghiPhep\List\template\nghi-phep-list.template.html" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienFilterCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListPopupCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\service\NhanVienService.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\controller\KhenThuongCaNhanEditCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\controller\KhenThuongCaNhanListCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\mockup\NhanVienFilterCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\mockup\popupNhanVienListCtrl.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\mockup\NhanVienService.js" />
+    <Content Include="Scripts\angular\KhenThuongCaNhan\service\KhenThuongCaNhanService.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\Edit\Controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\Edit\Controller\PhieuCongTacChiTietEditCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\List\Controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\Edit\Controller\PhieuCongTacEditCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\List\Controller\PhieuCongTacFilterCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\List\Controller\PhieuCongTacListCtrl.js" />
+    <Content Include="Scripts\angular\PhieuCongTac\List\service\PhieuCongTacService.js" />
+    <Content Include="Scripts\angular\PhongBanList\controller\PhongBanEditCtrl.js" />
+    <Content Include="Scripts\angular\PhongBanList\controller\PhongBanListCtrl.js" />
+    <Content Include="Scripts\angular\PhongBanList\service\PhongBanService.js" />
+    <Content Include="Scripts\angular\shared\dialog-message\dialogMessage.js" />
+    <Content Include="Scripts\angular\shared\dialog-message\template\dialog-message.template.html" />
+    <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
+    <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
+    <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\TangCa\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\TangCa\List\controller\TangCaEditCtrl.js" />
+    <Content Include="Scripts\angular\TangCa\List\controller\TangCaFilterCtrl.js" />
+    <Content Include="Scripts\angular\TangCa\List\controller\TangCaListCtrl.js" />
+    <Content Include="Scripts\angular\TangCa\List\service\TangCaService.js" />
+    <Content Include="Scripts\angular\TuyChonFormCot\controller\TuyChonCotListCtrl.js" />
+    <Content Include="Scripts\angular\TuyChonFormCot\service\TuyChonCotService.js" />
+    <Content Include="Scripts\angular\VaiTroList\controller\VaiTroEditCtrl.js" />
+    <Content Include="Scripts\angular\VaiTroList\controller\VaiTroListCtrl.js" />
+    <Content Include="Scripts\angular\VaiTroList\service\VaiTroService.js" />
+    <Content Include="lib\angular\angular-animate.min.js.map" />
+    <Content Include="lib\angular\angular-aria.min.js.map" />
+    <Content Include="lib\angular\angular-cookies.min.js.map" />
+    <Content Include="lib\angular\angular-loader.min.js.map" />
+    <Content Include="lib\angular\angular-message-format.min.js.map" />
+    <Content Include="lib\angular\angular-messages.min.js.map" />
+    <Content Include="lib\angular\angular-parse-ext.min.js.map" />
+    <Content Include="lib\angular\angular-resource.min.js.map" />
+    <Content Include="lib\angular\angular-route.min.js.map" />
+    <Content Include="lib\angular\angular-sanitize.min.js.map" />
+    <Content Include="lib\angular\angular-touch.min.js.map" />
+    <Content Include="lib\angular\angular.min.js.map" />
+    <Content Include="lib\angular\errors.json" />
+    <Content Include="lib\angular\version.json" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.css.map" />
+    <Content Include="lib\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="lib\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
+    <None Include="Properties\PublishProfiles\QLDNMAIN.pubxml" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BangLuongCaNhanController.cs" />
+    <Compile Include="Controllers\BangLuongController.cs" />
+    <Compile Include="Controllers\ChucNangController.cs" />
+    <Compile Include="Controllers\ChamCongController.cs" />
+    <Compile Include="Controllers\ChucVuController.cs" />
+    <Compile Include="Controllers\ChiNhanhController.cs" />
+    <Compile Include="Controllers\NguoiDungController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\DuAnController.cs" />
+    <Compile Include="Controllers\CongViecController.cs" />
+    <Compile Include="Controllers\PhanQuyenController.cs" />
+    <Compile Include="Controllers\PheDuyetController.cs" />
+    <Compile Include="Controllers\IssueController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\LoaiNghiPhepController.cs" />
+    <Compile Include="Controllers\ImportExcelController.cs" />
+    <Compile Include="Controllers\NgayNghiController.cs" />
+    <Compile Include="Controllers\PhepNamController.cs" />
+    <Compile Include="Controllers\TamUngController.cs" />
+    <Compile Include="Controllers\KyLuatController.cs" />
+    <Compile Include="Controllers\KhenThuongController.cs" />
+    <Compile Include="Controllers\KhenThuongCaNhanController.cs" />
+    <Compile Include="Controllers\NghiPhepController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\PhieuCongTacController.cs" />
+    <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\TangCaController.cs" />
+    <Compile Include="Controllers\VaiTroController.cs" />
+    <Compile Include="CrystalReport\CrystalImageHandler.aspx.cs">
+      <DependentUpon>CrystalImageHandler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\CrystalImageHandler.aspx.designer.cs">
+      <DependentUpon>CrystalImageHandler.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\ReportPage.aspx.cs">
+      <DependentUpon>ReportPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
+      <DependentUpon>ReportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptBaoCaoCongViec.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBaoCaoCongViec.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Providers\JwtProvider.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Shared\_PartialNavigation.cshtml" />
+    <Content Include="Views\Shared\_Login.cshtml" />
+    <Content Include="Views\VaiTro\List.cshtml" />
+    <Content Include="Views\ChucNang\List.cshtml" />
+    <Content Include="Views\NhanVien\List.cshtml" />
+    <Content Include="Views\PhongBan\List.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\KhenThuongCaNhan\List.cshtml" />
+    <Content Include="Views\NghiPhep\List.cshtml" />
+    <Content Include="Views\KhenThuong\List.cshtml" />
+    <Content Include="Views\KyLuat\List.cshtml" />
+    <Content Include="Views\KhachHang\List.cshtml" />
+    <Content Include="Views\Issue\List.cshtml" />
+    <Content Include="Views\NhanVien\_NhanVienListPopup.cshtml" />
+    <Content Include="Views\PhieuCongTac\Duyet.cshtml" />
+    <Content Include="Views\PhieuCongTac\Edit.cshtml" />
+    <Content Include="Views\PhieuCongTac\List.cshtml" />
+    <Content Include="Views\TangCa\List.cshtml" />
+    <Content Include="Views\TamUng\List.cshtml" />
+    <Content Include="Views\BangLuong\List.cshtml" />
+    <Content Include="Views\LoaiNghiPhep\List.cshtml" />
+    <Content Include="Views\PheDuyet\List.cshtml" />
+    <Content Include="Views\LoaiNghiPhep\List.cshtml" />
+    <Content Include="Views\ImportExcel\List.cshtml" />
+    <Content Include="Views\Shared\_LayoutReport.cshtml" />
+    <Content Include="Views\BangLuongCaNhan\List.cshtml" />
+    <Content Include="Views\BangLuongCaNhan\ReportTheoBangLuong.cshtml" />
+    <Content Include="Views\BangLuongCaNhan\ReportTheoCaNhan.cshtml" />
+    <Content Include="Views\PhanQuyen\List.cshtml" />
+    <Content Include="Views\BangLuongCaNhan\ChiTiet.cshtml" />
+    <Content Include="Views\DuAn\List.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\CongViec\List.cshtml" />
+    <Content Include="Views\NguoiDung\List.cshtml" />
+    <Content Include="Views\ChucVu\List.cshtml" />
+    <Content Include="Views\ChamCong\List.cshtml" />
+    <Content Include="Views\NgayNghi\List.cshtml" />
+    <Content Include="Views\ChucVu\List.cshtml" />
+    <Content Include="Views\ChiNhanh\_ListPopup.cshtml" />
+    <Content Include="Views\ChiNhanh\List.cshtml" />
+    <Content Include="Views\CongViec\BaoCao.cshtml" />
+    <Content Include="Views\PhepNam\List.cshtml" />
+    <Content Include="Views\PhepNam\Edit.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+    <Folder Include="Scripts\angular\ChucNangList\template\" />
+    <Folder Include="Scripts\angular\KhenThuong\mockup\" />
+    <Folder Include="Scripts\angular\NghiPhep\Edit\" />
+    <Folder Include="Scripts\angular\shared\smart-table\service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\00 Utilities\Util.Common\Util.Common.csproj">
+      <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
+      <Name>Util.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\01 Entity Layer\Entity.MSSQL_QLDN_MAIN\Entity.MSSQL_QLDN_MAIN.csproj">
+      <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
+      <Name>Entity.MSSQL_QLDN_MAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.Main\Data.Main.csproj">
+      <Project>{1781ba00-b7e3-4b8f-ba6e-d04b0339e80d}</Project>
+      <Name>Data.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.QLNS\Data.QLNS.csproj">
+      <Project>{36b1f8ee-22f7-4a45-9114-d71ded146490}</Project>
+      <Name>Data.QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.Repository\Data.Repository.csproj">
+      <Project>{1a5e7772-e937-46e2-a4b2-dd8e071e16f5}</Project>
+      <Name>Data.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\03 Business Layer\Biz.Main\Biz.Main.csproj">
+      <Project>{9ecee33b-587f-4849-a2cf-9fb5bed47b58}</Project>
+      <Name>Biz.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\03 Business Layer\Biz.QLNS\Biz.QLNS.csproj">
+      <Project>{5d6ff0ab-0342-4110-a004-356d4e7772ac}</Project>
+      <Name>Biz.QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\04 WebApis\Api.Main\Api.Main.csproj">
+      <Project>{e6568342-3bf9-48ba-8835-e689d432a535}</Project>
+      <Name>Api.Main</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptBaoCaoCongViec.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBaoCaoCongViec.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <SaveServerSettingsInUserFile>True</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.Net.Compilers.2.0.1\build\Microsoft.Net.Compilers.props'))" />
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.3\build\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

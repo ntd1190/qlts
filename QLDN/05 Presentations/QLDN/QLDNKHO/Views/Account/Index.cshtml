@@ -1,0 +1,118 @@
+﻿@model SongAn.QLDN.UI.QLDNKHO.ViewModels.LoginViewModel
+
+@{
+    Layout = "~/Views/Shared/_login.cshtml";
+    ViewBag.Title = "Index";
+}
+<!--
+    @{
+        var error = ViewData.ModelState["Exception"] ?? null;
+        bool hasError = (error != null && error.Errors.Count > 0) ? true : false;
+        var errorMessage=hasError ? error.Errors[0].ErrorMessage : string.Empty;
+    }
+
+    @(errorMessage)
+-->
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4 col-md-offset-4" style="padding-top: 100px;">
+            <div class="login-panel panel panel-default">
+                <div class="panel-heading align-middle" style="height:50px">
+                    <img src="~/lib/images/login-system-icon-13.png" style="height:37px;margin-top: -5px;" class="col-sm-3" />
+                    <h3 class="panel-title col-sm-9"><b style="font-size: 19px;">Đăng nhập hệ thống</b></h3>
+                </div>
+                <div class="panel-body">
+                    @{
+                        error = ViewData.ModelState[""] ?? null;
+                        hasError = (error != null && error.Errors.Count > 0) ? true : false;
+                        errorMessage = hasError ? error.Errors[0].ErrorMessage : string.Empty;
+
+                    }
+                    @if (hasError)
+                    {
+                        <div class="alert alert-danger text-center">
+                            @(errorMessage)
+                        </div>
+                    }
+                    <form role="form" method="post">
+                        <fieldset>
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Email" name="Username" type="text" value="@(Model.Username)" autofocus />
+                                    <div class="input-group-addon"><img src="~/lib/images/icon_signup.png" style="height:18px;" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Mat khau" name="Password" type="password" value="@(Model.Password)" />
+                                    <div class="input-group-addon"><img src="~/lib/images/lock_key_icon.png" style="height:18px;" /></div>
+                                </div>
+                            </div>
+                            <div class="form-group checkbox">
+                                <label>
+                                    <input id="myLogin_RememberMe" type="checkbox" name="myLogin$RememberMe" checked="checked"><i></i>Nhớ mật khẩu
+                                </label>
+                                <button class="btn btn-primary btn-block" type="submit">Đăng nhập</button>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!--
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User Login</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Username, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Username)
+                @Html.ValidationMessageFor(model => model.Username)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Password, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Password)
+                @Html.ValidationMessageFor(model => model.Password)
+            </div>
+        </div>
+
+        @*<div class="form-group">
+                @Html.LabelFor(model => model.RememberMe, new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RememberMe)
+                    @Html.ValidationMessageFor(model => model.RememberMe)
+                </div>
+            </div>*@
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+-->
+<style>
+    body {
+        background-image:url('@(Url.Content("~/"))lib/images/Login.png');
+        background-position: center top;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+</style>

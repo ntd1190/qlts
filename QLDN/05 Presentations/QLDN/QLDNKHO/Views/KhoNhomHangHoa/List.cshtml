@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Nhóm hàng hóa";
+}
+<div class="container-fluid">
+
+    <div ng-controller="KhoNhomHangHoaListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Nhóm hàng hóa</span>
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách nhóm hàng hóa</h3>
+        </div>
+
+        <table st-table="ctrl.data.KhoNhomHangHoaListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+            <thead class="bg-default text-primary">
+                <tr>
+                    <th class="text-center" style="width: 50px;">Chọn</th>
+                    <th class="text-center" style="width: 100px;" st-sort="MaNhom">Mã</th>
+                    <th class="text-center" style="width: 300px" st-sort="TenNhom">Tên</th>
+                    <th class="text-center" st-sort="MoTa">Mô tả</th>
+                    <th class="text-center" style="width: 150px" st-sort="NguoiTao">Người tạo</th>
+                    <th class="text-center" style="width: 150px" st-sort="NgayTao">Ngày tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="ctrl.status.isLoading">
+                    <td colspan="100" class="text-center">
+                        <i class="fa fa-fw fa-spin fa-spinner"></i>
+                    </td>
+                </tr>
+                <tr ng-repeat="nsx in ctrl.data.KhoNhomHangHoaListDisplay" ng-class="(nsx.isSelected==true)?'info':''">
+                    <td st-select-row="nsx" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(nsx.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                    <td><a ng-bind="nsx.MaNhom" ng-click="ctrl.action.edit(nsx.NhomHangHoaId)" href="javascript:void(0);"></a></td>
+                    <td><a ng-bind="nsx.TenNhom" ng-click="ctrl.action.edit(nsx.NhomHangHoaId)" href="javascript:void(0);"></a></td>
+                    <td><span ng-bind="nsx.MoTa"></span></td>
+                    <td><span ng-bind="nsx.NguoiTao"></span></td>
+                    <td><span> {{ nsx.NgayTao | date : 'dd/MM/yyyy HH:mm'}} </span></td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
+        </div>
+    </div>
+
+</div>
+<div ng-controller="KhoNhomHangHoaEditCtrl as ctrl" class="panel panel-primary ui-draggable collapse fade" id="KhoNhomHangHoaEditPopup" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="panel-heading ui-draggable-handle">
+        <h2 class="panel-title">
+            <span>Thông tin nhóm hàng hóa</span>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#KhoNhomHangHoaEditPopup" ng-click="ctrl.action.close()">
+                <i class="fa fa-fw fa-remove"></i>
+            </a>
+            <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner" ng-if="ctrl.status.isLoading"></i>
+        </h2>
+    </div>
+    <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+        <form class="form-horizontal">
+            <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.validate.MaNhom}">
+                <label class="control-label col-sm-3">Mã nhóm hàng hóa</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="txtMa" type="text" ng-model="ctrl.data.objKhoNhomHangHoa.MaNhom" required ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoNhomHangHoa.MaNhom,'txtMa','txtTen',$event)" />
+                </div>
+            </div>
+
+            <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.validate.TenNhom}">
+                <label class="control-label col-sm-3">Tên nhóm hàng hóa</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtTen" ng-model="ctrl.data.objKhoNhomHangHoa.TenNhom" required ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoNhomHangHoa.TenNhom,'txtTen','txtMoTa',$event)" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.validate.MoTa}">
+                <label class="control-label col-sm-3">Mô tả</label>
+                <div class="col-sm-9">
+                    <textarea rows="3" class="form-control" type="text" id="txtMoTa" ng-model="ctrl.data.objKhoNhomHangHoa.MoTa" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoNhomHangHoa.MoTa,'txtMoTa','btnluu',$event)" ></textarea>
+                </div>
+            </div>
+
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+<script src="~/Scripts/angular/KhoNhomHangHoa/controller/KhoNhomHangHoaEditCtrl.js"></script>
+<script src="~/Scripts/angular/KhoNhomHangHoa/controller/KhoNhomHangHoaListCtrl.js"></script>
+<script src="~/Scripts/angular/KhoNhomHangHoa/service/KhoNhomHangHoaService.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+<script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+}
+
+
+
+

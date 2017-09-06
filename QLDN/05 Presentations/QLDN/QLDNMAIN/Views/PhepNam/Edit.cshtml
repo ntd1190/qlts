@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "Chi tiết";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.nbd = ViewBag.nbd ?? "";
+    ViewBag.nkt = ViewBag.nkt ?? "";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="MainEditCtrl as mainCtrl" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" id="tableToExport" ng-controller="PhepNamEditListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.PhepNamEditListCtrl,nhanVienId:@(ViewBag.id),_tuNgay:@(ViewBag.nbd),_denNgay:@(ViewBag.nkt),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/phepnam/"))'})">
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Thống kê phép năm chi tiết</h3>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i style="float:left">Nhân viên: <span ng-bind="ctrl.data.TenNhanVien"></span></i>
+                <i style="float:right"><span ng-bind="ctrl.data.TuNgay"></span> ~ <span ng-bind="ctrl.data.DenNgay"></span></i>
+            </h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center">#</th>
+                        <th class="text-center">Ngày</th>
+                        <th class="text-center">Giờ làm</th>
+                        <th class="text-center">Giờ về</th>
+                        <th class="text-center">Thứ</th>
+                        <th class="text-center">Nghỉ phép</th>
+                        <th class="text-center">Công tác</th>
+                        <th class="text-center">Ngày nghỉ</th>
+                        <th class="text-center">Nghỉ không phép</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="chitiet in ctrl.data.listPhepNam">
+                        <td class="text-center" ng-bind="$index+1"></td>                        
+                        <td class="text-left" ng-bind="chitiet.Vao"></td>
+                        <td class="text-center" ng-bind="chitiet.GioVao"></td>
+                        <td class="text-center" ng-bind="chitiet.GioRa"></td>
+                        <td class="text-center" ng-bind="chitiet.Thu"></td>
+                        <td class="text-right" ng-bind="chitiet.NghiPhep"></td>
+                        <td class="text-right" ng-bind="chitiet.CongTac"></td>
+                        <td class="text-right" ng-bind="chitiet.NgayPhep"></td>
+                        <td class="text-right" ng-bind="chitiet.KhongPhep"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="text-primary">
+                    <tr>
+                        <td class="text-right" colspan="5">Tổng cộng</td>
+                        <td class="text-right" ng-bind="ctrl.data.listPhepNam|sumOfValue:'NghiPhep'"></td>
+                        <td class="text-right" ng-bind="ctrl.data.listPhepNam|sumOfValue:'CongTac'"></td>
+                        <td class="text-right" ng-bind="ctrl.data.listPhepNam|sumOfValue:'NgayPhep'"></td>
+                        <td class="text-right" ng-bind="ctrl.data.listPhepNam|sumOfValue:'KhongPhep'"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a>
+        </div>
+    </div>
+</div>
+
+
+@section ImportScripts{}
+@section SetupScripts{}
+@section SetupStyles{
+
+}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+
+    <script src="~/Scripts/angular/PhepNam/service/PhepNamService.js"></script>
+    <script src="~/Scripts/angular/PhepNam/controller/MainEditCtrl.js"></script>
+    <script src="~/Scripts/angular/PhepNam/controller/PhepNamEditCtrl.js"></script>
+}

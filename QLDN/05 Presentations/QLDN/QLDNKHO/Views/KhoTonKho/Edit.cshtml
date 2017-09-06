@@ -1,0 +1,181 @@
+﻿
+@{
+    ViewBag.Title = "Chi tiết";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="MainEditCtrl as mainCtrl" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" id="tableToExport" ng-controller="KhoTonKhoEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.KhoTonKhoEditCtrl,tonKhoId:@(ViewBag.id),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/khotonkho/"))'})">
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Chỉnh sửa tồn đầu</h3>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i style="float:left">Kho hàng: <span ng-bind="ctrl.data.TenKho"></span></i>
+                <i style="float:right"><span ng-bind="ctrl.data.ThangNam"></span></i>
+            </h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listKhoTonKhoChiTiet" st-pipe="ctrl.action.getPage">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" style="width:35px;">#</th>
+                        <th class="text-center" style="width:100px;">Mã hàng hóa</th>
+                        <th class="text-center" style="width:350px;">Tên hàng hóa</th>
+                        <th class="text-center" style="width:100px;">Lô</th>
+                        <th class="text-center" style="width:90px;">Tồn đầu</th>
+                        <th class="text-center" style="width:110px;">Giá nhập</th>
+                        <!--
+                        <th class="text-center" style="width:90px;">SL nhập</th>
+                        <th class="text-center" style="width:90px;">SL xuất</th>
+                        <th class="text-center" style="width:90px;">Tồn cuối</th> -->
+                        <th class="text-center" style="width:50px;">Lưu</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="chitiet in ctrl.data.listKhoTonKhoChiTiet track by $index">
+                        <td class="text-center" ng-bind="{{$index+1}}"></td>
+                        <td class="form-group form-group-sm">
+                            <div class="form-control">
+                                <span ng-bind="chitiet.MaHangHoa" disabled>Hàng hóa</span>
+                            </div>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <div class="form-control auto-height">
+                                <span ng-bind="chitiet.TenHangHoa" disabled>Tên hàng hóa</span>
+                            </div>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <div class="form-control">
+                                <span ng-bind="chitiet.LoHang" disabled>Lô hàng</span>
+                            </div>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control text-right" maxlength="5" ng-model="chitiet.TonDau" number-format />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control text-right" maxlength="15" ng-model="chitiet.GiaNhap" number-format disabled/>
+                        </td>
+                        <!--
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control text-right" maxlength="15" ng-model="chitiet.SoLuongNhap" number-format disabled/>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control text-right" maxlength="15" ng-model="chitiet.SoLuongXuat" number-format disabled/>
+                        </td>
+                       
+                         <td class="form-group form-group-sm">
+                            <span class="form-control text-right" ng-bind="chitiet.TonDau*1+chitiet.SoLuongNhap*1-chitiet.SoLuongXuat*1|number:'':'':''"></span>
+                        </td>
+                           -->
+                        <td class="form-group form-group-sm text-center" >
+                            <a ng-if="ctrl.data.showButtonSaveAs" class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.updateTonDau(chitiet)">
+                                <i class="fa fa-save" aria-hidden="true"></i>
+                                Lưu
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#TongHopXuatNhapTonTheoKyEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+            @*<a class="btn btn-sm btn-primary" ng-click="ctrl.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a>*@
+        </div>
+    </div>
+
+
+    <!-- popup insert san pham moi -->
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="KhoTonKhoSavePopup" ng-controller="KhoTonKhoSaveCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.KhoTonKhoSaveCtrl,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Thêm tồn đâu theo sản phẩm</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#KhoTonKhoSavePopup" ng-click="ctrl.action.closeEdit()">
+                    <i class="fa fa-fw fa-remove">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 600px;height: 350px;">
+            <form class="form-horizontal">
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaHangHoa}">
+                    <label class="control-label col-sm-3">Mã mặt hàng</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtMaHangHoa" ng-model="ctrl.data.objTongHopTon.MaHangHoa" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.TieuDe,'txtMaHangHoa','txtTenHangHoa',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenHangHoa}">
+                    <label class="control-label col-sm-3">Tên mặt hàng</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtTenHangHoa" ng-model="ctrl.data.objTongHopTon.TenHangHoa" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.TenHangHoa,'txtTenHangHoa','txtDonViTinh',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidDonViTinh}">
+                    <label class="control-label col-sm-3">Đơn vị tính</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtDonViTinh" ng-model="ctrl.data.objTongHopTon.DonViTinh" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.DonViTinh,'txtDonViTinh','txtTonDau',$event)">
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTonDau}">
+                    <label class="control-label col-sm-3">Tồn đầu</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtTonDau" ng-model="ctrl.data.objTongHopTon.TonDau" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.TonDau,'txtTonDau','txtGiaMua',$event)" number-format />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidGiaNhap}">
+                    <label class="control-label col-sm-3">Giá nhập</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtGiaMua" ng-model="ctrl.data.objTongHopTon.GiaMua" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.GiaMua,'txtGiaMua','txtGiaBan',$event)" number-format />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidLoHang}">
+                    <label class="control-label col-sm-3">Lô hàng</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" id="txtLoHang" ng-model="ctrl.data.objTongHopTon.LoHang" ng-keypress="ctrl.action.keyPress(ctrl.data.objTongHopTon.DonViTinh,'txtDonViTinh','txtTonDau',$event)">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.save()" ng-if="ctrl.data.showButtonSave">Lưu (F8)</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#KhoTonKhoSavePopup" ng-click="ctrl.action.closeEdit()">Đóng</a> &nbsp;&nbsp;&nbsp;
+        </div>
+    </div><!-- /popup insert san pham moi -->
+</div>
+
+
+@section ImportScripts{}
+@section SetupScripts{}
+@section SetupStyles{
+    <style>
+        .cthuc {
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+
+    <script src="~/Scripts/angular/KhoTonKho/controller/MainEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTonKho/controller/KhoTonKhoEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTonKho/service/KhoTonKhoService.js"></script>
+    <script src="~/Scripts/angular/KhoTonKho/controller/KhoTonKhoSaveCtrl.js"></script>
+}

@@ -1,0 +1,79 @@
+﻿/*****************************************************************************
+1. Create Date  : 2017.06.07
+2. Creator      : NGUYỄN THANH BÌNH
+3. Function     : QLDNKHO/KHOKHOHANG/LIST
+4. Description  : XÓA THÔNG TIN KHO HÀNG
+5. History      : 2017.06.07 (NGUYỄN THANH BÌNH) - Tao moi
+*****************************************************************************/
+using SongAn.QLDN.Api.QLNS.Models.LuocSu;
+using SongAn.QLDN.Biz.QLKho.KhoKhoHang;
+using SongAn.QLDN.Util.Common.CustomException;
+using SongAn.QLDN.Util.Common.Dto;
+using SongAn.QLDN.Util.Common.Helper;
+using System;
+using System.Net;
+using System.Threading.Tasks;
+
+namespace SongAn.QLDN.Api.QLKho.Models.KhoKhoHang
+{
+    public class DeleteKhoKhoHangAction
+    {
+        #region public
+        public string KhoHangId { get; set; }
+        public string LoginId { get; set; }
+        #endregion
+
+        #region private
+        private int _KhoHangId;
+        private int _LoginId;
+        #endregion
+
+        #region init & validate
+
+        /// <summary>
+        /// Ham khoi tao gia tri mac dinh cho cac bien
+        /// </summary>
+        private void init()
+        {
+            _KhoHangId = Protector.Int(KhoHangId, 0);
+            _LoginId = Protector.Int(LoginId, 0);
+        }
+
+        /// <summary>
+        /// Ham chuan hoa gia tri cac bien
+        /// </summary>
+        private void validate() { }
+
+        #endregion
+        public async Task<dynamic> Execute(ContextDto context)
+        {
+            try
+            {
+                init();
+                validate();
+
+
+                var biz = new DeleteKhoKhoHangBiz(context);
+
+                biz.KHO_HANG_ID = _KhoHangId;
+
+                var result = await biz.Execute();
+
+                InsertLuocSuAction ls = new InsertLuocSuAction();
+                ls.InsertLuocSu(context, "KhoKhoHang", _KhoHangId, "Delete", _LoginId);
+
+                dynamic metaData = new System.Dynamic.ExpandoObject();
+
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, metaData);
+            }
+            catch (BaseException ex)
+            {
+                return ActionHelper.returnActionError(HttpStatusCode.BadRequest, ex.Message);
+            }
+            catch (Exception ex)
+            {
+                return ActionHelper.returnActionError(HttpStatusCode.InternalServerError, ex.Message);
+            }
+        }
+    }
+}

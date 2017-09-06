@@ -1,0 +1,152 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" ng-controller="ChiNhanhListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId: mainCtrl.controllerId.ChiNhanhList,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <i class="fa fa-fw fa-star-o"></i>
+                <span>Chi nhánh</span>
+                <form class="form-inline pull-right">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" id="txtsearch" autofocus ng-model="ctrl.data.searchString" data-name="DiaChi" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-primary" type="submit" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách chi nhánh</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listChiNhanh" st-pipe="ctrl.action.getPage">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" style="width: 50px;" ng-click="ctrl.action.checkAll()"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <th class="text-center" style="width: {{cot.DoRong}}px;" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.HienThiYN=true">
+                            <span ng-bind="cot.TenCot"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="row in ctrl.data.listChiNhanh" ng-class="(row.isSelected==true)?'info':''">
+                        <td class="text-primary text-center" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()"><i class="fa fa-fw" ng-class="row.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-switch="cot.MaCot">
+                            <a href="javascript:void(0)" ng-click="ctrl.action.edit(row.CHINHANH_ID)" ng-switch-when="MaChiNhanh,TenChiNhanh" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></a>
+                            <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.create()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.xoaChon()">Xóa chọn</a>&nbsp;&nbsp;&nbsp;
+            </span>
+        </div>
+    </div>
+    <!-- ChiNhanhEditCtrl -->
+    <div class="panel panel-primary ui-draggable collapse fade" ng-controller="ChiNhanhEditCtrl as ctrl" id="{{ctrl.controllerId}}" ng-init="ctrl.onInitView({controllerId: mainCtrl.controllerId.ChiNhanhEditPopup,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <i class="fa fa-fw fa-spinner fa-spin" ng-if="ctrl.status.isLoading"></i>
+            <i class="fa fa-fw fa-star-o" ng-if="!ctrl.status.isLoading"></i>
+            <span>Thông tin chi nhánh</span>
+            <a class="btn btn-xs btn-primary pull-right" ng-click="ctrl.action.close()">
+                <i class="fa fa-fw fa-remove"></i>
+            </a>
+        </div>
+        <div class="panel-body" style="width: 600px; height: auto;">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.MaChiNhanh}">
+                    <label class="control-label col-sm-3">Mã chi nhánh</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.chiNhanh.MaChiNhanh" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="MaChiNhanh" data-next="TenChiNhanh" autofocus />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.TenChiNhanh}">
+                    <label class="control-label col-sm-3">Tên chi nhánh</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.chiNhanh.TenChiNhanh" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenChiNhanh" data-next="DiaChi" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.DiaChi}">
+                    <label class="control-label col-sm-3">Địa chỉ</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.chiNhanh.DiaChi" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="DiaChi" data-next="MoTa" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.MoTa}">
+                    <label class="control-label col-sm-3">Mô tả</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.chiNhanh.MoTa" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="MoTa" data-next="ChiNhanhCha" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.ChiNhanhCha}">
+                    <label class="control-label col-sm-3">Chi nhánh cha</label>
+                    <div class="col-sm-9">
+                        <div class="form-control auto-height" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="ChiNhanhCha" data-next="ChiNhanhCha">
+                            <a class="pull-right" href="javascript:void(0);" tabindex="-1" ng-click="ctrl.action.clearChiNhanhCha()"><i class="fa fa-fw fa-remove"></i></a>
+                            <a href="javascript:void(0);" ng-click="ctrl.action.getListChiNhanh()">
+                                <div>
+                                    <i class="fa fa-fw fa-search"></i>
+                                    <span class="" style="margin-right: 5px;" ng-bind="ctrl.data.chiNhanh.TenChiNhanhCha"></span>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+        </div>
+    </div><!-- ChiNhanhEditCtrl -->
+
+    @{Html.RenderPartial("~/views/chinhanh/_ListPopup.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:mainCtrl.controllerId.ChiNhanhListPopup,isSelectOne:true,showTable:true}" } });}
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/chinhanh/service/ChiNhanhService.js"></script>
+    <script src="~/Scripts/angular/chinhanh/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/chinhanh/controller/ChiNhanhListCtrl.js"></script>
+    <script src="~/Scripts/angular/chinhanh/controller/ChiNhanhEditCtrl.js"></script>
+
+    @{Html.RenderPartial("~/views/chinhanh/_ListPopup.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}

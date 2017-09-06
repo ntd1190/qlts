@@ -1,0 +1,30 @@
+﻿
+
+@{
+    ViewBag.Title = "List";
+}
+<div class="container-fluid" ng-controller="MainCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="container" style="margin-top:50px;">
+        <div class="panel-body">
+            <form class="form">
+                <div class="row form-group form-group-sm">
+                    <div class="col-sm-10">
+                        <input type="file" name="file" class="form-control" onchange="angular.element(this).scope().loadFile(this.files)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <div class="form-inline col-sm-10">
+                        <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()" />
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/ImportExcel/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/shared/service/xlsx.full.min.js"></script>
+    <script src="~/Scripts/angular/ImportExcel/service/ImportExcelService.js"></script>
+}

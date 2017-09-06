@@ -1,0 +1,125 @@
+﻿
+@{
+    ViewBag.Title = "Ngày nghỉ";
+}
+<div class="container-fluid">
+
+    <div ng-controller="NgayNghiListCtrl as ctrl" class="panel panel-default" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="ctrl.keys">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Ngày nghỉ</span>
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách ngày nghỉ toàn công ty</h3>
+        </div>
+
+        <table st-table="ctrl.data.NgayNghiListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+            <thead class="bg-default text-primary">
+                <tr>
+                    <th class="text-center" style="width: 50px;">Chọn</th>
+                    <th class="text-center" style="width: 100px;" st-sort="Ngay">Ngày</th>
+                    <th class="text-center" style="width: 300px" st-sort="MoTa">Mô tả</th>
+                    <th class="text-center" st-sort="NgayTao">Ngày tạo</th>
+                    <th class="text-center" style="width: 150px" st-sort="NguoiTao">Người tạo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-if="ctrl.status.isLoading">
+                    <td colspan="100" class="text-center">
+                        <i class="fa fa-fw fa-spin fa-spinner"></i>
+                    </td>
+                </tr>
+                <tr ng-repeat="ngaynghi in ctrl.data.NgayNghiListDisplay" ng-class="(ngaynghi.isSelected==true)?'info':''">
+                    <td st-select-row="ngaynghi" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(ngaynghi.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                    <td><a href="javascript:void(0)" ng-click="ctrl.action.edit(ngaynghi.Ngay)" ng-bind="ngaynghi.Ngay"></a></td>
+                    <td><span ng-bind="ngaynghi.MoTa"></span></td>
+                    <td><span ng-bind="ngaynghi.NgayTao"></span></td>
+                    <td><span ng-bind="ngaynghi.HoTen"></span></td>
+
+                </tr>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="100" class="text-center">
+                        <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
+        </div>
+    </div>
+
+    <div ng-controller="NgayNghiEditCtrl as ctrl" class="panel panel-primary ui-draggable collapse fade" id="NgayNghiEditPopup" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <h2 class="panel-title">
+                <span>Thông tin ngày nghỉ</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#NgayNghiEditPopup" ng-click="ctrl.action.close()">
+                    <i class="fa fa-fw fa-remove"></i>
+                </a>
+                <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner" ng-if="ctrl.status.isLoading"></i>
+            </h2>
+        </div>
+        <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.validate.Ngay}">
+                    <label class="control-label col-sm-3">Ngày</label>
+                    <div class="col-sm-9">
+                        <input class="datetimepicker form-control date" id="txtNgay" ng-model="ctrl.data.objNgayNghi.Ngay" required ng-keypress="ctrl.action.keyPress(ctrl.data.objNgayNghi.Ngay,'txtNgay','txtMoTa',$event)" placeholder="__/__/____" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.validate.MoTa}">
+                    <label class="control-label col-sm-3">Mô tả</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="txtMoTa" ng-model="ctrl.data.objNgayNghi.MoTa" required ng-keypress="ctrl.action.keyPress(ctrl.data.objNgayNghi.MoTa,'txtMoTa','btnluu',$event)" />
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+        </div>
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/NgayNghi/service/NgayNghiService.js"></script>
+    <script src="~/Scripts/angular/NgayNghi/controller/NgayNghiListCtrl.js"></script>
+    <script src="~/Scripts/angular/NgayNghi/controller/NgayNghiEditCtrl.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+}
+
+
+
+

@@ -1,0 +1,129 @@
+﻿
+@{
+    ViewBag.Title = "Tổng hợp xuất nhập tồn theo kỳ";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.type = ViewBag.type ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="MainViewCtrl as mainCtrl" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" id="tableToExport" ng-controller="TongHopXuatNhapTonTheoKyViewListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.TongHopXuatNhapTonTheoKyViewList,isEdit:@(ViewBag.isEdit),kyId:@(ViewBag.id),_typeView:@(ViewBag.type),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/khotonghopxuatnhaptontheoky/"))'})">
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Tổng hợp xuất nhập tồn theo kỳ</h3>
+            <p class="cthuc">Giá xuất bình quân (GXBQ) = (Dư đầu + Tiền nhập)/(Tồn đầu + SL.Nhập)</p>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i style="float:left">Kho hàng: <span ng-bind="ctrl.data.KhoId"></span></i>
+                <i style="float:right"><span ng-bind="ctrl.data.TuNgay"></span> ~ <span ng-bind="ctrl.data.DenNgay"></span></i>
+            </h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead class="text-primary">
+                    <tr>
+                        @*<th class="text-center" rowspan="2">#</th>
+                        <th class="text-center" rowspan="2">Mặt hàng</th>
+                        <th class="text-center">ĐVT</th>
+                        <th class="text-center">Tồn đầu</th>
+                        <th class="text-center">Dư đầu</th>
+                        <th class="text-center">SL.Nhập</th>
+                        <th class="text-center">Tiền nhập</th>
+                        <th class="text-center">Giá Xuất BQ</th>
+                        <th class="text-center">SL.Xuất</th>
+                        <th class="text-center">Tiền xuất</th>
+                        <th class="text-center">Tồn cuối</th>
+                        <th class="text-center">Dư cuối</th>*@
+                        <th class="text-center" rowspan="2">#</th>
+                        <th class="text-center" rowspan="2">Mã mặt hàng</th>
+                        <th class="text-center" rowspan="2">Tên mặt hàng</th>
+                        <th class="text-center" rowspan="2">ĐVT</th>
+                        <th class="text-center" colspan="2">Tồn đầu kỳ</th>
+                        <th class="text-center" colspan="2">Nhập trong kỳ</th>
+                        <th class="text-center" colspan="3">Xuất trong kỳ</th>
+                        <th class="text-center" colspan="2">Tồn cuối kỳ</th>
+                    </tr>
+                    <tr style="font-weight:bold">
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">GXBQ</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="chitiet in ctrl.data.listTheKho">
+                        <td class="text-center" ng-bind="$index+1"></td>
+                        @*<td><a href="/QLDNKHO/khothekho/Chitiet/{{chitiet.HangHoaId}}" ng-bind="chitiet.MaHangHoa"></a></td>
+                        <td><a href="/QLDNKHO/KhoTongHopXuatNhapTonTheoKy/Chitiet/{{chitiet.HangHoaId}}" ng-bind="chitiet.TenHangHoa"></a></td>*@
+                        <td><a href="/QLDNKHO/KhoTongHopXuatNhapTonTheoKy/EditDetail/{{chitiet.HangHoaId}}_{{@(ViewBag.id)}}" ng-bind="chitiet.MaHangHoa"></a></td>
+                        <td><a href="/QLDNKHO/KhoTongHopXuatNhapTonTheoKy/EditDetail/{{chitiet.HangHoaId}}_{{@(ViewBag.id)}}" ng-bind="chitiet.TenHangHoa"></a></td>
+                        <td ng-bind="chitiet.DonViTinh"></td>
+                        <td class="text-right" ng-bind="chitiet.TonDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.Nhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TienNhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.Xuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DGXuatBQ|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TienXuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TonCuoi|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuCuoi|number"></td>
+                    </tr>
+                </tbody>
+                <tfoot class="text-primary">
+                    <tr>
+                        <td class="text-right" colspan="3">Tổng cộng</td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'DuDau'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'TienNhap'|number"></td>
+                        <td></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'TienXuat'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'DuCuoi'|number"></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a>
+        </div>
+    </div>
+</div>
+
+
+@section ImportScripts{}
+@section SetupScripts{}
+@section SetupStyles{
+    <style>
+        .cthuc{
+            text-align:center;
+            font-size:12px;
+        }
+    </style>
+}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/controller/MainViewCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/controller/KhoTongHopXuatNhapTonTheoKyViewCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/service/KhoTongHopXuatNhapTonTheoKyService.js"></script>
+}

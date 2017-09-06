@@ -1,0 +1,45 @@
+﻿
+
+@{
+    ViewBag.Title = "Import đầu kỳ";
+}
+<div class="container-fluid" ng-controller="MainCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="container" style="margin-top:30px;">
+        <div class="panel-body">
+            <form class="form">
+                <div style="text-align:center;color:darkslateblue;font-weight:bold;font-size:16px;font-family:Tahoma;">
+                    <h3>Import tồn đầu kỳ</h3>
+                </div>
+                <br />
+
+                <div class="row form-group form-group-sm">
+                    <div style="text-align:center;margin: 0 auto;display: table;">
+                        <input  type="file" name="file" class="form-control btn btn-info" onchange="angular.element(this).scope().loadFile(this.files)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <div style="text-align:center;margin: 0 auto;display: table;">
+                        <input type="button" value="Import Data" class="btn btn-primary cach" ng-click="handleFile()" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="btn-group" role="group" aria-label="..." style="text-align:center;margin: 0 auto;display: table;">
+                    @*<button type="button" class="btn btn-primary btn-sm">Download file mẫu&nbsp<span class="glyphicon glyphicon-arrow-right"></span></button>*@
+                    <a href="~/Scripts/angular/KhoImportDauKy/file/XNTKHO_MAU_v1.xlsx" type="button" class="btn btn-primary btn-sm">Download file mẫu</a>
+
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</div>
+
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/service/xlsx.full.min.js"></script>
+    <script src="~/Scripts/angular/KhoImportDauKy/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoImportDauKy/service/KhoImportDauKyService.js"></script>
+}

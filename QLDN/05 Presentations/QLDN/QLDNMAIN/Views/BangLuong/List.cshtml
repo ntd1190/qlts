@@ -1,0 +1,335 @@
+﻿
+@{
+    ViewBag.Title = "Bảng Lương";
+}
+
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default hidden-print">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o no-margin"></i>Bảng Lương</span>
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìn kiếm (F3)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse fade" id="panelTimkiemCollapse" ng-controller="BangLuongFilterCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'BangLuongFilterCtrl',userInfo: @ViewBag.userInfo})">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <!-- search field -->
+                    <div class="row form-group form-group-sm">
+                        <label for="txtNhanVien" class="control-label col-sm-2">Từ ngày</label>
+                        <div class="form-inline col-sm-10">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayTu" />
+                            <span>~</span>
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayDen" />
+                        </div>
+                    </div>
+
+                    <!-- search field -->
+                    <div class="row form-group form-group-sm">
+                        <label for="txtNhanVien" class="control-label col-sm-2">Tần suất trả lương</label>
+                        <div class="form-inline col-sm-10">
+                            <div class="checkbox" style="margin-right: 15px;">
+                                <label>
+                                    <input style="margin-right: 5px;" type="checkbox" ng-click="ctrl.action.checkTanSuatTatCa()" ng-model="ctrl.data.tanSuat.tatCa" /><span>Tất cả</span>
+                                </label>
+                            </div>
+                            <div class="checkbox" style="margin-right: 5px;">
+                                <label>
+                                    <input style="margin-right: 5px;" type="checkbox" ng-click="ctrl.action.checkTanSuat()" ng-model="ctrl.data.tanSuat.hangThang" /><span>Hằng tháng</span>
+                                </label>
+                            </div>
+                            <div class="checkbox" style="margin-right: 5px;">
+                                <label>
+                                    <input style="margin-right: 5px;" type="checkbox" ng-click="ctrl.action.checkTanSuat()" ng-model="ctrl.data.tanSuat.hangQuy" /><span>Hằng quý</span>
+                                </label>
+                            </div>
+                            <div class="checkbox" style="margin-right: 5px;">
+                                <label>
+                                    <input style="margin-right: 5px;" type="checkbox" ng-click="ctrl.action.checkTanSuat()" ng-model="ctrl.data.tanSuat.hangNam" /><span>Hằng năm</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lặp lại</a>
+            </div>
+        </div>
+    </div><!-- / panel tìm kiếm -->
+    <!-- panel Danh sách Bảng Lương -->
+    <div class="panel panel-default" ng-controller="BangLuongListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'BangLuongListCtrl',loadListCot:true,userInfo: @ViewBag.userInfo})">
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách Bảng lương</h3>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listBangLuong" st-pipe="ctrl.action.getPage">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th style="width: 50px;"></th>
+                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" style="width:{{cot.DoRong}}">{{cot.TenCot}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger">
+                            <span ng-bind="{{ctrl.data.error.message}}"></span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="bangluong in ctrl.data.listBangLuong" ng-class="(bangluong.isSelected==true)?'info':''">
+                        <td class="text-primary text-center" st-select-row="tangca" st-select-mode="multiple"><i class="fa fa-fw" ng-class="bangluong.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" ng-switch="cot.MaCot" ng-class="(ctrl.action.checkInValid(bangluong[cot.MaCot], 'isNumber')==true)?'text-left':'text-right'">
+                            <a href="javascript:void(0)" ng-click="ctrl.action.xemBangLuong(bangluong.ID)" ng-switch-when="TenBangLuong" ng-bind="::bangluong[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-click="ctrl.action.callTinhToan(bangluong)" ng-switch-when="TinhToan" ng-bind="::bangluong[cot.MaCot]"></a>
+                            @*<a href="javascript:void(0);" data-toggle="collapse" data-target="#NhanVienListPopup" ng-switch-when="TinhToan" ng-bind="::bangluong[cot.MaCot]"></a>*@
+                            <a href="javascript:void(0)" ng-click="ctrl.action.updateTrangThaiBangLuong(bangluong)" ng-switch-when="TrangThai" ng-bind="::bangluong[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteOne(bangluong)" ng-switch-when="Xoa" ng-bind="::bangluong[cot.MaCot]"></a>
+                            <span ng-switch-default ng-bind="::bangluong[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#BangLuongEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+        </div>
+    </div><!-- /panel danh sách Bảng Lương -->
+    <!-- popup cập nhật Bảng Lương -->
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="BangLuongEditPopup" ng-controller="BangLuongEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.BangLuongEditPopup,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Thông tin bảng lương</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#BangLuongEditPopup" ng-click="ctrl.action.closeEdit()">
+                    <i class="fa fa-fw fa-remove">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 600px;height: 400px;">
+            <form class="form-horizontal">
+
+                <!-- Input row Loại bảng lương-->
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Loại bảng lương</label>
+                    <div class="col-sm-9">
+                        <label class="radio-inline">
+                            <input style="margin-right: 5px;" type="radio" ng-model="ctrl.data.objBangLuong.TanSuatTraLuong" value="THANG" name="TanSuatTraLuong" /><span>Hằng tháng</span>
+                        </label>
+                        <label class="radio-inline">
+                            <input style="margin-right: 5px;" type="radio" ng-model="ctrl.data.objBangLuong.TanSuatTraLuong" value="QUY" name="TanSuatTraLuong" /><span>Hằng quý</span>
+                        </label>
+                        <label class="radio-inline">
+                            <input style="margin-right: 5px;" type="radio" ng-model="ctrl.data.objBangLuong.TanSuatTraLuong" value="NAM" name="TanSuatTraLuong" /><span>Hằng năm</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Input row Tháng/Năm -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidThangNam}">
+                        <label class="control-label col-sm-3">Tháng/Năm</label>
+                        <div class="form-inline col-sm-9">
+                            <input type="text" id="thangnamedit" class="form-control input-month-year"  ng-model="ctrl.data.objBangLuong.ThangNam" />
+                        </div>
+                    </div>
+
+                @*<div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidThangNam}">
+                    <label class="control-label col-sm-3">Tháng/Năm</label>
+                    <div class="form-inline col-sm-9">
+                        <select class="form-control" id="cboThangEdit">
+                            <option value="0">Chọn Tháng...</option>
+                            <option value="01">Tháng 1</option>
+                            <option value="02">Tháng 2</option>
+                            <option value="03">Tháng 3</option>
+                            <option value="04">Tháng 4</option>
+                            <option value="05">Tháng 5</option>
+                            <option value="06">Tháng 6</option>
+                            <option value="07">Tháng 7</option>
+                            <option value="08">Tháng 8</option>
+                            <option value="09">Tháng 9</option>
+                            <option value="10">Tháng 10</option>
+                            <option value="11">Tháng 11</option>
+                            <option value="12">Tháng 12</option>
+                        </select>
+                        /
+                        <select class="form-control" id="cboNamEdit">
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                        </select>
+                    </div>
+                </div>*@
+
+
+                <!-- Input row Thời gian phát sinh-->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidThoiGianPhatSinh}">
+                    <label class="control-label col-sm-3">Thời gian phát sinh</label>
+                    <div class="form-inline col-sm-9">
+                        <input type="text" id="tungayedit" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objBangLuong.NgayBatDau" />
+                        <span>~</span>
+                        <input type="text" id="denngayedit" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objBangLuong.NgayKetThuc" />
+                    </div>
+                </div>
+
+                <!-- Input row Ngày trả lương -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidNgayTraLuong}">
+                    <label class="control-label col-sm-3">Ngày trả lương</label>
+                    <div class="form-inline col-sm-9">
+                        <input type="text" id="ngaytraluongedit" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objBangLuong.NgayTraLuong" />
+                    </div>
+                </div>
+
+
+                <!-- Input row Tên bảng lương -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenBangLuong}">
+                    <label class="control-label col-sm-3">Tên bảng lương</label>
+                    <div class="col-sm-9">
+                        <input id="txtTenBangLuong" class="form-control" ng-model="ctrl.data.objBangLuong.TenBangLuong" />
+                    </div>
+                </div>
+
+                <!-- Input row Số người -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidSoNguoi}">
+                    <label class="control-label col-sm-3">Số người tính lương</label>
+                    <div class="col-sm-9">
+                        <input id="txtSoNguoi" class="form-control" ng-model="ctrl.data.objBangLuong.SoNguoi" />
+                    </div>
+                </div>
+
+                <!-- Input row Số ngày làm việc -->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidSoNgay}">
+                    <label class="control-label col-sm-3">Số ngày làm việc</label>
+                    <div class="col-sm-9">
+                        <input id="txtSoNgay" class="form-control" ng-model="ctrl.data.objBangLuong.SoNgay" />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.save()" ng-if="ctrl.data.showButtonSave">Lưu (F8)</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#BangLuongEditPopup" ng-click="ctrl.action.closeEdit()">Đóng</a> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrl.action.deleteOne(ctrl.data.objBangLuong)" ng-if="ctrl.data.objBangLuong.BangLuongId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnH" class="btn btn-sm btn-default" ng-click="ctrl.action.GetListLuocSu(ctrl.data.objBangLuong.BangLuongId)" ng-if="ctrl.data.objBangLuong.BangLuongId!=0">H</button>
+        </div>
+    </div><!-- /popup cập nhật Bảng Lương -->
+
+    <!-- popup danh sách nhân viên -->
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="NhanVienListPopup" ng-controller="NhanVienListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.NhanVienListPopup, loadListCot:false, showList:true})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Bảng lương theo từng nhân viên</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#NhanVienListPopup"><i class="fa fa-fw fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="panel-body" style="width:auto;height:auto;">
+            <form class="form-inline">
+                <div class="form-group form-group-sm">
+                    <span><i class="fa fa-fw fa-star-o"></i>Tìm kiếm nhân viên</span>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control" ng-model="ctrl.data.inputSearch.searchString" autofocus />
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive" style="width:auto; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-responsive table-striped" st-table="ctrl.data.listNhanVien" st-pipe="ctrl.action.getPage">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 50px;"></th>
+                        <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-bind="::cot.TenCot"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
+                    </tr>
+                    <tr ng-repeat="nhanvien in ctrl.data.listNhanVien" ng-class="(nhanvien.isSelected==true)?'info':''">
+                        <td class="text-primary text-center" st-select-row="nhanvien" st-select-mode="multiple"><i class="fa fa-fw" ng-class="nhanvien.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-switch="cot.MaCot">
+                            <a href="javascript:void(0)" ng-click="ctrl.action.xemNhanVien(nhanvien.NhanVienId)" ng-switch-when="Ten" ng-bind="::nhanvien['Ho']+' '+nhanvien[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-click="ctrl.action.xemNhanVien(nhanvien.NhanVienId)" ng-switch-when="Ma" ng-bind="::nhanvien[cot.MaCot]"></a>
+                            <span ng-switch-when="NgayTuyenDung" ng-bind="ctrl.action.convertDateFormat(nhanvien[cot.MaCot],'YYYY-MM-DD','DD/MM/YYYY')"></span>
+                            <span ng-switch-default ng-bind="::nhanvien[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Tính toán</a>
+            <a class="btn btn-sm btn-primary" ng-click="MainCtrl.action.tinhToan()">Tính toán toàn bộ</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#NhanVienListPopup">Đóng</a>
+        </div>
+    </div><!-- /popup danh sách nhân viên -->
+
+
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <!-- Bang Luong controller -->
+    <script src="~/Scripts/angular/BangLuong/List/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/BangLuong/List/service/BangLuongService.js"></script>
+    <script src="~/Scripts/angular/BangLuong/List/controller/BangLuongFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/BangLuong/List/controller/BangLuongListCtrl.js"></script>
+    <script src="~/Scripts/angular/BangLuong/List/controller/BangLuongEditCtrl.js"></script>
+
+    <!-- Nhan Vien Popup controller -->
+    <script src="~/Scripts/angular/NhanVien/List/service/NhanVienService.js"></script>
+    <script src="~/Scripts/angular/NhanVien/List/controller/NhanVienListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+
+    <!-- Utility -->
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+
+}
+

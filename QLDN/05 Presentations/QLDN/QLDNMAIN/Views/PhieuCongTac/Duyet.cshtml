@@ -1,0 +1,219 @@
+﻿@{
+    ViewBag.Title = "Phiếu đăng ký công tác";
+    ViewBag.id = ViewBag.id ?? 0;
+}
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl">
+    <div class="panel panel-default" ng-controller="PhieuCongTacEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.phieuCongTacEdit,phieuCongTacId:@(ViewBag.id),userInfo:@(ViewBag.UserInfo),editUrl:'@(Url.Content("~/phieuCongTac/edit/"))'})">
+        <div class="panel-heading">
+            <div class="panel-title">
+                <i class="fa fa-fw fa-star-o"></i>
+                <span>Phiếu đăng ký công tác</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger alert-dismissable text-center padding-slim" ng-if="ctrl.status.errorMessage">
+                <span ng-bind="ctrl.status.errorMessage"></span>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="ctrl.status.errorMessage=''">&times;</a>
+            </div>
+            <div class="alert alert-info  alert-dismissable text-center padding-slim" ng-if="ctrl.status.infoMessage">
+                <span ng-bind="ctrl.status.infoMessage"></span>
+                <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="ctrl.status.infoMessage=''">&times;</a>
+            </div>
+            <form class="form-horizontal">
+                <h3 class="text-center">Phiếu đăng ký công tác</h3>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2">Tiêu đề</label>
+                    <div class="col-sm-4">
+                        <input class="form-control" disabled="disabled" type="text" ng-model="ctrl.data.phieuCongTac.NoiDung" />
+                    </div>
+                    <label class="control-label col-sm-2">Ngày đi</label>
+                    <div class="col-sm-4">
+                        <input type="text" disabled="disabled" class="form-control datetimepicker date" ng-model="ctrl.data.phieuCongTac.NgayDi" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2">Tên nhân viên</label>
+                    <div class="col-sm-4">
+                        <div class="form-control auto-height" disabled="disabled">
+                            <a href="javascript:void(0);" data-toggle="collapse">
+                                <i class="fa fa-fw fa-search"></i>
+                                <span ng-bind="ctrl.data.phieuCongTac.TenNhanVien"></span>
+                            </a>
+                            <a class="pull-right" href="javascript:void(0);" disabled="disabled"><i class="fa fa-fw fa-remove"></i></a>
+                        </div>
+                    </div>
+                    <label class="control-label col-sm-2">Ngày về</label>
+                    <div class="col-sm-4">
+                        <input type="text" disabled="disabled" class="form-control datetimepicker date" ng-model="ctrl.data.phieuCongTac.NgayVe" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2">Giấy đi đường</label>
+                    <div class="col-sm-4">
+                        <input type="file" disabled="disabled" class="form-control" />
+                    </div>      <label class="control-label col-sm-2">Số ngày</label>
+                    <div class="col-sm-4">
+                        <input type="number" disabled="disabled" class="form-control" ng-model="ctrl.data.phieuCongTac.SoNgay" ng-pattern="/^[0-9]+(\.[0-9])?$/" step="0.5" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2">Người duyệt</label>
+                    <div class="col-sm-4">
+                        <input disabled="disabled" class="form-control" ng-model="ctrl.data.phieuCongTac.TenNguoiDuyet" />
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Chi tiết phiếu đăng ký công tác</h3>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listChiTiet">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" ng-click="ctrl.action.checkAll()"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <th class="text-center">Stt</th>
+                        <th class="text-center">Ngày</th>
+                        <th class="text-center">Nội dung</th>
+                        <th class="text-center">Số lượng</th>
+                        <th class="text-center">Đơn giá</th>
+                        <th class="text-center">Thành tiền</th>
+                        <th class="text-center">Trạng thái</th>
+                        <th class="text-center"></th>
+                    </tr>
+                </thead>
+                <tbody ng-if="ctrl.status.isLoadingDetail">
+                    <tr>
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                </tbody>
+                <tbody>
+                    <tr ng-repeat="chitiet in ctrl.data.listChiTiet" ng-class="(chitiet.isSelected==true)?'info':''">
+                        <td class="text-center text-primary" st-select-row="chitiet" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()"><i class="fa fa-fw" ng-class="chitiet.isSelected ? 'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td class="text-center"><span ng-bind="$index+1"></span></td>
+                        <td><span ng-bind="ctrl.action.convertDateFormat(chitiet.Ngay,'YYYY-MM-DD','DD/MM/YYYY')"></span></td>
+                        <td><span ng-bind="chitiet.NoiDung"></span></td>
+                        <td class="text-right"><span ng-bind="chitiet.SoLuong"></span></td>
+                        <td class="text-right"><span ng-bind="chitiet.DonGia|number"></span></td>
+                        <td class="text-right"><span ng-bind="(chitiet.SoLuong * chitiet.DonGia)|number"></span></td>
+                        <td><span ng-bind="chitiet.TrangThai"></span></td>
+                        <td><a href="javascript:void(0)" ng-click="ctrl.action.updateChiTiet(chitiet)">Xem</a></td>
+                    </tr>
+                </tbody>
+                <tfoot class="tb-footer" ng-if="!ctrl.status.isLoadingDetail">
+                    <tr>
+                        <td class="text-right" colspan="6">Yêu cầu thanh toán:</td>
+                        <td class="text-right"><span ng-bind="ctrl.data.yeuCauThanhToan|number"></span></td>
+                        <td class="text-right" rowspan="2"></td>
+                    </tr>
+                    <tr>
+                        <td class="text-right" colspan="6">Thanh toán:</td>
+                        <td class="text-right"><span ng-bind="ctrl.data.thanhToan|number"></span></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer" ng-controller="PhieuCongTacDuyetCtrl as ctrlDuyet" ng-init="ctrlDuyet.onInitView({userInfo:@(ViewBag.UserInfo)})">
+            <a class="btn btn-sm btn-primary" data-toggle="collapse" ng-click="ctrlDuyet.action.DongY(ctrl.data.listChiTiet)">Đồng ý</a>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" ng-click="ctrlDuyet.action.TuChoi(ctrl.data.listChiTiet)">Từ chối</button>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" href="~/PheDuyet/List">Quay lại</a>
+
+        </div>
+    </div>
+    <div class="panel panel-primary ui-draggable collapse fade" id="{{ctrl.controllerId}}" ng-controller="PhieuCongTacChiTietEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.PhieuCongTacChiTietEditPopup})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <i class="fa fa-fw fa-star"></i>
+                <span>Chi tiết đăng ký công tác</span>
+                <a class="btn btn-xs btn-primary pull-right" data-target="#{{ctrl.controllerId}}" data-toggle="collapse"><i class="fa fa-fw fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 400px;">
+            @*<div class="alert alert-danger alert-dismissable text-center padding-slim" ng-if="ctrl.status.errorMessage">
+                    <span ng-bind="ctrl.status.errorMessage"></span>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="ctrl.status.errorMessage=''">&times;</a>
+                </div>
+                <div class="alert alert-info  alert-dismissable text-center padding-slim" ng-if="ctrl.status.infoMessage">
+                    <span ng-bind="ctrl.status.infoMessage"></span>
+                    <a href="#" class="close" data-dismiss="alert" aria-label="close" ng-click="ctrl.status.infoMessage=''">&times;</a>
+                </div>*@
+
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ngày</label>
+                    <div class="col-sm-9">
+                        <input type="text" disabled="disabled" class="form-control datetimepicker date" ng-model="ctrl.data.chiTiet.Ngay" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Nội dung</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" disabled="disabled" ng-model="ctrl.data.chiTiet.NoiDung" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Số lượng</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" disabled="disabled" maxlength="3" ng-model="ctrl.data.chiTiet.SoLuong" pattern="[0-9]+([\,][0-9]+)*" number-format />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Đơn giá</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" disabled="disabled" maxlength="15" ng-model="ctrl.data.chiTiet.DonGia" pattern="[0-9]+([\,][0-9]+)*" number-format />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label  col-sm-3">Thành tiền</label>
+                    <div class="col-sm-9">
+                        <span class="form-control-static" disabled="disabled" ng-bind="ctrl.data.chiTiet.SoLuong*ctrl.data.chiTiet.DonGia|number"></span>
+                    </div>
+                </div>
+                @*<div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Hình</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>*@
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ghi chú</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" disabled="disabled" ng-model="ctrl.data.chiTiet.GhiChu" />
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="panel-body" style="float:right">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</a>
+        </div>
+    </div>
+</div>
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{
+    <style>
+        .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+            background-color: white !Important;
+            opacity: 1;
+        }
+    </style>}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/PhieuCongTac/List/service/PhieuCongTacService.js"></script>
+    <script src="~/Scripts/angular/PhieuCongTac/Edit/Controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/PhieuCongTac/Duyet/PhieuCongTacDuyetCtrl.js"></script>
+    <script src="~/Scripts/angular/PhieuCongTac/Edit/Controller/PhieuCongTacEditCtrl.js"></script>
+    <script src="~/Scripts/angular/PhieuCongTac/Edit/Controller/PhieuCongTacChiTietEditCtrl.js"></script>
+    <script src="~/Scripts/angular/PheDuyet/service/PheDuyetService.js"></script>
+<script src="~/Scripts/angular/PhieuCongTac/Edit/Controller/PhieuCongTacChiTietEditCtrl.js"></script>
+}

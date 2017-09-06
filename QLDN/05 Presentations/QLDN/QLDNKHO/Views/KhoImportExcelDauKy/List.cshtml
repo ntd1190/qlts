@@ -1,0 +1,41 @@
+﻿
+
+@{
+    ViewBag.Title = "Import excel đầu kỳ";
+    ViewBag.id = ViewBag.id ?? 0;
+}
+<div class="container-fluid" ng-controller="MainCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,kyId:@(ViewBag.id)})">
+    <div class="container" style="margin-top:50px;">
+        <div class="panel-body">
+            <form class="form">
+                <h4>Khai báo tồn đầu kỳ: import bằng file excel</h4> <br />
+
+                <div class="row form-group form-group-sm">
+                    <div class="col-sm-10">
+                        <input type="file" name="file" class="form-control" onchange="angular.element(this).scope().loadFile(this.files)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <div class="form-inline col-sm-10">
+                        <input type="button" value="Import Data" class="btn btn-default" ng-click="handleFile()" />
+                    </div>
+                </div>
+                <br />
+                <br />
+                <div class="btn-group" role="group" aria-label="...">
+                    @*<button type="button" class="btn btn-primary btn-sm">Download file mẫu&nbsp<span class="glyphicon glyphicon-arrow-right"></span></button>*@
+                    <a href="~/Scripts/angular/KhoImportExcelDauKy/file/XNTKHO_MAU.xlsx" type="button" class="btn btn-primary btn-sm">Download file mẫu</a>
+                   
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/service/xlsx.full.min.js"></script>
+    <script src="~/Scripts/angular/KhoImportExcelDauKy/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoImportExcelDauKy/service/KhoImportExcelDauKyService.js"></script>
+}

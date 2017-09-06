@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "Report theo Bảng Lương";
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+}
+
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+
+    <!-- panel Danh sách Bảng Lương -->
+    <div class="panel panel-default" ng-controller="ReportTheoBangLuongCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'ReportTheoBangLuongCtrl',loadListCot:true,userInfo: @ViewBag.userInfo,showList:true})">
+
+        <div class="panel-body text-center">
+            <a class="btn btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a> &nbsp;&nbsp;&nbsp;            
+            <a class="btn btn-default" ng-click="ctrl.action.print('tableToExport');">Xem Thử</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-default" ng-click="ctrl.action.closeWindow()">Trở về</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-default" ng-if="ctrl.data.showHoanThien" ng-click="ctrl.action.updateTrangThaiBangLuong()">Hoàn chỉnh</a>
+        </div>
+
+       
+
+        <div id="tableToExport" class="table-responsive" ng-if="ctrl.data.showList">
+            <div class="panel-body">
+                <h3 class="text-center no-margin">{{ctrl.data.listTitle}}</h3>
+                <h4 class="text-center no-margin">{{ctrl.data.NgayThangNamTieuDe}}</h4>
+            </div>
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listBangLuongCaNhan" st-pipe="ctrl.action.initSearch">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center"
+                            ng-repeat="cot in ctrl.data.listCot" ng-if="(cot.RowSpan > 0 || cot.ColSpan > 0)"
+                            rowspan="{{cot.RowSpan}}"
+                            colspan="{{cot.ColSpan}}"
+                            style="width:{{cot.DoRong}}">
+                            {{cot.TenCot}}
+                        </th>
+                    </tr>
+                    <tr>
+                        <th class="text-center"
+                            ng-repeat="cot in ctrl.data.listCot" ng-if="(cot.RowSpan == 0  && cot.ColSpan == 0)"
+                            rowspan="{{cot.RowSpan}}"
+                            colspan="{{cot.ColSpan}}"
+                            style="width:{{cot.DoRong}}">
+                            {{cot.TenCot}}
+                        </th>
+                    </tr>
+
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger">
+                            <span ng-bind="{{ctrl.data.error.message}}"></span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="bangluong in ctrl.data.listBangLuong" ng-class="(bangluong.isSelected==true)?'info':''">
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-switch="cot.DinhDang" ng-class="cot.CanhLe?cot.CanhLe:'text-left'">
+
+                            <span ng-switch-when="number" ng-bind="bangluong[cot.MaCot]|number"></span>
+                            <span ng-switch-default ng-bind="bangluong[cot.MaCot]"></span>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td class="text-center" colspan="4">Tổng cộng</td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NgayCong')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NgayCongTac')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NgayChamCong')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NgayLamThuc')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NghiCoPhep')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'NghiKhongPhep')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'LuongDongBHXH')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'LuongChinhThuc')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'LuongNgay')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'LuongThang')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienCongTacPhi')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienThuong')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienDienThoai')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienTrachNhiem')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienCom')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TienTangCa')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TongThuNhap')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TruBH')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TruCongDoan')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TruLuong')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'TruTamUng')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'CacKhoanKhauTru')|number"></td>
+                        <td class="text-right" ng-bind="(ctrl.data.listBangLuong | sumOfValue:'ThucLanh')|number"></td>
+                        <td class="text-center"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center">
+                            {{ctrl.data.NgayThangNam}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" class="text-center">
+                            Người lập
+                        </td>
+                        <td colspan="10" class="text-center">
+                           Kế toán
+                        </td>
+                        <td colspan="10" class="text-center">
+                           Giám đốc
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center"></td>
+                        <td colspan="10" class="text-center">
+                            Nguyễn Minh Kiều
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div><!-- /panel danh sách Bảng Lương -->
+
+
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <!-- Bang Luong controller -->
+
+    <script src="~/Scripts/angular/BangLuongCaNhan/ReportTheoBangLuong/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/BangLuongCaNhan/Service/BangLuongCaNhanService.js"></script>
+    <script src="~/Scripts/angular/BangLuongCaNhan/ReportTheoBangLuong/controller/ReportTheoBangLuongCtrl.js"></script>
+
+    <script src="~/Scripts/angular/BangLuong/List/service/BangLuongService.js"></script>
+
+    <!-- Utility -->
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>    
+
+}
+

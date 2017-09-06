@@ -1,0 +1,312 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SongAn.QLDN.Api.QLNS</RootNamespace>
+    <AssemblyName>SongAn.QLDN.Api.QLNS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controllers\BangLuongCaNhanController.cs" />
+    <Compile Include="Controllers\BangLuongController.cs" />
+    <Compile Include="Controllers\BaoHiemXaHoiController.cs" />
+    <Compile Include="Controllers\CongViecTruocDayController.cs" />
+    <Compile Include="Controllers\HocVanController.cs" />
+    <Compile Include="Controllers\ImportExcelController.cs" />
+    <Compile Include="Controllers\DuAnController.cs" />
+    <Compile Include="Controllers\ChamCongController.cs" />
+    <Compile Include="Controllers\ChiNhanhController.cs" />
+    <Compile Include="Controllers\LichSuBanThanController.cs" />
+    <Compile Include="Controllers\LuongPhuCapController.cs" />
+    <Compile Include="Controllers\PheDuyetController.cs" />
+    <Compile Include="Controllers\IssueController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\KhenThuongController.cs" />
+    <Compile Include="Controllers\NgayNghiController.cs" />
+    <Compile Include="Controllers\PhepNamController.cs" />
+    <Compile Include="Controllers\QuanHeGiaDinhController.cs" />
+    <Compile Include="Controllers\QuanLyHopDongController.cs" />
+    <Compile Include="Controllers\QuaTrinhCongTacController.cs" />
+    <Compile Include="Controllers\CongViecController.cs" />
+    <Compile Include="Controllers\TamUngController.cs" />
+    <Compile Include="Controllers\KyLuatController.cs" />
+    <Compile Include="Controllers\LoaiNghiPhepController.cs" />
+    <Compile Include="Controllers\KhenThuongCaNhanController.cs" />
+    <Compile Include="Controllers\LuocSuController.cs" />
+    <Compile Include="Controllers\TangCaController.cs" />
+    <Compile Include="Controllers\NghiPhepController.cs" />
+    <Compile Include="Controllers\ChucVuController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\PhieuCongTacController.cs" />
+    <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\TinhHuyenTramController.cs" />
+    <Compile Include="Controllers\TrangThaiController.cs" />
+    <Compile Include="Models\BangLuongCaNhan\DeleteListBangLuongCaNhanAction.cs" />
+    <Compile Include="Models\BangLuongCaNhan\CalculateBangLuongCaNhanByCriteriaAction.cs" />
+    <Compile Include="Models\BangLuongCaNhan\GetListBangLuongCaNhanByCriteriaAction.cs" />
+    <Compile Include="Models\BangLuongCaNhan\GetListBangLuongNhanVienByCriteriaAction.cs" />
+    <Compile Include="Models\BangLuong\DeleteListBangLuongAction.cs" />
+    <Compile Include="Models\BangLuong\CountNhanVienCanTinhLuongAction.cs" />
+    <Compile Include="Models\BangLuong\GetBangLuongByIdAction.cs" />
+    <Compile Include="Models\BangLuong\GetListBangLuongByCriteriaAction.cs" />
+    <Compile Include="Models\BangLuong\InsertBangLuongAction.cs" />
+    <Compile Include="Models\BangLuong\UpdateTrangThaiBangLuongAction.cs" />
+    <Compile Include="Models\BangLuong\UpdateBangLuongAction.cs" />
+    <Compile Include="Models\BangLuong\UpdateXoaListBangLuongAction.cs" />
+    <Compile Include="Models\BaoHiemXaHoi\UpdateBaoHiemXaHoiAction.cs" />
+    <Compile Include="Models\BaoHiemXaHoi\GetBaoHiemXaHoiByNhanVienIdAction.cs" />
+    <Compile Include="Models\ChamCong\GetListChamCongByProjectionAction.cs" />
+    <Compile Include="Models\ChiNhanh\GetListChiNhanhPopupByCriteriaAction.cs" />
+    <Compile Include="Models\ChucVu\GetChucVuByIdAction.cs" />
+    <Compile Include="Models\ChucVu\GetListChucVuByCriteriaAction.cs" />
+    <Compile Include="Models\ChucVu\InsertChucVuAction.cs" />
+    <Compile Include="Models\ChucVu\UpdateXoaListChucVuAction.cs" />
+    <Compile Include="Models\ChucVu\UpdateChucVuAction.cs" />
+    <Compile Include="Models\CongViecTruocDay\DeleteCongViecTruocDayAction.cs" />
+    <Compile Include="Models\CongViecTruocDay\GetListCongViecTruocDayByIdAction.cs" />
+    <Compile Include="Models\CongViecTruocDay\GetListCongViecTruocDayByCriteriaAction.cs" />
+    <Compile Include="Models\CongViecTruocDay\InsertCongViecTruocDayAction.cs" />
+    <Compile Include="Models\CongViecTruocDay\UpdateCongViecTruocDayAction.cs" />
+    <Compile Include="Models\CongViec\DeleteListCongViecAction.cs" />
+    <Compile Include="Models\CongViec\GetListCongViecByProjectionAction.cs" />
+    <Compile Include="Models\CongViec\GetCongViecByIdAction.cs" />
+    <Compile Include="Models\CongViec\InsertCongViecAction.cs" />
+    <Compile Include="Models\CongViec\UpdateCongViecAction.cs" />
+    <Compile Include="Models\CongViec\UpdateXoaListCongViecAction.cs" />
+    <Compile Include="Models\DuAn\GetListPopDuAnByProjectionAction.cs" />
+    <Compile Include="Models\DuAn\UpdateXoaListDuAnAction.cs" />
+    <Compile Include="Models\HocVan\DeleteHocVanAction.cs" />
+    <Compile Include="Models\HocVan\GetListHocVanByCriteriaAction.cs" />
+    <Compile Include="Models\HocVan\GetListHocVanByIdAction.cs" />
+    <Compile Include="Models\HocVan\InsertHocVanAction.cs" />
+    <Compile Include="Models\HocVan\UpdateHocVanAction.cs" />
+    <Compile Include="Models\ImportExcel\ImportExcelChamCongAction.cs" />
+    <Compile Include="Models\DuAn\DeleteListDuAnAction.cs" />
+    <Compile Include="Models\DuAn\GetDuAnByIdAction.cs" />
+    <Compile Include="Models\DuAn\GetListDuAnByProjectionAction.cs" />
+    <Compile Include="Models\DuAn\InsertDuAnAction.cs" />
+    <Compile Include="Models\DuAn\UpdateDuAnAction.cs" />
+    <Compile Include="Models\Issue\DeleteListIssueAction.cs" />
+    <Compile Include="Models\Issue\GetIssueByIdAction.cs" />
+    <Compile Include="Models\Issue\GetListLichSuIssueByProjectionAction.cs" />
+    <Compile Include="Models\Issue\GetListIssueByProjectionAction.cs" />
+    <Compile Include="Models\Issue\GetListKhachHangByDiDongIssueProjectionAction.cs" />
+    <Compile Include="Models\Issue\InsertIssueAction.cs" />
+    <Compile Include="Models\Issue\UpdateIssueAction.cs" />
+    <Compile Include="Models\ChiNhanh\GetChiNhanhByIdAction.cs" />
+    <Compile Include="Models\ChiNhanh\GetListChiNhanhByCriteriaAction.cs" />
+    <Compile Include="Models\ChiNhanh\InsertChiNhanhAction.cs" />
+    <Compile Include="Models\ChiNhanh\UpdateChiNhanhAction.cs" />
+    <Compile Include="Models\ChiNhanh\UpdateXoaListChiNhanhAction.cs" />
+    <Compile Include="Models\LichSuBanThan\DeleteLichSuBanThanAction.cs" />
+    <Compile Include="Models\LichSuBanThan\GetListLichSuBanThanByCriteriaAction.cs" />
+    <Compile Include="Models\LichSuBanThan\GetListLichSuBanThanByIdAction.cs" />
+    <Compile Include="Models\LichSuBanThan\InsertLichSuBanThanAction.cs" />
+    <Compile Include="Models\LichSuBanThan\UpdateLichSuBanThanAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\DeleteListLoaiNghiPhepAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\GetAllLoaiNghiPhepAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\GetListLoaiNghiPhepByCriteriaAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\GetLoaiNghiPhepByIdAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\GetLoaiNghiPhepByMaLoaiNghiPhepAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\InsertLoaiNghiPhepAction.cs" />
+    <Compile Include="Models\LoaiNghiPhep\UpdateLoaiNghiPhepAction.cs" />
+    <Compile Include="Models\LuongPhuCap\UpdateLuongPhuCapAction.cs" />
+    <Compile Include="Models\LuongPhuCap\InsertLuongPhuCapAction.cs" />
+    <Compile Include="Models\LuongPhuCap\GetLuongPhuCapByNhanVienIdAction.cs" />
+    <Compile Include="Models\NgayNghi\DeleteListNgayNghiAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByCriteriaListAction.cs" />
+    <Compile Include="Models\NhanVien\GetThongTinNhanVienByMaAction.cs" />
+    <Compile Include="Models\NhanVien\GetThongTinNhanVienByIdAction.cs" />
+    <Compile Include="Models\NhanVien\InsertThongTinNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateThongTinNhanVienAction.cs" />
+    <Compile Include="Models\PhepNam\GetListPhepNamByNhanVienIdAction.cs" />
+    <Compile Include="Models\PhepNam\GetListPhepNamByProjectionAction.cs" />
+    <Compile Include="Models\PhieuCongTac\UpdateChiTietAction.cs" />
+    <Compile Include="Models\PhieuCongTac\UpdateXoaListChiTietAction.cs" />
+    <Compile Include="Models\PhieuCongTac\UpdateXoaListPhieuCongTacAction.cs" />
+    <Compile Include="Models\PheDuyet\UpdatePheDuyetByProjectionAction.cs" />
+    <Compile Include="Models\PheDuyet\GetListPheDuyetByProjectionAction.cs" />
+    <Compile Include="Models\NgayNghi\GetListNgayNghiByProjectionAction.cs" />
+    <Compile Include="Models\NgayNghi\GetNgayNghiByIdAction.cs" />
+    <Compile Include="Models\NgayNghi\InsertNgayNghiAction.cs" />
+    <Compile Include="Models\NgayNghi\UpdateNgayNghiAction.cs" />
+    <Compile Include="Models\QuanHeGiaDinh\DeleteQuanHeGiaDinhAction.cs" />
+    <Compile Include="Models\QuanHeGiaDinh\GetListQuanHeGiaDinhByCriteriaAction.cs" />
+    <Compile Include="Models\QuanHeGiaDinh\GetListQuanHeGiaDinhByIdAction.cs" />
+    <Compile Include="Models\QuanHeGiaDinh\InsertQuanHeGiaDinhAction.cs" />
+    <Compile Include="Models\QuanHeGiaDinh\UpdateQuanHeGiaDinhAction.cs" />
+    <Compile Include="Models\QuanLyHopDong\GetListQuanLyHopDongByIdAction.cs" />
+    <Compile Include="Models\QuanLyHopDong\GetListQuanLyHopDongByNhanVienIdAction.cs" />
+    <Compile Include="Models\QuanLyHopDong\UpdateXoaQuanLyHopDongAction.cs" />
+    <Compile Include="Models\QuanLyHopDong\UpdateQuanLyHopDongAction.cs" />
+    <Compile Include="Models\QuanLyHopDong\InsertQuanLyHopDongAction.cs" />
+    <Compile Include="Models\QuaTrinhCongTac\DeleteQuaTrinhCongTacAction.cs" />
+    <Compile Include="Models\QuaTrinhCongTac\UpdateQuaTrinhCongTacAction.cs" />
+    <Compile Include="Models\QuaTrinhCongTac\InsertQuaTrinhCongTacAction.cs" />
+    <Compile Include="Models\QuaTrinhCongTac\GetQuaTrinhCongTacByIdAction.cs" />
+    <Compile Include="Models\QuaTrinhCongTac\GetListQuaTrinhCongTacByNhanVienIdAction.cs" />
+    <Compile Include="Models\TamUng\DeleteListTamUngAction.cs" />
+    <Compile Include="Models\TamUng\GetTamUngByIdAction.cs" />
+    <Compile Include="Models\TamUng\GetListTamUngByProjectionAction.cs" />
+    <Compile Include="Models\TamUng\InsertTamUngAction.cs" />
+    <Compile Include="Models\TamUng\UpdateTamUngAction.cs" />
+    <Compile Include="Models\KhachHang\DeleteListKhachHangAction.cs" />
+    <Compile Include="Models\KhachHang\GetKhachHangByIdAction.cs" />
+    <Compile Include="Models\KhachHang\GetListKhachHangByProjectionAction.cs" />
+    <Compile Include="Models\KhachHang\InsertKhachHangAction.cs" />
+    <Compile Include="Models\KhachHang\UpdateKhachHangAction.cs" />
+    <Compile Include="Models\KhenThuongCaNhan\DeleteListKhenThuongCaNhanAction.cs" />
+    <Compile Include="Models\KhenThuongCaNhan\GetKhenThuongCaNhanByIdAction.cs" />
+    <Compile Include="Models\KhenThuongCaNhan\GetListKhenThuongCaNhanByProjectionAction.cs" />
+    <Compile Include="Models\KhenThuongCaNhan\InsertKhenThuongCaNhanAction.cs" />
+    <Compile Include="Models\KhenThuong\DeleteListKhenThuongAction.cs" />
+    <Compile Include="Models\KhenThuong\GetKhenThuongByIdAction.cs" />
+    <Compile Include="Models\KhenThuong\GetListKhenThuongByProjectionAction.cs" />
+    <Compile Include="Models\KhenThuong\InsertKhenThuongAction.cs" />
+    <Compile Include="Models\KhenThuong\UpdateKhenThuongAction.cs" />
+    <Compile Include="Models\KyLuat\DeleteListKyLuatAction.cs" />
+    <Compile Include="Models\KyLuat\GetKyLuatByIdAction.cs" />
+    <Compile Include="Models\KyLuat\GetListKyLuatByProjectionAction.cs" />
+    <Compile Include="Models\KyLuat\InsertKyLuatAction.cs" />
+    <Compile Include="Models\KyLuat\UpdateKyLuatAction.cs" />
+    <Compile Include="Models\LuocSu\GetListLuocSuByCriteriaAction.cs" />
+    <Compile Include="Models\LuocSu\InsertLuocSuAction.cs" />
+    <Compile Include="Models\KhenThuongCaNhan\UpdateKhenThuongCaNhanAction.cs" />
+    <Compile Include="Models\PhieuCongTac\GetListChiTietByPhieuCongTacIdAction.cs" />
+    <Compile Include="Models\PhieuCongTac\GetChiTietByIdAction.cs" />
+    <Compile Include="Models\PhieuCongTac\GetPhieuCongTacByIdAction.cs" />
+    <Compile Include="Models\PhieuCongTac\InsertChiTietAction.cs" />
+    <Compile Include="Models\PhieuCongTac\UpdatePhieuCongTacAction.cs" />
+    <Compile Include="Models\PhieuCongTac\InsertPhieuCongTacAction.cs" />
+    <Compile Include="Models\TamUng\UpdateXoaListTamUngAction.cs" />
+    <Compile Include="Models\TangCa\DeleteListTangCaAction.cs" />
+    <Compile Include="Models\TangCa\GetListTangCaByCriteriaAction.cs" />
+    <Compile Include="Models\TangCa\GetTangCaByIdAction.cs" />
+    <Compile Include="Models\TangCa\InsertTangCaAction.cs" />
+    <Compile Include="Models\TangCa\UpdateTangCaAction.cs" />
+    <Compile Include="Models\TangCa\UpdateXoaListTangCaAction.cs" />
+    <Compile Include="Models\NghiPhep\DeleteListNghiPhepAction.cs" />
+    <Compile Include="Models\NghiPhep\GetListNghiPhepByCriteriaAction.cs" />
+    <Compile Include="Models\NghiPhep\GetNghiPhepByIdAction.cs" />
+    <Compile Include="Models\NghiPhep\InsertNghiPhepAction.cs" />
+    <Compile Include="Models\NghiPhep\UpdateNghiPhepAction.cs" />
+    <Compile Include="Models\NghiPhep\UpdateXoaListNghiPhepAction.cs" />
+    <Compile Include="Models\NhanVien\DeleteListNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByCriteriaAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByFilterAction.cs" />
+    <Compile Include="Models\NhanVien\GetNhanVienByIdAction.cs" />
+    <Compile Include="Models\NhanVien\InsertNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateXoaListNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateNhanVienAction.cs" />
+    <Compile Include="Models\PhieuCongTac\GetListPhieuCongTacByCriteriaAction.cs" />
+    <Compile Include="Models\Phongban\DeleteListPhongBanAction.cs" />
+    <Compile Include="Models\Phongban\DeletePhongBanAction.cs" />
+    <Compile Include="Models\Phongban\GetListPhongBanByProjectionAction.cs" />
+    <Compile Include="Models\Phongban\GetPhongBanByIdAction.cs" />
+    <Compile Include="Models\Phongban\InsertPhongBanAction.cs" />
+    <Compile Include="Models\Phongban\UpdatePhongBanAction.cs" />
+    <Compile Include="Models\TinhHuyenTram\GetListHuyenByProjectionAction.cs" />
+    <Compile Include="Models\TinhHuyenTram\GetListPhuongXaByProjectionAction.cs" />
+    <Compile Include="Models\TinhHuyenTram\GetListTinhByProjectionAction.cs" />
+    <Compile Include="Models\TrangThai\GetTrangThaiByChucNangAction.cs" />
+    <Compile Include="Models\TrangThai\GetTrangThaiByIdAction.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
+      <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
+      <Name>Util.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_MAIN\Entity.MSSQL_QLDN_MAIN.csproj">
+      <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
+      <Name>Entity.MSSQL_QLDN_MAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_QLNS\Entity.MSSQL_QLDN_QLNS.csproj">
+      <Project>{8779d0f7-d0f8-4470-a3eb-e0667df7b57a}</Project>
+      <Name>Entity.MSSQL_QLDN_QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.QLNS\Data.QLNS.csproj">
+      <Project>{36b1f8ee-22f7-4a45-9114-d71ded146490}</Project>
+      <Name>Data.QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.Repository\Data.Repository.csproj">
+      <Project>{1a5e7772-e937-46e2-a4b2-dd8e071e16f5}</Project>
+      <Name>Data.Repository</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\03 Business Layer\Biz.QLNS\Biz.QLNS.csproj">
+      <Project>{5d6ff0ab-0342-4110-a004-356d4e7772ac}</Project>
+      <Name>Biz.QLNS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)04 WebApis\QLDNAPI\bin\$(TargetName).dll"</PostBuildEvent>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

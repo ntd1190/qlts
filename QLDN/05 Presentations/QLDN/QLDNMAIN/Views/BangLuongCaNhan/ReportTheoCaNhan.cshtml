@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "Bảng Lương Cá Nhân";
+    Layout = "~/Views/Shared/_LayoutReport.cshtml";
+}
+
+
+<div ng-controller="ReportTheoCaNhanCtrl as ctrl" ng-init="ctrl.onInitView({ userInfo: @ViewBag.userInfo})">
+    <span> hi hi binh 1</span>
+
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <!-- Bang Luong controller -->
+<script src="~/Scripts/angular/BangLuongCaNhan/ReportTheoCaNhan/controller/ReportTheoCaNhanCtrl.js"></script>
+<script src="~/Scripts/angular/BangLuongCaNhan/service/BangLuongCaNhanService.js"></script>
+
+    <!-- Utility -->
+
+
+}
+

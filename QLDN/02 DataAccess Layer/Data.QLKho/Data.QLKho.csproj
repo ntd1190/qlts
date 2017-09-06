@@ -1,0 +1,275 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FB5537B0-EAAA-457D-89C0-B52A0DDFE851}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SongAn.QLDN.Data.QLKho</RootNamespace>
+    <AssemblyName>SongAn.QLDN.Data.QLKho</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Dapper, Version=1.50.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.1.50.2\lib\net451\Dapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Dapper.FastCrud, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Dapper.FastCrud.2.4.1\lib\net46\Dapper.FastCrud.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KhoHangHoa\GetListKhoHangHoaPopDMByProjectionDac.cs" />
+    <Compile Include="KhoHangHoa\UpdateXoaListKhoHangHoaV2Dac.cs" />
+    <Compile Include="KhoImportDauKy\ImportDauKyDac.cs" />
+    <Compile Include="KhoImportExcelDauKy\ImportExcelDauKyDac.cs" />
+    <Compile Include="KhoKhachHang\GetListKhoKhachHangByProjectionDac.cs" />
+    <Compile Include="KhoCongNoKhachHang\GetListKhoCongNoKhachHangByProjectionDac.cs" />
+    <Compile Include="KhoCongNoKhachHang\GetListKhoCongNoKhachHangChiTietByProjectionDac.cs" />
+    <Compile Include="KhoCongNoNCC\GetListKhoCongNoNCCChiTietByProjectionDac.cs" />
+    <Compile Include="KhoDuyetPhieu\GetListKhoDuyetPhieuByCriteriaDac.cs" />
+    <Compile Include="KhoKhachHang\UpdateXoaListKhoKhachHangDac.cs" />
+    <Compile Include="KhoKhoHang\DeleteKhoKhoHangDac.cs" />
+    <Compile Include="KhoKhoHang\GetKhoKhoHangByIdDac.cs" />
+    <Compile Include="KhoKhoHang\GetListKhoKhoHangByCriteriaDac.cs" />
+    <Compile Include="KhoKhoHang\GetListKhoKhoHangPopupByCriteriaDac.cs" />
+    <Compile Include="KhoKhoHang\InsertKhoKhoHangDac.cs" />
+    <Compile Include="KhoKhoHang\UpdateKhoKhoHangDac.cs" />
+    <Compile Include="KhoKhoHang\UpdateXoaListKhoKhoHangDac.cs" />
+    <Compile Include="KhoKiemKe\GetListKhoKiemKeByIdDac.cs" />
+    <Compile Include="KhoKiemKe\GetListKhoKiemKeByProjectionDac.cs" />
+    <Compile Include="KhoKyChiTiet\GetListKyChiTietByCriteriaDac.cs" />
+    <Compile Include="KhoNhomHangHoa\UpdateXoaListKhoNhomHangHoaDac.cs" />
+    <Compile Include="KhoNuocSanXuat\DeleteListKhoNuocSanXuatbyKhoIdDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetThongTinByDienThoaiDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetThongTinBySeriesDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetListChiTietByPhieuBaoHanhIdDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetChiTietByIdDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\DeleteChiTietDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\UpdateChiTietDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\InsertChiTietDac.cs" />
+    <Compile Include="KhoPhieuChi\GetListReportPhieuChiByProjectionDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetListKhoPhieuBaoHanhByIdDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\UpdateXoaListPhieuBaoHanhDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\UpdateKhoPhieuBaoHanhDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\InsertKhoPhieuBaoHanhDac.cs" />
+    <Compile Include="KhoPhieuChuyen\DeleteListChiTietByPhieuChuyenIdDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListLuuSoCaiDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListChiTietByPhieuChuyenIdDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListKhoPhieuChuyenByCriteriaDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListCheckSoLuongTheKhoDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListKhoPhieuChuyenByIdDac.cs" />
+    <Compile Include="KhoPhieuChuyen\GetListReportPhieuChuyenByProjectionDac.cs" />
+    <Compile Include="KhoPhieuChuyen\UpdateXoaKhoPhieuChuyenDac.cs" />
+    <Compile Include="KhoPhieuChuyen\UpdateKhoPhieuChuyenDac.cs" />
+    <Compile Include="KhoPhieuChuyen\InsertKhoPhieuChuyenDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\DeleteListChiTietByPhieuNhapIdDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListReportPhieuNhapByProjectionDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListChiTietByPhieuNhapIdDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByCriteriaDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByIdDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\InsertKhoPhieuNhapDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\LuuSoCaiDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\UpdateKhoPhieuNhapDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\UpdateXoaListKhoPhieuNhapDac.cs" />
+    <Compile Include="KhoPhieuBaoHanh\GetListKhoPhieuBaoHanhByCriteriaDac.cs" />
+    <Compile Include="KhoPhieuThu\GetListReportPhieuThuByProjectionDac.cs" />
+    <Compile Include="KhoPhieuXuat\DeletePhieuSeriesDac.cs" />
+    <Compile Include="KhoPhieuXuat\DeleteListChiTietByPhieuXuatIdDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListChiTietByPhieuNhapIdDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByCriteriaDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListKhoPhieuSeriesBySoPhieuDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByIdDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListReportPhieuXuatByProjectionDac.cs" />
+    <Compile Include="KhoPhieuXuat\InsertKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoPhieuXuat\LuuSoCaiDac.cs" />
+    <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatSauKhiLuuSoCaiDac.cs" />
+    <Compile Include="KhoPhieuXuat\UpdateXoaListKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoCongNoNCC\GetListKhoCongNoNCCByProjectionDac.cs" />
+    <Compile Include="KhoTheKho\GetListKhoTheKhoByProjectionDac.cs" />
+    <Compile Include="KhoSoDuTonKho\GetListKhoSoDuTonKhoByProjectionDac.cs" />
+    <Compile Include="KhoPhieuChi\GetListKhoPhieuChiByIdDac.cs" />
+    <Compile Include="KhoPhieuChi\GetListKhoPhieuChiByProjectionDac.cs" />
+    <Compile Include="KhoPhieuThu\GetListKhoPhieuThuByIdDac.cs" />
+    <Compile Include="KhoPhieuThu\GetListKhoPhieuThuByProjectionDac.cs" />
+    <Compile Include="KhoHangHoa\GetListKhoHangHoaByMaTenDac.cs" />
+    <Compile Include="KhoHangHoa\GetListKhoHangHoaByIdDac.cs" />
+    <Compile Include="KhoHangHoa\GetListKhoHangHoaPopByProjectionDac.cs" />
+    <Compile Include="KhoHangHoa\GetListKhoHangHoaByProjectionDac.cs" />
+    <Compile Include="KhoHangSanXuat\DeleteKhoHangSanXuatDac.cs" />
+    <Compile Include="KhoHangSanXuat\GetKhoHangSanXuatByIdDac.cs" />
+    <Compile Include="KhoHangSanXuat\UpdateXoaListKhoHangSanXuatDac.cs" />
+    <Compile Include="KhoHangSanXuat\UpdateKhoHangSanXuatDac.cs" />
+    <Compile Include="KhoHangSanXuat\InsertKhoHangSanXuatDac.cs" />
+    <Compile Include="KhoHangSanXuat\GetListKhoHangSanXuatByCriteriaDac.cs" />
+    <Compile Include="KhoLoaiHangHoa\GetKhoLoaiHangHoaByIdDac.cs" />
+    <Compile Include="KhoLoaiHangHoa\UpdateXoaListKhoLoaiHangHoaDac.cs" />
+    <Compile Include="KhoGetSoPhieuAuto\KhoGetSoPhieuAutoDac.cs" />
+    <Compile Include="KhoTaiKhoan\GetListKhoTaiKhoanCriteriaProjectionDac.cs" />
+    <Compile Include="KhoNuocSanXuat\GetListKhoNuocSanXuatCriteriaProjectionDac.cs" />
+    <Compile Include="KhoNhomHangHoa\GetListKhoNhomHangHoaCriteriaProjectionDac.cs" />
+    <Compile Include="KhoLoaiHangHoa\GetListKhoLoaiHangHoaCriteriaProjectionDac.cs" />
+    <Compile Include="KhoLuocSu\sp_KhoLuocSu_GetListKhoLuocSuByCriteriaDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTonTheoKy\DeleteKhoKyChiTietByKyIdDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTonTheoKy\GetListChiTietByKyIdDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTonTheoKy\GetListChiTietTheKhoByItemDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTonTheoKy\GetListKhoKyPopupByCriteriaDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTonTheoKy\GetListTongHopXuatNhapTonTheoKyByCriteriaDac.cs" />
+    <Compile Include="KhoTongHopXuatNhapTon\GetListTheKhoXuatNhapTonByCriteriaDac.cs" />
+    <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaDac.cs" />
+    <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByTonKhoIdDac.cs" />
+    <Compile Include="KhoTonKho\InsertTonDauHangHoaDac.cs" />
+    <Compile Include="KhoTonKho\UpdateTonDauKhoChiTietByTonKhoChiTietIdDac.cs" />
+    <Compile Include="KhoTonKho\UpdateTrangThaiByTonKhoIdDac.cs" />
+    <Compile Include="KhoXuatNhapTon\GetListKhoXuatNhapTonByCriteriaDac.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TrangThai\GetListTrangThaiPopupByChucNangDac.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
+      <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
+      <Name>Util.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_MAIN\Entity.MSSQL_QLDN_MAIN.csproj">
+      <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
+      <Name>Entity.MSSQL_QLDN_MAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_QLNS\Entity.MSSQL_QLDN_QLNS.csproj">
+      <Project>{8779d0f7-d0f8-4470-a3eb-e0667df7b57a}</Project>
+      <Name>Entity.MSSQL_QLDN_QLNS</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="KhoHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangHoa_UpdateXoaListKhoHangHoaV2.sql" />
+    <Content Include="KhoKhachHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhachHang_GetListKhachHangByCriteria.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_GetKhoHangSanXuatById.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_GetListKhoHangSanXuatByCriteria.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_DeleteKhoHangSanXuat.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_UpdateKhoHangSanXuat.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_UpdateXoaListKhoHangSanXuat.sql" />
+    <Content Include="KhoHangSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoHangSanXuat_InsertKhoHangSanXuat.sql" />
+    <Content Include="KhoKhachHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhachHang_UpdateXoaListKhachHang.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_DeleteKhoKhoHang.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_GetKhoKhoHangById.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_GetListKhoKhoHangByCriteria.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_GetListKhoKhoHangPopupByCriteria.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_InsertKhoKhoHang.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_UpdateKhoKhoHang.sql" />
+    <Content Include="KhoKhoHang\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoKhoHang_UpdateXoaListKhoKhoHang.sql" />
+    <Content Include="KhoLoaiHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoLoaiHangHoa_GetLoaiHangHoaById.sql" />
+    <Content Include="KhoLoaiHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoLoaiHangHoa_UpdateXoaListKhoLoaiHangHoa.sql" />
+    <Content Include="KhoNhomHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoNhomHangHoa_UpdateXoaListKhoNhomHangHoa.sql" />
+    <Content Include="KhoNuocSanXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoNuocSanXuat_GetListKhoNuocSanXuatByCriteria.sql" />
+    <Content Include="KhoNhomHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoNhomHangHoa_GetListKhoNhomHangHoaByCriteria.sql" />
+    <Content Include="KhoLoaiHangHoa\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoLoaiHangHoa_GetListByCriteria.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetThongTinByDienThoai.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetListKhoPhieuBaoHanhById.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetListChiTietByPhieuBaoHanhId.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetChiTietById.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_DeleteChiTiet.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_InsertChiTiet.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetThongTinBySeries.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_UpdateChiTiet.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_UpdatXoaListPhieuBaoHanh.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_UpdateKhoPhieuBaoHanh.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_InsertKhoPhieuBaoHanh.sql" />
+    <Content Include="KhoPhieuChuyen\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuChuyen_UpdateXoaKhoPhieuChuyen.sql" />
+    <Content Include="KhoPhieuChuyen\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuChuyen_UpdateKhoPhieuChuyen.sql" />
+    <Content Include="KhoPhieuChuyen\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuChuyen_InsertKhoPhieuChuyen.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_DeleteListChiTietByPhieuNhapId.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_GetListChiTietByPhieuNhapId.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_GetListKhoPhieuNhapByCriteria.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_GetListKhoPhieuNhapById.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_InsertKhoPhieuNhap.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_LuuSoCai.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_UpdateKhoPhieuNhap.sql" />
+    <Content Include="KhoPhieuNhapV2\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuNhap_UpdateXoaListKhoPhieuNhap.sql" />
+    <Content Include="KhoPhieuBaoHanh\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuBaoHanh_GetListKhoPhieuBaoHanhByCriteria.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_DeleteListChiTietByPhieuXuatId.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_GetListChiTietByPhieuXuatId.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_GetListKhoPhieuXuatByCriteria.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_GetListKhoPhieuXuatById.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_InsertKhoPhieuXuat.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_LuuSoCai.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_UpdateKhoPhieuXuat.sql" />
+    <Content Include="KhoPhieuXuat\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoPhieuXuat_UpdateXoaListKhoPhieuXuat.sql" />
+    <Content Include="KhoLuocSu\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoLuocSu_GetListKhoLuocSuByCriteria.sql" />
+    <Content Include="KhoGetSoPhieuAuto\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoGetSoPhieu_Auto.sql" />
+    <Content Include="KhoTongHopXuatNhapTon\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_KhoTongHopXuatNhapTon_GetListTheKhoXuatNhapTonByCriteria.sql" />
+    <Content Include="TrangThai\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_TrangThai_GetListTrangThaiPopupByChucNang.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="KhoCongNoKhachHang\Dto\" />
+    <Folder Include="KhoCongNoKhachHang\Procedures\" />
+    <Folder Include="KhoCongNoNCC\Dto\" />
+    <Folder Include="KhoCongNoNCC\Procedures\" />
+    <Folder Include="KhoDuyetPhieu\Dto\" />
+    <Folder Include="KhoDuyetPhieu\Procedures\" />
+    <Folder Include="KhoGetSoPhieuAuto\Dto\" />
+    <Folder Include="KhoHangHoa\Dto\" />
+    <Folder Include="KhoKhachHang\Dto\" />
+    <Folder Include="KhoKiemKe\Dto\" />
+    <Folder Include="KhoKiemKe\Procedures\" />
+    <Folder Include="KhoLuocSu\Dto\" />
+    <Folder Include="KhoPhieuBaoHanh\Dto\" />
+    <Folder Include="KhoPhieuChuyen\Dto\" />
+    <Folder Include="KhoPhieuNhapV2\Dto\" />
+    <Folder Include="KhoPhieuThu\Dto\" />
+    <Folder Include="KhoPhieuThu\Procedures\" />
+    <Folder Include="KhoPhieuXuat\Dto\" />
+    <Folder Include="KhoSoDuTonKho\Dto\" />
+    <Folder Include="KhoSoDuTonKho\Procedures\" />
+    <Folder Include="KhoTaiKhoan\Procedures\" />
+    <Folder Include="KhoTheKho\Dto\" />
+    <Folder Include="KhoTheKho\Procedures\" />
+    <Folder Include="KhoTongHopXuatNhapTon\Dto\" />
+    <Folder Include="TrangThai\Dto\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

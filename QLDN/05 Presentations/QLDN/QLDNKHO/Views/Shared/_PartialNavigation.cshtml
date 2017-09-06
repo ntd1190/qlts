@@ -1,0 +1,330 @@
+﻿@{
+
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+            <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:#0d6aad;height: 55px;">
+        <ul class="nav navbar-top-links navbar-left">
+            <li class="dropdown">
+                <header id="header">
+                    <h3 id="titlett" class="titlett">Quản lý kho hàng</h3> 
+                </header>
+            </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right" style="background-color: #0d6aad; padding-top: 4px;color:white">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color: #0d6aad;color:white">
+                    <i class="fa fa-user fa-fw"></i> @(User != null ? User.Name : "") <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#popupNguoiDung"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="~/account/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul><!-- /.dropdown-user -->
+            </li><!-- /.dropdown -->
+        </ul>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse" style="background-color: #0d6aad">
+                <ul class="nav" id="side-menu" style="padding-top: 3px;">
+
+                    <li style="border-top: 1px solid #e7e7e7;">
+                        <a href="javascript:void(0);"><i class="fa fa-list-alt fa-fw"></i> <span> Hệ thống danh mục</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/khokhohang/list">Kho hàng</a>
+                            </li>
+                            <li>
+                                <a href="~/khachhang/list">Khách hàng</a>
+                            </li>
+                            <li>
+                                <a href="~/khohanghoa/list">Hàng hóa</a>
+                            </li>
+                            <li>
+                                <a href="~/kholoaihanghoa/list">Loại hàng hóa</a>
+                            </li>
+                            <li>
+                                <a href="~/khonhomhanghoa/list">Nhóm hàng hóa</a>
+                            </li> 
+                            <li>
+                                <a href="~/khohangsanxuat/list">Hãng sản xuất</a>
+                            </li>                           
+                            <li>
+                                <a href="~/khonuocsanxuat/list">Nước sản xuất</a>
+                            </li>
+                            <li>
+                                <a href="~/khotaikhoan/list">Tài khoản</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-calendar-check-o fa-fw"></i><span> Quản lý phiếu</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/khophieunhap/list">Phiếu nhập mua</a>
+                            </li>
+                            <li>
+                                <a href="~/khophieuxuat/list">Phiếu xuất bán</a>
+                            </li>
+                            <li>
+                                <a href="~/khophieuchuyen/list">Phiếu chuyển kho</a>
+                            </li>
+                            <li>
+                                <a href="~/khophieuthu/list">Phiếu thu</a>
+                            </li>
+                            <li>
+                                <a href="~/khophieuchi/list">Phiếu chi</a>
+                            </li>
+
+                            <li>
+                                <a href="~/KhoTonKho/list">Khai báo tồn đầu</a>
+                            </li>
+                            <li>
+                                <a href="~/khoduyetphieu/list">Duyệt phiếu - Lưu sổ cái</a>
+                            </li>
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-lock fa-fw"></i> <span> Quản lý bảo hành </span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/khophieubaohanh/list">Phiếu bảo hành</a>
+                            </li>                            
+                        </ul>
+                    </li>
+
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-pie-chart fa-fw"></i><span> Quản lý báo cáo</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/KhoSoDuTonKho/list">Số dư hàng tồn kho</a>
+                            </li>
+                            <li>
+                                <a href="~/khothekho/list">Theo dõi hàng tồn kho</a>
+                            </li>   
+                            <li>
+                                <a href="~/KhoXuatNhapTon/list">Tổng hợp xuất nhập tồn</a>
+                            </li>                                                     
+                           <!--
+                             <li>
+                                <a href="~/KhoTongHopXuatNhapTonTheoKy/list">Tổng hợp xuất nhập tồn</a>
+                            </li>
+                            <li>
+                                <a href="~/KhoImportExcelDauKy/list">Khai báo hàng tồn kho - import</a>
+                            </li>-->
+                            <li>
+                                <a href="~/KhoCongNoNCC/list">Công nợ nhà cung cấp</a>
+                            </li>
+                            <li>
+                                <a href="~/KhoCongNoKhachHang/list">Công nợ khách hàng</a>
+                            </li>
+
+                            <li>
+                                <a href="~/khokiemke/list">Kiểm kê</a>
+                            </li>
+                        </ul>
+                    </li>                 
+
+                  
+
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-lock fa-fw"></i> <span> Quản trị hệ thống</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/nguoidung/list">Danh sách người dùng</a>
+                            </li>                            
+                            <li>
+                                <a href="~/vaitro/list">Danh sách vai trò</a>
+                            </li>
+                            <li>
+                                <a href="~/phanquyen/list">Phân quyền tác vụ</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="logoright">
+
+                    <a>
+                        <img src="~/lib/images/logo.png" />
+                    </a>
+                    <p>
+                        <b>CÔNG TY TNHH SX TM - DV SONG ÂN</b>
+                    </p>
+                    <p>
+                        340/38 Quang Trung, Phường 10,
+                        <br>
+                        Quận Gò Vấp, Thành Phố Hồ Chí Minh
+                    </p>
+                    <br>
+                    <p class="phone"><i class="fa fa-phone"></i>Hỗ trợ: <b>0839 96 97 69</b></p>
+                    <p class="text-center size-11 margin-top-20">
+                        Developed by SongAn® Version <span id="version">1.0</span>
+                        <br>
+                        Copyright © 2016 SongAn
+                    </p>
+                </div>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div><!-- /.navbar-static-side -->
+        <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="popupNguoiDung" ng-controller="NguoiDungEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo:  @(User.UserId)})">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title">
+                    <span>Người dùng</span>
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#popupNguoiDung" ng-click="ctrl.action.closeEdit()">
+                        <i class="fa fa-fw fa-remove">
+                        </i>
+                    </a>
+                    <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner"></i>
+                </div>
+            </div>
+            <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaNguoiDung}">
+                        <label class="control-label col-sm-3">Mã người dùng</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled class="form-control" id="txtMaNguoiDung" ng-model="ctrl.data.objNguoiDung.MaNguoiDung" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.MaNguoiDung,'txtMaNguoiDung','txtTenNguoiDung',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenNguoiDung}">
+                        <label class="control-label col-sm-3">Họ tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtTenNguoiDung" ng-model="ctrl.data.objNguoiDung.HoTen" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.HoTen,'txtTenNguoiDung','popVaiTro',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidVaiTro}">
+                        <label for="" class="control-label col-sm-3">Vai trò</label>
+                        <div class="col-sm-9">
+                            <div class="form-control auto-height">
+                                <a href="javascript:void(0);" disabled data-toggle="collapse">
+                                    <span class="" style="margin-right: 5px;" ng-bind="kh.TenVaiTro+','" ng-repeat="kh in ctrl.data.listVaiTro"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Nhân viên</label>
+                        <div class="col-sm-9">
+                            <div class="form-control auto-height">
+                                <a href="javascript:void(0);" disabled data-toggle="collapse" data-target="#NhanVienListPopupEdit">
+                                    <span class="" disabled style="margin-right: 5px;" ng-bind="nv.Ho+' '+nv.Ten+','" ng-repeat="nv in ctrl.data.listNhanVien"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidEmail}">
+                        <label class="control-label col-sm-3">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="txtEmail" ng-model="ctrl.data.objNguoiDung.Email" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.Email,'txtEmail','txtPassword',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidPassword}">
+                        <label class="control-label col-sm-3">Password</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtPassword" ng-model="ctrl.data.objNguoiDung.PasswordHash" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.PasswordHash,'txtPassword','txtDienThoai',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Điện thoại</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtDienThoai" ng-model="ctrl.data.objNguoiDung.DienThoai" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.DienThoai,'txtDienThoai','btnluu',$event)" />
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupNguoiDung" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
+            </div>
+
+        </div>
+    </nav><!-- /Navigation -->
+    <style>
+        .titlett {
+            color: #fff;
+            line-height: 50px;
+            margin: 0px;
+            height: 50px;
+            overflow: hidden;
+            font-weight: bold;
+            padding-left: 20px;
+            text-transform: uppercase;
+        }
+
+        .logoright p {
+            margin: 0px;
+            margin-bottom: 2px;
+            line-height: 14px;
+            font-size: 12px;
+        }
+
+        #side-menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+            #side-menu a:hover, #side-menu a:focus {
+                background-color: #0d6aad;
+            }
+
+        #side-menu ul.nav.nav-second-level > li {
+            background-color: #1974B3;
+        }
+
+        li > .active {
+            background-color: #0d6aad;
+        }
+
+        .logoright {
+            text-align: center;
+            color: #fff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script src="~/lib/jquery/jquery-3.1.1.js"></script>
+    <script>
+        activemenu();
+        function activemenu() {
+            var url = window.location.toString().toLowerCase();
+            $("#side-menu a").each(function () {
+                var href = $(this).attr("href").toLowerCase();
+                if (url.indexOf(href) > -1) {
+                    $(this).parent().parent().parent().addClass("active");
+                    $(this).parent().css('background-color', '#0d6aad');
+
+                }
+            });
+        }
+
+
+
+    </script>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
+{
+    <link href="~/lib/metisMenu/metisMenu.min.css" rel="stylesheet" />
+}
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true)
+{
+    <script src="~/lib/metisMenu/metisMenu.min.js"></script>
+
+}
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+    <script src="~/Scripts/angular/app/controllers/ProfileCtrl.js"></script>
+    <script src="~/Scripts/angular/app/controllers/NguoiDungEditCtrl.js"></script>
+    <script src="~/Scripts/angular/NguoiDung/service/NguoiDungService.js"></script>
+}

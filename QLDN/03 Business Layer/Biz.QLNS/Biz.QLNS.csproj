@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D6FF0AB-0342-4110-A004-356D4E7772AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SongAn.QLDN.Biz.QLNS</RootNamespace>
+    <AssemblyName>SongAn.QLDN.Biz.QLNS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BangLuongCaNhan\CalculateBangLuongCaNhanByCriteriaBiz.cs" />
+    <Compile Include="BangLuongCaNhan\GetListBangLuongCaNhanByCriteriaBiz.cs" />
+    <Compile Include="BangLuongCaNhan\GetListBangLuongNhanVienByCriteriaBiz.cs" />
+    <Compile Include="BangLuong\GetListBangLuongByCriteriaBiz.cs" />
+    <Compile Include="BaoHiemXaHoi\UpdateBaoHiemXaHoiBiz.cs" />
+    <Compile Include="BaoHiemXaHoi\GetListBaoHiemXaHoiByCriteriaBiz.cs" />
+    <Compile Include="ChiNhanh\GetListChiNhanhPopupByCriteriaBiz.cs" />
+    <Compile Include="ChucVu\GetChucVuByIdBiz.cs" />
+    <Compile Include="ChucVu\GetListChucVuByCriteriaBiz.cs" />
+    <Compile Include="ChucVu\InsertChucVuBiz.cs" />
+    <Compile Include="ChucVu\UpdateXoaListChucVuBiz.cs" />
+    <Compile Include="ChucVu\UpdateChucVuBiz.cs" />
+    <Compile Include="CongViecTruocDay\UpdateCongViecTruocDayBiz.cs" />
+    <Compile Include="CongViecTruocDay\InsertCongViecTruocDayBiz.cs" />
+    <Compile Include="CongViecTruocDay\GetListCongViecTruocDayByIdBiz.cs" />
+    <Compile Include="CongViecTruocDay\GetListCongViecTruocDayByCriteriaBiz.cs" />
+    <Compile Include="CongViecTruocDay\DeleteCongViecTruocDayBiz.cs" />
+    <Compile Include="CongViec\GetListBaoCaoCongViecByCriteraBiz.cs" />
+    <Compile Include="CongViec\GetListCongViecByCriteraBiz.cs" />
+    <Compile Include="DuAn\GetListDuAnByIdBiz.cs" />
+    <Compile Include="DuAn\GetListDuAnByCriteraBiz.cs" />
+    <Compile Include="ChamCong\GetListChamCongByCriteraBiz.cs" />
+    <Compile Include="HocVan\DeleteHocVanBiz.cs" />
+    <Compile Include="HocVan\GetListHocVanByCriteriaBiz.cs" />
+    <Compile Include="HocVan\GetListHocVanByIdBiz.cs" />
+    <Compile Include="HocVan\InsertHocVanBiz.cs" />
+    <Compile Include="HocVan\UpdateHocVanBiz.cs" />
+    <Compile Include="Issue\GetListLichSuIssueByCriteraBiz.cs" />
+    <Compile Include="Issue\GetListKhachHangByDiDongIssueCriteriaBiz.cs" />
+    <Compile Include="ChiNhanh\GetChiNhanhByIdBiz.cs" />
+    <Compile Include="ChiNhanh\GetListChiNhanhByCriteriaBiz.cs" />
+    <Compile Include="ChiNhanh\InsertChiNhanhBiz.cs" />
+    <Compile Include="ChiNhanh\UpdateChiNhanhBiz.cs" />
+    <Compile Include="ChiNhanh\UpdateXoaListChiNhanhBiz.cs" />
+    <Compile Include="LichSuBanThan\DeleteLichSuBanThanBiz.cs" />
+    <Compile Include="LichSuBanThan\GetListLichSuBanThanByCriteriaBiz.cs" />
+    <Compile Include="LichSuBanThan\GetListLichSuBanThanByIdBiz.cs" />
+    <Compile Include="LichSuBanThan\InsertLichSuBanThanBiz.cs" />
+    <Compile Include="LichSuBanThan\UpdateLichSuBanThanBiz.cs" />
+    <Compile Include="LuongPhuCap\UpdateLuongPhuCapBiz.cs" />
+    <Compile Include="LuongPhuCap\InsertLuongPhuCapBiz.cs" />
+    <Compile Include="LuongPhuCap\GetLuongPhuCapByNhanVienIdBiz.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteriaListBiz.cs" />
+    <Compile Include="NhanVien\GetThongTinNhanVienByMaBiz.cs" />
+    <Compile Include="NhanVien\GetThongTinNhanVienByIdBiz.cs" />
+    <Compile Include="NhanVien\UpdateThongTinNhanVienBiz.cs" />
+    <Compile Include="NhanVien\InsertThongTinNhanVienBiz.cs" />
+    <Compile Include="PheDuyet\GetListPheDuyetByCriteraBiz.cs" />
+    <Compile Include="PheDuyet\GetListUpdateByCriteraBiz.cs" />
+    <Compile Include="PhepNam\GetListPhepNamByCriteraBiz.cs" />
+    <Compile Include="PhepNam\GetListPhepNamByNhanVienIdBiz.cs" />
+    <Compile Include="PhieuCongTac\Dto\UpdateXoaPhieuCongTacDto.cs" />
+    <Compile Include="PhieuCongTac\UpdateChiTietBiz.cs" />
+    <Compile Include="PhieuCongTac\UpdateXoaPhieuCongTacBiz.cs" />
+    <Compile Include="NgayNghi\GetListNgayNghiByCriteriaBiz.cs" />
+    <Compile Include="QuanHeGiaDinh\DeleteQuanHeGiaDinhBiz.cs" />
+    <Compile Include="QuanHeGiaDinh\GetListQuanHeGiaDinhByCriteriaBiz.cs" />
+    <Compile Include="QuanHeGiaDinh\GetListQuanHeGiaDinhByIdBiz.cs" />
+    <Compile Include="QuanHeGiaDinh\InsertQuanHeGiaDinhBiz.cs" />
+    <Compile Include="QuanHeGiaDinh\UpdateQuanHeGiaDinhBiz.cs" />
+    <Compile Include="QuanLyHopDong\GetListQuanLyHopDongByCriteriaBiz.cs" />
+    <Compile Include="QuanLyHopDong\UpdateXoaQuanLyHopDongBiz.cs" />
+    <Compile Include="QuanLyHopDong\UpdateQuanLyHopDongBiz.cs" />
+    <Compile Include="QuanLyHopDong\InsertQuanLyHopDongBiz.cs" />
+    <Compile Include="QuaTrinhCongTac\DeleteQuaTrinhCongTacBiz.cs" />
+    <Compile Include="QuaTrinhCongTac\UpdateQuaTrinhCongTacBiz.cs" />
+    <Compile Include="QuaTrinhCongTac\InsertQuaTrinhCongTacBiz.cs" />
+    <Compile Include="QuaTrinhCongTac\GetListQuaTrinhCongTacByNhanVienIdBiz.cs" />
+    <Compile Include="QuaTrinhCongTac\GetListQuaTrinhCongTacByCriteriaBiz.cs" />
+    <Compile Include="TamUng\GetListTamUngByCriteraBiz.cs" />
+    <Compile Include="Issue\GetListIssueByCriteraBiz.cs" />
+    <Compile Include="KhachHang\GetListKhachHangByCriteriaBiz.cs" />
+    <Compile Include="KhenThuongCaNhan\GetListKhenThuongCaNhanByCriteriaBiz.cs" />
+    <Compile Include="KhenThuong\GetListKhenThuongByCriteriaBiz.cs" />
+    <Compile Include="KyLuat\GetListKyLuatByCriterialBiz.cs" />
+    <Compile Include="LoaiNghiPhep\GetListLoaiNghiPhepByCriteriaBiz.cs" />
+    <Compile Include="LuocSu\GetListLuocSuByCriteriaBiz.cs" />
+    <Compile Include="PhieuCongTac\GetListChiTietByPhieuCongTacIdBiz.cs" />
+    <Compile Include="PhieuCongTac\GetChiTietByIdBiz.cs" />
+    <Compile Include="PhieuCongTac\GetListPhieuCongTacByIdBiz.cs" />
+    <Compile Include="PhieuCongTac\InsertChiTietBiz.cs" />
+    <Compile Include="PhieuCongTac\UpdatePhieuCongTacBiz.cs" />
+    <Compile Include="PhieuCongTac\InsertPhieuCongTacBiz.cs" />
+    <Compile Include="TangCa\GetListTangCaByCriteriaBiz.cs" />
+    <Compile Include="NghiPhep\GetListNghiPhepByCriteriaBiz.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteriaBiz.cs" />
+    <Compile Include="PhieuCongTac\GetListPhieuCongTacByCriteriaBiz.cs" />
+    <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TinhHuyenTram\GetListPhuongXaByCriteriaBiz.cs" />
+    <Compile Include="TinhHuyenTram\GetListHuyenByCriteriaBiz.cs" />
+    <Compile Include="TinhHuyenTram\GetListTinhByCriteriaBiz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
+      <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
+      <Name>Util.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_MAIN\Entity.MSSQL_QLDN_MAIN.csproj">
+      <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
+      <Name>Entity.MSSQL_QLDN_MAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.MSSQL_QLDN_QLNS\Entity.MSSQL_QLDN_QLNS.csproj">
+      <Project>{8779d0f7-d0f8-4470-a3eb-e0667df7b57a}</Project>
+      <Name>Entity.MSSQL_QLDN_QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.Main\Data.Main.csproj">
+      <Project>{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}</Project>
+      <Name>Data.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.QLNS\Data.QLNS.csproj">
+      <Project>{36b1f8ee-22f7-4a45-9114-d71ded146490}</Project>
+      <Name>Data.QLNS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.Repository\Data.Repository.csproj">
+      <Project>{1a5e7772-e937-46e2-a4b2-dd8e071e16f5}</Project>
+      <Name>Data.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="BangLuongCaNhan\Dto\" />
+    <Folder Include="BangLuong\Dto\" />
+    <Folder Include="BaoHiemXaHoi\Dto\" />
+    <Folder Include="ChucVu\Dto\" />
+    <Folder Include="CongViecTruocDay\Dto\" />
+    <Folder Include="LuongPhuCap\Dto\" />
+    <Folder Include="NghiPhep\Dto\" />
+    <Folder Include="NhanVien\Dto\" />
+    <Folder Include="QuanLyHopDong\Dto\" />
+    <Folder Include="QuaTrinhCongTac\Dto\" />
+    <Folder Include="TangCa\Dto\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

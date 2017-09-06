@@ -1,0 +1,135 @@
+﻿
+@{
+    ViewBag.Title = "Kho tôn kho";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default hidden-print">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o no-margin"></i>Khai báo tồn đầu</span>
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="collapse fade" id="panelTimkiemCollapse" ng-controller="KhoTonKhoFilterCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'KhoTonKhoFilterCtrl',userInfo: @ViewBag.userInfo})">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <!-- search field -->
+                    <div class="row form-group form-group-sm">
+                        <label for="txtNhanVien" class="control-label col-sm-2">Từ ngày</label>
+                        <div class="form-inline col-sm-10">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayTu" />
+                            <span>~</span>
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.ngayDen" />
+                        </div>
+                    </div>
+
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Kho hàng hóa</label>
+                        <div class="col-sm-10">
+                            <div class="form-control auto-height">
+                                <a class="pull-right" href="javascript:void(0)" ng-click="ctrl.action.clearListKhoKhoHang()"><i class="fa fa-fw fa-remove"></i></a>
+                                <a href="javscript:void(0)" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoKhoHangListPopup}}">
+                                    <div>
+                                        <i class="fa fa-fw fa-search"></i>
+                                        <span style="margin-right: 5px;" ng-repeat="kho in ctrl.data.listKhoKhoHang" ng-bind="kho.TenKho+','"></span>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a> &nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lặp lại</a>
+            </div>
+        </div>
+    </div><!-- / panel tìm kiếm -->
+
+    <!-- panel Danh sách kho cha -->
+    <div class="panel panel-default" ng-controller="KhoTonKhoListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'KhoTonKhoListCtrl',loadListCot:true,userInfo: @ViewBag.userInfo})">
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách khai báo tồn đầu</h3>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listKhoTonKho" st-pipe="ctrl.action.getPage">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th style="width: 50px;text-align:center">#</th>
+                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" style="width:{{cot.DoRong}}">{{cot.TenCot}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger">
+                            <span ng-bind="{{ctrl.data.error.message}}"></span>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="tonkho in ctrl.data.listKhoTonKho" ng-class="(tonkho.isSelected==true)?'info':''">
+                        <td style="display:none" class="text-primary text-center" st-select-row="tonkho" st-select-mode="multiple"><i class="fa fa-fw" ng-class="tonkho.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td class="text-primary text-center" ng-bind="$index+1"></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" ng-switch="cot.MaCot" ng-class="(ctrl.action.checkInValid(tonkho[cot.MaCot], 'isNumber')==true)?'text-left':'text-right'">
+                            <a href="~/khotonkho/edit?id={{tonkho.TonKhoId}}" ng-switch-when="TenKho" ng-bind="::tonkho[cot.MaCot]"></a>
+                            <a href="~/khotonkho/edit?id={{tonkho.TonKhoId}}" ng-switch-when="ThangNam" ng-bind="::tonkho[cot.MaCot]"></a>
+                            <a href="~/khotonkho/edit?id={{tonkho.TonKhoId}}" ng-switch-when="Ten" ng-bind="::tonkho[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-click="ctrl.action.updateTrangThai(tonkho)" ng-switch-when="TenMaTrangThai" ng-bind="::tonkho[cot.MaCot]"></a>
+                            <span ng-switch-default ng-bind="::tonkho[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" href="~/KhoImportDauKy/list" target="_blank">Import excel</a>
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#TongHopXuatNhapTonTheoKyEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+        </div>
+    </div><!-- /panel danh sách kho tồn -->
+
+    <!-- popup danh sách kho hang hoa -->
+    @{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:mainCtrl.controllerId.KhoKhoHangListPopup,showTable:true,userInfo:" + ViewBag.userInfo + "}" } });}
+    <!-- /popup danh sách -->
+ </div>
+
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <!-- ton kho controller -->
+
+    <!-- Utility -->
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+<script src="~/Scripts/angular/KhoTonKho/controller/KhoTonKhoFilterCtrl.js"></script>
+<script src="~/Scripts/angular/KhoTonKho/controller/MainCtrl.js"></script>
+<script src="~/Scripts/angular/KhoTonKho/controller/KhoTonKhoListCtrl.js"></script>
+<script src="~/Scripts/angular/KhoTonKho/service/KhoTonKhoService.js"></script>
+@{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
+
+

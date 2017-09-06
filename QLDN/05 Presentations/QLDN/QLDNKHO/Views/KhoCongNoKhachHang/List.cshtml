@@ -1,0 +1,189 @@
+﻿
+@{
+    ViewBag.Title = "List";
+}
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView()">
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default hidden-print" ng-controller="KhoCongNoKhachHangFilterCtrl as ctrl" ng-init="ctrl.onInitView('KhoCongNoKhachHangFilterCtrl')" keyboard="ctrl.keys">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Tổng hợp công nợ khách hàng</span>
+                <div class="btn-group btn-group-sm pull-right">
+                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìn kiếm (F3)</a>
+                </div>
+            </div>
+        </div>
+        <div>
+            <div class="collapse fade" id="panelTimkiemCollapse">
+                <div class="panel-body">
+                    <form class="form">
+                        <div class="row form-group form-group-sm">
+                            <label for="txtNgay" class="control-label col-sm-2">Ngày</label>
+                            <div class="form-inline col-sm-10">
+
+                                <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="__/__/____" />
+                                <span>~</span>
+                                <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="__/__/____" />
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm">
+                            <label for="txtKhachHang" class="control-label col-sm-2">Đơn vị</label>
+                            <div class="col-sm-10">
+                                <div class="form-control auto-height">
+                                    <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListKhachHang()"><i class="fa fa-fw fa-remove"></i></a>
+                                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#KhachHangListPopup">
+                                        <div>
+                                            <i class="fa fa-fw fa-search"></i>
+                                            <span class="" style="margin-right: 5px;" ng-bind="kh.TEN+','" ng-repeat="kh in ctrl.data.listKhachHang"></span>
+                                        </div>
+
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="panel-footer">
+                    <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lặp lại</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- /panel tìm kiếm -->
+    <!-- popup danh sách khach hang -->
+    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="KhachHangListCtrl as ctrl" id="KhachHangListPopup" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.KhachHangListPopup,LoaiKhachHang:'2,'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Danh sách đơn vị</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#KhachHangListPopup"><i class="fa fa-fw fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="panel-body" style="width:auto; height:auto;">
+            <form class="form-inline">
+                <div class="form-group form-group-sm">
+                    <span><i class="fa fa-fw fa-star-o"></i>Tìm kiếm đơn vị</span>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control" ng-model="ctrl.data.searchString" autofocus />
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive">
+            <table st-table="ctrl.data.listKhachHang" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-hover table-striped">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 50px;"></th>
+                        <th class="text-center" style="width: 100px;" st-sort="MA">Mã</th>
+                        <th class="text-center" style="width: 200px" st-sort="TEN">Tên</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="kh in ctrl.data.listKhachHang" ng-class="(kh.isSelected==true)?'info':''">
+                        <td st-select-row="kh" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(kh.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><a ng-bind="kh.MA" href="javascript:void(0);"></a></td>
+                        <td><span ng-bind="kh.TEN"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</button>
+            <button class="btn btn-sm btn-default" data-toggle="collapse" data-target="#KhachHangListPopup">Đóng</button>
+        </div>
+    </div>
+    <!-- /popup danh sách -->
+
+    <div ng-controller="KhoCongNoKhachHangListCtrl as ctrlList" keyboard="ctrlList.keys">
+        <div class="panel panel-default" ng-init="ctrlList.onInitView({controllerId:mainCtrl.controllerId.KhoCongNoKhachHangList, loadListCot:true, showList:true,userInfo: @ViewBag.userInfo})">
+            <div class="panel-body">
+                <h3 class="text-center no-margin">Tổng hợp công nợ khách hàng</h3>
+            </div>
+            <div class="panel-body">
+                <i style="float:right">{{ctrlList.data.NgayKiemKho}}</i>
+            </div>
+            <div id="tableToExport" class="list-margin">
+                <div class="table-responsive" style="width:auto; height: auto;" ng-if="ctrlList.data.showList">
+                    <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrlList.data.listKhoCongNoKhachHang" st-pipe="ctrlList.action.getPage">
+                        <thead class="bg-default text-primary">
+                            <tr>
+                                <th class="text-center" style="width: 50px;">#</th>
+                                <th class="text-center" st-sort="Ma">Mã KH</th>
+                                <th class="text-center" st-sort="Ten">Tên KH</th>
+                                <th class="text-center" st-sort="DuDau">Dư nợ đầu</th>
+                                <th class="text-center" st-sort="TienNhap">Tiền xuất(bán)</th>
+                                <th class="text-center" st-sort="TienChi">Thanh toán(thu)</th>
+                                <th class="text-center" st-sort="DuCuoi">Dư nợ cuối</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr ng-repeat="tonkho in ctrlList.data.listKhoCongNoKhachHang">
+                                <td class="text-center">{{$index +1}}</td>
+                                <td><a  href="~/KhoCongNoKhachHang/chitiet/{{tonkho.KhachHangId}}" ng-bind="tonkho.Ma"></a></td>
+                                <td><a  href="~/KhoCongNoKhachHang/chitiet/{{tonkho.KhachHangId}}" ng-bind="tonkho.Ten"></a></td>
+                                <td style="text-align:right"><span>{{ tonkho.DuDau | number}}</span></td>
+                                <td style="text-align:right"><span>{{ tonkho.TienNhap | number}}</span></td>
+                                <td style="text-align:right"><span>{{ tonkho.TienChi | number}}</span></td>
+                                <td style="text-align:right"><span>{{ tonkho.DuCuoi | number}}</span></td>
+                                
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="3">Tổng cộng</td>
+                                <td class="text-right" ng-bind="(ctrlList.data.listKhoCongNoKhachHang | sumOfValue:'DuDau')|number"></td>
+                                <td class="text-right" ng-bind="(ctrlList.data.listKhoCongNoKhachHang | sumOfValue:'TienNhap')|number"></td>
+                                <td class="text-right" ng-bind="(ctrlList.data.listKhoCongNoKhachHang | sumOfValue:'TienChi')|number"></td>
+                                <td class="text-right" ng-bind="(ctrlList.data.listKhoCongNoKhachHang | sumOfValue:'DuCuoi')|number"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-footer hidden-print">
+                <a class="btn btn-sm btn-primary" ng-click="ctrlList.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrlList.action.excel('#tableToExport');">Excel</a>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+</div>
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/smart-table/service/smart-table-helper.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/KhoCongNoKhachHang/controller/KhoCongNoKhachHangFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoCongNoKhachHang/controller/KhoCongNoKhachHangListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoCongNoKhachHang/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoCongNoKhachHang/service/KhoCongNoKhachHangService.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+<script src="~/Scripts/angular/KhachHang/controller/KhachHangListCtrl.js"></script>
+<script src="~/Scripts/angular/KhachHang/service/KhachHangService.js"></script>
+}

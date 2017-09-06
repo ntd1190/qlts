@@ -1,0 +1,150 @@
+﻿
+@{
+    ViewBag.Title = "Chức vụ";
+}
+
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({ userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+
+    <!-- panel tìm kiếm -->
+    <div class="panel panel-default" ng-controller="ChucVuFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({controllerId:'ChucVuFilterCtrl', userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o no-margin"></i>Chức vụ</span>
+
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.search():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+
+
+    </div><!-- / panel tìm kiếm -->
+    <!-- panel Danh sách loại chức vụ -->
+    <div class="panel panel-default" ng-controller="ChucVuListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'ChucVuListCtrl', userInfo: @ViewBag.userInfo})">
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách chức vụ</h3>
+        </div>
+
+
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listChucVu" st-pipe="ctrl.action.getPage">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th style="width: 50px;"></th>
+                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" style="width:{{cot.DoRong}}">{{cot.TenCot}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.data.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-if="ctrl.data.error.code>0">
+                        <td colspan="100" class="text-center danger">
+                            <span ng-bind="{{ctrl.data.error.message}}"></span>
+                        </td>
+                    </tr>
+
+                    <tr ng-repeat="ChucVu in ctrl.data.listChucVu" ng-class="(ChucVu.isSelected==true)?'info':''">
+                        <td class="text-primary text-center" st-select-row="ChucVu" st-select-mode="multiple"><i class="fa fa-fw" ng-class="ChucVu.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" ng-switch="cot.MaCot" ng-class="(ctrl.action.checkInValid(ChucVu[cot.MaCot], 'isNumber')==true)?'text-left':'text-right'">
+                            <a href="javascript:void(0)" ng-click="ctrl.action.view(ChucVu.ChucVuId)" ng-switch-when="MaChucVu" ng-bind="::ChucVu[cot.MaCot]"></a>
+                            <a href="javascript:void(0)" ng-click="ctrl.action.view(ChucVu.ChucVuId)" ng-switch-when="TenChucVu" ng-bind="::ChucVu[cot.MaCot]"></a>
+                            <div class="text-left" ng-switch-when="NguoiTao">{{ChucVu.Ho}} {{ChucVu.Ten}}</div>
+                            <div class="text-left" ng-switch-when="NgayTao" ng-bind="ctrl.action.convertDateFormat(ChucVu.NgayTao,'YYYY-MM-DD','DD/MM/YYYY')"></div>
+                            <span ng-switch-default ng-bind="::ChucVu[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center hidden-print">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#ChucVuEditPopup" ng-click="ctrl.action.add()">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</a>
+        </div>
+    </div><!-- /panel danh sách chức vụ -->
+    <!-- popup cập nhậtchức vụ -->
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="ChucVuEditPopup" ng-controller="ChucVuEditCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.ChucVuEditPopup, userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Thông tin loại chức vụ</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#ChucVuEditPopup" ng-click="ctrl.action.closeEdit()">
+                    <i class="fa fa-fw fa-remove">
+                    </i>
+                </a>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 600px;height: 250px;">
+            <form class="form-horizontal">
+                <!-- Input row Mã loại chức vụ-->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaChucVu}">
+                    <label class="control-label col-sm-3">Mã chức vụ</label>
+                    <div class="col-sm-9">
+                        <input id="txtMaChucVu" name="txtMaLoai" class="form-control" ng-model="ctrl.data.objChucVu.MaChucVu" required ng-keypress="ctrl.action.keyPress(ctrl.data.objChucVu.MaChucVu,'txtMaChucVu','txtTenChucVu',$event)" />
+                    </div>
+                </div>
+
+                <!-- Input row Tên loại chức vụ-->
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidChucVu}">
+                    <label class="control-label col-sm-3">Chức vụ </label>
+                    <div class="col-sm-9">
+                        <input id="txtTenChucVu" name="txtTenChucVu" class="form-control" ng-model="ctrl.data.objChucVu.TenChucVu" required ng-keypress="ctrl.action.keyPress(ctrl.data.objChucVu.TenChucVu,'txtTenChucVu','txtGhiChu',$event)" />
+                    </div>
+                </div>
+                              
+
+                <!-- Input row Ghi chú -->
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ghi chú</label>
+                    <div class="col-sm-9">
+                        <input id="txtGhiChu" name="txtGhiChu" class="form-control" ng-model="ctrl.data.objChucVu.GhiChu" required ng-keypress="ctrl.action.keyPress(ctrl.data.objChucVu.GhiChu,'txtGhiChu','btnLuu',$event)" />
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="panel-footer">
+            <button type="button" id="btnLuu" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()" ng-if="ctrl.data.showButtonSave">Lưu (F8)</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnReset" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnClose" class="btn btn-sm btn-default" data-toggle="collapse" data-target="#ChucVuEditPopup" ng-click="ctrl.action.closeEdit()">Đóng</button> &nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrl.action.deleteOne(ctrl.data.objChucVu)" ng-if="ctrl.data.objChucVu.ChucVuId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" id="btnH" class="btn btn-sm btn-default" ng-click="ctrl.action.GetListLuocSu(ctrl.data.objChucVu.ChucVuId)" ng-if="ctrl.data.objChucVu.ChucVuId!=0">H</button>
+        </div>
+    </div><!-- /popup cập nhật chức vụ -->
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/ChucVu/List/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/ChucVu/List/service/ChucVuService.js"></script>
+    <script src="~/Scripts/angular/ChucVu/List/controller/ChucVuFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/ChucVu/List/controller/ChucVuListCtrl.js"></script>
+    <script src="~/Scripts/angular/ChucVu/List/controller/ChucVuEditCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+
+}
+

@@ -1,0 +1,126 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" keyboard="ctrl.keys" ng-controller="KhoHangSanXuatListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId: mainCtrl.controllerId.KhoHangSanXuatList,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <i class="fa fa-fw fa-star-o"></i>
+                <span>Hãng sản xuất</span>
+                <form class="form-inline pull-right">
+                    <div class="form-group form-group-sm">
+                        <div class="input-group input-group-sm">
+                            <input class="form-control" id="txtsearch" autofocus ng-model="ctrl.data.searchString" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-sm btn-primary" type="submit" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách hãng sản xuất</h3>
+        </div>
+        <div class="table-responsive">
+            <table st-table="ctrl.data.listHangSanXuat" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-hover">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" ng-click="ctrl.action.checkAll()" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <th class="text-center" st-sort="{{col.MaCot}}" style="width:{{col.DoRong}}px;" ng-repeat="col in ctrl.data.listCot|filter:col.HienThiYN=true">
+                            <span ng-bind="col.TenCot"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="row in ctrl.data.listHangSanXuat" ng-class="(row.isSelected==true)?'info':''">
+                        <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                            <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                        </td>
+                        <td ng-repeat="col in ctrl.data.listCot|filter:col.HienThiYN=true">
+                            <a href="javascript:void(0)" ng-bind="row[col.MaCot]" ng-click="ctrl.action.edit(row)"></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoHangSanXuatEditPopup}}">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.xoaChon()">Xóa chọn</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            &nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+    <div class="panel panel-primary ui-draggable collapse fade" ng-controller="KhoHangSanXuatEditCtrl as ctrl" id="{{ctrl.controllerId}}" ng-init="ctrl.onInitView({controllerId: mainCtrl.controllerId.KhoHangSanXuatEditPopup,userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <i class="fa fa-fw fa-spinner fa-spin" ng-if="ctrl.status.isLoading"></i>
+            <i class="fa fa-fw fa-star-o" ng-if="!ctrl.status.isLoading"></i>
+            <span>Thông tin hãng sản xuất</span>
+            <a class="btn btn-xs btn-primary pull-right" ng-click="ctrl.action.close()">
+                <i class="fa fa-fw fa-remove"></i>
+            </a>
+        </div>
+        <div class="panel-body" style="width: 600px; height: auto;">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.MaHangSanXuat}">
+                    <label class="control-label col-sm-3">Mã hãng sản xuất</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" id="txtMa" type="text" ng-model="ctrl.data.hangSanXuat.MaHangSanXuat" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="MaHangSanXuat" data-next="TenHangSanXuat" autofocus />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.TenHangSanXuat}">
+                    <label class="control-label col-sm-3">Tên hãng sản xuất</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" id="txtTen" ng-model="ctrl.data.hangSanXuat.TenHangSanXuat" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenHangSanXuat" data-next="MoTa" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.MoTa}">
+                    <label class="control-label col-sm-3">Mô tả</label>
+                    <div class="col-sm-9">
+                        <textarea rows="3" class="form-control" type="text" id="txtMoTa" ng-model="ctrl.data.hangSanXuat.MoTa" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="MoTa" data-next="btnSave"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()" data-name="btnSave">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+        </div>
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/KhoHangSanXuat/service/KhoHangSanXuatService.js"></script>
+    <script src="~/Scripts/angular/KhoHangSanXuat/controller/MainCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoHangSanXuat/controller/KhoHangSanXuatListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoHangSanXuat/controller/KhoHangSanXuatEditCtrl.js"></script>
+}

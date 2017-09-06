@@ -1,0 +1,124 @@
+﻿
+@{
+    ViewBag.Title = "Theo dõi hàng tồn chi tiết";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.idKy = ViewBag.idKy ?? "";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+
+<div class="container-fluid" ng-controller="MainViewDetailCtrl as mainCtrl" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" id="tableToExport" ng-controller="TongHopXuatNhapTonTheoKyViewDetailListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.TongHopXuatNhapTonTheoKyViewDetailList,kyId:@(ViewBag.idKy),hangHoaId:@(ViewBag.id),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/khotonghopxuatnhaptontheoky/"))'})">
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Theo dõi hàng tồn chi tiết <span ng-bind="ctrl.data.KhoId"></span></h3>
+            <p class="cthuc">Giá xuất bình quân = <span ng-bind="ctrl.data.GiaXuatBQ|number"></span></p>
+        </div>
+        <div class="panel-body">
+            <h4>
+                <i style="float:left">Mặt hàng: <span ng-bind="ctrl.data.TenHangHoa"></span></i>
+                <i style="float:right"><span ng-bind="ctrl.data.TuNgay"></span> ~ <span ng-bind="ctrl.data.DenNgay"></span></i>
+            </h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered table-condensed table-hover table-striped">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" rowspan="2">#</th>
+                        <th class="text-center" rowspan="2">Ngày</th>
+                        <th class="text-center" colspan="2">Tồn đầu kỳ</th>
+                        <th class="text-center" colspan="3">Nhập trong kỳ</th>
+                        <th class="text-center" colspan="3">Xuất trong kỳ</th>
+                        <th class="text-center" colspan="2">Tồn cuối kỳ</th>
+                        <th class="text-center" rowspan="2">Số phiếu</th>
+                    </tr>
+                    <tr style="font-weight:bold">
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá nhập</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá xuất</td>
+                        <td class="text-center">Giá trị</td>
+                        <td class="text-center">Số lượng</td>
+                        <td class="text-center">Giá trị</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center info">
+                            <i class="fa fa-fw fa-spinner fa-pulse"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="chitiet in ctrl.data.listTheKho">
+                        <td class="text-center" ng-bind="$index+1"></td>
+                        <td ng-bind="chitiet.NgayTao"></td>
+                        <td class="text-right" ng-bind="chitiet.TonDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuDau|number"></td>
+                        <td class="text-right" ng-bind="chitiet.SLNhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DonGiaNhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TienNhap|number"></td>
+                        <td class="text-right" ng-bind="chitiet.SLXuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DonGiaXuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TienXuat|number"></td>
+                        <td class="text-right" ng-bind="chitiet.TonCuoi|number"></td>
+                        <td class="text-right" ng-bind="chitiet.DuCuoi|number"></td>
+                        <td class="text-left" ng-switch="chitiet.MuaBan">
+                            <a ng-switch-when="CK" href="/QLDNKHO/khophieuchuyen/edit/{{chitiet.PhieuId}}" ng-bind="chitiet.SoChungTu"></a>
+                            <a ng-switch-when="NM" href="/QLDNKHO/khophieunhap/edit/{{chitiet.PhieuId}}" ng-bind="chitiet.SoChungTu"></a>
+                            <a ng-switch-when="XB" href="/QLDNKHO/khophieuxuat/edit/{{chitiet.PhieuId}}" ng-bind="chitiet.SoChungTu"></a>
+                            <a ng-switch-default href="#" ng-bind="chitiet.SoChungTu"></a>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot class="text-primary">
+                    <tr>
+                        <td class="text-right" colspan="2">Tổng cộng</td>
+                        <td></td>
+                        <td></td>
+                        @*<td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'DuDau'|number"></td>*@
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'SLNhap'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'TienNhap'|number"></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'SLXuat'|number"></td>
+                        <td></td>
+                        <td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'TienXuat'|number"></td>
+                        <td></td>
+                        <td></td>
+                        @*<td class="text-right" ng-bind="ctrl.data.listTheKho|sumOfValue:'DuCuoi'|number"></td>*@
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer hidden-print">
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.print('tableToExport');">In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.excel('#tableToExport');">Excel</a>
+        </div>
+    </div>
+</div>
+
+
+@section ImportScripts{}
+@section SetupScripts{}
+@section SetupStyles{
+    <style>
+        .cthuc {
+            text-align: center;
+            font-size: 12px;
+        }
+    </style>
+}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/controller/MainViewDetailCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/controller/KhoTongHopXuatNhapTonTheoKyViewDetailCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoTongHopXuatNhapTonTheoKy/service/KhoTongHopXuatNhapTonTheoKyService.js"></script>
+}

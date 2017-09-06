@@ -1,0 +1,76 @@
+﻿
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="{{ctrl.controllerId}}" ng-controller="KhoKhoHangListPopupCtrl as ctrl" ng-init="ctrl.onInitView(@(ViewBag.onInitView))">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span ng-bind="ctrl.title"></span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#{{ctrl.controllerId}}"><i class="fa fa-fw fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="panel-body" style="width:auto; height:auto;">
+            <form class="form-inline">
+                <div class="form-group form-group-sm">
+                    <span><i class="fa fa-fw fa-star-o"></i>Tìm kiếm kho hàng</span>
+                </div>
+                <div class="form-group form-group-sm">
+                    <div class="input-group input-group-sm">
+                        <input class="form-control" ng-model="ctrl.data.searchString" autofocus />
+                        <span class="input-group-btn">
+                            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm</button>
+                        </span>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="table-responsive" style="height: 400px;">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listKhoHang" st-pipe="ctrl.action.getPage" ng-if="ctrl.status.showTable">
+                <thead>
+                    <tr class="text-primary">
+                        <th class="text-center" style="width: 50px;" ng-if="ctrl.status.isSelectOne"></th>
+                        <th class="text-center" style="width: 50px;" ng-if="!ctrl.status.isSelectOne" ng-click="ctrl.action.checkAll()"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <th class="text-center" style="width:100px;">Mã</th>
+                        <th class="text-center">Tên</th>
+                        <th class="text-center">Mô tả</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="item in ctrl.data.listKhoHang" ng-class="(item.isSelected==true)?'info':''">
+                        <td class="text-center" style="width: 50px;" st-select-row="item" st-select-mode="{{ctrl.status.isSelectOne?'':'multiple'}}" ng-click="ctrl.action.autoCheckAll()"><i class="fa fa-fw text-primary" ng-class="(item.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td>
+                            <a href="javascript:void(0)" ng-bind="item.MaKho" ng-click="ctrl.action.update(item)"></a>
+                        </td>
+                        <td>
+                            <a href="javascript:void(0)" ng-bind="item.TenKho" ng-click="ctrl.action.update(item)"></a>
+                        </td>
+                        <td ng-bind="item.MoTa"></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</button>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" data-toggle="collapse" data-target="#{{ctrl.controllerId}}">Đóng</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+    <script src="~/Scripts/angular/KhoKhoHang/controller/KhoKhoHangListPopup.js"></script>
+}
