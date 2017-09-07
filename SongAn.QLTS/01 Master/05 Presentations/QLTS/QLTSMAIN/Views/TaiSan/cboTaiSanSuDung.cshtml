@@ -1,0 +1,28 @@
+﻿
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <ui-select ng-model="ctrl.data.TaiSan" data-ng-disabled="disabled" on-select="ctrl.action.onSelected()" theme="bootstrap" id="{{ctrl.NameId}}">
+        <ui-select-match placeholder="{{$select.selected.TenTaiSan || 'Chọn tài sản'}}">{{$select.selected.TenTaiSan}}</ui-select-match>
+        <ui-select-choices repeat="item in ctrl.data.TaiSanListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="500">
+            <div ng-if="!item.TaiSanId">.</div>
+            <div ng-if="item.TaiSanId" style="border-bottom: #ccc 1px solid;">
+                <b ><span class="text-danger" ng-bind-html="item.MaTaiSan | highlight: $select.search"></span></b>: <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenTaiSan | highlight: $select.search"></span></strong></b>
+                <br />
+                <b>- Số lượng:</b> <span ng-bind-html="item.SoLuongTon|number:'':'':4"></span>    <b style="margin-left: 27px;">- Nguyên giá:</b> <span ng-bind-html="item.NguyenGia|number:'':'':4"></span> đ<br />
+                <b>- Bộ Phận:</b>  <span ng-bind-html="item.TenPhongBan"></span> 
+            </div>
+        </ui-select-choices>
+    </ui-select>
+
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
+{
+}
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+    <script src="~/Scripts/angular/TaiSan/directive/cboTaiSanSuDung.js"></script>
+    <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
+}
