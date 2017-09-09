@@ -27,5 +27,15 @@ namespace SongAn.QLTS.UI.QLTSMAIN.Controllers
             return View();
         }
 
+        [AllowAnonymous]
+        public ActionResult showView(string viewName, string type)
+        {
+            ViewBag.userInfo = LoadUserInfo("CN0004");
+
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            return PartialView(viewName);
+        }
+
     }
 }

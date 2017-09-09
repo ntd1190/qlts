@@ -18,23 +18,15 @@ namespace SongAn.QLTS.Data.QLTS.DuAn
     /// <summary>
     /// DAC Lấy danh sách Phong ban theo điều kiện
     /// </summary>
-    public class GetListcbxDuAnByCriteriaProjectionDac : BaseRepositoryAsync
+    public class GetListcbxDuAnByCriteriaDac : BaseRepositoryAsync
     {
         #region public properties
 
-        /// <summary>
-        /// Danh sách các CoSo cần lấy
-        /// </summary>
-        public string CoSoId { get; set; }
-        /// <summary>
-        /// Danh sách các CoSo cần lấy
-        /// </summary>
-        public string NhanVienId { get; set; }
-
-        /// <summary>
-        /// Mệnh đề where
-        /// </summary>
         public string Search { get; set; }
+        public string MaDuAn { get; set; }
+        public int DuAnId { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
 
         
 
@@ -51,7 +43,7 @@ namespace SongAn.QLTS.Data.QLTS.DuAn
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListcbxDuAnByCriteriaProjectionDac(ContextDto context) : base(context.dbQLTSConnection)
+        public GetListcbxDuAnByCriteriaDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -92,10 +84,7 @@ namespace SongAn.QLTS.Data.QLTS.DuAn
 
             return await WithConnection(async c =>
             {
-                var p = new DynamicParameters();
-                p.Add("CoSoId", CoSoId, DbType.String);
-                p.Add("NhanVienId", NhanVienId, DbType.String);
-                p.Add("Search", Search, DbType.String);
+                var p = new DynamicParameters(this);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_DuAn_cbxDuAnByCriteria",

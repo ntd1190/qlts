@@ -31,6 +31,7 @@
         vm.status = {};
 
         vm.data = {};
+        vm.data.LoaiTaiSan = {};
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
 
@@ -51,35 +52,41 @@
 
         activate()
         function activate() {
-            $timeout(function () {
-                onInitView($scope.config);
-                LoaiTaiSanId = $scope.value || 0;
-                console.log($scope.value);
-                getPage().then(function () {
-                    if (!vm.data.LoaiTaiSanListDisplay && vm.data.LoaiTaiSanListDisplay.length == 0) { return; }
-                    for (var nuoc in vm.data.LoaiTaiSanListDisplay) {
-                        if (vm.data.LoaiTaiSanListDisplay[nuoc].LoaiId == LoaiTaiSanId) {
-                            vm.data.LoaiTaiSan = vm.data.LoaiTaiSanListDisplay[nuoc];
-                            return;
-                        }
-                    }
-                });
-            }, 0);
-            
+            onInitView($scope.config);
         }
+
+        /*** EVENT FUNCTION ***/
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            if (!newValue || vm.data.LoaiTaiSan.LoaiId == newValue) { return; }
+
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.LoaiId = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.LoaiTaiSan = success.data.data[0];
+                } else {
+                    delete vm.data.LoaiTaiSan;
+                    vm.data.LoaiTaiSan = {};
+                }
+                $scope.onSelected({ data: vm.data.LoaiTaiSan });
+            });
+        });
 
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
 
-        vm.action.onSelected = function () {
-            $scope.onSelected({ data: vm.data.LoaiTaiSan });
-            $scope.value = vm.data.LoaiTaiSan.LoaiId
+        vm.action.onSelected = function (item) {
+            $scope.onSelected({ data: item });
+            $scope.value = item.LoaiId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 
@@ -88,18 +95,23 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            var CoSoId = userInfo.CoSoId || 0;
-            var NhanVienId = userInfo.NhanVienId || 0;
+            var data = {};
+            data.search = vm.inputSearch.SearchString || '';
+            data.LoaiId = vm.inputSearch.LoaiId || 0;
+            data.MaLoai = vm.inputSearch.MaLoai || '';
+
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getCombobox(data)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
                         if (success.data.data) {
                             vm.data.LoaiTaiSanListDisplay = success.data.data;
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
                         vm.status.isLoading = false;
                         console.log(error);
@@ -110,7 +122,7 @@
                             alert(error.data.Message);
 
                         }
-                        reject();
+                        return reject(error);
                     });
             });
         }

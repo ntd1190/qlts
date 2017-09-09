@@ -16,8 +16,8 @@ namespace SongAn.QLTS.Data.QLNS.GhiTang
         public int GhiTangId { get; set; }
         public int TaiSanId { get; set; }
         public DateTime NgayBatDauSuDung { get; set; }
-        public int PhongBanId { get; set; }
-        public int NhanVienId { get; set; }
+        public int? PhongBanId { get; set; }
+        public int? NhanVienId { get; set; }
         public decimal SoLuong { get; set; }
 
         #endregion

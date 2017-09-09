@@ -53,6 +53,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="QLTS\CoSoRepository.cs" />
+    <Compile Include="QLTS\HienTrangSuDungRepository.cs" />
+    <Compile Include="QLTS\GhiGiamChiTietRepository.cs" />
+    <Compile Include="QLTS\GhiGiamRepository.cs" />
     <Compile Include="QLTS\NhaCungCapRepository.cs" />
     <Compile Include="QLTS\LoaiTaiSanRepository.cs" />
     <Compile Include="QLTS\KhachHangRepository.cs" />
@@ -63,8 +66,8 @@
     <Compile Include="QLTS\NguonNganSachRepository.cs" />
     <Compile Include="QLTS\KhoTaiSanRepository.cs" />
     <Compile Include="QLTS\DuAnRepository.cs" />
-    <Compile Include="QLTS\KeHoachMuaSam.cs" />
-    <Compile Include="QLTS\KeHoachMuaSamChiTiet.cs" />
+    <Compile Include="QLTS\KeHoachMuaSamRepository.cs" />
+    <Compile Include="QLTS\KeHoachMuaSamChiTietRepository.cs" />
     <Compile Include="QLTS_MAIN\CauHinhFormCotRepository.cs" />
     <Compile Include="QLTS_MAIN\QuyenTacVuRepository.cs" />
     <Compile Include="QLTS_MAIN\RefreshTokenRepository.cs" />

@@ -21,23 +21,11 @@ namespace SongAn.QLTS.Data.QLTS.NguonNganSach
     public class GetListcbxNguonNganSachByCriteriaProjectionDac : BaseRepositoryAsync
     {
         #region public properties
-
-        /// <summary>
-        /// Danh sách các CoSo cần lấy
-        /// </summary>
-        public string CoSoId { get; set; }
-        /// <summary>
-        /// Danh sách các CoSo cần lấy
-        /// </summary>
-        public string NhanVienId { get; set; }
-
-        /// <summary>
-        /// Mệnh đề where
-        /// </summary>
         public string Search { get; set; }
-
-        
-
+        public string MaNguonNganSach { get; set; }
+        public int NguonNganSachId { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         #endregion
 
         #region private variable
@@ -92,10 +80,7 @@ namespace SongAn.QLTS.Data.QLTS.NguonNganSach
 
             return await WithConnection(async c =>
             {
-                var p = new DynamicParameters();
-                p.Add("CoSoId", CoSoId, DbType.String);
-                p.Add("NhanVienId", NhanVienId, DbType.String);
-                p.Add("Search", Search, DbType.String);
+                var p = new DynamicParameters(this);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_NguonNganSach_cbxNguonNganSachByCriteria",

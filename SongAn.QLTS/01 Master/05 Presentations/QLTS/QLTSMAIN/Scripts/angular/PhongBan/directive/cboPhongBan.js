@@ -9,7 +9,8 @@
                 onSelected: '&',
                 input: '<',
                 config: '<',
-                value: '='
+                value: '=',
+                disabled: '<'
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -49,6 +50,28 @@
             }
         }
 
+        $scope.$watch('value', function (newValue, oldValue) {
+            console.log(userInfo);
+            if (newValue == 0) {
+                vm.data.PhongBan = {};
+            } else {
+
+                getPage().then(function () {
+                    console.log('_________________________________________________');
+                    console.log(userInfo);
+                    console.log(vm.data.PhongBanListDisplay);
+                    if (!vm.data.PhongBanListDisplay && vm.data.PhongBanListDisplay.length == 0) { return; }
+                    for (var index in vm.data.PhongBanListDisplay) {
+                        if (vm.data.PhongBanListDisplay[index].PhongBanId == newValue) {
+                            vm.data.PhongBan = vm.data.PhongBanListDisplay[index];
+                            return;
+                        }
+                    }
+                });
+
+            }
+        });
+
         activate()
         function activate() {
             $timeout(function () {
@@ -64,7 +87,7 @@
                         }
                     }
                 });
-            }, 0);
+            }, 10);
 
         }
 

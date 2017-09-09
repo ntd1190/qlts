@@ -8,8 +8,17 @@
             insert: 'InsertTaiSan',
             update: 'UpdateTaiSan',
             getById: 'GetTaiSanById',
+            getPage: 'GetListTaiSanByCriteria',
+            removeList: 'DeleteListTaiSan',
             getListNguyenGiaByTaiSanId: 'getListNguyenGiaByTaiSanId',
             GetCombobox: 'GetListcbxTaiSanByCriteria',
+            getComboboxSuDung: 'GetListcbxTaiSanSuDungByCriteria',
+            GetMaTaiSan: 'GetTaiSanByMa',
+
+            getTTCKById: 'GetThongTinCongKhaiById',
+
+            getTTKK_DatById: 'GetThongTinKeKhaiDatById',
+            getTTKK_OtoById: 'GetThongTinKeKhaiOtoById',
         }
         var service = {};
         service.insert = function (data) {
@@ -24,7 +33,6 @@
 
             return $http(req);
         };
-
         service.update = function (data) {
             var url = api.url + api.update;
 
@@ -37,8 +45,32 @@
 
             return $http(req);
         };
+        service.removeList = function (data) {
+            var url = api.url + api.removeList;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
         service.getById = function (data) {
             var url = api.url + api.getById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+        service.getPage = function (data) {
+            var url = api.url + api.getPage;
 
             var req = {
                 url: url,
@@ -61,8 +93,20 @@
 
             return $http(req);
         };
-        service.getCombobox = function (CoSoId, NhanVienId, Search) {
+        service.getCombobox = function (data) {
             var url = api.url + api.GetCombobox;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        }
+        service.getComboboxSuDung = function (CoSoId, NhanVienId, Search, MaTaiSan, TaiSanId) {
+            var url = api.url + api.getComboboxSuDung;
 
             var req = {
                 url: url,
@@ -70,6 +114,8 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
                     Search: Search,
+                    MaTaiSan: MaTaiSan,
+                    TaiSanId: TaiSanId,
                     CoSoId: CoSoId,
                     NhanVienId: NhanVienId
                 })
@@ -77,6 +123,58 @@
 
             return $http(req);
         }
+        service.GetMaTaiSan = function (data) {
+            var url = api.url + api.GetMaTaiSan;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+        /*** THÔNG TIN CÔNG KHAI ***/
+        service.getTTCKById = function (data) {
+            var url = api.url + api.getTTCKById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+
+        /*** THÔNG TIN KÊ KHAI ***/
+        service.getTTKK_DatById = function (data) {
+            var url = api.url + api.getTTKK_DatById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+
+        service.getTTKK_OtoById = function (data) {
+            var url = api.url + api.getTTKK_OtoById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
 
         return service;
     });

@@ -1,4 +1,4 @@
-﻿using SongAn.QLTS.Biz.QLTS.KeHoachMuaSamChiTiet;
+﻿using SongAn.QLTS.Biz.QLTS.KeHoachMuaSam;
 using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;

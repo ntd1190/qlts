@@ -29,7 +29,35 @@ namespace SongAn.QLTS.Api.QLNS.Controllers
         }
 
         [HttpPost]
+        public async Task<IHttpActionResult> GetListGhiTangByGhiTangId([FromBody]GetListGhiTangByGhiTangIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
         public async Task<IHttpActionResult> GetListGhiTangChiTietByGhiTangId([FromBody]GetListGhiTangChiTietByGhiTangIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertGhiTang([FromBody]InsertGhiTangAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateGhiTangByGhiTangId([FromBody]UpdateGhiTangByGhiTangIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteListGhiTangById([FromBody]DeleteListGhiTangByIdAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);

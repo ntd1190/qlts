@@ -50,6 +50,7 @@
             vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
             vm.data.soChungTu = '';
             vm.data.listBoPhan = [];
+            $rootScope.$broadcast('GhiGiamFilterCtrl.action.clearData');
         };
 
         /* BROADCAST / EMIT / ON FUNCTION */
@@ -83,7 +84,8 @@
             data.startDate = vm.data.startDate;
             data.endDate = vm.data.endDate;
             data.soChungTu = vm.data.soChungTu;
-            data.listBoPhan = vm.data.listBoPhan;
+            data.PhongBanId = joinStr(vm.data.listBoPhan, "PhongBanId");
+
             return data;
         }
 

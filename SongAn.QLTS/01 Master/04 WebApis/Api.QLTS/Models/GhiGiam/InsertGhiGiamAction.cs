@@ -7,6 +7,7 @@ using SongAn.QLTS.Data.Repository.QLTS;
 using System.Collections.Generic;
 using SongAn.QLTS.Util.Common.Helper;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace  SongAn.QLTS.Api.QLTS.Models.GhiGiam
 {
@@ -58,7 +59,8 @@ namespace  SongAn.QLTS.Api.QLTS.Models.GhiGiam
         {
             GhiGiam = Protector.String(GhiGiam, "{}");
             var __GhiGiam = JsonConvert.DeserializeObject<dynamic>(GhiGiam);
-
+            __GhiGiam.NgayChungTu = DateTime.ParseExact(__GhiGiam.NgayChungTu.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            __GhiGiam.NgayGhiGiam = DateTime.ParseExact(__GhiGiam.NgayGhiGiam.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
             GhiGiam = JsonConvert.SerializeObject(__GhiGiam);
             _GhiGiam = JsonConvert.DeserializeObject<Entity.QLTS.Entity.GhiGiam>(GhiGiam);
             _GhiGiam.CoSoId = int.Parse(CoSoId);

@@ -18,7 +18,6 @@
                 <li class="active"><a href="javascript:void(0);" data-target="#ThongTinChung" data-toggle="tab">Thông tin chung</a></li>
                 <li><a href="javascript:void(0);" data-target="#ThongTinKeKhai" data-toggle="tab">Thông tin kê khai</a></li>
                 <li><a href="javascript:void(0);" data-target="#ThongTinCongKhai" data-toggle="tab">Thông tin công khai</a></li>
-                <li><a href="javascript:void(0);" data-target="#ThongTinKhac" data-toggle="tab">Thông tin khác</a></li>
             </ul>
         </div>
         <div class="panel-body">
@@ -28,102 +27,92 @@
                     <h4>Thông tin chung</h4>
                     <div class="row">
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Mã tài sản</span><span class="text-danger"> (*)</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.MaTaiSan" />
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_MaTaiSan?'has-error':''">
+                                <span>Mã tài sản</span><span class="text-danger"> *</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.MaTaiSan" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TS_MaTaiSan" data-next="TS_TenTaiSan" />
                             </div>
                         </div>
                         <div class="col-sm-4">
-                            <div class="form-group form-group-sm">
-                                <span>Tên tài sản</span><span class="text-danger"> (*)</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.TenTaiSan" />
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_TenTaiSan?'has-error':''">
+                                <span>Tên tài sản</span><span class="text-danger"> *</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.TenTaiSan" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TS_TenTaiSan" data-next="TS_DonViTinh" />
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_DonViTinh?'has-error':''">
                                 <span>Đơn vị tính</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.DonViTinh" />
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.DonViTinh" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TS_DonViTinh" data-next="TS_DuAnId" />
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_DuAnId?'has-error':''">
                                 <span>Dự án</span>
-                                <cbo-du-an data-value="ctrl.data.TaiSan.DuAnId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/duan/showview?viewname=cboduan"></cbo-du-an>
+                                <cbo-du-an data-value="ctrl.data.TaiSan.DuAnId" data-config="{userInfo:@(ViewBag.userInfo),NameId:'DuAnId'}" template-url="~/duan/showview?viewname=cboduan" data-name="TS_DuAnId"></cbo-du-an>
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_SoQDTC?'has-error':''">
                                 <span>Số QĐTC</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.SoQDTC" />
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.SoQDTC" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TS_SoQDTC" data-next="TS_PhuongThucId" />
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Phương thúc HT</span>
-                                <cbo-phuong-thuc data-value="ctrl.data.TaiSan.PhuongThucId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phuongthuc/showview?viewname=cbophuongthuc"></cbo-phuong-thuc>
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_PhuongThucId?'has-error':''">
+                                <span>Phương thức HT</span>
+                                <cbo-phuong-thuc data-value="ctrl.data.TaiSan.PhuongThucId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phuongthuc/showview?viewname=cbophuongthuc" data-name="TS_PhuongThucId"></cbo-phuong-thuc>
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_LoaiId?'has-error':''">
                                 <span>Loại tài sản</span><span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span>
-                                <cbo-loai-tai-san on-Selected="ctrl.action.getLoaiTaiSan(data)" data-value="ctrl.data.TaiSan.LoaiId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaitaisan/showview?viewname=cboloaitaisan"></cbo-loai-tai-san>
+                                <cbo-loai-tai-san on-Selected="ctrl.action.getLoaiTaiSan(data)" data-value="ctrl.data.TaiSan.LoaiId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaitaisan/showview?viewname=cboloaitaisan" data-name="TS_LoaiId"></cbo-loai-tai-san>
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_NamSanXuat?'has-error':''">
                                 <span>Năm Sản xuất</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NamSanXuat" maxlength="4" />
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NamSanXuat" maxlength="4" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TS_NamSanXuat" data-next="TS_NuocSanXuatId" />
                             </div>
                         </div>
                         <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_NuocSanXuatId?'has-error':''">
                                 <span>Nước Sản xuất</span>
-                                <cbo-nuoc-san-xuat data-value="ctrl.data.TaiSan.NuocSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nuocsanxuat/showview?viewname=cbonuocsanxuat"></cbo-nuoc-san-xuat>
+                                <cbo-nuoc-san-xuat data-value="ctrl.data.TaiSan.NuocSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nuocsanxuat/showview?viewname=cbonuocsanxuat" data-name="TS_NuocSanXuatId"></cbo-nuoc-san-xuat>
                             </div>
                         </div>
-                        @*<div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Tài sản</span>
-                                <cbo-tai-san data-value="" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"></cbo-tai-san>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_HangSanXuatId?'has-error':''">
+                                <span>Hãng sản xuất</span>
+                                <cbo-hang-san-xuat data-value="ctrl.data.TaiSan.HangSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hangsanxuat/showview?viewname=cbohangsanxuat" data-name="TS_HangSanXuatId"></cbo-hang-san-xuat>
+                            </div>
+                        </div>
+                        <div class="col-sm-2">
+                            <div class="form-group form-group-sm" ng-class="ctrl.error.TS_NhanHieu?'has-error':''">
+                                <span>Nhãn hiệu</span>
+                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NhanHieu" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="row">
+                            <div class="col-sm-2">
+                                <div class="form-group form-group-sm" ng-class="ctrl.error.MaTaiSan?'has-error':''">
+                                    <span>Tài sản</span>
+                                    <cbo-tai-san data-value="" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan" on-selected="ctrl.action.getTaiSan(data)"></cbo-tai-san>
+                                </div>
                             </div>
                         </div>*@
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Hãng sản xuất</span>
-                                <cbo-hang-san-xuat data-value="ctrl.data.TaiSan.HangSanXuatId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hangsanxuat/showview?viewname=cbohangsanxuat"></cbo-hang-san-xuat>
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Nhãn hiệu</span>
-                                <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.NhanHieu" />
-                            </div>
-                        </div>
+                    <div class="panel-heading">
+                        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.addNguyenGia()"><i class="fa fa-fw fa-plus"></i>Thêm (F2)</button>
                     </div>
-                    <div class="row">
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Ngày mua</span>
-                                <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayMua" />
-                            </div>
-                        </div>
-                        <div class="col-sm-2">
-                            <div class="form-group form-group-sm">
-                                <span>Ngày ghi tăng</span>
-                                <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayGhiTang" />
-                            </div>
-                        </div>
-                    </div>
-                    <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.addNguyenGia()"><i class="fa fa-fw fa-plus"></i>New (F2)</button>
                     <div class="table-responsive">
                         <table class="table table-bordered table-condensed table-hover table-striped">
                             <thead class="text-primary">
                                 <tr>
                                     <th class="text-center" style="width: 50px;"></th>
-                                    <th class="text-center">Nguồn hình thành</th>
-                                    <th class="text-center" style="width: 200px">Giá trị</th>
+                                    <th class="text-center">Nguồn hình thành <span class="text-danger">*</span></th>
+                                    <th class="text-center" style="width: 200px">Giá trị <span class="text-danger">*</span></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -131,10 +120,10 @@
                                     <td class="text-center">
                                         <a class="btn btn-xs btn-danger" ng-click="ctrl.action.removeNguyenGia($index)"><i class="fa fa-remove"></i></a>
                                     </td>
-                                    <td class="form-group form-group-sm">
+                                    <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                         <cbo-nguon-ngan-sach data-value="row.NguonNganSachId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nguonngansach/showview?viewname=cbonguonngansach"></cbo-nguon-ngan-sach>
                                     </td>
-                                    <td class="form-group form-group-sm">
+                                    <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                         <input type="text" class="form-control text-right" ng-model="row.GiaTri" number-format />
                                     </td>
                                 </tr>
@@ -151,32 +140,26 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <h4>Thông tin chung</h4>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Ngày mua</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control datetimepicker date" />
+                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayMua" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Ngày ghi tăng</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayGhiTang" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Ngày bắt đầu SD</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Năm theo dõi _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Năm theo dõi</span>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Giá trị còn lại</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Giá trị còn lại _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
@@ -184,50 +167,50 @@
                         </div>
                         <div class="col-sm-4">
                             <h4>Thông tin hao mòn</h4>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Ngày BĐ tính HM</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayBDHaoMon" />
+                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayBDHaoMon" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Ngày tính hao mòn</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Ngày tính hao mòn _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control datetimepicker date" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Số năm sử dụng</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.SoNamSuDung" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Tỷ lệ hao mòn (%)</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.TyLeHaoMon" maxlength="3" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Hao mòn năm</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Hao mòn năm _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Hao mòn lũy kế</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.HaoMonLuyKe" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Số năm sử dụng còn lại</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Số năm sử dụng còn lại _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Ngày KT tính HM</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Ngày KT tính HM _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control datetimepicker date" />
                                 </div>
@@ -235,72 +218,318 @@
                         </div>
                         <div class="col-sm-4">
                             <h4>Thông tin khấu hao</h4>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Ngày tính khấu hao</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control datetimepicker date" />
+                                    <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.TaiSan.NgayBDKhauHao" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Kỳ tính khấu hao</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.KyTinhKhauHao" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Giá trị tính khấu hao</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.GiaTriKhauHao" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Số tháng TKH</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Số kỳ KH</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.SoKyKhauHao" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
+                                </div>
+                            </div>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Số tháng TKH còn lại _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Số tháng TKH còn lại</span>
-                                <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
-                                </div>
-                            </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Tỷ lệ khấu hao tháng (%)</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.TyLeKhauHao" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
-                                <span class="col-sm-4">Khấu hao tháng</span>
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                <span class="col-sm-4">Khấu hao tháng _</span>
                                 <div class="col-sm-8">
                                     <input type="text" class="form-control" />
                                 </div>
                             </div>
-                            <div class="row form-group form-group-sm">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
                                 <span class="col-sm-4">Khấu hao lũy kế</span>
                                 <div class="col-sm-8">
-                                    <input type="text" class="form-control" />
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TaiSan.KhauHaoLuyKe" number-format ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="NhanHieu" data-next="TS_NhanHieu" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div>
-                        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                </div><!--/ #ThongTinChung -->
+                <!-- #ThongTinKeKhai -->
+                <div class="tab-pane fade" id="ThongTinKeKhai">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label>
+                                <input type="radio" ng-model="ctrl.data.TaiSan.LoaiKeKhai" value="0" />
+                                <span>Không kê khai</span>
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="ctrl.data.TaiSan.LoaiKeKhai" value="1" />
+                                <span>Đất</span>
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="ctrl.data.TaiSan.LoaiKeKhai" value="2" />
+                                <span>Nhà</span>
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="ctrl.data.TaiSan.LoaiKeKhai" value="3" />
+                                <span>Ô tô</span>
+                            </label>
+                            <label>
+                                <input type="radio" ng-model="ctrl.data.TaiSan.LoaiKeKhai" value="4" />
+                                <span>Tài sản trên 500 triệu</span>
+                            </label>
+                        </div>
                     </div>
-                </div><!-- /#ThongTinChung -->
-                <!-- #chung.tab-pane -->
-                <div class="tab-pane fade in" id="ThongTinKeKhai">
-                    <fieldset>
-                        <legend>Thông tin kê khai</legend>
-                        Thông tin kê khai
-                    </fieldset>
-
-                </div><!-- /#chung.tab-pane -->
-
+                    <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==0?'in':''"></div>
+                    <!-- Kê khai đất -->
+                    <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==1?'in':''">
+                        <h4>Thông tin kê khai</h4>
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_DiaChi?'has-error':''">
+                            <span class="col-sm-2">Địa chỉ <span class="text-danger">*</span></span>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.DiaChi" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_DiaChi" data-next="TTKK_Dat_GiayTo" />
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_GiayTo?'has-error':''">
+                            <span class="col-sm-2">Giấy tờ kèm theo</span>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" ng-model="ctrl.data.TTKK_Dat.GiayTo" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_GiayTo" data-next="TTKK_Dat_LamTruSo"></textarea>
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_DienTich?'has-error':''">
+                            <span class="col-sm-2">Diện tích</span>
+                            <div class="col-sm-10">
+                                <span class="form-control" ng-bind="ctrl.data.TTKK_Dat.DienTich|number:'':'':2" />
+                            </div>
+                        </div>
+                        <h4>Hiện trạng sử dụng</h4>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_LamTruSo?'has-error':''">
+                                    <span class="col-sm-4">Làm TSLV <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.LamTruSo" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_LamTruSo" data-next="TTKK_Dat_ChoThue" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_ChoThue?'has-error':''">
+                                    <span class="col-sm-4">Cho thuê <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.ChoThue" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_ChoThue" data-next="TTKK_Dat_BiLanChiem" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_BiLanChiem?'has-error':''">
+                                    <span class="col-sm-4">Bị lấn chiếm <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.BiLanChiem" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_BiLanChiem" data-next="TTKK_Dat_CoSoHDSuNghiep" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_CoSoHDSuNghiep?'has-error':''">
+                                    <span class="col-sm-4">Làm CSHĐSN <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.CoSoHDSuNghiep" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_CoSoHDSuNghiep" data-next="TTKK_Dat_BoTrong" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_BoTrong?'has-error':''">
+                                    <span class="col-sm-4">Bỏ trống <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.BoTrong" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_BoTrong" data-next="TTKK_Dat_SuDungKhac" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_SuDungKhac?'has-error':''">
+                                    <span class="col-sm-4">Sử dụng khác <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.SuDungKhac" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_SuDungKhac" data-next="TTKK_Dat_NhaO" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_NhaO?'has-error':''">
+                                    <span class="col-sm-4">Làm nhà ở <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Dat.NhaO" number-format ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_NhaO" data-next="TTCK_NhaCungCapId" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/ Kê khai đất -->
+                    <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==2?'in':''">
+                        Nhà
+                    </div>
+                    <!-- Kê khai ô tô -->
+                    <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==3?'in':''">
+                        <h4>Thông tin kê khai</h4>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_NhanHieu?'has-error':''">
+                                    <span class="col-sm-4">Nhãn hiệu xe <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.NhanHieu" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_NhanHieu" data-next="TTKK_Oto_BienKiemSoat" />
+                                    </div>
+                                </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_BienKiemSoat?'has-error':''">
+                                    <span class="col-sm-4">Biển kiểm soát <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.BienKiemSoat" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_BienKiemSoat" data-next="TTKK_Oto_CongSuatXe" />
+                                    </div>
+                                </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_CongSuatXe?'has-error':''">
+                                    <span class="col-sm-4">Công suất xe <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.CongSuatXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_CongSuatXe" data-next="TTKK_Oto_TrongTai" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_TrongTai?'has-error':''">
+                                    <span class="col-sm-4">Tải trọng <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.TrongTai" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_TrongTai" data-next="TTKK_Oto_ChucDanh" />
+                                    </div>
+                                </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_ChucDanh?'has-error':''">
+                                    <span class="col-sm-4">Chức danh</span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.ChucDanh" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_ChucDanh" data-next="TTKK_Oto_NguonGocXe" />
+                                    </div>
+                                </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_NguonGocXe?'has-error':''">
+                                    <span class="col-sm-4">Nguồn gốc xe</span>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.NguonGocXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_NguonGocXe" data-next="TTKK_Oto_LoaiXe" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_LoaiXe?'has-error':''">
+                                    <span class="col-sm-4">Loại xe <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <select class="form-control" ng-model="ctrl.data.TTKK_Oto.LoaiXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_LoaiXe" data-next="TTKK_Oto_HienTrangSuDung">
+                                            <option value="1">Xe 2 bánh</option>
+                                            <option value="2">Xe 4 bánh</option>
+                                            <option value="3">Xe tăng</option>
+                                            <option value="4">Xe xích lô</option>
+                                        </select>
+                                        @*<input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.LoaiXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_LoaiXe" data-next="TTKK_Oto_HienTrangSuDung" />*@
+                                    </div>
+                                </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_HienTrangSuDung?'has-error':''">
+                                    <span class="col-sm-4">Hiện trạng SD <span class="text-danger">*</span></span>
+                                    <div class="col-sm-8">
+                                        <cbo-hien-trang-su-dung data-value="ctrl.data.TTKK_Oto.HienTrangSuDung" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/HienTrangSuDung/showview?viewname=cboHienTrangSuDung" data-name="TTKK_Oto_HienTrangSuDung"></cbo-hien-trang-su-dung>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--/ Kê khai ô tô -->
+                    <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==4?'in':''">
+                        Tài sản trên 500 triệu
+                    </div>
+                </div><!--/ #ThongTinKeKhai -->
+                <!-- #ThongTinCongKhai -->
+                <div class="tab-pane fade" id="ThongTinCongKhai">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_MoTa?'has-error':''">
+                        <span class="col-sm-2">Mô tả <span class="text-danger">*</span></span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="ctrl.data.TTCK.MoTa" ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_MoTa" data-next="TTCK_MucDich" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_MucDich?'has-error':''">
+                        <span class="col-sm-2">Mục đích</span>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" ng-model="ctrl.data.TTCK.MucDich" ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_MucDich" data-next="TTCK_HienTrangSuDungId" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_HienTrangSuDungId?'has-error':''">
+                                <span class="col-sm-4">Hiện trạng sử dụng</span>
+                                <div class="col-sm-8">
+                                    <cbo-hien-trang-su-dung data-value="ctrl.data.TTCK.HienTrangSuDungId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/HienTrangSuDung/showview?viewname=cboHienTrangSuDung" data-name="TTCK_HienTrangSuDungId"></cbo-hien-trang-su-dung>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_DonGia?'has-error':''">
+                                <span class="col-sm-4">Đơn giá</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TTCK.DonGia" number-format ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_DonGia" data-next="TTCK_NopNganSach" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_NopNganSach?'has-error':''">
+                                <span class="col-sm-4">Nộp ngân sách</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TTCK.NopNganSach" number-format ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_NopNganSach" data-next="TTCK_DeLaiDonVi" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_DeLaiDonVi?'has-error':''">
+                                <span class="col-sm-4">Để lại đơn vị</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TTCK.DeLaiDonVi" number-format ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_DeLaiDonVi" data-next="TTCK_HHCK" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_HHCK?'has-error':''">
+                                <span class="col-sm-4">Giá trị HHCK</span>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" ng-model="ctrl.data.TTCK.HHCK" number-format ng-keypress="ctrl.action.keyPressTTCK($event)" data-name="TTCK_HHCK" data-next="TTCK_NhaCungCapId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.TTCK_NhaCungCapId?'has-error':''">
+                                <span class="col-sm-4">Nhà cung cấp</span>
+                                <div class="col-sm-8">
+                                    <cbo-nha-cung-cap data-value="ctrl.data.TTCK.NhaCungCapId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/NhaCungCap/showview?viewname=cboNhaCungCap" data-name="TTCK_NhaCungCapId"></cbo-nha-cung-cap>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--/ #ThongTinCongKhai -->
             </div>
         </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default">Xóa</button>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" href="~/taisan/list"><i class="fa fa-fw fa-arrow-left"></i>Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
     </div>
+</div>
 </div>
 @section ImportStyles{
     @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
@@ -327,7 +556,9 @@
 
     <script src="~/Scripts/angular/TaiSan/controller/TaiSanEditCtrl.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
-    @{Html.RenderPartial("~/views/taiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @*@{Html.RenderPartial("~/views/taiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}*@
+    @{Html.RenderPartial("~/views/HienTrangSuDung/cboHienTrangSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NhaCungCap/cboNhaCungCap.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/DuAn/cboDuAn.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhuongThuc/cboPhuongThuc.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/HangSanXuat/cboHangSanXuat.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

@@ -57,9 +57,17 @@
     <Compile Include="Entity\CoSo.cs" />
     <Compile Include="Entity\DeNghiTrangCap.cs" />
     <Compile Include="Entity\DeNghiTrangCapChiTiet.cs" />
+    <Compile Include="Entity\DieuChuyen.cs" />
+    <Compile Include="Entity\DieuChuyenChiTiet.cs" />
+    <Compile Include="Entity\GhiGiamChiTiet.cs" />
     <Compile Include="Entity\GhiTang.cs" />
     <Compile Include="Entity\GhiTangChiTiet.cs" />
+    <Compile Include="Entity\GhiGiam.cs" />
+    <Compile Include="Entity\ThongTinKeKhaiOto.cs" />
+    <Compile Include="Entity\ThongTinKeKhaiDat.cs" />
+    <Compile Include="Entity\ThongTinCongKhai.cs" />
     <Compile Include="Entity\KeHoachMuaSamChiTiet.cs" />
+    <Compile Include="Entity\HienTrangSuDung.cs" />
     <Compile Include="Entity\NguyenGia.cs" />
     <Compile Include="Entity\PhuongThuc.cs" />
     <Compile Include="Entity\TaiSan.cs" />

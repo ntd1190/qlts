@@ -82,7 +82,7 @@
             }
 
             initEventListener();
-            //$('#cbxPhanLoai').val("2");            
+            $("#txtSoChungTu").focus();
         };
 
         /* ACTION FUNCTION */
@@ -108,6 +108,8 @@
             if (obj == null)
                 return;
             if (InvalidateDataPhieuDieuChuyenChiTiet())
+                return;
+            if (checkSoLuongTon() != null)
                 return;
             if (phieuDieuChuyenId > 0) {
                 update();
@@ -169,9 +171,9 @@
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
-                else if (fromId == 'txtNoiDung') {
-                    vm.error.NoiDung = utility.checkInValid(obj.NoiDung, 'isEmpty');
-                    if (vm.error.NoiDung) {
+                else if (fromId == 'txtGhiChu') {
+                    vm.error.GhiChu = utility.checkInValid(obj.GhiChu, 'isEmpty');
+                    if (vm.error.GhiChu) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
@@ -197,21 +199,26 @@
                     }
                 }
                 else if (fromId == ('txtMaTaiSan' + index)) {
-                    if (value != "") {
-                        $timeout(function () {
-                            getTaiSan(value);
-                        }, 0);
-
-                        $timeout(function () {
-                            vm.data.listChiTiet[index].TaiSanId = vm.data.TaiSan.TaiSanId;
-                            vm.data.listChiTiet[index].DonViTinh = vm.data.TaiSan.DonViTinh;
-                        }, 100);
-                    } else {
-                        vm.data.listChiTiet[index].TaiSanId = 0;
-                        vm.data.listChiTiet[index].DonViTinh = "";
-                    }
+                    vm.data.listChiTiet[index].TempMaTaiSan = value;
+                    $timeout(function () {
+                        if (vm.data.listChiTiet[index].TaiSanId > 0) {
+                            $("#" + ToId + " input").focus();
+                        }
+                            }, 100);
+                    
+                    //if (value != "") {
+                    //    $timeout(function () {
+                    //        getTaiSan(value);
+                    //    }, 0);
+                    //}
                 }
                 else $("#" + ToId).focus();
+            }
+            //check TAB key is press
+            else if (event.keyCode == '9') {
+                if (fromId == ('txtMaTaiSan' + index)) {
+                    vm.data.listChiTiet[index].TempMaTaiSan = value;
+                }
             }
         }
 
@@ -220,9 +227,12 @@
             console.log(data);
             console.log(index);
 
+            vm.data.listChiTiet[index.$index].TaiSanId = data.TaiSanId;
             vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan;
-            vm.data.listChiTiet[index.$index].NguyenGia = data.NguyenGia;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
+            vm.data.listChiTiet[index.$index].PhongBanSuDung = data.PhongBanId;
+            vm.data.listChiTiet[index.$index].TenPhongBanSuDung = data.TenPhongBan;
+            vm.data.listChiTiet[index.$index].SoLuongTon = data.SoLuongTon;
             
         }
 
@@ -230,11 +240,6 @@
         /*** BROADCAST / EMIT / ON FUNCTION ***/
 
         function initEventListener() {
-
-            //$scope.$on(vm.controllerId + '.action.focusTenTaiSan', function (e, v) {
-            //    $("#txtTenTaiSan" + v).focus();
-            //});
-
 
         }
 
@@ -346,11 +351,7 @@
                 return null;
             }
 
-            vm.error.NoiDung = utility.checkInValid(obj.NoiDung, 'isEmpty');
-            if (vm.error.NoiDung) {
-                $("#txtNoiDung").focus();
-                return null;
-            }
+           
             return 1;
         }
 
@@ -367,23 +368,20 @@
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
                 }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].PhongBanId, 'isEmpty')) {
+                else if (utility.checkInValid(vm.data.listChiTiet[index].PhongBanSuDung, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
                 }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NhanVienId, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    utility.AlertError('Vui lòng chọn lại nhân viên !');
-                    return hasError;
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NgayBatDauSuDung, 'isEmpty')) {
+                else if (utility.checkInValid(vm.data.listChiTiet[index].PhongBanChuyenDen, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
-                }
+                }                               
                 else if (utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty')) {
+                    if (typeof vm.data.listChiTiet[index].SoLuong === 'undefined') {
+                        utility.AlertError("[<b>" + vm.data.listChiTiet[index].TenTaiSan + '</b>] Không đủ số lượng điều chuyển!');
+                    }
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
@@ -395,6 +393,41 @@
             }
 
             return hasError;
+        }
+
+        function checkSoLuongTon() {
+            var _taiSanId = 0;
+            var _soLuongTon = 0;
+            var _soLuongChuyen = 0;
+
+            for (var index in vm.data.listChiTiet) {
+                _taiSanId = vm.data.listChiTiet[index].TaiSanId;
+                _soLuongTon = vm.data.listChiTiet[index].SoLuongTon;
+
+                for (var index1 in vm.data.listChiTiet) {
+                    if (vm.data.listChiTiet[index1].TaiSanId == _taiSanId) {
+                        _soLuongChuyen += vm.data.listChiTiet[index1].SoLuong * 1;
+
+                        if (vm.data.listChiTiet[index1].PhongBanSuDung == vm.data.listChiTiet[index1].PhongBanChuyenDen) {
+                            vm.data.listChiTiet[index1].isError = true;
+                            utility.AlertError("Bạn không thể điều chuyển đến phòng hiện tại đang sử dụng!");
+                            return index1;
+                        }
+                    }
+                }
+                if (_soLuongTon < _soLuongChuyen) {
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError("[<b>" + vm.data.listChiTiet[index].TenTaiSan + '</b>] Không đủ số lượng điều chuyển!');
+                    return index;
+                }
+                else
+                {
+                    _taiSanId = 0;
+                    _soLuongTon = 0;
+                    _soLuongChuyen = 0;
+                }
+            }
+            return null;
         }
 
         function getphieuDieuChuyenById(id) {

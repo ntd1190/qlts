@@ -63,11 +63,28 @@
     <Compile Include="DeNghiTrangCap\InsertDeNghiTrangCapChiTietDac.cs" />
     <Compile Include="DeNghiTrangCap\InsertDeNghiTrangCapDac.cs" />
     <Compile Include="DeNghiTrangCap\UpdateDeNghiTrangCapByDeNghiIdDac.cs" />
+    <Compile Include="DieuChuyen\DeleteListDieuChuyenByIdDac.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenByCriteriaDac.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenByDieuChuyenIdDac.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenChiTietByDieuChuyenIdDac.cs" />
+    <Compile Include="DieuChuyen\InsertDieuChuyenChiTietDac.cs" />
+    <Compile Include="DieuChuyen\InsertDieuChuyenDac.cs" />
+    <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdDac.cs" />
+    <Compile Include="GhiTang\DeleteListGhiTangByIdDac.cs" />
     <Compile Include="GhiTang\GetListGhiTangByCriteriaDac.cs" />
+    <Compile Include="GhiGiam\DeleteGhiGiamByIdDac.cs" />
+    <Compile Include="GhiGiam\GetListGhiGiamByCriteriaProjectionDac.cs" />
+    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietByIdDac.cs" />
+    <Compile Include="GhiGiamChiTiet\GetGhiGiamChiTietByGhiGiamIdDac.cs" />
+    <Compile Include="GhiTang\GetListGhiTangByGhiTangIdDac.cs" />
     <Compile Include="GhiTang\GetListGhiTangChiTietByGhiTangIdDac.cs" />
-    <Compile Include="KeHoachMuaSamChiTiet\DeleteKeHoachMuaSamByIdDac.cs" />
-    <Compile Include="KeHoachMuaSamChiTiet\GetListKeHoachMuaSamChiTietByCriteriaProjectionDac.cs" />
+    <Compile Include="GhiTang\InsertGhiTangChiTietDac.cs" />
+    <Compile Include="GhiTang\InsertGhiTangDac.cs" />
+    <Compile Include="GhiTang\UpdateGhitangByGhiTangIdDac.cs" />
+    <Compile Include="HienTrangSuDung\GetListcbxHienTrangSuDungByCriteriaDac.cs" />
+    <Compile Include="KeHoachMuaSamChiTiet\DeleteKeHoachMuaSamChiTietByIdDac.cs" />
     <Compile Include="KeHoachMuaSamChiTiet\GetKeHoachMuaSamChiTietByMuaSamIdDac.cs" />
+    <Compile Include="KeHoachMuaSam\DeleteKeHoachMuaSamByIdDac.cs" />
     <Compile Include="LoaiTaiSan\GetListcbxLoaiTaiSanByCriteriaProjectionDac.cs" />
     <Compile Include="NhaCungCap\GetListcbxNhaCungCapByCriteriaProjectionDac.cs" />
     <Compile Include="NhaCungCap\GetListNhaCungCapSelectAllByCriteriaProjectionDac.cs" />
@@ -95,11 +112,21 @@
     <Compile Include="PhongBan\GetListPhongBanSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaiSan\DeleteListTaiSanDac.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaDac.cs" />
+    <Compile Include="TaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaDac.cs" />
     <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdDac.cs" />
     <Compile Include="TaiSan\GetTaiSanByIdDac.cs" />
+    <Compile Include="TaiSan\GetTaiSanByMaDac.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiOtoByIdDac.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiDatByIdDac.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiOtoDac.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiDatDac.cs" />
     <Compile Include="TaiSan\UpdateTaiSanDac.cs" />
     <Compile Include="TaiSan\InsertTaiSanDac.cs" />
+    <Compile Include="TaiSan\GetThongTinCongKhaiByIdDac.cs" />
+    <Compile Include="TaiSan\InsertThongTinCongKhaiDac.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
@@ -120,6 +147,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DieuChuyen\Procedures\" />
+    <Folder Include="GhiGiamChiTiet\Procedures\" />
+    <Folder Include="GhiGiam\Procedures\" />
+    <Folder Include="GhiTang\Procedures\" />
     <Folder Include="KeHoachMuaSamChiTiet\Procedures\" />
     <Folder Include="KeHoachMuaSam\Procedures\" />
   </ItemGroup>
@@ -127,10 +158,18 @@
     <Content Include="CoSo\Procedures\sp_CoSo_cbxCoSoByCriteria.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetListCoSoByCriteria.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetCoSoById.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCapChiTiet_InsertDeNghiTrangCapChiTiet.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_DeleteDeNghiTrangCapById.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_GetListDeNghiTrangCapByDeNghiId.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_InsertDeNghiTrangCap.sql" />
+    <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_UpdateDeNghiTrangCap.sql" />
     <Content Include="DuAn\Procedures\sp_DuAn_GetListDuAnByCriteria.sql" />
     <Content Include="DuAn\Procedures\sp_DuAn_cbxDuAnByCriteria.sql" />
     <Content Include="HangSanXuat\Procedures\sp_HangSanXuat_GetListHangSanXuatByCriteria.sql" />
     <Content Include="HangSanXuat\Procedures\sp_HangSanXuat_cbxHangSanXuatByCriteria.sql" />
+    <Content Include="HienTrangSuDung\Procedures\sp_HienTrangSuDung_cbxHienTrangSuDungByCriteria.sql" />
     <Content Include="KhachHang\Procedures\sp_KhachHang_GetListKhachHangByCriteria.sql" />
     <Content Include="KhachHang\Procedures\sp_KhachHang_cbxKhachHangByCriteria.sql" />
     <Content Include="KhoTaiSan\Procedures\sp_KhoTaiSan_GetListKhoTaiSanByCriteria.sql" />
@@ -152,11 +191,21 @@
     <Content Include="PhongBan\Procedures\sp_PhongBan_GetListPhongBanByCriteria.sql" />
     <Content Include="PhongBan\Procedures\sp_PhongBan_cbxPhongBanByCriteria.sql" />
     <Content Include="PhuongThuc\Procedures\sp_PhuongThuc_cbxPhuongThucByCriteria.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_DeleteListTaiSan.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_cbxTaiSanByCriteria.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_DeleteListTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_GetListNguyenGiaByTaiSanId.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_InsertTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_GetTaiSanById.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_UpdateTaiSan.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_GetThongTinKeKhaiDatById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_GetThongTinCongKhaiById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiOto_GetThongTinKeKhaiOtoById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiOto_InsertThongTinKeKhaiOto.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_InsertThongTinKeKhaiDat.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_InsertThongTinCongKhai.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

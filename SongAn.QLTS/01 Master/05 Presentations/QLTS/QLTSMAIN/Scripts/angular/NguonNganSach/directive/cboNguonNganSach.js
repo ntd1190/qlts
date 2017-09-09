@@ -31,6 +31,8 @@
         vm.status = {};
 
         vm.data = {};
+        vm.data.NguonNganSach = {};
+
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
 
@@ -52,31 +54,41 @@
         activate()
         function activate() {
             onInitView($scope.config);
-            NguonNganSachId = $scope.value || 0;
-            console.log($scope.value);
-            getPage().then(function () {
-                if (!vm.data.NguonNganSachListDisplay && vm.data.NguonNganSachListDisplay.length == 0) { return; }
-                for (var nuoc in vm.data.NguonNganSachListDisplay) {
-                    if (vm.data.NguonNganSachListDisplay[nuoc].NguonNganSachId === NguonNganSachId) {
-                        vm.data.NguonNganSach = vm.data.NguonNganSachListDisplay[nuoc];
-                        return;
-                    }
-                }
-            });
         }
+
+        /*** EVENT FUNCTION ***/
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            if (!newValue || vm.data.NguonNganSach.NguonNganSachId == newValue) { return; }
+            
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.NguonNganSachId = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.NguonNganSach = success.data.data[0];
+                } else {
+                    delete vm.data.NguonNganSach;
+                    vm.data.NguonNganSach = {};
+                }
+                $scope.onSelected({ data: vm.data.NguonNganSach });
+            });
+        });
 
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
 
-        vm.action.onSelected = function () {
-            $scope.onSelected({ data: vm.data.NguonNganSach });
-            $scope.value = vm.data.NguonNganSach.NguonNganSachId;
+        vm.action.onSelected = function (item, model) {
+            console.log(item);
+            $scope.onSelected({ data: item });
+            $scope.value = item.NguonNganSachId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 
@@ -85,29 +97,26 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            var CoSoId = userInfo.CoSoId || 0;
-            var NhanVienId = userInfo.NhanVienId || 0;
+            var data = {};
+            data.search = vm.inputSearch.SearchString || '';
+            data.NguonNganSachId = vm.inputSearch.NguonNganSachId || 0;
+            data.MaNguonNganSach = vm.inputSearch.MaNguonNganSach || '';
+
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getCombobox(data)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
                         if (success.data.data) {
                             vm.data.NguonNganSachListDisplay = success.data.data;
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
-                        vm.status.isLoading = false;
                         console.log(error);
-                        vm.data.isLoading = false;
-                        if (error.data.error != null) {
-                            alert(error.data.error.message);
-                        } else {
-                            alert(error.data.Message);
-
-                        }
-                        reject();
+                        return reject(error);
                     });
             });
         }

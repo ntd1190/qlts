@@ -15,16 +15,16 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
-                            <label class="control-label col-sm-4">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
-                            <div class="col-sm-8">
+                            <label class="control-label col-sm-2">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
                                 <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.Ngay" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtNgayLap','txtSoPhieu',$event)"/>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
-                            <label class="control-label col-sm-4">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
-                            <div class="col-sm-8">
+                            <label class="control-label col-sm-3">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
                                 <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDeNghi.SoPhieu" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtSoPhieu','cbxPhanLoai',$event)"/>
                             </div>
                         </div>
@@ -33,8 +33,8 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.PhanLoai?'has-error':''">
-                            <label class="control-label col-sm-4">Phân loại</label>
-                            <div class="col-sm-8">
+                            <label class="control-label col-sm-2">Phân loại</label>
+                            <div class="col-sm-7">
                                 <select class="form-control" id="cbxPhanLoai" style="padding:0px 10px" data-placeholder="Chọn phân loại" ng-model="ctrl.data.phieuDeNghi.PhanLoaiId">
                                     <option value="1">Đề nghị</option>
                                     <option value="2">Quyết định</option>
@@ -45,19 +45,15 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanId?'has-error':''">
-                            <label class="control-label col-sm-4">Bộ phận đề nghị</label>
-                            <div class="col-sm-8">
-                                <select class="form-control" id="cbxPhongBan" style="padding:0px 10px" data-placeholder="" ng-model="ctrl.data.phieuDeNghi.PhongBanId">
-                                    <option value="5">Phòng 1</option>
-                                    <option value="6">Phòng 2</option>
-                                    <option value="7">Phòng 3</option>
-                                </select>
+                            <label class="control-label col-sm-3">Bộ phận đề nghị</label>
+                            <div class="col-sm-7">
+                                <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuDeNghi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.NoiDung?'has-error':''">
-                    <label class="control-label col-sm-2">Nội dung</label>
+                    <label class="control-label col-sm-1">Nội dung</label>
                     <div class="col-sm-10">
                         <textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.phieuDeNghi.NoiDung"></textarea>
                     </div>
@@ -78,7 +74,7 @@
                     <tr>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
-                        <th class="text-center" style="min-width: 200px; vertical-align:middle">Tên tài sản   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 200px; vertical-align:middle">Mô tả đặc điểm</th>
                         <th class="text-center" style="min-width: 220px; vertical-align:middle" >Loại tài sản <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle" >Số lượng      <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
@@ -198,6 +194,7 @@
     <script src="~/Scripts/angular/DeNghiTrangCap/controller/DeNghiTrangCapEditCtrl.js"></script>
     <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
     <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

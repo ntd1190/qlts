@@ -12,7 +12,7 @@
             F2: function (name, code) {
                 CreateListChiTiet();
                 var fc = function () {
-                    $("#txtTenTaiSan" + (vm.data.listChiTiet.length-1).toString()).focus();
+                    $("#txtTenTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
                 }
                 $timeout(fc, 6);
             },
@@ -24,7 +24,7 @@
 
         var _tableState;
         var userInfo;
-        var linkUrl = '';        
+        var linkUrl = '';
         var phieuDeNghiId = 0;
 
         /*** VIEW MODEL ***/
@@ -50,14 +50,14 @@
 
         // chạy khi controller được khởi tạo
         (function activate() {
-            
+
         })();
 
         // nhận config từ view
         vm.onInitView = function (config) {
             vm.data.fullDateString = fullDateString(moment().format('DDMMYYYY'), 'DDMMYYYY');
 
-          
+
             if (config && config.userInfo) {
                 userInfo = config.userInfo;
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
@@ -83,13 +83,14 @@
             }
 
             initEventListener();
-            //$('#cbxPhanLoai').val("2");            
+
+            $("#txtNgayLap").focus();
         };
 
         /* ACTION FUNCTION */
 
         vm.action = {};
-        
+
         vm.action.goBack = function () {
             window.history.back();
         };
@@ -109,8 +110,7 @@
             if (phieuDeNghiId > 0) {
                 update();
             }
-            else
-            {
+            else {
                 insert();
             }
         };
@@ -172,24 +172,24 @@
 
             }
         }
-        vm.action.keyPress = function(value, fromId, ToId, index, event) {
+        vm.action.keyPress = function (value, fromId, ToId, index, event) {
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
                 if (fromId == ('txtGhiChu' + index)) {
                     if ($("#txtGhiChu" + (index + 1)).length == 0) {
                         CreateListChiTiet();
-                        var fc = function () {
-                            $("#txtTenTaiSan" + (parseInt(index) + 1).toString()).focus();
-                        }
-                        $timeout(fc, 6);
                     }
-                    else
-                    {
+                    else {
                         $("#txtTenTaiSan" + (parseInt(index) + 1).toString()).focus();
                     }
                 }
-                else $("#" + ToId).focus();
+                else {
+                    if(fromId.indexOf('txtMoTa') >= 0){
+                        $("#" + ToId).find('input').focus();
+                    } else
+                        $("#" + ToId).focus();
+                }
             }
         }
 
@@ -197,12 +197,12 @@
         /*** BROADCAST / EMIT / ON FUNCTION ***/
 
         function initEventListener() {
-            
+
             //$scope.$on(vm.controllerId + '.action.focusTenTaiSan', function (e, v) {
             //    $("#txtTenTaiSan" + v).focus();
             //});
-            
-          
+
+
         }
 
         /*** BIZ FUNCTION ***/
@@ -244,8 +244,10 @@
             chitiet.DuToan = 0;
             chitiet.DuToanDuocDuyet = 0;
             chitiet.GhiChu = "";
-            //vm.data.listChiTiet.unshift(chitiet);
             vm.data.listChiTiet.push(chitiet);
+            $timeout(function () {
+                document.getElementById("txtTenTaiSan" + (vm.data.listChiTiet.length - 1)).focus();
+            }, 100);
         }
 
         function insert() {
@@ -260,9 +262,9 @@
             DenNghiTrangCapService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Thêm thành công"); 
+                    utility.AlertSuccess("Thêm thành công");
                     window.location = vm.data.linkUrl + 'denghitrangcap/edit/' + result.data.data[0].DeNghiIdI;
-                
+
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();
@@ -294,7 +296,7 @@
                     if (result.status === 400) {
                         alert(result.data.error.message);
                     } else {
-                        utility.AlertError('Không thể cập nhật'); 
+                        utility.AlertError('Không thể cập nhật');
                     }
                 });
         }
@@ -311,6 +313,12 @@
             vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
             if (vm.error.SoPhieu) {
                 $("#txtSoPhieu").focus();
+                return null;
+            }
+
+            vm.error.BoPhanId = utility.checkInValid(obj.PhongBanId, 'isEmpty');
+            if (vm.error.BoPhanId) {
+                $("#cbxPhongBan").focus();
                 return null;
             }
 
@@ -331,7 +339,7 @@
                     utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].DonViTinh, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].PhuongThucId, 'isEmpty') ||
-                    utility.checkInValid(vm.data.listChiTiet[index].NgayDeNghi, 'isEmpty')||
+                    utility.checkInValid(vm.data.listChiTiet[index].NgayDeNghi, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].DuToan, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].DuToanDuocDuyet, 'isEmpty')) {
                     hasError = true;
@@ -356,9 +364,9 @@
                         vm.data.phieuDeNghi = result.data.data[0];
 
                         getPhieuDeNghiChiTietById(vm.data.phieuDeNghi.DeNghiId);
-                    } 
+                    }
                 }, function error(result) {
-                    console.log(result); 
+                    console.log(result);
                 });
         }
 
@@ -382,9 +390,9 @@
             vm.data.phieuDeNghi = {};
             vm.data.listChiTiet = "";
         }
-        
 
-        
+
+
         /*** HELPERS ***/
         function compare(dateTimeA, dateTimeB) {
             var momentA = moment(dateTimeA, "DD/MM/YYYY");
@@ -447,5 +455,5 @@
         }
     };
     //end HOT-KEY
-    
+
 })();

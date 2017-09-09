@@ -159,6 +159,7 @@
                 vm.data.TuNgay = data.startDate;
                 vm.data.DenNgay = data.endDate;
                 vm.data.SoPhieu = data.soChungTu;
+                vm.data.PhongBanId = data.PhongBanId;
                 getPage(_tableState);
             });
 
@@ -261,8 +262,8 @@
             var TuNgay = vm.data.TuNgay;
             var DenNgay = vm.data.DenNgay;
             var SoPhieu = vm.data.SoPhieu;
-
-            GhiGiamService.getPage(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu).then(function (success) {
+            var PhongBanId = vm.data.PhongBanId;
+            GhiGiamService.getPage(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu, PhongBanId).then(function (success) {
                 if (success.data.data) {
                     $('#bgloadding').remove();
                     vm.data.GhiGiamListDisplay = success.data.data;

@@ -18,9 +18,10 @@ namespace SongAn.QLTS.Data.QLTS.PhuongThuc
     public class GetListcbxPhuongThucByCriteriaDac : BaseRepositoryAsync
     {
         #region public properties
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
         public string Search { get; set; }
+        public int PhuongThucId { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         #endregion
         #region private variable
         ContextDto _context;
@@ -48,10 +49,7 @@ namespace SongAn.QLTS.Data.QLTS.PhuongThuc
 
             return await WithConnection(async c =>
             {
-                var p = new DynamicParameters();
-                p.Add("CoSoId", CoSoId, DbType.String);
-                p.Add("NhanVienId", NhanVienId, DbType.String);
-                p.Add("Search", Search, DbType.String);
+                var p = new DynamicParameters(this);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_PhuongThuc_cbxPhuongThucByCriteria",

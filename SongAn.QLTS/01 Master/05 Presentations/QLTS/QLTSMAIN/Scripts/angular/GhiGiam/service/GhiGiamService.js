@@ -10,10 +10,10 @@
             url: API_BASE + 'api.QLNS/GhiGiam/',
             GetPage: 'GetListGhiGiamByProjection',
             GetPageDetail: 'GetListGhiGiamChiTietByGhiGiamId',
-            GetPageHeaderById: 'GetListGhiGiamByGhiGiamId',
+            GetPageHeaderById: 'GetGhiGiamById',
             DeleteList: 'DeleteListGhiGiamById',
             insert: 'InsertGhiGiam',
-            update: 'UpdateGhiGiamByGhiGiamId'
+            update: 'UpdateGhiGiam'
         }
 
         var service = {
@@ -28,7 +28,7 @@
 
         return service;
 
-        function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu) {
+        function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu, PhongBanId) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -46,7 +46,8 @@
                     SoChungTu: SoPhieu,
                     TuNgay: TuNgay,
                     DenNgay: DenNgay,
-                    NhanVienId: NhanVienId
+                    NhanVienId: NhanVienId,
+                    PhongBanId: PhongBanId
                 })
             }
 
@@ -105,9 +106,10 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    phieuGhiGiam: data.phieuGhiGiam,
-                    listChiTiet: data.listChiTiet,
-                    loginId: data.loginId
+                    GhiGiam: data.phieuGhiGiam,
+                    GhiGiamchitiet: data.listChiTiet,
+                    NguoiTao: data.loginId,
+                    CoSoId: data.CoSoId
                 })
             }
 
@@ -122,10 +124,11 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    GhiGiamId: data.GhiGiamId,
-                    phieuGhiGiam: data.phieuGhiGiam,
-                    listChiTiet: data.listChiTiet,
-                    loginId: data.loginId
+                   
+                    GhiGiam: data.phieuGhiGiam,
+                    GhiGiamchitiet: data.listChiTiet,
+                    NguoiTao: data.loginId,
+                    CoSoId: data.CoSoId
                 })
             }
 

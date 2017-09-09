@@ -205,19 +205,31 @@
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DenNghiTrangCapFilterCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\MainCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\service\DeNghiTrangCapService.js" />
+    <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenEditCtrl.js" />
+    <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenFilterCtrl.js" />
+    <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenListCtrl.js" />
+    <Content Include="Scripts\angular\DieuChuyen\service\DieuChuyenService.js" />
     <Content Include="Scripts\angular\DuAn\directive\cboDuAn.js" />
+    <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamEditCtrl.js" />
+    <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamFilterCtrl.js" />
+    <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamListCtrl.js" />
+    <Content Include="Scripts\angular\GhiGiam\service\GhiGiamService.js" />
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangEditCtrl.js" />
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangFilterCtrl.js" />
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangListCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\directive\cboNhanVienByPhongBan.js" />
     <Content Include="Scripts\angular\GhiTang\service\GhiTangService.js" />
     <Content Include="Scripts\angular\HangSanXuat\directive\cboHangSanXuat.js" />
     <Content Include="Scripts\angular\KeHoachMuaSam\controller\KeHoachMuaSamEditCtrl.js" />
     <Content Include="Scripts\angular\LoaiTaiSan\controller\Combobox.js" />
     <Content Include="Scripts\angular\LoaiTaiSan\directive\cboLoaiTaiSan.js" />
     <Content Include="Scripts\angular\NguonNganSach\directive\cboNguonNganSach.js" />
+    <Content Include="Scripts\angular\HienTrangSuDung\directive\cboHienTrangSuDung.js" />
+    <Content Include="Scripts\angular\HienTrangSuDung\service\HienTrangSuDungService.js" />
     <Content Include="Scripts\angular\NhaCungCap\controller\Combobox.js" />
     <Content Include="Scripts\angular\NhaCungCap\controller\NhaCungCapEditCtrl.js" />
     <Content Include="Scripts\angular\NhaCungCap\controller\NhaCungCapListCtrl.js" />
+    <Content Include="Scripts\angular\NhaCungCap\directive\cboNhaCungCap.js" />
     <Content Include="Scripts\angular\NhaCungCap\service\NhaCungCapService.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungEditCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungFilterCtrl.js" />
@@ -268,9 +280,11 @@
     <Content Include="Scripts\angular\PhanQuyen\service\PhanQuyenService.js" />
     <Content Include="Scripts\angular\KeHoachMuaSam\controller\KeHoachMuaSamListCtrl.js" />
     <Content Include="Scripts\angular\KeHoachMuaSam\service\KeHoachMuaSamService.js" />
+    <Content Include="Scripts\angular\PhongBan\controller\ComboboxMuti.js" />
     <Content Include="Scripts\angular\PhongBan\controller\Combobox.js" />
     <Content Include="Scripts\angular\PhongBan\controller\PhongBanEditCtrl.js" />
     <Content Include="Scripts\angular\PhongBan\controller\PhongBanListCtrl.js" />
+    <Content Include="Scripts\angular\PhongBan\directive\cboPhongBan.js" />
     <Content Include="Scripts\angular\PhongBan\service\PhongBanService.js" />
     <Content Include="Scripts\angular\PhuongThuc\directive\cboPhuongThuc.js" />
     <Content Include="Scripts\angular\PhuongThuc\service\PhuongThucService.js" />
@@ -283,7 +297,9 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\TaiSan\controller\TaiSanListCtrl.js" />
     <Content Include="Scripts\angular\TaiSan\controller\TaiSanEditCtrl.js" />
+    <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanSuDung.js" />
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSan.js" />
     <Content Include="Scripts\angular\TaiSan\service\TaiSanService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\controller\TuyChonCotListCtrl.js" />
@@ -326,7 +342,10 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
+    <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
+    <Compile Include="Controllers\HienTrangSuDungController.cs" />
+    <Compile Include="Controllers\GhiGiamController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -385,8 +404,6 @@
     <Content Include="Views\NguonNganSach\Combobox.cshtml" />
     <Content Include="Views\NguonNganSach\List.cshtml" />
     <Content Include="Views\Shared\_PartialNavigationMenu.cshtml" />
-    <Content Include="Views\NhaCungCap\Combobox.cshtml" />
-    <Content Include="Views\NhaCungCap\List.cshtml" />
     <Content Include="Views\KhoTaiSan\Combobox.cshtml" />
     <Content Include="Views\KhoTaiSan\List.cshtml" />
     <Content Include="Views\DuAn\Combobox.cshtml" />
@@ -411,6 +428,18 @@
     <Content Include="Views\TaiSan\cboTaiSan.cshtml" />
     <Content Include="Views\GhiTang\Edit.cshtml" />
     <Content Include="Views\GhiTang\List.cshtml" />
+    <Content Include="Views\GhiGiam\Edit.cshtml" />
+    <Content Include="Views\GhiGiam\List.cshtml" />
+    <Content Include="Views\TaiSan\cboTaiSanSuDung.cshtml" />
+    <Content Include="Views\NhanVien\cboNhanVienByPhongBan.cshtml" />
+    <Content Include="Views\PhongBan\cboPhongBan.cshtml" />
+    <Content Include="Views\NhaCungCap\cboNhaCungCap.cshtml" />
+    <Content Include="Views\NhaCungCap\Combobox.cshtml" />
+    <Content Include="Views\NhaCungCap\List.cshtml" />
+    <Content Include="Views\HienTrangSuDung\cboHienTrangSuDung.cshtml" />
+    <Content Include="Views\DieuChuyen\List.cshtml" />
+    <Content Include="Views\DieuChuyen\Edit.cshtml" />
+    <Content Include="Views\PhongBan\ComboboxMuti.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -421,6 +450,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\angular\HienTrangSuDung\controller\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
   </ItemGroup>
   <ItemGroup>

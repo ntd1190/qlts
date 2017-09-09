@@ -14,7 +14,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 {
     public class DeleteListTaiSanAction
     {
@@ -57,7 +57,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);
             }
-            catch (FormatException ex)
+            catch (BaseException ex)
             {
                 return ActionHelper.returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }

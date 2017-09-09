@@ -445,3 +445,6 @@
             color: inherit;
             margin: -13px -7px;
         }
+#side-menu .fa-fw{
+    padding-right: 20px;
+}

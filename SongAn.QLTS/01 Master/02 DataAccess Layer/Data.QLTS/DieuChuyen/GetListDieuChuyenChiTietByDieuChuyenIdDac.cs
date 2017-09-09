@@ -15,7 +15,7 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
         /// <summary>
         /// Danh sách các KeHoachMuaSamChiTietId cần lấy
         /// </summary>
-        public string DeNghiId { get; set; }
+        public string DieuChuyenId { get; set; }
 
 
         #endregion
@@ -74,9 +74,9 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
             {
                 var p = new DynamicParameters();
 
-                p.Add("DeNghiId", DeNghiId, DbType.String);
+                p.Add("DieuChuyenId", DieuChuyenId, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId",
+                    sql: "sp_DieuChuyenChiTiet_GetDieuChuyenChiTietByDieuChuyenId",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

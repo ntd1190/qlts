@@ -11,18 +11,14 @@
 
             var service = {};
 
-            service.getCombobox = function (CoSoId, NhanVienId, Search) {
+            service.getCombobox = function (data) {
                 var url = api.url + api.GetCombobox;
 
                 var req = {
                     url: url,
                     method: 'POST',
                     headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                    data: $.param({
-                        Search: Search,
-                        CoSoId: CoSoId,
-                        NhanVienId: NhanVienId
-                    })
+                    data: $.param(data)
                 }
 
                 return $http(req);

@@ -33,7 +33,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Bộ phận</label>
                         <div class="col-sm-9">
-                            @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'GhiGiamFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'GhiGiamFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
                         </div>
                     </div>
                 </form>
@@ -214,7 +214,7 @@
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
     <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

@@ -8,14 +8,16 @@ using System.Linq;
 using SongAn.QLTS.Biz.QLTS.LoaiTaiSan;
 using SongAn.QLTS.Data.Repository.QLTS;
 
-namespace  SongAn.QLTS.Api.QLTS.Models.LoaiTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.LoaiTaiSan
 {
     public class GetListcbxLoaiTaiSanByProjectionAction
     {
 
         public string Search { get; set; }
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
+        public string MaLoai { get; set; }
+        public int LoaiId { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             GetListcbxLoaiTaiSanByCriteriaBiz biz = new GetListcbxLoaiTaiSanByCriteriaBiz(context);
@@ -23,12 +25,13 @@ namespace  SongAn.QLTS.Api.QLTS.Models.LoaiTaiSan
             try
             {
                 biz.Search = Search;
+                biz.LoaiId = LoaiId;
+                biz.MaLoai = MaLoai;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
-                LoaiTaiSanRepository repo = new LoaiTaiSanRepository(context);
-                IEnumerable<dynamic> listLoaiTaiSan = await biz.Execute();
-                dynamic _metaData = new System.Dynamic.ExpandoObject();
-                return ActionHelper.returnActionResult(HttpStatusCode.OK,listLoaiTaiSan, _metaData);
+                var listLoaiTaiSan = await biz.Execute();
+                var _metaData = new System.Dynamic.ExpandoObject();
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, listLoaiTaiSan, _metaData);
             }
             catch (Exception ex)
             {
@@ -47,4 +50,4 @@ namespace  SongAn.QLTS.Api.QLTS.Models.LoaiTaiSan
 
         }
     }
-    }
+}

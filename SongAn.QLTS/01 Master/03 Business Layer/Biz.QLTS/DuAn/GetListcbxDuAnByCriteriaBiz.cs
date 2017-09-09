@@ -23,7 +23,7 @@ namespace SongAn.QLTS.Biz.QLTS.DuAn
     /// -   Neu biz co xu ly phuc tap, ket hop nhieu dac thi se 
     ///     khoi tao nhieu dac trong ham execute cua biz.
     /// </remarks>
-    public class GetListcbxDuAnByCriteriaBiz : SongAn.QLTS.Data.QLTS.DuAn.GetListcbxDuAnByCriteriaProjectionDac
+    public class GetListcbxDuAnByCriteriaBiz : SongAn.QLTS.Data.QLTS.DuAn.GetListcbxDuAnByCriteriaDac
     {
         #region public properties
 

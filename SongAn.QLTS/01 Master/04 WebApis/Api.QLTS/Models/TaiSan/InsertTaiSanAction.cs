@@ -13,22 +13,35 @@ using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using System.Linq;
 
-namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 {
     public class InsertTaiSanAction : Entity.QLTS.Entity.TaiSan
     {
 
         #region public
+        public string TaiSan { get; set; }
+        public string TTCK { get; set; }
+        public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         public string NguyenGiaList { get; set; }
         #endregion
         #region private
         private List<Entity.QLTS.Entity.NguyenGia> _NguyenGiaList { get; set; }
+        private Entity.QLTS.Entity.ThongTinCongKhai _TTCK { get; set; }
+        private Entity.QLTS.Entity.TaiSan _TaiSan { get; set; }
         #endregion
         #region init & validate
-        private void init() {
-            NguyenGiaList = Protector.String(NguyenGiaList, "{}");
+        private void init()
+        {
+            TaiSan = Protector.String(TaiSan, "{}");
+            _TaiSan = JsonConvert.DeserializeObject<Entity.QLTS.Entity.TaiSan>(TaiSan);
+
+            TTCK = Protector.String(TTCK, "{}");
+            _TTCK = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinCongKhai>(TTCK);
+
+            NguyenGiaList = Protector.String(NguyenGiaList, "[]");
             _NguyenGiaList = JsonConvert.DeserializeObject<List<Entity.QLTS.Entity.NguyenGia>>(NguyenGiaList);
         }
 
@@ -42,42 +55,12 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                 init();
                 validate();
 
+                /*** TÀI SẢN ***/
                 var biz = new InsertTaiSanBiz(context);
-                biz.TaiSan = new Entity.QLTS.Entity.TaiSan();
-
-                biz.TaiSan.TaiSanId = TaiSanId;
-                biz.TaiSan.MaTaiSan = MaTaiSan;
-                biz.TaiSan.TenTaiSan = TenTaiSan;
-                biz.TaiSan.DonViTinh = DonViTinh;
-                biz.TaiSan.LoaiId = LoaiId;
-                biz.TaiSan.PhuongThucId = PhuongThucId;
-                biz.TaiSan.NamSanXuat = NamSanXuat;
-                biz.TaiSan.NuocSanXuatId = NuocSanXuatId;
-                biz.TaiSan.HangSanXuatId = HangSanXuatId;
-                biz.TaiSan.SoQDTC = SoQDTC;
-                biz.TaiSan.NhanHieu = NhanHieu;
-                biz.TaiSan.DuAnId = DuAnId;
-                biz.TaiSan.NgayMua = NgayMua;
-                biz.TaiSan.NgayGhiTang = NgayGhiTang;
-                biz.TaiSan.NgayBDHaoMon = NgayBDHaoMon;
-                biz.TaiSan.SoNamSuDung = SoNamSuDung;
-                biz.TaiSan.TyLeHaoMon = TyLeHaoMon;
-                biz.TaiSan.HaoMonLuyKe = HaoMonLuyKe;
-                biz.TaiSan.NgayBDKhauHao = NgayBDKhauHao;
-                biz.TaiSan.KyTinhKhauHao = KyTinhKhauHao;
-                biz.TaiSan.GiaTriKhauHao = GiaTriKhauHao;
-                biz.TaiSan.SoKyKhauHao = SoKyKhauHao;
-                biz.TaiSan.TyLeKhauHao = TyLeKhauHao;
-                biz.TaiSan.KhauHaoLuyKe = KhauHaoLuyKe;
-                biz.TaiSan.LoaiKeKhai = LoaiKeKhai;
-                biz.TaiSan.NguoiTao = NhanVienId;
-                biz.TaiSan.NgayTao = DateTime.Now;
-                biz.TaiSan.CtrVersion = 1;
-
+                biz.TaiSan = _TaiSan;
                 biz.NguyenGiaList = _NguyenGiaList;
-
-                biz.TaiSan.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
+                biz.CoSoId = CoSoId;
                 var result = await biz.Execute();
 
                 if (string.IsNullOrEmpty(biz.MESSAGE) == false)
@@ -85,47 +68,33 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                     throw new BaseException(biz.MESSAGE.Split('|')[2]);
                 }
 
-                return returnActionResult(HttpStatusCode.OK, result, null);
+                var _taiSanId = result.FirstOrDefault().TaiSanId;
+                /*** TÀI SẢN ***/
+                var bizTTCK = new InsertThongTinCongKhaiBiz(context);
+                _TTCK.TaiSanId = _taiSanId;
+                bizTTCK.ThongTinCongKhai = _TTCK;
+                bizTTCK.NhanVienId = NhanVienId;
+                bizTTCK.CoSoId = CoSoId;
+                result = await bizTTCK.Execute();
+
+                if (string.IsNullOrEmpty(biz.MESSAGE) == false)
+                {
+                    throw new BaseException(biz.MESSAGE.Split('|')[2]);
+                }
+
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);
             }
-            catch (FormatException ex)
+            catch (BaseException ex)
             {
-                return returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
             catch (Exception ex)
             {
-                return returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
         #region helpers
-        private ActionResultDto returnActionError(HttpStatusCode code, string message)
-        {
-            var _error = new ActionResultDto();
-            _error.ReturnCode = code;
-            _error.ReturnData = new
-            {
-                error = new
-                {
-                    code = code,
-                    type = code.ToString(),
-                    message = message
-                }
-            };
-            return _error;
-        }
-
-        private ActionResultDto returnActionResult(HttpStatusCode code, object data, object metaData)
-        {
-            var _result = new ActionResultDto();
-
-            _result.ReturnCode = code;
-            _result.ReturnData = new
-            {
-                data = data,
-                metaData = metaData
-            };
-            return _result;
-        }
         #endregion
     }
 }

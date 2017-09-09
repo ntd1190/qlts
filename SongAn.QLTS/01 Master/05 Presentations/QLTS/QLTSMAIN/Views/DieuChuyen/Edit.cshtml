@@ -33,19 +33,19 @@
 
                     <div class="col-sm-4">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayDieuChuyen?'has-error':''">
-                            <label class="control-label col-sm-4">Ngày điều chuyển <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
-                            <div class="col-sm-6">
-                                <input type="text" id="txtNgayDieuChuyen" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDieuChuyen.NgayDieuChuyen" ng-keypress="ctrl.action.keyPressDieuChuyen(ctrl.data.phieuDieuChuyen.SoChungTu,'txtNgayDieuChuyen','txtNoiDung',$event)" />
+                            <label class="control-label col-sm-5">Ngày điều chuyển <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-5">
+                                <input type="text" id="txtNgayDieuChuyen" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDieuChuyen.NgayDieuChuyen" ng-keypress="ctrl.action.keyPressDieuChuyen(ctrl.data.phieuDieuChuyen.SoChungTu,'txtNgayDieuChuyen','txtGhiChu',$event)" />
                             </div>
                         </div>
                     </div>
 
                 </div>
 
-                <div class="row form-group form-group-sm" ng-class="ctrl.error.NoiDung?'has-error':''">
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.GhiChu?'has-error':''">
                     <label class="control-label col-sm-1" style="width:11%">Ghi chú</label>
                     <div class="col-sm-10">
-                        <textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.phieuDieuChuyen.NoiDung"></textarea>
+                        <textarea rows="2" type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.phieuDieuChuyen.GhiChu"></textarea>
                     </div>
                 </div>
             </form>
@@ -64,12 +64,15 @@
                     <tr>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
-                        <th class="text-center" style="min-width: 80px; vertical-align:middle">Mã tài sản</th>
-                        <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản</th>
+                        <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>
                         <th class="text-center" style="min-width: 160px; vertical-align:middle">Bộ phận sử dụng</th>
-                        <th class="text-center" style="min-width: 190px; vertical-align:middle">Bộ phận điều chuyển đến</th>
-                        <th class="text-center" style="min-width: 80px; vertical-align:middle">Số lượng</th>
+                        <th class="text-center" style="min-width: 140px; vertical-align:middle">Cán bộ tiếp nhận</th>
+                        @*<th class="text-center" style="min-width: 100px; vertical-align:middle">SL trước khi chuyển</th>*@
+                        <th class="text-center" style="min-width: 191px; vertical-align:middle">Bộ phận điều chuyển đến<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 140px; vertical-align:middle">Cán bộ tiếp nhận<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 90px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Lý do</th>
                     </tr>
                 </thead>
@@ -89,11 +92,11 @@
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <!--mataisan-->
-                            <input type="text" id="txtMaTaiSan{{$index}}" class="form-control text-left" ng-model="DieuChuyenChiTiet.MaTaiSan" ng-keypress="ctrl.action.keyPress(DieuChuyenChiTiet.MaTaiSan,'txtMaTaiSan'+$index,'cbxTaiSan'+$index,$index,$event)" />
+                            <input type="text" id="txtMaTaiSan{{$index}}" class="form-control text-left" ng-model="DieuChuyenChiTiet.MaTaiSan" ng-keydown="ctrl.action.keyPress(DieuChuyenChiTiet.MaTaiSan,'txtMaTaiSan'+$index,'cbxPhongBanChuyenDen'+$index,$index,$event)" />
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- tai san-->
-                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="DieuChuyenChiTiet.TaiSanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="DieuChuyenChiTiet.TaiSanId" ma-tai-san="DieuChuyenChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                          on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                         </td>
                         <td class="form-group form-group-sm">
@@ -102,15 +105,26 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- phong ban su dung-->
-                            <cbo-phong-ban id="cbxPhongBanSuDung{{$index}}" data-value="DieuChuyenChiTiet.PhongBanSuDung" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                            <span class="form-control text-left" ng-bind="DieuChuyenChiTiet.TenPhongBanSuDung" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <span class="form-control text-left" ng-bind="DieuChuyenChiTiet.NhanVienSuDung" />
+                        </td>
+                        <td class="text-right form-group form-group-sm" style="display:none">
+                            <!--soluongton-->
+                            <span id="txtSoLuongTon{{$index}}" class="form-control text-right" ng-bind="DieuChuyenChiTiet.SoLuongTon" number-format />
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- phong ban chuyen den-->
                             <cbo-phong-ban id="cbxPhongBanChuyenDen{{$index}}" data-value="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
                         </td>
+                        <td class="form-group form-group-sm">
+                            <!-- can bo tiep nhan-->
+                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="DieuChuyenChiTiet.NhanVienTiepNhan" data-phongbanid="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                        </td>
                         <td class="text-right form-group form-group-sm">
                             <!--soluong-->
-                            <input type="text" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="DieuChuyenChiTiet.SoLuong" number-format ng-keypress="ctrl.action.keyPress(DieuChuyenChiTiet.SoLuong,'txtSoLuong'+$index,'txtLyDo'+$index,$index,$event)" />
+                            <input type="number" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="DieuChuyenChiTiet.SoLuong" min="1" max="{{DieuChuyenChiTiet.SoLuongTon}}" ng-keypress="ctrl.action.keyPress(DieuChuyenChiTiet.SoLuong,'txtSoLuong'+$index,'txtLyDo'+$index,$index,$event)" />
                         </td>
                         <td class="text-left form-group form-group-sm">
                             <input type="text" id="txtLyDo{{$index}}" class="form-control text-left " ng-model="DieuChuyenChiTiet.LyDo" ng-keypress="ctrl.action.keyPress(DieuChuyenChiTiet.LyDo,'txtLyDo'+$index,'txtMaTaiSan'+$index,$index,$event)" />

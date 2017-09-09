@@ -24,6 +24,7 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
         #region public properties
         public virtual Entity.QLTS.Entity.TaiSan TaiSan { get; set; }
         public IEnumerable<Entity.QLTS.Entity.NguyenGia> NguyenGiaList { get; set; }
+        public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         public virtual string MESSAGE { get; set; }
 
@@ -88,6 +89,9 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
             {
                 var p = new DynamicParameters(TaiSan);
                 p.Add("@NguyenGiaList", _NguyenGiaList.AsTableValuedParameter());
+
+                p.Add("@CoSoId", CoSoId, DbType.String);
+                p.Add("@NhanVienId", NhanVienId, DbType.String);
                 p.Add("@MESSAGE", dbType: DbType.String, direction: ParameterDirection.Output, size: 4000);
 
                 var objResult = await c.QueryAsync<dynamic>(

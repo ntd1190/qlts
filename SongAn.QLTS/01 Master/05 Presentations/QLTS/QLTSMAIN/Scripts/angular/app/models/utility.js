@@ -33,6 +33,9 @@
             tableState.pagination.start = tableState.pagination.start || 0;
             tableState.pagination.number = tableState.pagination.number || 10;
 
+            tableState.search = tableState.search || {};
+            tableState.search.predicateObject = tableState.search.predicateObject || {};
+
             tableState.sort = tableState.sort || {};
             tableState.sort.predicate = '';
             tableState.sort.reverse = false;

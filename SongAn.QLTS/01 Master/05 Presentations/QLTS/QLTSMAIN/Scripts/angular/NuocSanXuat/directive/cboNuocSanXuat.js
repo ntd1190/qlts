@@ -24,7 +24,7 @@
         /*** PRIVATE ***/
 
         var vm = this,
-            service = NuocSanXuatService, userInfo, NuocSanXuatId = 0;
+            service = NuocSanXuatService, userInfo;
 
         /*** VIEW MODEL ***/
 
@@ -52,18 +52,25 @@
         activate()
         function activate() {
             onInitView($scope.config);
-            NuocSanXuatId = $scope.value || 0;
-            console.log($scope.value);
-            getPage().then(function () {
-                if (!vm.data.NuocSanXuatListDisplay && vm.data.NuocSanXuatListDisplay.length == 0) { return; }
-                for (var nuoc in vm.data.NuocSanXuatListDisplay) {
-                    if (vm.data.NuocSanXuatListDisplay[nuoc].NuocSanXuatId === NuocSanXuatId) {
-                        vm.data.NuocSanXuat = vm.data.NuocSanXuatListDisplay[nuoc];
-                        return;
-                    }
-                }
-            });
         }
+
+        /*** EVENT FUNCTION ***/
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.NuocSanXuatId = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 1) {
+                    vm.data.NuocSanXuat = success.data.data[1];
+                } else {
+                    delete vm.data.NuocSanXuat;
+                    vm.data.NuocSanXuat = {};
+                }
+                $scope.onSelected({ data: vm.data.NuocSanXuat });
+            });
+        });
 
         /*** ACTION FUNCTION ***/
 
@@ -75,8 +82,9 @@
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 
@@ -85,11 +93,16 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            var CoSoId = userInfo.CoSoId || 0;
-            var NhanVienId = userInfo.NhanVienId || 0;
+            var data = {};
+            data.search = vm.inputSearch.SearchString || '';
+            data.NuocSanXuatId = vm.inputSearch.NuocSanXuatId || 0;
+            data.MaNuocSanXuat = vm.inputSearch.MaNuocSanXuat || '';
+
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getCombobox(data)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
@@ -97,7 +110,7 @@
                             vm.data.NuocSanXuatListDisplay = success.data.data;
                             vm.data.NuocSanXuatListDisplay.unshift({ TenNuocSanXuat:'.' });
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
                         vm.status.isLoading = false;
                         console.log(error);
@@ -108,7 +121,7 @@
                             alert(error.data.Message);
 
                         }
-                        reject();
+                        return reject(error);
                     });
             });
         }

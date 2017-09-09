@@ -9,7 +9,8 @@
                 onSelected: '&',
                 input: '<',
                 config: '<',
-                value: '='
+                value: '=',
+                maTaiSan: '=',
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -24,7 +25,7 @@
         /*** PRIVATE ***/
 
         var vm = this,
-            service = TaiSanService, userInfo, TaiSanId = 0;
+            service = TaiSanService, userInfo;
 
         /*** VIEW MODEL ***/
 
@@ -33,6 +34,8 @@
         vm.data = {};
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
+        vm.inputSearch.TaiSanId = 0;
+        vm.inputSearch.MaTaiSan = '';
 
         /*** INIT FUNCTION ***/
 
@@ -49,35 +52,58 @@
             }
         }
 
+        /*** EVENT FUNCTION ***/
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.TaiSanId = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 1) {
+                    vm.data.TaiSan = success.data.data[1];
+                } else {
+                    delete vm.data.TaiSan;
+                    vm.data.TaiSan = {};
+                }
+                $scope.onSelected({ data: vm.data.TaiSan });
+            });
+        });
+
+        $scope.$watch('maTaiSan', function (newValue, oldValue) {
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.MaTaiSan = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 1) {
+                    vm.data.TaiSan = success.data.data[1];
+                } else {
+                    delete vm.data.TaiSan;
+                    vm.data.TaiSan = {};
+                }
+                $scope.onSelected({ data: vm.data.TaiSan });
+            });
+        });
+
         activate()
         function activate() {
-            $timeout(function () {
-                onInitView($scope.config);
-                TaiSanId = $scope.value || 0;
-                console.log($scope.value);
-                getPage().then(function () {
-                    console.log(vm.data.TaiSanListDisplay);
-                    if (!vm.data.TaiSanListDisplay && vm.data.TaiSanListDisplay.length == 0) { return; }
-                    for (var index in vm.data.TaiSanListDisplay) {
-                        if (vm.data.TaiSanListDisplay[index].TaiSanId == TaiSanId) {
-                            vm.data.TaiSan = vm.data.TaiSanListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-            }, 0);
+            onInitView($scope.config);
         }
 
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
 
-        vm.action.onSelected = function () {
-            $scope.onSelected({ data: vm.data.TaiSan });
-            $scope.value = vm.data.TaiSan.TaiSanId;
+        vm.action.onSelected = function (item, model) {
+            console.log(item);
+            $scope.onSelected({ data: item });
+            $scope.value = item.TaiSanId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
             getPage();
         }
@@ -87,11 +113,16 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            var CoSoId = userInfo.CoSoId || 0;
-            var NhanVienId = userInfo.NhanVienId || 0;
+            var data = {};
+            data.search = vm.inputSearch.SearchString || '';
+            data.TaiSanId = vm.inputSearch.TaiSanId || 0;
+            data.MaTaiSan = vm.inputSearch.MaTaiSan || '';
+
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getCombobox(data)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
@@ -99,18 +130,10 @@
                             vm.data.TaiSanListDisplay = success.data.data;
                             vm.data.TaiSanListDisplay.unshift({ TenTaiSan: '.' });
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
-                        vm.status.isLoading = false;
                         console.log(error);
-                        vm.data.isLoading = false;
-                        if (error.data.error != null) {
-                            alert(error.data.error.message);
-                        } else {
-                            alert(error.data.Message);
-
-                        }
-                        reject();
+                        return reject(error);
                     });
             });
         }

@@ -22,7 +22,6 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
         public string Search { get; set; }
         public DateTime TuNgay { get; set; }
         public DateTime DenNgay { get; set; }
-        public string PhongBanId { get; set; }
         public int LoginId { get; set; }
         public string OrderClause { get; set; }
 
@@ -85,18 +84,17 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
             {
                 var p = new DynamicParameters();
                 p.Add("CoSoId", CoSoId, DbType.Int32);
-                p.Add("SoPhieu", SoPhieu, DbType.String);
+                p.Add("SoChungTu", SoPhieu, DbType.String);
                 p.Add("Search", Search, DbType.String);
                 p.Add("TuNgay", TuNgay, DbType.DateTime);
                 p.Add("DenNgay", DenNgay, DbType.DateTime);
-                p.Add("PhongBanId", PhongBanId, DbType.String);
                 p.Add("LoginId", LoginId, DbType.Int32);
                 p.Add("OrderClause", OrderClause, DbType.String);
                 p.Add("Skip", Skip, DbType.Int16);
                 p.Add("Take", Take, DbType.Int16);
 
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria",
+                    sql: "sp_DieuChuyen_GetListDieuChuyenByCriteria",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

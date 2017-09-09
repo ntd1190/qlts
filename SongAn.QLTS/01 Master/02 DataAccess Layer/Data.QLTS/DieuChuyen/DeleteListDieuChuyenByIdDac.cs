@@ -7,14 +7,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLDN.Data.QLNS.DieuChuyen
+namespace SongAn.QLTS.Data.QLNS.DieuChuyen
 {
     public class DeleteListDieuChuyenByIdDac : BaseRepositoryAsync
     {
         #region public properties
 
 
-        public int DeNghiId { get; set; }
+        public int DieuChuyenId { get; set; }
 
         #endregion
 
@@ -71,10 +71,10 @@ namespace SongAn.QLDN.Data.QLNS.DieuChuyen
             return await WithConnection(async c =>
             {
                 var p = new DynamicParameters();
-                p.Add("DeNghiId", DeNghiId, DbType.Int32);
+                p.Add("DieuChuyenId", DieuChuyenId, DbType.Int32);
 
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_DeNghiTrangCap_DeleteDeNghiTrangCapById",
+                    sql: "sp_DieuChuyen_DeleteDieuChuyenyId",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

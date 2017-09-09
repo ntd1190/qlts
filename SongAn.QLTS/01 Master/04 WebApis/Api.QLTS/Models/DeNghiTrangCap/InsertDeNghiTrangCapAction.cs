@@ -38,7 +38,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.DeNghiTrangCap
                 bizHeader.NgayLap = _phieuDeNghi.Ngay;
                 bizHeader.SoPhieu = _phieuDeNghi.SoPhieu;
                 bizHeader.PhanLoaiId = _phieuDeNghi.PhanLoaiId;
-                bizHeader.PhongBanId = 5;// _phieuDeNghi.PhongBanId;
+                bizHeader.PhongBanId = _phieuDeNghi.PhongBanId;
                 bizHeader.NoiDung = _phieuDeNghi.NoiDung;
                 bizHeader.CoSoId = _phieuDeNghi.CoSoId;
                 bizHeader.NhanVienId = _LoginId;

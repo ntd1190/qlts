@@ -8,14 +8,16 @@ using System.Linq;
 using SongAn.QLTS.Biz.QLTS.NuocSanXuat;
 using SongAn.QLTS.Data.Repository.QLTS;
 
-namespace  SongAn.QLTS.Api.QLTS.Models.NuocSanXuat
+namespace SongAn.QLTS.Api.QLTS.Models.NuocSanXuat
 {
     public class GetListcbxNuocSanXuatByProjectionAction
     {
 
         public string Search { get; set; }
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
+        public int NuocSanXuatId { get; set; }
+        public string MaNuocSanXuat { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             GetListcbxNuocSanXuatByCriteriaBiz biz = new GetListcbxNuocSanXuatByCriteriaBiz(context);
@@ -23,12 +25,14 @@ namespace  SongAn.QLTS.Api.QLTS.Models.NuocSanXuat
             try
             {
                 biz.Search = Search;
+                biz.NuocSanXuatId = NuocSanXuatId;
+                biz.MaNuocSanXuat = MaNuocSanXuat;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
-                NuocSanXuatRepository repo = new NuocSanXuatRepository(context);
-                IEnumerable<dynamic> listNuocSanXuat = await biz.Execute();
-                dynamic _metaData = new System.Dynamic.ExpandoObject();
-                return ActionHelper.returnActionResult(HttpStatusCode.OK,listNuocSanXuat, _metaData);
+
+                var listNuocSanXuat = await biz.Execute();
+                var _metaData = new System.Dynamic.ExpandoObject();
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, listNuocSanXuat, _metaData);
             }
             catch (Exception ex)
             {
@@ -47,4 +51,4 @@ namespace  SongAn.QLTS.Api.QLTS.Models.NuocSanXuat
 
         }
     }
-    }
+}

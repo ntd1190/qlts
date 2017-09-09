@@ -14,21 +14,43 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 {
-    public class UpdateTaiSanAction : Entity.QLTS.Entity.TaiSan
+    public class UpdateTaiSanAction
     {
 
         #region public
+        public string TaiSan { get; set; }
+        public string TTCK { get; set; }
+        public string TTKK_Dat { get; set; }
+        public string TTKK_Oto { get; set; }
+        public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         public string NguyenGiaList { get; set; }
         #endregion
         #region private
         private List<Entity.QLTS.Entity.NguyenGia> _NguyenGiaList { get; set; }
+        private Entity.QLTS.Entity.ThongTinCongKhai _TTCK { get; set; }
+        private Entity.QLTS.Entity.ThongTinKeKhaiDat _TTKK_Dat { get; set; }
+        private Entity.QLTS.Entity.ThongTinKeKhaiOto _TTKK_Oto { get; set; }
+        private Entity.QLTS.Entity.TaiSan _TaiSan { get; set; }
         #endregion
         #region init & validate
-        private void init() {
-            NguyenGiaList = Protector.String(NguyenGiaList, "{}");
+        private void init()
+        {
+            TaiSan = Protector.String(TaiSan, "{}");
+            _TaiSan = JsonConvert.DeserializeObject<Entity.QLTS.Entity.TaiSan>(TaiSan);
+
+            TTCK = Protector.String(TTCK, "{}");
+            _TTCK = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinCongKhai>(TTCK);
+
+            TTKK_Dat = Protector.String(TTKK_Dat, "{}");
+            _TTKK_Dat = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiDat>(TTKK_Dat);
+
+            TTKK_Oto = Protector.String(TTKK_Oto, "{}");
+            _TTKK_Oto = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiOto>(TTKK_Oto);
+
+            NguyenGiaList = Protector.String(NguyenGiaList, "[]");
             _NguyenGiaList = JsonConvert.DeserializeObject<List<Entity.QLTS.Entity.NguyenGia>>(NguyenGiaList);
         }
 
@@ -42,41 +64,13 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                 init();
                 validate();
 
+                /*** TÀI SẢN ***/
+
                 var biz = new UpdateTaiSanBiz(context);
-                biz.TaiSan = new Entity.QLTS.Entity.TaiSan();
-
-                biz.TaiSan.TaiSanId = TaiSanId;
-                biz.TaiSan.MaTaiSan = MaTaiSan;
-                biz.TaiSan.TenTaiSan = TenTaiSan;
-                biz.TaiSan.DonViTinh = DonViTinh;
-                biz.TaiSan.LoaiId = LoaiId;
-                biz.TaiSan.PhuongThucId = PhuongThucId;
-                biz.TaiSan.NamSanXuat = NamSanXuat;
-                biz.TaiSan.NuocSanXuatId = NuocSanXuatId;
-                biz.TaiSan.HangSanXuatId = HangSanXuatId;
-                biz.TaiSan.SoQDTC = SoQDTC;
-                biz.TaiSan.NhanHieu = NhanHieu;
-                biz.TaiSan.DuAnId = DuAnId;
-                biz.TaiSan.NgayMua = NgayMua;
-                biz.TaiSan.NgayGhiTang = NgayGhiTang;
-                biz.TaiSan.NgayBDHaoMon = NgayBDHaoMon;
-                biz.TaiSan.SoNamSuDung = SoNamSuDung;
-                biz.TaiSan.TyLeHaoMon = TyLeHaoMon;
-                biz.TaiSan.HaoMonLuyKe = HaoMonLuyKe;
-                biz.TaiSan.NgayBDKhauHao = NgayBDKhauHao;
-                biz.TaiSan.KyTinhKhauHao = KyTinhKhauHao;
-                biz.TaiSan.GiaTriKhauHao = GiaTriKhauHao;
-                biz.TaiSan.SoKyKhauHao = SoKyKhauHao;
-                biz.TaiSan.TyLeKhauHao = TyLeKhauHao;
-                biz.TaiSan.KhauHaoLuyKe = KhauHaoLuyKe;
-                biz.TaiSan.LoaiKeKhai = LoaiKeKhai;
-
-                biz.TaiSan.CtrVersion = CtrVersion;
-
+                biz.TaiSan = _TaiSan;
                 biz.NguyenGiaList = _NguyenGiaList;
-
-                biz.TaiSan.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
+                biz.CoSoId = CoSoId;
                 var result = await biz.Execute();
 
                 if (string.IsNullOrEmpty(biz.MESSAGE) == false)
@@ -84,47 +78,62 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                     throw new BaseException(biz.MESSAGE.Split('|')[2]);
                 }
 
-                return returnActionResult(HttpStatusCode.OK, result, null);
+                /*** THÔNG TIN CÔNG KHAI ***/
+
+                var bizTTCK = new InsertThongTinCongKhaiBiz(context);
+                bizTTCK.ThongTinCongKhai = _TTCK;
+                bizTTCK.NhanVienId = NhanVienId;
+                bizTTCK.CoSoId = CoSoId;
+                result = await bizTTCK.Execute();
+
+                if (string.IsNullOrEmpty(bizTTCK.MESSAGE) == false)
+                {
+                    throw new BaseException(bizTTCK.MESSAGE.Split('|')[2]);
+                }
+
+                /*** THÔNG TIN KÊ KHAI ĐẤT ***/
+                if (_TaiSan.LoaiKeKhai == 1)
+                {
+                    var bizTTKK_Dat = new InsertThongTinKeKhaiDatBiz(context);
+                    bizTTKK_Dat.TTKK_Dat = _TTKK_Dat;
+                    bizTTKK_Dat.NhanVienId = NhanVienId;
+                    bizTTKK_Dat.CoSoId = CoSoId;
+                    result = await bizTTKK_Dat.Execute();
+
+                    if (string.IsNullOrEmpty(bizTTKK_Dat.MESSAGE) == false)
+                    {
+                        throw new BaseException(bizTTKK_Dat.MESSAGE.Split('|')[2]);
+                    }
+                }
+
+                /*** THÔNG TIN KÊ KHAI Ô TÔ ***/
+                if (_TaiSan.LoaiKeKhai == 3)
+                {
+                    var bizTTKK_Oto = new InsertThongTinKeKhaiOtoBiz(context);
+                    bizTTKK_Oto.TTKK_Oto = _TTKK_Oto;
+                    bizTTKK_Oto.NhanVienId = NhanVienId;
+                    bizTTKK_Oto.CoSoId = CoSoId;
+                    result = await bizTTKK_Oto.Execute();
+
+                    if (string.IsNullOrEmpty(bizTTKK_Oto.MESSAGE) == false)
+                    {
+                        throw new BaseException(bizTTKK_Oto.MESSAGE.Split('|')[2]);
+                    }
+                }
+
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);
             }
-            catch (FormatException ex)
+            catch (BaseException ex)
             {
-                return returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
             catch (Exception ex)
             {
-                return returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
         #region helpers
-        private ActionResultDto returnActionError(HttpStatusCode code, string message)
-        {
-            var _error = new ActionResultDto();
-            _error.ReturnCode = code;
-            _error.ReturnData = new
-            {
-                error = new
-                {
-                    code = code,
-                    type = code.ToString(),
-                    message = message
-                }
-            };
-            return _error;
-        }
-
-        private ActionResultDto returnActionResult(HttpStatusCode code, object data, object metaData)
-        {
-            var _result = new ActionResultDto();
-
-            _result.ReturnCode = code;
-            _result.ReturnData = new
-            {
-                data = data,
-                metaData = metaData
-            };
-            return _result;
-        }
         #endregion
     }
 }

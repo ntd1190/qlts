@@ -24,7 +24,7 @@
         /*** PRIVATE ***/
 
         var vm = this,
-            service = PhuongThucService, userInfo, PhuongThucId = 0;
+            service = PhuongThucService, userInfo;
 
         /*** VIEW MODEL ***/
 
@@ -51,21 +51,26 @@
 
         activate()
         function activate() {
-            $timeout(function () {
-                onInitView($scope.config);
-                PhuongThucId = $scope.value || 0;
-                console.log($scope.value);
-                getPage().then(function () {
-                    if (!vm.data.PhuongThucListDisplay && vm.data.PhuongThucListDisplay.length == 0) { return; }
-                    for (var index in vm.data.PhuongThucListDisplay) {
-                        if (vm.data.PhuongThucListDisplay[index].PhuongThucId == PhuongThucId) {
-                            vm.data.PhuongThuc = vm.data.PhuongThucListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-            }, 0);
+            onInitView($scope.config);
         }
+
+        /*** EVENT FUNCTION ***/
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.PhuongThucId = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 1) {
+                    vm.data.PhuongThuc = success.data.data[1];
+                } else {
+                    delete vm.data.PhuongThuc;
+                    vm.data.PhuongThuc = {};
+                }
+                $scope.onSelected({ data: vm.data.PhuongThuc });
+            });
+        });
 
         /*** ACTION FUNCTION ***/
 
@@ -77,8 +82,9 @@
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 
@@ -87,11 +93,15 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            var CoSoId = userInfo.CoSoId || 0;
-            var NhanVienId = userInfo.NhanVienId || 0;
+            var data = {};
+            data.search = vm.inputSearch.SearchString || '';
+            data.PhuongThucId = vm.inputSearch.PhuongThucId || 0;
+
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getCombobox(data)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
@@ -99,7 +109,7 @@
                             vm.data.PhuongThucListDisplay = success.data.data;
                             vm.data.PhuongThucListDisplay.unshift({ TenPhuongThuc: '.' });
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
                         vm.status.isLoading = false;
                         console.log(error);
@@ -110,7 +120,7 @@
                             alert(error.data.Message);
 
                         }
-                        reject();
+                        return reject(error);
                     });
             });
         }

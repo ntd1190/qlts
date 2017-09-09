@@ -14,8 +14,10 @@ namespace  SongAn.QLTS.Api.QLTS.Models.HangSanXuat
     {
 
         public string Search { get; set; }
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
+        public int HangSanXuatId { get; set; }
+        public string MaHangSanXuat { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             GetListcbxHangSanXuatByCriteriaBiz biz = new GetListcbxHangSanXuatByCriteriaBiz(context);
@@ -23,9 +25,11 @@ namespace  SongAn.QLTS.Api.QLTS.Models.HangSanXuat
             try
             {
                 biz.Search = Search;
+                biz.HangSanXuatId = HangSanXuatId;
+                biz.MaHangSanXuat = MaHangSanXuat;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
-                HangSanXuatRepository repo = new HangSanXuatRepository(context);
+
                 IEnumerable<dynamic> listHangSanXuat = await biz.Execute();
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
                 return ActionHelper.returnActionResult(HttpStatusCode.OK,listHangSanXuat, _metaData);

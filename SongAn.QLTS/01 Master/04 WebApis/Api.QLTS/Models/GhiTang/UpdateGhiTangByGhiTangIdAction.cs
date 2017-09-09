@@ -57,8 +57,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
                     bizLine.GhiTangId = Protector.Int(_ghiTangId);
                     bizLine.TaiSanId = item.TaiSanId;
                     bizLine.NgayBatDauSuDung = item.NgayBatDauSuDung;
-                    bizLine.PhongBanId = item.PhongBanId;
-                    bizLine.NhanVienId = item.NhanVienId;
+                    bizLine.PhongBanId = Protector.Int(item.PhongBanId);
+                    bizLine.NhanVienId = Protector.Int(item.NhanVienId);
                     bizLine.SoLuong = item.SoLuong;
 
                     var result_line = await bizLine.Execute();

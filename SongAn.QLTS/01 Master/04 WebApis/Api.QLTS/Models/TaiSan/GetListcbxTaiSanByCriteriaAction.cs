@@ -14,13 +14,15 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 {
     public class GetListcbxTaiSanByCriteriaAction
     {
 
         #region public
         public string Search { get; set; }
+        public int TaiSanId { get; set; }
+        public string MaTaiSan { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         #endregion
@@ -41,52 +43,26 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
 
                 var biz = new GetListcbxTaiSanByCriteriaBiz(context);
                 biz.Search = Search;
+                biz.TaiSanId = TaiSanId;
+                biz.MaTaiSan = MaTaiSan;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
 
                 var result = await biz.Execute();
 
-                return returnActionResult(HttpStatusCode.OK, result, null);
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);
             }
-            catch (FormatException ex)
+            catch (BaseException ex)
             {
-                return returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.BadRequest, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
             catch (Exception ex)
             {
-                return returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
+                return ActionHelper.returnActionError(HttpStatusCode.InternalServerError, ex.InnerException != null ? ex.InnerException.Message : ex.Message);
             }
         }
 
         #region helpers
-        private ActionResultDto returnActionError(HttpStatusCode code, string message)
-        {
-            var _error = new ActionResultDto();
-            _error.ReturnCode = code;
-            _error.ReturnData = new
-            {
-                error = new
-                {
-                    code = code,
-                    type = code.ToString(),
-                    message = message
-                }
-            };
-            return _error;
-        }
-
-        private ActionResultDto returnActionResult(HttpStatusCode code, object data, object metaData)
-        {
-            var _result = new ActionResultDto();
-
-            _result.ReturnCode = code;
-            _result.ReturnData = new
-            {
-                data = data,
-                metaData = metaData
-            };
-            return _result;
-        }
         #endregion
     }
 }

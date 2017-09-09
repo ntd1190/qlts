@@ -12,8 +12,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.PhuongThuc
     {
 
         public string Search { get; set; }
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
+        public int PhuongThucId { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             var biz = new GetListcbxPhuongThucByCriteriaBiz(context);
@@ -21,8 +22,10 @@ namespace SongAn.QLTS.Api.QLTS.Models.PhuongThuc
             try
             {
                 biz.Search = Search;
+                biz.PhuongThucId = PhuongThucId;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
+
                 var listPhongBan = await biz.Execute();
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
                 return ActionHelper.returnActionResult(HttpStatusCode.OK,listPhongBan, _metaData);

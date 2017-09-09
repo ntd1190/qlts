@@ -10,25 +10,25 @@
             url: API_BASE + 'api.QLNS/GhiTang/',
             GetPage: 'GetListGhiTangByProjection',
             GetPageDetail: 'GetListGhiTangChiTietByGhiTangId',
-            //GetPageHeaderById: 'GetListDeNghiTrangCapByDeNghiId',
-            //DeleteList: 'DeleteListDeNghiMuaSamById',
-            //insert: 'InsertDeNghiTrangCap',
-            //update: 'UpdateDeNghiTrangCap'
+            GetPageHeaderById: 'GetListGhiTangByGhiTangId',
+            DeleteList: 'DeleteListGhiTangById',
+            insert: 'InsertGhiTang',
+            update: 'UpdateGhiTangByGhiTangId'
         }
 
         var service = {
             getCombobox: getCombobox,
             getPage: getPage,
             GetPageDetail: GetPageDetail,
-            //GetPageHeaderById: GetPageHeaderById,
-            //DeleteList: DeleteList,
-            //insert: insert,
-            //update: update
+            GetPageHeaderById: GetPageHeaderById,
+            DeleteList: DeleteList,
+            insert: insert,
+            update: update
         };
 
         return service;
 
-        function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, PhongBanId, SoPhieu) {
+        function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -68,7 +68,7 @@
             return $http(req);
         }
 
-        function GetPageHeaderById(DeNghiId) {
+        function GetPageHeaderById(GhiTangId) {
             var url = api.url + api.GetPageHeaderById;
 
             var req = {
@@ -76,14 +76,14 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    DeNghiId: DeNghiId
+                    GhiTangId: GhiTangId
                 })
             }
 
             return $http(req);
         }
 
-        function DeleteList(DeNghiIds) {
+        function DeleteList(GhiTangIds) {
             var url = api.url + api.DeleteList;
 
             var req = {
@@ -91,7 +91,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    DeNghiIds: DeNghiIds
+                    GhiTangIds: GhiTangIds
                 })
             }
 
@@ -105,7 +105,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    phieuDeNghi: data.phieuDeNghi,
+                    phieuGhiTang: data.phieuGhiTang,
                     listChiTiet: data.listChiTiet,
                     loginId: data.loginId
                 })
@@ -122,8 +122,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    deNghiId: data.deNghiId,
-                    phieuDeNghi: data.phieuDeNghi,
+                    ghiTangId: data.ghiTangId,
+                    phieuGhiTang: data.phieuGhiTang,
                     listChiTiet: data.listChiTiet,
                     loginId: data.loginId
                 })

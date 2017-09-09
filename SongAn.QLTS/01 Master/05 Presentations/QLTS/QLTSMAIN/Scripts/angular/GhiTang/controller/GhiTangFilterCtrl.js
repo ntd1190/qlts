@@ -19,6 +19,7 @@
         vm.data = {};
         vm.data.startDate = '';
         vm.data.endDate = '';
+        vm.data.soChungTu = '';
 
         vm.onInitView = function (config) {
 
@@ -47,7 +48,7 @@
         vm.action.reset = function () {
             vm.data.startDate = moment().format("01/MM/YYYY");
             vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
-
+            vm.data.soChungTu = '';
         };
 
         /* BROADCAST / EMIT / ON FUNCTION */
@@ -78,7 +79,7 @@
 
             data.startDate = vm.data.startDate;
             data.endDate = vm.data.endDate;
-
+            data.soChungTu = vm.data.soChungTu;
             return data;
         }
 

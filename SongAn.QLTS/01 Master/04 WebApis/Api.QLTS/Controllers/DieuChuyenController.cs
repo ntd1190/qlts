@@ -42,19 +42,19 @@ namespace SongAn.QLTS.Api.QLNS.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
 
-        //[HttpPost]
-        //public async Task<IHttpActionResult> InsertDieuChuyen([FromBody]InsertDieuChuyenAction action)
-        //{
-        //    ActionResultDto result = await action.Execute(context);
-        //    return Content(result.ReturnCode, result.ReturnData);
-        //}
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertDieuChuyen([FromBody]InsertDieuChuyenAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
 
-        //[HttpPost]
-        //public async Task<IHttpActionResult> UpdateDieuChuyenByDieuChuyenId([FromBody]UpdateDieuChuyenByDieuChuyenIdAction action)
-        //{
-        //    ActionResultDto result = await action.Execute(context);
-        //    return Content(result.ReturnCode, result.ReturnData);
-        //}
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateDieuChuyenByDieuChuyenId([FromBody]UpdateDieuChuyenByDieuChuyenIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
 
         [HttpPost]
         public async Task<IHttpActionResult> DeleteListDieuChuyenById([FromBody]DeleteListDieuChuyenByIdAction action)

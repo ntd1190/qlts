@@ -50,7 +50,7 @@
             vm.data.listBoPhan = [];
             vm.data.startDate = moment().format("01/MM/YYYY");
             vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
-            
+            $rootScope.$broadcast('DenNghiTrangCapFilterCtrl.action.clearData');
         };
 
         /* BROADCAST / EMIT / ON FUNCTION */
@@ -78,14 +78,10 @@
         }
 
         function getDataFilter() {
-            var BoPhanId = vm.data.listBoPhan.PhongBanId;
-            //joinStr(vm.data.listBoPhan, "PhongBanId");
-
             var data = {};
-         
             data.startDate = vm.data.startDate;
             data.endDate = vm.data.endDate;
-            data.boPhanId = BoPhanId;
+            data.boPhanId = joinStr(vm.data.listBoPhan, "PhongBanId");
             
             return data;
         }

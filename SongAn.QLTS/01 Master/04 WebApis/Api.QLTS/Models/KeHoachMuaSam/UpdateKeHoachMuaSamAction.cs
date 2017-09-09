@@ -34,25 +34,17 @@ namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
                      );
                 if (!String.IsNullOrEmpty(check.MuaSamId.ToString()))
                 {
+                    Biz.QLTS.KeHoachMuaSamChiTiet.DeleteKeHoachMuaSamChiTietByIdBiz bizct = new Biz.QLTS.KeHoachMuaSamChiTiet.DeleteKeHoachMuaSamChiTietByIdBiz(context);
+                    bizct.MuaSamId = check.MuaSamId.ToString();
+                    await bizct.Execute();
                     foreach (var item in _listChiTiet)
                     {
                         item.MuaSamId = check.MuaSamId;
                         KeHoachMuaSamChiTietRepository repoct = new KeHoachMuaSamChiTietRepository(context);
-                        await repoct.UpdatePartial(item,
-                        nameof(item.TenTaiSan),
-                        nameof(item.LoaiId),
-                        nameof(item.PhuongThucId),
-                        nameof(item.DonViTinh),
-                        nameof(item.MoTa),
-                        nameof(item.Ngay),
-                        nameof(item.SoLuong),
-                        nameof(item.DonGia),
-                        nameof(item.HinhThucId),
-                        nameof(item.DuToan),
-                        nameof(item.GhiChu)
-                     );
-
+                        await repoct.Insert(item);
                     }
+
+
                 }
                 result.data = _KeHoachMuaSam;
                 return returnActionResult(HttpStatusCode.OK, result.data, null);

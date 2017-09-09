@@ -5,6 +5,7 @@
 4. History     : 2017.08.31(NGUYỄN THANH BÌNH) - Tao moi
 *****************************************************************************/
 using SongAn.QLTS.Api.QLTS.Models.NhomTaiSan;
+using SongAn.QLTS.Api.QLTS.Models.TaiSan;
 using SongAn.QLTS.Util.Common.Api;
 using SongAn.QLTS.Util.Common.Dto;
 using System.Threading.Tasks;
@@ -17,6 +18,7 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
         // GET: NhomTaiSan
         public TaiSanController() : base() { }
 
+        #region Tài sản
         [HttpPost]
         public async Task<IHttpActionResult> InsertTaiSan([FromBody]InsertTaiSanAction action)
         {
@@ -41,11 +43,60 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
-         [HttpPost]
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListTaiSanByCriteria([FromBody]GetListTaiSanByCriteriaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteListTaiSan([FromBody]DeleteListTaiSanAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
         public async Task<IHttpActionResult> GetListcbxTaiSanByCriteria([FromBody]GetListcbxTaiSanByCriteriaAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
-   }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxTaiSanSuDungByCriteria([FromBody]GetListcbxTaiSanSuDungByCriteriaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetTaiSanByMa([FromBody]GetTaiSanByMaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        #endregion
+
+        #region Thông tin công khai
+        [HttpPost]
+        public async Task<IHttpActionResult> GetThongTinCongKhaiById([FromBody]GetThongTinCongKhaiByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        #endregion
+
+        #region Thông tin kê khai
+        [HttpPost]
+        public async Task<IHttpActionResult> GetThongTinKeKhaiDatById([FromBody]GetThongTinKeKhaiDatByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetThongTinKeKhaiOtoById([FromBody]GetThongTinKeKhaiOtoByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        #endregion
+    }
 }

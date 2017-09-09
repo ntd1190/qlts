@@ -12,9 +12,10 @@
             F2: function (name, code) {
                 CreateListChiTiet();
                 var fc = function () {
-                    $("#txtTenTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                    $("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
                 }
                 $timeout(fc, 6);
+                
             },
             F8: function (name, code) {
                 vm.action.save();
@@ -82,7 +83,7 @@
             }
 
             initEventListener();
-            //$('#cbxPhanLoai').val("2");            
+            $("#txtSoChungTu").focus();
         };
 
         /* ACTION FUNCTION */
@@ -157,17 +158,13 @@
                     vm.error.NgayGhiGiam = utility.checkInValid(obj.NgayGhiGiam, 'isEmpty');
                     if (vm.error.NgayGhiGiam) {
                         $("#" + fromId).focus();
-                    } else $("#" + ToId).focus();
+                    } else {
+                        $("#" + ToId).find('input').focus();
+                    }
                 }
                 else if (fromId == 'txtSoChungTu') {
                     vm.error.SoChungTu = utility.checkInValid(obj.SoChungTu, 'isEmpty');
                     if (vm.error.SoChungTu) {
-                        $("#" + fromId).focus();
-                    } else $("#" + ToId).focus();
-                }
-                else if (fromId == 'txtNoiDung') {
-                    vm.error.NoiDung = utility.checkInValid(obj.NoiDung, 'isEmpty');
-                    if (vm.error.NoiDung) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
@@ -182,48 +179,29 @@
                 debugger
                 //set condition of has-error
                 if (fromId == ('txtMaTaiSan' + index)) {
-                    var data = { MaTaiSan: value,CoSoId : userInfo.CoSoId };
-                    TaiSanService.GetMaTaiSan(data).then(function (success) {
-                        if (success.data.data.length>0) {
-                            vm.data.listChiTiet[index].TaiSanId = success.data.data[0].TaiSanId;
-                            vm.data.listChiTiet[index].TenPhongBan =  success.data.data[0].TenPhongBan;
-                            vm.data.listChiTiet[index].DonViTinh = success.data.data[0].DonViTinh;
-                            vm.data.listChiTiet[index].SoLuongTon = success.data.data[0].SoLuongTon;
-                        }
-                        
-                    });
-                }
-                else if (fromId == ('txtSoLuong' + index)) {
-                    if ($("#txtSoLuong" + (index + 1)).length == 0) {
-                        CreateListChiTiet();
-                        var fc = function () {
-                            $("#cbxTaiSan" + (parseInt(index) + 1).toString()).focus();
-                        }
-                        $timeout(fc, 6);
-                    }
-                    else {
-                        $("#cbxTaiSan" + (parseInt(index) + 1).toString()).focus();
-                    }
+                    vm.data.listChiTiet[index].TempMaTaiSan = value;
                 }
                 else $("#" + ToId).focus();
+            }
+            else if (event.keyCode == '9') {
+                if (fromId == ('txtMaTaiSan' + index)) {
+                    vm.data.listChiTiet[index].TempMaTaiSan = value;
+                }
             }
         }
 
         vm.action.resetNhanVienId = function (data, index) {
-            console.log(data);
-            console.log(index);
-            //for (var index = 0; index < vm.data.listChiTiet.length; index++) {
+
             vm.data.listChiTiet[index.$index].NhanVienId = 0;
-            //}
+
         }
         vm.action.getDataTaiSan = function (data, index) {
-            console.log(data);
-            console.log(index);
-           
-            vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan;
+            vm.data.listChiTiet[index.$index].TaiSanId = data.TaiSanId;
+            vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan || vm.data.listChiTiet[index.$index].MaTaiSan;
             vm.data.listChiTiet[index.$index].TenPhongBan = data.TenPhongBan;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
             vm.data.listChiTiet[index.$index].SoLuongTon = data.SoLuongTon;
+            if (data.TaiSanId > 0) $("#txtSoLuong" + index.$index).focus()
         }
 
 
@@ -268,11 +246,9 @@
             chitiet.PhieuGhiGiamChiTietId = 0;
             chitiet.GhiGiamId = 0;
             chitiet.TaiSanId = 0;
-            chitiet.NgayBatDauSuDung = moment().format('DD/MM/YYYY');
-            chitiet.PhongBanId = 0;
-            chitiet.NhanVienId = 0;
             chitiet.SoLuong = 0;
             vm.data.listChiTiet.push(chitiet);
+            
         }
 
         function insert() {
@@ -284,11 +260,12 @@
             data.phieuGhiGiam = angular.toJson(phieuGhiGiam);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            data.CoSoId = userInfo.CoSoId;
             GhiGiamService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'GhiGiam/edit/' + result.data.data[0].GhiGiamIdI;
+                    window.location = vm.data.linkUrl + 'GhiGiam/edit/' + result.data.data.GhiGiamId;
 
                 }, function error(result) {
                     console.log(result);
@@ -311,8 +288,10 @@
             data.phieuGhiGiam = angular.toJson(phieuGhiGiam);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            data.CoSoId = userInfo.CoSoId;
             GhiGiamService.update(data)
                 .then(function success(result) {
+                    vm.data.phieuGhiGiam = result.data.data;
                     utility.removeloadding();
                     utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {
@@ -346,11 +325,6 @@
                 return null;
             }
 
-            vm.error.NoiDung = utility.checkInValid(obj.NoiDung, 'isEmpty');
-            if (vm.error.NoiDung) {
-                $("#txtNoiDung").focus();
-                return null;
-            }
             return 1;
         }
 
@@ -366,20 +340,11 @@
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                 }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].PhongBanId, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NhanVienId, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    utility.AlertError('Vui lòng chọn lại nhân viên !');
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NgayBatDauSuDung, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                }
                 else if (utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].XuLyId, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                 }
@@ -400,9 +365,11 @@
                     console.log(result);
                     delete vm.data.phieuGhiGiam;
 
-                    if (result.data && result.data.data && result.data.data.length) {
-                        vm.data.phieuGhiGiam = result.data.data[0];
-
+                    if (result.data && result.data.data) {
+                      
+                        vm.data.phieuGhiGiam = result.data.data;
+                        vm.data.phieuGhiGiam.NgayChungTu = utility.convertDateFormat(vm.data.phieuGhiGiam.NgayChungTu, 'YYYY-MM-DD', 'DD/MM/YYYY');
+                        vm.data.phieuGhiGiam.NgayGhiGiam = utility.convertDateFormat(vm.data.phieuGhiGiam.NgayGhiGiam, 'YYYY-MM-DD', 'DD/MM/YYYY');
                         getphieuGhiGiamChiTietById(vm.data.phieuGhiGiam.GhiGiamId);
                     }
                 }, function error(result) {
@@ -414,7 +381,6 @@
 
             GhiGiamService.GetPageDetail(id)
                 .then(function success(result) {
-                    console.log(result);
                     vm.data.listChiTiet = [];
 
                     if (result.data && result.data.data && result.data.data.length) {

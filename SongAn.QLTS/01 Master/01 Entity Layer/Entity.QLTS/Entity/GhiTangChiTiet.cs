@@ -17,8 +17,8 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual int GhiTangId { get; set; }
         public virtual int TaiSanId { get; set; }
         public virtual DateTime NgayBatDauSuDung { get; set; }
-        public virtual int PhongBanId { get; set; }
-        public virtual int NhanVienId { get; set; }
+        public virtual int? PhongBanId { get; set; }
+        public virtual int? NhanVienId { get; set; }
         public virtual decimal SoLuong { get; set; }
 
     }

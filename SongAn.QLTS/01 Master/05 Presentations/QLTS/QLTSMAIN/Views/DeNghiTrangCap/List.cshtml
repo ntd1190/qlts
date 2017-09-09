@@ -25,7 +25,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Bộ phận</label>
                         <div class="col-sm-9">
-                             @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DenNghiTrangCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                             @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DenNghiTrangCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
                         </div>
                     </div>
 
@@ -46,7 +46,7 @@
             @*<button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" href="~/denghitrangcap/edit?id=0">Mới (F2)</button>&nbsp;&nbsp;&nbsp;*@
             <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
         </div>
-        <div class="table-responsive panel-body">
+        <div class="table-containe panel-body">
             <table st-table="ctrl.data.DenNghiTrangCapListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
@@ -110,7 +110,7 @@
         </div>
         
         <div class="table-responsive panel-body">
-            <table st-table="ctrl.data.DenNghiTrangCapChiTietListDisplay" class="table table-bordered table-condensed table-responsive table-hover ">
+            <table st-table="ctrl.data.DenNghiTrangCapChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
@@ -235,7 +235,7 @@
 <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
     <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

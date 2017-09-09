@@ -162,7 +162,7 @@
                 if (error.status === 400) {
                     alert(error.data.error.message);
                 } else {
-                    utility.AlertError('Không thể cập nhật tài sản');
+                    utility.AlertError('Không thể xóa tài sản');
                 }
             });
 

@@ -14,8 +14,10 @@ namespace  SongAn.QLTS.Api.QLTS.Models.DuAn
     {
 
         public string Search { get; set; }
-        public string CoSoId { get; set; }
-        public string NhanVienId { get; set; }
+        public int DuAnId { get; set; }
+        public string MaDuAn { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             GetListcbxDuAnByCriteriaBiz biz = new GetListcbxDuAnByCriteriaBiz(context);
@@ -23,9 +25,11 @@ namespace  SongAn.QLTS.Api.QLTS.Models.DuAn
             try
             {
                 biz.Search = Search;
+                biz.MaDuAn = MaDuAn;
+                biz.DuAnId = DuAnId;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
-                DuAnRepository repo = new DuAnRepository(context);
+
                 IEnumerable<dynamic> listDuAn = await biz.Execute();
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
                 return ActionHelper.returnActionResult(HttpStatusCode.OK,listDuAn, _metaData);

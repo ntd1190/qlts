@@ -90,7 +90,8 @@
             TuNgay: '',
             DenNgay: '',
             linkUrl: '',
-            listCot: []
+            listCot: [],
+            SoPhieu: ''
         };
 
         vm.action = {
@@ -123,7 +124,7 @@
         }
         function loadCotList() {
             if (1 === 1) {
-                TuyChonCotService.getAll('FL0018').then(function (success) {
+                TuyChonCotService.getAll('FL0019').then(function (success) {
                     if (success.data && success.data.data) {
                         vm.data.listCot = success.data.data;
                     }
@@ -157,6 +158,7 @@
             $scope.$on('GhiTangListCtrl.action.get-filter', function (event, data) {
                 vm.data.TuNgay = data.startDate;
                 vm.data.DenNgay = data.endDate;
+                vm.data.SoPhieu = data.soChungTu;
                 getPage(_tableState);
             });
 
@@ -258,7 +260,7 @@
             var NhanVienId = vm.data.userInfo.NhanVienId;
             var TuNgay = vm.data.TuNgay;
             var DenNgay = vm.data.DenNgay;
-            var SoPhieu = "";
+            var SoPhieu = vm.data.SoPhieu;
 
             GhiTangService.getPage(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, SoPhieu).then(function (success) {
                 if (success.data.data) {
