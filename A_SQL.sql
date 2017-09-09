@@ -1,35 +1,22 @@
-USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId]    Script Date: 9/4/2017 8:39:39 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-alter PROC [dbo].[sp_GhiTangChiTiet_GetGhiTangChiTietByDeNghiId]
-	@GhiTangId INT
-AS  
+WHILE EXISTS(SELECT 1 FROM @V_TB_GHITANGCT)
 BEGIN
-SET NOCOUNT ON  
+	SELECT TOP 1 @V_ROWID = ROWID, @V_TAISANID = TAISANID, @V_NGAYBATDAUSUDUNG = NGAYBATDAUSUDUNG, @V_PHONGBANID = PHONGBANID, @V_NHANVIENID=NHANVIENID,@V_SOLUONG = SOLUONG FROM @V_TB_GHITANGCT
 
-	SELECT ct.GhiTangChiTietId,
-			ct.GhiTangId,
-			ct.TaiSanId,
-			ts.TenTaiSan,
-			ct.PhongBanId,
-			pb.TenPhongBan,
-			CONVERT(VARCHAR, ct.NgayBatDauSuDung,103)NgayBatDauSuDung,
-			ct.NhanVienId,
-			nv.TenNhanVien,
-			ct.SoLuong
-	FROM dbo.GhiTangChiTiet ct
-	LEFT JOIN dbo.PhongBan pb ON pb.PhongBanId = ct.PhongBanId
-	LEFT JOIN dbo.TaiSan ts ON ts.TaiSanId = ct.TaiSanId
-	LEFT JOIN dbo.NhanVien nv ON nv.NhanVienId = ct.NhanVienId
-	WHERE ct.GhiTangId = @GhiTangId
+	IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID)
+	BEGIN
+		UPDATE dbo.TheoDoi SET SLTang = SLTang + @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID
+	END
+	ELSE
+	BEGIN
+		INSERT dbo.TheoDoi
+				( 
+					TaiSanId ,			NgayTrangCap ,			NgayBatDauSuDung ,		PhongBanId ,			
+					NhanVienId ,		SLTon ,					SLTang ,				SLGiam
+				)
+		SELECT		@V_TAISANID			,@V_NGAYBATDAUSUDUNG	,@V_NGAYBATDAUSUDUNG	,@V_PHONGBANID
+					,@V_NHANVIENID		,0						,@V_SOLUONG				,0
+	END
 
-	
-SET NOCOUNT OFF
+	DELETE @V_TB_GHITANGCT WHERE ROWID = @V_ROWID
+	SELECT @V_ROWID = NULL,@V_TAISANID = NULL,@V_NGAYBATDAUSUDUNG = NULL,@V_PHONGBANID = NULL,@V_NHANVIENID = NULL,@V_SOLUONG = NULL
 END
-GO
-

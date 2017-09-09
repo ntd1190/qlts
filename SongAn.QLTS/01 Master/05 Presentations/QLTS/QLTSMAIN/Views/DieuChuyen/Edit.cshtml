@@ -68,7 +68,7 @@
                         <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>
                         <th class="text-center" style="min-width: 160px; vertical-align:middle">Bộ phận sử dụng</th>
-                        <th class="text-center" style="min-width: 140px; vertical-align:middle">Cán bộ tiếp nhận</th>
+                        <th class="text-center" style="min-width: 140px; vertical-align:middle">Cán bộ sử dụng</th>
                         @*<th class="text-center" style="min-width: 100px; vertical-align:middle">SL trước khi chuyển</th>*@
                         <th class="text-center" style="min-width: 191px; vertical-align:middle">Bộ phận điều chuyển đến<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 140px; vertical-align:middle">Cán bộ tiếp nhận<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
@@ -108,11 +108,11 @@
                             <span class="form-control text-left" ng-bind="DieuChuyenChiTiet.TenPhongBanSuDung" />
                         </td>
                         <td class="form-group form-group-sm">
-                            <span class="form-control text-left" ng-bind="DieuChuyenChiTiet.NhanVienSuDung" />
+                            <span class="form-control text-left" ng-bind="DieuChuyenChiTiet.TenNhanVienSuDung" />
                         </td>
                         <td class="text-right form-group form-group-sm" style="display:none">
                             <!--soluongton-->
-                            <span id="txtSoLuongTon{{$index}}" class="form-control text-right" ng-bind="DieuChuyenChiTiet.SoLuongTon" number-format />
+                            <span id="txtSoLuongTon{{$index}}" class="form-control text-right" ng-bind="DieuChuyenChiTiet.SoLuongTon" />
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- phong ban chuyen den-->

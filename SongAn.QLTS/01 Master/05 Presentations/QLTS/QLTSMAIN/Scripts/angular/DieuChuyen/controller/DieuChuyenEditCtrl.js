@@ -39,6 +39,7 @@
         vm.data = {};
         vm.data.phieuDieuChuyen = {};
         vm.data.listChiTiet = [];
+        vm.data.list1ChiTietGoc = [];
         vm.data.fullDateString = '';
         vm.data.linkUrl = '';
         vm.data.listQuyenTacVu = [];
@@ -107,17 +108,33 @@
 
             if (obj == null)
                 return;
-            if (InvalidateDataPhieuDieuChuyenChiTiet())
-                return;
-            if (checkSoLuongTon() != null)
-                return;
+            if (phieuDieuChuyenId <= 0) {
+                if (InvalidateDataPhieuDieuChuyenChiTiet())
+                    return;
+                if (checkSoLuongTon() != null)
+                    return;
+            }
             if (phieuDieuChuyenId > 0) {
+                compareList();
+                utility.AlertSuccess('U!');
                 update();
             }
             else {
-                insert();
+                utility.AlertSuccess('I!');
+                //insert();
             }
         };
+        function compareList() {
+            var _1  = vm.data.listChiTiet;
+            var _2 = vm.data.list1ChiTietGoc;
+
+            //for (var index1 in vm.data.listChiTiet) {
+            //    if (JSON.stringify(vm.data.listChiTiet[index1]) === JSON.stringify(vm.data.list1ChiTietGoc[index1])) {
+            //        utility.AlertError("G!");
+            //    }
+            //}
+        }
+
 
         vm.action.removePhieuDieuChuyen = function () {
 
@@ -232,6 +249,8 @@
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
             vm.data.listChiTiet[index.$index].PhongBanSuDung = data.PhongBanId;
             vm.data.listChiTiet[index.$index].TenPhongBanSuDung = data.TenPhongBan;
+            vm.data.listChiTiet[index.$index].NhanVienSuDung = data.NhanVienId;
+            vm.data.listChiTiet[index.$index].TenNhanVienSuDung = data.TenNhanVien;
             vm.data.listChiTiet[index.$index].SoLuongTon = data.SoLuongTon;
             
         }
@@ -316,6 +335,7 @@
             data.phieuDieuChuyen = angular.toJson(phieuDieuChuyen);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            return;
             DieuChuyenService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
@@ -377,7 +397,17 @@
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
-                }                               
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].NhanVienSuDung, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    return hasError;
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].NhanVienTiepNhan, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    return hasError;
+                }
                 else if (utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty')) {
                     if (typeof vm.data.listChiTiet[index].SoLuong === 'undefined') {
                         utility.AlertError("[<b>" + vm.data.listChiTiet[index].TenTaiSan + '</b>] Không đủ số lượng điều chuyển!');
@@ -453,10 +483,11 @@
                 .then(function success(result) {
                     console.log(result);
                     vm.data.listChiTiet = [];
+                    vm.data.list1ChiTietGoc = [];
 
                     if (result.data && result.data.data && result.data.data.length) {
                         vm.data.listChiTiet = result.data.data;
-
+                        vm.data.list1ChiTietGoc = angular.copy(result.data.data);
                     }
                 }, function error(result) {
                     console.log(result);
@@ -493,7 +524,8 @@
 
         function reset() {
             vm.data.phieuDieuChuyen = {};
-            vm.data.listChiTiet = "";
+            vm.data.listChiTiet = [];
+            vm.data.list1ChiTietGoc = [];
             vm.data.TaiSan = {};
         }
 

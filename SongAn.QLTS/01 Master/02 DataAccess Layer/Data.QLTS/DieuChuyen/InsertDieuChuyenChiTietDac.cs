@@ -16,7 +16,9 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
         public int DieuChuyenId { get; set; }
         public int TaiSanId { get; set; }
         public int PhongBanSuDung { get; set; }
+        public int NhanVienSuDung { get; set; }
         public int PhongBanChuyenDen { get; set; }
+        public int NhanVienTiepNhan { get; set; }
         public decimal SoLuong { get; set; }
         public string LyDo { get; set; }
 
@@ -78,7 +80,9 @@ namespace SongAn.QLTS.Data.QLNS.DieuChuyen
                 p.Add("DieuChuyenId", DieuChuyenId, DbType.Int32);
                 p.Add("TaiSanId", TaiSanId, DbType.Int32);
                 p.Add("PhongBanSuDung", PhongBanSuDung, DbType.Int32);
+                p.Add("NhanVienSuDung", NhanVienSuDung, DbType.Int32);
                 p.Add("PhongBanChuyenDen", PhongBanChuyenDen, DbType.Int32);
+                p.Add("NhanVienTiepNhan", NhanVienTiepNhan, DbType.Int32);
                 p.Add("SoLuong", SoLuong, DbType.Decimal);
                 p.Add("LyDo", LyDo, DbType.String);
 

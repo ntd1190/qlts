@@ -55,7 +55,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.DieuChuyen
                     bizLine.DieuChuyenId = Protector.Int(DieuChuyenId);
                     bizLine.TaiSanId = item.TaiSanId;
                     bizLine.PhongBanChuyenDen = item.PhongBanChuyenDen;
+                    bizLine.NhanVienTiepNhan = item.NhanVienTiepNhan;
                     bizLine.PhongBanSuDung = item.PhongBanSuDung;
+                    bizLine.NhanVienSuDung = item.NhanVienSuDung;
                     bizLine.LyDo = item.LyDo;
                     bizLine.SoLuong = item.SoLuong;
 
