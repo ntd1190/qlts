@@ -115,8 +115,13 @@
                     return;
             }
             if (phieuDieuChuyenId > 0) {
-                compareList();
-                utility.AlertSuccess('U!');
+                if (!compareList()) {
+                    if (InvalidateDataPhieuDieuChuyenChiTiet())
+                        return;
+                    if (checkSoLuongTon() != null)
+                        return;
+                }
+                
                 update();
             }
             else {
@@ -128,11 +133,25 @@
             var _1  = vm.data.listChiTiet;
             var _2 = vm.data.list1ChiTietGoc;
 
-            //for (var index1 in vm.data.listChiTiet) {
-            //    if (JSON.stringify(vm.data.listChiTiet[index1]) === JSON.stringify(vm.data.list1ChiTietGoc[index1])) {
-            //        utility.AlertError("G!");
-            //    }
-            //}
+            for (var index1 in vm.data.listChiTiet) {
+                if (typeof vm.data.list1ChiTietGoc[index1] === "undefined") {
+                    return false;
+                }
+                else {
+                    vm.data.list1ChiTietGoc[index1].TaiSanId = parseInt(vm.data.list1ChiTietGoc[index1].TaiSanId);
+                    vm.data.list1ChiTietGoc[index1].PhongBanSuDung = parseInt(vm.data.list1ChiTietGoc[index1].PhongBanSuDung);
+                    vm.data.list1ChiTietGoc[index1].NhanVienSuDung = parseInt(vm.data.list1ChiTietGoc[index1].NhanVienSuDung);
+                }
+                
+                if (angular.toJson(vm.data.listChiTiet[index1]) === angular.toJson(vm.data.list1ChiTietGoc[index1])) {
+                //if (JSON.stringify(vm.data.listChiTiet[index1]) === JSON.stringify(vm.data.list1ChiTietGoc[index1])) {
+                    
+                }
+                else {
+                    return false;
+                }
+            }
+            return true;
         }
 
 

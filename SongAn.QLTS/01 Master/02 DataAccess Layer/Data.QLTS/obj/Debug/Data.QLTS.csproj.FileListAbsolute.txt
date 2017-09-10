@@ -31,3 +31,6 @@ D:\WebProject\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\bin\Debug\Syst
 D:\WebProject\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\Data.QLTS.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\SongAn.QLDN.Data.QLNS.dll
 D:\WebProject\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\SongAn.QLDN.Data.QLNS.pdb
+D:\GitHub\qlts\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\Data.QLTS.csprojResolveAssemblyReference.cache
+D:\GitHub\qlts\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\SongAn.QLDN.Data.QLNS.dll
+D:\GitHub\qlts\SongAn.QLTS\01 Master\02 DataAccess Layer\Data.QLTS\obj\Debug\SongAn.QLDN.Data.QLNS.pdb
