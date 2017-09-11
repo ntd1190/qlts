@@ -82,6 +82,7 @@
     <Compile Include="Controllers\CoSoController.cs" />
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\TheoDoiController.cs" />
     <Compile Include="Models\DeNghiTrangCap\DeleteListDeNghiMuaSamByIdAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetListDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetListDeNghiTrangCapByProjectionAction.cs" />
@@ -193,11 +194,18 @@
     <Compile Include="Models\TaiSan\DeleteListTaiSanAction.cs" />
     <Compile Include="Models\TaiSan\GetTaiSanByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetTaiSanByMaAction.cs" />
+    <Compile Include="Models\TaiSan\GetThongTinKeKhai500ByIdAction.cs" />
+    <Compile Include="Models\TaiSan\GetThongTinKeKhaiNhaByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetThongTinKeKhaiOtoByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetThongTinKeKhaiDatByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetThongTinCongKhaiByIdAction.cs" />
     <Compile Include="Models\TaiSan\UpdateTaiSanAction.cs" />
     <Compile Include="Models\TaiSan\InsertTaiSanAction.cs" />
+    <Compile Include="Models\TheoDoi\DeleteListTheoDoiByIdAction.cs" />
+    <Compile Include="Models\TheoDoi\GetListTheoDoiByIdAction.cs" />
+    <Compile Include="Models\TheoDoi\GetListTheoDoiByProjectionAction.cs" />
+    <Compile Include="Models\TheoDoi\InsertTheoDoiAction.cs" />
+    <Compile Include="Models\TheoDoi\UpdateTheoDoiByIdAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

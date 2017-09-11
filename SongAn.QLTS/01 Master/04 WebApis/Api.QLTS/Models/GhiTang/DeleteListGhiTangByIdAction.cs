@@ -24,13 +24,23 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
             {
                 init();
                 validate();
-                var count = 0;
+                var count = 0;  // 0: xoa thanh cong, !=0 số phiếu ko xóa dc
 
                 var biz = new DeleteListGhiTangByIdBiz(context);
                 for (int i = 0; i < _listId.Count; i++)
                 {
                     biz.GhiTangId = Protector.Int(_listId[i]);
-                    var result = await biz.Execute();
+
+                    IEnumerable<dynamic> result = await biz.Execute();
+                    if (result.Count() > 0)
+                    {
+                        var obj = result.FirstOrDefault();
+                        if (Protector.Int(obj.ID) < 0)
+                        {
+                            count = count + 1;
+                        }
+                    }
+                            
                 }
                 return returnActionResult(HttpStatusCode.OK, count, null);
             }

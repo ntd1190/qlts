@@ -125,7 +125,8 @@
                     ghiTangId: data.ghiTangId,
                     phieuGhiTang: data.phieuGhiTang,
                     listChiTiet: data.listChiTiet,
-                    loginId: data.loginId
+                    loginId: data.loginId,
+                    compare: data.compare
                 })
             }
 

@@ -97,6 +97,18 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetThongTinKeKhai500ById([FromBody]GetThongTinKeKhai500ByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetThongTinKeKhaiNhaById([FromBody]GetThongTinKeKhaiNhaByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
         #endregion
     }
 }

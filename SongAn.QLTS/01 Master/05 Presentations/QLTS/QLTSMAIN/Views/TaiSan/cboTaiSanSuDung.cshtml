@@ -9,7 +9,8 @@
                 <b ><span class="text-danger" ng-bind-html="item.MaTaiSan | highlight: $select.search"></span></b>: <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenTaiSan | highlight: $select.search"></span></strong></b>
                 <br />
                 <b>- Số lượng:</b> <span ng-bind-html="item.SoLuongTon|number:'':'':4"></span>    <b style="margin-left: 27px;">- Nguyên giá:</b> <span ng-bind-html="item.NguyenGia|number:'':'':4"></span> đ<br />
-                <b>- Bộ Phận:</b>  <span ng-bind-html="item.TenPhongBan"></span> 
+                <b>- Bộ Phận:</b>  <span ng-bind-html="item.TenPhongBan"></span> <br />
+                <b>- Cán bộ QLý:</b>  <span ng-bind-html="item.TenNhanVien"></span> 
             </div>
         </ui-select-choices>
     </ui-select>

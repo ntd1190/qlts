@@ -63,6 +63,8 @@
     <Compile Include="Entity\GhiTang.cs" />
     <Compile Include="Entity\GhiTangChiTiet.cs" />
     <Compile Include="Entity\GhiGiam.cs" />
+    <Compile Include="Entity\ThongTinKeKhaiNha.cs" />
+    <Compile Include="Entity\ThongTinKeKhaiTren500.cs" />
     <Compile Include="Entity\ThongTinKeKhaiOto.cs" />
     <Compile Include="Entity\ThongTinKeKhaiDat.cs" />
     <Compile Include="Entity\ThongTinCongKhai.cs" />

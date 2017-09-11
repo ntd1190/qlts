@@ -108,8 +108,12 @@
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdBiz.cs" />
     <Compile Include="TaiSan\DeleteListTaiSanBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhai500ByIdBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiNhaByIdBiz.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiOtoByIdBiz.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiDatByIdBiz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhai500Biz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiNhaBiz.cs" />
     <Compile Include="TaiSan\InsertThongTinKeKhaiOtoBiz.cs" />
     <Compile Include="TaiSan\InsertThongTinKeKhaiDatBiz.cs" />
     <Compile Include="TaiSan\GetListTaiSanByCriteriaBiz.cs" />
@@ -119,6 +123,11 @@
     <Compile Include="TaiSan\InsertTaiSanBiz.cs" />
     <Compile Include="TaiSan\GetThongTinCongKhaiByIdBiz.cs" />
     <Compile Include="TaiSan\InsertThongTinCongKhaiBiz.cs" />
+    <Compile Include="TheoDoi\DeleteListTheoDoiByIdBiz.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByCriteriaBiz.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByIdBiz.cs" />
+    <Compile Include="TheoDoi\InsertTheoDoiBiz.cs" />
+    <Compile Include="TheoDoi\UpdateTheoDoiByIdBiz.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">

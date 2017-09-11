@@ -18,12 +18,14 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
         public string phieuGhiTang { get; set; }
         public string listChiTiet { get; set; }
         public string loginId { get; set; }
+        public string compare { get; set; }
 
         #region private
         private Entity.QLTS.Entity.GhiTang _phieuGhiTang;
         private List<Entity.QLTS.Entity.GhiTangChiTiet> _listChiTiet;
         private int _LoginId;
         private int _ghiTangId = 0;
+        private int _compare = 0;
         #endregion
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -48,20 +50,33 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
                 bizHeader.NoiDung = _phieuGhiTang.NoiDung;
                 bizHeader.CoSoId = _phieuGhiTang.CoSoId;
                 bizHeader.NhanVienId = _LoginId;
+                bizHeader.CompareLine = Protector.Int(compare);
 
-                var result = await bizHeader.Execute();
+                IEnumerable<dynamic> result = await bizHeader.Execute();
 
-                foreach (var item in _listChiTiet)
+                if (_compare == 0)
                 {
-                    bizLine = new InsertGhiTangChiTietBiz(context);
-                    bizLine.GhiTangId = Protector.Int(_ghiTangId);
-                    bizLine.TaiSanId = item.TaiSanId;
-                    bizLine.NgayBatDauSuDung = item.NgayBatDauSuDung;
-                    bizLine.PhongBanId = Protector.Int(item.PhongBanId);
-                    bizLine.NhanVienId = Protector.Int(item.NhanVienId);
-                    bizLine.SoLuong = item.SoLuong;
+                    if (result.Count() > 0)
+                    {
+                        var obj = result.FirstOrDefault();
 
-                    var result_line = await bizLine.Execute();
+                        if (Protector.Int(obj.ID) >= 0)
+                        {
+                            foreach (var item in _listChiTiet)
+                            {
+                                bizLine = new InsertGhiTangChiTietBiz(context);
+                                bizLine.GhiTangId = Protector.Int(_ghiTangId);
+                                bizLine.TaiSanId = item.TaiSanId;
+                                bizLine.NgayBatDauSuDung = item.NgayBatDauSuDung;
+                                bizLine.PhongBanId = Protector.Int(item.PhongBanId);
+                                bizLine.NhanVienId = Protector.Int(item.NhanVienId);
+                                bizLine.SoLuong = item.SoLuong;
+
+                                var result_line = await bizLine.Execute();
+                            }
+                        }
+
+                    }
                 }
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
@@ -102,6 +117,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
 
             _LoginId = Protector.Int(loginId, 0);
             _ghiTangId = Protector.Int(ghiTangId, 0);
+            _compare = Protector.Int(compare);
         }
 
         private void validate()

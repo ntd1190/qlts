@@ -20,6 +20,7 @@ namespace SongAn.QLTS.Data.QLNS.GhiTang
         public string NoiDung { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
+        public int CompareLine { get; set; }
 
         #endregion
 
@@ -83,6 +84,7 @@ namespace SongAn.QLTS.Data.QLNS.GhiTang
                 p.Add("NoiDung", NoiDung, DbType.String);
                 p.Add("CoSoId", CoSoId, DbType.Int32);
                 p.Add("NhanVienId", NhanVienId, DbType.Int32);
+                p.Add("CompareLine", CompareLine, DbType.Int32);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_GhiTang_UpdateGhiTang",

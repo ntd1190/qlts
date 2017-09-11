@@ -1,9 +1,9 @@
 ﻿
 @if (ViewBag.Html != null && (bool)ViewBag.Html == true)
 {
-    <ui-select ng-model="ctrl.data.PhuongThuc"  data-ng-disabled="disabled" on-select="ctrl.action.onSelected()" theme="bootstrap" id="{{ctrl.NameId}}">
+    <ui-select ng-model="ctrl.data.PhuongThuc"  data-ng-disabled="disabled" on-select="ctrl.action.onSelected($item, $model)" theme="bootstrap" id="{{ctrl.NameId}}">
         <ui-select-match placeholder="{{$select.selected.TenPhuongThuc || 'Chọn phương thức'}}">{{$select.selected.TenPhuongThuc}}</ui-select-match>
-        <ui-select-choices repeat="item in ctrl.data.PhuongThucListDisplay | filter: $select.search" position="down">
+        <ui-select-choices repeat="item in ctrl.data.PhuongThucListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
             <span ng-bind-html="item.TenPhuongThuc | highlight: $select.search"></span>
         </ui-select-choices>
     </ui-select>

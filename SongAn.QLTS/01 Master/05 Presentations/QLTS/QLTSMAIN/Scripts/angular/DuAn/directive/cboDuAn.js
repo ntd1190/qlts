@@ -76,14 +76,16 @@
 
         vm.action = {};
 
-        vm.action.onSelected = function () {
-            $scope.onSelected({ data: vm.data.DuAn });
-            $scope.value = vm.data.DuAn.DuAnId;
+        vm.action.onSelected = function (item, model) {
+            console.log(item);
+            $scope.onSelected({ data: item });
+            $scope.value = item.DuAnId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            delete vm.inputSearch;
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 

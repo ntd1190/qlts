@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, GhiTangService, TuyChonCotService) {
+    function controller($rootScope, $scope, GhiTangService, TuyChonCotService, utility) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -216,10 +216,26 @@
             var ids = GhiTangListSelected.join(',');
             if (ids.length > 0) {
                 GhiTangService.DeleteList(ids).then(function (success) {
+
+                    if (success.data.data > 0)
+                    {
+                        if (GhiTangListSelected.length > parseInt(success.data.data))
+                        {
+                            var sl = GhiTangListSelected.length - parseInt(success.data.data);
+                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                        }
+                        else
+                            utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
+                    }
+                    else
+                    {
+                        utility.AlertSuccess('Xóa thành công!');
+                    }
+
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
-                    alert('Xóa thành công!')
+                    
                 }, function (error) {
                     vm.data.isLoading = false;
                     alert(error.data.error.code + " : " + error.data.error.message);

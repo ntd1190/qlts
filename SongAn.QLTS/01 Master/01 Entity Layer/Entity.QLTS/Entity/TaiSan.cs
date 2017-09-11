@@ -28,7 +28,6 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual string NhanHieu { get; set; }
         public virtual int? DuAnId { get; set; }
         public virtual DateTime NgayMua { get; set; }
-        public virtual DateTime NgayGhiTang { get; set; }
         public virtual DateTime? NgayBDHaoMon { get; set; }
         public virtual int? SoNamSuDung { get; set; }
         public virtual decimal? TyLeHaoMon { get; set; }

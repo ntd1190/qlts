@@ -119,14 +119,23 @@
     <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdDac.cs" />
     <Compile Include="TaiSan\GetTaiSanByIdDac.cs" />
     <Compile Include="TaiSan\GetTaiSanByMaDac.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhai500ByIdDac.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiNhaByIdDac.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiOtoByIdDac.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiDatByIdDac.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhai500Dac.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiNhaDac.cs" />
     <Compile Include="TaiSan\InsertThongTinKeKhaiOtoDac.cs" />
     <Compile Include="TaiSan\InsertThongTinKeKhaiDatDac.cs" />
     <Compile Include="TaiSan\UpdateTaiSanDac.cs" />
     <Compile Include="TaiSan\InsertTaiSanDac.cs" />
     <Compile Include="TaiSan\GetThongTinCongKhaiByIdDac.cs" />
     <Compile Include="TaiSan\InsertThongTinCongKhaiDac.cs" />
+    <Compile Include="TheoDoi\DeleteListTheoDoiByIdDac.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByCriteriaDac.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
+    <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
+    <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
@@ -202,7 +211,11 @@
     <Content Include="TaiSan\Procedures\sp_TaiSan_UpdateTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_GetThongTinKeKhaiDatById.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_GetThongTinCongKhaiById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiNha_GetThongTinKeKhaiNhaById.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiOto_GetThongTinKeKhaiOtoById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhai500_InsertThongTinKeKhai500.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhai500_GetThongTinKeKhai500ById.sql" />
+    <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiNha_InsertThongTinKeKhaiNha.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiOto_InsertThongTinKeKhaiOto.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_InsertThongTinKeKhaiDat.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_InsertThongTinCongKhai.sql" />

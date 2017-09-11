@@ -39,6 +39,7 @@
         vm.data = {};
         vm.data.phieuGhiTang = {};
         vm.data.listChiTiet = [];
+        vm.data.listChiTietGoc = [];
         vm.data.fullDateString = '';
         vm.data.linkUrl = '';
         vm.data.listQuyenTacVu = [];
@@ -110,7 +111,8 @@
             if (InvalidateDataPhieuGhiTangChiTiet())
                 return;
             if (phieuGhiTangId > 0) {
-                update();
+                var cp = compareList();
+                update(cp);
             }
             else {
                 insert();
@@ -135,8 +137,21 @@
             var ids = GhiTangListSelected.join(',');
             if (ids.length > 0) {
                 GhiTangService.DeleteList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
-                    window.location.href = vm.data.linkUrl + 'ghitang/list';
+                   
+                    if (success.data.data > 0) {
+                        if (GhiTangListSelected.length > parseInt(success.data.data)) {
+                            var sl = GhiTangListSelected.length - parseInt(success.data.data);
+                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                        }                            
+                        else
+                            utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
+                    } else {
+                        utility.AlertSuccess('Xóa thành công!');
+                    }
+
+                    $timeout(function () {
+                        window.location.href = vm.data.linkUrl + 'ghitang/list';
+                    }, 600);
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
                 });
@@ -312,7 +327,7 @@
                 });
         }
 
-        function update() {
+        function update(compare) {
             utility.addloadding($('body'));
             vm.data.phieuGhiTang.CoSoId = userInfo.CoSoId;
 
@@ -322,10 +337,14 @@
             data.phieuGhiTang = angular.toJson(phieuGhiTang);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            data.compare = compare; // 1: update header
             GhiTangService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Cập nhật thành công");
+                    if (parseInt(result.data.data[0]["ID"]) < 0)
+                        utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!");
+                    else
+                        utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();
@@ -432,7 +451,7 @@
 
                     if (result.data && result.data.data && result.data.data.length) {
                         vm.data.listChiTiet = result.data.data;
-
+                        vm.data.listChiTietGoc = angular.copy(result.data.data);
                     }
                 }, function error(result) {
                     console.log(result);
@@ -471,6 +490,27 @@
             vm.data.phieuGhiTang = {};
             vm.data.listChiTiet = "";
             vm.data.TaiSan = {};
+        }
+
+        function compareList() {
+
+            for (var index1 in vm.data.listChiTiet) {
+                if (typeof vm.data.listChiTietGoc[index1] === "undefined") {
+                    return 0;
+                }
+                else {
+                    vm.data.listChiTietGoc[index1].TaiSanId = parseInt(vm.data.listChiTietGoc[index1].TaiSanId);
+                    vm.data.listChiTietGoc[index1].isError = false;
+                }
+
+                if (angular.toJson(vm.data.listChiTiet[index1]) === angular.toJson(vm.data.listChiTietGoc[index1])) {
+
+                }
+                else {
+                    return 0;
+                }
+            }
+            return 1;
         }
 
 

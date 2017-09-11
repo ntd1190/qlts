@@ -124,9 +124,8 @@
                 
                 update();
             }
-            else {
-                utility.AlertSuccess('I!');
-                //insert();
+            else {                
+                insert();
             }
         };
         function compareList() {
@@ -354,7 +353,7 @@
             data.phieuDieuChuyen = angular.toJson(phieuDieuChuyen);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
-            return;
+            //return;
             DieuChuyenService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
@@ -457,7 +456,9 @@
                     if (vm.data.listChiTiet[index1].TaiSanId == _taiSanId) {
                         _soLuongChuyen += vm.data.listChiTiet[index1].SoLuong * 1;
 
-                        if (vm.data.listChiTiet[index1].PhongBanSuDung == vm.data.listChiTiet[index1].PhongBanChuyenDen) {
+                        if (vm.data.listChiTiet[index1].PhongBanSuDung == vm.data.listChiTiet[index1].PhongBanChuyenDen && 
+                            vm.data.listChiTiet[index1].NhanVienSuDung == vm.data.listChiTiet[index1].NhanVienTiepNhan)
+                        {
                             vm.data.listChiTiet[index1].isError = true;
                             utility.AlertError("Bạn không thể điều chuyển đến phòng hiện tại đang sử dụng!");
                             return index1;

@@ -194,51 +194,12 @@
                 getListNguyenGia();
                 getTTCKById(TaiSanId);
                 getTTKK_DatById(TaiSanId);
+                getTTKK_NhaById(TaiSanId);
                 getTTKK_OtoById(TaiSanId);
+                getTTKK_500ById(TaiSanId);
             });
         }
 
-        function checkInputTaiSan(inputName) {
-            var has_error = false;
-            var prefix_name = 'TS_';
-            var first_error_name = '';
-            var name = '';
-
-            name = 'MaTaiSan';
-            if (!inputName || inputName == (prefix_name + name)) {
-                vm.error[prefix_name + name] = '';
-                if (utility.checkInValid(vm.data.TaiSan[name], 'isEmpty')) {
-                    first_error_name = has_error ? first_error_name : prefix_name + name;
-                    vm.error[prefix_name + name] = '.';
-                    has_error = true;
-                }
-            }
-            name = 'TenTaiSan';
-            if (!inputName || inputName == (prefix_name + name)) {
-                vm.error[prefix_name + name] = '';
-                if (utility.checkInValid(vm.data.TaiSan[name], 'isEmpty')) {
-                    first_error_name = has_error ? first_error_name : prefix_name + name;
-                    vm.error[prefix_name + name] = '.';
-                    has_error = true;
-                }
-            }
-            name = 'LoaiId';
-            if (!inputName || inputName == (prefix_name + name)) {
-                vm.error[prefix_name + name] = '';
-                if (!vm.data.TaiSan[name]) {
-                    first_error_name = has_error ? first_error_name : prefix_name + name;
-                    vm.error[prefix_name + name] = '.';
-                    has_error = true;
-                }
-            }
-
-            if (first_error_name) {
-                $('[data-name="' + first_error_name + '"] input').focus();
-                $('[data-name="' + first_error_name + '"]').focus();
-            }
-
-            return !has_error;
-        }
 
         function checkNguyenGiaList() {
             var hasError = false;
@@ -271,6 +232,64 @@
             return !hasError;
         }
 
+        function checkInputTaiSan(inputName) {
+            console.log('checkInputTaiSan');
+            var has_error = false;
+            var first_error_name = '';
+            var obj_name = 'TaiSan';
+            var prop_name = '';
+            var error_name = '';
+
+            prop_name = 'MaTaiSan';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'TenTaiSan';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'LoaiId';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'NuocSanXuatId';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                console.log(vm.data[obj_name][prop_name]);
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            if (first_error_name) {
+                $('[data-name="' + first_error_name + '"] input').focus();
+                $('[data-name="' + first_error_name + '"]').focus();
+            }
+
+            return !has_error;
+        }
+
         function checkInputTTCK(inputName) {
             var has_error = false;
             var first_error_name = '';
@@ -297,6 +316,10 @@
 
         function checkInputTTKK(inputName) {
             var checkInput = true;
+            if (!vm.data.TaiSan.LoaiKeKhai) {
+                return checkInput;
+            }
+
             switch (vm.data.TaiSan.LoaiKeKhai.toString()) {
                 case '1':
                     checkInput = checkInputTTKK_Dat(inputName);
@@ -403,6 +426,153 @@
             return !has_error;
         }
 
+        function checkInputTTKK_Nha(inputName) {
+            console.log('checkInputTTKK_Nha');
+            var has_error = false;
+            var first_error_name = '';
+            var obj_name = 'TTKK_Nha';
+            var prop_name = '';
+            var error_name = '';
+
+            prop_name = 'DiaChi';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'CapHang';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'SoTang';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'NamSuDung';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'DienTich';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'TongDienTichSan';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'LamTruSo';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'CoSoHDSuNghiep';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'NhaO';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'ChoThue';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'BoTrong';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'BiLanChiem';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+            prop_name = 'SuDungKhac';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            if (first_error_name) {
+                $('[data-name="' + first_error_name + '"] input').focus();
+                $('[data-name="' + first_error_name + '"]').focus();
+            }
+
+            return !has_error;
+        }
+
         function checkInputTTKK_Oto(inputName) {
             var has_error = false;
             var first_error_name = '';
@@ -472,6 +642,30 @@
             return !has_error;
         }
 
+        function checkInputTTKK_500(inputName) {
+            var has_error = false;
+            var first_error_name = '';
+            var prefix_name = 'TTKK_500_';
+            var name = '';
+
+            name = 'HienTrangSuDung';
+            if (!inputName || inputName == (prefix_name + name)) {
+                vm.error[prefix_name + name] = '';
+                if (!vm.data.TTKK_500[name]) {
+                    first_error_name = has_error ? first_error_name : prefix_name + name;
+                    vm.error[prefix_name + name] = '.';
+                    has_error = true;
+                }
+            }
+
+            if (first_error_name) {
+                $('[data-name="' + first_error_name + '"] input').focus();
+                $('[data-name="' + first_error_name + '"]').focus();
+            }
+
+            return !has_error;
+        }
+
         /*** API FUNCTION TÀI SẢN ***/
 
         // chuẩn bị dữ liệu gửi api
@@ -516,11 +710,11 @@
             prepareTaiSan(_taiSan);
             data.TaiSan = angular.toJson(_taiSan);
 
-            vm.data.TTCK.TaiSanId = _taiSan.TaiSanId;
             data.TTCK = angular.toJson(vm.data.TTCK);
-
-            vm.data.TTKK_Dat.TaiSanId = _taiSan.TaiSanId;
             data.TTKK_Dat = angular.toJson(vm.data.TTKK_Dat);
+            data.TTKK_Nha = angular.toJson(vm.data.TTKK_Nha);
+            data.TTKK_Oto = angular.toJson(vm.data.TTKK_Oto);
+            data.TTKK_500 = angular.toJson(vm.data.TTKK_500);
 
             data.NguyenGiaList = angular.toJson(vm.data.listNguyenGia);
             data.CoSoId = userInfo.CoSoId;
@@ -555,13 +749,17 @@
             vm.data.TTCK.TaiSanId = _taiSan.TaiSanId;
             data.TTCK = angular.toJson(vm.data.TTCK);
 
-            console.log(vm.data.TTKK_Dat);
-            console.log(_taiSan);
             vm.data.TTKK_Dat.TaiSanId = _taiSan.TaiSanId;
             data.TTKK_Dat = angular.toJson(vm.data.TTKK_Dat);
 
+            vm.data.TTKK_Nha.TaiSanId = _taiSan.TaiSanId;
+            data.TTKK_Nha = angular.toJson(vm.data.TTKK_Nha);
+
             vm.data.TTKK_Oto.TaiSanId = _taiSan.TaiSanId;
             data.TTKK_Oto = angular.toJson(vm.data.TTKK_Oto);
+
+            vm.data.TTKK_500.TaiSanId = _taiSan.TaiSanId;
+            data.TTKK_500 = angular.toJson(vm.data.TTKK_500);
 
             data.NguyenGiaList = angular.toJson(vm.data.listNguyenGia);
             data.CoSoId = userInfo.CoSoId;
@@ -586,6 +784,7 @@
         function getListNguyenGia() {
             var data = { TaiSanId: TaiSanId };
             TaiSanService.getListNguyenGiaByTaiSanId(data).then(function (success) {
+                console.log('TaiSanService.getListNguyenGiaByTaiSanId');
                 console.log(success);
                 delete vm.data.listNguyenGia;
                 vm.data.listNguyenGia = success.data.data;
@@ -597,6 +796,7 @@
         function getTTCKById(id) {
             var data = { TaiSanId: TaiSanId };
             TaiSanService.getTTCKById(data).then(function (success) {
+                console.log('getTTCKById');
                 console.log(success);
                 delete vm.data.TTCK;
                 vm.data.TTCK = success.data.data[0];
@@ -608,6 +808,7 @@
         function getTTKK_DatById(id) {
             var data = { TaiSanId: TaiSanId };
             TaiSanService.getTTKK_DatById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_DatById');
                 console.log(success);
                 delete vm.data.TTKK_Dat;
                 if (success.data.data && success.data.data.length) {
@@ -618,10 +819,24 @@
                 console.log(error);
             });
         }
+        function getTTKK_NhaById(id) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_NhaById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_NhaById');
+                console.log(success);
+                delete vm.data.TTKK_Nha;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Nha = success.data.data[0];
+                }
+                vm.data.TTKK_Nha = vm.data.TTKK_Nha || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
         function getTTKK_OtoById(id) {
             var data = { TaiSanId: TaiSanId };
             TaiSanService.getTTKK_OtoById(data).then(function (success) {
-                console.log('getTTKK_OtoById');
+                console.log('TaiSanService.getTTKK_OtoById');
                 console.log(success);
                 delete vm.data.TTKK_Oto;
                 if (success.data.data && success.data.data.length) {
@@ -629,6 +844,20 @@
                     vm.data.TTKK_Oto.LoaiXe = vm.data.TTKK_Oto.LoaiXe.toString();
                 }
                 vm.data.TTKK_Oto = vm.data.TTKK_Oto || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        function getTTKK_500ById(id) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_500ById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_500ById');
+                console.log(success);
+                delete vm.data.TTKK_500;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_500 = success.data.data[0];
+                }
+                vm.data.TTKK_500 = vm.data.TTKK_500 || {};
             }, function (error) {
                 console.log(error);
             });

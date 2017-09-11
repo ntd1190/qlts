@@ -23,7 +23,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
         public string TaiSan { get; set; }
         public string TTCK { get; set; }
         public string TTKK_Dat { get; set; }
+        public string TTKK_Nha { get; set; }
         public string TTKK_Oto { get; set; }
+        public string TTKK_500 { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         public string NguyenGiaList { get; set; }
@@ -32,7 +34,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
         private List<Entity.QLTS.Entity.NguyenGia> _NguyenGiaList { get; set; }
         private Entity.QLTS.Entity.ThongTinCongKhai _TTCK { get; set; }
         private Entity.QLTS.Entity.ThongTinKeKhaiDat _TTKK_Dat { get; set; }
+        private Entity.QLTS.Entity.ThongTinKeKhaiNha _TTKK_Nha { get; set; }
         private Entity.QLTS.Entity.ThongTinKeKhaiOto _TTKK_Oto { get; set; }
+        private Entity.QLTS.Entity.ThongTinKeKhaiTren500 _TTKK_500 { get; set; }
         private Entity.QLTS.Entity.TaiSan _TaiSan { get; set; }
         #endregion
         #region init & validate
@@ -47,8 +51,14 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
             TTKK_Dat = Protector.String(TTKK_Dat, "{}");
             _TTKK_Dat = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiDat>(TTKK_Dat);
 
+            TTKK_Nha = Protector.String(TTKK_Nha, "{}");
+            _TTKK_Nha = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiNha>(TTKK_Nha);
+
             TTKK_Oto = Protector.String(TTKK_Oto, "{}");
             _TTKK_Oto = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiOto>(TTKK_Oto);
+
+            TTKK_500 = Protector.String(TTKK_500, "{}");
+            _TTKK_500 = JsonConvert.DeserializeObject<Entity.QLTS.Entity.ThongTinKeKhaiTren500>(TTKK_500);
 
             NguyenGiaList = Protector.String(NguyenGiaList, "[]");
             _NguyenGiaList = JsonConvert.DeserializeObject<List<Entity.QLTS.Entity.NguyenGia>>(NguyenGiaList);
@@ -106,6 +116,21 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
                     }
                 }
 
+                /*** THÔNG TIN KÊ KHAI NHÀ  ***/
+                if (_TaiSan.LoaiKeKhai == 2)
+                {
+                    var bizTTKK_Nha = new InsertThongTinKeKhaiNhaBiz(context);
+                    bizTTKK_Nha.TTKK_Nha = _TTKK_Nha;
+                    bizTTKK_Nha.NhanVienId = NhanVienId;
+                    bizTTKK_Nha.CoSoId = CoSoId;
+                    result = await bizTTKK_Nha.Execute();
+
+                    if (string.IsNullOrEmpty(bizTTKK_Nha.MESSAGE) == false)
+                    {
+                        throw new BaseException(bizTTKK_Nha.MESSAGE.Split('|')[2]);
+                    }
+                }
+
                 /*** THÔNG TIN KÊ KHAI Ô TÔ ***/
                 if (_TaiSan.LoaiKeKhai == 3)
                 {
@@ -118,6 +143,21 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
                     if (string.IsNullOrEmpty(bizTTKK_Oto.MESSAGE) == false)
                     {
                         throw new BaseException(bizTTKK_Oto.MESSAGE.Split('|')[2]);
+                    }
+                }
+
+                /*** THÔNG TIN KÊ KHAI TÀI SẢN TRÊN 500 TRIỆU ***/
+                if (_TaiSan.LoaiKeKhai == 4)
+                {
+                    var bizTTKK_500 = new InsertThongTinKeKhai500Biz(context);
+                    bizTTKK_500.TTKK_500 = _TTKK_500;
+                    bizTTKK_500.NhanVienId = NhanVienId;
+                    bizTTKK_500.CoSoId = CoSoId;
+                    result = await bizTTKK_500.Execute();
+
+                    if (string.IsNullOrEmpty(bizTTKK_500.MESSAGE) == false)
+                    {
+                        throw new BaseException(bizTTKK_500.MESSAGE.Split('|')[2]);
                     }
                 }
 

@@ -302,6 +302,10 @@
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanSuDung.js" />
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSan.js" />
     <Content Include="Scripts\angular\TaiSan\service\TaiSanService.js" />
+    <Content Include="Scripts\angular\TheoDoi\controller\TheoDoiEditCtrl.js" />
+    <Content Include="Scripts\angular\TheoDoi\controller\TheoDoiFilterCtrl.js" />
+    <Content Include="Scripts\angular\TheoDoi\controller\TheoDoiListCtrl.js" />
+    <Content Include="Scripts\angular\TheoDoi\service\TheoDoiService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\controller\TuyChonCotListCtrl.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\service\TuyChonCotService.js" />
     <Content Include="Scripts\angular\VaiTro\controller\VaiTroEditCtrl.js" />
@@ -365,6 +369,7 @@
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
+    <Compile Include="Controllers\TheoDoiController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -440,6 +445,7 @@
     <Content Include="Views\DieuChuyen\List.cshtml" />
     <Content Include="Views\DieuChuyen\Edit.cshtml" />
     <Content Include="Views\PhongBan\ComboboxMuti.cshtml" />
+    <Content Include="Views\TheoDoi\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

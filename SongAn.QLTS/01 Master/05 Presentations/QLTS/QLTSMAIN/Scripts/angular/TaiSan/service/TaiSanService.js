@@ -18,7 +18,9 @@
             getTTCKById: 'GetThongTinCongKhaiById',
 
             getTTKK_DatById: 'GetThongTinKeKhaiDatById',
+            getTTKK_NhaById: 'GetThongTinKeKhaiNhaById',
             getTTKK_OtoById: 'GetThongTinKeKhaiOtoById',
+            getTTKK_500ById: 'GetThongTinKeKhai500ById',
         }
         var service = {};
         service.insert = function (data) {
@@ -163,8 +165,34 @@
             return $http(req);
         };
 
+        service.getTTKK_NhaById = function (data) {
+            var url = api.url + api.getTTKK_NhaById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+
         service.getTTKK_OtoById = function (data) {
             var url = api.url + api.getTTKK_OtoById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+
+        service.getTTKK_500ById = function (data) {
+            var url = api.url + api.getTTKK_500ById;
 
             var req = {
                 url: url,
