@@ -101,6 +101,15 @@
             });
         }
 
+        vm.action.getDataTaiSan = function (data) {
+            console.log(data);
+            //console.log(index);
+
+            vm.data.objTheoDoi.TaiSanId = data.TaiSanId;
+            vm.data.objTheoDoi.MaTaiSan = data.MaTaiSan;
+
+        }
+
         function save() {
             if (vm.data.objTheoDoi.TheoDoiId > 0) {
                 edit();
@@ -225,16 +234,19 @@
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
-                if (fromId == 'txtMa') {
-                    vm.validate.MaTheoDoi = utility.checkInValid(vm.data.objTheoDoi.MaTheoDoi, 'isCode');
-                    if (vm.validate.MaTheoDoi) {
-                        $("#txtMa").focus();
-                    } else $("#" + ToId).focus();
+                if (fromId == 'txtMaTaiSan') {
+                    vm.validate.MaTaiSan = utility.checkInValid(vm.data.objTheoDoi.MaTaiSan, 'isCode');
+                    if (vm.validate.MaTaiSan) {
+                        $("#txtMaTaiSan").focus();
+                    } else {
+                        vm.data.objTheoDoi.TempMaTaiSan = value;
+                        $("#" + ToId).focus();
+                    }
                 }
-                else if (fromId == 'txtTen') {
-                    vm.validate.TenTheoDoi = utility.checkInValid(vm.data.objTheoDoi.TenTheoDoi, 'isEmpty');
-                    if (vm.validate.TenTheoDoi) {
-                        $("#txtTen").focus();
+                else if (fromId == 'txtngaybatdausudung') {
+                    vm.validate.NgayBatDauSuDung = utility.checkInValid(vm.data.objTheoDoi.NgayBatDauSuDung, 'isEmpty');
+                    if (vm.validate.NgayBatDauSuDung) {
+                        $("#txtngaybatdausudung").focus();
                     } else {
                         $("#" + ToId).find('input').focus();
                     }

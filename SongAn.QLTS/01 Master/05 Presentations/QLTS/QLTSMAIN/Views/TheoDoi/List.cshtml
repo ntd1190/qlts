@@ -131,34 +131,35 @@
     <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
         <form class="form-horizontal">
             
-            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TaiSanId)?'has-error':''">
+            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.MaTaiSan)?'has-error':''">
                 <label class="control-label col-sm-3">Mã tài sản</label>
                 <div class="col-sm-9">
-                    <input type="text" id="txtMaTaiSan" class="form-control text-left" ng-model="ctrl.data.objTheoDoi.MaTaiSan" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.MaTaiSan,'txtMaTaiSan','cbxTaiSan',$event)" />
+                    <input type="text" id="txtMaTaiSan" class="form-control text-left" ng-model="ctrl.data.objTheoDoi.MaTaiSan" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.MaTaiSan,'txtMaTaiSan','txtngayghitang',$event)" />
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TaiSanId)?'has-error':''">
                 <label class="control-label col-sm-3">Tài sản</label>
                 <div class="col-sm-9">
-                    <cbo-tai-san id="cbxTaiSan" data-value="ctrl.data.objTheoDoi.TaiSanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"></cbo-tai-san>
+                    <cbo-tai-san id="cbxTaiSan" data-value="ctrl.data.objTheoDoi.TaiSanId" ma-tai-san="ctrl.data.objTheoDoi.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"
+                                 on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san>
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NgayGhiTang)?'has-error':''">
                 <label class="control-label col-sm-3">Ngày ghi tăng</label>
                 <div class="col-sm-9">
-                    <input type="text" id="ngayghitang" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayGhiTang" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.NgayGhiTang,'txtMaTaiSan','cbxTaiSan',$event)" />
+                    <input type="text" id="txtngayghitang" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayGhiTang" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.NgayGhiTang,'txtngayghitang','txtngaytrangcap',$event)" />
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NgayTrangCap)?'has-error':''">
                 <label class="control-label col-sm-3">Ngày trang cấp</label>
                 <div class="col-sm-9">
-                    <input type="text" id="ngaytrangcap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayTrangCap" />
+                    <input type="text" id="txtngaytrangcap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayTrangCap" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.NgayTrangCap,'txtngaytrangcap','txtngaybatdausudung',$event)"/>
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NgayBatDauSuDung)?'has-error':''">
                 <label class="control-label col-sm-3">Ngày BĐ sử dụng</label>
                 <div class="col-sm-9">
-                    <input type="text" id="ngaybatdausudung" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayBatDauSuDung" />
+                    <input type="text" id="txtngaybatdausudung" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTheoDoi.NgayBatDauSuDung" ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.NgayBatDauSuDung,'txtngaybatdausudung','cbxPhongBan',$event)"/>
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.PhongBanId)?'has-error':''">
@@ -177,7 +178,7 @@
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SLTon)?'has-error':''">
                 <label class="control-label col-sm-3">Số lượng</label>
                 <div class="col-sm-9">
-                    <input type="text" id="txtSLTon" class="form-control text-right" ng-model="ctrl.data.objTheoDoi.SLTon" number-format ng-keypress="ctrl.action.keyPress(GhiTangChiTiet.SoLuong,'txtSoLuong'+$index,'txtMaTaiSan'+$index,$index,$event)" />
+                    <input type="text" id="txtSLTon" class="form-control text-right" ng-model="ctrl.data.objTheoDoi.SLTon" number-format />
                 </div>
             </div>
         </form>
