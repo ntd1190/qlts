@@ -75,7 +75,6 @@
                         <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 160px; vertical-align:middle">Bộ phận sử dụng</th>
                         <th class="text-center" style="min-width: 60px; vertical-align:middle">ĐVT</th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">SL trước ghi giảm</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">SL ghi giảm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 200px; vertical-align:middle">Phương án xử lý<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                     </tr>
@@ -111,13 +110,9 @@
                             <!-- Don vi Tinh-->
                             <span class="form-control text-left" ng-bind="GhiGiamChiTiet.DonViTinh"></span>
                         </td>
-                        <td class="form-group form-group-sm">
-                            <!--So luong truoc-->
-                            <span class="form-control text-left" ng-bind="GhiGiamChiTiet.SoLuongTon"></span>
-                        </td>
                         <td class="text-right form-group form-group-sm">
                             <!--soluong-->
-                            <input type="text" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="GhiGiamChiTiet.SoLuong" number-format ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.SoLuong,'txtSoLuong'+$index,'txtPhuongThuc'+$index,$index,$event)" />
+                            <input type="number" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="GhiGiamChiTiet.SoLuong" min="1" max="{{GhiGiamChiTiet.SoLuongTon}}" ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.SoLuong,'txtSoLuong'+$index,'txtPhuongThuc'+$index,$index,$event)" />
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <select class="form-control" id="txtPhuongThuc{{$index}}" ng-model="GhiGiamChiTiet.XuLyId" style="padding:0px 10px" data-placeholder="Chọn phương thức">

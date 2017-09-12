@@ -52,17 +52,17 @@
        
         $scope.$watch('value', function (newValue, oldValue) {
             console.log(userInfo);
-            if (newValue == 0) {
+            if (newValue == 0 || newValue == "" || newValue === "undefined") {
                 vm.data.NhanVien = {};
             } else {
 
                 getPage().then(function () {
-                    console.log('_________________________________________________');
+                    console.log('____________________NHANVIEN_____________________________');
                     console.log(userInfo);
                     console.log(vm.data.NhanVienListDisplay);
                     if (!vm.data.NhanVienListDisplay && vm.data.NhanVienListDisplay.length == 0) { return; }
                     for (var index in vm.data.NhanVienListDisplay) {
-                        if (vm.data.NhanVienListDisplay[index].NhanVienId == newValue) {
+                        if (vm.data.NhanVienListDisplay[index].NhanVienId.toString() == newValue.toString()) {
                             vm.data.NhanVien = vm.data.NhanVienListDisplay[index];
                             return;
                         }
@@ -89,7 +89,7 @@
                     }
                 });
 
-            }, 500);
+            }, 100);
 
         }
 
@@ -125,19 +125,32 @@
                         vm.status.isLoading = false;
                         console.log(success);
                         if (success.data.data) {
-                            console.log('aaaaaa');
+                            console.log('GET PAGE CBX NHAN VIEN');
                             console.log(vm.data.NhanVien);
 
-                            if (vm.data.NhanVien){
-                                if (vm.data.NhanVien.PhongBanId + '' != $scope.phongbanid) {
+                            if (vm.data.NhanVien) {
+                                if (JSON.stringify(vm.data.NhanVien) === '{}') {
                                     vm.data.NhanVien = {};
-                                    $scope.value = '';
+                                    //$scope.value = '';
+                                }
+                                else{
+                                    if (vm.data.NhanVien.PhongBanId.toString() != $scope.phongbanid.toString()) {
+                                        vm.data.NhanVien = {};
+                                        //$scope.value = '';
+                                    }
                                 }
                             }
                             for (var i = 0; i < success.data.data.length;) {
-                                if (success.data.data[i].PhongBanId + '' != $scope.phongbanid) {
-                                    success.data.data.splice(i, 1);
-                                } else { i++;}
+                                if ($scope.phongbanid === 'undefined') {
+
+                                }
+                                else
+                                {
+                                    if (success.data.data[i].PhongBanId.toString() != $scope.phongbanid.toString()) {
+                                        success.data.data.splice(i, 1);
+                                    } else { i++; }
+                                }
+                                
                             }
                             vm.data.NhanVienListDisplay = success.data.data;
                             //vm.data.NhanVienListDisplay.unshift({ TenNhanVien: '.' });

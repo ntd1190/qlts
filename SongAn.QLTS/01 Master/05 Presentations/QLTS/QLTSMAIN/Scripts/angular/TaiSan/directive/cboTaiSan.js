@@ -55,7 +55,7 @@
         /*** EVENT FUNCTION ***/
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            if (!newValue) { vm.data.TaiSan = {}; return; }
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.TaiSanId = newValue;

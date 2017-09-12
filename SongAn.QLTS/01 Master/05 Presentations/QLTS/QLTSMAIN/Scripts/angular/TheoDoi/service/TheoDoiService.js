@@ -9,10 +9,10 @@
         var api = {
             url: API_BASE + 'Api.QLTS/TheoDoi/',
             insert: 'InsertTheoDoi',
-            update: 'UpdateTheoDoi',
+            update: 'UpdateTheoDoiById',
             GetPage: 'GetListTheoDoiByProjection',
-            GetById: 'GetTheoDoiById',
-            removeList: 'DeleteListTheoDoi',
+            GetById: 'GetListTheoDoiById',
+            removeList: 'DeleteListTheoDoiById',
         }
 
         var service = {
@@ -74,29 +74,57 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    TaiSanId: obj.TaiSanId,
+                    NgayGhiTang: obj.NgayGhiTang,
+                    NgayTrangCap: obj.NgayTrangCap,
+                    NgayBatDauSuDung: obj.NgayBatDauSuDung,
+                    PhongBanId: obj.PhongBanId,
+                    NhanVienId: obj.NhanVienId,
+                    SLTon: obj.SLTon,
+                    SLTang: 0,
+                    SLGiam: 0
+
+                })
             }
             return $http(req);
         }
         
-        function update(obj) {
+        function update(obj, obj_old) {
             var url = api.url + api.update;
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    TaiSanId: obj.TaiSanId,
+                    TaiSanId_Old: obj_old.TaiSanId,
+                    NgayGhiTang: obj.NgayGhiTang,
+                    NgayTrangCap: obj.NgayTrangCap,
+                    NgayBatDauSuDung: obj.NgayBatDauSuDung,
+                    PhongBanId: obj.PhongBanId,
+                    PhongBanId_Old: obj_old.PhongBanId,
+                    NhanVienId: obj.NhanVienId,
+                    NhanVienId_Old: obj_old.NhanVienId,
+                    SLTon: obj.SLTon,
+                    SLTang: 0,
+                    SLGiam: 0
+                })
             }
             return $http(req);
         }
 
-        function GetById(id) {
+        function GetById(data) {
             var url = api.url + api.GetById;
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({ TheoDoiid: id })
+                data: $.param({
+                    TaiSanId: data.taiSanId,
+                    PhongBanId : data.phongBanId,
+                    NhanVienId : data.nhanVienId
+                })
             }
             return $http(req);
         };

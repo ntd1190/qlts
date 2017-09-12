@@ -19,6 +19,8 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual int GhiGiamChiTietId { get; set; }
         public virtual int GhiGiamId { get; set; }
         public virtual int TaiSanId { get; set; }
+        public virtual int PhongBanId { get; set; }
+        public virtual int NhanVienId { get; set; }
         public virtual int XuLyId { get; set; }
         public virtual int SoLuong { get; set; }
     }

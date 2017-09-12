@@ -16,6 +16,7 @@
         vm.data.TTKK_500 = {}; // Thông tin kê khai tài sản trên 500 triệu
 
         vm.data.listNguyenGia = [];
+        vm.data.NguyenGia = 0;
 
         /*** ACTION FUNCTION ***/
 
@@ -27,14 +28,18 @@
         }
 
         vm.action.addNguyenGia = function () {
+            if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
             vm.data.listNguyenGia.push({ GiaTri: 0 });
         }
-
+        vm.action.checkQuyenTacVu = checkQuyenUI;
         vm.action.removeNguyenGia = function (index) {
+            if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
             vm.data.listNguyenGia.splice(index, 1);
         }
 
         vm.action.save = function () {
+            if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
+
             var has_error = false;
 
             if (checkInputTaiSan() == false) {
@@ -82,6 +87,13 @@
                 insert();
             }
         }
+
+        vm.action.removeList = function () {
+            if (checkQuyenUI('D') == false) { return; }
+            if (confirm('Bạn có muốn xóa tài sản ?')) {
+                removeList();
+            }
+        };
 
         vm.action.keyPressTaiSan = function (event) {
             if (event.keyCode != 13) { return; }
@@ -133,6 +145,8 @@
         function activate() { };
 
         vm.onInitView = function (config) {
+            console.log('vm.onInitView');
+            console.log(config);
             if (config && config.linkUrl) {
                 linkUrl = config.linkUrl;
             }
@@ -141,11 +155,11 @@
             }
             if (config && config.TaiSanId) {
                 TaiSanId = config.TaiSanId;
-                loadData();
             }
             if (config && config.userInfo) {
                 userInfo = config.userInfo;
             }
+            loadData();
         };
 
         /***EVENT FUNCTION ***/
@@ -169,7 +183,35 @@
                 vm.data.TTKK_Dat.DienTich += vm.data.TTKK_Dat.SuDungKhac * 1 || 0;
             });
 
+        $scope.$watch(`
+            ctrl.data.NguyenGia+
+            ctrl.data.TaiSan.SoNamSuDung+
+            ctrl.data.TaiSan.NgayBDHaoMon+
+            ctrl.data.TaiSan.NgayMua`
+            , function () {
+                tinhHaoMon();
+                tinhGTConLai();
+            })
+
         /*** BIZ FUNCTION ***/
+
+        function tinhHaoMon() {
+            vm.data.TaiSan.TyLeHaoMon = 100 / vm.data.TaiSan.SoNamSuDung;
+            vm.data.TaiSan.HaoMonNam = vm.data.NguyenGia / vm.data.TaiSan.SoNamSuDung;
+
+            vm.data.TaiSan.SoNamSDConLai = (moment().year() - moment(vm.data.TaiSan.NgayBDHaoMon, 'DD/MM/YYYY').year());
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai;
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSDConLai < 0 ? 0 : vm.data.TaiSan.SoNamSDConLai;
+
+            vm.data.TaiSan.HaoMonLuyKe = (vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai) * vm.data.TaiSan.HaoMonNam;
+
+            vm.data.TaiSan.NgayKTHaoMon = '31/12/' + moment(vm.data.TaiSan.NgayBDHaoMon, 'DD/MM/YYYY').add(vm.data.TaiSan.SoNamSuDung, 'year').year();
+        }
+
+        function tinhGTConLai() {
+            vm.data.TaiSan.NamTheoDoi = moment(vm.data.TaiSan.NgayMua, 'DD/MM/YYYY').year();
+            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
+        }
 
         function checkQuyenUI(quyen) {
             var listQuyenTacVu;
@@ -191,12 +233,16 @@
 
         function loadData() {
             getById(TaiSanId).then(function success() {
-                getListNguyenGia();
-                getTTCKById(TaiSanId);
-                getTTKK_DatById(TaiSanId);
-                getTTKK_NhaById(TaiSanId);
-                getTTKK_OtoById(TaiSanId);
-                getTTKK_500ById(TaiSanId);
+                $q.all([getListNguyenGia()
+                    , getTTCKById(TaiSanId)
+                    , getTTKK_DatById(TaiSanId)
+                    , getTTKK_NhaById(TaiSanId)
+                    , getTTKK_OtoById(TaiSanId)
+                    , getTTKK_500ById(TaiSanId)
+                ]).then(function () {
+                    tinhHaoMon();
+                    tinhGTConLai();
+                });
             });
         }
 
@@ -685,21 +731,49 @@
             object.LoaiKeKhai = object.LoaiKeKhai.toString() || '0';
         }
 
-        function getById(id) {
+        function getById(TaiSanId) {
             console.log('getById');
-            var data = { TaiSanId: TaiSanId };
-            return $q(function (resolve, reject) {
-                TaiSanService.getById(data).then(function (success) {
-                    console.log(success);
-                    delete vm.data.TaiSan;
-                    vm.data.TaiSan = success.data.data[0];
-                    fixTaiSan(vm.data.TaiSan);
-                    return resolve(success);
-                }, function (error) {
-                    console.log(error);
-                    return reject(error);
-                });
+            var deferred = $q.defer();
+            var data = {};
+            data.TaiSanId = TaiSanId;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            TaiSanService.getById(data).then(function (success) {
+                console.log(success);
+                delete vm.data.TaiSan;
+                vm.data.TaiSan = success.data.data[0];
+                fixTaiSan(vm.data.TaiSan);
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
             });
+
+            return deferred.promise;
+        }
+
+        function removeList() {
+            var data = {};
+            data.TaiSanIds = vm.data.TaiSan.TaiSanId;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            TaiSanService.removeList(data).then(function (success) {
+                console.log(success);
+                utility.AlertSuccess('Xóa tài sản thành công');
+                $timeout(function () {
+                    window.location = linkUrl + 'list/';
+                }, 2000);
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Không thể xóa tài sản');
+                }
+            });
+
         }
 
         function insert() {
@@ -782,15 +856,20 @@
         }
 
         function getListNguyenGia() {
+            var deferred = $q.defer();
+
             var data = { TaiSanId: TaiSanId };
             TaiSanService.getListNguyenGiaByTaiSanId(data).then(function (success) {
                 console.log('TaiSanService.getListNguyenGiaByTaiSanId');
                 console.log(success);
                 delete vm.data.listNguyenGia;
                 vm.data.listNguyenGia = success.data.data;
+                return deferred.resolve(success.data.data);
             }, function (error) {
                 console.log(error);
+                return deferred.reject(error);
             });
+            return deferred.promise;
         }
 
         function getTTCKById(id) {

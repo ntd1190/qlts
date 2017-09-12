@@ -21,8 +21,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 
         #region public
         public string Search { get; set; }
-        public int TaiSanId { get; set; }
+        public string TaiSanId { get; set; }
         public string MaTaiSan { get; set; }
+        public string LoaiKeKhai { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         #endregion
@@ -45,6 +46,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
                 biz.Search = Search;
                 biz.TaiSanId = TaiSanId;
                 biz.MaTaiSan = MaTaiSan;
+                biz.LoaiKeKhai = LoaiKeKhai;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
 

@@ -6,6 +6,9 @@ using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Helper;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Linq;
+using System.Globalization;
+using SongAn.QLTS.Biz.QLTS.GhiGiamChiTiet;
 
 namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
 {
@@ -16,6 +19,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
         public string GhiGiamchitiet { get; set; }
         public string NguoiTao { get; set; }
         public string CoSoId { get; set; }
+        public string Check { get; set; }
         #endregion
         #region private
         private Entity.QLTS.Entity.GhiGiam _GhiGiam;
@@ -25,30 +29,50 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
         {
             try
             {
+
+
                 dynamic result = new System.Dynamic.ExpandoObject();
                 init();
+
                 var repo = new GhiGiamRepository(context);
                 var check = await repo.UpdatePartial(_GhiGiam,
                      nameof(_GhiGiam.SoChungTu),
                      nameof(_GhiGiam.NgayChungTu),
-                     nameof(_GhiGiam.NgayGhiTang),
+                     nameof(_GhiGiam.NgayGhiGiam),
                      nameof(_GhiGiam.PhongBanId),
                      nameof(_GhiGiam.NoiDung)
                      );
-                if (!String.IsNullOrEmpty(check.GhiGiamId.ToString()))
+                if (Check == "1")
                 {
-                    Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietByIdBiz bizct = new Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietByIdBiz(context);
-                    bizct.GhiGiamId = check.GhiGiamId.ToString();
-                    await bizct.Execute();
-                    foreach (var item in _listChiTiet)
+                    if (!String.IsNullOrEmpty(check.GhiGiamId.ToString()))
                     {
-                        item.GhiGiamId = check.GhiGiamId;
-                        GhiGiamChiTietRepository repoct = new GhiGiamChiTietRepository(context);
-                        await repoct.Insert(item);
+                        GetGhiGiamChiTietByGhiGiamIdBiz biz = new GetGhiGiamChiTietByGhiGiamIdBiz(context);
+                        biz.GhiGiamId = check.GhiGiamId.ToString();
+                        IEnumerable<dynamic> GhiGiamChiTiet = await biz.Execute();
+                        foreach (var item in GhiGiamChiTiet)
+                        {
+                            Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietBiz bizct = new Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietBiz(context);
+                            bizct.GhiGiamChiTietId = item.GhiGiamChiTietId;
+                            bizct.TaiSanId = item.TaiSanId;
+                            bizct.PhongBanId = item.PhongBanId;
+                            bizct.NhanVienId = item.NhanVienId;
+                            bizct.SoLuong = item.SoLuong;
+                            await bizct.Execute();
+                        }
+                        foreach (var item in _listChiTiet)
+                        {
+                            Biz.QLTS.GhiGiamChiTiet.UpdateGhiGiamChiTietBiz bizct = new Biz.QLTS.GhiGiamChiTiet.UpdateGhiGiamChiTietBiz(context);
+                            bizct.GhiGiamId = check.GhiGiamId;
+                            bizct.TaiSanId = item.TaiSanId;
+                            bizct.PhongBanId = item.PhongBanId;
+                            bizct.NhanVienId = item.NhanVienId;
+                            bizct.XuLyId = item.XuLyId;
+                            bizct.SoLuong = item.SoLuong;
+                            await bizct.Execute();
+                        }
                     }
-
-
                 }
+
                 result.data = _GhiGiam;
                 return returnActionResult(HttpStatusCode.OK, result.data, null);
             }
@@ -63,6 +87,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
         }
         private void validate()
         {
+
             var _id = Protector.Int(_GhiGiam.GhiGiamId);
 
             if (_id < 1)
@@ -75,7 +100,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
         {
             GhiGiam = Protector.String(GhiGiam, "{}");
             var __GhiGiam = JsonConvert.DeserializeObject<dynamic>(GhiGiam);
-
+            __GhiGiam.NgayChungTu = DateTime.ParseExact(__GhiGiam.NgayChungTu.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            __GhiGiam.NgayGhiGiam = DateTime.ParseExact(__GhiGiam.NgayGhiGiam.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
             GhiGiam = JsonConvert.SerializeObject(__GhiGiam);
             _GhiGiam = JsonConvert.DeserializeObject<Entity.QLTS.Entity.GhiGiam>(GhiGiam);
 

@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+<div ng-controller="ThayDoiThongTinKeKhaiEditCtrl as ctrl">
+    <cbo-tai-san-ke-khai data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"></cbo-tai-san-ke-khai>
+    <input type="number" max="7" min="5" input-number ng-model="ctrl.data.number" />
+</div>
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSanKeKhai.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    <script src="~/Scripts/angular/ThayDoiThongTinTaiSan/controller/ThayDoiThongTinKeKhaiEditCtrl.js"></script>
+}

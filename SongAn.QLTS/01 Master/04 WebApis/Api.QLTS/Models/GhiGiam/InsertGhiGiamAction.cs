@@ -38,8 +38,14 @@ namespace  SongAn.QLTS.Api.QLTS.Models.GhiGiam
                     foreach(var item in _listChiTiet)
                     {
                         item.GhiGiamId = check.GhiGiamId;
-                        GhiGiamChiTietRepository repoct = new GhiGiamChiTietRepository(context);
-                        await repoct.Insert(item);
+                        Biz.QLTS.GhiGiamChiTiet.InsertGiamChiTietBiz bizct = new Biz.QLTS.GhiGiamChiTiet.InsertGiamChiTietBiz(context);
+                        bizct.GhiGiamId = item.GhiGiamId;
+                        bizct.TaiSanId = item.TaiSanId;
+                        bizct.PhongBanId = item.PhongBanId;
+                        bizct.NhanVienId = item.NhanVienId;
+                        bizct.XuLyId = item.XuLyId;
+                        bizct.SoLuong = item.SoLuong;
+                        await bizct.Execute();
                     }
                 }
 

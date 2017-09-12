@@ -25,7 +25,7 @@
         <div class="panel-body">
             <div class="btn-group btn-group-sm">
                 <a class="btn btn-primary" ng-if="ctrl.action.checkQuyenTacVu('N')"><i class="fa fa-fw fa-plus"></i>Mới</a>
-                <a class="btn btn-primary" ng-if="ctrl.data.TaiSan.TaiSanId && ctrl.action.checkQuyenTacVu('M')" href="~/taisan/edit/{{ctrl.data.TaiSan.TaiSanId}}"><i class="fa fa-fw fa-edit"></i>Sửa</a>
+                <a class="btn btn-primary" ng-if="ctrl.data.TaiSan.TaiSanId && ctrl.action.checkQuyenTacVu('M')" href="~/thaydoithongtintaisan/edit/{{ctrl.data.TaiSan.TaiSanId}}"><i class="fa fa-fw fa-edit"></i>Thay đổi thông tin</a>
                 <a class="btn btn-danger" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()"><i class="fa fa-fw fa-remove"></i>Xóa chọn</a>
             </div>
         </div>
@@ -52,7 +52,7 @@
                             <i class="fa fa-fw fa-spinner fa-spin"></i>
                         </td>
                     </tr>
-                    <tr ng-repeat="row in ctrl.data.ListTaiSan" ng-click="ctrl.action.TaiSanInfo($index)" ng-class="row.isView?'info':''">
+                    <tr ng-repeat="row in ctrl.data.ListTaiSan" ng-click="ctrl.action.TaiSanInfo(row)" ng-class="row.isView?'info':''">
                         <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
                             <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                         </td>
@@ -74,7 +74,7 @@
         </div>
         <div class="panel-body">
             <div class="row">
-                <div class="col-sm-4">
+                <div class="col-sm-6">
                     <div class="row">
                         <h4 class="col-sm-12">Thông tin chung</h4>
                     </div>
@@ -90,17 +90,116 @@
                         <label class="control-label col-sm-4">Ngày mua</label>
                         <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.NgayMua|date:'dd/MM/yyyy'"></span>
                     </div>
-                </div>
-                <div class="col-sm-4">
                     <div class="row">
-                        <h4 class="col-sm-12">Thông tin kê khai</h4>
+                        <label class="control-label col-sm-4">Nguyên giá</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.NguyenGia|number"></span>
                     </div>
                     <div class="row">
-                        <label class="control-label col-sm-4">Mã tài sản</label>
-                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.TenTaiSan"></span>
+                        <label class="control-label col-sm-4">Giá trị còn lại</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.GiaTriConLai|number"></span>
                     </div>
-                </div>
-            </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Hao mòn năm</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonNam|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">HM lũy kế</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonLuyKe|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Số năm SD</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSuDung|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Số năm SD còn lại</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSDConLai|number"></span>
+                    </div>
+               </div>
+                <!-- Thông tin kê khai đất -->
+                <div class="col-sm-6" ng-if="ctrl.data.TaiSan.LoaiKeKhai==1">
+                    <div class="row">
+                        <h4 class="col-sm-12">Thông tin kê khai đất</h4>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Địa chỉ</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Dat.DiaChi"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Diện tích</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Dat.DienTich|number"></span>
+                    </div>
+                </div><!--/ Thông tin kê khai đất -->
+                <!-- Thông tin kê khai nhà -->
+                <div class="col-sm-6" ng-if="ctrl.data.TaiSan.LoaiKeKhai==2">
+                    <div class="row">
+                        <h4 class="col-sm-12">Thông tin kê khai nhà</h4>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Địa chỉ</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.DiaChi"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Diện tích</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.DienTich"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Diện tích sàn</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.TongDienTichSan"></span>
+                    </div>
+                </div><!--/ Thông tin kê khai nhà -->
+                <!-- Thông tin kê khai ô tô -->
+                <div class="col-sm-6" ng-if="ctrl.data.TaiSan.LoaiKeKhai==3">
+                    <div class="row">
+                        <h4 class="col-sm-12">Thông tin kê khai ô tô</h4>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Nhãn hiệu</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.NhanHieu"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Biển kiểm soát</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.BienKiemSoat"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Công suất xe</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.CongSuatXe|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Trọng tải</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Chức danh</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Nguồn gốc xe</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Loại xe</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.LoaiXe"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Hiện trạng sử dụng</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TenHienTrangSuDung"></span>
+                    </div>
+                </div> <!--/ Thông tin kê khai ô tô -->
+                <!-- Thông tin kê khai tài sản trên 500 triệu -->
+                <div class="col-sm-6" ng-if="ctrl.data.TaiSan.LoaiKeKhai==4">
+                    <div class="row">
+                        <h4 class="col-sm-12">Thông tin kê khai tài sản trên 500 triệu</h4>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Ký hiệu</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.KyHieu"></span>
+                    </div>
+                    <div class="row">
+                        <label class="control-label col-sm-4">Hiện trạng SD</label>
+                        <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.TenHienTrangSuDung"></span>
+                    </div>
+                </div> <!--/ Thông tin kê khai tài sản trên 500 triệu -->
+           </div>
         </div>
     </div>
 </div>

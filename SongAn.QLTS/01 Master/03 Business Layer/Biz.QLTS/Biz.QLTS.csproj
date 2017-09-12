@@ -60,11 +60,13 @@
     <Compile Include="DieuChuyen\InsertDieuChuyenBiz.cs" />
     <Compile Include="DieuChuyen\InsertDieuChuyenChiTietBiz.cs" />
     <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\InsertGiamChiTietBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietBiz.cs" />
     <Compile Include="GhiTang\DeleteListGhiTangByIdBiz.cs" />
     <Compile Include="GhiTang\GetListGhiTangByCriteriaBiz.cs" />
     <Compile Include="GhiGiam\DeleteGhiGiamByIdBiz.cs" />
     <Compile Include="GhiGiam\GetListGhiGiamByCriteriaBiz.cs" />
-    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamByIdBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\UpdateGhiGiamChiTietBiz.cs" />
     <Compile Include="GhiGiamChiTiet\GetGhiGiamChiTietByGhiGiamIdBiz.cs" />
     <Compile Include="GhiTang\GetListGhiTangByGhiTangIdBiz.cs" />
     <Compile Include="GhiTang\GetListGhiTangChiTietByGhiTangIdBiz.cs" />

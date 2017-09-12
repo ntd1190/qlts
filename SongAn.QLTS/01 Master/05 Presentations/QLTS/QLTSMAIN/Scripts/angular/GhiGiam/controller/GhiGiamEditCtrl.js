@@ -40,6 +40,7 @@
         vm.data = {};
         vm.data.phieuGhiGiam = {};
         vm.data.listChiTiet = [];
+        vm.data.listChiTietGoc = [];
         vm.data.fullDateString = '';
         vm.data.linkUrl = '';
         vm.data.listQuyenTacVu = [];
@@ -104,6 +105,7 @@
 
             if (obj == null)
                 return;
+            if (compareList()==1)
             if (!InvalidateDataPhieuGhiGiamChiTiet())
                 return;
             if (phieuGhiGiamId > 0) {
@@ -199,6 +201,8 @@
             vm.data.listChiTiet[index.$index].TaiSanId = data.TaiSanId;
             vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan || vm.data.listChiTiet[index.$index].MaTaiSan;
             vm.data.listChiTiet[index.$index].TenPhongBan = data.TenPhongBan;
+            vm.data.listChiTiet[index.$index].PhongBanId = data.PhongBanId;
+            vm.data.listChiTiet[index.$index].NhanVienId = data.NhanVienId;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
             vm.data.listChiTiet[index.$index].SoLuongTon = data.SoLuongTon;
             if (data.TaiSanId > 0) $("#txtSoLuong" + index.$index).focus()
@@ -289,9 +293,12 @@
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
             data.CoSoId = userInfo.CoSoId;
+            data.Check = compareList();
             GhiGiamService.update(data)
                 .then(function success(result) {
                     vm.data.phieuGhiGiam = result.data.data;
+                    vm.data.phieuGhiGiam.NgayChungTu = utility.convertDateFormat(vm.data.phieuGhiGiam.NgayChungTu, 'YYYY-MM-DD', 'DD/MM/YYYY');
+                    vm.data.phieuGhiGiam.NgayGhiGiam = utility.convertDateFormat(vm.data.phieuGhiGiam.NgayGhiGiam, 'YYYY-MM-DD', 'DD/MM/YYYY');
                     utility.removeloadding();
                     utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {
@@ -304,7 +311,26 @@
                     }
                 });
         }
+        function compareList() {
 
+            for (var index1 in vm.data.listChiTiet) {
+                if (typeof vm.data.listChiTietGoc[index1] === "undefined") {
+                    return 0;
+                }
+                else {
+                    vm.data.listChiTietGoc[index1].TaiSanId = parseInt(vm.data.listChiTietGoc[index1].TaiSanId);
+                    vm.data.listChiTietGoc[index1].isError = false;
+                }
+
+                if (angular.toJson(vm.data.listChiTiet[index1]) === angular.toJson(vm.data.listChiTietGoc[index1])) {
+
+                }
+                else {
+                    return 0;
+                }
+            }
+            return 1;
+        }
         function InvalidateDataPhieuGhiGiam() {
             var obj = vm.data.phieuGhiGiam;
 
@@ -385,7 +411,7 @@
 
                     if (result.data && result.data.data && result.data.data.length) {
                         vm.data.listChiTiet = result.data.data;
-
+                        vm.data.listChiTietGoc = angular.copy(result.data.data);
                     }
                 }, function error(result) {
                     console.log(result);

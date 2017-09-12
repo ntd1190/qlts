@@ -1,4 +1,5 @@
 ﻿using SongAn.QLTS.Biz.QLTS.GhiGiam;
+using SongAn.QLTS.Biz.QLTS.GhiGiamChiTiet;
 using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
@@ -29,6 +30,19 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiGiam
                 var biz = new DeleteGhiGiamByIdBiz(context);
                 for (int i = 0; i < _listId.Count; i++)
                 {
+                    GetGhiGiamChiTietByGhiGiamIdBiz bizct = new GetGhiGiamChiTietByGhiGiamIdBiz(context);
+                    bizct.GhiGiamId = _listId[i].ToString();
+                    IEnumerable<dynamic> GhiGiamChiTiet = await bizct.Execute();
+                    foreach (var item in GhiGiamChiTiet)
+                    {
+                        Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietBiz dbizct = new Biz.QLTS.GhiGiamChiTiet.DeleteGhiGiamChiTietBiz(context);
+                        dbizct.GhiGiamChiTietId = item.GhiGiamChiTietId;
+                        dbizct.TaiSanId = item.TaiSanId;
+                        dbizct.PhongBanId = item.PhongBanId;
+                        dbizct.NhanVienId = item.NhanVienId;
+                        dbizct.SoLuong = item.SoLuong;
+                        await dbizct.Execute();
+                    }
                     biz.GhiGiamId = _listId[i].ToString();
                     var GhiGiam = await biz.Execute();
                 }

@@ -70,11 +70,14 @@
     <Compile Include="DieuChuyen\InsertDieuChuyenChiTietDac.cs" />
     <Compile Include="DieuChuyen\InsertDieuChuyenDac.cs" />
     <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdDac.cs" />
+    <Compile Include="GhiGiamChiTiet\InsertGhiGiamChiTietDac.cs" />
+    <Compile Include="GhiGiamChiTiet\GetTheoDoiByIdDac.cs" />
+    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietDac.cs" />
     <Compile Include="GhiTang\DeleteListGhiTangByIdDac.cs" />
     <Compile Include="GhiTang\GetListGhiTangByCriteriaDac.cs" />
     <Compile Include="GhiGiam\DeleteGhiGiamByIdDac.cs" />
     <Compile Include="GhiGiam\GetListGhiGiamByCriteriaProjectionDac.cs" />
-    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietByIdDac.cs" />
+    <Compile Include="GhiGiamChiTiet\UpdateGhiGiamChiTietDac.cs" />
     <Compile Include="GhiGiamChiTiet\GetGhiGiamChiTietByGhiGiamIdDac.cs" />
     <Compile Include="GhiTang\GetListGhiTangByGhiTangIdDac.cs" />
     <Compile Include="GhiTang\GetListGhiTangChiTietByGhiTangIdDac.cs" />
@@ -203,9 +206,7 @@
     <Content Include="TaiSan\Procedures\sp_TaiSan_DeleteListTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_cbxTaiSanByCriteria.sql" />
-    <Content Include="TaiSan\Procedures\sp_TaiSan_DeleteListTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_GetListNguyenGiaByTaiSanId.sql" />
-    <Content Include="TaiSan\Procedures\sp_TaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_InsertTaiSan.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_GetTaiSanById.sql" />
     <Content Include="TaiSan\Procedures\sp_TaiSan_UpdateTaiSan.sql" />

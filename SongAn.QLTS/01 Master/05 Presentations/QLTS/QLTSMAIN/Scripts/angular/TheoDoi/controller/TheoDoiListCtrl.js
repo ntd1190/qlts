@@ -4,7 +4,7 @@
     angular.module("app")
         .controller("TheoDoiListCtrl", controller)
 
-    function controller($rootScope, $scope, TheoDoiService, TuyChonCotService) {
+    function controller($rootScope, $scope, TheoDoiService, TuyChonCotService, utility) {
         var vm = this;
         //HOT-KEY       
         vm.keys = {
@@ -36,8 +36,12 @@
             //press F2 -> open popup
             F2: function (name, code) {
                 if (!$rootScope.isOpenPopup && vm.data.showButtonNew) {
-                    $rootScope.$broadcast('TheoDoiEditCtrl.TheoDoiId', 0);
-                    $rootScope.$broadcast('TheoDoiEditCtrl.onInitView', 0);
+                    var data = {};
+                    data.taiSanId = 0;
+                    data.phongBanId = 0;
+                    data.nhanVienId = 0;
+
+                    $rootScope.$broadcast('TheoDoiEditCtrl.TheoDoiId', data);
                     $('#TheoDoiEditPopup').collapse('show');
                     $("#txtMaTaiSan").focus();
                     $rootScope.isOpenPopup = true;
@@ -168,16 +172,29 @@
             for (var i = 0; i < vm.data.TheoDoiListDisplay.length; i++) {
                 var TheoDoi = vm.data.TheoDoiListDisplay[i];
                 if (TheoDoi.isSelected) {
-                    TheoDoiSelected.push(TheoDoi.TheoDoiId);
+                    TheoDoiSelected.push(TheoDoi.TaiSanId + '_' + TheoDoi.PhongBanId + '_' + TheoDoi.NhanVienId);
                 }
             }
             var ids = TheoDoiSelected.join(',');
 
             TheoDoiService.removeList(ids).then(function (success) {
+
+                if (success.data.data > 0) {
+                    if (TheoDoiSelected.length > parseInt(success.data.data)) {
+                        var sl = TheoDoiSelected.length - parseInt(success.data.data);
+                        utility.AlertSuccess(sl + ' dòng được xóa thành công.');
+                    }
+                    else
+                        utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
+                }
+                else {
+                    utility.AlertSuccess('Xóa thành công!');
+                }
+
                 vm.data.isLoading = false;
                 _tableState.pagination.start = 0;
                 getPage(_tableState);
-                alert('Xóa thành công!')
+
             }, function (error) {
                 vm.data.isLoading = false;
                 alert(error.data.error.code + " : " + error.data.error.message);
@@ -245,14 +262,18 @@
         }
 
         function add() {
-            $rootScope.TheoDoiId = 0;
+
             $('#TheoDoiEditPopup').collapse('show');
             $("#txtMaTaiSan").focus();
             $rootScope.isOpenPopup = true;
         }
 
-        function edit(id) {
-            $rootScope.$broadcast('TheoDoiEditCtrl.TheoDoiId', id);
+        function edit(taiSanId, phongBanId, nhanVienId) {
+            var data = {};
+            data.taiSanId = taiSanId;
+            data.phongBanId = phongBanId;
+            data.nhanVienId = nhanVienId;
+            $rootScope.$broadcast('TheoDoiEditCtrl.TheoDoiId', data);
             $('#TheoDoiEditPopup').collapse('show');
             $("#txtMaTaiSan").focus();
             $rootScope.isOpenPopup = true;

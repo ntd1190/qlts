@@ -128,7 +128,8 @@
                     GhiGiam: data.phieuGhiGiam,
                     GhiGiamchitiet: data.listChiTiet,
                     NguoiTao: data.loginId,
-                    CoSoId: data.CoSoId
+                    CoSoId: data.CoSoId,
+                    Check: data.Check
                 })
             }
 

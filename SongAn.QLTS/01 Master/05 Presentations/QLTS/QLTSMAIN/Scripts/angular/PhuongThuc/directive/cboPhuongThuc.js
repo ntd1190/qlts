@@ -57,7 +57,7 @@
         /*** EVENT FUNCTION ***/
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (!newValue || vm.data.PhuongThuc.PhuongThucId == newValue) { return; }
+            if (!newValue) { return; }
 
             delete vm.inputSearch;
             vm.inputSearch = {};
@@ -77,9 +77,10 @@
 
         vm.action = {};
 
-        vm.action.onSelected = function () {
-            $scope.onSelected({ data: vm.data.PhuongThuc });
-            $scope.value = vm.data.PhuongThuc.PhuongThucId;
+        vm.action.onSelected = function (item, model) {
+            console.log(item);
+            $scope.onSelected({ data: item });
+            $scope.value = item.PhuongThucId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';

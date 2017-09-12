@@ -20,8 +20,9 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
     {
         #region public properties
         public virtual string Search { get; set; }
-        public virtual int TaiSanId { get; set; }
+        public virtual string TaiSanId { get; set; }
         public virtual string MaTaiSan { get; set; }
+        public virtual string LoaiKeKhai { get; set; }
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         #endregion

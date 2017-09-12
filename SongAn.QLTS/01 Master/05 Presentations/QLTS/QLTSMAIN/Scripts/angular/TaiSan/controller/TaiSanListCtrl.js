@@ -18,6 +18,10 @@
         vm.data = {};
         vm.data.ListTaiSan = [];
         vm.data.TaiSan = {};
+        vm.data.TTKK_Dat = {}; // Thông tin kê khai đất
+        vm.data.TTKK_Nha = {}; // Thông tin kê khai nhà
+        vm.data.TTKK_Oto = {}; // Thông tin kê khai ô tô
+        vm.data.TTKK_500 = {}; // Thông tin kê khai tài sản trên 500 triệu
         vm.data.listCot = [
             { MaCot: 'MaTaiSan', TenCot: 'Mã tài sản', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
@@ -34,11 +38,14 @@
         vm.action.getPage = getPage;
         vm.action.checkQuyenTacVu = checkQuyenUI;
         vm.action.search = function () {
-            getPage(_tableState);
             _tableState.pagination.start = 0;
+            getPage(_tableState);
         };
         vm.action.removeList = function () {
-            removeList();
+            if (checkQuyenUI('D') == false) { return; }
+            if (confirm('Bạn có muốn xóa tài sản ?')) {
+                removeList();
+            }
         };
         vm.action.autoCheckAll = function () {
             vm.status.isSelectedAll = autoCheckAll(vm.data.ListTaiSan);
@@ -47,12 +54,12 @@
             vm.status.isSelectedAll = checkAll(vm.data.ListTaiSan, !vm.status.isSelectedAll);
         };
 
-        vm.action.TaiSanInfo = function (index) {
+        vm.action.TaiSanInfo = function (taisan) {
             for (var i in vm.data.ListTaiSan) {
                 vm.data.ListTaiSan[i].isView = false;
             }
-            vm.data.ListTaiSan[index].isView = true;
-            getById(vm.data.ListTaiSan[index].TaiSanId);
+            taisan.isView = true;
+            getById(taisan.TaiSanId);
         }
         /*** HOT KEY ***/
 
@@ -130,6 +137,28 @@
             }
             return list;
         }
+
+        function tinhHaoMon() {
+            vm.data.TaiSan.NguyenGia = vm.data.TaiSan.NguyenGia | 0;
+            vm.data.TaiSan.SoNamSuDung = vm.data.TaiSan.SoNamSuDung | 0;
+
+            vm.data.TaiSan.TyLeHaoMon = 100 / vm.data.TaiSan.SoNamSuDung;
+            vm.data.TaiSan.HaoMonNam = vm.data.TaiSan.NguyenGia / vm.data.TaiSan.SoNamSuDung;
+
+            vm.data.TaiSan.SoNamSDConLai = (moment().year() - moment(vm.data.TaiSan.NgayBDHaoMon, 'YYYY-MM-DD').year());
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai;
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSDConLai < 0 ? 0 : vm.data.TaiSan.SoNamSDConLai;
+
+            vm.data.TaiSan.HaoMonLuyKe = (vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai) * vm.data.TaiSan.HaoMonNam;
+            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
+
+            vm.data.TaiSan.TyLeHaoMon = vm.data.TaiSan.TyLeHaoMon | 0;
+            vm.data.TaiSan.HaoMonNam = vm.data.TaiSan.HaoMonNam | 0;
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSDConLai | 0;
+            vm.data.TaiSan.HaoMonLuyKe = vm.data.TaiSan.HaoMonLuyKe | 0;
+            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.GiaTriConLai | 0;
+        }
+
         /*** API FUNCTION ***/
 
         // chuẩn bị dữ liệu gửi api
@@ -156,11 +185,12 @@
 
             service.removeList(data).then(function (success) {
                 console.log(success);
+                utility.AlertSuccess('Xóa tài sản thành công');
                 vm.action.search();
             }, function (error) {
                 console.log(error);
                 if (error.status === 400) {
-                    alert(error.data.error.message);
+                    utility.AlertError(error.data.error.message);
                 } else {
                     utility.AlertError('Không thể xóa tài sản');
                 }
@@ -170,9 +200,13 @@
 
         function getById(id) {
             var data = { TaiSanId: id };
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
             service.getById(data).then(function (success) {
                 console.log(success);
                 vm.data.TaiSan = success.data.data[0];
+                loadThongTinKeKhai(vm.data.TaiSan);
+                tinhHaoMon();
             }, function (error) {
                 console.log(error);
             });
@@ -220,6 +254,94 @@
                 console.log(error);
             });
         };
+
+        /*** API FUNCTION THÔNG TIN KÊ KHAI ***/
+
+        function loadThongTinKeKhai(taisan) {
+            console.log('loadThongTinKeKhai');
+            console.log(taisan);
+            delete vm.data.TTKK_Dat; vm.data.TTKK_Dat = {}; // Thông tin kê khai đất
+            delete vm.data.TTKK_Nha; vm.data.TTKK_Nha = {}; // Thông tin kê khai nhà
+            delete vm.data.TTKK_Oto; vm.data.TTKK_Oto = {}; // Thông tin kê khai ô tô
+            delete vm.data.TTKK_500; vm.data.TTKK_500 = {}; // Thông tin kê khai tài sản trên 500 triệu
+
+            if (!taisan) { return; }
+            switch (taisan.LoaiKeKhai.toString()) {
+                case '1':
+                    getTTKK_DatById(taisan.TaiSanId);
+                    break;
+                case '2':
+                    getTTKK_NhaById(taisan.TaiSanId);
+                    break;
+                case '3':
+                    getTTKK_OtoById(taisan.TaiSanId);
+                    break;
+                case '4':
+                    getTTKK_500ById(taisan.TaiSanId);
+                    break;
+                default:
+                    return;
+            }
+        }
+
+        function getTTKK_DatById(TaiSanId) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_DatById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_DatById');
+                console.log(success);
+                delete vm.data.TTKK_Dat;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Dat = success.data.data[0];
+                }
+                vm.data.TTKK_Dat = vm.data.TTKK_Dat || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        function getTTKK_NhaById(TaiSanId) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_NhaById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_NhaById');
+                console.log(success);
+                delete vm.data.TTKK_Nha;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Nha = success.data.data[0];
+                }
+                vm.data.TTKK_Nha = vm.data.TTKK_Nha || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        function getTTKK_OtoById(TaiSanId) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_OtoById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_OtoById');
+                console.log(success);
+                delete vm.data.TTKK_Oto;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Oto = success.data.data[0];
+                    vm.data.TTKK_Oto.LoaiXe = vm.data.TTKK_Oto.LoaiXe.toString();
+                }
+                vm.data.TTKK_Oto = vm.data.TTKK_Oto || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
+        function getTTKK_500ById(TaiSanId) {
+            var data = { TaiSanId: TaiSanId };
+            TaiSanService.getTTKK_500ById(data).then(function (success) {
+                console.log('TaiSanService.getTTKK_500ById');
+                console.log(success);
+                delete vm.data.TTKK_500;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_500 = success.data.data[0];
+                }
+                vm.data.TTKK_500 = vm.data.TTKK_500 || {};
+            }, function (error) {
+                console.log(error);
+            });
+        }
+
     });
 
     module.filter('sumOfValue', function () {

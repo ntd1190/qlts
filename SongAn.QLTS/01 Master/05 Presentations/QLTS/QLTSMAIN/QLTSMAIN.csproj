@@ -289,6 +289,7 @@
     <Content Include="Scripts\angular\PhuongThuc\directive\cboPhuongThuc.js" />
     <Content Include="Scripts\angular\PhuongThuc\service\PhuongThucService.js" />
     <Content Include="Scripts\angular\shared\directive\keyboard.directive.js" />
+    <Content Include="Scripts\angular\shared\directive\input-number.js" />
     <Content Include="Scripts\angular\shared\directive\number-format.js" />
     <Content Include="Scripts\angular\shared\filter\Number.Filter.js" />
     <Content Include="Scripts\angular\shared\service\xlsx.full.min.js" />
@@ -297,8 +298,14 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSan.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSanKeKhai.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSanSuDung.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\service\TaiSanService.js" />
     <Content Include="Scripts\angular\TaiSan\controller\TaiSanListCtrl.js" />
     <Content Include="Scripts\angular\TaiSan\controller\TaiSanEditCtrl.js" />
+    <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanKeKhai.js" />
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanSuDung.js" />
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSan.js" />
     <Content Include="Scripts\angular\TaiSan\service\TaiSanService.js" />
@@ -368,6 +375,7 @@
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\ThayDoiThongTinTaiSanController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
@@ -445,6 +453,8 @@
     <Content Include="Views\DieuChuyen\List.cshtml" />
     <Content Include="Views\DieuChuyen\Edit.cshtml" />
     <Content Include="Views\PhongBan\ComboboxMuti.cshtml" />
+    <Content Include="Views\TaiSan\cboTaiSanKeKhai.cshtml" />
+    <Content Include="Views\ThayDoiThongTinTaiSan\Edit.cshtml" />
     <Content Include="Views\TheoDoi\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

@@ -51,18 +51,18 @@
         }
 
         $scope.$watch('value', function (newValue, oldValue) {
-            console.log(userInfo);
-            if (newValue == 0) {
+            console.log(newValue);
+            if (newValue == 0 || newValue == "" || newValue === "undefined") {
                 vm.data.PhongBan = {};
             } else {
 
                 getPage().then(function () {
-                    console.log('_________________________________________________');
+                    console.log('________________PHONGBAN_________________________________');
                     console.log(userInfo);
                     console.log(vm.data.PhongBanListDisplay);
                     if (!vm.data.PhongBanListDisplay && vm.data.PhongBanListDisplay.length == 0) { return; }
                     for (var index in vm.data.PhongBanListDisplay) {
-                        if (vm.data.PhongBanListDisplay[index].PhongBanId == newValue) {
+                        if (vm.data.PhongBanListDisplay[index].PhongBanId.toString() == newValue.toString()) {
                             vm.data.PhongBan = vm.data.PhongBanListDisplay[index];
                             return;
                         }
