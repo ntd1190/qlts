@@ -74,20 +74,7 @@
 
         activate()
         function activate() {
-            $timeout(function () {
-                onInitView($scope.config);
-                PhongBanId = $scope.value || 0;
-                console.log($scope.value);
-                getPage().then(function () {
-                    if (!vm.data.PhongBanListDisplay && vm.data.PhongBanListDisplay.length == 0) { return; }
-                    for (var index in vm.data.PhongBanListDisplay) {
-                        if (vm.data.PhongBanListDisplay[index].PhongBanId == PhongBanId) {
-                            vm.data.PhongBan = vm.data.PhongBanListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-            }, 10);
+            onInitView($scope.config);
 
         }
 

@@ -200,6 +200,10 @@
     <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongEditCtrl.js" />
+    <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongFilterCtrl.js" />
+    <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongListCtrl.js" />
+    <Content Include="Scripts\angular\BaoDuong\service\BaoDuongService.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapListCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DenNghiTrangCapFilterCtrl.js" />
@@ -352,6 +356,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
@@ -456,6 +461,8 @@
     <Content Include="Views\TaiSan\cboTaiSanKeKhai.cshtml" />
     <Content Include="Views\ThayDoiThongTinTaiSan\Edit.cshtml" />
     <Content Include="Views\TheoDoi\List.cshtml" />
+    <Content Include="Views\BaoDuong\List.cshtml" />
+    <Content Include="Views\BaoDuong\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

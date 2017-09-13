@@ -13,6 +13,7 @@
             getListNguyenGiaByTaiSanId: 'getListNguyenGiaByTaiSanId',
             GetCombobox: 'GetListcbxTaiSanByCriteria',
             getComboboxSuDung: 'GetListcbxTaiSanSuDungByCriteria',
+            getComboboxSuDungById: 'GetListcbxTaiSanSuDungById',
             GetMaTaiSan: 'GetTaiSanByMa',
 
             getTTCKById: 'GetThongTinCongKhaiById',
@@ -119,6 +120,23 @@
                     MaTaiSan: MaTaiSan,
                     TaiSanId: TaiSanId,
                     CoSoId: CoSoId,
+                    NhanVienId: NhanVienId
+                })
+            }
+
+            return $http(req);
+        }
+        service.getComboboxSuDungById = function (CoSoId, TaiSanId,PhongBanId , NhanVienId) {
+            var url = api.url + api.getComboboxSuDungById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    CoSoId: CoSoId,
+                    TaiSanId: TaiSanId,
+                    PhongBanId: PhongBanId,
                     NhanVienId: NhanVienId
                 })
             }

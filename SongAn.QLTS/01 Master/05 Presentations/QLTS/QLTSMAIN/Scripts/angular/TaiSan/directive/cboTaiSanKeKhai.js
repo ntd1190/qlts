@@ -60,8 +60,8 @@
             vm.inputSearch = {};
             vm.inputSearch.TaiSanId = newValue;
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 1) {
-                    vm.data.TaiSan = success.data.data[1];
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.TaiSan = success.data.data[0];
                 } else {
                     delete vm.data.TaiSan;
                     vm.data.TaiSan = {};
@@ -76,8 +76,8 @@
             vm.inputSearch = {};
             vm.inputSearch.MaTaiSan = newValue;
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 1) {
-                    vm.data.TaiSan = success.data.data[1];
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.TaiSan = success.data.data[0];
                 } else {
                     delete vm.data.TaiSan;
                     vm.data.TaiSan = {};
@@ -130,7 +130,6 @@
                     console.log(success);
                     if (success.data.data) {
                         vm.data.TaiSanListDisplay = success.data.data;
-                        vm.data.TaiSanListDisplay.unshift({ TenTaiSan: '.' });
                     }
                     return deferred.resolve(success);
                 }, function (error) {

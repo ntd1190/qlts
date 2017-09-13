@@ -53,6 +53,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoDuong\DeleteListBaoDuongByIdDac.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByCriteriaDac.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByIdDac.cs" />
+    <Compile Include="BaoDuong\GetListSuaChuaByBaoDuongIdDac.cs" />
+    <Compile Include="BaoDuong\InsertBaoDuongDac.cs" />
+    <Compile Include="BaoDuong\InsertSuaChuaDac.cs" />
+    <Compile Include="BaoDuong\UpdateBaoDuongByIdDac.cs" />
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
@@ -116,6 +123,7 @@
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TaiSan\DeleteListTaiSanDac.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanSuDungByIdDac.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaDac.cs" />
     <Compile Include="TaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaDac.cs" />

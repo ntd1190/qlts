@@ -312,24 +312,23 @@
                 });
         }
         function compareList() {
-
-            for (var index1 in vm.data.listChiTiet) {
-                if (typeof vm.data.listChiTietGoc[index1] === "undefined") {
-                    return 0;
+            if (vm.data.listChiTiet.length == vm.data.listChiTietGoc.length) {
+                for (var index1 in vm.data.listChiTiet) {
+                    if(vm.data.listChiTiet[index1].TaiSanId != vm.data.listChiTietGoc[index1].TaiSanId)
+                    {
+                        return 1;
+                    }
+                    if (vm.data.listChiTiet[index1].SoLuong != vm.data.listChiTietGoc[index1].SoLuong) {
+                        return 1;
+                    }
+                    if (vm.data.listChiTiet[index1].XuLyId != vm.data.listChiTietGoc[index1].XuLyId) {
+                        return 1;
+                    }
                 }
-                else {
-                    vm.data.listChiTietGoc[index1].TaiSanId = parseInt(vm.data.listChiTietGoc[index1].TaiSanId);
-                    vm.data.listChiTietGoc[index1].isError = false;
-                }
-
-                if (angular.toJson(vm.data.listChiTiet[index1]) === angular.toJson(vm.data.listChiTietGoc[index1])) {
-
-                }
-                else {
-                    return 0;
-                }
+                return 0;
             }
-            return 1;
+            else { return 1;}
+            
         }
         function InvalidateDataPhieuGhiGiam() {
             var obj = vm.data.phieuGhiGiam;

@@ -45,6 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoDuong\DeleteListBaoDuongByIdBiz.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByCriteriaBiz.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByIdBiz.cs" />
+    <Compile Include="BaoDuong\GetListSuaChuaByBaoDuongIdBiz.cs" />
+    <Compile Include="BaoDuong\InsertBaoDuongBiz.cs" />
+    <Compile Include="BaoDuong\InsertSuaChuaBiz.cs" />
+    <Compile Include="BaoDuong\UpdateBaoDuongByIdBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
     <Compile Include="DeNghiTrangCap\DeleteListDeNghiTrangCapByIdBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetListDeNghiTrangCapByCriteriaBiz.cs" />
@@ -106,6 +113,7 @@
     <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanSuDungByIdBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdBiz.cs" />

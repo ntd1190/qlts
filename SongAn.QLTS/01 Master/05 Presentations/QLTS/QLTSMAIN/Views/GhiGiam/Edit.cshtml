@@ -99,7 +99,7 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- tai san-->
-                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="GhiGiamChiTiet.TaiSanId" ma-tai-san="GhiGiamChiTiet.TempMaTaiSan"  data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId"   ma-tai-san="GhiGiamChiTiet.TempMaTaiSan"  data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                          on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                         </td>
                         <td class="form-group form-group-sm">
@@ -112,7 +112,7 @@
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <!--soluong-->
-                            <input type="number" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="GhiGiamChiTiet.SoLuong" min="1" max="{{GhiGiamChiTiet.SoLuongTon}}" ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.SoLuong,'txtSoLuong'+$index,'txtPhuongThuc'+$index,$index,$event)" />
+                            <input type="number" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="GhiGiamChiTiet.SoLuong" input-number sa-min="1" sa-max="{{GhiGiamChiTiet.SoLuongTon}}" ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.SoLuong,'txtSoLuong'+$index,'txtPhuongThuc'+$index,$index,$event)" />
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <select class="form-control" id="txtPhuongThuc{{$index}}" ng-model="GhiGiamChiTiet.XuLyId" style="padding:0px 10px" data-placeholder="Chọn phương thức">

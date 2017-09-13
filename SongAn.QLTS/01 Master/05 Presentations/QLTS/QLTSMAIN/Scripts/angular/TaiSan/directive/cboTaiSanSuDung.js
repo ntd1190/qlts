@@ -11,6 +11,8 @@
                 config: '<',
                 value: '=',
                 maTaiSan: '=',
+                phongBan: '=',
+                nhanVien: '=',
         },
             controller: controller,
             controllerAs: 'ctrl',
@@ -50,14 +52,16 @@
             }
         }
 
-        $scope.$watch('value', function (newValue, oldValue) {
+        $scope.$watch('value+phongBan+nhanVien', function (newValue, oldValue) {
             if (!newValue) { return; }
             delete vm.inputSearch;
             vm.inputSearch = {};
-            vm.inputSearch.TaiSanId = newValue;
-            getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 1) {
-                    vm.data.TaiSan = success.data.data[1];
+            vm.inputSearch.TaiSanId = $scope.value;
+            vm.inputSearch.PhongBanId = $scope.phongBan;
+            vm.inputSearch.NhanVienId = $scope.nhanVien;
+            getPageById().then(function (success) {
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.TaiSan = success.data.data[0];
                 } else {
                     delete vm.data.TaiSan;
                     vm.data.TaiSan = {};
@@ -73,8 +77,8 @@
             vm.inputSearch = {};
             vm.inputSearch.MaTaiSan = newValue;
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 1) {
-                    vm.data.TaiSan = success.data.data[1];
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.TaiSan = success.data.data[0];
                 } else {
                     delete vm.data.TaiSan;
                     vm.data.TaiSan = {};
@@ -119,7 +123,31 @@
                         console.log(success);
                         if (success.data.data) {
                             vm.data.TaiSanListDisplay = success.data.data;
-                            vm.data.TaiSanListDisplay.unshift({ TenTaiSan: '.' });
+                        }
+                        resolve(success);
+                    }, function (error) {
+                        vm.status.isLoading = false;
+                        console.log(error);
+                        vm.data.isLoading = false;
+                        if (error.data.error != null) {
+                            alert(error.data.error.message);
+                        } else {
+                            alert(error.data.Message);
+
+                        }
+                        reject(error);
+                    });
+            });
+        }
+        function getPageById() {
+            var CoSoId = userInfo.CoSoId || 0;
+            return $q(function (resolve, reject) {
+                service.getComboboxSuDungById(CoSoId, vm.inputSearch.TaiSanId, vm.inputSearch.PhongBanId, vm.inputSearch.NhanVienId)
+                    .then(function (success) {
+                        vm.status.isLoading = false;
+                        console.log(success);
+                        if (success.data.data) {
+                            vm.data.TaiSanListDisplay = success.data.data;
                         }
                         resolve(success);
                     }, function (error) {

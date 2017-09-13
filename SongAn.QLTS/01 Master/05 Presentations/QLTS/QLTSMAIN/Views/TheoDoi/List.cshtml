@@ -28,52 +28,67 @@
         <div class="panel-body">
             <h3 class="text-center no-margin">Danh sách khai báo tồn kho</h3>
         </div>
-        <div class="table-container panel-body">
-            <table st-table="ctrl.data.TheoDoiListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
-                <thead class="bg-default text-primary">
-                    <tr>
-                        <th class="text-center" style="width: 50px;">Chọn</th>
-                        <th class="text-center" style="width: 40px;">STT</th>
-                        <th class="text-center" @*st-sort="{{cot.MaCot}}"*@ ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+        <div class="wrap">
+            @*<table class="head">
+                <tr>
+                    <td class="text-center" style="width: 50px;">Chọn</td>
+                    <td class="text-center" style="width: 40px;">STT</td>
+                    <td class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                        <span ng-bind="::cot.TenCot"></span>
+                    </td>
+                </tr>
+            </table>*@
+            <div class="table-container panel-body inner_table">
+                <table st-table="ctrl.data.TheoDoiListDisplay" st-pipe="ctrl.action.getPage" class="table fixed_headers table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="width: 50px;">Chọn</th>
+                            <th class="text-center" style="width: 40px;">STT</th>
+                            <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                                <span ng-bind="::cot.TenCot"></span>
+                            </th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @*<tr class="bg-default text-primary">
+                        <td class="text-center" style="width: 50px;">Chọn</td>
+                        <td class="text-center" style="width: 40px;">STT</td>
+                        <td class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="::cot.TenCot"></span>
-                        </th>
-                       
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-if="ctrl.status.isLoading">
-                        <td colspan="100" class="text-center">
-                            <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
-                    </tr>
-                    <tr ng-repeat="TheoDoi in ctrl.data.TheoDoiListDisplay" ng-class="(TheoDoi.isSelected==true)?'info':''">
-                        <td st-select-row="TheoDoi" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(TheoDoi.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
-                        <td class="text-center">{{$index + 1}}</td>
-                        <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                            <a ng-switch-when="MaTaiSan" ng-bind="TheoDoi.MaTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId)" href="javascript:void(0);"></a>
-                            <a ng-switch-when="TenTaiSan" ng-bind="TheoDoi.TenTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId)" href="javascript:void(0);"></a>
-                            <span ng-switch-when="NgayGhiTang">{{ TheoDoi.NgayGhiTang | date : 'dd/MM/yyyy'}}</span>
-                            <span ng-switch-when="NgayTrangCap">{{ TheoDoi.NgayTrangCap | date : 'dd/MM/yyyy'}}</span>
-                            <span ng-switch-when="NgayBatDauSuDung">{{ TheoDoi.NgayBatDauSuDung | date : 'dd/MM/yyyy'}}</span>
-                            <span style="float:right" ng-switch-when="SLTon">{{ TheoDoi.SLTon|number }}</span>
-                            <span style="float:right" ng-switch-when="SLTang">{{ TheoDoi.SLTang|number }}</span>
-                            <span style="float:right" ng-switch-when="SLGiam">{{ TheoDoi.SLGiam|number }}</span>
-                            <span style="float:right" ng-switch-when="SoLuong">{{ TheoDoi.SoLuong|number }}</span>
-                            <span style="float:right" ng-switch-when="NguyenGia">{{ TheoDoi.NguyenGia|number }}</span>
-                            <span style="float:right" ng-switch-when="ThanhTien">{{ TheoDoi.ThanhTien|number }}</span>
-                            <span ng-switch-default ng-bind="::TheoDoi[cot.MaCot]"></span>
-                        </td>
-                     
-                    </tr>
-                </tbody>
-                <tfoot>
-                    <tr>
-                        <td colspan="100" class="text-center">
-                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
-                        </td>
-                    </tr>
-                </tfoot>
-            </table>
+                    </tr>*@
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="TheoDoi in ctrl.data.TheoDoiListDisplay" ng-class="(TheoDoi.isSelected==true)?'info':''">
+                            <td style="width: 50px;" st-select-row="TheoDoi" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(TheoDoi.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                            <td style="width: 40px;" class="text-center">{{$index + 1}}</td>
+                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <a ng-switch-when="MaTaiSan" ng-bind="TheoDoi.MaTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId)" href="javascript:void(0);"></a>
+                                <a ng-switch-when="TenTaiSan" ng-bind="TheoDoi.TenTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId)" href="javascript:void(0);"></a>
+                                <span ng-switch-when="NgayGhiTang">{{ TheoDoi.NgayGhiTang | date : 'dd/MM/yyyy'}}</span>
+                                <span ng-switch-when="NgayTrangCap">{{ TheoDoi.NgayTrangCap | date : 'dd/MM/yyyy'}}</span>
+                                <span ng-switch-when="NgayBatDauSuDung">{{ TheoDoi.NgayBatDauSuDung | date : 'dd/MM/yyyy'}}</span>
+                                <span style="float:right" ng-switch-when="SLTon">{{ TheoDoi.SLTon|number }}</span>
+                                <span style="float:right" ng-switch-when="SLTang">{{ TheoDoi.SLTang|number }}</span>
+                                <span style="float:right" ng-switch-when="SLGiam">{{ TheoDoi.SLGiam|number }}</span>
+                                <span style="float:right" ng-switch-when="SoLuong">{{ TheoDoi.SoLuong|number }}</span>
+                                <span style="float:right" ng-switch-when="NguyenGia">{{ TheoDoi.NguyenGia|number }}</span>
+                                <span style="float:right" ng-switch-when="ThanhTien">{{ TheoDoi.ThanhTien|number }}</span>
+                                <span ng-switch-default ng-bind="::TheoDoi[cot.MaCot]"></span>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                  
+                </table>
+            </div>
+        </div>
+        <div style="clear: both">
+            <p class="text-danger text-right" style="padding-right:36px">Tổng tiền : {{ctrl.data.TheoDoiListDisplay|sumOfValue:'ThanhTien'|number}}</p>
         </div>
         <div class="panel-footer">
             <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
@@ -198,6 +213,35 @@
 @section ImportStyles{}
 @section SetupStyles{
     <style type="text/css">
+
+        .wrap {
+            width: 100%;
+        }
+
+        .wrap table {
+            width: 100%;
+            table-layout: fixed;
+        }
+
+        /*table tr td {
+            padding: 5px;
+            border: 1px solid #eee;
+            width: 250px;
+            word-wrap: break-word;
+        }
+
+        table.head tr td {
+           background-color: #f5f5f5;
+           color: #337ab7;
+           font-size: 14px;
+           font-weight:bold;
+        }*/
+
+        .inner_table {
+            height: 400px;
+            overflow-y: auto;
+        }
+
         .st-sort-ascent:before {
             content: '\25B2';
         }

@@ -96,7 +96,7 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- tai san-->
-                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="DieuChuyenChiTiet.TaiSanId" ma-tai-san="DieuChuyenChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="DieuChuyenChiTiet.TaiSanId" data-phong-ban="DieuChuyenChiTiet.PhongBanSuDung" data-nhan-vien="DieuChuyenChiTiet.NhanVienSuDung" ma-tai-san="DieuChuyenChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                          on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                         </td>
                         <td class="form-group form-group-sm">

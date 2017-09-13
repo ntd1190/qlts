@@ -68,6 +68,12 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxTaiSanSuDungById([FromBody]GetListcbxTaiSanSuDungByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
         public async Task<IHttpActionResult> GetTaiSanByMa([FromBody]GetTaiSanByMaAction action)
         {
             ActionResultDto result = await action.Execute(context);

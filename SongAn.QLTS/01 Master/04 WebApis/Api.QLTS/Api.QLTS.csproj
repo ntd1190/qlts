@@ -62,6 +62,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
@@ -83,6 +84,12 @@
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
+    <Compile Include="Models\BaoDuong\DeleteListBaoDuongByIdAction.cs" />
+    <Compile Include="Models\BaoDuong\GetListBaoDuongByIdAction.cs" />
+    <Compile Include="Models\BaoDuong\GetListBaoDuongByProjectionAction.cs" />
+    <Compile Include="Models\BaoDuong\GetListSuaChuaByBaoDuongIdAction.cs" />
+    <Compile Include="Models\BaoDuong\InsertBaoDuongAction.cs" />
+    <Compile Include="Models\BaoDuong\UpdateBaoDuongByIdAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\DeleteListDeNghiMuaSamByIdAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetListDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetListDeNghiTrangCapByProjectionAction.cs" />
@@ -187,6 +194,7 @@
     <Compile Include="Models\Phongban\GetPhongBanByIdAction.cs" />
     <Compile Include="Models\Phongban\InsertPhongBanAction.cs" />
     <Compile Include="Models\Phongban\UpdatePhongBanAction.cs" />
+    <Compile Include="Models\TaiSan\GetListcbxTaiSanSuDungByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetListcbxTaiSanSuDungByCriteriaAction.cs" />
     <Compile Include="Models\TaiSan\GetListTaiSanByCriteriaAction.cs" />
     <Compile Include="Models\TaiSan\GetListcbxTaiSanByCriteriaAction.cs" />

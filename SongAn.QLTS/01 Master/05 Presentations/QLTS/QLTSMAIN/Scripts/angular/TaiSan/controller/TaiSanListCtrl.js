@@ -25,7 +25,11 @@
         vm.data.listCot = [
             { MaCot: 'MaTaiSan', TenCot: 'Mã tài sản', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'SoLuong', TenCot: 'Số lượng', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'DonViTinh', TenCot: 'ĐVT', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenNhom', TenCot: 'Nhóm tài sản', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenLoai', TenCot: 'Loại tài sản', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenHangSanXuat', TenCot: 'Hãng sản xuất', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenNuocSanXuat', TenCot: 'Nước sản xuất', HienThiYN: true, DoRong: 0 },
             { MaCot: 'NguyenGia', TenCot: 'Nguyên giá', HienThiYN: true, DoRong: 0 },
         ];
 

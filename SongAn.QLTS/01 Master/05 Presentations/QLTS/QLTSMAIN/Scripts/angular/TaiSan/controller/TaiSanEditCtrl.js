@@ -36,6 +36,9 @@
             if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
             vm.data.listNguyenGia.splice(index, 1);
         }
+        vm.action.goBack = function () {
+            window.history.back();
+        };
 
         vm.action.save = function () {
             if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
@@ -132,6 +135,7 @@
             //press F2 -> open popup
             F2: function (name, code) {
                 vm.action.addNguyenGia();
+  
             },
 
             F8: function (name, code) {
@@ -142,7 +146,9 @@
         /*** INIT FUNCTION ***/
 
         activate();
-        function activate() { };
+        function activate() {
+           
+        };
 
         vm.onInitView = function (config) {
             console.log('vm.onInitView');
@@ -160,6 +166,7 @@
                 userInfo = config.userInfo;
             }
             loadData();
+            vm.action.addNguyenGia();
         };
 
         /***EVENT FUNCTION ***/
