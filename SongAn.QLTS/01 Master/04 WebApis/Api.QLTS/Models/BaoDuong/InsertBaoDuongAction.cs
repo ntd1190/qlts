@@ -40,9 +40,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.BaoDuong
                 bizHeader.TaiSanId = _phieuBaoDuong.TaiSanId;
                 bizHeader.NgayBaoDuong = _phieuBaoDuong.NgayBaoDuong;
                 bizHeader.NgayDuKien = _phieuBaoDuong.NgayDuKien;
-                bizHeader.DuToan = _phieuBaoDuong.DuToan;
+                bizHeader.DuToan = Protector.Decimal(_phieuBaoDuong.DuToan);
                 bizHeader.LoaiBaoDuongId = _phieuBaoDuong.LoaiBaoDuongId;
-                bizHeader.MoTa = _phieuBaoDuong.MoTa;
+                bizHeader.MoTa = Protector.String(_phieuBaoDuong.MoTa);
                 bizHeader.CoSoId = _phieuBaoDuong.CoSoId;
                 bizHeader.NhanVienId = _LoginId;
 
@@ -61,10 +61,10 @@ namespace SongAn.QLTS.Api.QLTS.Models.BaoDuong
                     bizLine.TenBoPhan = item.TenBoPhan;
                     bizLine.NgayBatDau = item.NgayBatDau;
                     bizLine.NgayKetThuc = item.NgayKetThuc;
-                    bizLine.ChiPhi = item.ChiPhi;
-                    bizLine.NoiDung = item.NoiDung;
-                    bizLine.NoiSua = item.NoiSua;
-                    bizLine.KetQua = item.KetQua;
+                    bizLine.ChiPhi = Protector.Decimal(item.ChiPhi);
+                    bizLine.NoiDung = Protector.String(item.NoiDung);
+                    bizLine.NoiSua = Protector.String(item.NoiSua);
+                    bizLine.KetQua = Protector.String(item.KetQua);
 
                     var result_line = await bizLine.Execute();
                 }

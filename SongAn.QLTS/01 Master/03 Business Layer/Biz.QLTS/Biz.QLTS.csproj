@@ -90,6 +90,7 @@
     <Compile Include="KhachHang\GetListcbxKhachHangByCriteriaBiz.cs" />
     <Compile Include="KhachHang\GetListKhachHangByCriteriaBiz.cs" />
     <Compile Include="NhanVien\GetListcbxNhanVienByCriteriaBiz.cs" />
+    <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdBiz.cs" />
     <Compile Include="NuocSanXuat\GetListcbxNuocSanXuatByCriteriaBiz.cs" />
     <Compile Include="NuocSanXuat\GetListNuocSanXuatByCriteriaBiz.cs" />
     <Compile Include="LoaiTaiSan\GetListLoaiTaiSanByCriteriaBiz.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="CoSo\GetListCoSoByCriteriaBiz.cs" />
     <Compile Include="KeHoachMuaSam\GetListKeHoachMuaSamByCriteriaBiz.cs" />
     <Compile Include="PhongBan\GetListcbxPhongBanByCriteriaBiz.cs" />
+    <Compile Include="PhongBan\GetListcbxPhongBanByIdBiz.cs" />
     <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

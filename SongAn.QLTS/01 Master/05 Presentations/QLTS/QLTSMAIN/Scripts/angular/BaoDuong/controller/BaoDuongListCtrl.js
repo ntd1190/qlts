@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, BaoDuongService, TuyChonCotService) {
+    function controller($rootScope, $scope, BaoDuongService, TuyChonCotService, utility) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -217,7 +217,7 @@
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
-                    alert('Xóa thành công!')
+                    utility.AlertSuccess('Xóa thành công!');
                 }, function (error) {
                     vm.data.isLoading = false;
                     alert(error.data.error.code + " : " + error.data.error.message);

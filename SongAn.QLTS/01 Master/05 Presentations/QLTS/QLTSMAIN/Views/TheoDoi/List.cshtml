@@ -192,7 +192,8 @@
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NhanVienId)?'has-error':''">
                 <label class="control-label col-sm-3">Cán bộ</label>
                 <div class="col-sm-9">
-                    <cbo-nhan-vien-by-phong-ban id="cbxNhanVien" data-value="ctrl.data.objTheoDoi.NhanVienId" data-phongbanid="ctrl.data.objTheoDoi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                    <cbo-nhan-vien-by-phong-ban id="cbxNhanVien" data-value="ctrl.data.objTheoDoi.NhanVienId" data-phongbanid="ctrl.data.objTheoDoi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"
+                                   on-selected="ctrl.action.nhanVienByPhongBanSelected(data)"></cbo-nhan-vien-by-phong-ban>
                 </div>
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SLTon)?'has-error':''">

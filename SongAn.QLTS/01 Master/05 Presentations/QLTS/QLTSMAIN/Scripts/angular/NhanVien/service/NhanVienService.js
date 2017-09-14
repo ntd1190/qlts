@@ -13,6 +13,7 @@
         GetList: 'GetListNhanVien',
         GetPage: 'GetListNhanVienByProjection',
         GetCombobox: 'GetListcbxNhanVienByProjection',
+        GetComboboxByPhongBanId : 'GetListcbxNhanVienByPhongBanId',
         GetById: 'GetNhanVienById',
         GetListBySearchString: 'GetListNhanVienBySearchString',
         getList: 'getList',
@@ -24,6 +25,7 @@
 
     var service = {
         getCombobox: getCombobox,
+        GetComboboxByPhongBanId:GetComboboxByPhongBanId,
             getList: getList,
             getPage: getPage,
             getById: getById,
@@ -96,6 +98,24 @@
                     Search: Search,
                     CoSoId: CoSoId,
                     NhanVienId: NhanVienId
+                })
+            }
+
+            return $http(req);
+        }
+        function GetComboboxByPhongBanId(CoSoId, NhanVienId, Search, PhongBanId, IDNhanVien) {
+            var url = api.url + api.GetComboboxByPhongBanId;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    Search: Search,
+                    CoSoId: CoSoId,
+                    NhanVienId: NhanVienId,
+                    PhongBanId: PhongBanId,
+                    IDNhanVien:IDNhanVien
                 })
             }
 

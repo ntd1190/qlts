@@ -31,9 +31,11 @@
 
         vm.status = {};
 
-        vm.data = {};
+        vm.data = {};        
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
+        vm.inputSearch.IDNhanVien = 0;
+        vm.inputSearch.PhongBanId = 0;
 
         /*** INIT FUNCTION ***/
 
@@ -50,47 +52,54 @@
             }
         }
        
-        $scope.$watch('value', function (newValue, oldValue) {
-            console.log(userInfo);
-            if (newValue == 0 || newValue == "" || newValue === "undefined") {
+        $scope.$watch('phongbanid', function (newValue, oldValue) {
+           
+            if (!newValue) {
                 vm.data.NhanVien = {};
-            } else {
-
-                getPage().then(function () {
-                    console.log('____________________NHANVIEN_____________________________');
-                    console.log(userInfo);
-                    console.log(vm.data.NhanVienListDisplay);
-                    if (!vm.data.NhanVienListDisplay && vm.data.NhanVienListDisplay.length == 0) { return; }
-                    for (var index in vm.data.NhanVienListDisplay) {
-                        if (vm.data.NhanVienListDisplay[index].NhanVienId.toString() == newValue.toString()) {
-                            vm.data.NhanVien = vm.data.NhanVienListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-
+                return;
             }
+            vm.inputSearch = {};
+            vm.inputSearch.PhongBanId = newValue;
+
+            getPage().then(function (success) {
+
+                if (success.data.data && success.data.data.length > 0) {
+                    //vm.data.NhanVien = success.data.data;
+                    vm.data.NhanVien = {};
+                } else {
+                    delete vm.data.NhanVien;
+                    vm.data.NhanVien = {};
+                }
+                
+            });
+        });
+
+        $scope.$watch('value', function (newValue, oldValue) {
+            
+            if (!newValue) {
+                vm.data.NhanVien = {};
+                return;
+            }
+
+            vm.inputSearch = {};
+            vm.inputSearch.IDNhanVien = newValue;
+            vm.inputSearch.PhongBanId = $scope.phongbanid;
+
+            getPage().then(function (success) {
+                
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.NhanVien = success.data.data[0];
+                } else {
+                    delete vm.data.NhanVien;
+                    vm.data.NhanVien = {};
+                }
+                $scope.onSelected({data:vm.data.NhanVien});
+            });
         });
 
         activate()
         function activate() {
-            $timeout(function () {
-                onInitView($scope.config);
-                var NhanVienId = $scope.value || 0;
-                console.log($scope.value);
-                getPage().then(function () {
-                    console.log(vm.data.NhanVienListDisplay);
-                    if (!vm.data.NhanVienListDisplay && vm.data.NhanVienListDisplay.length == 0) { return; }
-                    for (var index in vm.data.NhanVienListDisplay) {
-                        if (vm.data.NhanVienListDisplay[index].NhanVienId == NhanVienId) {
-                            vm.data.NhanVien = vm.data.NhanVienListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-
-            }, 100);
-
+            onInitView($scope.config);
         }
 
         /*** ACTION FUNCTION ***/
@@ -103,7 +112,9 @@
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
+            vm.inputSearch.PhongBanId = $scope.phongbanid;
             getPage();
         }
 
@@ -112,61 +123,29 @@
         /*** API FUNCTION ***/
 
         function getPage() {
-            
-            //if (typeof userInfo === 'undefined')
-            //    return;
+
             var CoSoId = userInfo.CoSoId || 0;
             var NhanVienId = userInfo.NhanVienId || 0;
+            var PhongBanId = vm.inputSearch.PhongBanId || 0;
+            var IDNhanVien = vm.inputSearch.IDNhanVien || 0;
 
             return $q(function (resolve, reject) {
                 
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.GetComboboxByPhongBanId(CoSoId, NhanVienId, vm.inputSearch.SearchString, PhongBanId, IDNhanVien)
                     .then(function (success) {
                         vm.status.isLoading = false;
-                        console.log(success);
+                       
+                       
                         if (success.data.data) {
-                            console.log('GET PAGE CBX NHAN VIEN');
-                            console.log(vm.data.NhanVien);
-
-                            if (vm.data.NhanVien) {
-                                if (JSON.stringify(vm.data.NhanVien) === '{}') {
-                                    vm.data.NhanVien = {};
-                                    //$scope.value = '';
-                                }
-                                else{
-                                    if (vm.data.NhanVien.PhongBanId.toString() != $scope.phongbanid.toString()) {
-                                        vm.data.NhanVien = {};
-                                        //$scope.value = '';
-                                    }
-                                }
-                            }
-                            for (var i = 0; i < success.data.data.length;) {
-                                if ($scope.phongbanid === 'undefined') {
-
-                                }
-                                else
-                                {
-                                    if (success.data.data[i].PhongBanId.toString() != $scope.phongbanid.toString()) {
-                                        success.data.data.splice(i, 1);
-                                    } else { i++; }
-                                }
-                                
-                            }
+                            
                             vm.data.NhanVienListDisplay = success.data.data;
-                            //vm.data.NhanVienListDisplay.unshift({ TenNhanVien: '.' });
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
-                        vm.status.isLoading = false;
+                       
                         console.log(error);
-                        vm.data.isLoading = false;
-                        if (error.data.error != null) {
-                            alert(error.data.error.message);
-                        } else {
-                            alert(error.data.Message);
-
-                        }
-                        reject();
+                       
+                        return reject(error);
                     });
             });
         }

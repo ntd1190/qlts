@@ -243,6 +243,7 @@
         vm.action.resetNhanVienId = function (data, index) {
             console.log(data);
             console.log(index);
+            vm.data.listChiTiet[index.$index].PhongBanId = data.PhongBanId;
             vm.data.listChiTiet[index.$index].NhanVienId = 0;
         }
         vm.action.getDataTaiSan = function (data, index) {
@@ -255,6 +256,10 @@
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
             if (data.TaiSanId > 0) $("#cbxPhongBan" + index.$index).find('input').focus()
 
+        }
+        vm.action.nhanVienByPhongBanSelected = function (data, index) {
+            console.log(data);
+            vm.data.listChiTiet[index.$index].NhanVienId = data.NhanVienId;
         }
 
 

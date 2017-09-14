@@ -43,7 +43,7 @@
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="width: 40px;">Chọn</th>                       
-                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                        <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="::cot.TenCot"></span>
                         </th>
 
@@ -59,6 +59,7 @@
                     <tr ng-repeat="BaoDuong in ctrl.data.BaoDuongListDisplay" ng-click="ctrl.action.getPageDetail(BaoDuong.BaoDuongId)" id="row_{{BaoDuong.BaoDuongId}}" ng-class="(BaoDuong.isSelected==true)?'info':''">
                         <td st-select-row="BaoDuong" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(BaoDuong.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
                         <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                            <a ng-switch-when="MaTaiSan" href="~/BaoDuong/edit?id={{BaoDuong.BaoDuongId}}">{{ BaoDuong.MaTaiSan}}</a>
                             <a ng-switch-when="TenTaiSan" href="~/BaoDuong/edit?id={{BaoDuong.BaoDuongId}}">{{ BaoDuong.TenTaiSan}}</a>
                             <span ng-switch-when="NgayBaoDuong">{{ BaoDuong.NgayBaoDuong | date : 'dd/MM/yyyy'}}</span>
                             <span ng-switch-when="NgayDuKien">{{ BaoDuong.NgayDuKien | date : 'dd/MM/yyyy'}}</span>
@@ -127,7 +128,45 @@
 
     </div>
 
-
+    <!-- popup danh sách tùy chọn cột -->
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'TuyChonCotPopup',MaForm:'FL0023'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuyChonCotPopup">Đóng</a>
+        </div>
+    </div>
+    <!-- / popup danh sách tùy chọn cột -->
 </div>
 
 

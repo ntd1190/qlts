@@ -10,14 +10,18 @@
         //HOT-KEY       
         vm.keys = {
             F2: function (name, code) {
-                CreateListChiTiet();
-                var fc = function () {
-                    $("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
+                    CreateListChiTiet();
+                    var fc = function () {
+                        $("#txtTenBoPhan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                    }
+                    $timeout(fc, 6);
                 }
-                $timeout(fc, 6);
             },
             F8: function (name, code) {
-                vm.action.save();
+                if (vm.data.listQuyenTacVu.indexOf("M") > 0 || vm.data.listQuyenTacVu.indexOf("L") > 0) {
+                    vm.action.save();
+                }
             }
         };
         //end HOT-KEY
@@ -112,20 +116,18 @@
             if (InvalidateDataPhieuBaoDuongChiTiet())
                 return;
 
-            if (phieuBaoDuongId > 0) {
-                utility.AlertSuccess('Update!');
+            if (phieuBaoDuongId > 0) {                
                 update();
             }
             else {
-                //insert();
-                utility.AlertSuccess('iiiiiiii!');
+                insert();                
             }
         };
 
         vm.action.removePhieuBaoDuong = function () {
 
             if (phieuBaoDuongId <= 0) {
-                alert("Phiếu này không tồn tại trong hệ thống!");
+                utility.AlertError('Phiếu này không tồn tại trong hệ thống!');
                 return;
             }
 

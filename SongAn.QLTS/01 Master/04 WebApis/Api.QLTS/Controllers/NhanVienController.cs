@@ -28,6 +28,12 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxNhanVienByPhongBanId([FromBody]GetListcbxNhanVienByPhongBanIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
         public async Task<IHttpActionResult> GetListNhanVienByProjection([FromBody]GetListNhanVienByProjectionAction action)
         {
             ActionResultDto result = await action.Execute(context);

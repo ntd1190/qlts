@@ -109,7 +109,8 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- nhan vien-->
-                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="GhiTangChiTiet.NhanVienId" data-phongbanid="GhiTangChiTiet.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="GhiTangChiTiet.NhanVienId" data-phongbanid="GhiTangChiTiet.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"
+                                           on-selected="ctrl.action.nhanVienByPhongBanSelected(data, { $index })"></cbo-nhan-vien-by-phong-ban>
                         </td>
                         <td class="form-group form-group-sm">
                             <!--ngay bd su dung-->

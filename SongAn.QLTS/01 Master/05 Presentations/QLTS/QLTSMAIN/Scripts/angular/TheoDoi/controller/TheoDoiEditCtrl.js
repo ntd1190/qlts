@@ -46,7 +46,8 @@
             close: close,
             keyPress: keyPress,
             getDataTaiSan: getDataTaiSan,
-            resetNhanVienId: resetNhanVienId
+            resetNhanVienId: resetNhanVienId,
+            nhanVienByPhongBanSelected: nhanVienByPhongBanSelected
         };
 
         vm.validate = {
@@ -127,9 +128,16 @@
 
         function resetNhanVienId(data) {
             console.log(data);
-
+            vm.data.objTheoDoi.PhongBanId = data.PhongBanId;
             vm.data.objTheoDoi.NhanVienId = 0;
         }
+
+        function nhanVienByPhongBanSelected(data) {
+            console.log(data);
+            vm.data.objTheoDoi.NhanVienId = data.NhanVienId;
+        }
+
+        
 
         function save() {
             var obj = InvalidateData();

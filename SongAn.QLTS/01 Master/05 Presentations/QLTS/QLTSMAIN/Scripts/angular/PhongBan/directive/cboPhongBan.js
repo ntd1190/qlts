@@ -25,7 +25,7 @@
         /*** PRIVATE ***/
 
         var vm = this,
-            service = PhongBanService, userInfo, PhongBanId = 0;
+            service = PhongBanService, userInfo;
 
         /*** VIEW MODEL ***/
 
@@ -34,6 +34,7 @@
         vm.data = {};
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
+        vm.inputSearch.PhongBanId = 0;
 
         /*** INIT FUNCTION ***/
 
@@ -50,26 +51,26 @@
             }
         }
 
+
         $scope.$watch('value', function (newValue, oldValue) {
-            console.log(newValue);
-            if (newValue == 0 || newValue == "" || newValue === "undefined") {
+            
+            if (!newValue) {
                 vm.data.PhongBan = {};
-            } else {
+                return;
+            } 
+            vm.inputSearch = {};
+            vm.inputSearch.PhongBanId = newValue;
 
-                getPage().then(function () {
-                    console.log('________________PHONGBAN_________________________________');
-                    console.log(userInfo);
-                    console.log(vm.data.PhongBanListDisplay);
-                    if (!vm.data.PhongBanListDisplay && vm.data.PhongBanListDisplay.length == 0) { return; }
-                    for (var index in vm.data.PhongBanListDisplay) {
-                        if (vm.data.PhongBanListDisplay[index].PhongBanId.toString() == newValue.toString()) {
-                            vm.data.PhongBan = vm.data.PhongBanListDisplay[index];
-                            return;
-                        }
-                    }
-                });
-
-            }
+            getPage().then(function (success) {
+                console.log('________________ CBXPHONGBAN_________________________________');
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.PhongBan = success.data.data[0];
+                } else {
+                    delete vm.data.PhongBan;
+                    vm.data.PhongBan = {};
+                }
+                $scope.onSelected({data:vm.data.PhongBan});
+            });
         });
 
         activate()
@@ -78,18 +79,20 @@
 
         }
 
+
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
 
         vm.action.onSelected = function () {
+            console.log('ITEM CBX PHONG BAN');
             $scope.onSelected({ data: vm.data.PhongBan });
             $scope.value = vm.data.PhongBan.PhongBanId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';
+            vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
-            if (!vm.inputSearch.SearchString) { return; }
             getPage();
         }
 
@@ -100,27 +103,22 @@
         function getPage() {
             var CoSoId = userInfo.CoSoId || 0;
             var NhanVienId = userInfo.NhanVienId || 0;
+            var search = vm.inputSearch.SearchString || '';
+            var PhongBanId = vm.inputSearch.PhongBanId || 0;
 
             return $q(function (resolve, reject) {
-                service.getCombobox(CoSoId, NhanVienId, vm.inputSearch.SearchString)
+                service.getComboboxById(CoSoId, NhanVienId, vm.inputSearch.SearchString, PhongBanId)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
                         if (success.data.data) {
                             vm.data.PhongBanListDisplay = success.data.data;
                         }
-                        resolve();
+                        return resolve(success);
                     }, function (error) {
-                        vm.status.isLoading = false;
                         console.log(error);
-                        vm.data.isLoading = false;
-                        if (error.data.error != null) {
-                            alert(error.data.error.message);
-                        } else {
-                            alert(error.data.Message);
-
-                        }
-                        reject();
+                        
+                        return reject(error);
                     });
             });
         }

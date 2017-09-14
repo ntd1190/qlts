@@ -101,6 +101,7 @@
     <Compile Include="KhachHang\GetListcbxKhachHangByCriteriaProjectionDac.cs" />
     <Compile Include="KhachHang\GetListKhachHangSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="NhanVien\GetListcbxNhanVienByCriteriaProjectionDac.cs" />
+    <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdDac.cs" />
     <Compile Include="NuocSanXuat\GetListcbxNuocSanXuatByCriteriaProjectionDac.cs" />
     <Compile Include="NuocSanXuat\GetListNuocSanXuatSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="LoaiTaiSan\GetListLoaiTaiSanSelectAllByCriteriaProjectionDac.cs" />
@@ -119,6 +120,7 @@
     <Compile Include="DuAn\GetListDuAnSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="KeHoachMuaSam\GetListKeHoachMuaSamByCriteriaProjectionDac.cs" />
     <Compile Include="PhongBan\GetListcbxPhongBanByCriteriaProjectionDac.cs" />
+    <Compile Include="PhongBan\GetListcbxPhongBanByIdDac.cs" />
     <Compile Include="PhongBan\GetListPhongBanSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

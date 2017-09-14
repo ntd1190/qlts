@@ -135,6 +135,7 @@
     <Compile Include="Models\KhachHang\InsertKhachHangAction.cs" />
     <Compile Include="Models\KhachHang\UpdateKhachHangAction.cs" />
     <Compile Include="Models\NhanVien\DeleteListNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\GetListcbxNhanVienByPhongBanIdAction.cs" />
     <Compile Include="Models\NhanVien\GetListcbxNhanVienByProjectionAction.cs" />
     <Compile Include="Models\NhanVien\GetListNhanVienByProjectionAction.cs" />
     <Compile Include="Models\NhanVien\GetNhanVienByIdAction.cs" />
@@ -187,6 +188,7 @@
     <Compile Include="Models\KeHoachMuaSam\GetKeHoachMuaSamByIdAction.cs" />
     <Compile Include="Models\KeHoachMuaSam\InsertKeHoachMuaSamAction.cs" />
     <Compile Include="Models\KeHoachMuaSam\UpdateKeHoachMuaSamAction.cs" />
+    <Compile Include="Models\Phongban\GetListcbxPhongBanByIdAction.cs" />
     <Compile Include="Models\PhuongThuc\GetListcbxPhuongThucByCriteriaAction.cs" />
     <Compile Include="Models\Phongban\DeleteListPhongBanAction.cs" />
     <Compile Include="Models\Phongban\GetListcbxPhongBanByProjectionAction.cs" />
