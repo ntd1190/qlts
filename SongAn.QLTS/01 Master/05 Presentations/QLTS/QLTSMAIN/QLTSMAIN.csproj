@@ -204,6 +204,10 @@
     <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongFilterCtrl.js" />
     <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongListCtrl.js" />
     <Content Include="Scripts\angular\BaoDuong\service\BaoDuongService.js" />
+    <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeEditCtrl.js" />
+    <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeFilterCtrl.js" />
+    <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeListCtrl.js" />
+    <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapListCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DenNghiTrangCapFilterCtrl.js" />
@@ -214,6 +218,9 @@
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenListCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\service\DieuChuyenService.js" />
     <Content Include="Scripts\angular\DuAn\directive\cboDuAn.js" />
+    <Content Include="Scripts\angular\DuyetCap\controller\DuyetCapListCtrl.js" />
+    <Content Include="Scripts\angular\DuyetCap\controller\DuyetCapFilterCtrl.js" />
+    <Content Include="Scripts\angular\DuyetCap\service\DuyetCapService.js" />
     <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamEditCtrl.js" />
     <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamFilterCtrl.js" />
     <Content Include="Scripts\angular\GhiGiam\controller\GhiGiamListCtrl.js" />
@@ -221,6 +228,8 @@
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangEditCtrl.js" />
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangFilterCtrl.js" />
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangListCtrl.js" />
+    <Content Include="Scripts\angular\DuyetMua\controller\DuyetMuaListCtrl.js" />
+    <Content Include="Scripts\angular\DuyetMua\service\DuyetMuaService.js" />
     <Content Include="Scripts\angular\NhanVien\directive\cboNhanVienByPhongBan.js" />
     <Content Include="Scripts\angular\GhiTang\service\GhiTangService.js" />
     <Content Include="Scripts\angular\HangSanXuat\directive\cboHangSanXuat.js" />
@@ -302,11 +311,9 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
-    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
-    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSan.js" />
-    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSanKeKhai.js" />
-    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\directive\cboTaiSanSuDung.js" />
-    <Content Include="Scripts\angular\ThayDoiThongTinTaiSan\service\TaiSanService.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiListCtrl.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
+    <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\service\ThayDoiThongTinKeKhaiService.js" />
     <Content Include="Scripts\angular\TaiSan\controller\TaiSanListCtrl.js" />
     <Content Include="Scripts\angular\TaiSan\controller\TaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanKeKhai.js" />
@@ -356,6 +363,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BienBanKiemKeController.cs" />
+    <Compile Include="Controllers\DuyetMuaController.cs" />
+    <Compile Include="Controllers\DuyetCapController.cs" />
     <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
@@ -380,7 +390,7 @@
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
-    <Compile Include="Controllers\ThayDoiThongTinTaiSanController.cs" />
+    <Compile Include="Controllers\ThayDoiThongTinKeKhaiController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
@@ -459,10 +469,16 @@
     <Content Include="Views\DieuChuyen\Edit.cshtml" />
     <Content Include="Views\PhongBan\ComboboxMuti.cshtml" />
     <Content Include="Views\TaiSan\cboTaiSanKeKhai.cshtml" />
-    <Content Include="Views\ThayDoiThongTinTaiSan\Edit.cshtml" />
+    <Content Include="Views\ThayDoiThongTinKeKhai\Edit.cshtml" />
     <Content Include="Views\TheoDoi\List.cshtml" />
+    <Content Include="Views\ThayDoiThongTinKeKhai\List.cshtml" />
+    <Content Include="Views\DuyetCap\List.cshtml" />
+    <Content Include="Views\DuyetMua\List.cshtml" />
     <Content Include="Views\BaoDuong\List.cshtml" />
     <Content Include="Views\BaoDuong\Edit.cshtml" />
+    <Content Include="Views\TheoDoi\List1.cshtml" />
+    <Content Include="Views\BienBanKiemKe\List.cshtml" />
+    <Content Include="Views\BienBanKiemKe\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

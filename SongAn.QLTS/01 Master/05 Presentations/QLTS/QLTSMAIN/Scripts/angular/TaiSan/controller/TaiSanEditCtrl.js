@@ -343,18 +343,46 @@
             return !has_error;
         }
 
+        function checkInputTTCK(inputName, index) {
+            var has_error = false;
+            var first_error_name = '';
+            var obj_name = 'TaiSan';
+            var prop_name = '';
+            var error_name = '';
+
+            prop_name = 'LoaiId';
+            error_name = obj_name + '_' + prop_name + index;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][index][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            if (first_error_name) {
+                $('[data-name="' + first_error_name + '"] input').focus();
+                $('[data-name="' + first_error_name + '"]').focus();
+            }
+
+            return !has_error;
+        }
+
         function checkInputTTCK(inputName) {
             var has_error = false;
             var first_error_name = '';
-            var prefix_name = 'TTCK_';
-            var name = '';
+            var obj_name = 'TTCK';
+            var prop_name = '';
+            var error_name = '';
 
-            name = 'MoTa';
-            if (!inputName || inputName == (prefix_name + name)) {
-                vm.error[prefix_name + name] = '';
-                if (utility.checkInValid(vm.data.TTCK[name], 'isEmpty')) {
-                    first_error_name = has_error ? first_error_name : prefix_name + name;
-                    vm.error[prefix_name + name] = '.';
+            prop_name = 'MoTa';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name] || !vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
                     has_error = true;
                 }
             }

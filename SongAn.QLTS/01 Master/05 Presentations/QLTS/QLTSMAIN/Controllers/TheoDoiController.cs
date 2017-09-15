@@ -27,5 +27,14 @@ namespace SongAn.QLDN.UI.QLDNMAIN.Controllers
             return View();
         }
 
+        public ActionResult List1()
+        {
+            string userLogin = LoadUserInfo("CN0026");
+
+            ViewBag.userInfo = userLogin;
+
+            return View();
+        }
+
     }
 }

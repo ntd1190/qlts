@@ -54,7 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\BanKiemKe.cs" />
     <Compile Include="Entity\BaoDuong.cs" />
+    <Compile Include="Entity\BienBanKiemKe.cs" />
+    <Compile Include="Entity\BienBanKiemKeChiTiet.cs" />
     <Compile Include="Entity\CoSo.cs" />
     <Compile Include="Entity\DeNghiTrangCap.cs" />
     <Compile Include="Entity\DeNghiTrangCapChiTiet.cs" />
@@ -64,8 +67,13 @@
     <Compile Include="Entity\GhiTang.cs" />
     <Compile Include="Entity\GhiTangChiTiet.cs" />
     <Compile Include="Entity\GhiGiam.cs" />
+    <Compile Include="Entity\ThayDoiThongTin.cs" />
+    <Compile Include="Entity\ThayDoiThongTinDat.cs" />
+    <Compile Include="Entity\ThayDoiThongTinNha.cs" />
     <Compile Include="Entity\SuaChua.cs" />
     <Compile Include="Entity\ThongTinKeKhaiNha.cs" />
+    <Compile Include="Entity\ThayDoiThongTinOto.cs" />
+    <Compile Include="Entity\ThayDoiThongTinTren500.cs" />
     <Compile Include="Entity\ThongTinKeKhaiTren500.cs" />
     <Compile Include="Entity\ThongTinKeKhaiOto.cs" />
     <Compile Include="Entity\ThongTinKeKhaiDat.cs" />

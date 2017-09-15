@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Thông tin kiểm kê";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid"  keyboard="mainCtrl.keys">
+    <div class="panel panel-default" ng-controller="BienBanKiemKeEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, deNghiId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} kiểm kê tài sản</span>
+        </div>
+
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.Ngay" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtNgayLap','txtSoPhieu',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
+                            <label class="control-label col-sm-3">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDeNghi.SoPhieu" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtSoPhieu','cbxPhanLoai',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.PhanLoai?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày kiểm kê <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDeNghi.Ngay" ng-keypress="ctrl.action.keyPressDeNghi(ctrl.data.phieuDeNghi.Ngay,'txtNgayLap','txtSoPhieu',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanId?'has-error':''">
+                            <label class="control-label col-sm-3">Bộ phận đề nghị</label>
+                            <div class="col-sm-7">
+                                <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuDeNghi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.NoiDung?'has-error':''">
+                    <label class="control-label col-sm-1" style="width:12.33%">Ghi chú</label>
+                    <div class="col-sm-10" style="width:79.33%">
+                        <textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.phieuDeNghi.NoiDung"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="panel-heading">
+            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
+                <i class="fa fa-plus"></i>
+                Thêm chi tiết (F2)
+            </button>
+        </div>
+
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeListCtrl.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/service/KiemKeService.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}

@@ -65,6 +65,7 @@
             KeHoachMuaSamList: [],
             KeHoachMuaSamChiTietList: [],
             KeHoachMuaSamSelected: [],
+            RowChecked: true,
             isLoading: false,
             searchString: '',
             TongSo: 0
@@ -77,6 +78,7 @@
             getPage: getPage,
             getPageChiTiet: getPageChiTiet,
             deleteSelected: deleteSelected,
+            CheckRow: CheckRow,
         };
 
 
@@ -149,6 +151,16 @@
 
             
 
+        }
+        function CheckRow() {
+            for (var i = 0; i < vm.data.KeHoachMuaSamList.length; i++) {
+                var KeHoachMuaSam = vm.data.KeHoachMuaSamList[i];
+                if (KeHoachMuaSam.DuyetId != 0 && KeHoachMuaSam.isSelected) {
+                    vm.data.RowChecked = false;
+                    return;
+                }
+            }
+            vm.data.RowChecked = true;
         }
         function addloadding(obj) {
             $(obj).append('<div id="bgloadding"><div class="windows8"><div class="wBall" id="wBall_1"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_2"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_3"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_4"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_5"><div class="wInnerBall"></div></div></div></div>');

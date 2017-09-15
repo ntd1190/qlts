@@ -91,7 +91,8 @@
             TuNgay: '',
             DenNgay: '',
             linkUrl: '',
-            listCot :[]
+            listCot: [],
+            RowChecked: true
         };
 
         vm.action = {
@@ -99,7 +100,8 @@
             getPageDetail: getPageDetail,
             deleteSelected: deleteSelected,
             loadCotList: loadCotList,
-            checkCot: checkCot
+            checkCot: checkCot,
+            CheckRow: CheckRow,
         };
 
         
@@ -197,7 +199,16 @@
         function removeloadding(obj) {
             $('#bgloadding').remove();
         }
-
+        function CheckRow() {
+            for (var i = 0; i < vm.data.DenNghiTrangCapListDisplay.length; i++) {
+                var DenNghiTrangCap = vm.data.DenNghiTrangCapListDisplay[i];
+                if (DenNghiTrangCap.DuyetId != 0 && DenNghiTrangCap.isSelected) {
+                    vm.data.RowChecked = false;
+                    return;
+                }
+            }
+            vm.data.RowChecked = true;
+        }
         function deleteSelected() {
             if (!confirm('Bạn có muốn xóa các đề nghị đã chọn?')) {
                 return;

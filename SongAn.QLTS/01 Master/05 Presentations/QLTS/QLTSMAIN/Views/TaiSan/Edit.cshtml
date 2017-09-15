@@ -114,10 +114,10 @@
                                         <a class="btn btn-xs btn-danger" ng-click="ctrl.action.removeNguyenGia($index)" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')"><i class="fa fa-remove"></i></a>
                                     </td>
                                     <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
-                                        <cbo-nguon-ngan-sach data-value="row.NguonNganSachId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nguonngansach/showview?viewname=cbonguonngansach"></cbo-nguon-ngan-sach>
+                                        <cbo-nguon-ngan-sach data-name="NguonNganSachId{{$index}}" data-value="row.NguonNganSachId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nguonngansach/showview?viewname=cbonguonngansach"></cbo-nguon-ngan-sach>
                                     </td>
                                     <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
-                                        <input type="text" class="form-control text-right" ng-model="row.GiaTri" number-format />
+                                        <input type="text" class="form-control text-right" ng-model="row.GiaTri" number-format data-name="listNguyenGia_GiaTri{{$index}}" data-next="listNguyenGia_GiaTri{{$index}}" ng-keypress="ctrl.action.keyPressNganSach($event,$index)" />
                                     </td>
                                 </tr>
                             </tbody>
@@ -154,8 +154,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                         <div class="col-sm-4">
                             <div class="panel panel-default">
@@ -266,8 +266,8 @@
                                     </div>
                                 </div>
                             </div>
-                            
-                            
+
+
                         </div>
                     </div>
                 </div><!--/ #ThongTinChung -->
@@ -300,7 +300,7 @@
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==0?'in':''"></div>
                     <!-- Kê khai đất -->
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==1?'in':''">
-                        
+
                         <div class="panel panel-default">
                             <div class="panel-heading"><h5>Thông tin kê khai</h5></div>
                             <div class="panel-body">
@@ -313,7 +313,7 @@
                                 <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_GiayTo?'has-error':''">
                                     <span class="col-sm-1">Giấy tờ kèm theo</span>
                                     <div class="col-sm-11">
-                                        <textarea class="form-control" ng-model="ctrl.data.TTKK_Dat.GiayTo" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Dat_GiayTo" data-next="TTKK_Dat_LamTruSo"></textarea>
+                                        <textarea class="form-control" ng-model="ctrl.data.TTKK_Dat.GiayTo" data-name="TTKK_Dat_GiayTo"></textarea>
                                     </div>
                                 </div>
                                 <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Dat_DienTich?'has-error':''">
@@ -391,12 +391,12 @@
                                 </div>
                             </div>
                         </div>
-                       
-                       
+
+
                     </div><!--/ Kê khai đất -->
                     <!-- Kê khai nhà -->
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==2?'in':''">
-                    
+
                         <div class="panel panel-default">
                             <div class="panel-heading"><h5>Thông tin kê khai</h5></div>
                             <div class="panel-body">
@@ -420,7 +420,7 @@
                                 </div>
                             </div>
                         </div>
-                       
+
                         <div class="panel panel-default">
                             <div class="panel-heading"><h5>Hiện trạng sử dụng</h5></div>
                             <div class="panel-body">
@@ -516,7 +516,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                     </div><!-- Kê khai nhà -->
                     <!-- Kê khai ô tô -->
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==3?'in':''">
@@ -586,9 +586,9 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>   
-                    
-                       
+                        </div>
+
+
                     </div><!--/ Kê khai ô tô -->
                     <!-- Kê khai tài sản trên 500 triệu -->
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==4?'in':''">
@@ -615,8 +615,8 @@
                                 </div>
                             </div>
                         </div>
-                      
-                      <!--/ Kê khai tài sản trên 500 triệu -->
+
+                        <!--/ Kê khai tài sản trên 500 triệu -->
                     </div>
                 </div><!--/ #ThongTinKeKhai -->
                 <!-- #ThongTinCongKhai -->
@@ -689,7 +689,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                 </div><!--/ #ThongTinCongKhai -->
             </div>
         </div>
@@ -720,6 +720,7 @@
             margin-right: 0px;
             margin-left: 0px;
         }
+
         .form-group.row {
             margin-right: 0;
             margin-left: 0;

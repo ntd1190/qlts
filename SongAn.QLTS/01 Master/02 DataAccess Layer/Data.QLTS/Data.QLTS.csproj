@@ -60,9 +60,20 @@
     <Compile Include="BaoDuong\InsertBaoDuongDac.cs" />
     <Compile Include="BaoDuong\InsertSuaChuaDac.cs" />
     <Compile Include="BaoDuong\UpdateBaoDuongByIdDac.cs" />
+    <Compile Include="BienBanKiemKe\DeleteListBienBanKiemKeByIdDac.cs" />
+    <Compile Include="BienBanKiemKe\GetListBanKiemKeByKiemKeIdDac.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeByCriteriaDac.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeByIdDac.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdDac.cs" />
+    <Compile Include="BienBanKiemKe\InsertBienBanKiemKeDac.cs" />
+    <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdDac.cs" />
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Compile Include="DuyetMua\DuyetDuyetMuaDac.cs" />
+    <Compile Include="DuyetCap\DuyetDuyetCapDac.cs" />
+    <Compile Include="DuyetCap\GetListDuyetCapByCriteriaDac.cs" />
+    <Compile Include="DuyetCap\GetListDuyetCapChiTietByDeNghiIdDac.cs" />
     <Compile Include="DeNghiTrangCap\DeleteListDeNghiTrangCapByIdDac.cs" />
     <Compile Include="DeNghiTrangCap\GetListDeNghiTrangCapByCriteriaDac.cs" />
     <Compile Include="DeNghiTrangCap\GetListDeNghiTrangCapByDeNghiIdDac.cs" />
@@ -77,6 +88,8 @@
     <Compile Include="DieuChuyen\InsertDieuChuyenChiTietDac.cs" />
     <Compile Include="DieuChuyen\InsertDieuChuyenDac.cs" />
     <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdDac.cs" />
+    <Compile Include="DuyetMua\GetDuyetMuaChiTietByMuaSamIdDac.cs" />
+    <Compile Include="DuyetMua\GetListDuyetMuaByCriteriaProjectionDac.cs" />
     <Compile Include="GhiGiamChiTiet\InsertGhiGiamChiTietDac.cs" />
     <Compile Include="GhiGiamChiTiet\GetTheoDoiByIdDac.cs" />
     <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietDac.cs" />
@@ -144,6 +157,16 @@
     <Compile Include="TaiSan\InsertTaiSanDac.cs" />
     <Compile Include="TaiSan\GetThongTinCongKhaiByIdDac.cs" />
     <Compile Include="TaiSan\InsertThongTinCongKhaiDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTin500ByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinNhaByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinOtoByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinDatByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\GetListThayDoiThongTinByCriteriaDac.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTin500Dac.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinNhaDac.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinOtoDac.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinDatDac.cs" />
     <Compile Include="TheoDoi\DeleteListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\GetListTheoDoiByCriteriaDac.cs" />
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
@@ -170,6 +193,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DieuChuyen\Procedures\" />
+    <Folder Include="DuyetCap\Procedures\" />
+    <Folder Include="DuyetMua\Procedures\" />
     <Folder Include="GhiGiamChiTiet\Procedures\" />
     <Folder Include="GhiGiam\Procedures\" />
     <Folder Include="GhiTang\Procedures\" />
@@ -230,6 +255,16 @@
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiOto_InsertThongTinKeKhaiOto.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_InsertThongTinKeKhaiDat.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_InsertThongTinCongKhai.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin500_GetThayDoiThongTin500ById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinNha_GetThayDoiThongTinNhaById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinOto_GetThayDoiThongTinOtoById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinDat_GetThayDoiThongTinDatById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin500_InsertThayDoiThongTin500.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinNha_InsertThayDoiThongTinNha.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinOto_InsertThayDoiThongTinOto.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin_GetThayDoiThongTinById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin_GetListThayDoiThongTinByCriteria.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinDat_InsertThayDoiThongTinDat.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,13 +1,13 @@
 ﻿
 @{
-    ViewBag.Title = "Khai báo tồn kho";
+    ViewBag.Title = "Nhập khẩu";
 }
 
 <div class="container-fluid">
     <div ng-controller="TheoDoiListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
         <div class="panel-heading">
             <div class="panel-title clearfix">
-                <span><i class="fa fa-fw fa-star-o"></i>Khai báo tồn kho</span>
+                <span><i class="fa fa-fw fa-star-o"></i>Nhập khẩu tài sản</span>
                 <div class="pull-right">
                     <form class="form-inline">
                         <div class="form-group form-group-sm">
@@ -26,7 +26,7 @@
 
 
         <div class="panel-body">
-            <h3 class="text-center no-margin">Danh sách khai báo tồn kho</h3>
+            <h3 class="text-center no-margin">Danh sách nhập khẩu tài sản</h3>
         </div>
         <div class="wrap">
             @*<table class="head">
@@ -44,8 +44,12 @@
                         <tr>
                             <th class="text-center" style="width: 50px;">Chọn</th>
                             <th class="text-center" style="width: 40px;">STT</th>
-                            <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
-                                <span ng-bind="::cot.TenCot"></span>
+                            <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <span ng-switch-when="TenTaiSan" style="min-width:200px;display:block" ng-bind="cot.TenCot"></span>
+                                <span ng-switch-when="NgayTrangCap" style="min-width:110px;display:block" ng-bind="cot.TenCot"></span>
+                                <span ng-switch-when="NgayBatDauSuDung" style="min-width:120px;display:block" ng-bind="cot.TenCot"></span>
+                                <span ng-switch-when="TenNhanVien" style="min-width:150px;display:block" ng-bind="cot.TenCot"></span>
+                                <span ng-switch-default style="min-width:100px;display:block" ng-bind="::cot.TenCot"></span>
                             </th>
 
                         </tr>
@@ -216,11 +220,11 @@
     <style type="text/css">
 
         .wrap {
-            width: 100%;
+            width: auto;
         }
 
         .wrap table {
-            width: 100%;
+            width: auto;
             table-layout: fixed;
         }
 
@@ -241,6 +245,7 @@
         .inner_table {
             height: 400px;
             overflow-y: auto;
+            overflow-x: auto;
         }
 
         .st-sort-ascent:before {
