@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.UI.QLDNMAIN</RootNamespace>
-    <AssemblyName>SongAn.QLDN.UI.QLDNMAIN</AssemblyName>
+    <RootNamespace>QLTS.UI.QLTSMAIN</RootNamespace>
+    <AssemblyName>QLTS.UI.QLTSMAIN</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <UseIISExpress>false</UseIISExpress>
     <IISExpressSSLPort />
@@ -311,6 +311,7 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiCreateCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiListCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\service\ThayDoiThongTinKeKhaiService.js" />
@@ -476,6 +477,7 @@
     <Content Include="Views\DuyetMua\List.cshtml" />
     <Content Include="Views\BaoDuong\List.cshtml" />
     <Content Include="Views\BaoDuong\Edit.cshtml" />
+    <Content Include="Views\ThayDoiThongTinKeKhai\Create.cshtml" />
     <Content Include="Views\TheoDoi\List1.cshtml" />
     <Content Include="Views\BienBanKiemKe\List.cshtml" />
     <Content Include="Views\BienBanKiemKe\Edit.cshtml" />

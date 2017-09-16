@@ -7,8 +7,8 @@
     <ProjectGuid>{1A5E7772-E937-46E2-A4B2-DD8E071E16F5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Data.Repository</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Data.Repository</AssemblyName>
+    <RootNamespace>Data.Repository</RootNamespace>
+    <AssemblyName>Data.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

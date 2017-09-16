@@ -109,7 +109,7 @@
                         console.log(success);
                         if (success.data.data) {
                             vm.data.DuAnListDisplay = success.data.data;
-                            vm.data.DuAnListDisplay.unshift({ TenDuAn: 'Chọn dự án' });
+                            vm.data.DuAnListDisplay.unshift({ TenDuAn: '.' });
                         }
                         return resolve(success);
                     }, function (error) {

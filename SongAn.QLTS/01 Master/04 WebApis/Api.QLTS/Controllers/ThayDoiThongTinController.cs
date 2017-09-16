@@ -53,7 +53,7 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
-        #region Thông tin kê khai
+        #region Insert thay đổi thông tin
         [HttpPost]
         public async Task<IHttpActionResult> InsertThayDoiThongTinDat([FromBody]InsertThayDoiThongTinDatAction action)
         {
@@ -74,6 +74,32 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
         }
         [HttpPost]
         public async Task<IHttpActionResult> InsertThayDoiThongTin500([FromBody]InsertThayDoiThongTin500Action action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        #endregion
+        #region Update thay đổi thông tin
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateThayDoiThongTinDat([FromBody]UpdateThayDoiThongTinDatAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateThayDoiThongTinNha([FromBody]UpdateThayDoiThongTinNhaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateThayDoiThongTinOto([FromBody]UpdateThayDoiThongTinOtoAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateThayDoiThongTin500([FromBody]UpdateThayDoiThongTin500Action action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);

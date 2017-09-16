@@ -7,8 +7,8 @@
     <ProjectGuid>{43762125-99F6-4FC7-9F9F-BB24D0F4EAE5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLTS.Api.QLNS</RootNamespace>
-    <AssemblyName>SongAn.QLTS.Api.QLNS</AssemblyName>
+    <RootNamespace>Api.QLTS</RootNamespace>
+    <AssemblyName>Api.QLTS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -234,7 +234,11 @@
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinDatByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetListThayDoiThongTinByCriteriaAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTin500Action.cs" />
+    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinDatAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinNhaAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinNhaAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinOtoAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinOtoAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTin500Action.cs" />
     <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinDatAction.cs" />

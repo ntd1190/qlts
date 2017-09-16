@@ -4,7 +4,7 @@
     ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
 <div class="container-fluid">
-    <div class="panel panel-default" ng-controller="TaiSanListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo)})" keyboard="ctrl.keys">
+    <div class="panel panel-default" ng-controller="TaiSanListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/taisan/"))'})" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
                 <span><i class="fa fa-fw fa-star-o"></i>Tài sản</span>

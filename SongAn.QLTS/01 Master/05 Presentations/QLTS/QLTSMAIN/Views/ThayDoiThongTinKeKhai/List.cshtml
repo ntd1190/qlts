@@ -1,10 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Danh sách tài sản";
+    ViewBag.Title = "Thay đổi thông tin kê khai";
     ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
 <div class="container-fluid">
-    <div class="panel panel-default" ng-controller="ThayDoiThongTinKeKhaiListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo)})" keyboard="ctrl.keys">
+    <div class="panel panel-default" ng-controller="ThayDoiThongTinKeKhaiListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/thaydoithongtinkekhai/"))'})" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
                 <span><i class="fa fa-fw fa-star-o"></i>Tài sản</span>
@@ -25,7 +25,7 @@
 
         <div class="panel-heading">
             <span ng-if="ctrl.action.checkQuyenTacVu('N')">
-                <a class="btn btn-sm btn-primary" href="~/taisan/create">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="~/thaydoithongtinkekhai/create">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <button class="btn btn-sm btn-default" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()">Xóa chọn</button>
         </div>
@@ -50,8 +50,7 @@
                             <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCot" ng-switch="cot.MaCot">
-                            <a ng-switch-when="MaTaiSan,TenTaiSan" ng-switch-when-separator="," href="~/taisan/edit/{{row.TaiSanId}}" ng-bind="row[cot.MaCot]"></a>
-                            <span ng-switch-when="Ngay" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></span>
+                            <a  href="~/thaydoithongtinkekhai/edit/{{row.ThayDoiThongTinId}}" ng-switch-when="Ngay" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></a>
                             <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                         </td>
                     </tr>
@@ -351,7 +350,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="panel-title">Thông tin thay đổi (Ô tô)</span>
+                            <span class="panel-title">Thông tin cũ</span>
                         </div>
                         <div class="panel-body">
                             <fieldset disabled>
@@ -405,7 +404,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="panel-title">Thông tin cũ (500 triệu)</span>
+                            <span class="panel-title">Thông tin thay đổi (500 triệu)</span>
                         </div>
                         <div class="panel-body">
                             <fieldset disabled>

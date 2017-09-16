@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Data.QLNS.BienBanKiemKe
+namespace SongAn.QLTS.Data.QLTS.BienBanKiemKe
 {
     public class GetListBienBanKiemKeChiTietByKiemKeIdDac : BaseRepositoryAsync
     {
@@ -17,6 +17,7 @@ namespace SongAn.QLTS.Data.QLNS.BienBanKiemKe
         /// Danh sách các KeHoachMuaSamChiTietId cần lấy
         /// </summary>
         public int BienBanKiemKeId { get; set; }
+        public int PhongBanId { get; set; }
 
 
         #endregion
@@ -76,6 +77,7 @@ namespace SongAn.QLTS.Data.QLNS.BienBanKiemKe
                 var p = new DynamicParameters();
 
                 p.Add("BienBanKiemKeId", BienBanKiemKeId, DbType.Int32);
+                p.Add("PhongBanId", PhongBanId, DbType.Int32);
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_BienBanKiemKeChiTiet_GetListBienBanKiemKeChiTietByKiemKeId",
                     param: p,

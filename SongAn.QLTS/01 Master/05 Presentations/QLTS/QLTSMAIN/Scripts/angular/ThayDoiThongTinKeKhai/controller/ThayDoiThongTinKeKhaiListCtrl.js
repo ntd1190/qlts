@@ -19,9 +19,10 @@
         vm.inputSearch = {};
 
         vm.data.listCot = [
+            { MaCot: 'Ngay', TenCot: 'Ngày thay đổi', HienThiYN: true, DoRong: 0 },
             { MaCot: 'MaTaiSan', TenCot: 'Mã tài sản', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'Ngay', TenCot: 'Ngày thay đổi', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'LyDo', TenCot: 'Lý do', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenNguoiDuyet', TenCot: 'Tên người duyệt', HienThiYN: true, DoRong: 0 },
         ];
 
@@ -36,14 +37,34 @@
             linkUrl = config.linkUrl || '';
         }
 
+        /*** HOT KEY ***/
+
+        vm.keys = {
+            F2: function (name, code) {
+                window.location = linkUrl + 'create/';
+            },
+            F3: function (name, code) {
+                vm.action.search();
+            },
+
+            F8: function (name, code) {
+            }
+        };
+
         /*** ACTION MODEL ***/
 
         vm.action = {};
         vm.action.checkQuyenTacVu = checkQuyenUI;
         vm.action.getPage = getPage;
         vm.action.search = function () {
+            utility.addloadding($('body'));
             _tableState.pagination.start = 0;
-            getPage(_tableState);
+
+            getPage(_tableState).then(function (success) {
+                utility.removeloadding();
+            },function (error) {
+                utility.removeloadding();
+            });
         };
         vm.action.TTKKInfo = function (object) {
             for (var i in vm.data.TDTTList) {
@@ -144,7 +165,6 @@
             });
             return deferred.promise;
         }
-
         function getTDTT_LoaiById(id, LoaiKeKhai) {
             var deferred = $q.defer();
 

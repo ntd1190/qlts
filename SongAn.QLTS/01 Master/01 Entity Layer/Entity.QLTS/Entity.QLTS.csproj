@@ -7,8 +7,8 @@
     <ProjectGuid>{8779D0F7-D0F8-4470-A3EB-E0667DF7B57A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Entity.MSSQL_QLDN_QLNS</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Entity.MSSQL_QLDN_QLNS</AssemblyName>
+    <RootNamespace>Entity.QLTS</RootNamespace>
+    <AssemblyName>Entity.QLTS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

@@ -7,8 +7,8 @@
     <ProjectGuid>{36B1F8EE-22F7-4A45-9114-D71DED146490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Data.QLNS</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Data.QLNS</AssemblyName>
+    <RootNamespace>Data.QLTS</RootNamespace>
+    <AssemblyName>Data.QLTS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -163,8 +163,12 @@
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinDatByIdDac.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinByIdDac.cs" />
     <Compile Include="ThayDoiThongTin\GetListThayDoiThongTinByCriteriaDac.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTin500Dac.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTin500Dac.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinDatDac.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinNhaDac.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinNhaDac.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinOtoDac.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinOtoDac.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinDatDac.cs" />
     <Compile Include="TheoDoi\DeleteListTheoDoiByIdDac.cs" />
@@ -256,12 +260,16 @@
     <Content Include="TaiSan\Procedures\sp_ThongTinKeKhaiDat_InsertThongTinKeKhaiDat.sql" />
     <Content Include="TaiSan\Procedures\sp_ThongTinCongKhai_InsertThongTinCongKhai.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin500_GetThayDoiThongTin500ById.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinDat_UpdateThayDoiThongTinDat.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinNha_UpdateThayDoiThongTinNha.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinOto_UpdateThayDoiThongTinOto.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinNha_GetThayDoiThongTinNhaById.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinOto_GetThayDoiThongTinOtoById.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinDat_GetThayDoiThongTinDatById.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin500_InsertThayDoiThongTin500.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinNha_InsertThayDoiThongTinNha.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinOto_InsertThayDoiThongTinOto.sql" />
+    <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin500_UpdateThayDoiThongTin500.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin_GetThayDoiThongTinById.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTin_GetListThayDoiThongTinByCriteria.sql" />
     <Content Include="ThayDoiThongTin\Procedures\sp_ThayDoiThongTinDat_InsertThayDoiThongTinDat.sql" />

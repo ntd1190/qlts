@@ -7,8 +7,8 @@
     <ProjectGuid>{9ECEE33B-587F-4849-A2CF-9FB5BED47B58}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Biz.Main</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Biz.Main</AssemblyName>
+    <RootNamespace>Biz.Main</RootNamespace>
+    <AssemblyName>Biz.Main</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

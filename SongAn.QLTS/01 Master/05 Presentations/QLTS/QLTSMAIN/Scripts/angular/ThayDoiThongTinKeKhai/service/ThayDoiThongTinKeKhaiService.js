@@ -19,6 +19,10 @@
         api.insertTDTT_Oto = 'InsertThayDoiThongTinOto';
         api.insertTDTT_500 = 'InsertThayDoiThongTin500';
 
+        api.updateTDTT_Dat = 'UpdateThayDoiThongTinDat';
+        api.updateTDTT_Nha = 'UpdateThayDoiThongTinNha';
+        api.updateTDTT_Oto = 'UpdateThayDoiThongTinOto';
+        api.updateTDTT_500 = 'UpdateThayDoiThongTin500';
 
         var service = {};
 
@@ -134,6 +138,55 @@
         };
         service.insertTDTT_500 = function (data) {
             var url = api.url + api.insertTDTT_500;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        };
+
+        service.updateTDTT_Dat = function (data) {
+            var url = api.url + api.updateTDTT_Dat;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        };
+        service.updateTDTT_Nha = function (data) {
+            var url = api.url + api.updateTDTT_Nha;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        };
+        service.updateTDTT_Oto = function (data) {
+            var url = api.url + api.updateTDTT_Oto;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        };
+        service.updateTDTT_500 = function (data) {
+            var url = api.url + api.updateTDTT_500;
 
             var req = {
                 url: url,

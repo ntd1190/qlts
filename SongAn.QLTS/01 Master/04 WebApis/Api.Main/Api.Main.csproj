@@ -7,8 +7,8 @@
     <ProjectGuid>{E6568342-3BF9-48BA-8835-E689D432A535}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLTS.Api.Main</RootNamespace>
-    <AssemblyName>SongAn.QLTS.Api.Main</AssemblyName>
+    <RootNamespace>Api.Main</RootNamespace>
+    <AssemblyName>Api.Main</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

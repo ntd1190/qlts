@@ -11,6 +11,7 @@
                 config: '<',
                 value: '=',
                 maTaiSan: '=',
+                disabled: '<'
             },
             controller: controller,
             controllerAs: 'ctrl',

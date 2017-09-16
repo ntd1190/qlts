@@ -8,7 +8,18 @@
         vm.error = {};
 
         vm.data = {};
-        vm.data.TaiSan = {};
+        vm.data.TaiSan = {
+            NgayMua: moment().format('DD/MM/YYYY'),
+            NgayBDHaoMon: moment().format('DD/MM/YYYY'),
+            NgayBDKhauHao: moment().format('DD/MM/YYYY'),
+            SoNamSuDung: 1,
+            TyLeHaoMon: 10,
+
+            KyTinhKhauHao: 'Tháng',
+            SoKyKhauHao: 1,
+            TyLeKhauHao: 10,
+
+        };
         vm.data.TTCK = {}; // Thông tin công khai
         vm.data.TTKK_Dat = {}; // Thông tin kê khai đất
         vm.data.TTKK_Nha = {}; // Thông tin kê khai nhà
@@ -116,6 +127,18 @@
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
         }
 
+        vm.action.keyPressNganSach = function (event, index) {
+            if (event.keyCode != 13) { return; }
+
+            if (vm.data.listNguyenGia && (vm.data.listNguyenGia.length - 1) == index) {
+                vm.action.addNguyenGia();
+            }
+            $timeout(function () {
+                $('[data-name="' + $(event.target).data('next') + '"] input').focus();
+                $('[data-name="' + $(event.target).data('next') + '"]').focus();
+            },0);
+        }
+
         vm.action.keyPressTTKK = function (event) {
             if (event.keyCode != 13) { return; }
             if (checkInputTTKK($(event.target).data('name')) === false) {
@@ -130,12 +153,14 @@
         }
 
         /*** HOT KEY ***/
-
         vm.keys = {
             //press F2 -> open popup
             F2: function (name, code) {
                 vm.action.addNguyenGia();
-  
+                var index = vm.data.listNguyenGia.length - 1;
+                $timeout(function () {
+                    $('[data-name="listNguyenGia_NguonNganSachId' + index + '"] input').focus();
+                }, 0);
             },
 
             F8: function (name, code) {
@@ -147,7 +172,7 @@
 
         activate();
         function activate() {
-           
+
         };
 
         vm.onInitView = function (config) {
@@ -190,9 +215,10 @@
                 vm.data.TTKK_Dat.DienTich += vm.data.TTKK_Dat.SuDungKhac * 1 || 0;
             });
 
+        // tính hao mòn
         $scope.$watch(`
             ctrl.data.NguyenGia+
-            ctrl.data.TaiSan.SoNamSuDung+
+            ctrl.data.TaiSan.TyLeHaoMon+
             ctrl.data.TaiSan.NgayBDHaoMon+
             ctrl.data.TaiSan.NgayMua`
             , function () {
@@ -200,11 +226,23 @@
                 tinhGTConLai();
             })
 
+        // tính khấu hao
+        $scope.$watch(`
+            ctrl.data.NguyenGia+
+            ctrl.data.TaiSan.KyTinhKhauHao+
+            ctrl.data.TaiSan.NgayBDKhauHao+
+            ctrl.data.TaiSan.TyLeKhauHao+
+            ctrl.data.TaiSan.SoKyKhauHao+
+            ctrl.data.TaiSan.GiaTriKhauHao`
+            , function () {
+                tinhKhauHao();
+            })
+
         /*** BIZ FUNCTION ***/
 
         function tinhHaoMon() {
-            vm.data.TaiSan.TyLeHaoMon = 100 / vm.data.TaiSan.SoNamSuDung;
-            vm.data.TaiSan.HaoMonNam = vm.data.NguyenGia / vm.data.TaiSan.SoNamSuDung;
+            vm.data.TaiSan.TyLeHaoMon = vm.data.TaiSan.TyLeHaoMon || 0;
+            vm.data.TaiSan.HaoMonNam = vm.data.NguyenGia * vm.data.TaiSan.TyLeHaoMon / 100;
 
             vm.data.TaiSan.SoNamSDConLai = (moment().year() - moment(vm.data.TaiSan.NgayBDHaoMon, 'DD/MM/YYYY').year());
             vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai;
@@ -218,6 +256,27 @@
         function tinhGTConLai() {
             vm.data.TaiSan.NamTheoDoi = moment(vm.data.TaiSan.NgayMua, 'DD/MM/YYYY').year();
             vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
+        }
+
+        function tinhKhauHao() {
+            console.log('tinhKhauHao');
+            vm.data.TaiSan.TyLeKhauHao = vm.data.TaiSan.TyLeKhauHao || 0;
+
+            var currDate = moment();
+            var startDate = moment(vm.data.TaiSan.NgayBDKhauHao, 'DD/MM/YYYY');
+
+            var ThangTheoKy = vm.data.TaiSan.KyTinhKhauHao == 'Tháng' ? 1
+                : vm.data.TaiSan.KyTinhKhauHao == 'Quý' ? 3
+                : vm.data.TaiSan.KyTinhKhauHao == 'Năm' ? 12
+                : 0
+
+            var SoThangSD = currDate.diff(startDate, 'months');
+            var SoThangConLai = vm.data.TaiSan.SoKyKhauHao * ThangTheoKy - SoThangSD;
+            SoThangConLai = SoThangConLai > 0 ? SoThangConLai : 0;
+
+            vm.data.TaiSan.KhauHaoKy = vm.data.NguyenGia * vm.data.TaiSan.TyLeKhauHao / 100;
+            vm.data.TaiSan.SoKyConLai = SoThangConLai > 0 ? Math.floor(SoThangConLai / ThangTheoKy) : 0;
+            vm.data.TaiSan.KhauHaoLuyKe = vm.data.TaiSan.KhauHaoKy * (vm.data.TaiSan.SoKyKhauHao - vm.data.TaiSan.SoKyConLai);
         }
 
         function checkQuyenUI(quyen) {
@@ -239,6 +298,7 @@
         }
 
         function loadData() {
+            if (TaiSanId == 0) { return; }
             getById(TaiSanId).then(function success() {
                 $q.all([getListNguyenGia()
                     , getTTCKById(TaiSanId)
@@ -247,8 +307,6 @@
                     , getTTKK_OtoById(TaiSanId)
                     , getTTKK_500ById(TaiSanId)
                 ]).then(function () {
-                    tinhHaoMon();
-                    tinhGTConLai();
                 });
             });
         }

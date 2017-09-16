@@ -7,7 +7,7 @@
 
     function BienBanKiemKeService($http, API_BASE) {
         var api = {
-            url: API_BASE + 'api.QLNS/BienBanKiemKe/',
+            url: API_BASE + 'api.QLTS/BienBanKiemKe/',
             GetPage: 'GetListBienBanKiemKeByProjection',
             GetPageDetail: 'GetListBienBanKiemKeChiTietByKiemKeId',
             GetPageHeaderById: 'GetListBienBanKiemKeById',
@@ -55,7 +55,7 @@
             return $http(req);
         }
 
-        function GetPageDetail(BienBanKiemKeId) {
+        function GetPageDetail(BienBanKiemKeId, PhongBanId) {
             var url = api.url + api.GetPageDetail;
 
             var req = {
@@ -63,7 +63,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    KiemKeId: BienBanKiemKeId
+                    KiemKeId: BienBanKiemKeId,
+                    PhongBanId: PhongBanId
                 })
             }
 

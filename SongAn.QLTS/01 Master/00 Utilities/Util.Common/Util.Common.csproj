@@ -7,8 +7,8 @@
     <ProjectGuid>{C1722BE3-C482-4E38-930E-2DEF7987DAED}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Util.Common</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Util.Common</AssemblyName>
+    <RootNamespace>Util.Common</RootNamespace>
+    <AssemblyName>Util.Common</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>

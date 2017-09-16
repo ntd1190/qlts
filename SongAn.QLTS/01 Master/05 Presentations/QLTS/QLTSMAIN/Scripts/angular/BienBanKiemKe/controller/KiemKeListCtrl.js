@@ -300,7 +300,7 @@
             $('tr').removeClass('info');
             $('#row_' + BienBanKiemKeId).addClass('info');
             if (BienBanKiemKeId && BienBanKiemKeId > 0) {
-                BienBanKiemKeService.GetPageDetail(BienBanKiemKeId).then(function (success) {
+                BienBanKiemKeService.GetPageDetail(BienBanKiemKeId, 0).then(function (success) {
                     if (success.data.data) {
                         $('#bgloadding').remove();
                         vm.data.BienBanKiemKeChiTietListDisplay = success.data.data;

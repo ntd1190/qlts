@@ -14,6 +14,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.BienBanKiemKe
     public class GetListBienBanKiemKeChiTietByKiemKeIdAction
     {
         public string KiemKeId { get; set; }
+        public string PhongBanId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             var _result = new ActionResultDto();
@@ -31,6 +32,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.BienBanKiemKe
 
                 GetListBienBanKiemKeChiTietByKiemKeIdBiz biz = new GetListBienBanKiemKeChiTietByKiemKeIdBiz(context);
                 biz.BienBanKiemKeId = Protector.Int(KiemKeId);
+                biz.PhongBanId = Protector.Int(PhongBanId);
 
                 IEnumerable<dynamic> KiemKe = await biz.Execute();
 

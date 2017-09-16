@@ -9,7 +9,8 @@
             service = TaiSanService,
             TaiSanId = 0,
             userInfo,
-            _tableState;
+            _tableState,
+            linkUrl;
 
         /*** VIEW MODEL ***/
 
@@ -69,6 +70,7 @@
 
         vm.keys = {
             F2: function (name, code) {
+                window.location = linkUrl + 'create/';
             },
             F3: function (name, code) {
                 vm.action.search();
@@ -87,6 +89,9 @@
         vm.onInitView = function (config) {
             if (config && config.userInfo) {
                 userInfo = config.userInfo;
+            }
+            if (config && config.linkUrl) {
+                linkUrl = config.linkUrl;
             }
         };
 

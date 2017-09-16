@@ -7,8 +7,8 @@
     <ProjectGuid>{5D6FF0AB-0342-4110-A004-356D4E7772AC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLDN.Biz.QLNS</RootNamespace>
-    <AssemblyName>SongAn.QLDN.Biz.QLNS</AssemblyName>
+    <RootNamespace>Biz.QLTS</RootNamespace>
+    <AssemblyName>Biz.QLTS</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -154,8 +154,12 @@
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinOtoByIdBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinByIdBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetListThayDoiThongTinByCriteriaBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTin500Biz.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTin500Biz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinDatBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinNhaBiz.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinNhaBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinOtoBiz.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinOtoBiz.cs" />
     <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinDatBiz.cs" />
     <Compile Include="TheoDoi\DeleteListTheoDoiByIdBiz.cs" />

@@ -5,13 +5,13 @@
     3. Description : ThayDoiThongTinKeKhai/Edit
     4. History     : 2017.09.12 (NGUYỄN THANH BÌNH) - thiết kế giao diện
     *****************************************************************************/
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Thay đổi thông tin kê khai";
     ViewBag.id = ViewBag.id ?? 0;
     ViewBag.isEdit = ViewBag.isEdit ?? 0;
     ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
 <div class="container-fluid">
-    <div class="panel panel-default" ng-controller="ThayDoiThongTinKeKhaiEditCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),isEdit:@(ViewBag.isEdit),linkUrl:'@(Url.Content("~/ThayDoiThongTinKeKhai/"))'})">
+    <div class="panel panel-default" ng-controller="ThayDoiThongTinKeKhaiEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),ThayDoiThongTinId:@(ViewBag.id),isEdit:@(ViewBag.isEdit),linkUrl:'@(Url.Content("~/ThayDoiThongTinKeKhai/"))'})">
         <div class="panel-heading">
             <span class="panel-title">Thay đổi thông tin</span>
         </div>
@@ -22,7 +22,7 @@
                         <span class="col-sm-3">Ngày thay đổi<span class="text-danger">&nbsp;*</span></span>
                         <div class="col-sm-4">
                             <div class="input-group">
-                                <input class="form-control datetimepicker date" ng-model="ctrl.data.TDTT.Ngay" ng-keypress="ctrl.action.keyPressTDTT($event)" data-name="TDTT_Ngay" data-next="TTKK_New_GiayTo"/>
+                                <input class="form-control datetimepicker date" ng-model="ctrl.data.TDTT.Ngay" disabled ng-keypress="ctrl.action.keyPressTDTT($event)" data-name="TDTT_Ngay" data-next="TTKK_New_GiayTo" />
                                 <span class="input-group-addon"><i class="fa fa-fw fa-calendar"></i></span>
                             </div>
                         </div>
@@ -40,8 +40,9 @@
                     <div class="row form-group form-group-sm" ng-class="ctrl.error.TDTT_TaiSanId?'has-error':''">
                         <span class="col-sm-3">Tên tài sản cũ<span class="text-danger">&nbsp;*</span></span>
                         <div class="col-sm-8">
-                            <cbo-tai-san-ke-khai ng-keypress="ctrl.action.keyPressTDTT($event)" data-name="TDTT_TaiSanId" data-next="TDTT_TaiSanId"
-                                                 data-config="{userInfo:@(ViewBag.userInfo)}" data-value="ctrl.data.TDTT.TaiSanId" on-selected="ctrl.action.getTaiSanKeKhai(data)" template-url="~/taisan/showview?viewname=cbotaisankekhai"></cbo-tai-san-ke-khai>
+                            <fieldset disabled>
+                                <span class="form-control" ng-bind="ctrl.data.TaiSan_Old.TenTaiSan"></span>
+                            </fieldset>
                         </div>
                     </div>
                 </div>
@@ -67,43 +68,43 @@
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Địa chỉ<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.DiaChi"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.DiaChiCu"></span>
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Giấy tờ kèm theo</span>
-                                        <span style="white-space: pre-wrap; min-height: 30px;" class="form-control auto-height" ng-bind="ctrl.data.TTKK_Old.GiayTo"></span>
+                                        <span style="white-space: pre-wrap; min-height: 30px;" class="form-control auto-height" ng-bind="ctrl.data.TTKK_Old.GiayToCu"></span>
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.DienTich|number:'':'':2" />
+                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.LamTruSo|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.LamTruSoCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Cho thuê</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.ChoThue|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.ChoThueCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Bị lấn chiếm</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BiLanChiem|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BiLanChiemCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm CSHĐSN<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.CoSoHDSuNghiep|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.CoSoHDSuNghiepCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Bỏ trống<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BoTrong|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BoTrongCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Sử dụng khác<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.SuDungKhac|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.SuDungKhacCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm nhà ở<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.NhaO|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.NhaOCu|number:'':'':2"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -176,47 +177,47 @@
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Địa chỉ<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.DiaChi"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.DiaChiCu"></span>
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Giấy tờ kèm theo</span>
-                                        <span style="white-space: pre-wrap; min-height: 30px;" class="form-control auto-height" ng-bind="ctrl.data.TTKK_Old.GiayTo"></span>
+                                        <span style="white-space: pre-wrap; min-height: 30px;" class="form-control auto-height" ng-bind="ctrl.data.TTKK_Old.GiayToCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.DienTich|number:'':'':2" />
+                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Tổng diện tích sàn</span>
-                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.TongDienTichSan|number:'':'':2" />
+                                        <span class="form-control" disabled ng-bind="ctrl.data.TTKK_Old.TongDienTichSanCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.LamTruSo|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.LamTruSoCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Cho thuê</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.ChoThue|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.ChoThueCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Bị lấn chiếm</span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BiLanChiem|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BiLanChiemCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm CSHĐSN<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.CoSoHDSuNghiep|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.CoSoHDSuNghiepCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Bỏ trống<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BoTrong|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.BoTrongCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Sử dụng khác<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.SuDungKhac|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.SuDungKhacCu|number:'':'':2"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm nhà ở<span class="text-danger">&nbsp;*</span></span>
-                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.NhaO|number:'':'':2"></span>
+                                        <span type="text" class="form-control" ng-bind="ctrl.data.TTKK_Old.NhaOCu|number:'':'':2"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -242,7 +243,7 @@
                                     <span>Diện tích<span class="text-danger">&nbsp;*</span></span>
                                     <input type="text" class="form-control" ng-model="ctrl.data.TTKK_New.DienTich" number-format />
                                 </div>
-                                <div class="col-sm-6 form-group form-group-sm" ng-class="ctrl.error.TTKK_New_DienTich?'has-error':''">
+                                <div class="col-sm-6 form-group form-group-sm" ng-class="ctrl.error.TTKK_New_TongDienTichSan?'has-error':''">
                                     <span>Tổng diện tích sàn<span class="text-danger">&nbsp;*</span></span>
                                     <input type="text" class="form-control" ng-model="ctrl.data.TTKK_New.TongDienTichSan" number-format />
                                 </div>
@@ -291,12 +292,12 @@
                                 <div class="row">
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Nhãn hiệu</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.NhanHieu"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.NhanHieuCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Loại xe</span>
 
-                                        <select class="form-control" ng-model="ctrl.data.TTKK_Old.LoaiXe">
+                                        <select class="form-control" ng-model="ctrl.data.TTKK_Old.LoaiXeCu">
                                             <option value="1">Xe 1 bánh</option>
                                             <option value="2">Xe lăng</option>
                                             <option value="3">Xe tăng</option>
@@ -305,27 +306,27 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Chức danh</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.ChucDanh"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.ChucDanhCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Hiện trạng sử dụng</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TenHienTrangSuDung"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TenHienTrangSuDungCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Biển kiểm soát</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.BienKiemSoat"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.BienKiemSoatCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Nguồn gốc</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.NguonGocXe"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.NguonGocXeCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Tải trọng</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TrongTai|number"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TrongTaiCu|number"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Công xuất xe</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.CongSuatXe|number"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.CongSuatXeCu|number"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -394,11 +395,11 @@
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Ký hiệu</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.KyHieu"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.KyHieuCu"></span>
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Hiện trạng sử dụng</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TenHienTrangSuDung"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TenHienTrangSuDungCu"></span>
                                     </div>
                                 </div>
                             </fieldset>
@@ -432,7 +433,7 @@
             <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
                 <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu</button>&nbsp;&nbsp;&nbsp;
             </span>
-            <button type="button" class="btn btn-sm btn-default"><i class="fa fa-fw fa-arrow-left"></i>Quay lại</button>&nbsp;&nbsp;&nbsp;
+            <a type="button" class="btn btn-sm btn-default" href="~/thaydoithongtinkekhai/list"><i class="fa fa-fw fa-arrow-left"></i>Quay lại</a>&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 </div>

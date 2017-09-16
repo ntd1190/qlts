@@ -6,7 +6,7 @@
 
         /*** PRIVATE ***/
 
-        var vm = this, userInfo, isEdit = false, linkUrl = '', TDTTService = ThayDoiThongTinKeKhaiService;
+        var vm = this, userInfo, linkUrl = '', isEdit = false, ThayDoiThongTinId = 0, TDTTService = ThayDoiThongTinKeKhaiService;
 
         /*** VIEW MODEL ***/
 
@@ -27,23 +27,26 @@
 
             userInfo = config.userInfo || {};
             isEdit = config.isEdit || false;
+            ThayDoiThongTinId = config.ThayDoiThongTinId || 0;
+            loadData();
         }
+
+        /*** HOT KEY ***/
+
+        vm.keys = {
+            F2: function (name, code) {
+            },
+            F3: function (name, code) {
+            },
+
+            F8: function (name, code) {
+                vm.action.save();
+            }
+        };
 
         /*** ACTION MODEL ***/
 
         vm.action = {};
-        vm.action.getTaiSanKeKhai = function (data) {
-            delete vm.data.TaiSan_Old;
-            vm.data.TaiSan_Old = angular.copy(data);
-
-            delete vm.data.TaiSan_New;
-            vm.data.TaiSan_New = angular.copy(vm.data.TaiSan_Old);
-
-            getTTKKById(vm.data.TaiSan_Old.TaiSanId).then(function (success) {
-                delete vm.data.TTKK_New;
-                vm.data.TTKK_New = angular.copy(vm.data.TTKK_Old);
-            });
-        }
         vm.action.checkQuyenTacVu = checkQuyenUI;
         vm.action.keyPressTTKK = function (event) {
             if (event.keyCode != 13) { return; }
@@ -69,9 +72,7 @@
 
             utility.addloadding($('body'));
             if (isEdit == 1 && checkQuyenUI('M')) {
-                utility.AlertSuccess('Đang xây dựng');
-            } else if (isEdit == 0 && checkQuyenUI('N')) {
-                insertTDTT().then(function (success) {
+                updateTDTT().then(function (success) {
                     utility.removeloadding();
                     utility.AlertSuccess('Thay đổi thông tin thành công');
                 }, function (error) {
@@ -83,7 +84,6 @@
                     }
                 });
             }
-
         }
 
         /*** EVENT FUNCTION ***/
@@ -127,30 +127,22 @@
             return listQuyenTacVu.indexOf(quyen) >= 0;
         }
 
-        function loadData() { }
+        function loadData() {
+            getTDTTById(ThayDoiThongTinId).then(function (success) {
+                delete vm.data.TaiSan_Old; vm.data.TaiSan_Old = {};
+                vm.data.TaiSan_Old.TaiSanId = vm.data.TDTT.TaiSanId;
+                vm.data.TaiSan_Old.TenTaiSan = vm.data.TDTT.TenTaiSanCu;
+                vm.data.TaiSan_Old.LoaiKeKhai = vm.data.TDTT.LoaiKeKhai;
 
-        function getTTKKById(id) {
-            var deferred = $q.defer();
+                delete vm.data.TaiSan_New; vm.data.TaiSan_New = {};
+                vm.data.TaiSan_New.TaiSanId = vm.data.TDTT.TaiSanId;
+                vm.data.TaiSan_New.TenTaiSan = vm.data.TDTT.TenTaiSanMoi;
+                vm.data.TaiSan_New.LoaiKeKhai = vm.data.TDTT.LoaiKeKhai;
 
-            switch (vm.data.TaiSan_Old.LoaiKeKhai.toString()) {
-                case '1':
-                    return insertTDTT_Dat();
-                    break;
-                case '2':
-                    return insertTDTT_Nha();
-                    break;
-                case '3':
-                    return insertTDTT_Oto();
-                    break;
-                case '4':
-                    return insertTDTT_500();
-                    break;
-                default:
-                    deferred.resolve();
-            }
-            return deferred.promise;
+                getTTKKById(vm.data.TaiSan_New.TaiSanId);
+                getTDTT_LoaiById(ThayDoiThongTinId, vm.data.TDTT.LoaiKeKhai);
+            });
         }
-
 
         function checkInputTDTT(inputName) {
             console.log('checkInputTDTT');
@@ -185,6 +177,7 @@
                 $('[data-name="' + first_error_name + '"] input').focus();
                 $('[data-name="' + first_error_name + '"]').focus();
             }
+            return !has_error;
         }
 
         function checkInputTTKK(inputName) {
@@ -557,31 +550,153 @@
         }
 
         /*** API FUNCTION ***/
-        function prepareTDTT(object) {
-            object.Ngay = utility.convertDateFormat(object.Ngay, 'DD/MM/YYYY', 'YYYY-MM-DD');
+
+        function fixedTDTT(object) {
+            object.Ngay = utility.convertDateFormat(object.Ngay, 'YYYY-MM-DD', 'DD/MM/YYYY');
         }
-        function insertTDTT() {
+        function getTDTTById(id) {
+            var deferred = $q.defer();
+            var data = {};
+            data.ThayDoiThongTinId = id;
+            data.CoSoId = userInfo.CoSoId || 0;
+            data.NhanVienId = userInfo.NhanVienId || 0;
+            TDTTService.getById(data).then(function (success) {
+                console.log('TDTTService.getById.success');
+                console.log(success);
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TDTT = success.data.data[0];
+                }
+                vm.data.TDTT = vm.data.TDTT || {};
+                fixedTDTT(vm.data.TDTT);
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log('TDTTService.getById.error');
+                console.log(error);
+                return deferred.resolve(error);
+            });
+            return deferred.promise;
+        }
+        function getTDTT_LoaiById(id, LoaiKeKhai) {
             var deferred = $q.defer();
 
-            switch (vm.data.TaiSan_Old.LoaiKeKhai.toString()) {
+            switch (LoaiKeKhai.toString()) {
                 case '1':
-                    return insertTDTT_Dat();
+                    return getTDTT_DatById(id);
                     break;
                 case '2':
-                    return insertTDTT_Nha();
+                    return getTDTT_NhaById(id);
                     break;
                 case '3':
-                    return insertTDTT_Oto();
+                    return getTDTT_OtoById(id);
                     break;
                 case '4':
-                    return insertTDTT_500();
+                    return getTDTT_500ById(id);
                     break;
                 default:
                     deferred.resolve();
             }
             return deferred.promise;
         }
-        function insertTDTT_Dat() {
+        function getTDTT_DatById(id) {
+            var deferred = $q.defer();
+            var data = { ThayDoiThongTinId: id };
+            TDTTService.getTDTT_DatById(data).then(function (success) {
+                console.log('TDTTService.getTDTT_DatById');
+                console.log(success);
+                delete vm.data.TTKK_Old;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Old = success.data.data[0];
+                }
+                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+
+            return deferred.promise;
+        }
+        function getTDTT_NhaById(id) {
+            var deferred = $q.defer();
+            var data = { ThayDoiThongTinId: id };
+            TDTTService.getTDTT_NhaById(data).then(function (success) {
+                console.log('TDTTService.getTDTT_NhaById');
+                console.log(success);
+                delete vm.data.TTKK_Old;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Old = success.data.data[0];
+                }
+                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+        function getTDTT_OtoById(id) {
+            var deferred = $q.defer();
+            var data = { ThayDoiThongTinId: id };
+            TDTTService.getTDTT_OtoById(data).then(function (success) {
+                console.log('TDTTService.getTDTT_OtoById');
+                console.log(success);
+                delete vm.data.TTKK_Old;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Old = success.data.data[0];
+                    vm.data.TTKK_Old.LoaiXeCu = vm.data.TTKK_Old.LoaiXeCu.toString();
+                }
+                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+        function getTDTT_500ById(id) {
+            var deferred = $q.defer();
+            var data = { ThayDoiThongTinId: id };
+            TDTTService.getTDTT_500ById(data).then(function (success) {
+                console.log('TDTTService.getTDTT_500ById');
+                console.log(success);
+                delete vm.data.TTKK_Old;
+                if (success.data.data && success.data.data.length) {
+                    vm.data.TTKK_Old = success.data.data[0];
+                }
+                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+
+        function prepareTDTT(object) {
+            object.Ngay = utility.convertDateFormat(object.Ngay, 'DD/MM/YYYY', 'YYYY-MM-DD');
+        }
+        function updateTDTT() {
+            var deferred = $q.defer();
+
+            switch (vm.data.TaiSan_Old.LoaiKeKhai.toString()) {
+                case '1':
+                    return updateTDTT_Dat();
+                    break;
+                case '2':
+                    return updateTDTT_Nha();
+                    break;
+                case '3':
+                    return updateTDTT_Oto();
+                    break;
+                case '4':
+                    return updateTDTT_500();
+                    break;
+                default:
+                    deferred.resolve();
+            }
+            return deferred.promise;
+        }
+        function updateTDTT_Dat() {
             var deferred = $q.defer();
             var data = {};
 
@@ -595,7 +710,8 @@
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TDTTService.insertTDTT_Dat(data).then(function (success) {
+            TDTTService.updateTDTT_Dat(data).then(function (success) {
+                console.log('TDTTService.updateTDTT_Dat');
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -605,7 +721,7 @@
 
             return deferred.promise;
         }
-        function insertTDTT_Nha() {
+        function updateTDTT_Nha() {
             var deferred = $q.defer();
             var data = {};
 
@@ -619,7 +735,8 @@
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TDTTService.insertTDTT_Nha(data).then(function (success) {
+            TDTTService.updateTDTT_Nha(data).then(function (success) {
+                console.log('TDTTService.updateTDTT_Nha');
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -629,7 +746,7 @@
 
             return deferred.promise;
         }
-        function insertTDTT_Oto() {
+        function updateTDTT_Oto() {
             var deferred = $q.defer();
             var data = {};
 
@@ -643,7 +760,7 @@
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TDTTService.insertTDTT_Oto(data).then(function (success) {
+            TDTTService.updateTDTT_Oto(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -653,7 +770,7 @@
 
             return deferred.promise;
         }
-        function insertTDTT_500() {
+        function updateTDTT_500() {
             var deferred = $q.defer();
             var data = {};
 
@@ -667,7 +784,7 @@
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TDTTService.insertTDTT_500(data).then(function (success) {
+            TDTTService.updateTDTT_500(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -681,7 +798,7 @@
         function getTTKKById(id) {
             var deferred = $q.defer();
 
-            switch (vm.data.TaiSan_Old.LoaiKeKhai.toString()) {
+            switch (vm.data.TaiSan_New.LoaiKeKhai.toString()) {
                 case '1':
                     return getTTKK_DatById(id);
                     break;
@@ -705,11 +822,11 @@
             TaiSanService.getTTKK_DatById(data).then(function (success) {
                 console.log('TaiSanService.getTTKK_DatById');
                 console.log(success);
-                delete vm.data.TTKK_Old;
+                delete vm.data.TTKK_New;
                 if (success.data.data && success.data.data.length) {
-                    vm.data.TTKK_Old = success.data.data[0];
+                    vm.data.TTKK_New = success.data.data[0];
                 }
-                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                vm.data.TTKK_New = vm.data.TTKK_New || {};
                 return deferred.resolve(success);
             }, function (error) {
                 console.log(error);
@@ -724,11 +841,11 @@
             TaiSanService.getTTKK_NhaById(data).then(function (success) {
                 console.log('TaiSanService.getTTKK_NhaById');
                 console.log(success);
-                delete vm.data.TTKK_Old;
+                delete vm.data.TTKK_New;
                 if (success.data.data && success.data.data.length) {
-                    vm.data.TTKK_Old = success.data.data[0];
+                    vm.data.TTKK_New = success.data.data[0];
                 }
-                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                vm.data.TTKK_New = vm.data.TTKK_New || {};
                 return deferred.resolve(success);
             }, function (error) {
                 console.log(error);
@@ -742,12 +859,12 @@
             TaiSanService.getTTKK_OtoById(data).then(function (success) {
                 console.log('TaiSanService.getTTKK_OtoById');
                 console.log(success);
-                delete vm.data.TTKK_Old;
+                delete vm.data.TTKK_New;
                 if (success.data.data && success.data.data.length) {
-                    vm.data.TTKK_Old = success.data.data[0];
-                    vm.data.TTKK_Old.LoaiXe = vm.data.TTKK_Old.LoaiXe.toString();
+                    vm.data.TTKK_New = success.data.data[0];
+                    vm.data.TTKK_New.LoaiXe = vm.data.TTKK_New.LoaiXe.toString();
                 }
-                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                vm.data.TTKK_New = vm.data.TTKK_New || {};
                 return deferred.resolve(success);
             }, function (error) {
                 console.log(error);
@@ -761,11 +878,11 @@
             TaiSanService.getTTKK_500ById(data).then(function (success) {
                 console.log('TaiSanService.getTTKK_500ById');
                 console.log(success);
-                delete vm.data.TTKK_Old;
+                delete vm.data.TTKK_New;
                 if (success.data.data && success.data.data.length) {
-                    vm.data.TTKK_Old = success.data.data[0];
+                    vm.data.TTKK_New = success.data.data[0];
                 }
-                vm.data.TTKK_Old = vm.data.TTKK_Old || {};
+                vm.data.TTKK_New = vm.data.TTKK_New || {};
                 return deferred.resolve(success);
             }, function (error) {
                 console.log(error);
