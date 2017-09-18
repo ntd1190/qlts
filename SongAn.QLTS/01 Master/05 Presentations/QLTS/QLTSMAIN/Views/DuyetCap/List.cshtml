@@ -1,0 +1,245 @@
+﻿
+@{
+    ViewBag.Title = "Duyệt trang cấp";
+}
+<div class="container-fluid">
+
+    <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="DuyetCapFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading clearfix">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Duyệt trang cấp</span>
+            <div class="btn-group btn-group-sm pull-right">
+                <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
+            </div>
+        </div>
+        <div class="collapse fade" id="SearchCollapse">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Ngày</label>
+                        <div class="form-inline col-sm-9">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.startDate" /> ~
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.endDate" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Bộ phận</label>
+                        <div class="col-sm-9">
+                             @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DuyetCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="DuyetCapListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading" style="height: 51px;">
+            <span ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.DongY()"><i class="fa fa-check" aria-hidden="true"></i> Duyệt</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-default" ng-click="ctrl.action.OpenTuChoi()">Từ chối</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.OpenTuChoi()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
+            <div style="float:right">
+                <label class="radio-inline">
+                    <input style="margin-right: 5px;" type="radio" ng-checked="true" ng-click="ctrl.action.GetPageByDuyetId('0')" value="1" name="Loai" class="ng-pristine ng-untouched ng-valid ng-not-empty"><span>Chưa duyệt</span>
+                </label>
+                <label class="radio-inline">
+                    <input style="margin-right: 5px;" type="radio" value="2" name="Loai" ng-click="ctrl.action.GetPageByDuyetId('1,2')" class="ng-pristine ng-untouched ng-valid ng-not-empty"><span>Đã duyệt</span>
+                </label>
+                <label class="radio-inline">
+                    <input style="margin-right: 5px;" type="radio" value="3" name="Loai" ng-click="ctrl.action.GetPageByDuyetId('')" class="ng-pristine ng-untouched ng-valid ng-not-empty"><span>Tất cả</span>
+                </label>
+            </div>
+        </div>
+        <div class="table-containe panel-body">
+            <table st-table="ctrl.data.DuyetCapListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="width: 50px;">Chọn</th>
+                        <th class="text-center" style="width: 150px;" st-sort="SoPhieu">Số phiếu</th>
+                        <th class="text-center" style="width: 100px;" st-sort="Ngay">Ngày lập</th>
+                        <th class="text-center" style="width: 200px;" st-sort="TenPhongBan">Bộ phận đề nghị</th>
+                        <th class="text-center" style="width: 300px;" st-sort="NoiDung">Nội dung đề nghị</th>
+                        <th class="text-center" style="width: 100px;" st-sort="NoiDung">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                   
+                    <tr ng-repeat="DuyetCap in ctrl.data.DuyetCapListDisplay" ng-click="ctrl.action.getPageDetail(DuyetCap.DeNghiId)" id="row_{{DuyetCap.DeNghiId}}" ng-class="(DuyetCap.isSelected==true)?'info':''">
+                        <td st-select-row="DuyetCap" st-select-mode="single" ng-click="ctrl.action.CheckRow(DuyetCap.DuyetId!='0'?false:true)" class="text-center"><i class="fa fa-fw text-primary" ng-class="(DuyetCap.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td >
+                            <a  href="~/denghitrangcap/edit?id={{DuyetCap.DeNghiId}}">{{ DuyetCap.SoPhieu}}</a>
+                        </td>
+                        <td >
+                            <span>{{ DuyetCap.Ngay | date : 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td >
+                            <span ng-bind="DuyetCap.TenPhongBan"></span>
+                        </td>
+                        <td>
+                            <span ng-bind="DuyetCap.NoiDung"></span>
+                        </td>
+                        <td  ng-if="DuyetCap.DuyetId==0" style="padding-left: 3.5%;">
+                            <span class="form-control label label-warning"  ng-bind="DuyetCap.TrangThai"></span>
+                            
+                        </td>
+                        <td  ng-if="DuyetCap.DuyetId==1" style="padding-left: 3.5%;">
+                            <span class="form-control label label-success" ng-if="DuyetCap.DuyetId==1" ng-bind="DuyetCap.TrangThai"></span>
+                        </td>
+                        <td  ng-if="DuyetCap.DuyetId==2" style="padding-left: 3.5%;">
+                            <span class="form-control label label-danger" ng-if="DuyetCap.DuyetId==2" ng-bind="DuyetCap.TrangThai"></span> <i class="fa fa-question-circle-o" aria-hidden="true" data-placement="left" title="{{DuyetCap.NoiDungDuyet}}"></i>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        
+        <div class="panel-heading">
+           <span>Thông tin chi tiết</span>
+        </div>
+        
+        <div class="table-responsive panel-body">
+            <table st-table="ctrl.data.DuyetCapChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
+                        <th class="text-center" style="min-width: 250px;vertical-align:middle" >Tên tài sản</th>
+                        <th class="text-center" style="min-width: 150px;vertical-align:middle">Loại tài sản</th>
+                        <th class="text-center" style="min-width: 200px;vertical-align:middle" >Mô tả đặc điểm</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Số lượng</th>
+                        <th class="text-center" style="min-width: 70px;vertical-align:middle" >ĐVT</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Phương thức</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Dự toán</th>
+                        <th class="text-center" style="min-width: 160px;vertical-align:middle" >Dự toán được duyệt</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Ngày Duyệt</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="DuyetCapChiTiet in ctrl.data.DuyetCapChiTietListDisplay" ng-class="(DuyetCapChiTiet.isSelected==true)?'info':''">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td><span ng-bind="DuyetCapChiTiet.TenTaiSan"></span></td>
+                        <td><span ng-bind="DuyetCapChiTiet.TenLoai"></span></td>
+                        <td><span ng-bind="DuyetCapChiTiet.Mota"></span></td>
+                        <td class="text-right"><span ng-bind="DuyetCapChiTiet.SoLuong|number"></span></td>
+                        <td><span ng-bind="DuyetCapChiTiet.DonViTinh"></span></td>
+                        <td><span ng-bind="DuyetCapChiTiet.TenPhuongThuc"></span></td>
+                        <td class="text-right"><span ng-bind="DuyetCapChiTiet.DuToan|number"></span></td>
+                        <td class="text-right"><span ng-bind="DuyetCapChiTiet.DuToanDuocDuyet|number"></span></td>
+                        <td class="text-center"><span>{{ DuyetCapChiTiet.NgayDeNghi | date : 'dd/MM/yyyy'}}</span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100">
+                            <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel panel-primary ui-draggable fade collapse" id="TuChoiPopup" aria-expanded="true">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title">
+                    <span>Thông tin từ chối</span>
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuChoiPopup" ng-click="ctrl.action.closeEdit()" aria-expanded="true">
+                        <i class="fa fa-fw fa-remove">
+                        </i>
+                    </a>
+                </div>
+            </div>
+            <div class="panel-body" style="width: 500px;">
+                <form class="form-horizontal ng-pristine ng-valid ng-valid-required">
+
+                    <!-- Input row Ngày-->
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Ngày</label>
+                        <div class="form-inline col-sm-9">
+                            <input type="text" id="tungayedit" class="form-control datetimepicker date ng-pristine ng-untouched ng-valid ng-not-empty" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objTuChoi.Ngay">
+
+                        </div>
+                    </div>
+                    <!-- Input row Lý do -->
+                    <div class="row form-group form-group-sm" >
+                        <label class="control-label col-sm-2">Lý do</label>
+                        <div class="col-sm-10">
+                            <textarea id="txtLyDo" rows="2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="ctrl.data.objTuChoi.LyDo">
+                            </textarea>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary ng-scope"  ng-click="ctrl.action.TuChoi()"> <i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</a>&nbsp;&nbsp;&nbsp;
+
+                <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuChoiPopup" aria-expanded="true">Đóng</a>
+
+            </div>
+        </div> 
+    </div>
+
+  
+   
+
+
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/DuyetCap/controller/DuyetCapListCtrl.js"></script>
+    <script src="~/Scripts/angular/DuyetCap/service/DuyetCapService.js"></script>
+    <script src="~/Scripts/angular/DuyetCap/controller/DuyetCapFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
+
+
+
+

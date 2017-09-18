@@ -1,0 +1,200 @@
+﻿@{
+
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="page-header-inner">
+        <div class="page-logo">
+            <a href="~/home/index">
+                <img src="~/lib/images/logo.png" alt="logo" class="logo-default"/>
+            </a>
+            <div class="menu-toggler sidebar-toggler" onclick="handleSidebarToggler()">
+            </div>
+        </div>
+
+        <div class="page-top">
+            <div class="top-menu">
+                <ul class="nav navbar-nav pull-right">
+                    <li class="separator hide">
+                    </li>
+                    <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <i class="fa fa-bell-o" aria-hidden="true"></i>
+                            <span class="badge" style="background-color: #F3565D;">
+                                3
+                            </span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="external">
+                                <h3><span class="bold">3 Thông báo mới</span> </h3>
+                                
+                            </li>
+                            <li>
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;">
+                                    <ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">Vừa xong</span>
+                                                <span class="details">
+                                                   Duyệt Kế hoạc mua sắm
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">3 phút</span>
+                                                <span class="details">
+                                                    Duyệt Kế hoạc mua sắm
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="javascript:;">
+                                                <span class="time">10 phút</span>
+                                                <span class="details">
+                                                    Duyệt Kế hoạc mua sắm
+                                                </span>
+                                            </a>
+                                        </li>
+                      
+                                    </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="dropdown dropdown-user dropdown-dark">
+                        <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                            <span class="username username-hide-on-mobile">
+                               @(User != null ? User.Name : "") 
+                            </span>
+                            <img alt="" class="img-circle" src="~/lib/images/avatar.png">
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-default" style="margin-left: -47px;">
+                            <li>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#popupNguoiDung">
+                                    <i class="fa fa-user" aria-hidden="true"></i> My Profile
+                                </a>
+                            </li>
+                            <li>
+                                <a href="~/account/logout">
+                                    <i class="fa fa-sign-out" aria-hidden="true"></i> Log Out
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+        <div class="panel panel-primary ui-draggable collapse fade hidden-print" id="popupNguoiDung" ng-controller="NguoiDungMenuEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo:  @(User.UserId)})">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title">
+                    <span>Người dùng</span>
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#popupNguoiDung" ng-click="ctrl.action.closeEdit()">
+                        <i class="fa fa-remove">
+                        </i>
+                    </a>
+                    <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner"></i>
+                </div>
+            </div>
+            <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaNguoiDung}">
+                        <label class="control-label col-sm-3">Mã người dùng</label>
+                        <div class="col-sm-9">
+                            <input type="text" disabled class="form-control" id="txtMaNguoiDungMenu" ng-model="ctrl.data.objNguoiDung.MaNguoiDung" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.MaNguoiDung,'txtMaNguoiDungMenu','txtTenNguoiDungMenu',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenNguoiDung}">
+                        <label class="control-label col-sm-3">Họ tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtTenNguoiDungMenu" ng-model="ctrl.data.objNguoiDung.HoTen" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.HoTen,'txtTenNguoiDungMenu','popVaiTro',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidVaiTro}">
+                        <label for="" class="control-label col-sm-3">Vai trò</label>
+                        <div class="col-sm-9">
+                            <div class="form-control auto-height">
+                                <a href="javascript:void(0);" disabled data-toggle="collapse">
+                                    <span class="" style="margin-right: 5px;" ng-bind="kh.TenVaiTro+','" ng-repeat="kh in ctrl.data.listVaiTro"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidEmail}">
+                        <label class="control-label col-sm-3">Email</label>
+                        <div class="col-sm-9">
+                            <input type="email" class="form-control" id="txtEmailMenu" ng-model="ctrl.data.objNguoiDung.Email" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.Email,'txtEmailMenu','txtPasswordMenu',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidPassword}">
+                        <label class="control-label col-sm-3">New Password</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtPasswordMenu" ng-model="ctrl.data.objNguoiDung.PasswordHash" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.PasswordHash,'txtPasswordMenu','txtDienThoaiMenu',$event)" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Điện thoại</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtDienThoaiMenu" ng-model="ctrl.data.objNguoiDung.DienThoai" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.DienThoai,'txtDienThoaiMenu','btnluu',$event)" />
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupNguoiDung" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
+            </div>
+
+        </div>
+    </div>
+    <script>
+        function handleSidebarToggler() {
+            var body = $('body');
+            var sidebar = $('.page-sidebar');
+            var sidebarMenu = $('.page-sidebar-menu');
+            $(".sidebar-search", sidebar).removeClass("open");
+
+            if (body.hasClass("page-sidebar-closed")) {
+                body.removeClass("page-sidebar-closed");
+                sidebarMenu.removeClass("page-sidebar-menu-closed");
+                if (localStorage) {
+                    localStorage.setItem('sidebar_closed', '0');
+                }
+            } else {
+                body.addClass("page-sidebar-closed");
+                sidebarMenu.addClass("page-sidebar-menu-closed");
+                if (body.hasClass("page-sidebar-fixed")) {
+                    sidebarMenu.trigger("mouseleave");
+                }
+                if (localStorage) {
+                    localStorage.setItem('sidebar_closed', '1');
+                }
+            }
+
+            $(window).trigger('resize');
+        }
+
+
+        </script>
+
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
+{
+}
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true)
+{
+
+}
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+    <script src="~/Scripts/angular/app/controllers/ProfileCtrl.js"></script>
+    <script src="~/Scripts/angular/app/controllers/NguoiDungEditCtrl.js"></script>
+    <script src="~/Scripts/angular/NguoiDung/service/NguoiDungService.js"></script>
+}

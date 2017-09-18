@@ -1,0 +1,100 @@
+﻿@*
+    ============================
+    + partial content template +
+    ============================
+    @if (ViewBag.Html != null && (bool)ViewBag.Html == true) { }
+    else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+    else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+    else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+    else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+
+    =========================
+    + view content template +
+    =========================
+    @section ImportScripts{}
+    @section SetupScripts{}
+*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+    <link href="~/lib/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css" rel="stylesheet" />
+    <link href="~/lib/sb-admin/css/sb-admin-2.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="login-leftpanel">
+        <div class="color-primary" style="background-color: #FFF;margin-top:16px;">
+            <img src="" class="logo" style="float:left;">
+            <h3 style="text-align: center; float:left">
+                <span style="display:block;font-weight: 300; color:#428bca">
+                    HỆ THỐNG THÔNG TIN
+                </span>
+
+                <span style="font-weight: 500;font-size: 33px;color:#428bca; font-weight: bold; text-shadow: 0 2px 2px #000;">QUẢN LÝ TÀI SẢN</span>
+
+            </h3>
+        </div>
+        <div class="leftpanelinner" style="padding:16px; margin-top:100px;">
+            @RenderBody()
+            <div style="float:left;width:100%;">
+                <img class="login-cover" src="~/lib/images/background.jpg">
+            </div>
+
+        </div>
+       
+        <div style="position:absolute; bottom: 16px; left:16px;">
+            <div class="form-group">
+                <div style="text-align:center;">
+                    <p>
+                        <b style="color:#0d6aad">CÔNG TY TNHH SX TM - DV SONG ÂN</b>
+                    </p>
+                    <p><img src="~/lib/images/phone.png" /> Hỗ trợ: <b>0839 96 97 69</b></p>
+                    <p class="text-center size-11 margin-top-20">
+                        Developed by SongAn® Version <span id="version">1.0</span>
+                        <br>
+                        Copyright © 2017 SongAn
+                    </p>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+
+
+    <script src="~/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <style>
+        .login-leftpanel {
+            width: 320px;
+            background-color: #FFF;
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            box-shadow: 1px 0px 8px rgba(0,0,0,0.2);
+        }
+
+        .logo {
+            width: auto;
+            height: 69px;
+            margin: -5px 8px 8px 8px;
+        }
+
+        .login-cover {
+            height: 100%;
+            left: 320px;
+            min-height: 100%;
+            min-width: 1024px;
+            position: fixed;
+            top: 0;
+            width: calc(100% - 320px);
+        }
+    </style>
+</body>
+
+</html>

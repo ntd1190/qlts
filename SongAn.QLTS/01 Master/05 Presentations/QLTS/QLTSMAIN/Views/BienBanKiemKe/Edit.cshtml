@@ -1,0 +1,262 @@
+﻿
+@{
+    ViewBag.Title = "Thông tin kiểm kê";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid"  keyboard="mainCtrl.keys">
+    <div class="panel panel-default" ng-controller="BienBanKiemKeEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, kiemKeId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} kiểm kê tài sản</span>
+        </div>
+
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayChungTu?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayChungTu" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuBienBanKiemKe.NgayChungTu" ng-keypress="ctrl.action.keyPressKiemKe(ctrl.data.phieuBienBanKiemKe.NgayChungTu,'txtNgayChungTu','txtSoChungTu',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.SoChungTu?'has-error':''">
+                            <label class="control-label col-sm-3">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtSoChungTu" class="form-control" placeholder="" ng-model="ctrl.data.phieuBienBanKiemKe.SoChungTu" ng-keypress="ctrl.action.keyPressKiemKe(ctrl.data.phieuBienBanKiemKe.SoChungTu,'txtSoChungTu','txtNgayKiemKe',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayKiemke?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày kiểm kê <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayKiemKe" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuBienBanKiemKe.NgayKiemKe" ng-keypress="ctrl.action.keyPressKiemKe(ctrl.data.phieuBienBanKiemKe.NgayKiemKe,'txtNgayKiemKe','cbxPhongBan',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanId?'has-error':''">
+                            <label class="control-label col-sm-3">Bộ phận<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuBienBanKiemKe.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
+                                               on-selected="ctrl.action.resetNhanVienId(data)"></cbo-phong-ban>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.GhiChu?'has-error':''">
+                    <label class="control-label col-sm-1" style="width:12.33%">Ghi chú</label>
+                    <div class="col-sm-10" style="width:79.33%">
+                        <textarea rows="2" type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.phieuBienBanKiemKe.GhiChu"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="javascript:void(0);" data-target="#ChiTietTaiSan" data-toggle="tab">Chi tiết tài sản</a></li>
+                <li><a href="javascript:void(0);" data-target="#BanKiemKe" data-toggle="tab">Ban kiểm kê</a></li>
+            </ul>
+        </div>
+        <div class="panel-body" style="min-height: 300px;">
+            <div class="tab-content">
+                <!-- #ChiTietTaiSan -->
+                <div class="tab-pane fade in active" id="ChiTietTaiSan">
+                    <div class="table-responsive" style="min-height:300px;max-height:300px">
+                        <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+                            <thead class="bg-default text-primary">
+                                <tr>
+                                    <th class="text-center" style="min-width: 50px; vertical-align:middle" rowspan="2">STT</th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle" rowspan="2">Mã tài sản</th>
+                                    <th class="text-center" style="min-width: 250px; vertical-align:middle" rowspan="2">Tên tài sản</th>
+                                    <th class="text-center" style="min-width: 300px; vertical-align:middle" rowspan="2">Bộ phận</th>
+                                    <th class="text-center" style="vertical-align:middle" colspan="3">Theo sổ kế toán</th>
+                                    <th class="text-center" style="vertical-align:middle" colspan="3">Theo kiểm kê</th>
+                                    <th class="text-center" style="vertical-align:middle" colspan="3">Chênh lệch</th>
+                                </tr>
+                                <tr>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Số lượng</th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Nguyên giá</th>
+                                    <th class="text-center" style="min-width: 120px; vertical-align:middle">Giá trị còn lại</th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Số lượng <span class="text-danger">*</span></th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Nguyên giá</th>
+                                    <th class="text-center" style="min-width: 120px; vertical-align:middle">Giá trị còn lại</th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Số lượng</th>
+                                    <th class="text-center" style="min-width: 90px; vertical-align:middle">Nguyên giá</th>
+                                    <th class="text-center" style="min-width: 120px; vertical-align:middle">Giá trị còn lại</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="ctrl.status.isLoading">
+                                    <td colspan="100" class="text-center">
+                                        <i class="fa fa-fw fa-spin fa-spinner"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="KiemKeChiTiet in ctrl.data.listChiTiet" ng-class="KiemKeChiTiet.isError ? 'danger':''">
+                                    <td class="text-center">{{$index + 1}}</td>
+                                    <td class="form-group form-group-sm">
+                                        <!--Ma tai san-->
+                                        <span id="txtMaTaiSan{{$index}}" class="form-control text-left " ng-bind="KiemKeChiTiet.MaTaiSan" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--ten tai san-->
+                                        <span id="txtTenTaiSan{{$index}}" class="form-control text-left " ng-bind="KiemKeChiTiet.TenTaiSan" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--bộ phan su dung-->
+                                        <span id="txtTenPhongBan{{$index}}" class="form-control text-left " ng-bind="KiemKeChiTiet.TenPhongBan" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--so luong kt-->
+                                        <span id="txtSoLuongKeToan{{$index}}" class="form-control text-left " ng-bind="KiemKeChiTiet.SoLuong|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--nguyen gia kt-->
+                                        <span id="txtNguyenGiaKeToan{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuong*KiemKeChiTiet.NguyenGia)|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--gia tri con lai kt-->
+                                        <span id="txtGiaTriConLaiKeToan{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.GiaTriConLai*KiemKeChiTiet.SoLuong)|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--SO LUONG kiem ke------------------------------------>
+                                        <input type="text" id="txtSoLuongKiemKe{{$index}}" class="form-control text-right" ng-model="KiemKeChiTiet.SoLuongKiemKe" number-format style="font-weight:bold;font-size:14px;color:blue"/>
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--nguyen gia kiem ke-->
+                                        <span id="txtNguyenGiaKiemKe{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuongKiemKe*KiemKeChiTiet.NguyenGia)|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--gia tri con lai kiem ke-->
+                                        <span id="txtGiaTriConLaiKiemKe{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuongKiemKe*KiemKeChiTiet.GiaTriConLai)|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--so luong chech lech-->
+                                        <span id="txtSoLuongChechLech{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuongKiemKe-KiemKeChiTiet.SoLuong)|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--nguyen gia chech lech-->
+                                        <span id="txtNguyenGiaChechLenh{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuongKiemKe-KiemKeChiTiet.SoLuong)*KiemKeChiTiet.NguyenGia|number" />
+                                    </td>
+                                    <td class="form-group form-group-sm">
+                                        <!--gia tri con lai chech lech-->
+                                        <span id="txtGiaTriConLaiChechLech{{$index}}" class="form-control text-left " ng-bind="(+KiemKeChiTiet.SoLuongKiemKe-KiemKeChiTiet.SoLuong)*KiemKeChiTiet.GiaTriConLai|number" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+                <!-- #BanKiemKe -->
+                <div class="tab-pane fade" id="BanKiemKe">
+                    <div class="panel-heading" style="background-color:#f5f5f5; border:1px solid #ddd">
+                        <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
+                            <i class="fa fa-plus"></i>
+                            Thêm (F2)
+                        </button>
+                    </div>
+                    <div class="table-responsive" style="min-height:300px;max-height:300px">
+                        <table st-table="ctrl.data.listBanKiemKe" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+                            <thead class="bg-default text-primary">
+                                <tr>
+                                    <th class="text-center" style="min-width: 50px; vertical-align:middle" >STT</th>
+                                    <th class="text-center" style="min-width: 40px; vertical-align:middle">Xóa</th>
+                                    <th class="text-center" style="min-width: 250px; vertical-align:middle" >Người kiểm kê<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                                    <th class="text-center" style="min-width: 200px; vertical-align:middle">Chức vụ<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                                    <th class="text-center" style="min-width: 250px; vertical-align:middle">Đại diện<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                                    <th class="text-center" style="min-width: 200px; vertical-align:middle">Vai trò<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-if="ctrl.status.isLoading">
+                                    <td colspan="100" class="text-center">
+                                        <i class="fa fa-fw fa-spin fa-spinner"></i>
+                                    </td>
+                                </tr>
+                                <tr ng-repeat="BanKiemKe in ctrl.data.listBanKiemKe" ng-class="BanKiemKe.isError ? 'danger':''">
+                                    <td class="text-center">{{$index + 1}}</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-xs btn-danger"
+                                           ng-click="ctrl.data.listBanKiemKe.splice($index,1)" ng-if="ctrl.data.showButtonXoa">
+                                            <i class="fa fa-remove"></i>
+                                        </a>
+                                    </td>
+                                    <td class="text-right form-group form-group-sm">
+                                        <input type="text" id="txtNguoiKiemKe{{$index}}" class="form-control text-left" ng-model="BanKiemKe.NguoiKiemKe" ng-keydown="ctrl.action.keyPressBanKiemKe(BanKiemKe.NguoiKiemKe,'txtNguoiKiemKe'+$index,'txtChucVu'+$index,$index,$event)" />
+                                    </td>
+                                    <td class="text-right form-group form-group-sm">
+                                        <input type="text" id="txtChucVu{{$index}}" class="form-control text-left" ng-model="BanKiemKe.ChucVu" ng-keydown="ctrl.action.keyPressBanKiemKe(BanKiemKe.MaTaiSan,'txtChucVu'+$index,'txtDaiDien'+$index,$index,$event)" />
+                                    </td>
+                                    <td class="text-right form-group form-group-sm">
+                                        <input type="text" id="txtDaiDien{{$index}}" class="form-control text-left" ng-model="BanKiemKe.DaiDien" ng-keydown="ctrl.action.keyPressBanKiemKe(BanKiemKe.DaiDien,'txtDaiDien'+$index,'txtVaiTro'+$index,$index,$event)" />
+                                    </td>
+                                    <td class="text-right form-group form-group-sm">
+                                        <input type="text" id="txtVaiTro{{$index}}" class="form-control text-left" ng-model="BanKiemKe.VaiTro" ng-keydown="ctrl.action.keyPressBanKiemKe(BanKiemKe.VaiTro,'txtVaiTro'+$index,'txtVaiTro'+$index,$index,$event)" />
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div> 
+            </div>
+        </div>
+
+        <div class="panel-footer">
+            <span ng-if="ctrl.data.showButtonSave">
+                <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.data.showButtonXoa">
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.removePhieuBienBanKiemKe()"><i class="fafa-remove"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeListCtrl.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/service/KiemKeService.js"></script>
+    <script src="~/Scripts/angular/BienBanKiemKe/controller/KiemKeEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}

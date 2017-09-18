@@ -1,0 +1,190 @@
+﻿@{
+    ViewBag.Title = "Thông tin ghi giảm";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" ng-controller="GhiGiamEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, GhiGiamId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} ghi giảm</span>
+        </div>
+
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.SoChungTu?'has-error':''">
+                            <label class="control-label col-sm-6">Số chứng từ <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtSoChungTu" class="form-control" placeholder="" ng-model="ctrl.data.phieuGhiGiam.SoChungTu" ng-keypress="ctrl.action.keyPressGhiGiam(ctrl.data.phieuGhiGiam.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayChungTu?'has-error':''">
+                            <label class="control-label col-sm-4">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="txtNgayChungTu" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuGhiGiam.NgayChungTu" ng-keypress="ctrl.action.keyPressGhiGiam(ctrl.data.phieuGhiGiam.SoChungTu,'txtNgayChungTu','txtNgayGhiGiam',$event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayGhiGiam?'has-error':''">
+                            <label class="control-label col-sm-4">Ngày ghi giảm <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-6">
+                                <input type="text" id="txtNgayGhiGiam" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuGhiGiam.NgayGhiGiam" ng-keypress="ctrl.action.keyPressGhiGiam(ctrl.data.phieuGhiGiam.SoChungTu,'txtNgayGhiGiam','cbxPhongBan',$event)" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.PhongBan?'has-error':''">
+                    <label class="control-label col-sm-2">Bộ phận đề nghị <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuGhiGiam.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" >
+                    <label class="control-label col-sm-2">Nội dung</label>
+                    <div class="col-sm-9">
+                        <textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.phieuGhiGiam.NoiDung"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <div class="panel-heading">
+            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
+                <i class="fa fa-plus"></i>
+                Thêm chi tiết (F2)
+            </button>
+        </div>
+
+        <div class="table-responsive" style="min-height:300px;max-height:300px">
+            <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
+                        <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle">Mã tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 160px; vertical-align:middle">Bộ phận sử dụng</th>
+                        <th class="text-center" style="min-width: 60px; vertical-align:middle">ĐVT</th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle">SL ghi giảm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 200px; vertical-align:middle">Phương án xử lý<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="GhiGiamChiTiet in ctrl.data.listChiTiet" ng-class="GhiGiamChiTiet.isError ? 'danger':''">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td class="text-center">
+                            <a class="btn btn-xs btn-danger"
+                               ng-click="ctrl.data.listChiTiet.splice($index,1)" ng-if="ctrl.data.showButtonXoa">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </td>
+                        <td class="text-right form-group form-group-sm">
+                            <!--mataisan-->
+                              <input type="text" id="txtMaTaiSan{{$index}}" class="form-control text-left" ng-model="GhiGiamChiTiet.MaTaiSan" ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.MaTaiSan,'txtMaTaiSan'+$index,'cbxTaiSan'+$index,$index,$event)"/>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!-- tai san-->
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId"   ma-tai-san="GhiGiamChiTiet.TempMaTaiSan"  data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                                         on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!-- phong ban-->
+                            <span  class="form-control text-left" ng-bind="GhiGiamChiTiet.TenPhongBan"></span>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!-- Don vi Tinh-->
+                            <span class="form-control text-left" ng-bind="GhiGiamChiTiet.DonViTinh"></span>
+                        </td>
+                        <td class="text-right form-group form-group-sm">
+                            <!--soluong-->
+                            <input type="number" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="GhiGiamChiTiet.SoLuong" input-number sa-min="1" sa-max="{{GhiGiamChiTiet.SoLuongTon}}" ng-keypress="ctrl.action.keyPress(GhiGiamChiTiet.SoLuong,'txtSoLuong'+$index,'txtPhuongThuc'+$index,$index,$event)" />
+                        </td>
+                        <td class="text-right form-group form-group-sm">
+                            <select class="form-control" id="txtPhuongThuc{{$index}}" ng-model="GhiGiamChiTiet.XuLyId" style="padding:0px 10px" data-placeholder="Chọn phương thức">
+                                <option value="1">Điều chuyển</option>
+                                <option value="2">Bán đấu giá</option>
+                                <option value="3">Chỉ định</option>
+                                <option value="4">Chuyển nhượng</option>
+                                <option value="5">Thanh lý -  Tiêu hủy</option>
+                                <option value="6">Hình thức khác</option>
+                            </select>
+                        </td>
+
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <span ng-if="ctrl.data.showButtonSave">
+                <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.data.showButtonXoa">
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.removePhieuGhiGiam()"><i class="fafa-remove"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+
+    </div>
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/GhiGiam/controller/GhiGiamListCtrl.js"></script>
+    <script src="~/Scripts/angular/GhiGiam/controller/GhiGiamFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/GhiGiam/service/GhiGiamService.js"></script>
+    <script src="~/Scripts/angular/GhiGiam/controller/GhiGiamEditCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NhanVien/cboNhanVienByPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
+
+
+
+

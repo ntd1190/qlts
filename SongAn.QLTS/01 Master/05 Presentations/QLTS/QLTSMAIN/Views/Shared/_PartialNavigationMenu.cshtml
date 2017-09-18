@@ -1,0 +1,87 @@
+﻿@{
+
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="page-sidebar navbar-collapse collapse">
+        <ul class="page-sidebar-menu" id="side-menu"></ul>
+    </div>
+    <script src="~/lib/jquery/jquery-3.1.1.js"></script>
+    <script>
+        activemenu();
+        function activemenu() {
+            if (localStorage.sidebar_closed == '1') {
+                $('body').addClass("page-sidebar-closed");
+                $('.page-sidebar-menu').addClass("page-sidebar-menu-closed");
+            }
+            GetData();
+        }
+        function GetData() {
+            $.ajax({
+                type: "POST",
+                url:'http://localhost/qltsapi/api.Main/Menu/GetListMenu',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({ UserId: @(User != null ? User.UserId : 0) }),
+                error: function (msg) {
+                    console.log(msg)
+                },
+                success: function (success) {
+                    var appen = "";
+                    var MenuList = success.data;
+                    var SuperLevel = jQuery.grep(MenuList, function (n) {
+                        return (n.SuperLevel);
+                    });
+                    for (var i = 0; i < SuperLevel.length; i++) {
+                        var menu = SuperLevel[i];
+                        appen = appen + "<li>";
+                        appen = appen + "<a href='javascript:;'>";
+                        appen = appen + "<i class='" + menu.Icon + " fa-fw' aria-hidden='true'></i>";
+                        appen = appen + "<span class='title'>" + menu.TenChucNang + "</span>";
+                        appen = appen + "<span class='arrow'></span>";
+                        appen = appen + " </a>";
+                        appen = appen + "<ul class='sub-menu'>";
+                        for (var j = 0; j < MenuList.length; j++) {
+                            var item = MenuList[j];
+                            if(item.MidLevel==menu.SuperLevel)
+                            {
+                                appen = appen + " <li>";
+                                appen = appen + " <a href='" + item.DuongDan + "'>" + item.TenChucNang + "</a>";
+                                appen = appen + "</li>";
+                            }
+                        }
+                        appen = appen + " </ul>";
+                        appen = appen + "</li>";
+                    }
+                    $('#side-menu').html(appen);
+                }
+            }).then(function (){
+                var url = window.location.toString().toLowerCase();
+                $("#side-menu a").each(function () {
+                    var href = $(this).attr("href").toLowerCase();
+                    if (url.indexOf(href) > -1) {
+                        $(this).parent().parent().parent().children().children("span.arrow").addClass("open");
+                        $(this).parent().parent().parent().addClass("active");
+                        $(this).parent().css('background-color', '#23527c');
+                        $(this).css('color', 'white');
+                    }
+                });
+               
+            });
+        }
+    </script>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
+{
+}
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true)
+{
+   
+}
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+
+}
+

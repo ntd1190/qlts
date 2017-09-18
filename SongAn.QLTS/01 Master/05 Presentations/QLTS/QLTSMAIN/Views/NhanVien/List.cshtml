@@ -1,0 +1,185 @@
+﻿
+@{
+    ViewBag.Title = "Nhân viên";
+}
+<div class="container-fluid">
+
+    <div ng-controller="NhanVienListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Nhân viên</span>
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel-body">
+            <h3 class="text-center no-margin">Danh sách Nhân viên</h3>
+        </div>
+        <div class="table-container panel-body">
+            <table st-table="ctrl.data.NhanVienListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="width: 50px;">Chọn</th>
+                        <th class="text-center" style="width: 100px;" st-sort="MaNhanVien">Mã</th>
+                        <th class="text-center" st-sort="TenNhanVien">Tên</th>
+                        <th class="text-center" style="width: 150px" st-sort="TenPhongBan">Bộ phận</th>
+                        <th class="text-center" style="width: 100px" st-sort="DienThoai">Điện thoại</th>
+                        <th class="text-center" style="width: 200px" st-sort="GhiChu">Ghi chú</th>
+                        <th class="text-center" style="width: 120px" st-sort="NguoiTao">Người tạo</th>
+                        <th class="text-center" style="width: 120px" st-sort="NgayTao">Ngày tạo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="NhanVien in ctrl.data.NhanVienListDisplay" ng-class="(NhanVien.isSelected==true)?'info':''">
+                        <td st-select-row="NhanVien" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(NhanVien.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><a ng-bind="NhanVien.MaNhanVien" ng-click="ctrl.action.edit(NhanVien.NhanVienId)" href="javascript:void(0);"></a></td>
+                        <td><a ng-bind="NhanVien.TenNhanVien" ng-click="ctrl.action.edit(NhanVien.NhanVienId)" href="javascript:void(0);"></a></td>
+                        <td><span ng-bind="NhanVien.TenPhongBan"></span></td>
+                        <td><span ng-bind="NhanVien.DienThoai"></span></td>
+                        <td><span ng-bind="NhanVien.GhiChu"></span></td>
+                        <td><span ng-bind="NhanVien.HoTen"></span></td>
+                        <td><span> {{ NhanVien.NgayTao | date : 'dd/MM/yyyy HH:mm'}} </span></td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
+            </div>
+        </div>
+
+</div>
+<div ng-controller="NhanVienEditCtrl as ctrl" class="panel panel-primary ui-draggable collapse fade" id="NhanVienEditPopup" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="panel-heading ui-draggable-handle">
+        <h2 class="panel-title">
+            <span>Thông tin Nhân viên</span>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#NhanVienEditPopup" ng-click="ctrl.action.close()">
+                <i class="fa fa-remove"></i>
+            </a>
+            <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner" ng-if="ctrl.status.isLoading"></i>
+        </h2>
+    </div>
+    <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+        <form class="form-horizontal">
+            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.MaNhanVien)?'has-error':''">
+                <label class="control-label col-sm-3">Mã Nhân viên</label>
+                <div class="col-sm-9">
+                    <input class="form-control" id="txtMa" type="text" ng-model="ctrl.data.objNhanVien.MaNhanVien" required ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.MaNhanVien,'txtMa','txtTen',$event)" />
+                </div>
+            </div>
+
+            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TenNhanVien)?'has-error':''">
+                <label class="control-label col-sm-3">Tên Nhân viên</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtTen" ng-model="ctrl.data.objNhanVien.TenNhanVien" required ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.TenNhanVien,'txtTen','cbxPhongBan',$event)" />
+                </div>
+            </div>
+
+            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.PhongBan)?'has-error':''">
+                <label class="control-label col-sm-3">Bộ phận</label>
+                <div class="col-sm-9">
+                    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'NhanVienEditCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                </div>
+            </div>
+            <div class="row form-group form-group-sm">
+                <label class="control-label col-sm-3">Chức danh</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtChucDanh" ng-model="ctrl.data.objNhanVien.ChucDanh" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.ChucDanh,'txtChucDanh','txtDienThoai',$event)" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm">
+                <label class="control-label col-sm-3">Điện thoại</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtDienThoai" ng-model="ctrl.data.objNhanVien.DienThoai" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.DienThoai,'txtDienThoai','txtEmail',$event)" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm">
+                <label class="control-label col-sm-3">Email</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtEmail" ng-model="ctrl.data.objNhanVien.Email" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.Email,'txtEmail','txtDiaChi',$event)" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm">
+                <label class="control-label col-sm-3">Địa chỉ</label>
+                <div class="col-sm-9">
+                    <input class="form-control" type="text" id="txtDiaChi" ng-model="ctrl.data.objNhanVien.DiaChi" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.DiaChi,'txtDiaChi','txtGhiChu',$event)" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm">
+                <label class="control-label col-sm-3">Ghi chú</label>
+                <div class="col-sm-9">
+                    <textarea rows="2" class="form-control" type="text" id="txtGhiChu" ng-model="ctrl.data.objNhanVien.GhiChu" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.GhiChu,'txtGhiChu','btnluu',$event)" ></textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/NhanVien/service/NhanVienService.js"></script>
+    <script src="~/Scripts/angular/NhanVien/controller/NhanVienListCtrl.js"></script>
+    <script src="~/Scripts/angular/NhanVien/controller/NhanVienEditCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
+
+
+
+

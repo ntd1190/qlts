@@ -1,0 +1,224 @@
+﻿@{
+    ViewBag.Title = "Thông tin bảo dưỡng";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" keyboard="mainCtrl.keys">
+    <div class="panel panel-default" ng-controller="BaoDuongEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, BaoDuongId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} bảo dưỡng</span>
+        </div>
+
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.MaTaiSan?'has-error':''">
+                            <label class="control-label col-sm-3">Mã tài sản <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtMaTaiSan" class="form-control text-left" ng-model="ctrl.data.phieuBaoDuong.MaTaiSan" ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.MaTaiSan,'txtMaTaiSan','txtNgayBaoDuong',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSanId?'has-error':''">
+                            <label class="control-label col-sm-3">Tài sản <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-7">
+                                <cbo-tai-san-su-dung id="cbxTaiSan" data-value="ctrl.data.phieuBaoDuong.TaiSanId" data-phong-ban="ctrl.data.phieuBaoDuong.PhongBanId" data-nhan-vien="ctrl.data.phieuBaoDuong.NhanVienId" ma-tai-san="ctrl.data.phieuBaoDuong.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                                             on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san-su-dung>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TenBoPhan?'has-error':''">
+                            <label class="control-label col-sm-3">Bộ phận</label>
+                            <div class="col-sm-7">
+                                <span id="txtTenBoPhan" class="form-control text-left" ng-bind="ctrl.data.phieuBaoDuong.TenPhongBan" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.TenNhanVien?'has-error':''">
+                            <label class="control-label col-sm-3">Nhân viên</label>
+                            <div class="col-sm-7">
+                                <span id="txtTenNhanVien" class="form-control text-left" ng-bind="ctrl.data.phieuBaoDuong.TenNhanVien" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayBaoDuong?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày bảo dưỡng</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayBaoDuong" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuBaoDuong.NgayBaoDuong" ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.NgayBaoDuong,'txtNgayBaoDuong','txtNgayDuKien',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayDuKien?'has-error':''">
+                            <label class="control-label col-sm-3">Ngày dự kiến</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtNgayDuKien" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuBaoDuong.NgayDuKien" ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.NgayDuKien,'txtNgayDuKien','txtDuToan',$event)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.DuToan?'has-error':''">
+                            <label class="control-label col-sm-3">Dự toán</label>
+                            <div class="col-sm-7">
+                                <input type="text" id="txtDuToan" class="form-control text-right" ng-model="ctrl.data.phieuBaoDuong.DuToan" number-format ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.DuToan,'txtDuToan','cbxLoaiBaoDuong',$event)"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.LoaiBaoDuongId?'has-error':''">
+                            <label class="control-label col-sm-3">Loại bảo dưỡng</label>
+                            <div class="col-sm-7">
+                                <select class="form-control" id="cbxLoaiBaoDuong" style="padding:0px 10px" data-placeholder="Loại bảo dưỡng" ng-model="ctrl.data.phieuBaoDuong.LoaiBaoDuongId">
+                                    <option value="1">Thay thế</option>
+                                    <option value="2">Bảo dưỡng</option>
+                                    <option value="3">Sửa chữa</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.MoTa?'has-error':''">
+                    <label class="control-label col-sm-1" style="width:12.33%">Mô tả</label>
+                    <div class="col-sm-10" style="width:79.33%">
+                        <textarea rows="2" type="text" class="form-control" id="txtMoTa" ng-model="ctrl.data.phieuBaoDuong.MoTa"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div> 
+
+        <div class="panel-heading">
+            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
+                <i class="fa fa-plus"></i>
+                Thêm chi tiết (F2)
+            </button>
+        </div>
+
+        <div class="table-responsive" style="min-height:300px;max-height:300px">
+            <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width: 40px; vertical-align:middle">#</th>
+                        <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
+                        <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên bộ phận   <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày bắt đầu</th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày kết thúc <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle">Chi phí      <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 180px; vertical-align:middle">Nội dung   </th>
+                        <th class="text-center" style="min-width: 180px; vertical-align:middle">Nơi sửa   </th>
+                        <th class="text-center" style="min-width: 180px; vertical-align:middle">Kết quả   </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="SuaChua in ctrl.data.listChiTiet" ng-class="SuaChua.isError ? 'danger':''">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td class="text-center">
+                            <a class="btn btn-xs btn-danger"
+                               ng-click="ctrl.data.listChiTiet.splice($index,1)" ng-if="ctrl.data.showButtonXoa">
+                                <i class="fa fa-remove"></i>
+                            </a>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!--ten bo phan-->
+                            <input type="text" id="txtTenBoPhan{{$index}}" class="form-control text-left" ng-model="SuaChua.TenBoPhan" ng-keypress="ctrl.action.keyPress(SuaChua.TenBoPhan,'txtTenBoPhan'+$index,'txtNgayBatDau'+$index,$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!--ngay bat dau-->
+                            <input type="text" id="txtNgayBatDau{{$index}}" class="form-control datetimepicker date " ng-model="SuaChua.NgayBatDau" ng-keypress="ctrl.action.keyPress(SuaChua.NgayBatDau,'txtNgayBatDau'+$index,'txtNgayKetThuc'+$index,$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!--ngay ket thuc-->
+                            <input type="text" id="txtNgayKetThuc{{$index}}" class="form-control datetimepicker date " ng-model="SuaChua.NgayKetThuc" ng-keypress="ctrl.action.keyPress(SuaChua.NgayKetThuc,'txtNgayKetThuc'+$index,'txtChiPhi'+$index,$index,$event)" />
+                        </td>
+                        <td class="text-right form-group form-group-sm">
+                            <!--chi phi-->
+                            <input type="text" id="txtChiPhi{{$index}}" class="form-control text-right" ng-model="SuaChua.ChiPhi" number-format ng-keypress="ctrl.action.keyPress(SuaChua.ChiPhi,'txtChiPhi'+$index,'txtNoiDung'+$index,$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!--noi dung-->
+                            <input type="text" id="txtNoiDung{{$index}}" class="form-control text-left " ng-model="SuaChua.NoiDung" ng-keypress="ctrl.action.keyPress(SuaChua.NoiDung,'txtNoiDung'+$index,'txtNoiSua'+$index,$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <!--Noi sua-->
+                            <input type="text" id="txtNoiSua{{$index}}" class="form-control text-left " ng-model="SuaChua.NoiSua" ng-keypress="ctrl.action.keyPress(SuaChua.NoiSua,'txtNoiSua'+$index,'txtKetQua'+$index,$index,$event)" />
+                        </td>
+
+                        <td class="form-group form-group-sm">
+                            <!--ket qua-->
+                            <input type="text" id="txtKetQua{{$index}}" class="form-control text-left" ng-model="SuaChua.KetQua" ng-keypress="ctrl.action.keyPress(SuaChua.NgayDeNghi,'txtKetQua'+$index,'txtTenBoPhan'+$index,$index,$event)" />
+                        </td>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="panel-footer">
+            <span ng-if="ctrl.data.showButtonSave">
+                <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.data.showButtonXoa">
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.removePhieuBaoDuong()"><i class="fafa-remove"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+
+    </div>
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongListCtrl.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/service/BaoDuongService.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}

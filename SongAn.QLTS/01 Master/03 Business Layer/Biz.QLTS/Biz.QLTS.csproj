@@ -1,0 +1,209 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5D6FF0AB-0342-4110-A004-356D4E7772AC}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Biz.QLTS</RootNamespace>
+    <AssemblyName>Biz.QLTS</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaoDuong\DeleteListBaoDuongByIdBiz.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByCriteriaBiz.cs" />
+    <Compile Include="BaoDuong\GetListBaoDuongByIdBiz.cs" />
+    <Compile Include="BaoDuong\GetListSuaChuaByBaoDuongIdBiz.cs" />
+    <Compile Include="BaoDuong\InsertBaoDuongBiz.cs" />
+    <Compile Include="BaoDuong\InsertSuaChuaBiz.cs" />
+    <Compile Include="BaoDuong\UpdateBaoDuongByIdBiz.cs" />
+    <Compile Include="BienBanKiemKe\DeleteListBienBanKiemKeByIdBiz.cs" />
+    <Compile Include="BienBanKiemKe\GetListBanKiemKeByKiemKeIdBiz.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeByCriteriaBiz.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeByIdBiz.cs" />
+    <Compile Include="BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdBiz.cs" />
+    <Compile Include="BienBanKiemKe\InsertBienBanKiemKeBiz.cs" />
+    <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdBiz.cs" />
+    <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
+    <Compile Include="DuyetMua\DuyetDuyetMuaBiz.cs" />
+    <Compile Include="DuyetCap\DuyetDuyetCapBiz.cs" />
+    <Compile Include="DuyetCap\GetListDuyetCapByCriteriaBiz.cs" />
+    <Compile Include="DuyetCap\GetListDuyetCapChiTietByDeNghiIdBiz.cs" />
+    <Compile Include="DeNghiTrangCap\DeleteListDeNghiTrangCapByIdBiz.cs" />
+    <Compile Include="DeNghiTrangCap\GetListDeNghiTrangCapByCriteriaBiz.cs" />
+    <Compile Include="DeNghiTrangCap\GetListDeNghiTrangCapChiTietByDeNghiIdBiz.cs" />
+    <Compile Include="DeNghiTrangCap\GetListTrangCapDeNghiByDeNghiIdBiz.cs" />
+    <Compile Include="DeNghiTrangCap\InsertDeNghiTrangCapBiz.cs" />
+    <Compile Include="DeNghiTrangCap\InsertDeNghiTrangCapChiTietBiz.cs" />
+    <Compile Include="DeNghiTrangCap\UpdateDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="DieuChuyen\DeleteListDieuChuyenByIdBiz.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenByCriteriaBiz.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenByDieuChuyenIdBiz.cs" />
+    <Compile Include="DieuChuyen\GetListDieuChuyenChiTietByDieuChuyenIdBiz.cs" />
+    <Compile Include="DieuChuyen\InsertDieuChuyenBiz.cs" />
+    <Compile Include="DieuChuyen\InsertDieuChuyenChiTietBiz.cs" />
+    <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdBiz.cs" />
+    <Compile Include="DuyetMua\GetDuyetMuaChiTietByMuaSamIdBiz.cs" />
+    <Compile Include="DuyetMua\GetListDuyetMuaByCriteriaBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\InsertGiamChiTietBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietBiz.cs" />
+    <Compile Include="GhiTang\DeleteListGhiTangByIdBiz.cs" />
+    <Compile Include="GhiTang\GetListGhiTangByCriteriaBiz.cs" />
+    <Compile Include="GhiGiam\DeleteGhiGiamByIdBiz.cs" />
+    <Compile Include="GhiGiam\GetListGhiGiamByCriteriaBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\UpdateGhiGiamChiTietBiz.cs" />
+    <Compile Include="GhiGiamChiTiet\GetGhiGiamChiTietByGhiGiamIdBiz.cs" />
+    <Compile Include="GhiTang\GetListGhiTangByGhiTangIdBiz.cs" />
+    <Compile Include="GhiTang\GetListGhiTangChiTietByGhiTangIdBiz.cs" />
+    <Compile Include="GhiTang\InsertGhiTangBiz.cs" />
+    <Compile Include="GhiTang\InsertGhiTangChiTietBiz.cs" />
+    <Compile Include="GhiTang\UpdateGhiTangByGhiTangIdBiz.cs" />
+    <Compile Include="HienTrangSuDung\GetListcbxNhaCungCapByCriteriaBiz.cs" />
+    <Compile Include="KeHoachMuaSamChiTiet\DeleteKeHoachMuaSamChiTietByIdBiz.cs" />
+    <Compile Include="KeHoachMuaSamChiTiet\GetKeHoachMuaSamChiTietByMuaSamIdBiz.cs" />
+    <Compile Include="KeHoachMuaSam\DeleteKeHoachMuaSamByIdBiz.cs" />
+    <Compile Include="LoaiTaiSan\GetListcbxLoaiTaiSanByCriteriaBiz.cs" />
+    <Compile Include="NhaCungCap\GetListcbxNhaCungCapByCriteriaBiz.cs" />
+    <Compile Include="NhaCungCap\GetListNhaCungCapByCriteriaBiz.cs" />
+    <Compile Include="KhachHang\GetListcbxKhachHangByCriteriaBiz.cs" />
+    <Compile Include="KhachHang\GetListKhachHangByCriteriaBiz.cs" />
+    <Compile Include="NhanVien\GetListcbxNhanVienByCriteriaBiz.cs" />
+    <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdBiz.cs" />
+    <Compile Include="NuocSanXuat\GetListcbxNuocSanXuatByCriteriaBiz.cs" />
+    <Compile Include="NuocSanXuat\GetListNuocSanXuatByCriteriaBiz.cs" />
+    <Compile Include="LoaiTaiSan\GetListLoaiTaiSanByCriteriaBiz.cs" />
+    <Compile Include="LoaiTaiSan\GetLoaiTaiSanByIdBiz.cs" />
+    <Compile Include="NhanVien\GetNhanVienByIdBiz.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteriaBiz.cs" />
+    <Compile Include="NhomTaiSan\GetListcbxNhomTaiSanByCriteriaBiz.cs" />
+    <Compile Include="NhomTaiSan\GetListNhomTaiSanByCriteriaBiz.cs" />
+    <Compile Include="HangSanXuat\GetListcbxHangSanXuatByCriteriaBiz.cs" />
+    <Compile Include="HangSanXuat\GetListHangSanXuatByCriteriaBiz.cs" />
+    <Compile Include="NguonNganSach\GetListcbxNguonNganSachByCriteriaBiz.cs" />
+    <Compile Include="NguonNganSach\GetListNguonNganSachByCriteriaBiz.cs" />
+    <Compile Include="KhoTaiSan\GetListcbxKhoTaiSanByCriteriaBiz.cs" />
+    <Compile Include="KhoTaiSan\GetListKhoTaiSanByCriteriaBiz.cs" />
+    <Compile Include="DuAn\GetListcbxDuAnByCriteriaBiz.cs" />
+    <Compile Include="DuAn\GetListDuAnByCriteriaBiz.cs" />
+    <Compile Include="CoSo\GetListcbxCoSoByCriteriaBiz.cs" />
+    <Compile Include="CoSo\GetListCoSoByCriteriaBiz.cs" />
+    <Compile Include="KeHoachMuaSam\GetListKeHoachMuaSamByCriteriaBiz.cs" />
+    <Compile Include="PhongBan\GetListcbxPhongBanByCriteriaBiz.cs" />
+    <Compile Include="PhongBan\GetListcbxPhongBanByIdBiz.cs" />
+    <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
+    <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaBiz.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanSuDungByIdBiz.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaBiz.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />
+    <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdBiz.cs" />
+    <Compile Include="TaiSan\DeleteListTaiSanBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhai500ByIdBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiNhaByIdBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiOtoByIdBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinKeKhaiDatByIdBiz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhai500Biz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiNhaBiz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiOtoBiz.cs" />
+    <Compile Include="TaiSan\InsertThongTinKeKhaiDatBiz.cs" />
+    <Compile Include="TaiSan\GetListTaiSanByCriteriaBiz.cs" />
+    <Compile Include="TaiSan\GetTaiSanByMaBiz.cs" />
+    <Compile Include="TaiSan\UpdateTaiSanBiz.cs" />
+    <Compile Include="TaiSan\GetTaiSanByIdBiz.cs" />
+    <Compile Include="TaiSan\InsertTaiSanBiz.cs" />
+    <Compile Include="TaiSan\GetThongTinCongKhaiByIdBiz.cs" />
+    <Compile Include="TaiSan\InsertThongTinCongKhaiBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTin500ByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinDatByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinNhaByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinOtoByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetThayDoiThongTinByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\GetListThayDoiThongTinByCriteriaBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTin500Biz.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTin500Biz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinDatBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinNhaBiz.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinNhaBiz.cs" />
+    <Compile Include="ThayDoiThongTin\UpdateThayDoiThongTinOtoBiz.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinOtoBiz.cs" />
+    <Compile Include="ThayDoiThongTin\InsertThayDoiThongTinDatBiz.cs" />
+    <Compile Include="TheoDoi\DeleteListTheoDoiByIdBiz.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByCriteriaBiz.cs" />
+    <Compile Include="TheoDoi\GetListTheoDoiByIdBiz.cs" />
+    <Compile Include="TheoDoi\InsertTheoDoiBiz.cs" />
+    <Compile Include="TheoDoi\UpdateTheoDoiByIdBiz.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
+      <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
+      <Name>Util.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.QLTS_MAIN\Entity.QLTS_MAIN.csproj">
+      <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
+      <Name>Entity.QLTS_MAIN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\01 Entity Layer\Entity.QLTS\Entity.QLTS.csproj">
+      <Project>{8779d0f7-d0f8-4470-a3eb-e0667df7b57a}</Project>
+      <Name>Entity.QLTS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.Main\Data.Main.csproj">
+      <Project>{1781BA00-B7E3-4B8F-BA6E-D04B0339E80D}</Project>
+      <Name>Data.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.QLTS\Data.QLTS.csproj">
+      <Project>{36b1f8ee-22f7-4a45-9114-d71ded146490}</Project>
+      <Name>Data.QLTS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\02 DataAccess Layer\Data.Repository\Data.Repository.csproj">
+      <Project>{1a5e7772-e937-46e2-a4b2-dd8e071e16f5}</Project>
+      <Name>Data.Repository</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,160 @@
+﻿@{
+    /*****************************************************************************
+    1. Create Date : 2017.06.16
+    2. Creator     : Nguyen Ngoc Tan
+    3. Description : khophieuchuyen/edit
+    4. History     : 2017.06.16 (Nguyen Ngoc Tan) - thiết kế giao diện
+    *****************************************************************************/
+    ViewBag.Title = "Thông tin Kế hoạch mua sắm";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid">
+    <div class="panel panel-default" ng-controller="KeHoachMuaSamEditCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,MuaSamId:@(ViewBag.id)})" keyboard="ctrl.keys">
+        <div class="panel-heading">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} kế hoạch mua sắm</span>
+        </div>
+        <div class="panel-body">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidNam}">
+                    <label class="control-label col-sm-1">Năm <span class="text-danger" style="float:right" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-1">
+                        <select class="form-control" id="txtNam" style="padding:0px 10px" data-placeholder="Chọn năm" ng-model="ctrl.data.objKeHoachMuaSam.Nam">
+                            <option value="2010">2010</option>
+                            <option value="2011">2011</option>
+                            <option value="2012">2012</option>
+                            <option value="2013">2013</option>
+                            <option value="2014">2014</option>
+                            <option value="2015">2015</option>
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-1">Nội dung</label>
+                    <div class="col-sm-10">
+                        <textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.objKeHoachMuaSam.NoiDung"></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-heading">
+            <a class="btn btn-sm btn-primary" href="javascript:void(0)" data-toggle="collapse" ng-click="ctrl.action.InsertChiTiet()" ng-if="ctrl.data.showButtonNew || ctrl.data.showButtonSave">
+                <i class="fa fa-plus"></i>
+                Thêm chi tiết (F2)
+            </a>
+        </div>
+        <div class="table-responsive" style="max-height:300px;min-height:300px">
+            <table class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width:30px; vertical-align:middle">#</th>
+                        <th class="text-center" style="min-width:50px; vertical-align:middle">Xóa</th>
+                        <th class="text-center" style="min-width:300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:220px; vertical-align:middle">Loại tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Phương thức HT<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:60px; vertical-align:middle">ĐVT<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:200px; vertical-align:middle">Mô tả đặc điểm</th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Ngày DK<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:100px; vertical-align:middle">Số lượng DK<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Đơn giá DK<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Hình thức mua sắm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Dự toán</th>
+                        <th class="text-center" style="min-width:150px; vertical-align:middle">Ghi chú</th>
+                    </tr>
+                </thead>
+                <tbody style="border: 1px solid #ddd;">
+                    <tr ng-repeat="chitiet in ctrl.data.listChiTiet track by $index" ng-class="chitiet.isError ? 'danger':''">
+                        <td class="text-center" ng-bind="{{$index+1}}"></td>
+                        <td class="text-center"><a class="btn btn-xs btn-danger" ng-click="ctrl.action.DeleteChiTiet($index)"><i class="fa fa-remove"></i></a></td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.TenTaiSan" id="txtTenTaiSan{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtTenTaiSan'+$index,'cbxLoaiTaiSan'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <cbo-loai-tai-san data-value="chitiet.LoaiId" data-config="{userInfo:@(ViewBag.userInfo),NameId:'cbxLoaiTaiSan'+$index}" template-url="~/loaitaisan/showview?viewname=cboloaitaisan"></cbo-loai-tai-san>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <select class="form-control" id="txtPhuongThuc" ng-model="chitiet.PhuongThucId" style="padding:0px 10px" data-placeholder="Chọn phương thức">
+                                <option value="1">Mua sắm</option>
+                                <option value="2">Nhận bằng hiện vật</option>
+                                <option value="3">Xây mới</option>
+                            </select>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.DonViTinh" id="txtDonViTinh{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtDonViTinh'+$index,'txtMota'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.Mota" id="txtMota{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtMota'+$index,'txtNgay'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control datetimepicker date" ng-model="chitiet.Ngay" id="txtNgay{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtNgay'+$index,'txtSoLuong'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.SoLuong" number-format id="txtSoLuong{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtSoLuong'+$index,'txtDonGia'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.DonGia" number-format id="txtDonGia{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtDonGia'+$index,'txtHinhThuc'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <select class="form-control" ng-model="chitiet.HinhThucId" id="txtHinhThuc{{$index}}" style="padding:0px 10px" data-placeholder="Chọn hình thức">
+                                <option value="1">Đấu thầu</option>
+                                <option value="2">Chỉ định thầu</option>
+                                <option value="3">Chào hàng cạnh tranh</option>
+                                <option value="3">Mua sắm trực tiếp</option>
+                            </select>
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.DuToan" number-format id="txtDuToan{{$index}}" ng-keypress="ctrl.action.keyPressChiTiet('txtDuToan'+$index,'txtGhiChu'+$index,$event)" />
+                        </td>
+                        <td class="form-group form-group-sm">
+                            <input type="text" class="form-control" ng-model="chitiet.GhiChu" id="txtGhiChu{{$index}}" ng-keypress="$event.keyCode===13?ctrl.action.InsertChiTiet():0" />
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+        <div class="panel-footer">
+            <span>
+                <a class="btn btn-sm btn-primary"  ng-if="ctrl.data.showButtonSave && (ctrl.data.objKeHoachMuaSam.DuyetId==0?true:false)" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span>
+                <a class="btn btn-sm btn-default"  ng-if="ctrl.data.showButtonXoa && (ctrl.data.objKeHoachMuaSam.DuyetId==0?true:false)" href="javascript:void(0)" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-remove"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+@section ImportStyles{}
+@section SetupStyles{
+
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <script src="~/Scripts/angular/KeHoachMuaSam/controller/KeHoachMuaSamEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KeHoachMuaSam/service/KeHoachMuaSamService.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+
+}
