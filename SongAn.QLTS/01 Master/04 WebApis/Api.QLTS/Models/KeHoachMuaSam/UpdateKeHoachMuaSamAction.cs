@@ -6,6 +6,7 @@ using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Helper;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
 {
@@ -19,7 +20,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
         #endregion
         #region private
         private Entity.QLTS.Entity.KeHoachMuaSam _KeHoachMuaSam;
-        private List<Entity.QLTS.Entity.KeHoachMuaSamChiTiet> _listChiTiet;
+        private List<ChiTiet> _listChiTiet;
         #endregion
         public async Task<dynamic> Execute(ContextDto context)
         {
@@ -39,9 +40,21 @@ namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
                     await bizct.Execute();
                     foreach (var item in _listChiTiet)
                     {
-                        item.MuaSamId = check.MuaSamId;
+                        var KeHoachMuaSamChiTiet = new SongAn.QLTS.Entity.QLTS.Entity.KeHoachMuaSamChiTiet();
+                        KeHoachMuaSamChiTiet.MuaSamId = check.MuaSamId;
+                        KeHoachMuaSamChiTiet.TenTaiSan = item.TenTaiSan;
+                        KeHoachMuaSamChiTiet.LoaiId = item.LoaiId;
+                        KeHoachMuaSamChiTiet.PhuongThucId = item.PhuongThucId;
+                        KeHoachMuaSamChiTiet.DonViTinh = item.DonViTinh;
+                        KeHoachMuaSamChiTiet.MoTa = item.MoTa;
+                        KeHoachMuaSamChiTiet.Ngay = DateTime.ParseExact(item.Ngay, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                        KeHoachMuaSamChiTiet.SoLuong = item.SoLuong;
+                        KeHoachMuaSamChiTiet.DonGia = item.DonGia;
+                        KeHoachMuaSamChiTiet.HinhThucId = item.HinhThucId;
+                        KeHoachMuaSamChiTiet.DuToan = item.DuToan;
+                        KeHoachMuaSamChiTiet.GhiChu = item.GhiChu;
                         KeHoachMuaSamChiTietRepository repoct = new KeHoachMuaSamChiTietRepository(context);
-                        await repoct.Insert(item);
+                        await repoct.Insert(KeHoachMuaSamChiTiet);
                     }
 
 
@@ -78,7 +91,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
 
 
             kehoachmuasamchitiet = Protector.String(kehoachmuasamchitiet, "{}");
-            _listChiTiet = JsonConvert.DeserializeObject<List<Entity.QLTS.Entity.KeHoachMuaSamChiTiet>>(kehoachmuasamchitiet);
+            _listChiTiet = JsonConvert.DeserializeObject<List<ChiTiet>>(kehoachmuasamchitiet);
         }
 
         private ActionResultDto returnActionError(HttpStatusCode code, string message)
@@ -96,7 +109,22 @@ namespace SongAn.QLTS.Api.QLTS.Models.KeHoachMuaSam
             };
             return _error;
         }
+        public class ChiTiet
+        {
 
+            public virtual int MuaSamId { get; set; }
+            public virtual string TenTaiSan { get; set; }
+            public virtual int LoaiId { get; set; }
+            public virtual int PhuongThucId { get; set; }
+            public virtual string DonViTinh { get; set; }
+            public virtual string MoTa { get; set; }
+            public virtual string Ngay { get; set; }
+            public virtual decimal SoLuong { get; set; }
+            public virtual decimal DonGia { get; set; }
+            public virtual int HinhThucId { get; set; }
+            public virtual decimal DuToan { get; set; }
+            public virtual string GhiChu { get; set; }
+        }
         private ActionResultDto returnActionResult(HttpStatusCode code, object data, object metaData)
         {
             var _result = new ActionResultDto();

@@ -10,14 +10,18 @@
         //HOT-KEY       
         vm.keys = {
             F2: function (name, code) {
-                CreateListBanKiemKe();
-                var fc = function () {
-                    $("#txtNguoiKiemKe" + (vm.data.listBanKiemKe.length - 1).toString()).focus();
+                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
+                    CreateListBanKiemKe();
+                    var fc = function () {
+                        $("#txtNguoiKiemKe" + (vm.data.listBanKiemKe.length - 1).toString()).focus();
+                    }
+                    $timeout(fc, 6);
                 }
-                $timeout(fc, 6);
             },
             F8: function (name, code) {
-                vm.action.save();
+                if (vm.data.listQuyenTacVu.indexOf("M") > 0 || vm.data.listQuyenTacVu.indexOf("L") > 0) {
+                    vm.action.save();
+                }
             }
         };
         //end HOT-KEY
@@ -119,11 +123,9 @@
             }
 
             if (phieuBienBanKiemKeId > 0) {
-                utility.AlertSuccess('UUUUUUUUUUUUUUUUUUUUU!');
                 update();
             }
             else {
-                utility.AlertSuccess('IIIIIIIIIIIIIIII!');
                 insert();
             }
         };
@@ -147,16 +149,7 @@
             if (ids.length > 0) {
                 BienBanKiemKeService.DeleteList(ids).then(function (success) {
 
-                    if (success.data.data > 0) {
-                        if (BienBanKiemKeListSelected.length > parseInt(success.data.data)) {
-                            var sl = BienBanKiemKeListSelected.length - parseInt(success.data.data);
-                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
-                        }
-                        else
-                            utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
-                    } else {
-                        utility.AlertSuccess('Xóa thành công!');
-                    }
+                    utility.AlertSuccess('Xóa thành công!');
 
                     $timeout(function () {
                         window.location.href = vm.data.linkUrl + 'BienBanKiemKe/list';

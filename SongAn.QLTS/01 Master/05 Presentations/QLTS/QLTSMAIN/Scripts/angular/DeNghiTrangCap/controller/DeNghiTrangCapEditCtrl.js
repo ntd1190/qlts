@@ -263,7 +263,10 @@
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'denghitrangcap/edit/' + result.data.data[0].DeNghiIdI;
+                    $timeout(function () {
+                        window.location = vm.data.linkUrl + 'denghitrangcap/edit/' + result.data.data[0].DeNghiIdI;
+                    }, 2000);
+                   
 
                 }, function error(result) {
                     console.log(result);

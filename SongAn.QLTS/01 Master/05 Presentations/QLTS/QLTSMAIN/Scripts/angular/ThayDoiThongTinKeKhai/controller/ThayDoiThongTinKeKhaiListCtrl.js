@@ -82,6 +82,25 @@
                 });
             });
         }
+        vm.action.removeList = function () {
+            if (checkQuyenUI('D') == false) { return; }
+            if (confirm('Bạn có muốn xóa thay đổi thông tin ?')) {
+                utility.addloadding($('body'));
+                removeTDTT().then(function (success) {
+                    utility.removeloadding();
+                    utility.AlertSuccess('Xóa thông tin thành công');
+                    vm.action.search();
+                }, function (error) {
+                    utility.removeloadding();
+                    if (error.status === 400) {
+                        utility.AlertError(error.data.error.message);
+                    } else {
+                        utility.AlertError('Không thể thay đổi thông tin kê khai');
+                    }
+                })
+            }
+        }
+
         /*** EVENT FUNCTION ***/
 
         /*** BIZ FUNCTION ***/
@@ -98,6 +117,15 @@
             return listQuyenTacVu.indexOf(quyen) >= 0;
         }
 
+        function getListSelected() {
+            var list = [];
+            for (var index in vm.data.TDTTList) {
+                if (vm.data.TDTTList[index].isSelected) {
+                    list.push(vm.data.TDTTList[index]);
+                }
+            }
+            return list;
+        }
 
         /*** API FUNCTION ***/
 
@@ -262,6 +290,24 @@
         }
 
 
+        function removeTDTT() {
+            var deferred = $q.defer();
+            var data = {};
+            data.ThayDoiThongTinId = utility.joinStr(getListSelected(), 'ThayDoiThongTinId', '|');
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            TDTTService.remove(data).then(function (success) {
+                console.log('TDTTService.remove');
+                console.log(success);
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+
         function getTTKKById(id, LoaiKeKhai) {
             var deferred = $q.defer();
 
@@ -357,6 +403,7 @@
             });
             return deferred.promise;
         }
+
 
     });
 })();

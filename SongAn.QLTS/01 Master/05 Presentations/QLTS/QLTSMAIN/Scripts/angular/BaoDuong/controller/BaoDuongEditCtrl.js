@@ -102,7 +102,7 @@
         vm.action.add = function () {
             CreateListChiTiet();
             var fc = function () {
-                $("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                $("#txtTenBoPhan" + (vm.data.listChiTiet.length - 1).toString()).focus();
             }
             $timeout(fc, 6);
         };
@@ -286,8 +286,10 @@
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'BaoDuong/edit/' + result.data.data[0].BaoDuongIdI;
-
+                   
+                    $timeout(function () {
+                        window.location = vm.data.linkUrl + 'BaoDuong/edit/' + result.data.data[0].BaoDuongIdI;
+                    }, 2000);
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();

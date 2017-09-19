@@ -433,6 +433,9 @@
             <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
                 <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu</button>&nbsp;&nbsp;&nbsp;
             </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
+            </span>
             <a type="button" class="btn btn-sm btn-default" href="~/thaydoithongtinkekhai/list"><i class="fa fa-fw fa-arrow-left"></i>Quay lại</a>&nbsp;&nbsp;&nbsp;
         </div>
     </div>

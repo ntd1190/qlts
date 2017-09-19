@@ -319,7 +319,10 @@
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'ghitang/edit/' + result.data.data[0].GhiTangIdI;
+                   
+                    $timeout(function () {
+                        window.location = vm.data.linkUrl + 'ghitang/edit/' + result.data.data[0].GhiTangIdI;
+                    }, 2000);
 
                 }, function error(result) {
                     console.log(result);

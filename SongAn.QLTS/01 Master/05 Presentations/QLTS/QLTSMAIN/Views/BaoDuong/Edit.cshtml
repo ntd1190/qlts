@@ -26,7 +26,7 @@
                             <label class="control-label col-sm-3">Tài sản <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-7">
                                 <cbo-tai-san-su-dung id="cbxTaiSan" data-value="ctrl.data.phieuBaoDuong.TaiSanId" data-phong-ban="ctrl.data.phieuBaoDuong.PhongBanId" data-nhan-vien="ctrl.data.phieuBaoDuong.NhanVienId" ma-tai-san="ctrl.data.phieuBaoDuong.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
-                                             on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san-su-dung>
+                                                     on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san-su-dung>
                             </div>
                         </div>
                     </div>
@@ -72,7 +72,7 @@
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.DuToan?'has-error':''">
                             <label class="control-label col-sm-3">Dự toán</label>
                             <div class="col-sm-7">
-                                <input type="text" id="txtDuToan" class="form-control text-right" ng-model="ctrl.data.phieuBaoDuong.DuToan" number-format ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.DuToan,'txtDuToan','cbxLoaiBaoDuong',$event)"/>
+                                <input type="text" id="txtDuToan" class="form-control text-right" ng-model="ctrl.data.phieuBaoDuong.DuToan" number-format ng-keypress="ctrl.action.keyPressBaoDuong(ctrl.data.phieuBaoDuong.DuToan,'txtDuToan','cbxLoaiBaoDuong',$event)" />
                             </div>
                         </div>
                     </div>
@@ -96,7 +96,7 @@
                     </div>
                 </div>
             </form>
-        </div> 
+        </div>
 
         <div class="panel-heading">
             <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
@@ -105,8 +105,8 @@
             </button>
         </div>
 
-        <div class="table-responsive" style="min-height:300px;max-height:300px">
-            <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px">
+        <div class="panel-body table-responsive" style="max-height:300px;min-height:300px">
+            <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px;border: 1px solid #ddd;">
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="min-width: 40px; vertical-align:middle">#</th>
@@ -163,7 +163,7 @@
                             <!--ket qua-->
                             <input type="text" id="txtKetQua{{$index}}" class="form-control text-left" ng-model="SuaChua.KetQua" ng-keypress="ctrl.action.keyPress(SuaChua.NgayDeNghi,'txtKetQua'+$index,'txtTenBoPhan'+$index,$index,$event)" />
                         </td>
-                        
+
                     </tr>
                 </tbody>
             </table>

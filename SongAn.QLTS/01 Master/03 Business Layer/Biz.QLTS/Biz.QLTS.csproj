@@ -149,6 +149,7 @@
     <Compile Include="TaiSan\GetThongTinCongKhaiByIdBiz.cs" />
     <Compile Include="TaiSan\InsertThongTinCongKhaiBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTin500ByIdBiz.cs" />
+    <Compile Include="ThayDoiThongTin\DeleteThayDoiThongTinBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinDatByIdBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinNhaByIdBiz.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinOtoByIdBiz.cs" />

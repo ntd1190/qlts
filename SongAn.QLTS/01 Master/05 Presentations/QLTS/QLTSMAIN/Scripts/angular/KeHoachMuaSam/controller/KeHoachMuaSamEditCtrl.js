@@ -149,7 +149,10 @@
                     MuaSamId = success.data.data.MuaSamId;
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = '/QLTSMAIN/kehoachmuasam/edit/' + MuaSamId;
+                    $timeout(function () {
+                        window.location = '/QLTSMAIN/kehoachmuasam/edit/' + MuaSamId;
+                    }, 2000);
+                   
                 }
                 vm.status.isLoading = false;
             }, function (error) {

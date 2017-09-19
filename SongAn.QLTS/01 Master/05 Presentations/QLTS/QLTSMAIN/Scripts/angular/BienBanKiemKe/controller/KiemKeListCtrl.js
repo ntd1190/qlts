@@ -3,7 +3,32 @@
 
     angular.module("app")
         .controller("BienBanKiemKeListCtrl", controller)
-        .directive("keyboard", keyboard);        //HOT-KEY
+        .directive("keyboard", keyboard)        //HOT-KEY
+        .filter("sumOfValue", filter)
+        .filter("sumOfValue2x", filter2x);
+
+    function filter() {
+        return function (data, key) {
+            if (angular.isUndefined(data) || angular.isUndefined(key))
+                return 0;
+            var sum = 0;
+            angular.forEach(data, function (value) {
+                sum = sum + parseInt(value[key], 10);
+            });
+            return sum;
+        };
+    }
+    function filter2x() {
+        return function (data, key, key1) {
+            if (angular.isUndefined(data) || angular.isUndefined(key) || angular.isUndefined(key1))
+                return 0;
+            var sum = 0;
+            angular.forEach(data, function (value) {
+                sum = sum + (parseInt(value[key], 10) - parseInt(value[key1], 10));
+            });
+            return sum;
+        };
+    }
 
     //HOT-KEY
     function keyboard($document, keyCodes) {
@@ -217,17 +242,7 @@
             if (ids.length > 0) {
                 BienBanKiemKeService.DeleteList(ids).then(function (success) {
 
-                    if (success.data.data > 0) {
-                        if (BienBanKiemKeListSelected.length > parseInt(success.data.data)) {
-                            var sl = BienBanKiemKeListSelected.length - parseInt(success.data.data);
-                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
-                        }
-                        else
-                            utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
-                    }
-                    else {
-                        utility.AlertSuccess('Xóa thành công!');
-                    }
+                    utility.AlertSuccess('Xóa thành công!');
 
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;

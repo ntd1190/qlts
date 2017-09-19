@@ -330,8 +330,10 @@
                 .then(function success(result) {
                     utility.removeloadding();
                     utility.AlertSuccess("Thêm thành công");
-                    window.location = vm.data.linkUrl + 'DieuChuyen/edit/' + result.data.data[0].DieuChuyenIdI;
-
+                   
+                    $timeout(function () {
+                        window.location = vm.data.linkUrl + 'DieuChuyen/edit/' + result.data.data[0].DieuChuyenIdI;
+                    }, 2000);
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();

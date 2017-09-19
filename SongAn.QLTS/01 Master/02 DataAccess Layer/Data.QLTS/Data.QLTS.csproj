@@ -70,6 +70,9 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyenChiTiet_GetDieuChuyenChiTietByDieuChuyenId.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyenChiTiet_InsertDieuChuyenChiTiet.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_DeleteDieuChuyenyId.sql" />
     <Compile Include="DuyetMua\DuyetDuyetMuaDac.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapDac.cs" />
     <Compile Include="DuyetCap\GetListDuyetCapByCriteriaDac.cs" />
@@ -158,6 +161,7 @@
     <Compile Include="TaiSan\GetThongTinCongKhaiByIdDac.cs" />
     <Compile Include="TaiSan\InsertThongTinCongKhaiDac.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTin500ByIdDac.cs" />
+    <Compile Include="ThayDoiThongTin\DeleteThayDoiThongTinDac.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinNhaByIdDac.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinOtoByIdDac.cs" />
     <Compile Include="ThayDoiThongTin\GetThayDoiThongTinDatByIdDac.cs" />
@@ -196,16 +200,26 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DieuChuyen\Procedures\" />
     <Folder Include="DuyetCap\Procedures\" />
     <Folder Include="DuyetMua\Procedures\" />
     <Folder Include="GhiGiamChiTiet\Procedures\" />
     <Folder Include="GhiGiam\Procedures\" />
-    <Folder Include="GhiTang\Procedures\" />
     <Folder Include="KeHoachMuaSamChiTiet\Procedures\" />
     <Folder Include="KeHoachMuaSam\Procedures\" />
+    <Folder Include="TheoDoi\Procedures\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BaoDuong\Procedures\sp_BaoDuong_DeleteBaoDuongById.sql" />
+    <Content Include="BaoDuong\Procedures\sp_BaoDuong_GetListBaoDuongByBaoDuongId.sql" />
+    <Content Include="BaoDuong\Procedures\sp_BaoDuong_GetListBaoDuongByCriteria.sql" />
+    <Content Include="BaoDuong\Procedures\sp_BaoDuong_InsertBaoDuong.sql" />
+    <Content Include="BaoDuong\Procedures\sp_BaoDuong_UpdateBaoDuong.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKeChiTiet_GetListBienBanKiemKeChiTietByKiemKeId.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKe_DeleteBienBanKiemKeById.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKe_GetListBienBanKiemKeByCriteria.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKe_GetListBienBanKiemKeById.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKe_InsertBienBanKiemKe.sql" />
+    <Content Include="BienBanKiemKe\Procedures\sp_BienBanKiemKe_UpdateBienBanKiemKe.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_cbxCoSoByCriteria.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetListCoSoByCriteria.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetCoSoById.sql" />
@@ -216,8 +230,19 @@
     <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_GetListDeNghiTrangCapByDeNghiId.sql" />
     <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_InsertDeNghiTrangCap.sql" />
     <Content Include="DeNghiTrangCap\Procedures\sp_DeNghiTrangCap_UpdateDeNghiTrangCap.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_GetListDieuChuyenByCriteria.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_GetListDieuChuyenByDieuChuyenId.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_InsertDieuChuyen.sql" />
+    <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_UpdateDieuChuyen.sql" />
     <Content Include="DuAn\Procedures\sp_DuAn_GetListDuAnByCriteria.sql" />
     <Content Include="DuAn\Procedures\sp_DuAn_cbxDuAnByCriteria.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTangChiTiet_GetGhiTangChiTietByDeNghiId.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTangChiTiet_InsertGhiTangChiTiet.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTang_DeleteGhiTangById.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTang_GetListGhiTangByCriteria.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTang_GetListGhiTangByGhiTangId.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTang_InsertGhiTang.sql" />
+    <Content Include="GhiTang\Procedures\sp_GhiTang_UpdateGhiTang.sql" />
     <Content Include="HangSanXuat\Procedures\sp_HangSanXuat_GetListHangSanXuatByCriteria.sql" />
     <Content Include="HangSanXuat\Procedures\sp_HangSanXuat_cbxHangSanXuatByCriteria.sql" />
     <Content Include="HienTrangSuDung\Procedures\sp_HienTrangSuDung_cbxHienTrangSuDungByCriteria.sql" />

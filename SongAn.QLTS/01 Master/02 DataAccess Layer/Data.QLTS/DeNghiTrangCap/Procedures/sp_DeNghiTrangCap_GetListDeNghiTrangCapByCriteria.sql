@@ -1,6 +1,6 @@
 ﻿USE [QLTS]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]    Script Date: 9/7/2017 2:48:32 PM ******/
+/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]    Script Date: 9/19/2017 10:24:40 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -15,7 +15,7 @@ ALTER PROC [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]
 	, @TuNgay			DATETIME		= null		
 	, @DenNgay			DATETIME		= null		
 	, @PhongBanId		NVARCHAR(MAX)	
-	, @LoginId			INT
+	, @LoginId			NVARCHAR(10)
 	, @OrderClause		nvarchar(500)	= null				
 	, @SKIP				int				= null				-- Số dòng skip (để phân trang)
 	, @TAKE				int				= null				-- Số dòng take (để phân trang)
@@ -38,12 +38,13 @@ SET NOCOUNT ON
 	END	
 	----------
 
-	DECLARE @IS_VIEW_ALL varchar = '0'
-  	exec [QLTS_MAIN].dbo.[sp_QuyenTacVu_CheckQuyenTacVuByChucNang]
-		@LOGINID = @CoSoId,
+
+	DECLARE @IS_VIEW varchar(10) = '0'
+	exec [QLTS_MAIN].dbo.[sp_QuyenTacVu_CheckQuyenTacVuByChucNang]
+		@NHAN_VIEN_ID = @LoginId,
+		@CO_SO_ID = @CoSoId,
 		@CHUC_NANG = 'CN0019',
-		@QUYEN_TAC_VU = 'View All',
-		@YES_NO=@IS_VIEW_ALL OUTPUT
+		@QUYEN=@IS_VIEW OUTPUT
 
 	-- Chuẩn bị biến @Skip & @Take
 	IF (@SKIP IS NULL)
@@ -67,11 +68,12 @@ SET NOCOUNT ON
 
 	SET @V_SQL = N'
 	SELECT COUNT(*) OVER () AS MAXCNT, H.DeNghiId, H.Ngay, H.SoPhieu, H.PhanLoaiId, PL.TenPhanLoai, H.PhongBanId, PB.TenPhongBan, H.NoiDung, H.CoSoId,
-			H.DuyetId,H.NguoiTao,NguoiDung.HoTen TenNhanVien,H.NgayTao,H.CtrVersion
+			H.DuyetId,H.NoiDungDuyet,D.TrangThai,H.NguoiTao,nv.TenNhanVien TenNhanVien,H.NgayTao,H.CtrVersion
 	FROM dbo.DeNghiTrangCap H 
-	LEFT JOIN QLTS_MAIN.dbo.NguoiDung ON NguoiDung.NhanVienId = H.NguoiTao 
+	LEFT JOIN dbo.NhanVien nv ON nv.NhanVienId = H.NguoiTao 
 	LEFT JOIN dbo.PhongBan PB ON PB.PhongBanId = h.PhongBanId
 	LEFT JOIN dbo.PhanLoai PL ON PL.PhanLoaiId = h.PhanLoaiId
+	LEFT JOIN dbo.Duyet D ON D.DuyetId = h.DuyetId
 	WHERE 1 = 1 and CAST(Ngay AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) ' 
 
 	-- Build Where clause
@@ -84,14 +86,21 @@ SET NOCOUNT ON
 
 	IF @PhongBanId > ''
 	BEGIN
-		SET @V_SQL = @V_SQL + ' and  h.PhongBanId in (SELECT Item FROM dbo.DelimitedSplit8K(' + @PhongBanId + ','','') WHERE Item > 0 ) ';
+		SET @V_SQL = @V_SQL + ' and  h.PhongBanId in (' + @PhongBanId + ')';
 	END
 
 	
-	IF @IS_VIEW_ALL = '0' 
-	BEGIN			 
-		SET @V_SQL = @V_SQL + ' and H.CoSoId =''' + CAST(@CoSoId AS VARCHAR) + '''';	  
-		SET @V_SQL = @V_SQL + ' and H.NguoiTao =''' + CAST(@LoginId AS VARCHAR) + '''';	  
+	IF @IS_VIEW = 'VB' 
+	BEGIN    
+		SET @V_SQL = @V_SQL + ' and H.CoSoId =''' + @CoSoId + '''';   
+	END
+	IF @IS_VIEW = 'VR' 
+	BEGIN    
+		SET @V_SQL = @V_SQL + ' and nv.PhongBanId = (select PhongBanId from NhanVien where NhanVienId=''' + @LoginId + ''')';   
+	END
+	IF @IS_VIEW = 'VE' 
+	BEGIN    
+		SET @V_SQL = @V_SQL + ' and nv.NhanVienId =''' + @LoginId + '''';   
 	END
 
 	-- Build Order clause

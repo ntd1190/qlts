@@ -24,6 +24,8 @@
         api.updateTDTT_Oto = 'UpdateThayDoiThongTinOto';
         api.updateTDTT_500 = 'UpdateThayDoiThongTin500';
 
+        api.remove = 'DeleteThayDoiThongTin';
+
         var service = {};
 
         service.getPage = function (data) {
@@ -187,6 +189,19 @@
         };
         service.updateTDTT_500 = function (data) {
             var url = api.url + api.updateTDTT_500;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        };
+
+        service.remove = function (data) {
+            var url = api.url + api.remove;
 
             var req = {
                 url: url,

@@ -228,6 +228,7 @@
     <Compile Include="Models\TaiSan\GetThongTinCongKhaiByIdAction.cs" />
     <Compile Include="Models\TaiSan\UpdateTaiSanAction.cs" />
     <Compile Include="Models\TaiSan\InsertTaiSanAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\DeleteThayDoiThongTinAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinNhaByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTin500ByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinOtoByIdAction.cs" />

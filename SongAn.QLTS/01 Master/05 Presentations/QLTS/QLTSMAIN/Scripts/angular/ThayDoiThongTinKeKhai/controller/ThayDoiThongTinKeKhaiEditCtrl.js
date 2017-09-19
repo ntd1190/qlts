@@ -85,6 +85,24 @@
                 });
             }
         }
+        vm.action.removeList = function () {
+            if (checkQuyenUI('D') == false) { return; }
+            if (confirm('Bạn có muốn xóa thay đổi thông tin ?')) {
+                utility.addloadding($('body'));
+                removeTDTT().then(function (success) {
+                    utility.removeloadding();
+                    utility.AlertSuccess('Xóa thông tin thành công');
+                    window.location = linkUrl + 'list/';
+                }, function (error) {
+                    utility.removeloadding();
+                    if (error.status === 400) {
+                        utility.AlertError(error.data.error.message);
+                    } else {
+                        utility.AlertError('Không thể xóa thay đổi thông tin');
+                    }
+                })
+            }
+        }
 
         /*** EVENT FUNCTION ***/
 
@@ -550,6 +568,24 @@
         }
 
         /*** API FUNCTION ***/
+
+        function removeTDTT() {
+            var deferred = $q.defer();
+            var data = {};
+            data.ThayDoiThongTinId = vm.data.TDTT.ThayDoiThongTinId;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            TDTTService.remove(data).then(function (success) {
+                console.log('TDTTService.remove');
+                console.log(success);
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
 
         function fixedTDTT(object) {
             object.Ngay = utility.convertDateFormat(object.Ngay, 'YYYY-MM-DD', 'DD/MM/YYYY');
