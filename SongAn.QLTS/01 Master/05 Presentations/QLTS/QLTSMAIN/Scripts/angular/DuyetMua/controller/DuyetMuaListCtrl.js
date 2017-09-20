@@ -4,7 +4,7 @@
     angular.module("app")
         .controller("DuyetMuaListCtrl", controller)
 
-    function controller($rootScope, $scope, DuyetMuaService, utility) {
+    function controller($rootScope, $scope, DuyetMuaService, utility, $q) {
         var vm = this;
         //HOT-KEY       
         vm.keys = {
@@ -79,7 +79,9 @@
             DongY: DongY,
             TuChoi: TuChoi,
             CheckRow: CheckRow,
-            OpenTuChoi: OpenTuChoi
+            OpenTuChoi: OpenTuChoi,
+            DongYChiTiet: DongYChiTiet,
+            TuChoiChiTiet: TuChoiChiTiet,
         };
 
 
@@ -159,6 +161,7 @@
             });
         }
         function getPageChiTiet(MuaSamId) {
+            var deferred = $q.defer();
             $('tr').removeClass('info');
             $('#row_' + MuaSamId).addClass('info');
             if (MuaSamId) {
@@ -168,6 +171,7 @@
                         vm.data.DuyetMuaChiTietList = success.data.data;
                         vm.data.TongSo = success.data.data.length;
                     }
+                    return deferred.resolve(success);
                     vm.data.isLoading = false;
                 }, function (error) {
                     vm.data.isLoading = false;
@@ -177,8 +181,10 @@
                         alert(error.data.Message);
                     }
                     $('#bgloadding').remove();
+                    return deferred.reject(error);
                 });
             }
+            return deferred.promise;
         }
         function initTableState(tableState) {
             tableState = tableState || {};
@@ -247,6 +253,60 @@
                 $('#TuChoiPopup').collapse('show');
                 $('#txtLyDo').focus();
             }
+        }
+        function DongYChiTiet(item) {
+            utility.addloadding($('body'));
+            DuyetMuaService.DuyetChiTiet(item.MuaSamId, item.MuaSamChiTietId, 1).then(function (success) {
+                if (success.data.data) {
+                    var DuyetId = success.data.data[0].DuyetId;
+                    getPageChiTiet(item.MuaSamId).then(function (success) {
+                        if (DuyetId != 0)
+                            $.each(vm.data.DuyetMuaList, function (index, value) {
+                                if (value.MuaSamId == item.MuaSamId) {
+                                    vm.data.DuyetMuaList[index].DuyetId = DuyetId;
+                                    vm.data.DuyetMuaList[index].TrangThai = DuyetId == 1 ? "Đồng ý" : "Từ chối";
+                                }
+                            });
+                    });
+                    $('#bgloadding').remove();
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
+        }
+        function TuChoiChiTiet(item) {
+            utility.addloadding($('body'));
+            DuyetMuaService.DuyetChiTiet(item.MuaSamId, item.MuaSamChiTietId, 2).then(function (success) {
+                if (success.data.data) {
+                    var DuyetId = success.data.data[0].DuyetId;
+                    getPageChiTiet(item.MuaSamId).then(function (success) {
+                        if (DuyetId != 0)
+                            $.each(vm.data.DuyetMuaList, function (index, value) {
+                                if (value.MuaSamId == item.MuaSamId) {
+                                    vm.data.DuyetMuaList[index].DuyetId = DuyetId;
+                                    vm.data.DuyetMuaList[index].TrangThai = DuyetId == 1 ? "Đồng ý" : "Từ chối";
+                                }
+                            });
+                    });
+                    $('#bgloadding').remove();
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
         }
         function TuChoi() {
 

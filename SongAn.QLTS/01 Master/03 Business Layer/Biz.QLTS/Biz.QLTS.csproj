@@ -60,6 +60,12 @@
     <Compile Include="BienBanKiemKe\InsertBienBanKiemKeBiz.cs" />
     <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportDeNghiTrangCapByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportDieuChuyenByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
+    <Compile Include="DuyetCap\DuyetDuyetCapChiTietBiz.cs" />
+    <Compile Include="DuyetMua\DuyetDuyetMuaChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaBiz.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapBiz.cs" />
     <Compile Include="DuyetCap\GetListDuyetCapByCriteriaBiz.cs" />

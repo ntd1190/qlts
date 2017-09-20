@@ -66,7 +66,7 @@
                                     for (var k = 0; k < qtacvu.length; k++) {
                                         if (chucnang[u] == qtacvu[k]) check = "checked";
                                     }
-                                    dscn += "<label class='radio-inline'><input  type='checkbox' " + check + " onclick='UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[u] + "' />" + (chucnang[u] == "V" ? "Xem" : chucnang[u] == "N" ? "Mới" : chucnang[u] == "D" ? "Xóa" : chucnang[u] == "M" ? "Sửa" : chucnang[u] == "A" ? "Duyệt"  : chucnang[u]) + "</label>";
+                                    dscn += "<label class='radio-inline'><input  type='checkbox' " + check + " onclick='UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[u] + "' />" + (chucnang[u] == "V" ? "Xem" : chucnang[u] == "N" ? "Mới" : chucnang[u] == "D" ? "Xóa" : chucnang[u] == "M" ? "Sửa" : chucnang[u] == "A" ? "Duyệt" : chucnang[u] == "VR" ? "Xem phòng" : chucnang[u] == "VB" ? "Xem cơ sở" : chucnang[u] == "VA" ? "Xem tất cả" : chucnang[u]) + "</label>";
                                 }
                                 dsChucNang = dsChucNang + "<li>";
                                 dsChucNang = dsChucNang + "<span class='col-sm-4'>" + item.TenChucNang + "</span>";

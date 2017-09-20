@@ -11,14 +11,15 @@
 
         GetPage: 'GetListDuyetMuaByProjection',
         getPageChiTiet: 'GetDuyetMuaChiTietByMuaSamId',
-        Duyet: 'DuyetDuyetMua'
+        Duyet: 'DuyetDuyetMua',
+        DuyetChiTiet: 'DuyetDuyetMuaChiTiet'
     }
 
     var service = {
             getPageChiTiet:getPageChiTiet,
             Duyet : Duyet,
             getPage: getPage,
-           
+            DuyetChiTiet: DuyetChiTiet
         };
 
         return service;
@@ -79,7 +80,23 @@
 
             return $http(req);
         }
+        function DuyetChiTiet(MuaSamId, MuaSamChiTietId, DuyetId) {
+            var url = api.url + api.DuyetChiTiet;
 
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    MuaSamId: MuaSamId,
+                    MuaSamChiTietId: MuaSamChiTietId,
+                    DuyetId: DuyetId,
+
+                })
+            }
+
+            return $http(req);
+        }
        
 
        

@@ -6,6 +6,7 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
@@ -19,13 +20,7 @@ namespace SongAn.QLDN.Util.Common.Repository
     /// </summary>
     public abstract class BaseRepositoryDataset
     {
-        private readonly string _ConnectionString;
-
-        protected BaseRepositoryDataset(string connectionString)
-        {
-            _ConnectionString = connectionString;
-        }
-
+        private readonly string _ConnectionString = ConfigurationManager.ConnectionStrings["dbQLTSConnection"].ConnectionString;
         protected DataSet getData(string commandtext, List<SqlParameter> arrParam)
         {
             try

@@ -24,7 +24,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Bộ phận</label>
                         <div class="col-sm-9">
-                             @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DuyetCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DuyetCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
                         </div>
                     </div>
 
@@ -74,29 +74,29 @@
                             <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
                     </tr>
-                   
+
                     <tr ng-repeat="DuyetCap in ctrl.data.DuyetCapListDisplay" ng-click="ctrl.action.getPageDetail(DuyetCap.DeNghiId)" id="row_{{DuyetCap.DeNghiId}}" ng-class="(DuyetCap.isSelected==true)?'info':''">
                         <td st-select-row="DuyetCap" st-select-mode="single" ng-click="ctrl.action.CheckRow(DuyetCap.DuyetId!='0'?false:true)" class="text-center"><i class="fa fa-fw text-primary" ng-class="(DuyetCap.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
-                        <td >
-                            <a  href="~/denghitrangcap/edit?id={{DuyetCap.DeNghiId}}">{{ DuyetCap.SoPhieu}}</a>
+                        <td>
+                            <a href="~/denghitrangcap/edit?id={{DuyetCap.DeNghiId}}">{{ DuyetCap.SoPhieu}}</a>
                         </td>
-                        <td >
+                        <td>
                             <span>{{ DuyetCap.Ngay | date : 'dd/MM/yyyy'}}</span>
                         </td>
-                        <td >
+                        <td>
                             <span ng-bind="DuyetCap.TenPhongBan"></span>
                         </td>
                         <td>
                             <span ng-bind="DuyetCap.NoiDung"></span>
                         </td>
-                        <td  ng-if="DuyetCap.DuyetId==0" style="padding-left: 3.5%;">
-                            <span class="form-control label label-warning"  ng-bind="DuyetCap.TrangThai"></span>
-                            
+                        <td ng-if="DuyetCap.DuyetId==0" style="padding-left: 3.5%;">
+                            <span class="form-control label label-warning" ng-bind="DuyetCap.TrangThai"></span>
+
                         </td>
-                        <td  ng-if="DuyetCap.DuyetId==1" style="padding-left: 3.5%;">
+                        <td ng-if="DuyetCap.DuyetId==1" style="padding-left: 3.5%;">
                             <span class="form-control label label-success" ng-if="DuyetCap.DuyetId==1" ng-bind="DuyetCap.TrangThai"></span>
                         </td>
-                        <td  ng-if="DuyetCap.DuyetId==2" style="padding-left: 3.5%;">
+                        <td ng-if="DuyetCap.DuyetId==2" style="padding-left: 3.5%;">
                             <span class="form-control label label-danger" ng-if="DuyetCap.DuyetId==2" ng-bind="DuyetCap.TrangThai"></span> <i class="fa fa-question-circle-o" aria-hidden="true" data-placement="left" title="{{DuyetCap.NoiDungDuyet}}"></i>
                         </td>
                     </tr>
@@ -110,25 +110,26 @@
                 </tfoot>
             </table>
         </div>
-        
+
         <div class="panel-heading">
-           <span>Thông tin chi tiết</span>
+            <span>Thông tin chi tiết</span>
         </div>
-        
+
         <div class="table-responsive panel-body">
             <table st-table="ctrl.data.DuyetCapChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
+                        <th class="text-center" style="min-width: 150px;vertical-align:middle" >Chức năng</th>
                         <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
-                        <th class="text-center" style="min-width: 250px;vertical-align:middle" >Tên tài sản</th>
+                        <th class="text-center" style="min-width: 250px;vertical-align:middle">Tên tài sản</th>
                         <th class="text-center" style="min-width: 150px;vertical-align:middle">Loại tài sản</th>
-                        <th class="text-center" style="min-width: 200px;vertical-align:middle" >Mô tả đặc điểm</th>
-                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Số lượng</th>
-                        <th class="text-center" style="min-width: 70px;vertical-align:middle" >ĐVT</th>
-                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Phương thức</th>
-                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Dự toán</th>
-                        <th class="text-center" style="min-width: 160px;vertical-align:middle" >Dự toán được duyệt</th>
-                        <th class="text-center" style="min-width: 100px;vertical-align:middle" >Ngày Duyệt</th>
+                        <th class="text-center" style="min-width: 200px;vertical-align:middle">Mô tả đặc điểm</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Số lượng</th>
+                        <th class="text-center" style="min-width: 70px;vertical-align:middle">ĐVT</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Phương thức</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Dự toán</th>
+                        <th class="text-center" style="min-width: 160px;vertical-align:middle">Dự toán được duyệt</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày Duyệt</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -138,6 +139,18 @@
                         </td>
                     </tr>
                     <tr ng-repeat="DuyetCapChiTiet in ctrl.data.DuyetCapChiTietListDisplay" ng-class="(DuyetCapChiTiet.isSelected==true)?'info':''">
+                        <td class="text-center" style="vertical-align:middle" >
+                            <div class="btn-group btn-group-circle" ng-if="(DuyetCapChiTiet.DuyetId==1||DuyetCapChiTiet.DuyetId==2) ? false:true">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.action.DongYChiTiet(DuyetCapChiTiet)">Duyệt</button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="ctrl.action.TuChoiChiTiet(DuyetCapChiTiet)">Từ chối</button>
+                            </div>
+                            <div ng-if="DuyetCapChiTiet.DuyetId==1 ? true:false">
+                                <span class="form-control label label-success">Đồng ý</span>
+                            </div>
+                            <div ng-if="DuyetCapChiTiet.DuyetId==2 ? true:false">
+                                <span class="form-control label label-danger">Từ chối</span>
+                            </div>
+                        </td>
                         <td class="text-center">{{$index + 1}}</td>
                         <td><span ng-bind="DuyetCapChiTiet.TenTaiSan"></span></td>
                         <td><span ng-bind="DuyetCapChiTiet.TenLoai"></span></td>
@@ -181,26 +194,25 @@
                         </div>
                     </div>
                     <!-- Input row Lý do -->
-                    <div class="row form-group form-group-sm" >
+                    <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Lý do</label>
                         <div class="col-sm-10">
-                            <textarea id="txtLyDo" rows="2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="ctrl.data.objTuChoi.LyDo">
-                            </textarea>
+                            <textarea id="txtLyDo" rows="2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="ctrl.data.objTuChoi.LyDo"></textarea>
                         </div>
                     </div>
                 </form>
             </div>
             <div class="panel-footer">
-                <a class="btn btn-sm btn-primary ng-scope"  ng-click="ctrl.action.TuChoi()"> <i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary ng-scope" ng-click="ctrl.action.TuChoi()"> <i class="fa fa-floppy-o" aria-hidden="true"></i> Lưu</a>&nbsp;&nbsp;&nbsp;
 
                 <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuChoiPopup" aria-expanded="true">Đóng</a>
 
             </div>
-        </div> 
+        </div>
     </div>
 
-  
-   
+
+
 
 
 </div>
@@ -226,6 +238,11 @@
             padding: 0;
             margin: -5px 0;
         }
+        .label {
+            font-size: 90% !important;
+        }
+    
+
     </style>
     <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
 }

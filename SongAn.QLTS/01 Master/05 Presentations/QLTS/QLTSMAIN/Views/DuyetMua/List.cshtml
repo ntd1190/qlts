@@ -91,6 +91,7 @@
             <table st-table="ctrl.data.DuyetMuaChiTietList" class="table table-bordered table-condensed  table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
+                        <th class="text-center" style="min-width: 150px;vertical-align:middle">Chức năng</th>
                         <th class="text-center" style="width: 50px;vertical-align:middle">STT</th>
                         <th class="text-center" style="width: 300px;vertical-align:middle" st-sort="TenTaiSan">Tên tài sản</th>
                         <th class="text-center" style="width: 150px;vertical-align:middle" st-sort="TenLoai">Loại tài sản</th>
@@ -112,6 +113,18 @@
                         </td>
                     </tr>
                     <tr ng-repeat="DuyetMua in ctrl.data.DuyetMuaChiTietList" ng-class="(DuyetMua.isSelected==true)?'info':''">
+                        <td class="text-center" style="vertical-align:middle">
+                            <div class="btn-group btn-group-circle" ng-if="(DuyetMua.DuyetId==1||DuyetMua.DuyetId==2) ? false:true">
+                                <button type="button" class="btn btn-primary btn-sm" ng-click="ctrl.action.DongYChiTiet(DuyetMua)">Duyệt</button>
+                                <button type="button" class="btn btn-default btn-sm" ng-click="ctrl.action.TuChoiChiTiet(DuyetMua)">Từ chối</button>
+                            </div>
+                            <div ng-if="DuyetMua.DuyetId==1 ? true:false">
+                                <span class="form-control label label-success">Đồng ý</span>
+                            </div>
+                            <div ng-if="DuyetMua.DuyetId==2 ? true:false">
+                                <span class="form-control label label-danger">Từ chối</span>
+                            </div>
+                        </td>
                         <td class="text-center">{{$index + 1}}</td>
                         <td><span ng-bind="DuyetMua.TenTaiSan"></span></td>
                         <td><span ng-bind="DuyetMua.TenLoai"></span></td>
@@ -225,6 +238,9 @@
                     color: inherit;
                     margin: -13px -7px;
                 }
+                .label {
+            font-size: 90% !important;
+        }
     </style>
     <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
 }

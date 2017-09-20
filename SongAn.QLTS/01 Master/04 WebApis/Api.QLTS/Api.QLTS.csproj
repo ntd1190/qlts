@@ -101,6 +101,8 @@
     <Compile Include="Models\BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdAction.cs" />
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
+    <Compile Include="Models\DuyetCap\DuyetDuyetCapChiTietAction.cs" />
+    <Compile Include="Models\DuyetMua\DuyetDuyetMuaChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaAction.cs" />
     <Compile Include="Models\DuyetCap\DuyetDuyetCapAction.cs" />
     <Compile Include="Models\DuyetCap\GetListDuyetCapByProjectionAction.cs" />

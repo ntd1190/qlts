@@ -10,10 +10,12 @@
             url: API_BASE + 'api.QLTS/DuyetCap/',
             GetPage: 'GetListDuyetCapByProjection',
             GetPageDetail: 'GetListDuyetCapChiTietByDeNghiId',
-            Duyet: 'DuyetDuyetCap'
+            Duyet: 'DuyetDuyetCap',
+            DuyetChiTiet: 'DuyetDuyetCapChiTiet'
         }
 
         var service = {
+            DuyetChiTiet:DuyetChiTiet,
             Duyet: Duyet,
             getPage: getPage,
             GetPageDetail: GetPageDetail,
@@ -83,6 +85,22 @@
 
             return $http(req);
         }
-      
+        function DuyetChiTiet(DeNghiId, DeNghiChiTietId , DuyetId) {
+            var url = api.url + api.DuyetChiTiet;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    DeNghiId: DeNghiId,
+                    DeNghiChiTietId: DeNghiChiTietId,
+                    DuyetId: DuyetId,
+                   
+                })
+            }
+
+            return $http(req);
+        }
     }
 })();

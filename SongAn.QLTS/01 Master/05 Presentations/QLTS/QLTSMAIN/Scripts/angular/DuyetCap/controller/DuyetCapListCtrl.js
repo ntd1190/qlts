@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, DuyetCapService, utility) {
+    function controller($rootScope, $scope, DuyetCapService, utility, $q) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -103,7 +103,9 @@
             DongY: DongY,
             TuChoi: TuChoi,
             CheckRow: CheckRow,
-            OpenTuChoi: OpenTuChoi
+            OpenTuChoi: OpenTuChoi,
+            DongYChiTiet: DongYChiTiet,
+            TuChoiChiTiet: TuChoiChiTiet,
         };
 
 
@@ -163,7 +165,7 @@
             });
         }
         function DongY() {
-            
+
             var DeNghiId = "";
             for (var i = 0; i < vm.data.DuyetCapListDisplay.length; i++) {
                 var select = vm.data.DuyetCapListDisplay[i];
@@ -197,8 +199,7 @@
                 $('#bgloadding').remove();
             });
         }
-        function OpenTuChoi()
-        {
+        function OpenTuChoi() {
             var DeNghiId = "";
             for (var i = 0; i < vm.data.DuyetCapListDisplay.length; i++) {
                 var select = vm.data.DuyetCapListDisplay[i];
@@ -216,7 +217,7 @@
             }
         }
         function TuChoi() {
-           
+
             var DeNghiId = "";
             for (var i = 0; i < vm.data.DuyetCapListDisplay.length; i++) {
                 var select = vm.data.DuyetCapListDisplay[i];
@@ -236,6 +237,60 @@
                     $('#TuChoiPopup').collapse('hide');
                     vm.data.objTuChoi = {};
                     getPage();
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
+        }
+        function DongYChiTiet(item) {
+            addloadding($('body'));
+            DuyetCapService.DuyetChiTiet(item.DeNghiId, item.DeNghiChiTietId, 1).then(function (success) {
+                if (success.data.data) {
+                    var DuyetId = success.data.data[0].DuyetId;
+                    getPageDetail(item.DeNghiId).then(function (success) {
+                        if (DuyetId != 0)
+                            $.each(vm.data.DuyetCapListDisplay, function (index, value) {
+                                if (value.DeNghiId == item.DeNghiId) {
+                                    vm.data.DuyetCapListDisplay[index].DuyetId = DuyetId;
+                                    vm.data.DuyetCapListDisplay[index].TrangThai = DuyetId == 1 ? "Đồng ý" : "Từ chối";
+                                }
+                            });
+                    });
+                    $('#bgloadding').remove();
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
+        }
+        function TuChoiChiTiet(item) {
+            addloadding($('body'));
+            DuyetCapService.DuyetChiTiet(item.DeNghiId, item.DeNghiChiTietId, 2).then(function (success) {
+                if (success.data.data) {
+                    var DuyetId = success.data.data[0].DuyetId;
+                    getPageDetail(item.DeNghiId).then(function (success) {
+                        if (DuyetId != 0)
+                            $.each(vm.data.DuyetCapListDisplay, function (index, value) {
+                                if (value.DeNghiId == item.DeNghiId) {
+                                    vm.data.DuyetCapListDisplay[index].DuyetId = DuyetId;
+                                    vm.data.DuyetCapListDisplay[index].TrangThai = DuyetId == 1 ? "Đồng ý" : "Từ chối";
+                                }
+                            });
+                    });
+                    $('#bgloadding').remove();
                 }
                 vm.data.isLoading = false;
             }, function (error) {
@@ -316,6 +371,7 @@
         }
 
         function getPageDetail(DeNghiId) {
+            var deferred = $q.defer();
             $('tr').removeClass('info');
             $('#row_' + DeNghiId).addClass('info');
             if (DeNghiId && DeNghiId > 0) {
@@ -325,6 +381,7 @@
                         vm.data.DuyetCapChiTietListDisplay = success.data.data;
                         vm.data.TongSo = success.data.data.length;
                     }
+                    return deferred.resolve(success);
                     vm.data.isLoading = false;
                 }, function (error) {
                     vm.data.isLoading = false;
@@ -334,8 +391,10 @@
                         alert(error.data.Message);
                     }
                     $('#bgloadding').remove();
+                    return deferred.reject(error);
                 });
             }
+            return deferred.promise;
         }
 
         function initTableState(tableState) {

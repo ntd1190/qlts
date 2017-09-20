@@ -224,7 +224,7 @@
         }
 
         function deleteSelected() {
-            if (!confirm('Bạn có muốn xóa các đề nghị đã chọn?')) {
+            if (!confirm('Bạn có muốn xóa các phiếu đã chọn?')) {
                 return;
             }
 

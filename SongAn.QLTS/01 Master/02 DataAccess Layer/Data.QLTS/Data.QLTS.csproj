@@ -73,6 +73,12 @@
     <Content Include="DieuChuyen\Procedures\sp_DieuChuyenChiTiet_GetDieuChuyenChiTietByDieuChuyenId.sql" />
     <Content Include="DieuChuyen\Procedures\sp_DieuChuyenChiTiet_InsertDieuChuyenChiTiet.sql" />
     <Content Include="DieuChuyen\Procedures\sp_DieuChuyen_DeleteDieuChuyenyId.sql" />
+    <Compile Include="CrystalReport\ReportDeNghiTrangCapByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportDieuChuyenByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportGhiTangByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportKeHoachMuaSamDac.cs" />
+    <Compile Include="DuyetCap\DuyetDuyetCapChiTietDac.cs" />
+    <Compile Include="DuyetMua\DuyetDuyetMuaChiTietDac.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaDac.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapDac.cs" />
     <Compile Include="DuyetCap\GetListDuyetCapByCriteriaDac.cs" />

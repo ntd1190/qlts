@@ -56,11 +56,10 @@
                     $('#side-menu').html(appen);
                 }
             }).then(function (){
-            debugger
                 var url = window.location.toString().toLowerCase().split('/')[4];
                 $("#side-menu a").each(function () {
                     var href = $(this).attr("href").toLowerCase().split('/')[2];
-                    if (url.indexOf(href) > -1) {
+                    if (url == href) {
                         $(this).parent().parent().parent().children().children("span.arrow").addClass("open");
                         $(this).parent().parent().parent().addClass("active");
                         $(this).parent().css('background-color', '#23527c');
