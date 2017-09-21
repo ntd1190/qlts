@@ -436,10 +436,34 @@
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptDieuChuyenById.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptDieuChuyenById.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptGhiGiam.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGhiGiam.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKeHoachMuaSam.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKeHoachMuaSam.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptDeNghiTrangCapById.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptDeNghiTrangCapById.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptGhiTangById.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGhiTangById.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -546,6 +570,10 @@
       <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
       <Name>Util.Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\01 Entity Layer\Entity.QLTS\Entity.QLTS.csproj">
+      <Project>{8779d0f7-d0f8-4470-a3eb-e0667df7b57a}</Project>
+      <Name>Entity.QLTS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\01 Entity Layer\Entity.QLTS_MAIN\Entity.QLTS_MAIN.csproj">
       <Project>{4fa29ff2-f8a0-4b89-8bbc-2320c07b970b}</Project>
       <Name>Entity.QLTS_MAIN</Name>
@@ -553,6 +581,10 @@
     <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.Main\Data.Main.csproj">
       <Project>{1781ba00-b7e3-4b8f-ba6e-d04b0339e80d}</Project>
       <Name>Data.Main</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.QLTS\Data.QLTS.csproj">
+      <Project>{36b1f8ee-22f7-4a45-9114-d71ded146490}</Project>
+      <Name>Data.QLTS</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\02 DataAccess Layer\Data.Repository\Data.Repository.csproj">
       <Project>{1a5e7772-e937-46e2-a4b2-dd8e071e16f5}</Project>
@@ -571,9 +603,27 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptDieuChuyenById.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDieuChuyenById.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptGhiGiam.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGhiGiam.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKeHoachMuaSam.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKeHoachMuaSam.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="CrystalReport\Report\rptDeNghiTrangCapById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptDeNghiTrangCapById.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptGhiTangById.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGhiTangById.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

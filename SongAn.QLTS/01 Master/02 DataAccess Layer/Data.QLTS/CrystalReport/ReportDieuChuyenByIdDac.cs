@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLTS.Util.Common.Dto;
-using SongAn.QLDN.Util.Common.Repository;
+using SongAn.QLTS.Util.Common.Repository;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -18,7 +18,7 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         #endregion
 
         #region private variable
-
+        ContextDto _context;
         #endregion
 
         #region constructor
@@ -26,9 +26,11 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public ReportDieuChuyenByIdDac()
+        public ReportDieuChuyenByIdDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
+
+            _context = context;
         }
         #endregion
 

@@ -60,6 +60,7 @@
     <Compile Include="BienBanKiemKe\InsertBienBanKiemKeBiz.cs" />
     <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportGhiGiamBiz.cs" />
     <Compile Include="CrystalReport\ReportDeNghiTrangCapByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportDieuChuyenByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />

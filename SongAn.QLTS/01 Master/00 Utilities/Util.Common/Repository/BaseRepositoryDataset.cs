@@ -1,26 +1,31 @@
 ﻿/*****************************************************************************
-1. Create Date : 2017.08.05
-2. Creator     : Nguyen Ngoc Tan
+1. Create Date : 2017.03.26
+2. Creator     : Tran Quoc Hung
 3. Description : Lop nen cho repository khong co Async
-4. History     : 2017.08.05(Nguyen Ngoc Tan) - Tao moi
+4. History     : 2017.03.26(Tran Quoc Hung) - Tao moi
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SongAn.QLDN.Util.Common.Repository
+namespace SongAn.QLTS.Util.Common.Repository
 {
     /// <summary>
     /// Base class to call Dapper
     /// </summary>
     public abstract class BaseRepositoryDataset
     {
-        private readonly string _ConnectionString = ConfigurationManager.ConnectionStrings["dbQLTSConnection"].ConnectionString;
+        private readonly string _ConnectionString;
+
+        protected BaseRepositoryDataset(string connectionString)
+        {
+            _ConnectionString = connectionString;
+        }
+
         protected DataSet getData(string commandtext, List<SqlParameter> arrParam)
         {
             try

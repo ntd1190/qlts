@@ -21,7 +21,7 @@ namespace SongAn.QLTS.Biz.QLTS.CrystalReport
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public ReportKeHoachMuaSamBiz() 
+        public ReportKeHoachMuaSamBiz(ContextDto context) : base(context)
         {
 
         }
@@ -62,7 +62,7 @@ namespace SongAn.QLTS.Biz.QLTS.CrystalReport
             // biz se thuc hien viec abc o day truoc khi goi dac
 
             // goi lai ham execute cua tang dac
-            var result = this.ExecuteDac();
+            var result = this.Execute();
 
             // to do:
             // biz se thuc hien viec abc voi result truoc khi return

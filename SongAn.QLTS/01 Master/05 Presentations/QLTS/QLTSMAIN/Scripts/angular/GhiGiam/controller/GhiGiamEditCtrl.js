@@ -94,7 +94,10 @@
         vm.action.goBack = function () {
             window.history.back();
         };
-
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptGhiGiam&data=' + vm.data.phieuGhiGiam.GhiGiamId);
+            $('#reportmodal').modal('show');
+        };
         vm.action.add = function () {
             CreateListChiTiet();
         };

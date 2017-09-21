@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Dapper.FastCrud;
-using SongAn.QLDN.Util.Common.Repository;
+using SongAn.QLTS.Util.Common.Dto;
+using SongAn.QLTS.Util.Common.Repository;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
@@ -13,15 +14,13 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
     {
         #region public properties
 
-        public string TuNgay { get; set; }
-        public string DenNgay { get; set; }
-        public string PhongBan { get; set; }
-        public string NhanVien { get; set; }
-        public string LoginId { get; set; }
+        public string MuaSamId { get; set; }
 
         #endregion
 
         #region private variable
+
+        ContextDto _context;
 
         #endregion
 
@@ -30,9 +29,11 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public ReportKeHoachMuaSamDac() 
+        public ReportKeHoachMuaSamDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
+
+            _context = context;
         }
         #endregion
 
@@ -62,19 +63,16 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         /// </summary>
         /// <param name="context">Bien moi truong</param>
         /// <returns></returns>
-        public virtual DataSet ExecuteDac()
+        public virtual DataSet Execute()
         {
             Init();
             Validate();
             List<SqlParameter> prm = new List<SqlParameter>()
             {
-                 new SqlParameter("@SEARCH_TUNGAY", SqlDbType.VarChar) {Value = TuNgay},
-                 new SqlParameter("@SEARCH_DENNGAY", SqlDbType.VarChar) {Value = DenNgay},
-                 new SqlParameter("@SEARCH_PHONGBAN", SqlDbType.VarChar) {Value = PhongBan},
-                 new SqlParameter("@SEARCH_NHANVIEN", SqlDbType.VarChar) {Value = NhanVien},
-                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
+                 new SqlParameter("@MuaSamId", SqlDbType.VarChar) {Value = MuaSamId},
+                
             };
-            DataSet ds = getData("sp_CongViec_GetListBaoCaoCongViecByCriteria", prm);
+            DataSet ds = getData("sp_KeHoachMuaSam_ReportKeHoachMuaSamById", prm);
             return ds;
 
         }

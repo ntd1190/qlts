@@ -42,7 +42,8 @@
             keyPressChiTiet:keyPressChiTiet,
             InsertChiTiet: InsertChiTiet,
             DeleteChiTiet: DeleteChiTiet,
-            deleteSelected: deleteSelected
+            deleteSelected: deleteSelected,
+            In : In,
         };
         vm.action.goBack = function () {
             window.history.back();
@@ -98,7 +99,10 @@
                 add();
             }
         }
-       
+        function In() {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKeHoachMuaSam&data=' + vm.data.objKeHoachMuaSam.MuaSamId);
+            $('#reportmodal').modal('show');
+        }
         function edit() {
             vm.status.isInValidNam = utility.checkInValid(vm.data.objKeHoachMuaSam.Nam, 'isCode');
             if (vm.status.isInValidNam) {

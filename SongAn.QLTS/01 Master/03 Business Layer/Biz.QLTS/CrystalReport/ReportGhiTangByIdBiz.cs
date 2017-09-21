@@ -21,7 +21,7 @@ namespace SongAn.QLTS.Biz.QLTS.CrystalReport
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public ReportGhiTangByIdBiz()
+        public ReportGhiTangByIdBiz(ContextDto context) : base(context)
         {
 
         }

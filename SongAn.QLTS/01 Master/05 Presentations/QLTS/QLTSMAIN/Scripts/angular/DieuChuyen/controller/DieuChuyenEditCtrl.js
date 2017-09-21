@@ -94,6 +94,11 @@
             window.history.back();
         };
 
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptDieuChuyenById&data=' + phieuDieuChuyenId);
+            $('#reportmodal').modal('show');
+        };
+
         vm.action.add = function () {
             CreateListChiTiet();
             var fc = function () {

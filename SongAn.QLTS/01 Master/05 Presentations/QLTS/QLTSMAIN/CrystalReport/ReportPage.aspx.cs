@@ -10,6 +10,8 @@ using System.Globalization;
 using System.Collections;
 using System.Configuration;
 using SongAn.QLTS.Biz.QLTS.CrystalReport;
+using SongAn.QLTS.Util.Common.Dto;
+using CrystalDecisions.Web;
 
 namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
 {
@@ -20,27 +22,58 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
 
             CrystalDecisions.CrystalReports.Engine.ReportDocument reportdocument = new ReportDocument();
             reportdocument = ReportFactory.GetReport(reportdocument.GetType());
-
+            ContextDto context = new ContextDto();
+            context.dbQLTSConnection = ConfigurationManager.ConnectionStrings["dbQLTSConnection"].ConnectionString;
             if (!IsPostBack)
             {
                 string reportname = Request.QueryString["Name"] + ".rpt";
                 string search = Request.QueryString["Data"];
                 string ngay = Request.QueryString["Ngay"];
+
                 DataSet ds = new DataSet();
                 if (reportname == "rptKeHoachMuaSam.rpt")
                 {
-                    ReportKeHoachMuaSamBiz biz = new ReportKeHoachMuaSamBiz();
-                   
+                    ReportKeHoachMuaSamBiz biz = new ReportKeHoachMuaSamBiz(context);
+                    biz.MuaSamId = search;
+                    ds = biz.ExecuteBiz();
 
                 }
+                else if (reportname == "rptDeNghiTrangCapById.rpt")
+                {
+                    ReportDeNghiTrangCapByIdBiz biz = new ReportDeNghiTrangCapByIdBiz(context);
+                    biz.DeNghiId = search;
+                    ds = biz.ExecuteDac();
+                }
+                else if (reportname == "rptGhiTangById.rpt")
+                {
+                    ReportGhiTangByIdBiz biz = new ReportGhiTangByIdBiz(context);
+                    biz.GhiTangId = search;
+                    ds = biz.ExecuteDac();
+                }
+                else if (reportname == "rptDieuChuyenById.rpt")
+                {
+                    ReportDieuChuyenByIdBiz biz = new ReportDieuChuyenByIdBiz(context);
+                    biz.DieuChuyenId = search;
+                    ds = biz.ExecuteDac();
+                }
+
+                if (reportname == "rptGhiGiam.rpt")
+                {
+                    ReportGhiGiamBiz biz = new ReportGhiGiamBiz(context);
+                    biz.GhiGiamId = search;
+                    ds = biz.ExecuteBiz();
+
+                }
+                
                 ds.Tables[0].TableName = "Tables";
-                //ds.WriteXmlSchema(@"E:\rptKiemKe.xml");
+                ds.WriteXmlSchema(@"D:\rptDieuChuyenById.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);
                 CrystalReportViewer1.HasCrystalLogo = false;
                 CrystalReportViewer1.SeparatePages = false;
                 CrystalReportViewer1.ReportSource = reportdocument;
+                CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
                 Session["ReportDocument"] = reportdocument;
             }
             else
