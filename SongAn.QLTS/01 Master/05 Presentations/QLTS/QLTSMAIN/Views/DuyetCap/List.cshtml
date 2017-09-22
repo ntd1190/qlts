@@ -43,7 +43,7 @@
                 <a class="btn btn-sm btn-primary" ng-click="ctrl.action.DongY()"><i class="fa fa-check" aria-hidden="true"></i> Duyệt</a>&nbsp;&nbsp;&nbsp;
             </span>
             <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-default" ng-click="ctrl.action.OpenTuChoi()">Từ chối</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.OpenTuChoi()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
+          
             <div style="float:right">
                 <label class="radio-inline">
                     <input style="margin-right: 5px;" type="radio" ng-checked="true" ng-click="ctrl.action.GetPageByDuyetId('0')" value="1" name="Loai" class="ng-pristine ng-untouched ng-valid ng-not-empty"><span>Chưa duyệt</span>
@@ -97,7 +97,7 @@
                             <span class="form-control label label-success" ng-if="DuyetCap.DuyetId==1" ng-bind="DuyetCap.TrangThai"></span>
                         </td>
                         <td ng-if="DuyetCap.DuyetId==2" style="padding-left: 3.5%;">
-                            <span class="form-control label label-danger" ng-if="DuyetCap.DuyetId==2" ng-bind="DuyetCap.TrangThai"></span> <i class="fa fa-question-circle-o" aria-hidden="true" data-placement="left" title="{{DuyetCap.NoiDungDuyet}}"></i>
+                            <span class="form-control label label-danger" ng-if="DuyetCap.DuyetId==2" ng-bind="DuyetCap.TrangThai"></span> <i class="fa fa-question-circle-o" ng-if="DuyetCap.NoiDungDuyet ? true:false" aria-hidden="true" data-placement="left" title="{{DuyetCap.NoiDungDuyet}}"></i>
                         </td>
                     </tr>
                 </tbody>

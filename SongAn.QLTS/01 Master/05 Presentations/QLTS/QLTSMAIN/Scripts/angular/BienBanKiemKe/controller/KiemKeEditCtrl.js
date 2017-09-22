@@ -100,6 +100,11 @@
             window.history.back();
         };
 
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKiemKeById&data=' + phieuBienBanKiemKeId);
+            $('#reportmodal').modal('show');
+        };
+
         vm.action.add = function () {
             CreateListBanKiemKe();
             var fc = function () {

@@ -27,7 +27,8 @@
 
         <div class="panel-heading">
             <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon && ctrl.data.RowChecked" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
+            <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon && ctrl.data.RowChecked" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.GuiCapTren()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
         </div>
         <div class="table-container panel-body"> 
             <table st-table="ctrl.data.KeHoachMuaSamList" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
@@ -57,7 +58,7 @@
                             <span class="form-control label label-success" ng-if="KeHoachMuaSam.DuyetId==1" ng-bind="KeHoachMuaSam.TrangThai"></span>
                         </td>
                         <td ng-if="KeHoachMuaSam.DuyetId==2" style="padding-left: 3.5%;">
-                            <span class="form-control label label-danger" ng-if="KeHoachMuaSam.DuyetId==2" ng-bind="KeHoachMuaSam.TrangThai"></span> <i class="fa fa-question-circle-o" aria-hidden="true" data-placement="left" title="{{KeHoachMuaSam.NoiDungDuyet}}"></i>
+                            <span class="form-control label label-danger" ng-if="KeHoachMuaSam.DuyetId==2" ng-bind="KeHoachMuaSam.TrangThai"></span> <i class="fa fa-question-circle-o"  ng-if="KeHoachMuaSam.NoiDungDuyet ? true:false"  aria-hidden="true" data-placement="left" title="{{KeHoachMuaSam.NoiDungDuyet}}"></i>
                         </td>
                     </tr>
                 </tbody>

@@ -56,6 +56,18 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     biz.DieuChuyenId = search;
                     ds = biz.ExecuteDac();
                 }
+                else if (reportname == "rptBaoDuongById.rpt")
+                {
+                    ReportBaoDuongByIdBiz biz = new ReportBaoDuongByIdBiz(context);
+                    biz.BaoDuongId = search;
+                    ds = biz.ExecuteDac();
+                }
+                else if (reportname == "rptKiemKeById.rpt")
+                {
+                    ReportKiemKeByIdBiz biz = new ReportKiemKeByIdBiz(context);
+                    biz.KiemKeId = search;
+                    ds = biz.ExecuteDac();
+                }
 
                 if (reportname == "rptGhiGiam.rpt")
                 {
@@ -66,7 +78,11 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 }
                 
                 ds.Tables[0].TableName = "Tables";
-                ds.WriteXmlSchema(@"D:\rptDieuChuyenById.xml");
+                if (reportname == "rptKiemKeById.rpt")
+                {
+                    ds.Tables[1].TableName = "Tables1";
+                }
+                //ds.WriteXmlSchema(@"D:\rptKiemKeById.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

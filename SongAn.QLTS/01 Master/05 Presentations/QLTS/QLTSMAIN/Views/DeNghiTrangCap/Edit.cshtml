@@ -4,7 +4,7 @@
     ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
 
-<div class="container-fluid"  keyboard="mainCtrl.keys">
+<div class="container-fluid" keyboard="mainCtrl.keys">
     <div class="panel panel-default" ng-controller="DeNghiTrangCapEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, deNghiId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
             <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} đề nghị trang cấp</span>
@@ -202,6 +202,14 @@
         .pagination li a input {
             padding: 0;
             margin: -5px 0;
+        }
+
+        .col-sm-2 {
+            width: 18%;
+        }
+
+        .col-sm-1 {
+            width: 9%;
         }
     </style>
     <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />

@@ -99,6 +99,11 @@
             window.history.back();
         };
 
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptBaoDuongById&data=' + phieuBaoDuongId);
+            $('#reportmodal').modal('show');
+        };
+
         vm.action.add = function () {
             CreateListChiTiet();
             var fc = function () {
