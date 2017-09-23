@@ -28,7 +28,7 @@
         <div class="panel-body">
             <h3 class="text-center no-margin">Danh sách nhập khẩu tài sản</h3>
         </div>
-        <div class="">
+        <div class="wrap">
             @*<table class="head">
                     <tr>
                         <td class="text-center" style="width: 50px;">Chọn</td>
@@ -38,9 +38,10 @@
                         </td>
                     </tr>
                 </table>*@
-            <div class="table-container panel-body">
-                <table st-table="ctrl.data.TheoDoiListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover table-fixed-header">
-                    <thead class="bg-default text-primary" >
+            <div class="table-container panel-body inner_table">
+                <table st-table="ctrl.data.TheoDoiListDisplay" st-pipe="ctrl.action.getPage" class="table fixed_headers table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary" style="display: block;
+                                                            position: relative;">
                         <tr>
                             <th class="text-center" >Chọn</th>
                             <th class="text-center">STT</th>
@@ -50,7 +51,11 @@
 
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody style="display: block;
+                                    overflow: auto;
+                                    width: 100%;
+                                    height: 200px;
+                                ">
                         @*<tr class="bg-default text-primary">
                                 <td class="text-center" style="width: 50px;">Chọn</td>
                                 <td class="text-center" style="width: 40px;">STT</td>
@@ -214,7 +219,139 @@
 @section ImportStyles{}
 @section SetupStyles{
     <style type="text/css">
-        
+        .fixed_headers thead tr th:nth-child(1){
+            width:2%;
+        }
+        .fixed_headers thead tr th:nth-child(2){
+            width:3%;
+        }
+        .fixed_headers thead tr th:nth-child(3){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(4){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(5){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(6){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(7){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(8){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(9){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(10){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(11){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(12){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(13){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(14){
+            width:7.3%;
+        }
+        .fixed_headers thead tr th:nth-child(15){
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(1){
+          background: #f1e8e8;
+            width:2%;
+        }
+        .fixed_headers tbody tr td:nth-child(2){
+          background: #f1e8e8;
+            width:3%;
+        }
+        .fixed_headers tbody tr td:nth-child(3){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(4){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(5){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(6){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(7){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(8){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(9){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(10){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(11){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(12){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(13){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(14){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .fixed_headers tbody tr td:nth-child(15){
+          background: #f1e8e8;
+            width:7.3%;
+        }
+        .wrap {
+            width: 100%;
+        }
+
+            .wrap table {
+                width: 100%;
+                table-layout: fixed;
+            }
+
+        /*table tr td {
+            padding: 5px;
+            border: 1px solid #eee;
+            width: 250px;
+            word-wrap: break-word;
+        }
+
+        table.head tr td {
+           background-color: #f5f5f5;
+           color: #337ab7;
+           font-size: 14px;
+           font-weight:bold;
+        }*/
+
+        .inner_table {
+            height: 400px;
+            overflow-y: auto;
+        }
+
         .st-sort-ascent:before {
             content: '\25B2';
         }
@@ -235,11 +372,7 @@
     </style>
 }
 @section ImportScripts{}
-@section SetupScripts{
-    <script>
-        
-    </script>
-    }
+@section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/TheoDoi/service/TheoDoiService.js"></script>
     <script src="~/Scripts/angular/TheoDoi/controller/TheoDoiListCtrl.js"></script>

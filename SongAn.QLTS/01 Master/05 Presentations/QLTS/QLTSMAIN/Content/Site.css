@@ -397,6 +397,7 @@
     width: auto;
 }
 
+/*format smart-table */
 .table .ui-select-bootstrap > .ui-select-choices, .table .ui-select-bootstrap > .ui-select-no-choice {
     width: 100%;
 }
@@ -445,6 +446,11 @@
             color: inherit;
             margin: -13px -7px;
         }
+
+/* fix autocomplete trong table */
+.table-responsive .table .dropdown-menu {
+    position: relative !important;
+}
 
 #side-menu .title {
     padding-left: 5px;

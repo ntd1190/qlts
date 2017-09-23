@@ -67,6 +67,7 @@
     <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdBiz.cs" />
+    <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaBiz.cs" />

@@ -28,7 +28,6 @@ namespace SongAn.QLTS.Data.QLTS.ThayDoiThongTin
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         public virtual string MESSAGE { get; set; }
-
         #endregion
 
         #region private variable

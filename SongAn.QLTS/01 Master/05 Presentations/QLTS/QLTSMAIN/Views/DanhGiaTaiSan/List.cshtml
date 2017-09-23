@@ -1,0 +1,156 @@
+﻿@{
+    /*****************************************************************************
+    1. Create Date : 2017.09.20
+    2. Creator     : Nguyen Thanh Binh
+    3. Description :
+    4. History     : 2017.09.20 (Nguyen Thanh Binh) - thiết kế giao diện
+    *****************************************************************************/
+    ViewBag.Title = "Danh sách đánh giá tài sản";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+<div class="container-fluid">
+    <div class="panel panel-default" ng-controller="DanhGiaTaiSanListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/DanhGiaTaiSan/"))'})" keyboard="ctrl.keys">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Tài sản</span>
+                <div class="pull-right">
+                    <form class="form-inline ng-pristine ng-valid">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" ng-model="ctrl.inputSearch.search" autofocus>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-heading">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                <a class="btn btn-sm btn-primary" href="~/taisan/create">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <button class="btn btn-sm btn-default" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()">Xóa chọn</button>
+        </div>
+        <div class="table-containe panel-body">
+            <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.ListDanhGia" st-pipe="ctrl.action.getPage">
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                            <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                        </th>
+                        <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                            <span ng-bind="cot.TenCot"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spinner fa-spin"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="row in ctrl.data.ListDanhGia" ng-click="ctrl.action.TaiSanInfo(row)" ng-class="row.isView?'info':''">
+                        <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                            <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                        </td>
+                        <td ng-repeat="cot in ctrl.data.listCot" ng-switch="cot.MaCot">
+                            <a ng-switch-when="SoChungTu" ng-switch-when-separator="," href="~/danhgiataisan/edit/{{row.DanhGiaId}}" ng-bind="row[cot.MaCot]"></a>
+                           <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-body">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Thông tin chi tiết</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row heading text-center">
+                        <div class="col-sm-3"></div>
+                        <div class="col-sm-3">Thông tin cũ<hr /></div>
+                        <div class="col-sm-3">Thông tin mới<hr /></div>
+                        <div class="col-sm-3">Chênh lệch<hr /></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Nguyên giá</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Giá trị còn lại</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Số năm sử dụng</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Số năm còn lại</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Tỉ lệ hao mòn năm</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Số hao mòn năm</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+                    <div class="row text-right">
+                        <div class="col-sm-3 text-left">Số lượng</div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section ImportStyles{
+    <style type="text/css">
+        .row.heading {
+            font-weight: 700;
+        }
+
+            .row.heading hr {
+                border-top: 1px solid #808080;
+                margin: 5px 0;
+            }
+    </style>
+}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    <script src="~/Scripts/angular/DanhGiaTaiSan/controller/DanhGiaTaiSanListCtrl.js"></script>
+    <script src="~/Scripts/angular/DanhGiaTaiSan/service/DanhGiaTaiSanService.js"></script>
+}

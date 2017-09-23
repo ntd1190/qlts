@@ -24,7 +24,8 @@ namespace SongAn.QLTS.Data.QLTS.ThayDoiThongTin
         #region public properties
         public virtual Entity.QLTS.Entity.ThongTinKeKhaiNha TTKK_Nha { get; set; }
         public virtual Entity.QLTS.Entity.ThayDoiThongTin TDTT { get; set; }
-        public virtual string TenTaiSanMoi { get; set; }
+        public virtual Entity.QLTS.Entity.ThayDoiThongTinNha TDTT_Loai { get; set; }
+        public virtual string TenTaiSan { get; set; }
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         public virtual string MESSAGE { get; set; }
@@ -76,7 +77,8 @@ namespace SongAn.QLTS.Data.QLTS.ThayDoiThongTin
             {
                 var p = new DynamicParameters(TTKK_Nha);
                 p.AddDynamicParams(TDTT);
-                p.Add("@TenTaiSanMoi", TenTaiSanMoi, DbType.String);
+                p.AddDynamicParams(TDTT_Loai);
+                p.Add("@TenTaiSan", TenTaiSan, DbType.String);
 
                 p.Add("@CoSoId", CoSoId, DbType.String);
                 p.Add("@NhanVienId", NhanVienId, DbType.String);

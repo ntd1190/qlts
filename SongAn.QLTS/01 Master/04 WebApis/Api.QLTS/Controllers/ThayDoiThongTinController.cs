@@ -53,53 +53,14 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
-        #region Insert thay đổi thông tin
         [HttpPost]
-        public async Task<IHttpActionResult> InsertThayDoiThongTinDat([FromBody]InsertThayDoiThongTinDatAction action)
+        public async Task<IHttpActionResult> InsertThayDoiThongTin([FromBody]InsertThayDoiThongTinAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
         [HttpPost]
-        public async Task<IHttpActionResult> InsertThayDoiThongTinNha([FromBody]InsertThayDoiThongTinNhaAction action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        [HttpPost]
-        public async Task<IHttpActionResult> InsertThayDoiThongTinOto([FromBody]InsertThayDoiThongTinOtoAction action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        [HttpPost]
-        public async Task<IHttpActionResult> InsertThayDoiThongTin500([FromBody]InsertThayDoiThongTin500Action action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        #endregion
-        #region Update thay đổi thông tin
-        [HttpPost]
-        public async Task<IHttpActionResult> UpdateThayDoiThongTinDat([FromBody]UpdateThayDoiThongTinDatAction action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        [HttpPost]
-        public async Task<IHttpActionResult> UpdateThayDoiThongTinNha([FromBody]UpdateThayDoiThongTinNhaAction action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        [HttpPost]
-        public async Task<IHttpActionResult> UpdateThayDoiThongTinOto([FromBody]UpdateThayDoiThongTinOtoAction action)
-        {
-            ActionResultDto result = await action.Execute(context);
-            return Content(result.ReturnCode, result.ReturnData);
-        }
-        [HttpPost]
-        public async Task<IHttpActionResult> UpdateThayDoiThongTin500([FromBody]UpdateThayDoiThongTin500Action action)
+        public async Task<IHttpActionResult> UpdateThayDoiThongTin([FromBody]UpdateThayDoiThongTinAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
@@ -110,6 +71,5 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
-        #endregion
     }
 }

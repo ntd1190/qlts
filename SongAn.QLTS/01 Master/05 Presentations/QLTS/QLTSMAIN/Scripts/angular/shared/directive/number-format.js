@@ -9,15 +9,13 @@
             require: '?ngModel',
             link: function (scope, el, attrs, ngModel) {
 
-                console.log('maskNumberFormat');
-
                 // Formatters modify the displayed value of a model
                 ngModel.$formatters.push(function (value) {
                     var num = "";
                     if (ngModel.$modelValue) {
                         num = $filter('number')(value);
                     }
-
+                    num = num || 0;
                     return num;
                 })
 

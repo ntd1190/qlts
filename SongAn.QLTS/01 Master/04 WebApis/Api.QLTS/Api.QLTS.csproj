@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
+    <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Models\BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdAction.cs" />
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
+    <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DuyetCap\DuyetDuyetCapChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaAction.cs" />
@@ -237,14 +239,8 @@
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinDatByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetThayDoiThongTinByIdAction.cs" />
     <Compile Include="Models\ThayDoiThongTin\GetListThayDoiThongTinByCriteriaAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTin500Action.cs" />
-    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinDatAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinNhaAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinNhaAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinOtoAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinOtoAction.cs" />
-    <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTin500Action.cs" />
-    <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinDatAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\UpdateThayDoiThongTinAction.cs" />
+    <Compile Include="Models\ThayDoiThongTin\InsertThayDoiThongTinAction.cs" />
     <Compile Include="Models\TheoDoi\DeleteListTheoDoiByIdAction.cs" />
     <Compile Include="Models\TheoDoi\GetListTheoDoiByIdAction.cs" />
     <Compile Include="Models\TheoDoi\GetListTheoDoiByProjectionAction.cs" />

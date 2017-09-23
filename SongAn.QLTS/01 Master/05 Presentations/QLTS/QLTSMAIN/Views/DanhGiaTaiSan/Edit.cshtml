@@ -1,0 +1,253 @@
+﻿@{
+    /*****************************************************************************
+    1. Create Date : 2017.09.18
+    2. Creator     : Nguyen Thanh Binh
+    3. Description :
+    4. History     : 2017.09.18 (Nguyen Thanh Binh) - thiết kế giao diện
+    *****************************************************************************/
+    ViewBag.Title = "Đánh giá lại tài sản";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+    ViewBag.id = ViewBag.id ?? 0;
+    ViewBag.isEdit = ViewBag.isEdit ?? 0;
+}
+<div class="container-fluid">
+    <div class="panel panel-default" ng-controller="DanhGiaTaiSanEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({isEdit:@(ViewBag.isEdit),DanhGiaId:@(ViewBag.id),userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/DanhGiaTaiSan/"))'})">
+        <div class="panel-heading">
+            <span class="panel-title">Thông tin chung</span>
+        </div>
+        <div class="panel-body" style="min-height: 700px;">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSan_MaTaiSan?'has-error':''">
+                        <span class="col-sm-4">Số chứng từ<span class="text-danger">&nbsp;*</span></span>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-model="ctrl.data.DanhGia.SoChungTu" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TaiSan_MaTaiSan" data-next="TaiSan_TenTaiSan" autofocus />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSan_TenTaiSan?'has-error':''">
+                        <span class="col-sm-4">Ngày chứng từ<span class="text-danger">&nbsp;*</span></span>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.DanhGia.NgayChungTu" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TaiSan_TenTaiSan" data-next="TaiSan_DonViTinh" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSan_DonViTinh?'has-error':''">
+                        <span class="col-sm-4">Ngày đánh giá</span>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.DanhGia.NgayDanhGia" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TaiSan_DonViTinh" data-next="TaiSan_DuAnId" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSan_DonViTinh?'has-error':''">
+                <span class="col-sm-1">Nội dung</span>
+                <div class="col-sm-11">
+                    <input type="text" class="form-control" ng-model="ctrl.data.DanhGia.NoiDung" ng-keypress="ctrl.action.keyPressTaiSan($event)" data-name="TaiSan_DonViTinh" data-next="TaiSan_DuAnId" />
+                </div>
+            </div>
+            <div class="row form-group form-group-sm" ng-class="ctrl.error.TaiSan_DonViTinh?'has-error':''">
+                <span class="col-sm-1">Chọn tài sản</span>
+                <div class="col-sm-11">
+                    <cbo-tai-san-su-dung data-config="{userInfo:@(ViewBag.userInfo)}"
+                                         data-value="ctrl.data.TaiSan.TaiSanId"
+                                         data-phong-ban="ctrl.data.TaiSan.PhongBanId"
+                                         data-nhan-vien="ctrl.data.TaiSan.NhanVienId"
+                                         ma-tai-san="ctrl.data.TaiSan.MaTaiSan"
+                                         on-selected="ctrl.action.getDataTaiSan(data)"
+                                         template-url="~/taisan/showview?viewname=cbotaisansudung"></cbo-tai-san-su-dung>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="panel-title">Thông tin chi tiết</span>
+                </div>
+                <div class="panel-body" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M') || true">
+                    <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.addNguyenGia()"><i class="fa fa-fw fa-plus"></i>Thêm (F2)</button>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed table-responsive table-hover" data-container="body">
+                        <thead class="text-primary">
+                            <tr>
+                                <th class="text-center" style="width: 50px; vertical-align:middle">#</th>
+                                <th class="text-center" style="width: 50px; vertical-align:middle">Xóa</th>
+                                <th class="text-center">Nguồn kinh phí<span class="text-danger">&nbsp;*</span></th>
+                                <th class="text-center" style="width: 200px">Giá trị mới<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                                <th class="text-center" style="width: 200px">Giá trị cũ</th>
+                                <th class="text-center" style="width: 200px">Thay đổi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in ctrl.data.listNguyenGia" ng-class="row.isError ? 'danger':''">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td class="text-center">
+                                    <a class="btn btn-xs btn-danger" ng-click="ctrl.action.removeNguyenGia($index)" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')"><i class="fa fa-remove"></i></a>
+                                </td>
+                                <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                    <cbo-nguon-ngan-sach data-name="listNguyenGia_NguonNganSachId{{$index}}" data-value="row.NguonNganSachId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nguonngansach/showview?viewname=cbonguonngansach"></cbo-nguon-ngan-sach>
+                                </td>
+                                <td class="form-group form-group-sm" ng-class="ctrl.error.messge?'has-error':''">
+                                    <input type="text" class="form-control text-right" ng-model="row.GiaTri" number-format data-name="listNguyenGia_GiaTri{{$index}}" data-next="listNguyenGia_NguonNganSachId{{$index+1}}" ng-keypress="ctrl.action.keyPressNganSach($event,$index)" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <span class="form-control text-right" ng-bind="row.GiaTriCu|number"></span>
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <span class="form-control text-right" ng-bind="(row.GiaTri - row.GiaTriCu)|number"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right">Tổng cộng</td>
+                                <td class="text-right"><span ng-bind="ctrl.data.NguyenGia=(ctrl.data.listNguyenGia|sumOfValue:'GiaTri')|number"></span></td>
+                                <td><span ng-bind="ctrl.data.NguyenGia=(ctrl.data.listNguyenGia|sumOfValue:'GiaTriCu')|number"></span></td>
+                                <td><span ng-bind="ctrl.data.NguyenGia=(ctrl.data.listNguyenGia|sumOfValue:'ThayDoi')|number"></span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row heading text-center">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-3">Thông tin mới</div>
+                <div class="col-sm-3">Thông tin cũ</div>
+                <div class="col-sm-3">Thay đổi</div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Hao mòn lũy kế</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <span class="form-control text-right" ng-bind="ctrl.data.TaiSan.HaoMonLuyKe|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.HaoMonLuyKeCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.HaoMonLuyKe - ctrl.data.DanhGia.HaoMonLuyKeCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Giá trị còn lại</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <span class="form-control text-right" ng-bind="ctrl.data.TaiSan.GiaTriConLai|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.GiaTriConLaiCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.GiaTriConLai - ctrl.data.DanhGia.GiaTriConLaiCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Số năm SD</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <input class="form-control text-right"  ng-model="ctrl.data.TaiSan.SoNamSuDung" number-format />
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.SoNamSuDungCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.SoNamSuDung - ctrl.data.DanhGia.SoNamSuDungCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Số năm còn lại</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <span class="form-control text-right" ng-bind="ctrl.data.TaiSan.SoNamSDConLai|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.SoNamSDConLaiCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.SoNamSDConLai - ctrl.data.DanhGia.SoNamSDConLaiCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Tỷ lệ hao mòn năm</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <input class="form-control text-right"  ng-model="ctrl.data.TaiSan.TyLeHaoMon" number-format />
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.TyLeHaoMonCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.TyLeHaoMon - ctrl.data.DanhGia.TyLeHaoMonCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Số hao mòn năm</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <span class="form-control text-right" ng-bind="ctrl.data.TaiSan.HaoMonNam|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.HaoMonNamCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.HaoMonNam - ctrl.data.DanhGia.HaoMonNamCu)|number"></span>
+                </div>
+            </div>
+            <div class="row text-right">
+                <div class="col-sm-3 text-left">Số lượng</div>
+                <div class="col-sm-3 has-error form-group form-group-sm">
+                    <span class="form-control text-right" ng-bind="ctrl.data.TaiSan.SLTon|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="ctrl.data.DanhGia.SLTonCu|number"></span>
+                </div>
+                <div class="col-sm-3 form-group form-group-sm">
+                    <span class="form-control" ng-bind="(ctrl.data.TaiSan.SLTon - ctrl.data.DanhGia.SLTonCu)|number"></span>
+                </div>
+            </div>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+@section ImportStyles{
+    @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
+}
+@section SetupStyles{
+    <style>
+        .row.heading {
+            font-weight: 700;
+            margin: 10px 0;
+        }
+
+        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
+            padding-right: 5px;
+            padding-left: 5px;
+        }
+
+        .row {
+            margin-right: 0px;
+            margin-left: 0px;
+        }
+
+        .form-group.row {
+            margin-right: 0;
+            margin-left: 0;
+        }
+    </style>
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+
+    <script src="~/Scripts/angular/DanhGiaTaiSan/controller/DanhGiaTaiSanEditCtrl.js"></script>
+    <script src="~/Scripts/angular/DanhGiaTaiSan/service/DanhGiaTaiSanService.js"></script>
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NguonNganSach/cboNguonNganSach.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}

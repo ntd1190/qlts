@@ -235,6 +235,10 @@
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeFilterCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeListCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
+    <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
+    <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
+    <Content Include="Scripts\angular\DanhGiaTaiSan\controller\TaiSanListCtrl.js" />
+    <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapListCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DenNghiTrangCapFilterCtrl.js" />
@@ -392,6 +396,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
+    <Compile Include="Controllers\DanhGiaTaiSanController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
     <Compile Include="Controllers\BaoDuongController.cs" />
@@ -435,6 +440,12 @@
     </Compile>
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptBanKiemKeById.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBanKiemKeById.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptBaoDuongById.cs">
       <AutoGen>True</AutoGen>
@@ -560,10 +571,11 @@
     <Content Include="Views\DuyetMua\List.cshtml" />
     <Content Include="Views\BaoDuong\List.cshtml" />
     <Content Include="Views\BaoDuong\Edit.cshtml" />
-    <Content Include="Views\ThayDoiThongTinKeKhai\Create.cshtml" />
     <Content Include="Views\TheoDoi\List1.cshtml" />
     <Content Include="Views\BienBanKiemKe\List.cshtml" />
     <Content Include="Views\BienBanKiemKe\Edit.cshtml" />
+    <Content Include="Views\DanhGiaTaiSan\Edit.cshtml" />
+    <Content Include="Views\DanhGiaTaiSan\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -615,6 +627,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptBanKiemKeById.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBanKiemKeById.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptBaoDuongById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBaoDuongById.cs</LastGenOutput>

@@ -13,7 +13,7 @@
                 maTaiSan: '=',
                 phongBan: '=',
                 nhanVien: '=',
-        },
+            },
             controller: controller,
             controllerAs: 'ctrl',
             templateUrl: function (elem, attrs) {
@@ -52,8 +52,9 @@
             }
         }
 
-        $scope.$watch('value+phongBan+nhanVien', function (newValue, oldValue) {
-            if (!newValue) { return; }
+        $scope.$watchGroup(['value', 'phongBan', 'nhanVien'], function (newValue, oldValue) {
+            if (!newValue[0] || !newValue[1] || !newValue[2]) { return; }
+
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.TaiSanId = $scope.value;
@@ -89,7 +90,7 @@
 
         activate()
         function activate() {
-                onInitView($scope.config);
+            onInitView($scope.config);
         }
 
         /*** ACTION FUNCTION ***/
@@ -99,6 +100,8 @@
         vm.action.onSelected = function () {
             $scope.onSelected({ data: vm.data.TaiSan });
             $scope.value = vm.data.TaiSan.TaiSanId;
+            $scope.phongBan = vm.data.TaiSan.PhongBanId;
+            $scope.nhanVien = vm.data.TaiSan.NhanVienId;
         };
         vm.action.search = function ($select) {
             $select.search = $select.search || '';

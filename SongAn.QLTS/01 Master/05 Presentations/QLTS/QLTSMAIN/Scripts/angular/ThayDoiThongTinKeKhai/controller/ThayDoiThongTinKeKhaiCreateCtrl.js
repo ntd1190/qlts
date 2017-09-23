@@ -607,7 +607,8 @@
 
             data.TDTT = angular.toJson(_TDTT);
             data.TenTaiSanMoi = vm.data.TaiSan_New.TenTaiSan;
-            data.TTKK = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_New = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_Old = angular.toJson(vm.data.TTKK_Old);
 
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
@@ -631,7 +632,8 @@
 
             data.TDTT = angular.toJson(_TDTT);
             data.TenTaiSanMoi = vm.data.TaiSan_New.TenTaiSan;
-            data.TTKK = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_New = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_Old = angular.toJson(vm.data.TTKK_Old);
 
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
@@ -655,7 +657,8 @@
 
             data.TDTT = angular.toJson(_TDTT);
             data.TenTaiSanMoi = vm.data.TaiSan_New.TenTaiSan;
-            data.TTKK = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_New = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_Old = angular.toJson(vm.data.TTKK_Old);
 
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
@@ -679,7 +682,8 @@
 
             data.TDTT = angular.toJson(_TDTT);
             data.TenTaiSanMoi = vm.data.TaiSan_New.TenTaiSan;
-            data.TTKK = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_New = angular.toJson(vm.data.TTKK_New);
+            data.TTKK_Old = angular.toJson(vm.data.TTKK_Old);
 
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;

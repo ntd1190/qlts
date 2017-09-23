@@ -31,7 +31,7 @@ namespace SongAn.QLDN.UI.QLDNMAIN.Controllers
         {
             ViewBag.userInfo = LoadUserInfo(FunctionCode);
             ViewBag.isEdit = 0;
-            return View();
+            return View("Edit");
         }
         public ActionResult Edit(int? id)
         {
