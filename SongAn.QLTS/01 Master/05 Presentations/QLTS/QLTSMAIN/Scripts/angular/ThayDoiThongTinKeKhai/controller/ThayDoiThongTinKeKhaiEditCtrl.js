@@ -15,7 +15,9 @@
         vm.error = {};
 
         vm.data = {};
-        vm.data.TDTT = {};
+        vm.data.TDTT = {
+            Ngay: moment().format('DD/MM/YYYY')
+        };
         vm.data.TTKK_New = {};
         vm.data.TTKK_Old = {};
         vm.data.TaiSanKK = {};
@@ -33,6 +35,10 @@
             vm.status.isEdit = isEdit;
             ThayDoiThongTinId = config.ThayDoiThongTinId || 0;
             loadData();
+
+            if (isEdit) {
+                $('[data-name="TDTT_LyDo"]').focus();
+            }
         }
 
         /*** HOT KEY ***/
@@ -40,7 +46,9 @@
         vm.keys = {
             F2: function (name, code) { },
             F3: function (name, code) { },
-            F8: function (name, code) { }
+            F8: function (name, code) {
+                vm.action.save();
+            }
         };
 
         /*** ACTION MODEL ***/
@@ -56,7 +64,9 @@
             vm.data.TDTT.TenTaiSanMoi = vm.data.TaiSanKK.TenTaiSan;
             vm.data.TDTT.LoaiKeKhai = vm.data.TaiSanKK.LoaiKeKhai;
 
-            getTTKKById(vm.data.TaiSanKK.TaiSanId,vm.data.TaiSanKK.LoaiKeKhai).then(function () {
+            $('[data-name="TDTT_TenTaiSanMoi"]').focus();
+
+            getTTKKById(vm.data.TaiSanKK.TaiSanId, vm.data.TaiSanKK.LoaiKeKhai).then(function () {
                 if (isEdit) { } else {
                     convertTTKK_Old();
                 }
@@ -70,6 +80,27 @@
             }
             $('[data-name="' + $(event.target).data('next') + '"] input').focus();
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
+
+            if (isEdit) { $('[data-name="TDTT_TenTaiSanMoi"]').focus(); }
+
+            // focus form loại kê khai
+            if ($(event.target).data('name') == 'TDTT_TenTaiSanMoi') {
+                console.log('TDTT_TenTaiSanMoi');
+                switch (vm.data.TDTT.LoaiKeKhai.toString()) {
+                    case '1':
+                        $('[data-name="TTKKDat_New_DiaChi"]').focus();
+                        break;
+                    case '2':
+                        $('[data-name="TTKKNha_New_DiaChi"]').focus();
+                        break;
+                    case '3':
+                        $('[data-name="TTKKOto_New_NhanHieu"]').focus();
+                        break;
+                    case '4':
+                        $('[data-name="TTKK500_New_KyHieu"]').focus();
+                        break;
+                }
+            }
         }
 
         vm.action.keyPressTTKK = function (event) {
@@ -240,14 +271,15 @@
 
             function checkInputTTKK_Dat(inputName) {
                 console.log('checkInputTTKK_Dat');
-                var has_error = false;
-                var first_error_name = '';
-                var obj_name = 'TTKK_New';
-                var prop_name = '';
-                var error_name = '';
+                var has_error = false,
+                    first_error_name = '',
+                    obj_name = 'TTKK_New',
+                    prop_name = '',
+                    error_prefix = 'TTKKDat_New',
+                    error_name = '',
 
                 prop_name = 'DiaChi';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -257,7 +289,7 @@
                     }
                 }
                 prop_name = 'LamTruSo';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -267,7 +299,7 @@
                     }
                 }
                 prop_name = 'CoSoHDSuNghiep';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -277,7 +309,7 @@
                     }
                 }
                 prop_name = 'NhaO';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -287,7 +319,7 @@
                     }
                 }
                 prop_name = 'ChoThue';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -297,7 +329,7 @@
                     }
                 }
                 prop_name = 'BoTrong';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -307,7 +339,7 @@
                     }
                 }
                 prop_name = 'BiLanChiem';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -317,7 +349,7 @@
                     }
                 }
                 prop_name = 'SuDungKhac';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -336,14 +368,15 @@
             }
             function checkInputTTKK_Nha(inputName) {
                 console.log('checkInputTTKK_Nha');
-                var has_error = false;
-                var first_error_name = '';
-                var obj_name = 'TTKK_New';
-                var prop_name = '';
-                var error_name = '';
+                var has_error = false,
+                    first_error_name = '',
+                    obj_name = 'TTKK_New',
+                    prop_name = '',
+                    error_prefix = 'TTKKNha_New',
+                    error_name = '',
 
                 prop_name = 'DiaChi';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -353,7 +386,7 @@
                     }
                 }
                 prop_name = 'CapHang';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -363,7 +396,7 @@
                     }
                 }
                 prop_name = 'SoTang';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -373,7 +406,7 @@
                     }
                 }
                 prop_name = 'NamSuDung';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -383,7 +416,7 @@
                     }
                 }
                 prop_name = 'DienTich';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -393,7 +426,7 @@
                     }
                 }
                 prop_name = 'TongDienTichSan';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -403,7 +436,7 @@
                     }
                 }
                 prop_name = 'LamTruSo';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -413,7 +446,7 @@
                     }
                 }
                 prop_name = 'CoSoHDSuNghiep';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -423,7 +456,7 @@
                     }
                 }
                 prop_name = 'NhaO';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -433,7 +466,7 @@
                     }
                 }
                 prop_name = 'ChoThue';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -482,14 +515,15 @@
             }
             function checkInputTTKK_Oto(inputName) {
                 console.log('checkInputTTKK_Oto');
-                var has_error = false;
-                var first_error_name = '';
-                var obj_name = 'TTKK_New';
-                var prop_name = '';
-                var error_name = '';
+                var has_error = false,
+                    first_error_name = '',
+                    obj_name = 'TTKK_New',
+                    prop_name = '',
+                    error_prefix = 'TTKKOto_New',
+                    error_name = '',
 
                 prop_name = 'NhanHieu';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -499,7 +533,7 @@
                     }
                 }
                 prop_name = 'BienKiemSoat';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -509,7 +543,7 @@
                     }
                 }
                 prop_name = 'CongSuatXe';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -519,7 +553,7 @@
                     }
                 }
                 prop_name = 'TrongTai';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -529,7 +563,7 @@
                     }
                 }
                 prop_name = 'LoaiXe';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -539,7 +573,7 @@
                     }
                 }
                 prop_name = 'HienTrangSuDung';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -558,14 +592,15 @@
             }
             function checkInputTTKK_500(inputName) {
                 console.log('checkInputTTKK_500');
-                var has_error = false;
-                var first_error_name = '';
-                var obj_name = 'TTKK_New';
-                var prop_name = '';
-                var error_name = '';
+                var has_error = false,
+                    first_error_name = '',
+                    obj_name = 'TTKK_New',
+                    prop_name = '',
+                    error_prefix = 'TTKK500_New',
+                    error_name = '',
 
                 prop_name = 'HienTrangSuDung';
-                error_name = obj_name + '_' + prop_name;
+                error_name = error_prefix + '_' + prop_name;
                 if (!inputName || inputName == (error_name)) {
                     vm.error[error_name] = '';
                     if (!vm.data[obj_name][prop_name]) {
@@ -796,7 +831,7 @@
             }
         }
 
-        function getTTKKById(id,LoaiKeKhai) {
+        function getTTKKById(id, LoaiKeKhai) {
             var deferred = $q.defer();
 
             switch (LoaiKeKhai.toString()) {

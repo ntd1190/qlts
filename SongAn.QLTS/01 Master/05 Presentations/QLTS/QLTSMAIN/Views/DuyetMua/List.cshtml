@@ -47,6 +47,7 @@
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="width: 50px;">Chọn</th>
+                        <th class="text-center" style="width: 200px;" st-sort="TenCoSo">Cơ sở đề nghị</th>
                         <th class="text-center" style="width: 100px;" st-sort="Nam">Năm</th>
                         <th class="text-center" st-sort="NoiDung">Nội dung</th>
                         <th class="text-center"  style="width: 150px;" st-sort="TrangThai">Trạng thái</th>
@@ -60,6 +61,9 @@
                     </tr>
                     <tr ng-repeat="DuyetMua in ctrl.data.DuyetMuaList" ng-click="ctrl.action.getPageChiTiet(DuyetMua.MuaSamId)" id="row_{{DuyetMua.MuaSamId}}" ng-class="(DuyetMua.isSelected==true)?'info':''">
                         <td st-select-row="DuyetMua" st-select-mode="single" ng-click="ctrl.action.CheckRow(DuyetMua.DuyetId!='0'?false:true)" class="text-center"><i class="fa fa-fw text-primary" ng-class="(DuyetMua.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td>
+                            <span ng-bind="DuyetMua.TenCoSo"></span>
+                        </td>
                         <td><a ng-bind="DuyetMua.Nam" href="~/KeHoachMuaSam/edit/{{DuyetMua.MuaSamId}}"></a></td>
                         <td><a ng-bind="DuyetMua.NoiDung" href="~/KeHoachMuaSam/edit/{{DuyetMua.MuaSamId}}"></a></td>
                         <td ng-if="DuyetMua.DuyetId==0" style="padding-left: 3.5%;">

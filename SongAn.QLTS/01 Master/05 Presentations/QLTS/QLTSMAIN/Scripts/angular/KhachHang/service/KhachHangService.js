@@ -13,6 +13,7 @@
         GetList: 'GetListKhachHang',
         GetPage: 'GetListKhachHangByProjection',
         GetCombobox: 'GetListcbxKhachHangByProjection',
+        GetComboboxById: 'GetListcbxKhachHangById',
         GetById: 'GetKhachHangById',
         GetListBySearchString: 'GetListKhachHangBySearchString',
         getList: 'getList',
@@ -23,7 +24,8 @@
     }
 
     var service = {
-            getCombobox:getCombobox,
+        getCombobox: getCombobox,
+        getComboboxById: getComboboxById,
             getList: getList,
             getPage: getPage,
             getById: getById,
@@ -81,6 +83,23 @@
                     Search: Search,
                     CoSoId: CoSoId,
                     NhanVienId: NhanVienId
+                })
+            }
+
+            return $http(req);
+        }
+        function getComboboxById(CoSoId, NhanVienId, Search, KhachHangId) {
+            var url = api.url + api.GetComboboxById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    Search: Search,
+                    CoSoId: CoSoId,
+                    NhanVienId: NhanVienId,
+                    KhachHangId: KhachHangId
                 })
             }
 

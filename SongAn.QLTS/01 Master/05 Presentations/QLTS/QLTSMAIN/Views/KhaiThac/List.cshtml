@@ -1,0 +1,331 @@
+﻿
+@{
+    ViewBag.Title = "Khai thác";
+}
+
+<div class="container-fluid">
+    <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="KhaiThacFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading clearfix">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Khai thác</span>
+            <div class="btn-group btn-group-sm pull-right">
+                <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
+                <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
+            </div>
+        </div>
+        <div class="collapse fade" id="SearchCollapse">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Ngày</label>
+                        <div class="form-inline col-sm-9">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.startDate" /> ~
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.endDate" />
+                        </div>
+                    </div>
+
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Số chứng từ</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="soChungTu" class="form-control" placeholder="Số chứng từ" ng-model="ctrl.data.soChungTu" />
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="KhaiThacListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>
+        </div>
+        <div class="table-responsive  panel-body">
+            <table st-table="ctrl.data.KhaiThacListDisplay" st-pipe="ctrl.action.getPage" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width: 50px; vertical-align:middle" rowspan="2">Chọn</th>
+                        <th class="text-center" style="min-width: 80px; vertical-align:middle"  rowspan="2">Số HĐCT</th>
+                        <th class="text-center" style="min-width: 80px; vertical-align:middle"  rowspan="2">Mã tài sản</th>
+                        <th class="text-center" style="min-width: 250px; vertical-align:middle"  rowspan="2">Tên tài sản</th>
+                        <th class="text-center" style="min-width: 130px; vertical-align:middle"  rowspan="2">Bộ phận sử dụng</th>
+                        <th class="text-center" style="min-width: 80px; vertical-align:middle" rowspan="2">ĐVT</th>
+                        <th class="text-center" style="min-width: 200px; vertical-align:middle"  rowspan="2">Đơn vị thuê</th>
+                        <th class="text-center" style="min-width: 200px; vertical-align:middle" rowspan="2">Số lượng thuê</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Đơn giá thuê</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Thời gian BĐ</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Thời gian KT</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Tổng số tiền</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Số tiền thu được</th>
+                        <th class="text-center" style="vertical-align:middle"  colspan="2">Sử dụng số tiền thu được</th>
+                        <th class="text-center" style="min-width: 150px; vertical-align:middle"  rowspan="2">Ghi chú</th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle" rowspan="2" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                            <span ng-bind="::cot.TenCot"></span>
+                        </th>
+
+                    </tr>
+                    <tr>
+                        <th class="text-center" style="min-width: 95px; vertical-align:middle">Nộp NSNN</th>
+                        <th class="text-center" style="min-width: 95px; vertical-align:middle">Để lại ĐV</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="KhaiThac in ctrl.data.KhaiThacListDisplay" ng-click="ctrl.action.getPageDetail(KhaiThac.KhaiThacId)" id="row_{{KhaiThac.KhaiThacId}}" ng-class="(KhaiThac.isSelected==true)?'info':''">
+                        <td st-select-row="KhaiThac" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(KhaiThac.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td class="text-left">
+                            <a ng-bind="KhaiThac.SoChungTu" ng-click="ctrl.action.edit(KhaiThac.KhaiThacId)" href="javascript:void(0);"></a>
+                        </td>
+                        <td class="text-left"><span>{{ KhaiThac.MaTaiSan }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.TenTaiSan }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.TenPhongBan }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.DonViTinh }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.TenKhachHang }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.SoLuongKhaiThac }}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.DonGiaKhaiThac }}</span></td>
+                        <td class="text-center"><span>{{ KhaiThac.ThoiGianBatDau | date : 'dd/MM/yyyy'}}</span></td>
+                        <td class="text-center"><span>{{ KhaiThac.ThoiGianKetThuc | date : 'dd/MM/yyyy'}}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.TongSoTien |number}}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.TienThu |number}}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.NopNganSach |number}}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.DonVi |number}}</span></td>
+                        <td class="text-center"><span>{{ KhaiThac.GhiChu }}</span></td>
+
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                            <span style="text-align:center;display:block" ng-switch-when="NgayTao">{{ KhaiThac.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                            <span ng-switch-default ng-bind="::KhaiThac[cot.MaCot]"></span>
+                        </td>
+
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+
+    <div ng-controller="KhaiThacEditCtrl as ctrl" class="panel panel-primary ui-draggable collapse fade" id="KhaiThacEditPopup" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading ui-draggable-handle">
+            <h2 class="panel-title">
+                <span>Thông tin khai thác</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#KhaiThacEditPopup" ng-click="ctrl.action.close()">
+                    <i class="fa fa-remove"></i>
+                </a>
+                <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner" ng-if="ctrl.status.isLoading"></i>
+            </h2>
+        </div>
+        <div class="panel-body" style="width: 600px;height:500px;padding-top: 15px;padding-right: 50px;">
+            <form class="form-horizontal">                
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SoChungTu)?'has-error':''">
+                    <label class="control-label col-sm-3">Số HĐCT<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtSoChungTu" class="form-control text-left" ng-model="ctrl.data.objKhaiThac.SoChungTu" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.MaTaiSan,'txtSoChungTu','txtMaTaiSan',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.MaTaiSan)?'has-error':''">
+                    <label class="control-label col-sm-3">Mã tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtMaTaiSan" class="form-control text-left" ng-model="ctrl.data.objKhaiThac.MaTaiSan" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.MaTaiSan,'txtMaTaiSan','cbxKhachHang',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TaiSanId)?'has-error':''">
+                    <label class="control-label col-sm-3">Tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <cbo-tai-san-su-dung id="cbxTaiSan" data-value="ctrl.data.objKhaiThac.TaiSanId" data-phong-ban="ctrl.data.objKhaiThac.PhongBanId" data-nhan-vien="ctrl.data.objKhaiThac.NhanVienIdKT" ma-tai-san="ctrl.data.objKhaiThac.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                                             on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TenPhongBan)?'has-error':''">
+                    <label class="control-label col-sm-3">Bộ phận SD</label>
+                    <div class="col-sm-9">
+                        <span class="form-control text-left" ng-bind="ctrl.data.objKhaiThac.TenPhongBan" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.DonViTinh)?'has-error':''">
+                    <label class="control-label col-sm-3">Đơn vị tính</label>
+                    <div class="col-sm-9">
+                        <span class="form-control text-left" ng-bind="ctrl.data.objKhaiThac.DonViTinh" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.KhachHangNCCId)?'has-error':''">
+                    <label class="control-label col-sm-3">Đơn vị thuê</label>
+                    <div class="col-sm-9">
+                        <cbo-khach-hang id="cbxKhachHang" data-value="ctrl.data.objKhaiThac.KhachHangNCCId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/khachhang/showview?viewname=cbokhachhang"></cbo-khach-hang>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SoLuongKhaiThac)?'has-error':''">
+                    <label class="control-label col-sm-3">Số lượng thuê<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="number" id="txtSoLuongKhaiThac" input-number sa-min="1" sa-max="{{ctrl.data.objKhaiThac.SoLuongTon}}" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.SoLuongKhaiThac" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.SoLuongKhaiThac,'txtSoLuongKhaiThac','txtDonGiaKhaiThac',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.DonGiaKhaiThac)?'has-error':''">
+                    <label class="control-label col-sm-3">Đơn giá thuê<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="number" min="0" id="txtDonGiaKhaiThac" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonGiaKhaiThac" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonGiaKhaiThac,'txtDonGiaKhaiThac','txtThoiGianBatDau',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.ThoiGianBatDau)?'has-error':''">
+                    <label class="control-label col-sm-3">Thời gian BĐ<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtThoiGianBatDau" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objKhaiThac.ThoiGianBatDau" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.ThoiGianBatDau,'txtThoiGianBatDau','txtThoiGianKetThuc',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.ThoiGianKetThuc)?'has-error':''">
+                    <label class="control-label col-sm-3">Thời gian KT<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtThoiGianKetThuc" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objKhaiThac.ThoiGianKetThuc" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.ThoiGianKetThuc,'txtThoiGianKetThuc','txtTienThu',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TienThu)?'has-error':''">
+                    <label class="control-label col-sm-3">Số tiền thu được</label>
+                    <div class="col-sm-9">
+                        <input type="number" min="0" id="txtTienThu" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.TienThu" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.TienThu,'txtTienThu','txtNopNganSach',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NopNganSach)?'has-error':''">
+                    <label class="control-label col-sm-3">Nộp NSNN</label>
+                    <div class="col-sm-9">
+                        <input type="number" min="0" id="txtNopNganSach" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.NopNganSach" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.NopNganSach,'txtNopNganSach','txtDonVi',$event)" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.DonVi)?'has-error':''">
+                    <label class="control-label col-sm-3">Để lại đơn vị</label>
+                    <div class="col-sm-9">
+                        <input type="number" min="0" id="txtDonVi" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonVi" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonVi,'txtDonVi','txtGhiChu',$event)" />
+                    </div>
+                </div>
+
+                <div class="row form-group form-group-sm" ng-class="ctrl.validate.GhiChu?'has-error':''">
+                    <label class="control-label col-sm-3">Ghi chú</label>
+                    <div class="col-sm-9">
+                        <textarea rows="2" type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objKhaiThac.GhiChu"></textarea>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="panel-footer">
+            <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+        </div>
+    </div>
+
+    <!-- popup danh sách tùy chọn cột -->
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:'TuyChonCotPopup',MaForm:'FL0025'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuyChonCotPopup">Đóng</a>
+        </div>
+    </div>
+    <!-- / popup danh sách tùy chọn cột -->
+
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .wrap {
+            width: auto;
+        }
+
+        .wrap table {
+            width: auto;
+            table-layout: fixed;
+        }
+
+        .inner_table {
+            height: 400px;
+            overflow-y: auto;
+            overflow-x: auto;
+        }
+
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/KhaiThac/service/KhaiThacService.js"></script>
+    <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NhanVien/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/KhachHang/cboKhachHang.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/NhanVien/cboNhanVienByPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+
+}
+
+
+
+

@@ -53,7 +53,11 @@
         }
 
         $scope.$watchGroup(['value', 'phongBan', 'nhanVien'], function (newValue, oldValue) {
-            if (!newValue[0] || !newValue[1] || !newValue[2]) { return; }
+            if (!newValue[0] || !newValue[1] || !newValue[2]) {
+                delete vm.data.TaiSan;
+                vm.data.TaiSan = {};
+                return;
+            }
 
             delete vm.inputSearch;
             vm.inputSearch = {};

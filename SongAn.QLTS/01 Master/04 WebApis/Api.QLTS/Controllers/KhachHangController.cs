@@ -30,6 +30,13 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
         }
 
         [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxKhachHangById([FromBody]GetListcbxKhachHangByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
         public async Task<IHttpActionResult> InsertKhachHang([FromBody]InsertKhachHangAction action)
         {
             ActionResultDto result = await action.Execute(context);

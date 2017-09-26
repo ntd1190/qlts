@@ -72,11 +72,13 @@
     <Compile Include="Controllers\GhiTangController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\LoaiTaiSanController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\PhuongThucController.cs" />
+    <Compile Include="Controllers\SuDungController.cs" />
     <Compile Include="Controllers\ThayDoiThongTinController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\NhomTaiSanController.cs" />
@@ -103,6 +105,7 @@
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
+    <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\DuyetCap\DuyetDuyetCapChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaAction.cs" />
@@ -138,6 +141,12 @@
     <Compile Include="Models\HienTrangSuDung\GetListcbxNhaCungCapByCriteriaAction.cs" />
     <Compile Include="Models\HienTrangSuDung\GetHienTrangSuDungByIdAction.cs" />
     <Compile Include="Models\KeHoachMuaSam\GetKeHoachMuaSamChiTietByMuaSamIdAction.cs" />
+    <Compile Include="Models\KhachHang\GetListcbxKhachHangByIdAction.cs" />
+    <Compile Include="Models\KhaiThac\DeleteListKhaiThacByIdAction.cs" />
+    <Compile Include="Models\KhaiThac\GetListKhaiThacByIdAction.cs" />
+    <Compile Include="Models\KhaiThac\GetListKhaiThacByProjectionAction.cs" />
+    <Compile Include="Models\KhaiThac\InsertKhaiThacAction.cs" />
+    <Compile Include="Models\KhaiThac\UpdateKhaiThacByIdAction.cs" />
     <Compile Include="Models\LoaiTaiSan\GetListcbxLoaiTaiSanByProjectionAction.cs" />
     <Compile Include="Models\NhaCungCap\DeleteListNhaCungCapAction.cs" />
     <Compile Include="Models\NhaCungCap\GetListcbxNhaCungCapByCriteriaAction.cs" />
@@ -217,6 +226,12 @@
     <Compile Include="Models\Phongban\GetPhongBanByIdAction.cs" />
     <Compile Include="Models\Phongban\InsertPhongBanAction.cs" />
     <Compile Include="Models\Phongban\UpdatePhongBanAction.cs" />
+    <Compile Include="Models\SuDung\DeleteListSuDungByIdAction.cs" />
+    <Compile Include="Models\SuDung\GetListSuDungByIdAction.cs" />
+    <Compile Include="Models\SuDung\GetListSuDungByProjectionAction.cs" />
+    <Compile Include="Models\SuDung\GetListSuDungChiTietBySuDungIdAction.cs" />
+    <Compile Include="Models\SuDung\InsertSuDungAction.cs" />
+    <Compile Include="Models\SuDung\UpdateSuDungByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetListcbxTaiSanSuDungByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetListcbxTaiSanSuDungByCriteriaAction.cs" />
     <Compile Include="Models\TaiSan\GetListTaiSanByCriteriaAction.cs" />

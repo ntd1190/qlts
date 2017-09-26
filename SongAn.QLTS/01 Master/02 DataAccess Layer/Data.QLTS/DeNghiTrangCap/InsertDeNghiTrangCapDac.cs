@@ -20,7 +20,7 @@ namespace SongAn.QLTS.Data.QLTS.DeNghiTrangCap
         public string NoiDung { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
-
+        public int GuiCapTren { get; set; }
         #endregion
 
         #region private variable
@@ -83,7 +83,7 @@ namespace SongAn.QLTS.Data.QLTS.DeNghiTrangCap
                 p.Add("NoiDung", NoiDung, DbType.String);
                 p.Add("CoSoId", CoSoId, DbType.Int32);
                 p.Add("NhanVienId", NhanVienId, DbType.Int32);
-
+                p.Add("GuiCapTren", GuiCapTren, DbType.Int32);
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_DeNghiTrangCap_InsertDeNghiTrangCap",
                     param: p,

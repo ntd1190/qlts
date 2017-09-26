@@ -61,9 +61,9 @@
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="width: 50px;">Chọn</th>
+                        <th class="text-center" style="width: 200px;" st-sort="TenPhongBan">Bộ phận/Cơ sở đề nghị</th>
                         <th class="text-center" style="width: 150px;" st-sort="SoPhieu">Số phiếu</th>
                         <th class="text-center" style="width: 100px;" st-sort="Ngay">Ngày lập</th>
-                        <th class="text-center" style="width: 200px;" st-sort="TenPhongBan">Bộ phận đề nghị</th>
                         <th class="text-center" style="width: 300px;" st-sort="NoiDung">Nội dung đề nghị</th>
                         <th class="text-center" style="width: 100px;" st-sort="NoiDung">Trạng thái</th>
                     </tr>
@@ -78,14 +78,15 @@
                     <tr ng-repeat="DuyetCap in ctrl.data.DuyetCapListDisplay" ng-click="ctrl.action.getPageDetail(DuyetCap.DeNghiId)" id="row_{{DuyetCap.DeNghiId}}" ng-class="(DuyetCap.isSelected==true)?'info':''">
                         <td st-select-row="DuyetCap" st-select-mode="single" ng-click="ctrl.action.CheckRow(DuyetCap.DuyetId!='0'?false:true)" class="text-center"><i class="fa fa-fw text-primary" ng-class="(DuyetCap.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
                         <td>
+                            <span ng-bind="DuyetCap.TenPhongBan"></span>
+                        </td>
+                        <td>
                             <a href="~/denghitrangcap/edit?id={{DuyetCap.DeNghiId}}">{{ DuyetCap.SoPhieu}}</a>
                         </td>
                         <td>
                             <span>{{ DuyetCap.Ngay | date : 'dd/MM/yyyy'}}</span>
                         </td>
-                        <td>
-                            <span ng-bind="DuyetCap.TenPhongBan"></span>
-                        </td>
+                      
                         <td>
                             <span ng-bind="DuyetCap.NoiDung"></span>
                         </td>

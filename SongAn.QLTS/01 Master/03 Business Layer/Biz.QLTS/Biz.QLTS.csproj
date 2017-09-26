@@ -68,6 +68,7 @@
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
+    <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaBiz.cs" />
@@ -107,6 +108,12 @@
     <Compile Include="KeHoachMuaSamChiTiet\DeleteKeHoachMuaSamChiTietByIdBiz.cs" />
     <Compile Include="KeHoachMuaSamChiTiet\GetKeHoachMuaSamChiTietByMuaSamIdBiz.cs" />
     <Compile Include="KeHoachMuaSam\DeleteKeHoachMuaSamByIdBiz.cs" />
+    <Compile Include="KhachHang\GetListcbxKhachHangByIdBiz.cs" />
+    <Compile Include="KhaiThac\DeleteListKhaiThacByIdBiz.cs" />
+    <Compile Include="KhaiThac\GetListKhaiThacByCriteriaBiz.cs" />
+    <Compile Include="KhaiThac\GetListKhaiThacByIdBiz.cs" />
+    <Compile Include="KhaiThac\InsertKhaiThacBiz.cs" />
+    <Compile Include="KhaiThac\UpdateKhaiThacByIdBiz.cs" />
     <Compile Include="LoaiTaiSan\GetListcbxLoaiTaiSanByCriteriaBiz.cs" />
     <Compile Include="NhaCungCap\GetListcbxNhaCungCapByCriteriaBiz.cs" />
     <Compile Include="NhaCungCap\GetListNhaCungCapByCriteriaBiz.cs" />
@@ -138,6 +145,13 @@
     <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
     <Compile Include="PhuongThuc\GetListcbxPhuongThucByCriteriaBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuDung\DeleteListSuDungByIdBiz.cs" />
+    <Compile Include="SuDung\GetListSuDungByCriteriaBiz.cs" />
+    <Compile Include="SuDung\GetListSuDungByIdBiz.cs" />
+    <Compile Include="SuDung\GetListSuDungChiTietBySuDungIdBiz.cs" />
+    <Compile Include="SuDung\InsertSuDungBiz.cs" />
+    <Compile Include="SuDung\InsertSuDungChiTietBiz.cs" />
+    <Compile Include="SuDung\UpdateSuDungByIdBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByIdBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />

@@ -13,7 +13,8 @@
             GetPageHeaderById: 'GetListDeNghiTrangCapByDeNghiId',
             DeleteList: 'DeleteListDeNghiMuaSamById',
             insert: 'InsertDeNghiTrangCap',
-            update: 'UpdateDeNghiTrangCap'
+            update: 'UpdateDeNghiTrangCap',
+            GetPageTongHopById: 'GetTongHopDeNghiTrangCapByDeNghiId'
         }
 
         var service = {
@@ -23,7 +24,8 @@
             GetPageHeaderById: GetPageHeaderById,
             DeleteList: DeleteList,
             insert: insert,
-            update: update
+            update: update,
+            GetPageTongHopById: GetPageTongHopById
         };
 
         return service;
@@ -83,7 +85,20 @@
 
             return $http(req);
         }
+        function GetPageTongHopById(DeNghiId) {
+            var url = api.url + api.GetPageTongHopById;
 
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    DeNghiId: DeNghiId
+                })
+            }
+
+            return $http(req);
+        }
         function DeleteList(DeNghiIds) {
             var url = api.url + api.DeleteList;
 

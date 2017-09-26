@@ -26,7 +26,17 @@ namespace SongAn.QLDN.UI.QLDNMAIN.Controllers
 
             return View();
         }
-
+        public ActionResult CapTren(string id)
+        {
+            if (id == null)
+            {
+                return RedirectToAction("List");
+            }
+            string userLogin = LoadUserInfo("CN0019");
+            ViewBag.userInfo = userLogin;
+            ViewBag.id = id;
+            return View();
+        }
         public ActionResult Edit(int? id)
         {
             if (id == null)

@@ -239,6 +239,7 @@
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\TaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
+    <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapCapTrenEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapListCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DenNghiTrangCapFilterCtrl.js" />
@@ -261,6 +262,11 @@
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangListCtrl.js" />
     <Content Include="Scripts\angular\DuyetMua\controller\DuyetMuaListCtrl.js" />
     <Content Include="Scripts\angular\DuyetMua\service\DuyetMuaService.js" />
+    <Content Include="Scripts\angular\KhachHang\directive\cboKhachHang.js" />
+    <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacEditCtrl.js" />
+    <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacFilterCtrl.js" />
+    <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacListCtrl.js" />
+    <Content Include="Scripts\angular\KhaiThac\service\KhaiThacService.js" />
     <Content Include="Scripts\angular\NhanVien\directive\cboNhanVienByPhongBan.js" />
     <Content Include="Scripts\angular\GhiTang\service\GhiTangService.js" />
     <Content Include="Scripts\angular\HangSanXuat\directive\cboHangSanXuat.js" />
@@ -342,7 +348,10 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
-    <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiCreateCtrl.js" />
+    <Content Include="Scripts\angular\SuDung\controller\SuDungEditCtrl.js" />
+    <Content Include="Scripts\angular\SuDung\controller\SuDungFilterCtrl.js" />
+    <Content Include="Scripts\angular\SuDung\controller\SuDungListCtrl.js" />
+    <Content Include="Scripts\angular\SuDung\service\SuDungService.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiListCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\service\ThayDoiThongTinKeKhaiService.js" />
@@ -405,6 +414,7 @@
     <Compile Include="Controllers\GhiTangController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -423,6 +433,7 @@
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\SuDungController.cs" />
     <Compile Include="Controllers\ThayDoiThongTinKeKhaiController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
@@ -576,6 +587,11 @@
     <Content Include="Views\BienBanKiemKe\Edit.cshtml" />
     <Content Include="Views\DanhGiaTaiSan\Edit.cshtml" />
     <Content Include="Views\DanhGiaTaiSan\List.cshtml" />
+    <Content Include="Views\DeNghiTrangCap\CapTren.cshtml" />
+    <Content Include="Views\KhaiThac\List.cshtml" />
+    <Content Include="Views\KhachHang\cboKhachHang.cshtml" />
+    <Content Include="Views\SuDung\List.cshtml" />
+    <Content Include="Views\SuDung\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

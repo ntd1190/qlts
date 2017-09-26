@@ -42,7 +42,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.DeNghiTrangCap
                 bizHeader.NoiDung = _phieuDeNghi.NoiDung;
                 bizHeader.CoSoId = _phieuDeNghi.CoSoId;
                 bizHeader.NhanVienId = _LoginId;
-
+                bizHeader.GuiCapTren = _phieuDeNghi.GuiCapTren;
                 IEnumerable<dynamic> DeNghiTrangCapId = await bizHeader.Execute();
                 if (DeNghiTrangCapId.Count() > 0)
                 {

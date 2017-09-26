@@ -80,6 +80,7 @@
             userInfo: {},
             showButtonNew: false,
             showButtonXoaChon: false,
+            showButtonDuyet: false,
             listQuyenTacVu: [],
             DenNghiTrangCapListDisplay: [],
             DenNghiTrangCapChiTietListDisplay: [],
@@ -102,6 +103,7 @@
             loadCotList: loadCotList,
             checkCot: checkCot,
             CheckRow: CheckRow,
+            GuiCapTren: GuiCapTren
         };
 
         
@@ -135,12 +137,14 @@
         }
         function setEnableButton() {
             if (vm.data.listQuyenTacVu.length > 0) {
-
+                
                 // Co quyen them moi
                 if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
                     vm.data.showButtonNew = true;
                 }
-                
+                if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
+                    vm.data.showButtonDuyet = true;
+                }
                 // Co quyen Xoa
                 if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
                     vm.data.showButtonXoaChon = true;
@@ -209,6 +213,26 @@
             }
             vm.data.RowChecked = true;
         }
+        function GuiCapTren() {
+            var DeNghiTrangCapListSelected = new Array();
+
+            for (var i = 0; i < vm.data.DenNghiTrangCapListDisplay.length; i++) {
+                var select = vm.data.DenNghiTrangCapListDisplay[i];
+                if (select.isSelected) {
+                    DeNghiTrangCapListSelected.push(select.DeNghiId);
+                }
+            }
+            var ids = DeNghiTrangCapListSelected.join('-');
+            if (ids.length > 0) {
+                window.location.href = vm.data.linkUrl + 'denghitrangcap/CapTren?id=' + ids;
+
+            } else {
+                alert('Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.');
+            }
+
+        }
+
+
         function deleteSelected() {
             if (!confirm('Bạn có muốn xóa các đề nghị đã chọn?')) {
                 return;
