@@ -24,6 +24,12 @@ namespace SongAn.QLTS.Data.QLTS.DanhGia
         public virtual string TaiSanIds { get; set; }
         public virtual string NhanVienIds { get; set; }
         public virtual string PhongBanIds { get; set; }
+
+        public virtual string Field { get; set; }
+        public virtual int skip { get; set; }
+        public virtual int take { get; set; }
+        public virtual string OrderClause { get; set; }
+
         public virtual int COSO_ID { get; set; }
         public virtual int NHANVIEN_ID { get; set; }
         public virtual string MESSAGE { get; set; }

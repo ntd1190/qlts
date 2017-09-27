@@ -59,10 +59,12 @@
     <Compile Include="Entity\BienBanKiemKe.cs" />
     <Compile Include="Entity\BienBanKiemKeChiTiet.cs" />
     <Compile Include="Entity\CoSo.cs" />
+    <Compile Include="Entity\DanhGiaNguyenGia.cs" />
     <Compile Include="Entity\DeNghiTrangCap.cs" />
     <Compile Include="Entity\DeNghiTrangCapChiTiet.cs" />
     <Compile Include="Entity\DieuChuyen.cs" />
     <Compile Include="Entity\DieuChuyenChiTiet.cs" />
+    <Compile Include="Entity\DanhGia.cs" />
     <Compile Include="Entity\GhiGiamChiTiet.cs" />
     <Compile Include="Entity\GhiTang.cs" />
     <Compile Include="Entity\GhiTangChiTiet.cs" />

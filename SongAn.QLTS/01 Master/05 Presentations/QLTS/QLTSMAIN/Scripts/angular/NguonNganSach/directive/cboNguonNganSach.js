@@ -9,7 +9,8 @@
                 onSelected: '&',
                 input: '<',
                 config: '<',
-                value: '='
+                value: '=',
+                disabled:'<'
             },
             controller: controller,
             controllerAs: 'ctrl',

@@ -21,10 +21,8 @@ namespace SongAn.QLTS.Data.QLTS.DanhGia
         #region public properties
         public virtual int DanhGiaId { get; set; }
         public virtual int TaiSanId { get; set; }
-        public virtual int NV_ID { get; set; }
-        public virtual int PhongBanId { get; set; }
-        public virtual int CoSoId { get; set; }
-        public virtual int NhanVienId { get; set; }
+        public virtual int COSO_ID { get; set; }
+        public virtual int NHANVIEN_ID { get; set; }
         public virtual string MESSAGE { get; set; }
         #endregion
 

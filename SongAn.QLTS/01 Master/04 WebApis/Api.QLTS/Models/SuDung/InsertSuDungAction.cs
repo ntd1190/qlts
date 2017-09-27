@@ -47,7 +47,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.SuDung
                 {
                     var obj = SuDungId.FirstOrDefault();
 
-                    suDungId = Protector.Int(obj.BaoDuongIdI);
+                    suDungId = Protector.Int(obj.SuDungIdI);
                 }
 
                 foreach (var item in _listChiTiet)
@@ -55,11 +55,13 @@ namespace SongAn.QLTS.Api.QLTS.Models.SuDung
                     bizLine = new InsertSuDungChiTietBiz(context);
                     bizLine.SuDungId = Protector.Int(suDungId);
                     bizLine.TaiSanId = Protector.Int(item.TaiSanId);
+                    bizLine.PhongBanId = Protector.Int(item.PhongBanId);
+                    bizLine.NhanVienId = Protector.Int(item.NhanVienId);
                     bizLine.SoSanPhamPhucVu = Protector.Decimal(item.SoSanPhamPhucVu);
-                    bizLine.DonViTinhSanPham = item.DonViTinhSanPham;
+                    bizLine.DonViTinhSanPham = Protector.String(item.DonViTinhSanPham);
                     bizLine.SoNguyenLieuSuDung = Protector.Decimal(item.SoNguyenLieuSuDung);
-                    bizLine.DonViTinhNguyenLieu = item.DonViTinhNguyenLieu;
-                    bizLine.GhiChu = item.GhiChu;
+                    bizLine.DonViTinhNguyenLieu = Protector.String(item.DonViTinhNguyenLieu);
+                    bizLine.GhiChu = Protector.String(item.GhiChu);
 
                     var result_line = await bizLine.Execute();
                 }

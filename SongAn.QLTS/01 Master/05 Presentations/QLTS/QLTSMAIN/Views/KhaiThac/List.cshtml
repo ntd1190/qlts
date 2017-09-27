@@ -190,6 +190,12 @@
                         <input type="text" id="txtThoiGianKetThuc" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objKhaiThac.ThoiGianKetThuc" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.ThoiGianKetThuc,'txtThoiGianKetThuc','txtTienThu',$event)" />
                     </div>
                 </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TongSoTien)?'has-error':''">
+                    <label class="control-label col-sm-3">Tổng số tiền</label>
+                    <div class="col-sm-9">
+                        <span style="background:#eeeeee" class="form-control text-right" ng-bind="+ctrl.data.objKhaiThac.SoLuongKhaiThac*ctrl.data.objKhaiThac.DonGiaKhaiThac|number"></span>
+                    </div>
+                </div>
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TienThu)?'has-error':''">
                     <label class="control-label col-sm-3">Số tiền thu được</label>
                     <div class="col-sm-9">

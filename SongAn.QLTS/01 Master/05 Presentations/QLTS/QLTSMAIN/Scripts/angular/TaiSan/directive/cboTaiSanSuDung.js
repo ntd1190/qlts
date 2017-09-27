@@ -13,6 +13,7 @@
                 maTaiSan: '=',
                 phongBan: '=',
                 nhanVien: '=',
+                disabled: '<',
             },
             controller: controller,
             controllerAs: 'ctrl',

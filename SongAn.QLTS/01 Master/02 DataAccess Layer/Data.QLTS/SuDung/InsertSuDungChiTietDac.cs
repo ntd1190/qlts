@@ -15,6 +15,8 @@ namespace SongAn.QLTS.Data.QLTS.SuDung
 
         public int SuDungId { get; set; }
         public int TaiSanId { get; set; }
+        public int PhongBanId { get; set; }
+        public int NhanVienId { get; set; }
         public decimal SoSanPhamPhucVu { get; set; }
         public string DonViTinhSanPham { get; set; }
         public decimal SoNguyenLieuSuDung { get; set; }
@@ -78,6 +80,8 @@ namespace SongAn.QLTS.Data.QLTS.SuDung
                 var p = new DynamicParameters();
                 p.Add("SuDungId", SuDungId, DbType.Int32);
                 p.Add("TaiSanId", TaiSanId, DbType.Int32);
+                p.Add("PhongBanId", PhongBanId, DbType.Int32);
+                p.Add("NhanVienId", NhanVienId, DbType.Int32);
                 p.Add("SoSanPhamPhucVu", SoSanPhamPhucVu, DbType.Decimal);
                 p.Add("DonViTinhSanPham", DonViTinhSanPham, DbType.String);
                 p.Add("SoNguyenLieuSuDung", SoNguyenLieuSuDung, DbType.Decimal);

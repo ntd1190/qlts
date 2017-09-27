@@ -3,11 +3,11 @@
     var module = angular.module('app');
 
     module.controller('DanhGiaTaiSanEditCtrl', function (DanhGiaTaiSanService, TaiSanService, utility, $timeout, $scope, $q) {
-        var vm = this, userInfo,TaiSanSD,
-            isEdit = false, DanhGiaId = 0, linkUrl = '', service = DanhGiaTaiSanService;
+        var vm = this, userInfo, TaiSanSD,
+            isEdit = false, DanhGiaId = 0, linkUrl = '';
 
         vm.error = {};
-
+        vm.status = {};
         vm.data = {};
         vm.data.TaiSan_New = {};
         vm.data.TaiSan_Old = {};
@@ -17,6 +17,51 @@
         vm.data.NguyenGia = 0;
         vm.data.TaiSan = {};
 
+        /*** HOT KEY ***/
+        vm.keys = {
+            //press F2 -> open popup
+            F2: function (name, code) {
+                vm.action.addNguyenGia();
+                var index = vm.data.listNguyenGia.length - 1;
+                $timeout(function () {
+                    $('[data-name="listNguyenGia_NguonNganSachId' + index + '"] input').focus();
+                }, 0);
+            },
+
+            F8: function (name, code) {
+                vm.action.save();
+            }
+        };
+
+        /*** INIT FUNCTION ***/
+
+        activate();
+        function activate() { };
+
+        vm.onInitView = function (config) {
+            console.log('vm.onInitView');
+            console.log(config);
+            if (config && config.linkUrl) {
+                linkUrl = config.linkUrl;
+            }
+            if (config && config.isEdit) {
+                isEdit = config.isEdit;
+                vm.status.isEdit = isEdit;
+            }
+            if (config && config.DanhGiaId) {
+                DanhGiaId = config.DanhGiaId;
+            }
+            if (config && config.userInfo) {
+                userInfo = config.userInfo;
+            }
+            if (isEdit) {
+                loadDataDanhGia();
+                loadDataTaiSan();
+            } else {
+                vm.action.addNguyenGia();
+            }
+        };
+
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
@@ -24,10 +69,9 @@
 
         vm.action.addNguyenGia = function () {
             if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
-            vm.data.listNguyenGia.push({ GiaTri: 0 });
+            vm.data.listNguyenGia.push({ GiaTri: 0, isCreate: true });
         }
         vm.action.removeNguyenGia = function (index) {
-            if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
             vm.data.listNguyenGia.splice(index, 1);
         }
         vm.action.goBack = function () {
@@ -35,44 +79,16 @@
         };
 
         vm.action.save = function () {
+            console.log('vm.action.save');
             if (checkQuyenUI('N') == false && checkQuyenUI('M') == false) { return; }
 
             var has_error = false;
 
-            if (checkInputTaiSan() == false) {
-                if (has_error == false) {
-                    $('[data-target="#ThongTinChung"]').tab('show');
-                    $timeout(function () {
-                        checkInputTaiSan();
-                    }, 500);
-                }
+            if (checkInputDanhGia() == false) {
                 has_error = true;
             }
 
             if (checkNguyenGiaList() == false || checkNguyenGiaNganSach() == false) {
-                if (has_error == false) {
-                    $('[data-target="#ThongTinChung"]').tab('show');
-                }
-                has_error = true;
-            }
-
-            if (checkInputTTKK() == false) {
-                if (has_error == false) {
-                    $('[data-target="#ThongTinKeKhai"]').tab('show');
-                    $timeout(function () {
-                        checkInputTTKK();
-                    }, 500);
-                }
-                has_error = true;
-            }
-
-            if (checkInputTTCK() == false) {
-                if (has_error == false) {
-                    $('[data-target="#ThongTinCongKhai"]').tab('show');
-                    $timeout(function () {
-                        checkInputTTCK();
-                    }, 500);
-                }
                 has_error = true;
             }
 
@@ -94,7 +110,7 @@
 
         vm.action.keyPressDanhGia = function (event) {
             if (event.keyCode != 13) { return; }
-            if (checkInputTaiSan($(event.target).data('name')) === false) {
+            if (checkInputDanhGia($(event.target).data('name')) === false) {
                 return;
             }
             $('[data-name="' + $(event.target).data('next') + '"] input').focus();
@@ -124,48 +140,6 @@
             loadDataTaiSan();
         }
 
-        /*** HOT KEY ***/
-        vm.keys = {
-            //press F2 -> open popup
-            F2: function (name, code) {
-                vm.action.addNguyenGia();
-                var index = vm.data.listNguyenGia.length - 1;
-                $timeout(function () {
-                    $('[data-name="listNguyenGia_NguonNganSachId' + index + '"] input').focus();
-                }, 0);
-            },
-
-            F8: function (name, code) {
-                vm.action.save();
-            }
-        };
-
-        /*** INIT FUNCTION ***/
-
-        activate();
-        function activate() {
-
-        };
-
-        vm.onInitView = function (config) {
-            console.log('vm.onInitView');
-            console.log(config);
-            if (config && config.linkUrl) {
-                linkUrl = config.linkUrl;
-            }
-            if (config && config.isEdit) {
-                isEdit = config.isEdit;
-            }
-            if (config && config.DanhGiaId) {
-                DanhGiaId = config.DanhGiaId;
-            }
-            if (config && config.userInfo) {
-                userInfo = config.userInfo;
-            }
-            loadDataTaiSan();
-            vm.action.addNguyenGia();
-        };
-
         /***EVENT FUNCTION ***/
 
         // tính hao mòn
@@ -178,6 +152,10 @@
         })
 
         /*** BIZ FUNCTION ***/
+
+        function loadDataDanhGia() {
+            getDanhGiaById(DanhGiaId);
+        }
 
         function tinhHaoMon() {
             vm.data.NguyenGia = vm.data.NguyenGia || 0;
@@ -197,30 +175,22 @@
             vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.GiaTriConLai || 0;
         }
 
-        function tinhGTConLai() {
-            vm.data.TaiSan.NamTheoDoi = moment(vm.data.TaiSan.NgayMua, 'DD/MM/YYYY').year();
-            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
-        }
+        function tinhHaoMonCu() {
+            vm.data.NguyenGiaCu = vm.data.NguyenGiaCu || 0;
+            vm.data.DanhGia.TyLeHaoMonCu = vm.data.DanhGia.TyLeHaoMonCu || 0;
 
-        function tinhKhauHao() {
-            console.log('tinhKhauHao');
-            vm.data.TaiSan.TyLeKhauHao = vm.data.TaiSan.TyLeKhauHao || 0;
+            vm.data.DanhGia.HaoMonNamCu = vm.data.NguyenGiaCu * vm.data.DanhGia.TyLeHaoMonCu / 100;
 
-            var currDate = moment();
-            var startDate = moment(vm.data.TaiSan.NgayBDKhauHao, 'DD/MM/YYYY');
+            vm.data.DanhGia.SoNamSDConLaiCu = (moment().year() - moment(vm.data.DanhGia.NgayBDHaoMonCu, 'YYYY-MM-DD').year());
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSuDungCu - vm.data.DanhGia.SoNamSDConLaiCu;
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSDConLaiCu < 0 ? 0 : vm.data.DanhGia.SoNamSDConLaiCu;
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSDConLaiCu || 0;
 
-            var ThangTheoKy = vm.data.TaiSan.KyTinhKhauHao == 'Tháng' ? 1
-                : vm.data.TaiSan.KyTinhKhauHao == 'Quý' ? 3
-                : vm.data.TaiSan.KyTinhKhauHao == 'Năm' ? 12
-                : 0
+            vm.data.DanhGia.HaoMonLuyKeCu = (vm.data.DanhGia.SoNamSuDungCu - vm.data.DanhGia.SoNamSDConLaiCu) * vm.data.DanhGia.HaoMonNamCu;
+            vm.data.DanhGia.HaoMonLuyKeCu = vm.data.DanhGia.HaoMonLuyKeCu || 0;
 
-            var SoThangSD = currDate.diff(startDate, 'months');
-            var SoThangConLai = vm.data.TaiSan.SoKyKhauHao * ThangTheoKy - SoThangSD;
-            SoThangConLai = SoThangConLai > 0 ? SoThangConLai : 0;
-
-            vm.data.TaiSan.KhauHaoKy = vm.data.NguyenGia * vm.data.TaiSan.TyLeKhauHao / 100;
-            vm.data.TaiSan.SoKyConLai = SoThangConLai > 0 ? Math.floor(SoThangConLai / ThangTheoKy) : 0;
-            vm.data.TaiSan.KhauHaoLuyKe = vm.data.TaiSan.KhauHaoKy * (vm.data.TaiSan.SoKyKhauHao - vm.data.TaiSan.SoKyConLai);
+            vm.data.DanhGia.GiaTriConLaiCu = vm.data.NguyenGiaCu - vm.data.DanhGia.HaoMonLuyKeCu;
+            vm.data.DanhGia.GiaTriConLaiCu = vm.data.DanhGia.GiaTriConLaiCu || 0;
         }
 
         function checkQuyenUI(quyen) {
@@ -244,10 +214,13 @@
         function loadDataTaiSan() {
             if (!TaiSanSD || !TaiSanSD.TaiSanId) { return; }
 
-            getTaiSanById(TaiSanSD.TaiSanId).then(function success() {
+            getTaiSanById(TaiSanSD.TaiSanId).then(function (success) {
+                console.log('getTaiSanById(TaiSanSD.TaiSanId)');
+                console.log(vm.data.TaiSan);
                 $q.all([getListNguyenGia()]).then(function () {
-                    tinhHaoMon();
-                    importDanhGiaFromTaiSan();
+                    $timeout(function () {
+                        importDanhGiaFromTaiSan();
+                    }, 0);
                 });
             });
         }
@@ -284,16 +257,16 @@
             return !hasError;
         }
 
-        function checkInputTaiSan(inputName) {
-            console.log('checkInputTaiSan');
-            var has_error = false;
-            var first_error_name = '';
-            var obj_name = 'TaiSan';
-            var prop_name = '';
-            var error_name = '';
+        function checkInputDanhGia(inputName) {
+            console.log('checkInputTDTT');
+            var has_error = false, first_error_name = '',
+                obj_name = 'DanhGia', // Tên sử dung trong vm.data.obj_name
+                prop_name = '', // tên thuộc tính của obj_name
+                prefix_name = 'DanhGia', // tiền tố của error name, tránh trùng tên
+                error_name = '';
 
-            prop_name = 'MaTaiSan';
-            error_name = obj_name + '_' + prop_name;
+            prop_name = 'SoChungTu';
+            error_name = prefix_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
                 if (!vm.data[obj_name][prop_name]) {
@@ -302,8 +275,8 @@
                     has_error = true;
                 }
             }
-            prop_name = 'TenTaiSan';
-            error_name = obj_name + '_' + prop_name;
+            prop_name = 'NgayChungTu';
+            error_name = prefix_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
                 if (!vm.data[obj_name][prop_name]) {
@@ -312,8 +285,8 @@
                     has_error = true;
                 }
             }
-            prop_name = 'LoaiId';
-            error_name = obj_name + '_' + prop_name;
+            prop_name = 'NgayDanhGia';
+            error_name = prefix_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
                 if (!vm.data[obj_name][prop_name]) {
@@ -322,11 +295,11 @@
                     has_error = true;
                 }
             }
-            prop_name = 'NuocSanXuatId';
-            error_name = obj_name + '_' + prop_name;
+
+            prop_name = 'TaiSanId';
+            error_name = prefix_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
-                console.log(vm.data[obj_name][prop_name]);
                 if (!vm.data[obj_name][prop_name]) {
                     first_error_name = has_error ? first_error_name : error_name;
                     vm.error[error_name] = '.';
@@ -338,18 +311,23 @@
                 $('[data-name="' + first_error_name + '"] input').focus();
                 $('[data-name="' + first_error_name + '"]').focus();
             }
-
             return !has_error;
         }
 
         function importDanhGiaFromTaiSan() {
-            vm.data.DanhGia.HaoMonLuyKeCu = vm.data.TaiSan.HaoMonLuyKe || 0;
-            vm.data.DanhGia.SoNamSuDungCu = vm.data.TaiSan.SoNamSuDung || 0;
-            vm.data.DanhGia.TyLeHaoMonCu = vm.data.TaiSan.TyLeHaoMon || 0;
-            vm.data.DanhGia.SLTonCu = vm.data.TaiSan.SLTon || 0;
-            vm.data.DanhGia.HaoMonNamCu = vm.data.TaiSan.HaoMonNam || 0;
-            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.TaiSan.SoNamSDConLai || 0;
-            vm.data.DanhGia.GiaTriConLaiCu = vm.data.TaiSan.GiaTriConLai || 0;
+            console.log('importDanhGiaFromTaiSan');
+            vm.data.DanhGia.NgayBDHaoMonCu = vm.data.TaiSan.NgayBDHaoMon;
+
+            vm.data.DanhGia.HaoMonLuyKeCu = vm.data.DanhGia.HaoMonLuyKeCu != null ? vm.data.DanhGia.HaoMonLuyKeCu : (vm.data.TaiSan.HaoMonLuyKe || 0);
+            vm.data.DanhGia.SoNamSuDungCu = vm.data.DanhGia.SoNamSuDungCu != null ? vm.data.DanhGia.SoNamSuDungCu : (vm.data.TaiSan.SoNamSuDung || 0);
+            vm.data.DanhGia.TyLeHaoMonCu = vm.data.DanhGia.TyLeHaoMonCu != null ? vm.data.DanhGia.TyLeHaoMonCu : (vm.data.TaiSan.TyLeHaoMon || 0);
+            vm.data.DanhGia.SLTonCu = vm.data.DanhGia.SLTonCu != null ? vm.data.DanhGia.SLTonCu : (vm.data.TaiSan.SLTon || 0);
+
+            vm.data.DanhGia.HaoMonNamCu = vm.data.DanhGia.HaoMonNamCu != null ? vm.data.DanhGia.HaoMonNamCu : (vm.data.TaiSan.HaoMonNam || 0);
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSDConLaiCu != null ? vm.data.DanhGia.SoNamSDConLaiCu : (vm.data.TaiSan.SoNamSDConLai || 0);
+            vm.data.DanhGia.GiaTriConLaiCu = vm.data.DanhGia.GiaTriConLaiCu != null ? vm.data.DanhGia.GiaTriConLaiCu : (vm.data.TaiSan.GiaTriConLai || 0);
+
+            tinhHaoMonCu();
         }
         /*** API FUNCTION TÀI SẢN ***/
 
@@ -361,6 +339,76 @@
             object.SLTon = TaiSanSD.SoLuongTon;
         }
 
+        function prepareDanhGia(object) {
+            object.NgayChungTu = utility.convertDateFormat(object.NgayChungTu, 'DD/MM/YYYY', 'YYYY-MM-DD');
+            object.NgayDanhGia = utility.convertDateFormat(object.NgayDanhGia, 'DD/MM/YYYY', 'YYYY-MM-DD');
+            object.NgayTao = utility.convertDateFormat(object.NgayTao, 'DD/MM/YYYY', 'YYYY-MM-DD');
+            return object;
+        }
+
+        function fixDanhGia(object) {
+            object.NgayChungTu = utility.convertDateFormat(object.NgayChungTu, 'YYYY-MM-DD', 'DD/MM/YYYY');
+            object.NgayDanhGia = utility.convertDateFormat(object.NgayDanhGia, 'YYYY-MM-DD', 'DD/MM/YYYY');
+            object.NgayTao = utility.convertDateFormat(object.NgayTao, 'YYYY-MM-DD', 'DD/MM/YYYY');
+            object.SoChungTu = object.SoChungTu.trim();
+            return object;
+        }
+        function insert() {
+            utility.addloadding($('body'));
+            var data = {};
+
+            data.DanhGia = angular.toJson(prepareDanhGia(angular.copy(vm.data.DanhGia)));
+            data.NguyenGiaList = angular.toJson(vm.data.listNguyenGia);
+            data.SoNamSuDung = vm.data.TaiSan.SoNamSuDung;
+            data.TyLeHaoMon = vm.data.TaiSan.TyLeHaoMon;
+            data.HaoMonLuyKe = vm.data.TaiSan.HaoMonLuyKe;
+            data.SLTon = vm.data.TaiSan.SLTon;
+
+            data.COSO_ID = userInfo.CoSoId;
+            data.NHANVIEN_ID = userInfo.NhanVienId;
+
+            DanhGiaTaiSanService.insert(data).then(function (success) {
+                console.log(success);
+                $timeout(function () {
+                    window.location = linkUrl + 'edit/' + success.data.data[0].DanhGiaId;
+                }, 2000);
+                utility.removeloadding();
+                utility.AlertSuccess('Thêm thông tin thành công');
+            }, function (error) {
+                console.log(error);
+                utility.removeloadding();
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Không thể thêm thông tin');
+                }
+            });
+        }
+
+        function getDanhGiaById(DanhGiaId) {
+            var deferred = $q.defer();
+            var data = {};
+            data.DanhGiaIds = DanhGiaId;
+
+            data.COSO_ID = userInfo.CoSoId;
+            data.NHANVIEN_ID = userInfo.NhanVienId;
+
+            DanhGiaTaiSanService.getById(data).then(function (success) {
+                console.log('DanhGiaTaiSanService.getPage.success');
+                console.log(success);
+                delete vm.data.DanhGia;
+                vm.data.DanhGia = success.data.data[0];
+                vm.data.DanhGia = vm.data.DanhGia || {};
+                fixDanhGia(vm.data.DanhGia);
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+
+            return deferred.promise;
+        }
+
         function getTaiSanById(TaiSanId) {
             var deferred = $q.defer();
             var data = {};
@@ -369,7 +417,7 @@
             data.NhanVienId = userInfo.NhanVienId;
 
             TaiSanService.getById(data).then(function (success) {
-                console.log('TaiSanService.getById');
+                console.log('TaiSanService.getById.success');
                 console.log(success);
                 delete vm.data.TaiSan;
                 vm.data.TaiSan = success.data.data[0];
@@ -406,90 +454,34 @@
 
         }
 
-        function insert() {
-            utility.addloadding($('body'));
-            var data = {};
-
-            var _taiSan = angular.copy(vm.data.TaiSan);
-            prepareTaiSan(_taiSan);
-            data.TaiSan = angular.toJson(_taiSan);
-
-            data.TTCK = angular.toJson(vm.data.TTCK);
-            data.TTKK_Dat = angular.toJson(vm.data.TTKK_Dat);
-            data.TTKK_Nha = angular.toJson(vm.data.TTKK_Nha);
-            data.TTKK_Oto = angular.toJson(vm.data.TTKK_Oto);
-            data.TTKK_500 = angular.toJson(vm.data.TTKK_500);
-
-            data.NguyenGiaList = angular.toJson(vm.data.listNguyenGia);
-            data.CoSoId = userInfo.CoSoId;
-            data.NhanVienId = userInfo.NhanVienId;
-
-            TaiSanService.insert(data).then(function (success) {
-                console.log(success);
-                $timeout(function () {
-                    window.location = linkUrl + 'edit/' + success.data.data[0].TaiSanId;
-                }, 2000);
-                utility.removeloadding();
-                utility.AlertSuccess('Thêm tài sản thành công');
-            }, function (error) {
-                console.log(error);
-                utility.removeloadding();
-                if (error.status === 400) {
-                    utility.AlertError(error.data.error.message);
-                } else {
-                    utility.AlertError('Không thể thêm tài sản');
-                }
-            });
-        }
 
         function update() {
             utility.addloadding($('body'));
             var data = {};
 
-            var _taiSan = angular.copy(vm.data.TaiSan);
-            prepareTaiSan(_taiSan);
-            data.TaiSan = angular.toJson(_taiSan);
-
-            vm.data.TTCK.TaiSanId = _taiSan.TaiSanId;
-            data.TTCK = angular.toJson(vm.data.TTCK);
-
-            vm.data.TTKK_Dat.TaiSanId = _taiSan.TaiSanId;
-            data.TTKK_Dat = angular.toJson(vm.data.TTKK_Dat);
-
-            vm.data.TTKK_Nha.TaiSanId = _taiSan.TaiSanId;
-            data.TTKK_Nha = angular.toJson(vm.data.TTKK_Nha);
-
-            vm.data.TTKK_Oto.TaiSanId = _taiSan.TaiSanId;
-            data.TTKK_Oto = angular.toJson(vm.data.TTKK_Oto);
-
-            vm.data.TTKK_500.TaiSanId = _taiSan.TaiSanId;
-            data.TTKK_500 = angular.toJson(vm.data.TTKK_500);
-
+            data.DanhGia = angular.toJson(prepareDanhGia(angular.copy(vm.data.DanhGia)));
             data.NguyenGiaList = angular.toJson(vm.data.listNguyenGia);
-            data.CoSoId = userInfo.CoSoId;
-            data.NhanVienId = userInfo.NhanVienId;
+            data.SoNamSuDung = vm.data.TaiSan.SoNamSuDung;
+            data.TyLeHaoMon = vm.data.TaiSan.TyLeHaoMon;
+            data.HaoMonLuyKe = vm.data.TaiSan.HaoMonLuyKe;
+            data.SLTon = vm.data.TaiSan.SLTon;
 
-            TaiSanService.update(data).then(function (success) {
+            data.COSO_ID = userInfo.CoSoId;
+            data.NHANVIEN_ID = userInfo.NhanVienId;
+
+            DanhGiaTaiSanService.update(data).then(function (success) {
                 console.log(success);
-                loadData();
                 utility.removeloadding();
-                utility.AlertSuccess('Cập nhật tài sản thành công');
+                utility.AlertSuccess('Lưu thông tin thành công');
             }, function (error) {
                 console.log(error);
                 utility.removeloadding();
                 if (error.status === 400) {
                     utility.AlertError(error.data.error.message);
                 } else {
-                    utility.AlertError('Không thể cập nhật tài sản');
+                    utility.AlertError('Không thể lưu thông tin');
                 }
             });
-        }
-
-        function fixListNguyenGia(list) {
-            for (var index in list) {
-                list[index].GiaTri = list[index].GiaTri || 0;
-                list[index].GiaTriCu = list[index].GiaTri;
-            }
         }
 
         function getListNguyenGia() {
@@ -497,13 +489,13 @@
 
             var data = {};
             data.TaiSanId = TaiSanSD.TaiSanId;
+            data.DanhGiaId = DanhGiaId;
 
-            TaiSanService.getListNguyenGiaByTaiSanId(data).then(function (success) {
-                console.log('TaiSanService.getListNguyenGiaByTaiSanId');
+            DanhGiaTaiSanService.getListNguyenGiaByDanhGia(data).then(function (success) {
+                console.log('DanhGiaTaiSanService.getListNguyenGiaByDanhGia');
                 console.log(success);
                 delete vm.data.listNguyenGia;
                 vm.data.listNguyenGia = success.data.data;
-                fixListNguyenGia(vm.data.listNguyenGia);
                 return deferred.resolve(success.data.data);
             }, function (error) {
                 console.log(error);
@@ -522,7 +514,7 @@
             angular.forEach(data, function (value) {
                 sum = sum + parseFloat(value[key]);
             });
-            return sum;
+            return sum || 0;
         };
     });
 })();

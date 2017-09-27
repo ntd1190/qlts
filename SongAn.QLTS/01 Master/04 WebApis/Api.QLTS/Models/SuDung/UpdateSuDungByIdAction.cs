@@ -32,6 +32,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.SuDung
             {
                 init();
                 validate();
+                var suDungIdTemp = 0;
 
                 if (_suDungId < 1)
                 {
@@ -47,26 +48,38 @@ namespace SongAn.QLTS.Api.QLTS.Models.SuDung
                 bizHeader.NoiDung = _phieuBaoDuong.NoiDung;
                 bizHeader.CoSoId = _phieuBaoDuong.CoSoId;
                 bizHeader.NguoiTao = _phieuBaoDuong.NguoiTao;
+                bizHeader.CtrVersion = _phieuBaoDuong.CtrVersion;
 
-                var result = await bizHeader.Execute();
-
-                foreach (var item in _listChiTiet)
+                IEnumerable<dynamic> SuDungId = await bizHeader.Execute();
+                if (SuDungId.Count() > 0)
                 {
-                    bizLine = new InsertSuDungChiTietBiz(context);
-                    bizLine.SuDungId = Protector.Int(_suDungId);
-                    bizLine.TaiSanId = Protector.Int(item.TaiSanId);
-                    bizLine.SoSanPhamPhucVu = Protector.Decimal(item.SoSanPhamPhucVu);
-                    bizLine.DonViTinhSanPham = item.DonViTinhSanPham;
-                    bizLine.SoNguyenLieuSuDung = Protector.Decimal(item.SoNguyenLieuSuDung);
-                    bizLine.DonViTinhNguyenLieu = item.DonViTinhNguyenLieu;
-                    bizLine.GhiChu = item.GhiChu;
+                    var obj = SuDungId.FirstOrDefault();
 
-                    var result_line = await bizLine.Execute();
+                    suDungIdTemp = Protector.Int(obj.ID);
+                }
+
+                if (suDungIdTemp > 0)
+                {
+                    foreach (var item in _listChiTiet)
+                    {
+                        bizLine = new InsertSuDungChiTietBiz(context);
+                        bizLine.SuDungId = Protector.Int(_suDungId);
+                        bizLine.TaiSanId = Protector.Int(item.TaiSanId);
+                        bizLine.PhongBanId = Protector.Int(item.PhongBanId);
+                        bizLine.NhanVienId = Protector.Int(item.NhanVienId);
+                        bizLine.SoSanPhamPhucVu = Protector.Decimal(item.SoSanPhamPhucVu);
+                        bizLine.DonViTinhSanPham = item.DonViTinhSanPham;
+                        bizLine.SoNguyenLieuSuDung = Protector.Decimal(item.SoNguyenLieuSuDung);
+                        bizLine.DonViTinhNguyenLieu = item.DonViTinhNguyenLieu;
+                        bizLine.GhiChu = item.GhiChu;
+
+                        var result_line = await bizLine.Execute();
+                    }
                 }
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
 
-                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, _metaData);
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, SuDungId, _metaData);
             }
             catch (FormatException ex)
             {

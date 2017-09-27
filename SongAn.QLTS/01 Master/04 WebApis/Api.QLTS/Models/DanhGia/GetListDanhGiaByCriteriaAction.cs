@@ -13,10 +13,12 @@ namespace SongAn.QLTS.Api.QLTS.Models.DanhGia
     {
         #region public
         public string Search { get; set; }
+        public string DanhGiaIds { get; set; }
         public string TaiSanIds { get; set; }
         public string PhongBanIds { get; set; }
         public string NhanVienIds { get; set; }
 
+        public string Fields { get; set; }
         public string sortName { get; set; }
         public string sortDir { get; set; }
         public int draw { get; set; }
@@ -35,9 +37,12 @@ namespace SongAn.QLTS.Api.QLTS.Models.DanhGia
         private void init()
         {
             Search = Protector.String(Search, "");
+            DanhGiaIds = Protector.String(DanhGiaIds, "");
             TaiSanIds = Protector.String(TaiSanIds, "");
             PhongBanIds = Protector.String(PhongBanIds, "");
             NhanVienIds = Protector.String(NhanVienIds, "");
+
+            Fields = Protector.String(Fields, "");
             sortName = Protector.String(sortName, "MAXCNT");
             sortDir = Protector.String(sortDir, "asc");
             _orderClause = sortName + " " + sortDir;
@@ -55,9 +60,16 @@ namespace SongAn.QLTS.Api.QLTS.Models.DanhGia
 
                 var biz = new GetListDanhGiaByCriteriaBiz(context);
                 biz.Search = Search;
+                biz.DanhGiaIds = DanhGiaIds;
                 biz.TaiSanIds = TaiSanIds;
                 biz.PhongBanIds = PhongBanIds;
                 biz.NhanVienIds = NhanVienIds;
+
+                biz.Field = Fields;
+                biz.OrderClause = _orderClause;
+                biz.skip = start;
+                biz.take = length;
+
                 biz.COSO_ID = COSO_ID;
                 biz.NHANVIEN_ID = NHANVIEN_ID;
 

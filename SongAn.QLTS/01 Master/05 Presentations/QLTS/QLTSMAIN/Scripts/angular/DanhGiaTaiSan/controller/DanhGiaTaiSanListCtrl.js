@@ -182,7 +182,7 @@
 
             tableState.draw = tableState.draw + 1 || 1;
             tableState.sort.reverse = tableState.sort.reverse === undefined ? true : tableState.sort.reverse;
-            tableState.sort.predicate = tableState.sort.predicate === undefined ? 'DG.TenTaiSan' : tableState.sort.predicate;
+            tableState.sort.predicate = tableState.sort.predicate === undefined ? 'TS.TenTaiSan' : tableState.sort.predicate;
 
             // chuẩn bị tham số 
             var data = {};

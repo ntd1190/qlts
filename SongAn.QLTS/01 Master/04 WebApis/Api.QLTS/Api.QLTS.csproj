@@ -104,6 +104,9 @@
     <Compile Include="Models\BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdAction.cs" />
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
+    <Compile Include="Models\DanhGia\GetListNguyenGiaByDanhGiaAction.cs" />
+    <Compile Include="Models\DanhGia\UpdateDanhGiaAction.cs" />
+    <Compile Include="Models\DanhGia\InsertDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\DuyetCap\DuyetDuyetCapChiTietAction.cs" />

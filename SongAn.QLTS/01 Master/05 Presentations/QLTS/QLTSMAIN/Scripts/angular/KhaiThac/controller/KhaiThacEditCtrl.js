@@ -262,6 +262,12 @@
                 return null;
             }
 
+            if (obj.TienThu > obj.SoLuongKhaiThac * obj.DonGiaKhaiThac) {
+                $("#txtTienThu").focus();
+                utility.AlertError('Số tiền thu không hợp lệ!');
+                return null;
+            }
+
             if (obj.TienThu < obj.NopNganSach) {
                 $("#txtNopNganSach").focus();
                 utility.AlertError('Số tiền nộp ngân sách vượt quá số tiền thu!');
@@ -379,7 +385,7 @@
                 }
                 else if (fromId == 'txtDonGiaKhaiThac') {
                     //vm.validate.DonGiaKhaiThac = utility.checkInValid(vm.data.objKhaiThac.DonGiaKhaiThac, 'isEmpty');
-                    if (obj.DonGiaKhaiThac === "")
+                    if (vm.data.objKhaiThac.DonGiaKhaiThac === "")
                         vm.validate.DonGiaKhaiThac = true;
                     if (vm.validate.DonGiaKhaiThac) {
                         $("#" + fromId).focus();

@@ -71,6 +71,8 @@
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGiaByCriteria.sql" />
+    <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGia.sql" />
+    <Content Include="DanhGia\Procedures\sp_DanhGia_UpdateDanhGia.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_InsertDanhGia.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListNguyenGiaByDanhGia.sql" />
     <Content Include="DieuChuyen\Procedures\sp_DieuChuyenChiTiet_GetDieuChuyenChiTietByDieuChuyenId.sql" />
@@ -83,7 +85,9 @@
     <Compile Include="CrystalReport\ReportGhiTangByIdDac.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamDac.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportSuDungByIdDac.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaDac.cs" />
+    <Compile Include="DanhGia\UpdateDanhGiaDac.cs" />
     <Compile Include="DanhGia\InsertDanhGiaDac.cs" />
     <Compile Include="DanhGia\GetListNguyenGiaByDanhGiaDac.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdDac.cs" />

@@ -237,7 +237,6 @@
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
-    <Content Include="Scripts\angular\DanhGiaTaiSan\controller\TaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapCapTrenEditCtrl.js" />
     <Content Include="Scripts\angular\DeNghiTrangCap\controller\DeNghiTrangCapEditCtrl.js" />
