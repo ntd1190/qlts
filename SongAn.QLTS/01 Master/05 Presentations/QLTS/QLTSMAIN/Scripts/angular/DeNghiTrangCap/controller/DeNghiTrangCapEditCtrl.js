@@ -35,7 +35,7 @@
         }
 
         vm.error = {};
-
+       
         vm.data = {};
         vm.data.phieuDeNghi = {};
         vm.data.listChiTiet = [];
@@ -45,7 +45,10 @@
         vm.data.showButtonSave = false;
         vm.data.showButtonXoa = false;
         vm.data.showButtonNew = false;
+        vm.data.showButtonDuyet = false;
         vm.data.Tilte = 'Thêm';
+        vm.data.phieuDeNghi.DuyetId = 0;
+        vm.data.phieuDeNghi.DenghiId = 0;
         /*** INIT FUNCTION ***/
 
         // chạy khi controller được khởi tạo
@@ -93,6 +96,31 @@
 
         vm.action.goBack = function () {
             window.history.back();
+        };
+        vm.action.GuiCapTren = function () {
+            vm.data.phieuDeNghi.GuiCapTren = 1;
+            utility.addloadding($('body'));
+            vm.data.phieuDeNghi.CoSoId = userInfo.CoSoId;
+
+            var phieuDeNghi = utility.clone(vm.data.phieuDeNghi);
+            var data = {};
+            data.deNghiId = phieuDeNghiId;
+            data.phieuDeNghi = angular.toJson(phieuDeNghi);
+            data.listChiTiet = angular.toJson(vm.data.listChiTiet);
+            data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            DenNghiTrangCapService.update(data)
+                .then(function success(result) {
+                    utility.removeloadding();
+                    utility.AlertSuccess("Gửi thành công");
+                }, function error(result) {
+                    console.log(result);
+                    utility.removeloadding();
+                    if (result.status === 400) {
+                        alert(result.data.error.message);
+                    } else {
+                        utility.AlertError('Không thể cập nhật');
+                    }
+                });
         };
 
         vm.action.In = function () {
@@ -214,6 +242,10 @@
 
         function setEnableButton() {
             if (vm.data.listQuyenTacVu.length > 0) {
+                // Co quyen duyet
+                if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
+                    vm.data.showButtonDuyet = true;
+                }
 
                 // Co quyen them moi
                 if (vm.data.listQuyenTacVu.indexOf("N") > 0) {

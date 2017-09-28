@@ -68,6 +68,12 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     biz.KiemKeId = search;
                     ds = biz.ExecuteDac();
                 }
+                else if (reportname == "rptSuDungById.rpt")
+                {
+                    ReportSuDungByIdBiz biz = new ReportSuDungByIdBiz(context);
+                    biz.SuDungId = search;
+                    ds = biz.ExecuteDac();
+                }
 
                 if (reportname == "rptGhiGiam.rpt")
                 {
@@ -76,13 +82,30 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     ds = biz.ExecuteBiz();
 
                 }
-                
+                if (reportname == "rptTDTT_Nha.rpt")
+                {
+                    var biz = new ReportTDTTNhaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
+                if (reportname == "rptTDTT_Oto.rpt")
+                {
+                    var biz = new ReportTDTTNhaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
+                if (reportname == "rptTDTT_Tren500.rpt")
+                {
+                    var biz = new ReportTDTTNhaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
                 ds.Tables[0].TableName = "Tables";
                 if (reportname == "rptKiemKeById.rpt")
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptKiemKeById.xml");
+                //ds.WriteXmlSchema(@"D:\rptSuDungById.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

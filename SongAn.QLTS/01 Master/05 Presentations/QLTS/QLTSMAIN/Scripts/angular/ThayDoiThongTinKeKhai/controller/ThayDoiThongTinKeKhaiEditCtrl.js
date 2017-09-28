@@ -103,6 +103,27 @@
             }
         }
 
+        vm.action.In = function () {
+            var report_name = 'rptTDTT_Nha';
+            switch (vm.data.TDTT.LoaiKeKhai.toString()) {
+                case '1':
+                    report_name = 'rptTDTT_Nha';
+                    break;
+                case '2':
+                    report_name = 'rptTDTT_Nha';
+                    break;
+                case '3':
+                    report_name = 'rptTDTT_Oto';
+                    break;
+                case '4':
+                    report_name = 'rptTDTT_Tren500';
+                    break;
+            }
+
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=' + report_name + '&data=' + ThayDoiThongTinId);
+            $('#reportmodal').modal('show');
+        };
+
         vm.action.keyPressTTKK = function (event) {
             if (event.keyCode != 13) { return; }
             if (checkInputTTKK($(event.target).data('name')) === false) {

@@ -93,7 +93,8 @@
                             <span ng-switch-default ng-bind="::DenNghiTrangCap[cot.MaCot]"></span>
                         </td>
                         <td ng-if="DenNghiTrangCap.DuyetId==0" style="padding-left: 3.5%;">
-                            <span class="form-control label label-warning" ng-bind="DenNghiTrangCap.TrangThai"></span>
+                            <span class="form-control label label-warning" ng-if="DenNghiTrangCap.GuiCapTren==1">Đã gửi - Chờ duyệt</span>
+                            <span class="form-control label label-warning" ng-bind="DenNghiTrangCap.TrangThai"  ng-if="DenNghiTrangCap.GuiCapTren!=1"></span>
 
                         </td>
                         <td ng-if="DenNghiTrangCap.DuyetId==1" style="padding-left: 3.5%;">

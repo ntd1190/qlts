@@ -29,12 +29,12 @@
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    <div class="row form-group form-group-sm" 
+                    <div class="row form-group form-group-sm"
                          ng-class="ctrl.error.DanhGia_NgayChungTu?'has-error':''">
                         <span class="col-sm-4">Ngày chứng từ<span class="text-danger">&nbsp;*</span></span>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control datetimepicker date" 
-                                   ng-model="ctrl.data.DanhGia.NgayChungTu" 
+                            <input type="text" class="form-control datetimepicker date"
+                                   ng-model="ctrl.data.DanhGia.NgayChungTu"
                                    ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_NgayChungTu" data-next="DanhGia_NgayDanhGia" />
                         </div>
                     </div>
@@ -43,38 +43,43 @@
                     <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_NgayDanhGia?'has-error':''">
                         <span class="col-sm-4">Ngày đánh giá<span class="text-danger">&nbsp;*</span></span>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control datetimepicker date" 
-                                   ng-model="ctrl.data.DanhGia.NgayDanhGia" 
+                            <input type="text" class="form-control datetimepicker date"
+                                   ng-model="ctrl.data.DanhGia.NgayDanhGia"
                                    ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_NgayDanhGia" data-next="DanhGia_NoiDung" />
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_NoiDung?'has-error':''">
-                <span class="col-sm-1">Nội dung</span>
-                <div class="col-sm-11">
-                    <input type="text" class="form-control" 
-                           ng-model="ctrl.data.DanhGia.NoiDung" 
-                           ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_NoiDung" data-next="DanhGia_TaiSanId" />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_NoiDung?'has-error':''">
+                        <span class="col-sm-1" style="width: 10.8%;">Nội dung</span>
+                        <div class="col-sm-10" style="width:  89.2%;">
+                            <input type="text" class="form-control"
+                                   ng-model="ctrl.data.DanhGia.NoiDung"
+                                   ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_NoiDung" data-next="DanhGia_TaiSanId" />
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_TaiSanId?'has-error':''">
-                <span class="col-sm-1">Chọn tài sản</span>
-                <div class="col-sm-11">
-                    <cbo-tai-san-su-dung ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_TaiSanId" data-next="btn_addNguyenGia" 
-                                         data-disabled="ctrl.status.isEdit"
-                                         data-config="{userInfo:@(ViewBag.userInfo)}"
-                                         data-value="ctrl.data.DanhGia.TaiSanId"
-                                         data-phong-ban="ctrl.data.DanhGia.PhongBanId"
-                                         data-nhan-vien="ctrl.data.DanhGia.NhanVienId"
-                                         on-selected="ctrl.action.getDataTaiSan(data)"
-                                         template-url="~/taisan/showview?viewname=cbotaisansudung"></cbo-tai-san-su-dung>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_TaiSanId?'has-error':''">
+                        <span class="col-sm-1"  style="width: 10.8%;">Chọn tài sản</span>
+                        <div class="col-sm-10" style="width:  89.2%;">
+                            <cbo-tai-san-su-dung ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_TaiSanId" data-next="btn_addNguyenGia"
+                                                 data-disabled="ctrl.status.isEdit"
+                                                 data-config="{userInfo:@(ViewBag.userInfo)}"
+                                                 data-value="ctrl.data.DanhGia.TaiSanId"
+                                                 data-phong-ban="ctrl.data.DanhGia.PhongBanId"
+                                                 data-nhan-vien="ctrl.data.DanhGia.NhanVienId"
+                                                 on-selected="ctrl.action.getDataTaiSan(data)"
+                                                 template-url="~/taisan/showview?viewname=cbotaisansudung"></cbo-tai-san-su-dung>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
-                <div class="panel-heading">
-                    <span class="panel-title">Thông tin chi tiết</span>
-                </div>
                 <div class="panel-body" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M') || true">
                     <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.addNguyenGia()" data-name="btn_addNguyenGia"><i class="fa fa-fw fa-plus"></i>Thêm (F2)</button>
                 </div>
@@ -212,18 +217,18 @@
                 </div>
             </div>
         </div>
-        <div class="panel-footer">
-            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
-                <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
-            </span>
-            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
-                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
-            </span>
-            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
-            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+                <div class="panel-footer">
+                    <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
+                    </span>
+                    <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 @section ImportStyles{
     @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
 }

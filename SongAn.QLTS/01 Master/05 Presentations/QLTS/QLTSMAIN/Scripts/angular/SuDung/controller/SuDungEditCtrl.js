@@ -87,11 +87,11 @@
             }
 
             initEventListener();
-            $("#txtMaTaiSan").focus();
+            $('select').first().focus();
         };
-
+        
         /* ACTION FUNCTION */
-
+        
         vm.action = {};
 
         vm.action.goBack = function () {
@@ -106,7 +106,7 @@
         vm.action.add = function () {
             CreateListChiTiet();
             var fc = function () {
-                $("#txtTenBoPhan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                $("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
             }
             $timeout(fc, 6);
         };

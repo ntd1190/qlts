@@ -433,13 +433,13 @@
 
         function removeList() {
             var data = {};
-            data.TaiSanIds = vm.data.TaiSan.TaiSanId;
+            data.DanhGiaId = vm.data.DanhGia.DanhGiaId;
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TaiSanService.removeList(data).then(function (success) {
+            DanhGiaTaiSanService.removeById(data).then(function (success) {
                 console.log(success);
-                utility.AlertSuccess('Xóa tài sản thành công');
+                utility.AlertSuccess('Xóa thông tin thành công');
                 $timeout(function () {
                     window.location = linkUrl + 'list/';
                 }, 2000);
@@ -448,7 +448,7 @@
                 if (error.status === 400) {
                     utility.AlertError(error.data.error.message);
                 } else {
-                    utility.AlertError('Không thể xóa tài sản');
+                    utility.AlertError('Không thể xóa thông tin');
                 }
             });
 

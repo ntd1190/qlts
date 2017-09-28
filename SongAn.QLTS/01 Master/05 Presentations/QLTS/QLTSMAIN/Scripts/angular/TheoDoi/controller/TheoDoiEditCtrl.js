@@ -270,6 +270,7 @@
         function refresh() {
 
             $("#txtMaTaiSan").focus();
+            getById();
             vm.validate.MaTaiSan = false;
             vm.validate.TaiSanId = false;
             vm.validate.NgayGhiTang = false;

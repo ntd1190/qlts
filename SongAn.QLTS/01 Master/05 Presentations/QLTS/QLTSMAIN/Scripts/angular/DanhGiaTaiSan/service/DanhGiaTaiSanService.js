@@ -6,13 +6,11 @@
         var api = {
             url: API_BASE + 'Api.QLTS/DanhGia/',
             insert: 'InsertDanhGia',
-
             update: 'UpdateDanhGia',
             getById: 'GetListDanhGiaByCriteria',
             getPage: 'GetListDanhGiaByCriteria',
-            removeList: 'DeleteListTaiSan',
+            removeById: 'DeleteDanhGia',
             getListNguyenGiaByDanhGia: 'GetListNguyenGiaByDanhGia',
-            getListNguyenGiaByTaiSanId: 'getListNguyenGiaByTaiSanId',
         }
         var service = {};
         service.insert = function (data) {
@@ -39,8 +37,8 @@
 
             return $http(req);
         };
-        service.removeList = function (data) {
-            var url = api.url + api.removeList;
+        service.removeById = function (data) {
+            var url = api.url + api.removeById;
 
             var req = {
                 url: url,
@@ -75,19 +73,6 @@
 
             return $http(req);
         };
-        service.getListNguyenGiaByTaiSanId = function (data) {
-            var url = api.url + api.getListNguyenGiaByTaiSanId;
-
-            var req = {
-                url: url,
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(data)
-            }
-
-            return $http(req);
-        };
-
         service.getListNguyenGiaByDanhGia = function (data) {
             var url = api.url + api.getListNguyenGiaByDanhGia;
 

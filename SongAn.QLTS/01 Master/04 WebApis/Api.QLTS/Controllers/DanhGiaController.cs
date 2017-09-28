@@ -34,5 +34,11 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteDanhGia([FromBody]DeleteDanhGiaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

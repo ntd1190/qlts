@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService, utility, $timeout, $scope, $q) {
+    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService,TaiSanService, utility, $timeout, $scope, $q) {
         var vm = this, userInfo, _tableState,
             isEdit = false, linkUrl = '', service = DanhGiaTaiSanService;
 
@@ -15,10 +15,14 @@
         vm.inputSearch = {};
 
         vm.data = {};
+        vm.data.TaiSan = {};
+        vm.data.DanhGia = {};
         vm.data.ListDanhGia = {};
         vm.data.listCot = [
             { MaCot: 'SoChungTu', TenCot: 'Số chứng từ', HienThiYN: true, DoRong: 100 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'NgayDanhGia', TenCot: 'Ngày đánh giá', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'NgayChungTu', TenCot: 'Ngày chứng từ', HienThiYN: true, DoRong: 0 },
         ]
 
         /*** ACTION FUNCTION ***/
@@ -43,6 +47,13 @@
                 vm.data.ListDanhGia[i].isView = false;
             }
             object.isView = true;
+            vm.data.DanhGia = object;
+
+            getTaiSanById(object.TaiSanId).then(function () {
+                tinhHaoMon();
+                importTaiSanToDanhGia();
+                tinhHaoMonCu();
+            });
         }
         vm.action.search = function () {
             _tableState.pagination.start = 0;
@@ -94,6 +105,33 @@
 
         /*** BIZ FUNCTION ***/
 
+        function importTaiSanToDanhGia() {
+            vm.data.DanhGia.NgayBDHaoMonCu = vm.data.TaiSan.NgayBDHaoMon;
+
+            vm.data.DanhGia.NguyenGiaCu = vm.data.DanhGia.NguyenGiaCu == null ? vm.data.TaiSan.NguyenGia : vm.data.DanhGia.NguyenGiaCu;
+            vm.data.DanhGia.SoNamSuDungCu = vm.data.DanhGia.SoNamSuDungCu == null ? vm.data.TaiSan.SoNamSuDung : vm.data.DanhGia.SoNamSuDungCu;
+            vm.data.DanhGia.TyLeHaoMonCu = vm.data.DanhGia.TyLeHaoMonCu == null ? vm.data.TaiSan.TyLeHaoMon : vm.data.DanhGia.TyLeHaoMonCu;
+            vm.data.DanhGia.HaoMonLuyKeCu = vm.data.DanhGia.HaoMonLuyKeCu == null ? vm.data.TaiSan.HaoMonLuyKe : vm.data.DanhGia.HaoMonLuyKeCu;
+        }
+
+        function tinhHaoMonCu() {
+            vm.data.DanhGia.NguyenGiaCu = vm.data.DanhGia.NguyenGiaCu || 0;
+            vm.data.DanhGia.TyLeHaoMonCu = vm.data.DanhGia.TyLeHaoMonCu || 0;
+
+            vm.data.DanhGia.HaoMonNamCu = vm.data.DanhGia.NguyenGiaCu * vm.data.DanhGia.TyLeHaoMonCu / 100;
+
+            vm.data.DanhGia.SoNamSDConLaiCu = (moment().year() - moment(vm.data.DanhGia.NgayBDHaoMonCu, 'YYYY-MM-DD').year());
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSuDungCu - vm.data.DanhGia.SoNamSDConLaiCu;
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSDConLaiCu < 0 ? 0 : vm.data.DanhGia.SoNamSDConLaiCu;
+            vm.data.DanhGia.SoNamSDConLaiCu = vm.data.DanhGia.SoNamSDConLaiCu || 0;
+
+            vm.data.DanhGia.HaoMonLuyKeCu = (vm.data.DanhGia.SoNamSuDungCu - vm.data.DanhGia.SoNamSDConLaiCu) * vm.data.DanhGia.HaoMonNamCu;
+            vm.data.DanhGia.HaoMonLuyKeCu = vm.data.DanhGia.HaoMonLuyKeCu || 0;
+
+            vm.data.DanhGia.GiaTriConLaiCu = vm.data.DanhGia.NguyenGiaCu - vm.data.DanhGia.HaoMonLuyKeCu;
+            vm.data.DanhGia.GiaTriConLaiCu = vm.data.DanhGia.GiaTriConLaiCu || 0;
+        }
+
         function checkQuyenUI(quyen) {
             var listQuyenTacVu;
             // kiểm tra danh sách quyền khác null
@@ -138,6 +176,27 @@
                 list[i].isSelected = isSelected;
             }
             return isSelected;
+        }
+
+        function tinhHaoMon() {
+            vm.data.TaiSan.NguyenGia = vm.data.TaiSan.NguyenGia | 0;
+            vm.data.TaiSan.SoNamSuDung = vm.data.TaiSan.SoNamSuDung | 0;
+
+            vm.data.TaiSan.TyLeHaoMon = 100 / vm.data.TaiSan.SoNamSuDung;
+            vm.data.TaiSan.HaoMonNam = vm.data.TaiSan.NguyenGia / vm.data.TaiSan.SoNamSuDung;
+
+            vm.data.TaiSan.SoNamSDConLai = (moment().year() - moment(vm.data.TaiSan.NgayBDHaoMon, 'YYYY-MM-DD').year());
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai;
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSDConLai < 0 ? 0 : vm.data.TaiSan.SoNamSDConLai;
+
+            vm.data.TaiSan.HaoMonLuyKe = (vm.data.TaiSan.SoNamSuDung - vm.data.TaiSan.SoNamSDConLai) * vm.data.TaiSan.HaoMonNam;
+            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
+
+            vm.data.TaiSan.TyLeHaoMon = vm.data.TaiSan.TyLeHaoMon | 0;
+            vm.data.TaiSan.HaoMonNam = vm.data.TaiSan.HaoMonNam | 0;
+            vm.data.TaiSan.SoNamSDConLai = vm.data.TaiSan.SoNamSDConLai | 0;
+            vm.data.TaiSan.HaoMonLuyKe = vm.data.TaiSan.HaoMonLuyKe | 0;
+            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.GiaTriConLai | 0;
         }
 
         /*** API FUNCTION TÀI SẢN ***/
@@ -209,17 +268,41 @@
             });
         };
 
-    });
+        function getTaiSanById(id) {
+            var deferred = $q.defer();
+            var data = {};
+            data.TaiSanId = id;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
 
-    module.filter('sumOfValue', function () {
-        return function (data, key) {
-            if (angular.isUndefined(data) || angular.isUndefined(key))
-                return 0;
-            var sum = 0;
-            angular.forEach(data, function (value) {
-                sum = sum + parseFloat(value[key]);
+            TaiSanService.getById(data).then(function (success) {
+                console.log(success);
+                vm.data.TaiSan = success.data.data[0];
+                deferred.resolve(success);
+            }, function (error) {
+                deferred.resolve(error);
             });
-            return sum;
-        };
+
+            return deferred.promise;
+        }
+
+        function getDanhGiaById(id) {
+            var deferred = $q.defer();
+            var data = {};
+            data.DanhGiaId = id;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            DanhGiaTaiSanService.getById(data).then(function (success) {
+                console.log(success);
+                vm.data.DanhGia = success.data.data[0];
+                deferred.resolve(success);
+            }, function (error) {
+                deferred.resolve(error);
+            });
+
+            return deferred.promise;
+        }
+
     });
 })();

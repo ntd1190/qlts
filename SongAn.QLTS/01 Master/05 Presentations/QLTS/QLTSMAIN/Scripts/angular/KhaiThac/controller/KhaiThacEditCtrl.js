@@ -79,7 +79,7 @@
 
                 // Co quyen them moi
                 if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
-                    vm.data.showButtonSave = vm.data.KhaiThacId == 0 ? true : vm.data.showButtonSave;
+                    vm.data.showButtonSave = vm.data.KhaiThacId == 0 ? true : vm.data.showButtonNew;
                 }
 
                 // Co quyen Xoa
@@ -208,6 +208,8 @@
         }
 
         function InvalidateData() {
+            resetValidate();
+
             var obj = vm.data.objKhaiThac;
             console.log(vm.data.objKhaiThac);
 
@@ -262,25 +264,25 @@
                 return null;
             }
 
-            if (obj.TienThu > obj.SoLuongKhaiThac * obj.DonGiaKhaiThac) {
+            if (+obj.TienThu > obj.SoLuongKhaiThac * obj.DonGiaKhaiThac) {
                 $("#txtTienThu").focus();
                 utility.AlertError('Số tiền thu không hợp lệ!');
                 return null;
             }
 
-            if (obj.TienThu < obj.NopNganSach) {
+            if (+obj.TienThu < +obj.NopNganSach) {
                 $("#txtNopNganSach").focus();
                 utility.AlertError('Số tiền nộp ngân sách vượt quá số tiền thu!');
                 return null;
             }
 
-            if (obj.TienThu < obj.DonVi) {
+            if (+obj.TienThu < +obj.DonVi) {
                 $("#txtDonVi").focus();
                 utility.AlertError('Số tiền giữ lại đơn vị vượt quá số tiền thu!');
                 return null;
             }
 
-            if (obj.TienThu < obj.DonVi + obj.NopNganSach) {
+            if (+obj.TienThu < +obj.DonVi + +obj.NopNganSach) {
                 $("#txtNopNganSach").focus();
                 utility.AlertError('Tổng số tiền giữ lại đơn vị và nộp ngân sách vượt quá số tiền thu!');
                 return null;
@@ -318,9 +320,24 @@
         }
 
         function refresh() {
-
+            if (vm.data.KhaiThacId == 0) {
+                reset();
+            }
             $("#txtSoChungTu").focus();
-            getById();
+            vm.validate.SoChungTu = false;
+            vm.validate.MaTaiSan = false;
+            vm.validate.TaiSanId = false;
+            vm.validate.SoLuongKhaiThac = false;
+            vm.validate.DonGiaKhaiThac = false;
+            vm.validate.ThoiGianBatDau = false;
+            vm.validate.ThoiGianKetThuc = false;
+            vm.validate.TienThu = false;
+            vm.validate.NopNganSach = false;
+            vm.validate.DonVi = false;
+            vm.validate.TienThu = false;
+        }
+
+        function resetValidate() {
             vm.validate.SoChungTu = false;
             vm.validate.MaTaiSan = false;
             vm.validate.TaiSanId = false;

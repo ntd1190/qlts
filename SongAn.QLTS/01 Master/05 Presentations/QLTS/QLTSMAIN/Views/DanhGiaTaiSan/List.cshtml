@@ -58,7 +58,8 @@
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCot" ng-switch="cot.MaCot">
                             <a ng-switch-when="SoChungTu" ng-switch-when-separator="," href="~/danhgiataisan/edit/{{row.DanhGiaId}}" ng-bind="row[cot.MaCot]"></a>
-                           <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
+                            <span ng-switch-when="NgayDanhGia,NgayChungTu" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></span>
+                            <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                         </td>
                     </tr>
                 </tbody>
@@ -79,53 +80,46 @@
                 <div class="panel-body">
                     <div class="row heading text-center">
                         <div class="col-sm-3"></div>
-                        <div class="col-sm-3">Thông tin cũ<hr /></div>
                         <div class="col-sm-3">Thông tin mới<hr /></div>
+                        <div class="col-sm-3">Thông tin cũ<hr /></div>
                         <div class="col-sm-3">Chênh lệch<hr /></div>
                     </div>
                     <div class="row text-right">
                         <div class="col-sm-3 text-left">Nguyên giá</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.NguyenGia|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.NguyenGiaCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.NguyenGia - ctrl.data.DanhGia.NguyenGiaCu|number"></div>
                     </div>
                     <div class="row text-right">
                         <div class="col-sm-3 text-left">Giá trị còn lại</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.GiaTriConLai|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.GiaTriConLaiCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.GiaTriConLai - ctrl.data.DanhGia.GiaTriConLaiCu|number"></div>
                     </div>
                     <div class="row text-right">
                         <div class="col-sm-3 text-left">Số năm sử dụng</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.SoNamSuDung|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.SoNamSuDungCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.SoNamSuDung - ctrl.data.DanhGia.SoNamSuDungCu|number"></div>
                     </div>
                     <div class="row text-right">
                         <div class="col-sm-3 text-left">Số năm còn lại</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.SoNamSDConLai|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.SoNamSDConLaiCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.SoNamSDConLai - ctrl.data.DanhGia.SoNamSDConLaiCu|number"></div>
                     </div>
                     <div class="row text-right">
-                        <div class="col-sm-3 text-left">Tỉ lệ hao mòn năm</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3 text-left">Tỷ lệ hao mòn năm</div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.TyLeHaoMon|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.TyLeHaoMonCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.TyLeHaoMon - ctrl.data.DanhGia.TyLeHaoMonCu|number"></div>
                     </div>
                     <div class="row text-right">
                         <div class="col-sm-3 text-left">Số hao mòn năm</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.HaoMonNam|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.DanhGia.HaoMonNamCu|number"></div>
+                        <div class="col-sm-3" ng-bind="ctrl.data.TaiSan.HaoMonNam - ctrl.data.DanhGia.HaoMonNamCu|number"></div>
                     </div>
-                    <div class="row text-right">
-                        <div class="col-sm-3 text-left">Số lượng</div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                        <div class="col-sm-3" ng-bind="1000000|number"></div>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -153,4 +147,5 @@
     <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     <script src="~/Scripts/angular/DanhGiaTaiSan/controller/DanhGiaTaiSanListCtrl.js"></script>
     <script src="~/Scripts/angular/DanhGiaTaiSan/service/DanhGiaTaiSanService.js"></script>
+    <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
 }

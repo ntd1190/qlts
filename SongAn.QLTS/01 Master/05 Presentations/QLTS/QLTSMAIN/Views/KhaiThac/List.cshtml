@@ -55,7 +55,7 @@
                         <th class="text-center" style="min-width: 130px; vertical-align:middle"  rowspan="2">Bộ phận sử dụng</th>
                         <th class="text-center" style="min-width: 80px; vertical-align:middle" rowspan="2">ĐVT</th>
                         <th class="text-center" style="min-width: 200px; vertical-align:middle"  rowspan="2">Đơn vị thuê</th>
-                        <th class="text-center" style="min-width: 200px; vertical-align:middle" rowspan="2">Số lượng thuê</th>
+                        <th class="text-center" style="min-width: 110px; vertical-align:middle" rowspan="2">Số lượng thuê</th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Đơn giá thuê</th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Thời gian BĐ</th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Thời gian KT</th>
@@ -89,15 +89,15 @@
                         <td class="text-left"><span>{{ KhaiThac.TenPhongBan }}</span></td>
                         <td class="text-left"><span>{{ KhaiThac.DonViTinh }}</span></td>
                         <td class="text-left"><span>{{ KhaiThac.TenKhachHang }}</span></td>
-                        <td class="text-left"><span>{{ KhaiThac.SoLuongKhaiThac }}</span></td>
-                        <td class="text-right"><span>{{ KhaiThac.DonGiaKhaiThac }}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.SoLuongKhaiThac }}</span></td>
+                        <td class="text-right"><span>{{ KhaiThac.DonGiaKhaiThac |number}}</span></td>
                         <td class="text-center"><span>{{ KhaiThac.ThoiGianBatDau | date : 'dd/MM/yyyy'}}</span></td>
                         <td class="text-center"><span>{{ KhaiThac.ThoiGianKetThuc | date : 'dd/MM/yyyy'}}</span></td>
                         <td class="text-right"><span>{{ KhaiThac.TongSoTien |number}}</span></td>
                         <td class="text-right"><span>{{ KhaiThac.TienThu |number}}</span></td>
                         <td class="text-right"><span>{{ KhaiThac.NopNganSach |number}}</span></td>
                         <td class="text-right"><span>{{ KhaiThac.DonVi |number}}</span></td>
-                        <td class="text-center"><span>{{ KhaiThac.GhiChu }}</span></td>
+                        <td class="text-left"><span>{{ KhaiThac.GhiChu }}</span></td>
 
                         <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
                             <span style="text-align:center;display:block" ng-switch-when="NgayTao">{{ KhaiThac.NgayTao | date : 'dd/MM/yyyy'}}</span>
@@ -175,7 +175,7 @@
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.DonGiaKhaiThac)?'has-error':''">
                     <label class="control-label col-sm-3">Đơn giá thuê<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                     <div class="col-sm-9">
-                        <input type="number" min="0" id="txtDonGiaKhaiThac" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonGiaKhaiThac" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonGiaKhaiThac,'txtDonGiaKhaiThac','txtThoiGianBatDau',$event)" />
+                        <input type="text" number-format id="txtDonGiaKhaiThac" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonGiaKhaiThac" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonGiaKhaiThac,'txtDonGiaKhaiThac','txtThoiGianBatDau',$event)" />
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.ThoiGianBatDau)?'has-error':''">
@@ -199,19 +199,19 @@
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TienThu)?'has-error':''">
                     <label class="control-label col-sm-3">Số tiền thu được</label>
                     <div class="col-sm-9">
-                        <input type="number" min="0" id="txtTienThu" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.TienThu" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.TienThu,'txtTienThu','txtNopNganSach',$event)" />
+                        <input type="text" number-format id="txtTienThu" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.TienThu" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.TienThu,'txtTienThu','txtNopNganSach',$event)" />
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.NopNganSach)?'has-error':''">
                     <label class="control-label col-sm-3">Nộp NSNN</label>
                     <div class="col-sm-9">
-                        <input type="number" min="0" id="txtNopNganSach" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.NopNganSach" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.NopNganSach,'txtNopNganSach','txtDonVi',$event)" />
+                        <input type="text" number-format id="txtNopNganSach" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.NopNganSach" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.NopNganSach,'txtNopNganSach','txtDonVi',$event)" />
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.DonVi)?'has-error':''">
                     <label class="control-label col-sm-3">Để lại đơn vị</label>
                     <div class="col-sm-9">
-                        <input type="number" min="0" id="txtDonVi" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonVi" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonVi,'txtDonVi','txtGhiChu',$event)" />
+                        <input type="text" number-format id="txtDonVi" class="form-control text-right" ng-model="ctrl.data.objKhaiThac.DonVi" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhaiThac.DonVi,'txtDonVi','txtGhiChu',$event)" />
                     </div>
                 </div>
 
