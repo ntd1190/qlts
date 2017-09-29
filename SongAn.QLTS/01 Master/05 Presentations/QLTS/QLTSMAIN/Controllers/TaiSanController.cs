@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SongAn.QLDN.UI.QLDNMAIN.Controllers
 {
-    [CustomAuthorize(FunctionCodes = "CN0022")]
+    //[CustomAuthorize(FunctionCodes = "CN0022")]
     public class TaiSanController : BaseController
     {
         private string FunctionCode = "CN0022";
