@@ -536,16 +536,21 @@
                                                 <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.NhanHieu" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_NhanHieu" data-next="TTKK_Oto_BienKiemSoat" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_BienKiemSoat?'has-error':''">
                                             <span class="col-sm-4">Biển kiểm soát <span class="text-danger">*</span></span>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.BienKiemSoat" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_BienKiemSoat" data-next="TTKK_Oto_CongSuatXe" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_CongSuatXe?'has-error':''">
                                             <span class="col-sm-4">Công suất xe <span class="text-danger">*</span></span>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.CongSuatXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_CongSuatXe" data-next="TTKK_Oto_TrongTai" />
+                                                <input type="text" class="form-control" number-format
+                                                       ng-model="ctrl.data.TTKK_Oto.CongSuatXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_CongSuatXe" data-next="TTKK_Oto_TrongTai" />
                                             </div>
                                         </div>
                                     </div>
@@ -553,15 +558,20 @@
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_TrongTai?'has-error':''">
                                             <span class="col-sm-4">Tải trọng <span class="text-danger">*</span></span>
                                             <div class="col-sm-8">
-                                                <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.TrongTai" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_TrongTai" data-next="TTKK_Oto_ChucDanh" />
+                                                <input type="text" class="form-control" number-format
+                                                       ng-model="ctrl.data.TTKK_Oto.TrongTai" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_TrongTai" data-next="TTKK_Oto_ChucDanh" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_ChucDanh?'has-error':''">
                                             <span class="col-sm-4">Chức danh</span>
                                             <div class="col-sm-8">
                                                 <input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.ChucDanh" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_ChucDanh" data-next="TTKK_Oto_NguonGocXe" />
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_NguonGocXe?'has-error':''">
                                             <span class="col-sm-4">Nguồn gốc xe</span>
                                             <div class="col-sm-8">
@@ -579,9 +589,10 @@
                                                     <option value="3">Xe tăng</option>
                                                     <option value="4">Xe xích đu</option>
                                                 </select>
-                                                @*<input type="text" class="form-control" ng-model="ctrl.data.TTKK_Oto.LoaiXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_LoaiXe" data-next="TTKK_Oto_HienTrangSuDung" />*@
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="col-sm-4">
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_HienTrangSuDung?'has-error':''">
                                             <span class="col-sm-4">Hiện trạng SD <span class="text-danger">*</span></span>
                                             <div class="col-sm-8">
@@ -592,8 +603,6 @@
                                 </div>
                             </div>
                         </div>
-
-
                     </div><!--/ Kê khai ô tô -->
                     <!-- Kê khai tài sản trên 500 triệu -->
                     <div class="collapse fade" ng-class="ctrl.data.TaiSan.LoaiKeKhai==4?'in':''">

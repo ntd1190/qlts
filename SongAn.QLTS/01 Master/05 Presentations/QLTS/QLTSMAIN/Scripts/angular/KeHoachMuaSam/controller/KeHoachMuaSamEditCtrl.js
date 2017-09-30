@@ -17,7 +17,7 @@
             showButtonSave: false,
             Tilte : 'Thêm',
             listQuyenTacVu: [],
-            objKeHoachMuaSam: {Nam:moment().format('YYYY')},
+            objKeHoachMuaSam: {Nam:moment().format('YYYY'),DuyetId:0},
             listChiTiet: [{ TenTaiSan: '', LoaiId: 0, PhuongThucId: 0, DonViTinh: '', MoTa: '', Ngay: moment().format('DD/MM/YYYY'), SoLuong: 0, DonGia: 0, HinhThucId: 0, DuToan: 0, GhiChu: '' }],
             isEdit: false
         };

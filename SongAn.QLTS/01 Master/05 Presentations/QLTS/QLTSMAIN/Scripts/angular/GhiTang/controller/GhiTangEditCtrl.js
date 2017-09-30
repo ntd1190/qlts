@@ -246,14 +246,14 @@
         }
 
         vm.action.resetNhanVienId = function (data, index) {
-            console.log(data);
-            console.log(index);
+            //console.log(data);
+            //console.log(index);
             vm.data.listChiTiet[index.$index].PhongBanId = data.PhongBanId;
             vm.data.listChiTiet[index.$index].NhanVienId = 0;
         }
         vm.action.getDataTaiSan = function (data, index) {
-            console.log(data);
-            console.log(index);
+            //console.log(data);
+            //console.log(index);
 
             vm.data.listChiTiet[index.$index].TaiSanId = data.TaiSanId;
             vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan || vm.data.listChiTiet[index.$index].MaTaiSan;;
@@ -263,7 +263,7 @@
 
         }
         vm.action.nhanVienByPhongBanSelected = function (data, index) {
-            console.log(data);
+            //console.log(data);
             vm.data.listChiTiet[index.$index].NhanVienId = data.NhanVienId;
         }
 

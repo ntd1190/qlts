@@ -53,13 +53,16 @@
         }
        
         $scope.$watch('phongbanid', function (newValue, oldValue) {
-           
+            if (newValue == oldValue)
+                return;
+
             if (!newValue) {
                 vm.data.NhanVien = {};
                 return;
             }
             vm.inputSearch = {};
             vm.inputSearch.PhongBanId = newValue;
+            vm.inputSearch.IDNhanVien = 0;
 
             getPage().then(function (success) {
 
@@ -70,7 +73,6 @@
                     delete vm.data.NhanVien;
                     vm.data.NhanVien = {};
                 }
-                
             });
         });
 
@@ -93,6 +95,8 @@
                     delete vm.data.NhanVien;
                     vm.data.NhanVien = {};
                 }
+                console.log('NNNNNNNNNNNNNNNAADADDNNNNNNNNNNNNNNNAADADDNNNNNNNNNNNNNNNAADADD');
+                console.log(vm.data.NhanVien);
                 $scope.onSelected({data:vm.data.NhanVien});
             });
         });

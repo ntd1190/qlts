@@ -116,11 +116,13 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- phong ban chuyen den-->
-                            <cbo-phong-ban id="cbxPhongBanChuyenDen{{$index}}" data-value="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                            <cbo-phong-ban id="cbxPhongBanChuyenDen{{$index}}" data-value="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
+                                           on-selected="ctrl.action.resetNhanVienId(data, {$index})"></cbo-phong-ban>
                         </td>
                         <td class="form-group form-group-sm">
                             <!-- can bo tiep nhan-->
-                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="DieuChuyenChiTiet.NhanVienTiepNhan" data-phongbanid="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="DieuChuyenChiTiet.NhanVienTiepNhan" data-phongbanid="DieuChuyenChiTiet.PhongBanChuyenDen" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"
+                                           on-selected="ctrl.action.nhanVienByPhongBanSelected(data, { $index })"></cbo-nhan-vien-by-phong-ban>
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <!--soluong-->

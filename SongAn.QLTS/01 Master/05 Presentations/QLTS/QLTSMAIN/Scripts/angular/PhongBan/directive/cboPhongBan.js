@@ -53,7 +53,10 @@
 
 
         $scope.$watch('value', function (newValue, oldValue) {
-            
+            if (newValue == oldValue && vm.data.PhongBan) {
+                if (typeof vm.data.PhongBan.PhongBanId !== 'undefined')
+                    return;
+            }
             if (!newValue) {
                 vm.data.PhongBan = {};
                 return;
@@ -62,7 +65,6 @@
             vm.inputSearch.PhongBanId = newValue;
 
             getPage().then(function (success) {
-                console.log('________________ CBXPHONGBAN_________________________________');
                 if (success.data.data && success.data.data.length > 0) {
                     vm.data.PhongBan = success.data.data[0];
                 } else {
@@ -110,6 +112,7 @@
                 service.getComboboxById(CoSoId, NhanVienId, vm.inputSearch.SearchString, PhongBanId)
                     .then(function (success) {
                         vm.status.isLoading = false;
+                        console.log('________________ CBXPHONGBAN_________________________________');
                         console.log(success);
                         if (success.data.data) {
                             vm.data.PhongBanListDisplay = success.data.data;

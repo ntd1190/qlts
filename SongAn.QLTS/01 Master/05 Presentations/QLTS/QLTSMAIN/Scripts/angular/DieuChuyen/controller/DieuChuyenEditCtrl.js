@@ -278,6 +278,17 @@
             
         }
 
+        vm.action.resetNhanVienId = function (data, index) {
+            //console.log(data);
+            //console.log(index);
+            vm.data.listChiTiet[index.$index].PhongBanChuyenDen = data.PhongBanId;
+            vm.data.listChiTiet[index.$index].NhanVienTiepNhan = 0;
+        }
+        vm.action.nhanVienByPhongBanSelected = function (data, index) {
+            //console.log(data);
+            vm.data.listChiTiet[index.$index].NhanVienTiepNhan = data.NhanVienId;
+        }
+
 
         /*** BROADCAST / EMIT / ON FUNCTION ***/
 
@@ -431,6 +442,7 @@
                 else if (utility.checkInValid(vm.data.listChiTiet[index].NhanVienTiepNhan, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Vui lòng chọn lại cán bộ tiếp nhận !');
                     return hasError;
                 }
                 else if (utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty')) {
