@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp";
+}
+
+<div class="container-fluid">
+    <div ng-controller="BaoCaoTongHopListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <strong>
+                Báo Cáo Tổng Hợp
+            </strong>
+        </div>
+
+        <div class="panel-body" style="width:600px; margin:0 auto">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label>Chọn Biểu</label>
+                    <select class="form-control" id="cbxPhanLoai" style="padding:0px 10px" data-placeholder="Chọn biểu in" ng-model="ctrl.data.bieuIn">
+                        <option value="1">Tổng hợp tài sản nhà nước</option>
+                        <option value="2">Tổng hợp TSNN</option>
+                        <option value="3">Tổng hợp TSNN</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Báo Cáo Theo</label>
+                    <select class="form-control" id="cbxPhanLoai" style="padding:0px 10px" data-placeholder="Chọn phân loại" ng-change="ctrl.action.getValCondition()" ng-model="ctrl.data.condition">
+                        <option value="1">Ngày</option>
+                        <option value="2">Quý</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 quy" style="width:32%; display:none">
+                        <div class="form-group">
+                            <label>Chọn Quý</label>
+                            <select class="form-control" id="quy"  ng-change="ctrl.action.getValQuy()" ng-model="ctrl.data.quy">
+                                <option value="1">Quý 1</option>
+                                <option value="2">Quý 2</option>
+                                <option value="3">Quý 3</option>
+                                <option value="4">Quý 4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width:32%; margin-left:6px">
+                        <div class="form-group">
+                            <label>Từ Ngày</label>
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.startDate">
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width:32%; margin-left:6px">
+                        <div class="form-group">
+                            <label>Đến Ngày</label>
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.endDate">
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="panel-footer">
+           <div style="text-align:center">
+               <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i></i> Xuất Excel</a>
+               <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()" style="margin-left:60px"><i></i> In Danh Sách</a>
+           </div>
+            
+        </div>
+
+    </div>
+
+    <div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myLargeModalLabel">In phiếu</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="1000px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>  
+    <script src="~/Scripts/angular/BaoCaoTongHop/controller/BaoCaoTongHopListCtrl.js"></script>
+}

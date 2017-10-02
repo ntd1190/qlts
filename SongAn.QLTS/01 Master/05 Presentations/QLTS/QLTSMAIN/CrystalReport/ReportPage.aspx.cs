@@ -12,6 +12,7 @@ using System.Configuration;
 using SongAn.QLTS.Biz.QLTS.CrystalReport;
 using SongAn.QLTS.Util.Common.Dto;
 using CrystalDecisions.Web;
+using SongAn.QLTS.Util.Common.Helper;
 
 namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
 {
@@ -74,7 +75,25 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     biz.SuDungId = search;
                     ds = biz.ExecuteDac();
                 }
+                else if (reportname == "rptTongHopTaiSanCoDinh.rpt")
+                {
+                    ReportTongHopTaiSanCoDinhBiz biz = new ReportTongHopTaiSanCoDinhBiz(context);
 
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            //var data = bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
+                            if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                            biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
                 if (reportname == "rptGhiGiam.rpt")
                 {
                     ReportGhiGiamBiz biz = new ReportGhiGiamBiz(context);
@@ -105,7 +124,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptSuDungById.xml");
+                ds.WriteXmlSchema(@"D:\rptTongHopTaiSanCoDinh.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

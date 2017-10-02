@@ -89,6 +89,7 @@
     <Compile Include="CrystalReport\ReportTDTTByIdDac.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdDac.cs" />
     <Compile Include="CrystalReport\ReportSuDungByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportTongHopTaiSanCoDinhDac.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaDac.cs" />
     <Compile Include="DanhGia\DeleteDanhGiaDac.cs" />
     <Compile Include="DanhGia\UpdateDanhGiaDac.cs" />
