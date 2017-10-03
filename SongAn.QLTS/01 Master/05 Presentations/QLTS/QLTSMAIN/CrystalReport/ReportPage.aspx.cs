@@ -13,6 +13,7 @@ using SongAn.QLTS.Biz.QLTS.CrystalReport;
 using SongAn.QLTS.Util.Common.Dto;
 using CrystalDecisions.Web;
 using SongAn.QLTS.Util.Common.Helper;
+using CrystalDecisions.Shared;
 
 namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
 {
@@ -30,6 +31,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 string reportname = Request.QueryString["Name"] + ".rpt";
                 string search = Request.QueryString["Data"];
                 string ngay = Request.QueryString["Ngay"];
+                string exportexcel = Request.QueryString["export"];
 
                 DataSet ds = new DataSet();
                 if (reportname == "rptKeHoachMuaSam.rpt")
@@ -83,7 +85,6 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     {
                         if (search.Split('|').Length > 1)
                         {
-                            //var data = bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
                             if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
                                 biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
                             if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
@@ -133,6 +134,15 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 CrystalReportViewer1.ReportSource = reportdocument;
                 CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
                 Session["ReportDocument"] = reportdocument;
+
+                if (exportexcel == "1")
+                {
+                    Response.Buffer = false;
+                    Response.ClearContent();
+                    Response.ClearHeaders();
+                    reportdocument.ExportToHttpResponse(ExportFormatType.Excel, Response, true, reportname.Replace(".rpt","").Replace("rpt",""));
+                    Response.End();
+                }
             }
             else
             {

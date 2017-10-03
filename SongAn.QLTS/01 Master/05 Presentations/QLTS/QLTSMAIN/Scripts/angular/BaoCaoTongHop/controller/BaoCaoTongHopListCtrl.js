@@ -34,11 +34,14 @@
         activate();
 
         function activate() {
+            var d = new Date();
+
             vm.data.startDate = moment().format('DD/MM/YYYY');
             vm.data.endDate = moment().format('DD/MM/YYYY');
             vm.data.condition = "1";
             vm.data.quy = "1";
             vm.data.bieuIn = "1";
+            vm.data.nam = d.getFullYear().toString();
         }
 
         /* ACTION FUNCTION */
@@ -49,10 +52,17 @@
 
             if (vm.data.condition == "1") {
                 $('.quy').css('display', 'none');
-            } else {
+                $('.nam').css('display', 'none');
+            } else if (vm.data.condition == "2") {
                 $('.quy').css('display', 'block');
+                $('.nam').css('display', 'none');
                 vm.data.startDate = '01/01/' + d.getFullYear().toString();
                 vm.data.endDate = '31/03/' + d.getFullYear().toString();
+            } else {
+                $('.quy').css('display', 'none');
+                $('.nam').css('display', 'block');
+                vm.data.startDate = '01/01/' + d.getFullYear().toString();
+                vm.data.endDate = '31/12/' + d.getFullYear().toString();
             }
         };
 
@@ -76,6 +86,12 @@
             }
         };
 
+        vm.action.getValNam = function () {
+
+            vm.data.startDate = '01/01/' + vm.data.nam;
+            vm.data.endDate = '31/12/' + vm.data.nam;
+        };
+
         vm.action.In = function () {
             var tuNgay = vm.data.startDate;
             var denNgay = vm.data.endDate;
@@ -90,6 +106,20 @@
             }
             
             $('#reportmodal').modal('show');
+        };
+
+        vm.action.XuatExcel = function () {
+            var tuNgay = vm.data.startDate;
+            var denNgay = vm.data.endDate;
+            var bieuIn = vm.data.bieuIn;
+            var CoSoId = vm.data.userInfo.CoSoId || 0;
+            var NhanVienId = vm.data.userInfo.NhanVienId || 0;
+
+            var data = bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
+
+            if (bieuIn.toString() == "1") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopTaiSanCoDinh&export=1&data=' + data);
+            }
         };
 
         /* BROADCAST / EMIT / ON FUNCTION */
