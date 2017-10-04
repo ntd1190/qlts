@@ -531,6 +531,12 @@
       <DependentUpon>rptTongHopTaiSanCoDinh.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptTongHopTaiSanCoDinhExcel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTongHopTaiSanCoDinhExcel.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -719,6 +725,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopTaiSanCoDinh.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTongHopTaiSanCoDinh.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTongHopTaiSanCoDinhExcel.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTongHopTaiSanCoDinhExcel.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
