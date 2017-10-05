@@ -70,6 +70,11 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Compile Include="CrystalReport\ReportTongHopGhiGiamDac.cs" />
+    <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
+    <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaDac.cs" />
+    <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
+    <Content Include="CrystalReport\Procedures\sp_DanhGia_report_DanhGiaTaiSanById.sql" />
     <Content Include="CrystalReport\Procedures\sp_ThayDoiThongTin_report_TDTTById.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGiaByCriteria.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGia.sql" />
@@ -86,6 +91,7 @@
     <Compile Include="CrystalReport\ReportDieuChuyenByIdDac.cs" />
     <Compile Include="CrystalReport\ReportGhiTangByIdDac.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamDac.cs" />
+    <Compile Include="CrystalReport\ReportDanhGiaByIdDac.cs" />
     <Compile Include="CrystalReport\ReportTDTTByIdDac.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdDac.cs" />
     <Compile Include="CrystalReport\ReportSuDungByIdDac.cs" />
@@ -118,6 +124,10 @@
     <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdDac.cs" />
     <Compile Include="DuyetMua\GetDuyetMuaChiTietByMuaSamIdDac.cs" />
     <Compile Include="DuyetMua\GetListDuyetMuaByCriteriaProjectionDac.cs" />
+    <Compile Include="LapBaoCao\DeleteLapBaoCaoChiTietDac.cs" />
+    <Compile Include="LapBaoCao\DeleteLapBaoCaoByIdDac.cs" />
+    <Compile Include="LapBaoCao\GetLapBaoCaoChiTietByIdDac.cs" />
+    <Compile Include="LapBaoCao\GetListLapBaoCaoByCriteriaProjectionDac.cs" />
     <Compile Include="GhiGiamChiTiet\InsertGhiGiamChiTietDac.cs" />
     <Compile Include="GhiGiamChiTiet\GetTheoDoiByIdDac.cs" />
     <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietDac.cs" />
@@ -218,6 +228,8 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
+    <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListTaiSanByCriteria.sql" />
+    <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListMenuCoSoByNhanVienId.sql" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
@@ -244,6 +256,7 @@
     <Folder Include="GhiGiam\Procedures\" />
     <Folder Include="KeHoachMuaSamChiTiet\Procedures\" />
     <Folder Include="KeHoachMuaSam\Procedures\" />
+    <Folder Include="LapBaoCao\Procedures\" />
     <Folder Include="TheoDoi\Procedures\" />
   </ItemGroup>
   <ItemGroup>

@@ -131,7 +131,6 @@
                         <th class="text-center" style="min-width: 70px;vertical-align:middle">ĐVT</th>
                         <th class="text-center" style="min-width: 110px;vertical-align:middle">Phương thức</th>
                         <th class="text-center" style="min-width: 100px;vertical-align:middle">Dự toán</th>
-                        <th class="text-center" style="min-width: 160px;vertical-align:middle">Dự toán được duyệt</th>
                         <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày đề nghị</th>
                         <th class="text-center" style="min-width: 100px;vertical-align:middle">Trạng thái</th>
                     </tr>
@@ -151,7 +150,6 @@
                         <td><span ng-bind="DenNghiTrangCapChiTiet.DonViTinh"></span></td>
                         <td><span ng-bind="DenNghiTrangCapChiTiet.TenPhuongThuc"></span></td>
                         <td class="text-right"><span ng-bind="DenNghiTrangCapChiTiet.DuToan|number"></span></td>
-                        <td class="text-right"><span ng-bind="DenNghiTrangCapChiTiet.DuToanDuocDuyet|number"></span></td>
                         <td class="text-center"><span>{{ DenNghiTrangCapChiTiet.NgayDeNghi | date : 'dd/MM/yyyy'}}</span></td>
                         <td class="text-center">
                             <div ng-if="(DenNghiTrangCapChiTiet.DuyetId!=1 && DenNghiTrangCapChiTiet.DuyetId!=2 )? true:false">

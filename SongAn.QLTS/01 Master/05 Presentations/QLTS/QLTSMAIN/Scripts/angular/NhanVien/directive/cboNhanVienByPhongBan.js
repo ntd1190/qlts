@@ -53,8 +53,11 @@
         }
        
         $scope.$watch('phongbanid', function (newValue, oldValue) {
-            if (newValue == oldValue)
+            if (newValue == oldValue) {
+                if (!vm.data.NhanVien)
+                    vm.data.NhanVien = {};
                 return;
+            }
 
             if (!newValue) {
                 vm.data.NhanVien = {};

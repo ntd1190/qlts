@@ -337,6 +337,10 @@
 
 /********************************************************************/
 /*** SMART TABLE ***/
+.table .ui-select-bootstrap > .ui-select-choices, .table .ui-select-bootstrap > .ui-select-no-choice {
+    width: 100%;
+}
+
 .st-sort-ascent:before {
     content: '\25B2';
 }
@@ -351,6 +355,10 @@
 
 .table .pagination {
     margin: 5px 0;
+}
+
+.table > thead > tr > th {
+    vertical-align: middle;
 }
 
 /********************************************************************/
@@ -397,18 +405,7 @@
     width: auto;
 }
 
-/*format smart-table */
-.table .ui-select-bootstrap > .ui-select-choices, .table .ui-select-bootstrap > .ui-select-no-choice {
-    width: 100%;
-}
-
-.st-sort-ascent:before {
-    content: '\25B2';
-}
-
-.st-sort-descent:before {
-    content: '\25BC';
-}
+/*format */
 
 .select-page {
     width: 50px;

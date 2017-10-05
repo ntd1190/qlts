@@ -65,7 +65,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <div class="row form-group form-group-sm" ng-class="ctrl.error.DanhGia_TaiSanId?'has-error':''">
-                        <span class="col-sm-1"  style="width: 10.8%;">Chọn tài sản</span>
+                        <span class="col-sm-1" style="width: 10.8%;">Chọn tài sản</span>
                         <div class="col-sm-10" style="width:  89.2%;">
                             <cbo-tai-san-su-dung ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_TaiSanId" data-next="btn_addNguyenGia"
                                                  data-disabled="ctrl.status.isEdit"
@@ -217,18 +217,32 @@
                 </div>
             </div>
         </div>
-                <div class="panel-footer">
-                    <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
-                        <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <span ng-if="ctrl.action.checkQuyenTacVu('D')">
-                        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
-                    </span>
-                    <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
-                    <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
-                </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                <button type="button" class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.removeList()">Xóa</button>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+</div>
+<div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myLargeModalLabel">Thay đổi thông tin</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="" width="100%" height="1000px"></iframe>
             </div>
         </div>
+    </div>
+</div>
+
 @section ImportStyles{
     @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
 }

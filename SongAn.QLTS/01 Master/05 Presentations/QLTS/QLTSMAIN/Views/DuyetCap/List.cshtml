@@ -65,6 +65,8 @@
                         <th class="text-center" style="width: 150px;" st-sort="SoPhieu">Số phiếu</th>
                         <th class="text-center" style="width: 100px;" st-sort="Ngay">Ngày lập</th>
                         <th class="text-center" style="width: 300px;" st-sort="NoiDung">Nội dung đề nghị</th>
+                        <th class="text-center" style="width: 100px;" st-sort="NgayTao">Ngày gửi</th>
+                        <th class="text-center" style="width: 120px;" st-sort="TenNhanVien">Người gửi</th>
                         <th class="text-center" style="width: 100px;" st-sort="NoiDung">Trạng thái</th>
                     </tr>
                 </thead>
@@ -89,6 +91,13 @@
                       
                         <td>
                             <span ng-bind="DuyetCap.NoiDung"></span>
+                        </td>
+
+                        <td>
+                            <span>{{ DuyetCap.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                            <span ng-bind="DuyetCap.TenNhanVien"></span>
                         </td>
                         <td ng-if="DuyetCap.DuyetId==0" style="padding-left: 3.5%;">
                             <span class="form-control label label-warning" ng-bind="DuyetCap.TrangThai"></span>

@@ -95,6 +95,42 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                         }
                     }
                 }
+                else if (reportname == "rptTongHopGhiTang.rpt")
+                {
+                    ReportTongHopGhiTangBiz biz = new ReportTongHopGhiTangBiz(context);
+
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                            biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
+                else if (reportname == "rptTongHopGhiGiam.rpt")
+                {
+                    ReportTongHopGhiGiamBiz biz = new ReportTongHopGhiGiamBiz(context);
+
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                            biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
                 if (reportname == "rptGhiGiam.rpt")
                 {
                     ReportGhiGiamBiz biz = new ReportGhiGiamBiz(context);
@@ -102,6 +138,8 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     ds = biz.ExecuteBiz();
 
                 }
+            
+                /* REPORT THAY ĐỔI THÔNG TIN */
                 if (reportname == "rptTDTT_Nha.rpt")
                 {
                     var biz = new ReportTDTTNhaByIdBiz(context);
@@ -120,12 +158,33 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     biz.ThayDoiThongTinId = search;
                     ds = biz.ExecuteBiz();
                 }
+
+                /* REPORT ĐÁNH GIÁ LẠI TÀI SẢN */
+                if (reportname == "rptDanhGia_Nha.rpt")
+                {
+                    var biz = new ReportDanhGiaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
+                if (reportname == "rptDanhGia_Oto.rpt")
+                {
+                    var biz = new ReportDanhGiaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
+                if (reportname == "rptDanhGia_Tren500.rpt")
+                {
+                    var biz = new ReportDanhGiaByIdBiz(context);
+                    biz.ThayDoiThongTinId = search;
+                    ds = biz.ExecuteBiz();
+                }
+
                 ds.Tables[0].TableName = "Tables";
                 if (reportname == "rptKiemKeById.rpt")
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptTongHopTaiSanCoDinh.xml");
+                //ds.WriteXmlSchema(@"D:\rptTongHopGhiGiam.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

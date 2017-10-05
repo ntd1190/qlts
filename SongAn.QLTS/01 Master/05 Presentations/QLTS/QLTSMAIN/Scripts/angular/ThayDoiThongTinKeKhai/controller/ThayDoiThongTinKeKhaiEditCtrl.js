@@ -104,7 +104,7 @@
         }
 
         vm.action.In = function () {
-            var report_name = 'rptTDTT_Nha';
+            var report_name = '';
             switch (vm.data.TDTT.LoaiKeKhai.toString()) {
                 case '1':
                     report_name = 'rptTDTT_Nha';

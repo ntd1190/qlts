@@ -140,6 +140,27 @@
             loadDataTaiSan();
         }
 
+        vm.action.In = function () {
+            var report_name = '';
+            switch (vm.data.DanhGia.LoaiKeKhai.toString()) {
+                case '1':
+                    report_name = 'rptDanhGia_Nha';
+                    break;
+                case '2':
+                    report_name = 'rptDanhGia_Nha';
+                    break;
+                case '3':
+                    report_name = 'rptDanhGia_Oto';
+                    break;
+                case '4':
+                    report_name = 'rptDanhGia_Tren500';
+                    break;
+            }
+
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=' + report_name + '&data=' + DanhGiaId);
+            $('#reportmodal').modal('show');
+        };
+
         /***EVENT FUNCTION ***/
 
         // tính hao mòn

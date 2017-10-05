@@ -1,0 +1,265 @@
+﻿
+@{
+    ViewBag.Title = "Tra cứu tài sản";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
+}
+
+<div class="container-fluid" ng-controller="TraCuuTaiSanCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @(ViewBag.userInfo)})">
+    <div class="row">
+        <div class="col-sm-3">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <span class="panel-title">Danh sách cơ sở</span>
+                    <div class="pull-right">
+                        <a class="btn btn-xs btn-primary" ng-click="ctrl.action.loadCoSo()"><i class="fa fa-fw fa-refresh"></i></a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <script type="text/ng-template" id="menuTree">
+                        <a href="javascript:void(0);" ng-click="ctrl.action.menuSelect(menu)">{{ menu.TEN }}</a>
+                        <ul class="nav nav-pills nav-stacked nav-tree" ng-if="menu.SubMenu">
+                            <li ng-repeat="menu in menu.SubMenu" ng-include="'menuTree'" ng-class="ctrl.data.menuSelect.ID == menu.ID && ctrl.data.menuSelect.TYPE == menu.TYPE ? 'active':''"></li>
+                        </ul>
+                    </script>
+                    <ul class="nav nav-pills nav-stacked nav-tree" id="myTree" data-toggle="nav-tree" data-nav-tree-expanded="fa fa-fw fa-folder-open-o" data-nav-tree-collapsed="fa fa-fw fa-folder-o">
+                        <li ng-repeat="menu in ctrl.data.menuCoSo" ng-include="'menuTree'" ng-class="ctrl.data.menuSelect.ID == menu.ID && ctrl.data.menuSelect.TYPE == menu.TYPE ? 'active':''"></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-9">
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix">
+                    <span><i class="fa fa-fw fa-star-o"></i>Danh sách tài sản</span>
+                    <div class="pull-right">
+                        <form class="form-inline">
+                            <div class="form-group form-group-sm">
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control" ng-model="ctrl.inputSearch.search" autofocus>
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <span class="checkbox pull-right">
+                        <label class="control-label" ng-repeat="loai in ctrl.data.ListLoaiKeKhai">
+                            <input type="checkbox" ng-model="loai.checked" ng-change="ctrl.action.SelectedLoaiKeKhai()" />
+                            <span ng-bind="loai.NoiDung"></span>&nbsp;&nbsp;&nbsp;
+                        </label>
+                    </span>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.ListTaiSan" st-pipe="ctrl.action.getPageTaiSan">
+                        <thead class="text-info">
+                            <tr>
+                                <th class="text-center" style="width:35px;">#</th>
+                                <th class="text-center" ng-repeat="cot in ctrl.data.ListCotTaiSan|filter:{HienThiYN:true}" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;">
+                                    <span ng-bind="cot.TenCot"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="ctrl.status.isLoading">
+                                <td colspan="100" class="text-center"><i class="fa fa-fw fa-spin fa-spinner"></i></td>
+                            </tr>
+                            <tr ng-repeat="row in ctrl.data.ListTaiSan" st-select-row="row" ng-class="row.isSelected?'info':''" ng-click="ctrl.action.selectedTaiSan(row)">
+                                <td class="text-center"><span ng-bind="(ctrl.cache.tableState.pagination.start + $index) + 1"></span></td>
+                                <td ng-repeat="cot in ctrl.data.ListCotTaiSan|filter:{HienThiYN:true}" ng-switch="cot.MaCot">
+                                    <div ng-switch-when="LoaiKeKhai" ng-switch-when-separator="," ng-bind="(ctrl.data.ListLoaiKeKhai|filter:{LoaiKeKhai:row[cot.MaCot]})[0].NoiDung"></div>
+                                    <div ng-switch-default ng-bind="row[cot.MaCot]"></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="100" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="panel panel-default" ng-if="ctrl.data.TaiSan.TaiSanId">
+                        <div class="panel-heading">
+                            <span><i class="fa fa-fw fa-star-o"></i>Thông tin chung</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <span class="col-sm-4">Mã tài sản</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.MaTaiSan"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Tên tài sản</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.TenTaiSan"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Ngày mua</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.NgayMua|date:'dd/MM/yyyy'"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Nguyên giá</span>
+                                <div class="col-sm-8">
+                                    <div ng-repeat="nguyengia in ctrl.data.listNguyenGia">
+                                        <span ng-bind="nguyengia.TenNguonNganSach"></span>: <span ng-bind="nguyengia.GiaTri|number"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Giá trị còn lại</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.GiaTriConLai|number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Hao mòn năm</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonNam|number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">HM lũy kế</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonLuyKe|number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Số năm SD</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSuDung|number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Số năm SD còn lại</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSDConLai|number"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default" ng-if="ctrl.data.TaiSan.LoaiKeKhai==1">
+                        <div class="panel-heading">
+                            <span><i class="fa fa-fw fa-star-o"></i>Thông tin kê khai</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <span class="col-sm-4">Địa chỉ</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Dat.DiaChi"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Diện tích</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Dat.DienTich|number"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" ng-if="ctrl.data.TaiSan.LoaiKeKhai==2">
+                        <div class="panel-heading">
+                            <span><i class="fa fa-fw fa-star-o"></i>Thông tin kê khai</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <span class="col-sm-4">Địa chỉ</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.DiaChi"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Diện tích</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.DienTich"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Diện tích sàn</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.TongDienTichSan"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" ng-if="ctrl.data.TaiSan.LoaiKeKhai==3">
+                        <div class="panel-heading">
+                            <span><i class="fa fa-fw fa-star-o"></i>Thông tin kê khai</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <span class="col-sm-4">Nhãn hiệu</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.NhanHieu"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Biển kiểm soát</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.BienKiemSoat"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Công suất xe</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.CongSuatXe:number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Trọng tải</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Chức danh</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Nguồn gốc xe</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                            </div>
+                            <div class="row">
+                                <span class=" col-sm-4">Loại xe</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.LoaiXe"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Hiện trạng sử dụng</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TenHienTrangSuDung"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default" ng-if="ctrl.data.TaiSan.LoaiKeKhai==4">
+                        <div class="panel-heading">
+                            <span><i class="fa fa-fw fa-star-o"></i>Thông tin kê khai</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <span class="col-sm-4">Ký hiệu</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.KyHieu"></span>
+                            </div>
+                            <div class="row">
+                                <span class="col-sm-4">Hiện trạng SD</span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.TenHienTrangSuDung"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section ImportStyles{
+    <link href="~/lib/BootstrapTreeNav/css/bootstrap-treenav.min.css" rel="stylesheet" />
+}
+@section SetupStyles{
+    <style type="text/css">
+        .nav > li > a {
+            padding: 0 15px;
+        }
+
+        .nav-pills > li > a {
+            border-radius: 0;
+        }
+
+        ul.nav-tree li span.opener {
+            top: 0;
+            color: #337ab7;
+            cursor: pointer;
+        }
+
+        .nav-pills > li.active > .opener, .nav-pills > li.active > .opener:hover, .nav-pills > li.active > .opener:focus {
+            color: #fff;
+            background-color: #337ab7;
+        }
+    </style>
+}
+@section ImportScripts{
+    <script src="~/lib/BootstrapTreeNav/js/bootstrap-treenav.min.js"></script>
+}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
+    <script src="~/Scripts/angular/TraCuuTaiSan/service/TraCuuTaiSanService.js"></script>
+    <script src="~/Scripts/angular/TraCuuTaiSan/controller/TraCuuTaiSanCtrl.js"></script>
+}

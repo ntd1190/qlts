@@ -70,6 +70,8 @@
     <Compile Include="Entity\GhiTangChiTiet.cs" />
     <Compile Include="Entity\GhiGiam.cs" />
     <Compile Include="Entity\KhaiThac.cs" />
+    <Compile Include="Entity\LapBaoCaoChiTiet.cs" />
+    <Compile Include="Entity\LapBaoCao.cs" />
     <Compile Include="Entity\SuDung.cs" />
     <Compile Include="Entity\SuDungChiTiet.cs" />
     <Compile Include="Entity\ThayDoiThongTin.cs" />

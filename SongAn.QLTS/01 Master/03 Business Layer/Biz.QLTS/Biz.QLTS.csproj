@@ -66,9 +66,12 @@
     <Compile Include="CrystalReport\ReportDieuChuyenByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
+    <Compile Include="CrystalReport\ReportDanhGiaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportTDTTNhaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportSuDungByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportTongHopGhiGiamBiz.cs" />
+    <Compile Include="CrystalReport\ReportTongHopGhiTangBiz.cs" />
     <Compile Include="CrystalReport\ReportTongHopTaiSanCoDinhBiz.cs" />
     <Compile Include="DanhGia\GetListNguyenGiaByDanhGia.cs" />
     <Compile Include="DanhGia\DeleteDanhGiaBiz.cs" />
@@ -98,6 +101,10 @@
     <Compile Include="DieuChuyen\UpdateDieuChuyenByDieuChuyenIdBiz.cs" />
     <Compile Include="DuyetMua\GetDuyetMuaChiTietByMuaSamIdBiz.cs" />
     <Compile Include="DuyetMua\GetListDuyetMuaByCriteriaBiz.cs" />
+    <Compile Include="LapBaoCao\DeleteLapBaoCaoChiTietBiz.cs" />
+    <Compile Include="LapBaoCao\DeleteLapBaoCaoByIdBiz.cs" />
+    <Compile Include="LapBaoCao\GetLapBaoCaoChiTietByIdBiz.cs" />
+    <Compile Include="LapBaoCao\GetListLapBaoCaoByCriteriaBiz.cs" />
     <Compile Include="GhiGiamChiTiet\InsertGiamChiTietBiz.cs" />
     <Compile Include="GhiGiamChiTiet\DeleteGhiGiamChiTietBiz.cs" />
     <Compile Include="GhiTang\DeleteListGhiTangByIdBiz.cs" />
@@ -199,6 +206,8 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdBiz.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiBiz.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdBiz.cs" />
+    <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaBiz.cs" />
+    <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdBiz.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">

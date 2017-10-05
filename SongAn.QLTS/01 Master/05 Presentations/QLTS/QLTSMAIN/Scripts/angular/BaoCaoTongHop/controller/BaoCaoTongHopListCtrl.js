@@ -101,8 +101,13 @@
 
             var data = bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
 
+            
             if (bieuIn.toString() == "1") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopTaiSanCoDinh&data=' + data);
+            } else if (bieuIn.toString() == "2") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiTang&data=' + data);
+            } else if (bieuIn.toString() == "3") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiGiam&data=' + data);
             }
             
             $('#reportmodal').modal('show');
@@ -119,6 +124,12 @@
 
             if (bieuIn.toString() == "1") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopTaiSanCoDinh&export=1&data=' + data);
+            }
+            else if (bieuIn.toString() == "2") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiTang&export=1&data=' + data);
+            }
+            else if (bieuIn.toString() == "3") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiGiam&export=1&data=' + data);
             }
         };
 

@@ -45,6 +45,7 @@
                         <th ng-repeat="cot in ctrl.data.listCot" ng-switch="cot.MaCot" class="form-group form-group-sm">
                             <input class="form-control" type="text" ng-switch-when="MaTaiSan,TenTaiSan" ng-switch-when-separator="," st-search="{{cot.MaCot}}" />
                         </th>
+                    </tr>
                 </thead>
                 <tbody>
                     <tr ng-if="ctrl.status.isLoading">
@@ -82,27 +83,27 @@
                         <div class="panel-heading"><h5>Thông tin chung</h5></div>
                         <div class="panel-body">
                             <div class="row">
-                                <span class=" col-sm-4">Mã tài sản</span>
+                                <span class="col-sm-4">Mã tài sản</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.MaTaiSan"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Tên tài sản</span>
+                                <span class="col-sm-4">Tên tài sản</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.TenTaiSan"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Ngày mua</span>
+                                <span class="col-sm-4">Ngày mua</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.NgayMua|date:'dd/MM/yyyy'"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Nguyên giá</span>
+                                <span class="col-sm-4">Nguyên giá</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.NguyenGia|number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Giá trị còn lại</span>
+                                <span class="col-sm-4">Giá trị còn lại</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.GiaTriConLai|number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Hao mòn năm</span>
+                                <span class="col-sm-4">Hao mòn năm</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonNam|number"></span>
                             </div>
                             <div class="row">
@@ -110,11 +111,11 @@
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.HaoMonLuyKe|number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Số năm SD</span>
+                                <span class="col-sm-4">Số năm SD</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSuDung|number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Số năm SD còn lại</span>
+                                <span class="col-sm-4">Số năm SD còn lại</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TaiSan.SoNamSDConLai|number"></span>
                             </div>
                         </div>
@@ -126,7 +127,7 @@
                         <div class="panel-heading"><h5>Thông tin kê khai đất</h5></div>
                         <div class="panel-body">
                             <div class="row">
-                                <span class=" col-sm-4">Địa chỉ</span>
+                                <span class="col-sm-4">Địa chỉ</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Dat.DiaChi"></span>
                             </div>
                             <div class="row">
@@ -150,13 +151,13 @@
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.DienTich"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Diện tích sàn</span>
+                                <span class="col-sm-4">Diện tích sàn</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Nha.TongDienTichSan"></span>
                             </div>
                         </div>
                     </div>
-       
-                    
+
+
                 </div><!--/ Thông tin kê khai nhà -->
                 <!-- Thông tin kê khai ô tô -->
                 <div class="col-sm-6" ng-if="ctrl.data.TaiSan.LoaiKeKhai==3">
@@ -176,7 +177,7 @@
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.CongSuatXe:number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Trọng tải</span>
+                                <span class="col-sm-4">Trọng tải</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
                             </div>
                             <div class="row">
@@ -184,11 +185,11 @@
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Nguồn gốc xe</span>
+                                <span class="col-sm-4">Nguồn gốc xe</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Loại xe</span>
+                                <span class="col-sm-4">Loại xe</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.LoaiXe"></span>
                             </div>
                             <div class="row">
@@ -209,7 +210,7 @@
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.KyHieu"></span>
                             </div>
                             <div class="row">
-                                <span class=" col-sm-4">Hiện trạng SD</span>
+                                <span class="col-sm-4">Hiện trạng SD</span>
                                 <span class="col-sm-8" ng-bind="ctrl.data.TTKK_500.TenHienTrangSuDung"></span>
                             </div>
                         </div>

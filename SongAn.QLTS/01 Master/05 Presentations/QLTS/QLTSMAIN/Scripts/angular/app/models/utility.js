@@ -19,6 +19,7 @@
             AlertError: AlertError,
             addloadding: addloadding,
             removeloadding: removeloadding,
+            initTableState: initTableState,
         };
 
         return service;

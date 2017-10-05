@@ -50,6 +50,8 @@
                         <th class="text-center" style="width: 200px;" st-sort="TenCoSo">Cơ sở đề nghị</th>
                         <th class="text-center" style="width: 100px;" st-sort="Nam">Năm</th>
                         <th class="text-center" st-sort="NoiDung">Nội dung</th>
+                        <th class="text-center" style="width: 100px;" st-sort="NgayTao">Ngày gửi</th>
+                        <th class="text-center" style="width: 130px;" st-sort="TenNhanVien">Người gửi</th>
                         <th class="text-center"  style="width: 150px;" st-sort="TrangThai">Trạng thái</th>
                     </tr>
                 </thead>
@@ -66,6 +68,12 @@
                         </td>
                         <td><a ng-bind="DuyetMua.Nam" href="~/KeHoachMuaSam/edit/{{DuyetMua.MuaSamId}}"></a></td>
                         <td><a ng-bind="DuyetMua.NoiDung" href="~/KeHoachMuaSam/edit/{{DuyetMua.MuaSamId}}"></a></td>
+                        <td>
+                            <span>{{ DuyetMua.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                        </td>
+                        <td>
+                            <span ng-bind="DuyetMua.TenNhanVien"></span>
+                        </td>
                         <td ng-if="DuyetMua.DuyetId==0" style="padding-left: 3.5%;">
                             <span class="form-control label label-warning" ng-bind="DuyetMua.TrangThai"></span>
 

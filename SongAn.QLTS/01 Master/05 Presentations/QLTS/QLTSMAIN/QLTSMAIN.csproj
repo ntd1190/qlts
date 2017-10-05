@@ -127,6 +127,8 @@
     <Content Include="CrystalReport\CrystalImageHandler.aspx" />
     <Content Include="CrystalReport\ReportPage.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="lib\angular-bootstrap-nav-tree\abn_tree.css" />
+    <Content Include="lib\angular-bootstrap-nav-tree\abn_tree_directive.js" />
     <Content Include="lib\angular-smart-table\smart-table.min.js" />
     <Content Include="lib\angular-storage\ngStorage.min.js" />
     <Content Include="lib\angular-ui\angular-ui-router.min.js" />
@@ -162,6 +164,10 @@
     <Content Include="lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker.css" />
     <Content Include="lib\bootstrap-datetimepicker\css\bootstrap-datetimepicker.min.css" />
     <Content Include="lib\bootstrap-datetimepicker\js\bootstrap-datetimepicker.min.js" />
+    <Content Include="lib\BootstrapTreeNav\css\bootstrap-treenav.css" />
+    <Content Include="lib\BootstrapTreeNav\css\bootstrap-treenav.min.css" />
+    <Content Include="lib\BootstrapTreeNav\js\bootstrap-treenav.js" />
+    <Content Include="lib\BootstrapTreeNav\js\bootstrap-treenav.min.js" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.css" />
     <Content Include="lib\bootstrap\css\bootstrap-theme.min.css" />
     <Content Include="lib\bootstrap\css\bootstrap.css" />
@@ -365,6 +371,8 @@
     <Content Include="Scripts\angular\TheoDoi\controller\TheoDoiFilterCtrl.js" />
     <Content Include="Scripts\angular\TheoDoi\controller\TheoDoiListCtrl.js" />
     <Content Include="Scripts\angular\TheoDoi\service\TheoDoiService.js" />
+    <Content Include="Scripts\angular\TraCuuTaiSan\controller\TraCuuTaiSanCtrl.js" />
+    <Content Include="Scripts\angular\TraCuuTaiSan\service\TraCuuTaiSanService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\controller\TuyChonCotListCtrl.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\service\TuyChonCotService.js" />
     <Content Include="Scripts\angular\VaiTro\controller\VaiTroEditCtrl.js" />
@@ -435,6 +443,7 @@
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
     <Compile Include="Controllers\SuDungController.cs" />
+    <Compile Include="Controllers\TraCuuTaiSanController.cs" />
     <Compile Include="Controllers\ThayDoiThongTinKeKhaiController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
@@ -507,11 +516,23 @@
       <DependentUpon>rptSuDungById.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptDanhGia_Nha.cs">
+      <DependentUpon>rptDanhGia_Nha.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptTDTT_Nha.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptTDTT_Nha.rpt</DependentUpon>
       <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptDanhGia_Oto.cs">
+      <DependentUpon>rptDanhGia_Oto.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="CrystalReport\Report\rptTDTT_Oto.cs">
       <AutoGen>True</AutoGen>
@@ -519,10 +540,28 @@
       <DependentUpon>rptTDTT_Oto.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptDanhGia_Tren500.cs">
+      <DependentUpon>rptDanhGia_Tren500.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptTDTT_Tren500.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptTDTT_Tren500.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTongHopGhiGiam.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTongHopGhiGiam.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTongHopGhiTang.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTongHopGhiTang.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptTongHopTaiSanCoDinh.cs">
@@ -629,6 +668,7 @@
     <Content Include="Views\KhachHang\cboKhachHang.cshtml" />
     <Content Include="Views\SuDung\List.cshtml" />
     <Content Include="Views\SuDung\Edit.cshtml" />
+    <Content Include="Views\TraCuuTaiSan\List.cshtml" />
     <Content Include="Views\BaoCaoTongHop\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -710,17 +750,37 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptSuDungById.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptDanhGia_Nha.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDanhGia_Nha.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTDTT_Nha.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTDTT_Nha.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptDanhGia_Oto.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDanhGia_Oto.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTDTT_Oto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTDTT_Oto.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptDanhGia_Tren500.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDanhGia_Tren500.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTDTT_Tren500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTDTT_Tren500.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTongHopGhiGiam.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTongHopGhiGiam.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTongHopGhiTang.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTongHopGhiTang.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopTaiSanCoDinh.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

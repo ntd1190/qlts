@@ -90,6 +90,7 @@
     <Compile Include="Controllers\CoSoController.cs" />
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Controllers\TraCuuTaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
     <Compile Include="Models\BaoDuong\DeleteListBaoDuongByIdAction.cs" />
     <Compile Include="Models\BaoDuong\GetListBaoDuongByIdAction.cs" />
@@ -265,6 +266,8 @@
     <Compile Include="Models\TheoDoi\GetListTheoDoiByProjectionAction.cs" />
     <Compile Include="Models\TheoDoi\InsertTheoDoiAction.cs" />
     <Compile Include="Models\TheoDoi\UpdateTheoDoiByIdAction.cs" />
+    <Compile Include="Models\TraCuuTaiSan\GetListTaiSanByCriteriaAction.cs" />
+    <Compile Include="Models\TraCuuTaiSan\GetListMenuCoSoByNhanVienIdAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
