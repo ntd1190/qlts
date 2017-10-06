@@ -53,6 +53,8 @@
         }
        
         $scope.$watch('phongbanid', function (newValue, oldValue) {
+            console.log('_________________________________ VO watch phong ban cua NHANVIEN');
+            console.log('phongbanid: ' + newValue);
             if (newValue == oldValue) {
                 if (!vm.data.NhanVien) {
                     console.log('_________________________________reset NHANVIEN');
@@ -83,8 +85,10 @@
         });
 
         $scope.$watch('value', function (newValue, oldValue) {
-            
+            console.log('_________________________________ VO watch cua NHANVIEN');
+            console.log('nhanvienid: ' + newValue);
             if (!newValue) {
+                console.log('_________________________________reset NHANVIEN cua nhan vien');
                 vm.data.NhanVien = {};
                 return;
             }

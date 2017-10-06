@@ -459,10 +459,10 @@
 
             GhiTangService.GetPageDetail(id)
                 .then(function success(result) {
-                    console.log(result);
                     vm.data.listChiTiet = [];
 
                     if (result.data && result.data.data && result.data.data.length) {
+                        console.log(result.data.data);
                         vm.data.listChiTiet = result.data.data;
                         vm.data.listChiTietGoc = angular.copy(result.data.data);
                     }
