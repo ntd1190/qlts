@@ -54,12 +54,15 @@
        
         $scope.$watch('phongbanid', function (newValue, oldValue) {
             if (newValue == oldValue) {
-                if (!vm.data.NhanVien)
+                if (!vm.data.NhanVien) {
+                    console.log('_________________________________reset NHANVIEN');
                     vm.data.NhanVien = {};
+                }
                 return;
             }
 
             if (!newValue) {
+                console.log('_________________________________reset NHANVIEN');
                 vm.data.NhanVien = {};
                 return;
             }
@@ -68,7 +71,7 @@
             vm.inputSearch.IDNhanVien = 0;
 
             getPage().then(function (success) {
-
+                console.log('_________________________________reset NHANVIEN');
                 if (success.data.data && success.data.data.length > 0) {
                     //vm.data.NhanVien = success.data.data;
                     vm.data.NhanVien = {};
@@ -98,7 +101,7 @@
                     delete vm.data.NhanVien;
                     vm.data.NhanVien = {};
                 }
-                console.log('NNNNNNNNNNNNNNNAADADDNNNNNNNNNNNNNNNAADADDNNNNNNNNNNNNNNNAADADD');
+                console.log('_________________________________lấy duoc NHANVIEN');
                 console.log(vm.data.NhanVien);
                 $scope.onSelected({data:vm.data.NhanVien});
             });

@@ -71,6 +71,7 @@
                     delete vm.data.PhongBan;
                     vm.data.PhongBan = {};
                 }
+                console.log('_________________________________lấy duoc PHONGBAN');
                 $scope.onSelected({data:vm.data.PhongBan});
             });
         });
@@ -112,8 +113,6 @@
                 service.getComboboxById(CoSoId, NhanVienId, vm.inputSearch.SearchString, PhongBanId)
                     .then(function (success) {
                         vm.status.isLoading = false;
-                        console.log('________________ CBXPHONGBAN_________________________________');
-                        console.log(success);
                         if (success.data.data) {
                             vm.data.PhongBanListDisplay = success.data.data;
                         }
