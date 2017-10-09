@@ -11,6 +11,7 @@
         vm.status = {};
         vm.inputSearch = {};
         vm.data = {};
+        vm.data.timeline = {};
         vm.data.menuCoSo = [];
         vm.data.menuSelect = {};
         vm.data.ListTaiSan = [];
@@ -89,6 +90,13 @@
             }, function (error) {
                 vm.status.isLoading = false;
             });
+        }
+
+        vm.action.xemLuocSu = function (row) {
+            vm.data.timeline.NhanVienId = row.NhanVienId;
+            vm.data.timeline.PhongBanId = row.PhongBanId;
+            vm.data.timeline.TaiSanId = row.ID;
+            $('#timeline').collapse("show");
         }
 
         /*** BIZ FUNCTION ***/
@@ -344,6 +352,84 @@
                 }
             }
             return roots;
+        }
+    });
+
+    module.directive('timeline', function () {
+        return {
+            restrict: 'E',
+            scope: {
+                tagId: '@',
+                nhanVienId: '<',
+                taiSanId: '<',
+                phongBanId: '<',
+                homeUrl: '@'
+            },
+            controllerAs: 'ctrl',
+            templateUrl: function (elem, attrs) {
+                return attrs.templateUrl || 'timeline.html';
+            },
+            controller: function ($scope, $http, TraCuuTaiSanService, $q, $timeout) {
+                var vm = this;
+                console.log($scope.homeUrl);
+                vm.temp = { Ngay: '0' };
+                vm.data = {};
+                vm.data.listTimeline = [];
+                vm.data.listType = [
+                    { type: 'DANHGIA', title: 'Đánh giá', link: $scope.homeUrl + 'danhgiataisan/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-default' },
+                    { type: 'GHITANG', title: 'Ghi tăng', link: $scope.homeUrl + 'ghitang/edit/', icon: 'fa fa-fw fa-arrow-up', style: 'panel panel-success' },
+                    { type: 'GHIGIAM', title: 'Ghi giảm', link: $scope.homeUrl + 'ghigiam/edit/', icon: 'fa fa-fw fa-arrow-down', style: 'panel panel-danger' },
+                    { type: 'TDTT', title: 'Thay đổi thông tin', link: $scope.homeUrl + 'thaydoithongtinkekhai/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-default' },
+                    { type: 'KHAITHAC', title: 'Khai thác', link: $scope.homeUrl + 'khaithac/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-info' },
+                    { type: 'DIEUCHUYEN', title: 'Điều chuyển', link: $scope.homeUrl + 'dieuchuyen/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-warning' },
+                ]
+
+                activate();
+                function activate() {
+                    eventListener();
+                }
+
+                /*** INIT / EVENT FUNCTION ***/
+
+                function eventListener() {
+                    $(document).ready(function () {
+                        $('#' + $scope.tagId).on("shown.bs.collapse", function () {
+                            console.log('shown.bs.collapse');
+                            console.log($scope);
+                        });
+                    });
+
+                }
+
+                $scope.$watchGroup(['nhanVienId', 'phongBanId', 'taiSanId'], function (newValues, oldValues) {
+                    console.log(newValues);
+                    console.log(oldValues);
+                    if (!newValues[0] || !newValues[1] || !newValues[2]) { return; }
+
+                    //if (newValues[0] == oldValues[0]
+                    //    && newValues[1] == oldValues[1]
+                    //    && newValues[2] == oldValues[2]) { return; }
+                    vm.temp.Ngay = '';
+                    getLuocSu();
+                });
+                /*** ACTION FUNCTION ***/
+                vm.action = {};
+
+                /*** BIZ FUNCTION ***/
+                /** API FUNCTION ***/
+                function getLuocSu() {
+                    var data = {};
+                    data.nhanVienId = $scope.nhanVienId;
+                    data.phongBanId = $scope.phongBanId;
+                    data.taiSanId = $scope.taiSanId;
+
+                    TraCuuTaiSanService.getLuocSu(data).then(function (success) {
+                        console.log('TraCuuTaiSanService.getLuocSu');
+                        console.log(success);
+                        vm.data.listTimeline = success.data.data;
+                    });
+                }
+            }
         }
     });
 })();

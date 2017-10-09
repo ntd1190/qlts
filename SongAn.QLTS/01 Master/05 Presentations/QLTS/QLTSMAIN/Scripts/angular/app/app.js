@@ -7,7 +7,7 @@
          'ngCookies',
          // Custom modules 
          // 3rd Party Modules
-        'smart-table',
+        'smart-table','angular.filter',
         'ngSanitize', 'ui.select'
         ])
         .value('API_BASE', 'http://localhost/qltsapi/')
@@ -26,8 +26,10 @@
         }
     }
 
-    function config(stConfig) {
+    function config(stConfig,$compileProvider) {
         stConfig.pipe.delay = 0;
+        $compileProvider.commentDirectivesEnabled(false);
+        $compileProvider.cssClassDirectivesEnabled(false);
     }
 
     function authorizeHeader($http) {

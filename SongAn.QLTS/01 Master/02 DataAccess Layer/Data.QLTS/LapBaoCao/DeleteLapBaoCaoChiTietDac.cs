@@ -26,10 +26,6 @@ namespace SongAn.QLTS.Data.QLTS.LapBaoCaoChiTiet
         /// Danh sách các DeleteLapBaoCaoChiTietChiTietId cần lấy
         /// </summary>
         public int LapBaoCaoId { get; set; }
-        public int TaiSanId { get; set; }
-        public int PhongBanId { get; set; }
-        public int NhanVienId { get; set; }
-        public decimal SoLuong { get; set; }
 
         #endregion
 
@@ -86,13 +82,10 @@ namespace SongAn.QLTS.Data.QLTS.LapBaoCaoChiTiet
             return await WithConnection(async c =>
             {
                 var p = new DynamicParameters();
-                p.Add("LapBaoCaoChiTietId", LapBaoCaoId, DbType.String);
-                p.Add("TaiSanId", TaiSanId, DbType.String);
-                p.Add("PhongBanId", PhongBanId, DbType.String);
-                p.Add("NhanVienId", NhanVienId, DbType.String);
-                p.Add("SoLuong", SoLuong, DbType.String);
+                p.Add("LapBaoCaoId", LapBaoCaoId, DbType.String);
+
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_LapBaoCaoChiTiet_DeleteLapBaoCaoChiTietById",
+                    sql: "sp_LapBaoCao_DeleteLapBaoCaoChiTietById",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

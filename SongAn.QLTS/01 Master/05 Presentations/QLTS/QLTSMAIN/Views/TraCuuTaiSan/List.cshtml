@@ -15,12 +15,6 @@
                     </div>
                 </div>
                 <div class="panel-body">
-                    <script type="text/ng-template" id="menuTree">
-                        <a href="javascript:void(0);" ng-click="ctrl.action.menuSelect(menu)">{{ menu.TEN }}</a>
-                        <ul class="nav nav-pills nav-stacked nav-tree" ng-if="menu.SubMenu">
-                            <li ng-repeat="menu in menu.SubMenu" ng-include="'menuTree'" ng-class="ctrl.data.menuSelect.ID == menu.ID && ctrl.data.menuSelect.TYPE == menu.TYPE ? 'active':''"></li>
-                        </ul>
-                    </script>
                     <ul class="nav nav-pills nav-stacked nav-tree" id="myTree" data-toggle="nav-tree" data-nav-tree-expanded="fa fa-fw fa-folder-open-o" data-nav-tree-collapsed="fa fa-fw fa-folder-o">
                         <li ng-repeat="menu in ctrl.data.menuCoSo" ng-include="'menuTree'" ng-class="ctrl.data.menuSelect.ID == menu.ID && ctrl.data.menuSelect.TYPE == menu.TYPE ? 'active':''"></li>
                     </ul>
@@ -70,6 +64,7 @@
                                 <td class="text-center"><span ng-bind="(ctrl.cache.tableState.pagination.start + $index) + 1"></span></td>
                                 <td ng-repeat="cot in ctrl.data.ListCotTaiSan|filter:{HienThiYN:true}" ng-switch="cot.MaCot">
                                     <div ng-switch-when="LoaiKeKhai" ng-switch-when-separator="," ng-bind="(ctrl.data.ListLoaiKeKhai|filter:{LoaiKeKhai:row[cot.MaCot]})[0].NoiDung"></div>
+                                    <a href="javascript:void(0)" ng-switch-when="TenTaiSan" ng-switch-when-separator="," ng-bind="row[cot.MaCot]" ng-click="ctrl.action.xemLuocSu(row)"></a>
                                     <div ng-switch-default ng-bind="row[cot.MaCot]"></div>
                                 </td>
                             </tr>
@@ -184,19 +179,19 @@
                             </div>
                             <div class="row">
                                 <span class="col-sm-4">Công suất xe</span>
-                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.CongSuatXe:number"></span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.CongSuatXe|number"></span>
                             </div>
                             <div class="row">
                                 <span class="col-sm-4">Trọng tải</span>
-                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
                             </div>
                             <div class="row">
                                 <span class="col-sm-4">Chức danh</span>
-                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
                             </div>
                             <div class="row">
                                 <span class="col-sm-4">Nguồn gốc xe</span>
-                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai:number"></span>
+                                <span class="col-sm-8" ng-bind="ctrl.data.TTKK_Oto.TrongTai|number"></span>
                             </div>
                             <div class="row">
                                 <span class=" col-sm-4">Loại xe</span>
@@ -227,7 +222,61 @@
             </div>
         </div>
     </div>
+    <timeline data-tag-id="timeline"
+              data-nhan-vien-id="ctrl.data.timeline.NhanVienId"
+              data-phong-ban-id="ctrl.data.timeline.PhongBanId"
+              data-tai-san-id="ctrl.data.timeline.TaiSanId"
+              data-template-url="timeline.html"
+              data-home-url="@(Url.Content("~/"))"></timeline>
 </div>
+
+<!-- CƠ SỞ MENU -->
+<script type="text/ng-template" id="menuTree">
+    <a href="javascript:void(0);" ng-click="ctrl.action.menuSelect(menu)">{{ menu.TEN }}</a>
+    <ul class="nav nav-pills nav-stacked nav-tree" ng-if="menu.SubMenu">
+        <li ng-repeat="menu in menu.SubMenu" ng-include="'menuTree'" ng-class="ctrl.data.menuSelect.ID == menu.ID && ctrl.data.menuSelect.TYPE == menu.TYPE ? 'active':''"></li>
+    </ul>
+</script><!--/ CƠ SỞ MENU -->
+<!-- TIMELINE TEMPLATE -->
+<script type="text/ng-template" id="timeline.html">
+    <div class="panel panel-primary ui-draggable collapse fade" id="{{tagId}}">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Lược sử</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#{{tagId}}"><i class="fa fa-fw fa-remove"></i></a>
+                <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner"></i>
+            </div>
+        </div>
+        <div class="panel-body" style="width: 700px;height:500px;">
+            <div class="timeline">
+                <div class="line text-info"></div>
+                <div ng-repeat="(key,value) in ctrl.data.listTimeline|groupBy:'Ngay'">
+                    <div class="separator text-info">
+                        <span ng-bind="key|date:'dd/MM/yyyy'"></span>
+                    </div>
+                    <div class="{{(ctrl.temp.type=(ctrl.data.listType|filter:{type:timeline.Type})[0]).style}}" ng-repeat="timeline in value">
+                        <div class="panel-heading icon">
+                            <i class="{{ctrl.temp.type.icon}}"></i>
+                        </div>
+                        <div class="panel-heading clearfix">
+                            <span ng-bind="ctrl.temp.type.title"></span>
+                            <span class="pull-right" ng-bind="timeline.Ngay|date:'dd/MM/yyyy'"></span>
+                        </div>
+                        <div class="panel-body">
+                            <span ng-bind="timeline.NoiDung"></span>
+                            <div class="clearfix">
+                                <a class="btn btn-xs btn-primary pull-right" href="{{ctrl.temp.type.link+timeline.Id}}">chi tiết</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       </div>
+        <div class="panel-footer clearfix text-center">
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#{{tagId}}">Đóng</a>
+        </div>
+    </div>
+</script><!--/ TIMELINE TEMPLATE -->
 
 @section ImportStyles{
     <link href="~/lib/BootstrapTreeNav/css/bootstrap-treenav.min.css" rel="stylesheet" />
@@ -253,6 +302,108 @@
             background-color: #337ab7;
         }
     </style>
+    <!-- TIMELINE CSS -->
+    <style>
+        .timeline {
+            position: relative;
+            padding: 21px 0px 10px;
+            margin-top: 4px;
+            margin-bottom: 30px;
+        }
+
+            .timeline .line {
+                position: absolute;
+                width: 4px;
+                display: block;
+                background: currentColor;
+                top: 0px;
+                bottom: 0px;
+                margin-left: 30px;
+            }
+
+            .timeline .separator {
+                border-top: 1px solid currentColor;
+                padding: 5px;
+                padding-left: 40px;
+                font-style: italic;
+                font-size: .9em;
+                margin-left: 30px;
+            }
+
+            .timeline .line::before {
+                top: -4px;
+            }
+
+            .timeline .line::after {
+                bottom: -4px;
+            }
+
+            .timeline .line::before,
+            .timeline .line::after {
+                content: '';
+                position: absolute;
+                left: -4px;
+                width: 12px;
+                height: 12px;
+                display: block;
+                border-radius: 50%;
+                background: currentColor;
+            }
+
+            .timeline .panel {
+                position: relative;
+                margin: 10px 0px 21px 70px;
+                clear: both;
+            }
+
+                .timeline .panel::before {
+                    position: absolute;
+                    display: block;
+                    top: 8px;
+                    left: -24px;
+                    content: '';
+                    width: 0px;
+                    height: 0px;
+                    border: inherit;
+                    border-width: 12px;
+                    border-top-color: transparent;
+                    border-bottom-color: transparent;
+                    border-left-color: transparent;
+                }
+
+                .timeline .panel .panel-heading.icon * {
+                    font-size: 20px;
+                    vertical-align: middle;
+                    line-height: 40px;
+                }
+
+                .timeline .panel .panel-heading.icon {
+                    position: absolute;
+                    left: -59px;
+                    display: block;
+                    width: 40px;
+                    height: 40px;
+                    padding: 0px;
+                    border-radius: 50%;
+                    text-align: center;
+                    float: left;
+                }
+
+            .timeline .panel-outline {
+                border-color: transparent;
+                background: transparent;
+                box-shadow: none;
+            }
+
+                .timeline .panel-outline .panel-body {
+                    padding: 10px 0px;
+                }
+
+                .timeline .panel-outline .panel-heading:not(.icon),
+                .timeline .panel-outline .panel-footer {
+                    display: none;
+                }
+    </style><!-- TIMELINE CSS -->
 }
 @section ImportScripts{
     <script src="~/lib/BootstrapTreeNav/js/bootstrap-treenav.min.js"></script>

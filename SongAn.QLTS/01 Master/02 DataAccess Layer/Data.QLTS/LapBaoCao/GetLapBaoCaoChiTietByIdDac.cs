@@ -86,7 +86,7 @@ namespace SongAn.QLTS.Data.QLTS.LapBaoCaoChiTiet
                
                 p.Add("LapBaoCaoId", LapBaoCaoId, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_LapBaoCaoChiTiet_GetLapBaoCaoChiTietByLapBaoCaoId",
+                    sql: "sp_LapBaoCao_GetLapBaoCaoChiTietById",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

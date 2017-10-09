@@ -12,8 +12,8 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual int LapBaoCaoChiTietId { get; set; }
         public virtual int LapBaoCaoId { get; set; }
         public virtual int BaoCaoId { get; set; }
-        public virtual string DuyetId { get; set; }
-        public virtual DateTime NgayDuyet { get; set; }
+        public virtual int DuyetId { get; set; }
+        public virtual DateTime? NgayDuyet { get; set; }
         public virtual string NoiDungDuyet { get; set; }
 
     }

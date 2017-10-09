@@ -72,6 +72,7 @@
     <Compile Include="Controllers\GhiTangController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\LapBaoCaoController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\LoaiTaiSanController.cs" />
@@ -152,6 +153,13 @@
     <Compile Include="Models\KhaiThac\GetListKhaiThacByProjectionAction.cs" />
     <Compile Include="Models\KhaiThac\InsertKhaiThacAction.cs" />
     <Compile Include="Models\KhaiThac\UpdateKhaiThacByIdAction.cs" />
+    <Compile Include="Models\LapBaoCao\DeleteListLapBaoCaoAction.cs" />
+    <Compile Include="Models\LapBaoCao\GetLapBaoCaoByIdAction.cs" />
+    <Compile Include="Models\LapBaoCao\GetListDmBaoCaoAction.cs" />
+    <Compile Include="Models\LapBaoCao\GetLapBaoCaoChiTietByIdAction.cs" />
+    <Compile Include="Models\LapBaoCao\GetListLapBaoCaoByProjectionAction.cs" />
+    <Compile Include="Models\LapBaoCao\InsertLapBaoCaoAction.cs" />
+    <Compile Include="Models\LapBaoCao\UpdateLapBaoCaoAction.cs" />
     <Compile Include="Models\LoaiTaiSan\GetListcbxLoaiTaiSanByProjectionAction.cs" />
     <Compile Include="Models\NhaCungCap\DeleteListNhaCungCapAction.cs" />
     <Compile Include="Models\NhaCungCap\GetListcbxNhaCungCapByCriteriaAction.cs" />
@@ -266,6 +274,7 @@
     <Compile Include="Models\TheoDoi\GetListTheoDoiByProjectionAction.cs" />
     <Compile Include="Models\TheoDoi\InsertTheoDoiAction.cs" />
     <Compile Include="Models\TheoDoi\UpdateTheoDoiByIdAction.cs" />
+    <Compile Include="Models\TraCuuTaiSan\LuocSuAction.cs" />
     <Compile Include="Models\TraCuuTaiSan\GetListTaiSanByCriteriaAction.cs" />
     <Compile Include="Models\TraCuuTaiSan\GetListMenuCoSoByNhanVienIdAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

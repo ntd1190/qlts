@@ -72,6 +72,10 @@
     <Compile Include="CoSo\GetCoSoById.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiGiamDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
+    <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="LapBaoCao\GetLapBaoCaoByIdDac.cs" />
+    <Compile Include="LapBaoCao\GetListDmBaoCaoDac.cs" />
+    <Compile Include="TraCuuTaiSan\LuocSuDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
     <Content Include="CrystalReport\Procedures\sp_DanhGia_report_DanhGiaTaiSanById.sql" />
@@ -228,6 +232,7 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
+    <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_LuocSu.sql" />
     <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListMenuCoSoByNhanVienId.sql" />
   </ItemGroup>

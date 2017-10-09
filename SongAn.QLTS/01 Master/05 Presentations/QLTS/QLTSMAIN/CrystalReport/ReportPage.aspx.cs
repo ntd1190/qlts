@@ -131,6 +131,24 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                         }
                     }
                 }
+                else if (reportname == "rptTongHopTangGiamTSCD.rpt")
+                {
+                    ReportTongHopTangGiamTSCDBiz biz = new ReportTongHopTangGiamTSCDBiz(context);
+
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                            biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
                 if (reportname == "rptGhiGiam.rpt")
                 {
                     ReportGhiGiamBiz biz = new ReportGhiGiamBiz(context);
@@ -184,7 +202,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptTongHopGhiGiam.xml");
+                //ds.WriteXmlSchema(@"D:\rptTongHopTangGiamTSCD.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

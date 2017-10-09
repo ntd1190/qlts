@@ -1,0 +1,287 @@
+﻿
+@{
+    ViewBag.Title = "Lập báo cáo";
+}
+<div class="container-fluid">
+
+    <div ng-controller="LapBaoCaoListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading">
+            <div class="panel-title clearfix">
+                <span><i class="fa fa-fw fa-star-o"></i>Lập báo cáo</span>
+                <div class="pull-right">
+                    <form class="form-inline">
+                        <div class="form-group form-group-sm">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus />
+                                <span class="input-group-btn">
+                                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+
+                                </span>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span ng-if="ctrl.data.showButtonNew">
+                    <a class="btn btn-sm btn-primary" ng-click="ctrl.action.add()">Lập báo cáo (F2)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="table-containe panel-body">
+                <table st-table="ctrl.data.LapBaoCaoListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="width: 40px;">Chọn</th>
+                            <th class="text-center" style="width: 150px;">Kỳ báo cáo</th>
+                            <th class="text-center" >Diễn giải</th>
+                            <th class="text-center" style="width: 150px;">Ngày tạo</th>
+                            <th class="text-center" style="width: 150px;">Ngày gửi</th>
+                            <th class="text-center" style="width: 150px;">Trạng thái</th>
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                       
+                        <tr ng-repeat="LapBaoCao in ctrl.data.LapBaoCaoListDisplay" ng-click="ctrl.action.getPageDetail(LapBaoCao.LapBaoCaoId)" id="row_{{LapBaoCao.LapBaoCaoId}}" ng-class="(LapBaoCao.isSelected==true)?'info':''">
+                            <td st-select-row="LapBaoCao" st-select-mode="multiple" ng-click="ctrl.action.CheckRow()" class="text-center"><i class="fa fa-fw text-primary" ng-class="(LapBaoCao.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                            <td><a ng-bind="LapBaoCao.TenKyBaoCao" ng-click="ctrl.action.edit(LapBaoCao.LapBaoCaoId)" href="javascript:void(0);"></a></td>
+                            <td><a ng-bind="LapBaoCao.DienGiai" ng-click="ctrl.action.edit(LapBaoCao.LapBaoCaoId)" href="javascript:void(0);"></a></td>
+                            <td> <span >{{ LapBaoCao.NgayTao | date : 'dd/MM/yyyy'}}</span></td>
+                            <td> <span >{{ LapBaoCao.NgayGui | date : 'dd/MM/yyyy'}}</span></td>
+                            <td ng-if="LapBaoCao.DuyetId==0" style="padding-left: 3.5%;">
+                                <span class="form-control label label-warning" ng-if="LapBaoCao.GuiCapTren==1">Đã gửi - Chờ duyệt</span>
+                                <span class="form-control label label-warning" ng-bind="LapBaoCao.TrangThai" ng-if="LapBaoCao.GuiCapTren!=1"></span>
+
+                            </td>
+                            <td ng-if="LapBaoCao.DuyetId==1" style="padding-left: 3.5%;">
+                                <span class="form-control label label-success" ng-if="LapBaoCao.DuyetId==1" ng-bind="LapBaoCao.TrangThai"></span>
+                            </td>
+                            <td ng-if="LapBaoCao.DuyetId==2" style="padding-left: 3.5%;">
+                                <span class="form-control label label-danger" ng-if="LapBaoCao.DuyetId==2" ng-bind="LapBaoCao.TrangThai"></span> <i class="fa fa-question-circle-o" ng-if="LapBaoCao.NoiDungDuyet ? true:false" aria-hidden="true" data-placement="left" title="{{LapBaoCao.NoiDungDuyet}}"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="100" class="text-center">
+                                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="panel-heading">
+                <span>Danh sách báo cáo</span>
+            </div>
+
+            <div class="table-responsive panel-body">
+                <table st-table="ctrl.data.LapBaoCaoChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Xem báo cáo</th>
+                            <th class="text-center" style="min-width: 300px;vertical-align:middle">Tên báo cáo</th>
+                            <th class="text-center" style="min-width: 200px;vertical-align:middle">Ý kiến đơn vị quản lý</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="LapBaoCaoChiTiet in ctrl.data.LapBaoCaoChiTietListDisplay" ng-class="(LapBaoCaoChiTiet.isSelected==true)?'info':''">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center"><a href="">Xem</a></td>
+                            <td ng-bind="LapBaoCaoChiTiet.TenBaoCao"></td>
+                            <td class="text-center"></td>
+                            <td class="text-center">
+                                <div ng-if="(LapBaoCaoChiTiet.DuyetId!=1 && LapBaoCaoChiTiet.DuyetId!=2 )? true:false">
+                                    <span class="form-control label label-warning">Chưa duyệt</span>
+                                </div>
+                                <div ng-if="LapBaoCaoChiTiet.DuyetId==1 ? true:false">
+                                    <span class="form-control label label-success">Đồng ý</span>
+                                </div>
+                                <div ng-if="LapBaoCaoChiTiet.DuyetId==2 ? true:false">
+                                    <span class="form-control label label-danger">Từ chối</span>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="100">
+                                <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div ng-controller="LapBaoCaoEditCtrl as ctrl" class="panel panel-primary ui-draggable collapse fade" id="LapBaoCaoEditPopup" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="panel-heading ui-draggable-handle">
+        <h2 class="panel-title">
+            <span>Thông tin Lập báo cáo</span>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#LapBaoCaoEditPopup" ng-click="ctrl.action.close()">
+                <i class="fa fa-remove"></i>
+            </a>
+            <i class="fa fa-fw fa-pulse text-primary pull-right fa-spinner" ng-if="ctrl.status.isLoading"></i>
+        </h2>
+    </div>
+    <div >
+        <div class="panel-body">
+            <form class="form-horizontal">
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-4">Kỳ lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-8">
+                                <select class="form-control" id="cbxKyLap" style="padding:0px 10px" data-placeholder="Chọn phân loại" ng-model="ctrl.data.objLapBaoCao.KyBaoCao">
+                                    <option value="1">Năm</option>
+                                    <option value="2">Quí</option>
+                                    <option value="3">Tháng</option>
+                                    <option value="3">Ngày</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4" >
+                        <div class="row form-group form-group-sm"  ng-class="(ctrl.status.isInValidTuNgay)?'has-error':''">
+                            <label class="control-label col-sm-4" style="padding-left: 0px;">Từ ngày <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objLapBaoCao.TuNgay"/>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="row form-group form-group-sm"  ng-class="(ctrl.status.isInValidDenNgay)?'has-error':''">
+                            <label class="control-label col-sm-4"  style="padding-left: 0px;">Đến ngày <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objLapBaoCao.DenNgay"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2" style="width: 11%;">Diễn giải</label>
+                    <div class="col-sm-10" style="width: 89%;">
+                        <textarea rows="2" type="text" class="form-control" id="txtDienGiai" ng-model="ctrl.data.objLapBaoCao.DienGiai"></textarea>
+                    </div>
+                </div>
+
+            </form>
+            <div class="panel-heading" style="padding-bottom:0px;padding-top:0px">
+                <span>Danh sách báo cáo</span>
+            </div>
+            <div class="table-responsive panel-body" style="padding-top:0px">
+                <table st-table="ctrl.data.ListDMBaoCao" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 50px;vertical-align:middle"></th>
+                            <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="vertical-align:middle">Tên báo cáo</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="BaoCao in ctrl.data.ListDMBaoCao">
+                            <td st-select-row="BaoCao" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(BaoCao.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                            <td class="text-center" > {{$index + 1}}</td>
+                            <td> <span ng-bind="BaoCao.TenBaoCao"></span></td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="panel-footer">
+        <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
+    </div>
+</div>
+
+@section ImportStyles{}
+@section SetupStyles{
+    <style type="text/css">
+        .st-sort-ascent:before {
+            content: '\25B2';
+        }
+
+        .st-sort-descent:before {
+            content: '\25BC';
+        }
+
+        .select-page {
+            width: 50px;
+            text-align: center;
+        }
+
+        .pagination li a input {
+            padding: 0;
+            margin: -5px 0;
+        }
+
+        .top-alert {
+            position: fixed;
+            top: 10px;
+            width: 100%;
+            z-index: 100000;
+            left: 0;
+            padding: 20px;
+            display: inline-block;
+            text-align: center;
+        }
+
+            .top-alert .alert {
+                width: auto !important;
+                height: 100%;
+                display: inline;
+                position: relative;
+                margin: 0;
+            }
+
+                .top-alert .alert .close {
+                    position: absolute;
+                    top: 11px;
+                    right: 10px;
+                    color: inherit;
+                    margin: -13px -7px;
+                }
+    </style>
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
+}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/LapBaoCao/service/LapBaoCaoService.js"></script>
+    <script src="~/Scripts/angular/LapBaoCao/controller/LapBaoCaoListCtrl.js"></script>
+    <script src="~/Scripts/angular/LapBaoCao/controller/LapBaoCaoEditCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
+}
+
+
+
+

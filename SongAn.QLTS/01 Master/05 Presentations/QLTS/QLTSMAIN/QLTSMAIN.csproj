@@ -139,6 +139,7 @@
     <Content Include="lib\angular\angular-cookies.js" />
     <Content Include="lib\angular\angular-cookies.min.js" />
     <Content Include="lib\angular\angular-csp.css" />
+    <Content Include="lib\angular\angular-filter.js" />
     <Content Include="lib\angular\angular-loader.js" />
     <Content Include="lib\angular\angular-loader.min.js" />
     <Content Include="lib\angular\angular-message-format.js" />
@@ -336,6 +337,9 @@
     <Content Include="Scripts\angular\PhanQuyen\service\PhanQuyenService.js" />
     <Content Include="Scripts\angular\KeHoachMuaSam\controller\KeHoachMuaSamListCtrl.js" />
     <Content Include="Scripts\angular\KeHoachMuaSam\service\KeHoachMuaSamService.js" />
+    <Content Include="Scripts\angular\LapBaoCao\controller\LapBaoCaoEditCtrl.js" />
+    <Content Include="Scripts\angular\LapBaoCao\controller\LapBaoCaoListCtrl.js" />
+    <Content Include="Scripts\angular\LapBaoCao\service\LapBaoCaoService.js" />
     <Content Include="Scripts\angular\PhongBan\controller\ComboboxMuti.js" />
     <Content Include="Scripts\angular\PhongBan\controller\Combobox.js" />
     <Content Include="Scripts\angular\PhongBan\controller\PhongBanEditCtrl.js" />
@@ -440,6 +444,7 @@
     <Compile Include="Controllers\CoSoController.cs" />
     <Compile Include="Controllers\PhanQuyenController.cs" />
     <Compile Include="Controllers\KeHoachMuaSamController.cs" />
+    <Compile Include="Controllers\LapBaoCaoController.cs" />
     <Compile Include="Controllers\PhuongThucController.cs" />
     <Compile Include="Controllers\PhongBanController.cs" />
     <Compile Include="Controllers\SuDungController.cs" />
@@ -576,6 +581,12 @@
       <DependentUpon>rptTongHopTaiSanCoDinhExcel.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptTongHopTangGiamTSCD.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTongHopTangGiamTSCD.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -670,6 +681,7 @@
     <Content Include="Views\SuDung\Edit.cshtml" />
     <Content Include="Views\TraCuuTaiSan\List.cshtml" />
     <Content Include="Views\BaoCaoTongHop\List.cshtml" />
+    <Content Include="Views\LapBaoCao\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -789,6 +801,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopTaiSanCoDinhExcel.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTongHopTaiSanCoDinhExcel.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTongHopTangGiamTSCD.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTongHopTangGiamTSCD.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

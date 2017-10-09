@@ -108,6 +108,8 @@
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiTang&data=' + data);
             } else if (bieuIn.toString() == "3") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiGiam&data=' + data);
+            } else if (bieuIn.toString() == "4") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopTangGiamTSCD&data=' + data);
             }
             
             $('#reportmodal').modal('show');
@@ -130,6 +132,9 @@
             }
             else if (bieuIn.toString() == "3") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopGhiGiam&export=1&data=' + data);
+            }
+            else if (bieuIn.toString() == "4") {
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptTongHopTangGiamTSCD&export=1&data=' + data);
             }
         };
 
