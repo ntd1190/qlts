@@ -243,8 +243,8 @@
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeFilterCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeListCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
-    <Content Include="Scripts\angular\ChotSoLieuNam\controller\ChotSoLieuListCtrl.js" />
-    <Content Include="Scripts\angular\ChotSoLieuNam\service\ChotSoLieuService.js" />
+    <Content Include="Scripts\angular\ChotSoLieuNam\controller\ChotSoLieuNamListCtrl.js" />
+    <Content Include="Scripts\angular\ChotSoLieuNam\service\ChotSoLieuNamService.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
