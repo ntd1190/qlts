@@ -243,6 +243,8 @@
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeFilterCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\controller\KiemKeListCtrl.js" />
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
+    <Content Include="Scripts\angular\ChotSoLieuNam\controller\ChotSoLieuListCtrl.js" />
+    <Content Include="Scripts\angular\ChotSoLieuNam\service\ChotSoLieuService.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
@@ -418,6 +420,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaoCaoTongHopController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
+    <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\DanhGiaTaiSanController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
@@ -682,6 +685,7 @@
     <Content Include="Views\TraCuuTaiSan\List.cshtml" />
     <Content Include="Views\BaoCaoTongHop\List.cshtml" />
     <Content Include="Views\LapBaoCao\List.cshtml" />
+    <Content Include="Views\ChotSoLieuNam\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

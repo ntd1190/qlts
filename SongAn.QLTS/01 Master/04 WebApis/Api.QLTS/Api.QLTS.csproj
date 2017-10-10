@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
+    <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
@@ -106,6 +107,7 @@
     <Compile Include="Models\BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdAction.cs" />
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
+    <Compile Include="Models\ChotSoLieuNam\ChotSoLieuNamAction.cs" />
     <Compile Include="Models\DanhGia\GetListNguyenGiaByDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\DeleteDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\UpdateDanhGiaAction.cs" />

@@ -67,6 +67,7 @@
     <Compile Include="BienBanKiemKe\GetListBienBanKiemKeChiTietByKiemKeIdDac.cs" />
     <Compile Include="BienBanKiemKe\InsertBienBanKiemKeDac.cs" />
     <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdDac.cs" />
+    <Compile Include="ChotSoLieuNam\ChotSoLieuNamDac.cs" />
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
