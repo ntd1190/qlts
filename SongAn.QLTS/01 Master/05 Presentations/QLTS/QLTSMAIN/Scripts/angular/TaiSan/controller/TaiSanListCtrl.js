@@ -1,4 +1,5 @@
-﻿(function () {
+﻿/// <reference path="TaiSanListCtrl.js" />
+(function () {
     'use strict';
     var module = angular.module('app');
 
@@ -66,6 +67,14 @@
             taisan.isView = true;
             getById(taisan.TaiSanId);
         }
+        vm.action.In = function () {
+            var report_name = '';
+            report_name = 'rptTaiSan_KeKhai';
+
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=' + report_name + '&LoaiKeKhai=1');
+            $('#reportmodal').modal('show');
+        };
+
         /*** HOT KEY ***/
 
         vm.keys = {

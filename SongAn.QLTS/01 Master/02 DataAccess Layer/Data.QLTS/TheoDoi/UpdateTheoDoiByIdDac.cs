@@ -22,6 +22,7 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
         public int NhanVienId { get; set; }
         public int PhongBanId_Old { get; set; }
         public int NhanVienId_Old { get; set; }
+        public decimal Nam { get; set; }
         public decimal SLTon { get; set; }
         public decimal SLTang { get; set; }
         public decimal SLGiam { get; set; }
@@ -91,6 +92,7 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
                 p.Add("PhongBanId_Old", PhongBanId_Old, DbType.Int32);
                 p.Add("NhanVienId", NhanVienId, DbType.Int32);
                 p.Add("NhanVienId_Old", NhanVienId_Old, DbType.Int32);
+                p.Add("Nam", Nam, DbType.Decimal);
                 p.Add("SLTon", SLTon, DbType.Decimal);
                 p.Add("SLTang", SLTang, DbType.Decimal);
                 p.Add("SLGiam", SLGiam, DbType.Decimal);

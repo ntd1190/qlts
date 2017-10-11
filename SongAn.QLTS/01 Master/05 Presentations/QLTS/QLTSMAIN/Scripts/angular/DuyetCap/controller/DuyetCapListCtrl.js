@@ -47,12 +47,27 @@
         vm.keys = {
             //press ESC -> close popup
             ESC: function (name, code) {
-
-            },
-            //press F2 -> open popup
-            F2: function (name, code) {
-                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
-                    window.location.href = vm.data.linkUrl + 'denghitrangcap/edit?id=0';
+                //alert("ESC");
+                console.log('ESC');
+                var index_highest = 0;
+                var ele_highest;
+                var ele_focus;
+                var ele_current;
+                // more effective to have a class for the div you want to search and 
+                // pass that to your selector
+                $('.panel.ui-draggable.fade.in').each(function () {
+                    // always use a radix when using parseInt
+                    var index_current = parseInt($(this).css("zIndex"), 10);
+                    ele_current = $(this);
+                    if (index_current > index_highest) {
+                        index_highest = index_current;
+                        ele_focus = ele_highest;
+                        ele_highest = ele_current;
+                    }
+                });
+                if (ele_highest) {
+                    $(ele_highest).collapse('hide');
+                    $(ele_focus).find('input[autofocus]').focus();
                 }
             },
 
@@ -177,6 +192,9 @@
                 utility.AlertError('Vui lòng chọn phiếu đề nghị trang cấp để duyệt !');
                 return;
             }
+            if (!confirm('Bạn đồng ý duyệt các phiếu đề nghị đã chọn?')) {
+                return;
+            }
             var DuyetId = 1;
             var NgayDuyet = moment().format('DD/MM/YYYY');
             var NguoiDuyet = vm.data.userInfo.NhanVienId;
@@ -250,6 +268,9 @@
             });
         }
         function DongYChiTiet(item) {
+            if (!confirm('Bạn đồng ý duyệt phiếu đề nghị này?')) {
+                return;
+            }
             addloadding($('body'));
             DuyetCapService.DuyetChiTiet(item.DeNghiId, item.DeNghiChiTietId, 1).then(function (success) {
                 if (success.data.data) {

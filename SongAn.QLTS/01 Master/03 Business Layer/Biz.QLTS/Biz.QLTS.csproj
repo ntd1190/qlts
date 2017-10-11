@@ -68,6 +68,7 @@
     <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportDanhGiaByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportTDTTNhaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportSuDungByIdBiz.cs" />
@@ -81,6 +82,10 @@
     <Compile Include="DanhGia\InsertDanhGiaBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoBiz.cs" />
+    <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoChiTietBiz.cs" />
+    <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoByCriteriaBiz.cs" />
+    <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoChiTietByIdBiz.cs" />
     <Compile Include="DuyetCap\DuyetDuyetCapChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaChiTietBiz.cs" />
     <Compile Include="DuyetMua\DuyetDuyetMuaBiz.cs" />

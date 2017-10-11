@@ -24,6 +24,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
 
             CrystalDecisions.CrystalReports.Engine.ReportDocument reportdocument = new ReportDocument();
             reportdocument = ReportFactory.GetReport(reportdocument.GetType());
+
             ContextDto context = new ContextDto();
             context.dbQLTSConnection = ConfigurationManager.ConnectionStrings["dbQLTSConnection"].ConnectionString;
             if (!IsPostBack)
@@ -32,6 +33,9 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 string search = Request.QueryString["Data"];
                 string ngay = Request.QueryString["Ngay"];
                 string exportexcel = Request.QueryString["export"];
+
+                CrystalReportViewer1.HasCrystalLogo = false;
+                CrystalReportViewer1.SeparatePages = false;
 
                 DataSet ds = new DataSet();
                 if (reportname == "rptKeHoachMuaSam.rpt")
@@ -156,7 +160,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     ds = biz.ExecuteBiz();
 
                 }
-            
+
                 /* REPORT THAY ĐỔI THÔNG TIN */
                 if (reportname == "rptTDTT_Nha.rpt")
                 {
@@ -197,6 +201,17 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     ds = biz.ExecuteBiz();
                 }
 
+                /* REPORT BÁO CÁO KÊ KHAI TÀI SẢN */
+                if (reportname == "rptTaiSan_KeKhai.rpt")
+                {
+
+                    CrystalReportViewer1.SeparatePages = true;
+                    var biz = new ReportTaiSanKeKhaiByIdBiz(context);
+                    biz.TaiSanId = Request.QueryString["TaiSanId"];
+                    biz.LoaiKeKhai = Request.QueryString["LoaiKeKhai"];
+                    ds = biz.ExecuteBiz();
+                }
+
                 ds.Tables[0].TableName = "Tables";
                 if (reportname == "rptKiemKeById.rpt")
                 {
@@ -206,8 +221,6 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);
-                CrystalReportViewer1.HasCrystalLogo = false;
-                CrystalReportViewer1.SeparatePages = false;
                 CrystalReportViewer1.ReportSource = reportdocument;
                 CrystalReportViewer1.ToolPanelView = ToolPanelViewType.None;
                 Session["ReportDocument"] = reportdocument;
@@ -217,7 +230,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     Response.Buffer = false;
                     Response.ClearContent();
                     Response.ClearHeaders();
-                    reportdocument.ExportToHttpResponse(ExportFormatType.Excel, Response, true, reportname.Replace(".rpt","").Replace("rpt",""));
+                    reportdocument.ExportToHttpResponse(ExportFormatType.Excel, Response, true, reportname.Replace(".rpt", "").Replace("rpt", ""));
                     Response.End();
                 }
             }

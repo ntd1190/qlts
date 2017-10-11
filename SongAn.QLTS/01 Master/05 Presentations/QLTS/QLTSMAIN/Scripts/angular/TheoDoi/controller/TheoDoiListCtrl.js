@@ -185,7 +185,7 @@
             for (var i = 0; i < vm.data.TheoDoiListDisplay.length; i++) {
                 var TheoDoi = vm.data.TheoDoiListDisplay[i];
                 if (TheoDoi.isSelected) {
-                    TheoDoiSelected.push(TheoDoi.TaiSanId + '_' + TheoDoi.PhongBanId + '_' + TheoDoi.NhanVienId);
+                    TheoDoiSelected.push(TheoDoi.TaiSanId + '_' + TheoDoi.PhongBanId + '_' + TheoDoi.NhanVienId + '_' + TheoDoi.Nam);
                 }
             }
             var ids = TheoDoiSelected.join(',');
@@ -281,11 +281,12 @@
             $rootScope.isOpenPopup = true;
         }
 
-        function edit(taiSanId, phongBanId, nhanVienId) {
+        function edit(taiSanId, phongBanId, nhanVienId, nam) {
             var data = {};
             data.taiSanId = taiSanId;
             data.phongBanId = phongBanId;
             data.nhanVienId = nhanVienId;
+            data.nam = nam;
             $rootScope.$broadcast('TheoDoiEditCtrl.TheoDoiId', data);
             $('#TheoDoiEditPopup').collapse('show');
             $("#txtMaTaiSan").focus();

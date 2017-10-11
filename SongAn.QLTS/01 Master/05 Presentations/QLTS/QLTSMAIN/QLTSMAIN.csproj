@@ -259,6 +259,9 @@
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenListCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\service\DieuChuyenService.js" />
     <Content Include="Scripts\angular\DuAn\directive\cboDuAn.js" />
+    <Content Include="Scripts\angular\DuyetBaoCao\controller\DuyetBaoCaoFilterCtrl.js" />
+    <Content Include="Scripts\angular\DuyetBaoCao\controller\DuyetBaoCaoListCtrl.js" />
+    <Content Include="Scripts\angular\DuyetBaoCao\service\DuyetBaoCaoService.js" />
     <Content Include="Scripts\angular\DuyetCap\controller\DuyetCapListCtrl.js" />
     <Content Include="Scripts\angular\DuyetCap\controller\DuyetCapFilterCtrl.js" />
     <Content Include="Scripts\angular\DuyetCap\service\DuyetCapService.js" />
@@ -422,6 +425,7 @@
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\DanhGiaTaiSanController.cs" />
+    <Compile Include="Controllers\DuyetBaoCaoController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
     <Compile Include="Controllers\BaoDuongController.cs" />
@@ -469,6 +473,12 @@
     </Compile>
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_KeKhai.cs">
+      <DependentUpon>rptTaiSan_KeKhai.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptBanKiemKeById.cs">
       <AutoGen>True</AutoGen>
@@ -685,6 +695,7 @@
     <Content Include="Views\TraCuuTaiSan\List.cshtml" />
     <Content Include="Views\BaoCaoTongHop\List.cshtml" />
     <Content Include="Views\LapBaoCao\List.cshtml" />
+    <Content Include="Views\DuyetBaoCao\List.cshtml" />
     <Content Include="Views\ChotSoLieuNam\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -738,6 +749,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhai.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_KeKhai.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptBanKiemKeById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBanKiemKeById.cs</LastGenOutput>

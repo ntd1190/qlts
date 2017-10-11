@@ -177,8 +177,19 @@
             var ids = DieuChuyenListSelected.join(',');
             if (ids.length > 0) {
                 DieuChuyenService.DeleteList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
-                    window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
+
+                    if (success.data.data > 0) {
+                        if (DieuChuyenListSelected.length > parseInt(success.data.data)) {
+                            var sl = DieuChuyenListSelected.length - parseInt(success.data.data);
+                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                        }
+                        else
+                            utility.AlertError('Phiếu đã duyệt hoặc số liệu đã chốt!');
+                    }
+                    else {
+                        utility.AlertSuccess('Xóa thành công!');
+                        window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
+                    }
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
                 });
@@ -345,11 +356,17 @@
             DieuChuyenService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Thêm thành công");
-                   
-                    $timeout(function () {
-                        window.location = vm.data.linkUrl + 'DieuChuyen/edit/' + result.data.data[0].DieuChuyenIdI;
-                    }, 2000);
+                    if (parseInt(result.data.data[0]["DieuChuyenIdI"]) < 0) {
+                        utility.AlertError("Năm đã chốt hoặc ngày điều chuyển không hợp lệ!");
+                    }
+                    else
+                    {
+                        utility.AlertSuccess("Điều chuyển thành công");
+
+                        $timeout(function () {
+                            window.location = vm.data.linkUrl + 'DieuChuyen/edit/' + result.data.data[0].DieuChuyenIdI;
+                        }, 2000);
+                    }
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();
@@ -375,7 +392,16 @@
             DieuChuyenService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Cập nhật thành công");
+                    if (parseInt(result.data.data[0]["ID"]) < 0) {
+                        if (parseInt(result.data.data[0]["ID"]) == -1)
+                            utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!");
+                        else if (parseInt(result.data.data[0]["ID"]) == -2)
+                            utility.AlertError("Phiếu đã duyệt. Không thể chỉnh sửa!");
+                        else if (parseInt(result.data.data[0]["ID"]) == -3)
+                            utility.AlertError("Năm đã chốt hoặc ngày điều chuyển không hợp lệ!");
+                    }
+                    else
+                        utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();

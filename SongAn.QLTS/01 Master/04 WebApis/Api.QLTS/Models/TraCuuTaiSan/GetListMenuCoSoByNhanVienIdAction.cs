@@ -10,6 +10,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TraCuuTaiSan
     public class GetListMenuCoSoByNhanVienIdAction
     {
         public string NhanVienId { get; set; }
+        public string COSO_ID { get; set; }
 
         #region private
         #endregion
@@ -23,7 +24,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.TraCuuTaiSan
 
 
                 var biz = new GetListMenuCoSoByNhanVienIdBiz(context);
-                biz.NhanVienId = Protector.Int(NhanVienId);
+                biz.NhanVienId = Protector.Int(NhanVienId, 0);
+                biz.COSO_ID = Protector.Int(COSO_ID, 0);
                 var result = await biz.Execute();
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

@@ -420,10 +420,23 @@
                                 <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Nha_GiayTo?'has-error':''">
                                     <span class="col-sm-1">Giấy tờ kèm theo</span>
                                     <div class="col-sm-11">
-                                        <textarea class="form-control" ng-model="ctrl.data.TTKK_Nha.GiayTo" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Nha_GiayTo" data-next="TTKK_Nha_SoTang"></textarea>
+                                        <textarea class="form-control" ng-model="ctrl.data.TTKK_Nha.GiayTo" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Nha_GiayTo" data-next="TTKK_Nha_ThuocDat"></textarea>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Nha_ThuocDat?'has-error':''">
+                                    <span class="col-sm-1">Thuộc đất</span>
+                                    <div class="col-sm-11">
+                                        <cbo-tai-san-ke-khai ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="TTKK_Nha_ThuocDat" data-next="TTKK_Nha_SoTang"
+                                                             data-disabled="ctrl.status.isEdit"
+                                                             data-config="{userInfo:@(ViewBag.userInfo)}"
+                                                             data-value="ctrl.data.TTKK_Nha.ThuocDat"
+                                                             data-loai-ke-khai="1"
+                                                             on-selected="ctrl.action.getDataTaiSan(data)"
+                                                             template-url="~/taisan/showview?viewname=cbotaisankekhai">
+                                        </cbo-tai-san-ke-khai>
+                                    </div>
+                                </div>
+                           </div>
                         </div>
 
                         <div class="panel panel-default">
@@ -749,7 +762,7 @@
 
     <script src="~/Scripts/angular/TaiSan/controller/TaiSanEditCtrl.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
-    @*@{Html.RenderPartial("~/views/taiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}*@
+    @{Html.RenderPartial("~/views/taiSan/cboTaiSanKeKhai.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/HienTrangSuDung/cboHienTrangSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NhaCungCap/cboNhaCungCap.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/DuAn/cboDuAn.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

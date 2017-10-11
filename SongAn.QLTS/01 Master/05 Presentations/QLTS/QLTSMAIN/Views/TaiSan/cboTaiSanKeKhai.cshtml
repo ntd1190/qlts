@@ -5,9 +5,11 @@
         <ui-select-match placeholder="{{$select.selected.TenTaiSan || 'Chọn tài sản'}}">{{$select.selected.TenTaiSan}}</ui-select-match>
         <ui-select-choices repeat="item in ctrl.data.TaiSanListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
             <div ng-if="item.TaiSanId" style="border-bottom: #ccc 1px solid;">
-                <b><span class="text-danger" ng-bind-html="item.MaTaiSan | highlight: $select.search"></span></b>: <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenTaiSan | highlight: $select.search"></span></strong></b>
-                <br />
-                <b >- Nguyên giá:</b> <span ng-bind-html="item.NguyenGia|number:'':'':4"></span> đ
+                <ng-transclude>
+                    <b><span class="text-danger" ng-bind-html="item.MaTaiSan | highlight: $select.search"></span></b>: <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenTaiSan | highlight: $select.search"></span></strong></b>
+                    <br />
+                    <b>- Nguyên giá:</b> <span ng-bind-html="item.NguyenGia|number:'':'':4"></span> đ
+                </ng-transclude>
             </div>
         </ui-select-choices>
     </ui-select>

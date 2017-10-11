@@ -48,7 +48,7 @@
 
         vm.action.reset = function () {
             vm.data.listBoPhan = [];
-            vm.data.startDate = moment().format("01/MM/YYYY");
+            vm.data.startDate = moment().format("01/01/YYYY");
             vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
             $rootScope.$broadcast('DuyetCapFilterCtrl.action.clearData');
         };

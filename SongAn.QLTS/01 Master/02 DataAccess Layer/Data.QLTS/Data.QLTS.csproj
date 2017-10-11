@@ -71,14 +71,20 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiByIdDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiGiamDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoChiTietDac.cs" />
+    <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoDac.cs" />
+    <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoByCriteriaDac.cs" />
+    <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoChiTietByIdDac.cs" />
     <Compile Include="LapBaoCao\GetLapBaoCaoByIdDac.cs" />
     <Compile Include="LapBaoCao\GetListDmBaoCaoDac.cs" />
     <Compile Include="TraCuuTaiSan\LuocSuDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
+    <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiById.sql" />
     <Content Include="CrystalReport\Procedures\sp_DanhGia_report_DanhGiaTaiSanById.sql" />
     <Content Include="CrystalReport\Procedures\sp_ThayDoiThongTin_report_TDTTById.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGiaByCriteria.sql" />
@@ -256,6 +262,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DuyetBaoCao\Procedures\" />
     <Folder Include="DuyetCap\Procedures\" />
     <Folder Include="DuyetMua\Procedures\" />
     <Folder Include="GhiGiamChiTiet\Procedures\" />

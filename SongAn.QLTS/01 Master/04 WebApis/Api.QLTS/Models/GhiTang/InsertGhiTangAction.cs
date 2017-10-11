@@ -49,17 +49,20 @@ namespace SongAn.QLTS.Api.QLTS.Models.GhiTang
                     ghiTangId = Protector.Int(obj.GhiTangIdI);
                 }
 
-                foreach (var item in _listChiTiet)
+                if (ghiTangId > 0)
                 {
-                    bizLine = new InsertGhiTangChiTietBiz(context);
-                    bizLine.GhiTangId = Protector.Int(ghiTangId);
-                    bizLine.TaiSanId = item.TaiSanId;
-                    bizLine.NgayBatDauSuDung = item.NgayBatDauSuDung;
-                    bizLine.PhongBanId = item.PhongBanId;
-                    bizLine.NhanVienId = item.NhanVienId;
-                    bizLine.SoLuong = item.SoLuong;
-                   
-                    var result_line = await bizLine.Execute();
+                    foreach (var item in _listChiTiet)
+                    {
+                        bizLine = new InsertGhiTangChiTietBiz(context);
+                        bizLine.GhiTangId = Protector.Int(ghiTangId);
+                        bizLine.TaiSanId = item.TaiSanId;
+                        bizLine.NgayBatDauSuDung = item.NgayBatDauSuDung;
+                        bizLine.PhongBanId = item.PhongBanId;
+                        bizLine.NhanVienId = item.NhanVienId;
+                        bizLine.SoLuong = item.SoLuong;
+
+                        var result_line = await bizLine.Execute();
+                    }
                 }
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

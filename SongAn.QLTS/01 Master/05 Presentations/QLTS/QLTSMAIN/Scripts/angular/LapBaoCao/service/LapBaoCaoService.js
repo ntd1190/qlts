@@ -21,6 +21,7 @@
         getListProjection: 'getListProjection',
         remove: 'DeleteLapBaoCao',
         removeList: 'DeleteListLapBaoCao',
+        GuiCapTren: 'GuiCapTren',
         GetPageDetail: 'GetLapBaoCaoChiTietById',
         GetListBaoCao: 'GetListDMBaoCao'
     }
@@ -35,7 +36,8 @@
             update: update,
             removeList: removeList,
             GetPageDetail: GetPageDetail,
-            GetListBaoCao: GetListBaoCao
+            GetListBaoCao: GetListBaoCao,
+            GuiCapTren:GuiCapTren
         };
 
         return service;
@@ -54,7 +56,21 @@
 
             return $http(req);
         }
+        function GuiCapTren(ids)
+        {
+            var url = api.url + api.GuiCapTren;
 
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    ids: ids
+                })
+            }
+
+            return $http(req);
+        }
         function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId) {
             var url =api.url + api.GetPage;
 

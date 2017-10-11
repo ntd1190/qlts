@@ -56,14 +56,6 @@ namespace SongAn.QLTS.Data.Repository.QLTS
                     throw new Exception(string.Format("Update id {0} not exist", LapBaoCao.LapBaoCaoId.ToString()));
                 }
 
-                if (obj.CtrVersion != LapBaoCao.CtrVersion)
-                {
-                    throw new Exception(string.Format("Update id {0} have version confict"
-                                                        , LapBaoCao.LapBaoCaoId.ToString()));
-                }
-
-                LapBaoCao.CtrVersion += 1;
-
                 var result = await c.UpdateAsync(LapBaoCao);
 
                 if (result != true)
@@ -85,17 +77,7 @@ namespace SongAn.QLTS.Data.Repository.QLTS
                     throw new Exception(string.Format("Update id {0} not exist", LapBaoCao.LapBaoCaoId.ToString()));
                 }
 
-                if (obj.CtrVersion != LapBaoCao.CtrVersion)
-                {
-                    throw new Exception(string.Format("Update id {0} have version confict"
-                                                        , LapBaoCao.LapBaoCaoId.ToString()));
-                }
-
-                LapBaoCao.CtrVersion += 1;
                 var list = field.ToList();
-
-                list.Add(nameof(LapBaoCao.CtrVersion));
-
                 var partialUpdateMapping = OrmConfiguration
                     .GetDefaultEntityMapping<LapBaoCao>()
                     .Clone() 

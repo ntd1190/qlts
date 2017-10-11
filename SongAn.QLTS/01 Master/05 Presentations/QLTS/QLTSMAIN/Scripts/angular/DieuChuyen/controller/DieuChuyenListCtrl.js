@@ -216,10 +216,23 @@
             var ids = DieuChuyenListSelected.join(',');
             if (ids.length > 0) {
                 DieuChuyenService.DeleteList(ids).then(function (success) {
+
+                    if (success.data.data > 0) {
+                        if (DieuChuyenListSelected.length > parseInt(success.data.data)) {
+                            var sl = DieuChuyenListSelected.length - parseInt(success.data.data);
+                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                        }
+                        else
+                            utility.AlertError('Phiếu đã duyệt hoặc số liệu đã chốt!');
+                    }
+                    else {
+                        utility.AlertSuccess('Xóa thành công!');
+                        window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
+                    }
+
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
-                    alert('Xóa thành công!')
                 }, function (error) {
                     vm.data.isLoading = false;
                     alert(error.data.error.code + " : " + error.data.error.message);

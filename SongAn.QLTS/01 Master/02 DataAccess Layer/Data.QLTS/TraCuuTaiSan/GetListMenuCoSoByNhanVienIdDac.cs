@@ -23,6 +23,7 @@ namespace SongAn.QLTS.Data.QLTS.TraCuuTaiSan
     {
         #region public properties
         public virtual int NhanVienId { get; set; }
+        public virtual int COSO_ID { get; set; }
         public virtual string MESSAGE { get; set; }
 
         #endregion

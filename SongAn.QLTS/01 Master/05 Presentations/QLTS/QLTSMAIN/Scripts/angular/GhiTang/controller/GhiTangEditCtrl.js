@@ -323,11 +323,16 @@
             GhiTangService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Thêm thành công");
-                   
-                    $timeout(function () {
-                        window.location = vm.data.linkUrl + 'ghitang/edit/' + result.data.data[0].GhiTangIdI;
-                    }, 2000);
+                    if (parseInt(result.data.data[0]["GhiTangIdI"]) < 0) {
+                        utility.AlertError("Năm đã chốt hoặc ngày ghi tăng không hợp lệ!");
+                    }
+                    else {
+                        utility.AlertSuccess("Ghi tăng thành công");
+
+                        $timeout(function () {
+                            window.location = vm.data.linkUrl + 'ghitang/edit/' + result.data.data[0].GhiTangIdI;
+                        }, 2000);
+                    }
 
                 }, function error(result) {
                     console.log(result);
@@ -355,7 +360,14 @@
                 .then(function success(result) {
                     utility.removeloadding();
                     if (parseInt(result.data.data[0]["ID"]) < 0)
-                        utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!");
+                    {
+                        if (parseInt(result.data.data[0]["ID"]) == -1)
+                            utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!");
+                        else if (parseInt(result.data.data[0]["ID"]) == -2)
+                            utility.AlertError("Phiếu đã duyệt. Không thể chỉnh sửa!");
+                        else if (parseInt(result.data.data[0]["ID"]) == -3)
+                            utility.AlertError("Năm đã chốt hoặc ngày ghi tăng không hợp lệ!");
+                    }
                     else
                         utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {

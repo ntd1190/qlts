@@ -33,12 +33,6 @@
                     $(ele_focus).find('input[autofocus]').focus();
                 }
             },
-            //press F2 -> open popup
-            F2: function (name, code) {
-                if (vm.data.showButtonDuyet) {
-                    window.location = '/QLTSMAIN/DuyetMua/create';
-                }
-            },
 
             //press F3 -> run Quick search
             F3: function (name, code) {
@@ -215,6 +209,9 @@
                 utility.AlertError('Vui lòng chọn phiếu đề nghị trang cấp để duyệt !');
                 return;
             }
+            if (!confirm('Bạn đồng ý duyệt các kế hoạch đã chọn?')) {
+                return;
+            }
             var DuyetId = 1;
             var NgayDuyet = moment().format('DD/MM/YYYY');
             var NguoiDuyet = vm.data.userInfo.NhanVienId;
@@ -255,6 +252,9 @@
             }
         }
         function DongYChiTiet(item) {
+            if (!confirm('Bạn đồng ý duyệt kế hoạch này?')) {
+                return;
+            }
             utility.addloadding($('body'));
             DuyetMuaService.DuyetChiTiet(item.MuaSamId, item.MuaSamChiTietId, 1).then(function (success) {
                 if (success.data.data) {

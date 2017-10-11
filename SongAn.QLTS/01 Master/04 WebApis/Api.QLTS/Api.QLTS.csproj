@@ -66,6 +66,7 @@
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
+    <Compile Include="Controllers\DuyetBaoCaoController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
     <Compile Include="Controllers\DuyetCapController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
@@ -114,6 +115,10 @@
     <Compile Include="Models\DanhGia\InsertDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
+    <Compile Include="Models\DuyetBaoCao\DuyetDuyetBaoCaoAction.cs" />
+    <Compile Include="Models\DuyetBaoCao\DuyetDuyetBaoCaoChiTietAction.cs" />
+    <Compile Include="Models\DuyetBaoCao\GetListDuyetBaoCaoByProjectionAction.cs" />
+    <Compile Include="Models\DuyetBaoCao\GetListDuyetBaoCaoChiTietByIdAction.cs" />
     <Compile Include="Models\DuyetCap\DuyetDuyetCapChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaChiTietAction.cs" />
     <Compile Include="Models\DuyetMua\DuyetDuyetMuaAction.cs" />
@@ -155,6 +160,7 @@
     <Compile Include="Models\KhaiThac\GetListKhaiThacByProjectionAction.cs" />
     <Compile Include="Models\KhaiThac\InsertKhaiThacAction.cs" />
     <Compile Include="Models\KhaiThac\UpdateKhaiThacByIdAction.cs" />
+    <Compile Include="Models\LapBaoCao\GuiCapTrenAction.cs" />
     <Compile Include="Models\LapBaoCao\DeleteListLapBaoCaoAction.cs" />
     <Compile Include="Models\LapBaoCao\GetLapBaoCaoByIdAction.cs" />
     <Compile Include="Models\LapBaoCao\GetListDmBaoCaoAction.cs" />

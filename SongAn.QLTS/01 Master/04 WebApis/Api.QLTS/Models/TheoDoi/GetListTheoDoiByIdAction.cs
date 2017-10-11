@@ -16,6 +16,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
         public string TaiSanId { get; set; }
         public string PhongBanId { get; set; }
         public string NhanVienId { get; set; }
+        public string Nam { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             var _result = new ActionResultDto();
@@ -35,6 +36,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                 biz.TaiSanId = Protector.Int(TaiSanId);
                 biz.PhongBanId = Protector.Int(PhongBanId);
                 biz.NhanVienId = Protector.Int(NhanVienId);
+                biz.Nam = Protector.Decimal(Nam);
 
                 IEnumerable<dynamic> TheoDoi = await biz.Execute();
 

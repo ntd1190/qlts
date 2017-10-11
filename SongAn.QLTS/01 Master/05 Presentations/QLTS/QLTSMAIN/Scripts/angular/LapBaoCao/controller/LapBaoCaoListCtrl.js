@@ -4,7 +4,7 @@
     angular.module("app")
         .controller("LapBaoCaoListCtrl", controller)
 
-    function controller($rootScope, $scope, LapBaoCaoService) {
+    function controller($rootScope, $scope, LapBaoCaoService, utility) {
         var vm = this;
         //HOT-KEY       
         vm.keys = {
@@ -69,6 +69,8 @@
             LapBaoCaoChiTietListDisplay: [],
             LapBaoCaoSelected: [],
             isLoading: false,
+            RowChecked: true,
+            showButtonDuyet: false,
             searchString: ''
         };
 
@@ -79,7 +81,10 @@
             apDung: apDung,
             getPage: getPage,
             deleteSelected: deleteSelected,
-            getPageDetail: getPageDetail
+            getPageDetail: getPageDetail,
+            CheckRow: CheckRow,
+            GuiCapTren: GuiCapTren,
+            XemBaoCao: XemBaoCao
         };
 
 
@@ -102,7 +107,10 @@
                 if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
                     vm.data.showButtonNew = true;
                 }
-
+                // Co quyen Duyet
+                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
+                    vm.data.showButtonDuyet = true;
+                } 
                 // Co quyen Xoa
                 if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
                     vm.data.showButtonXoaChon = true;
@@ -171,6 +179,27 @@
             });
 
         }
+        function GuiCapTren()
+        {
+            vm.data.isLoading = true;
+
+            var LapBaoCaoSelected = new Array();
+
+            for (var i = 0; i < vm.data.LapBaoCaoListDisplay.length; i++) {
+                var LapBaoCao = vm.data.LapBaoCaoListDisplay[i];
+                if (LapBaoCao.isSelected) {
+                    LapBaoCaoSelected.push(LapBaoCao.LapBaoCaoId);
+                }
+            }
+            var ids = LapBaoCaoSelected.join(',');
+            LapBaoCaoService.GuiCapTren(ids).then(function (success) {
+                utility.AlertSuccess("Gửi thành công");
+                getPage(_tableState);
+            }, function (error) {
+                vm.data.isLoading = false;
+                alert(error.data.error.code + " : " + error.data.error.message);
+            });
+        }
         function addloadding(obj) {
             $(obj).append('<div id="bgloadding"><div class="windows8"><div class="wBall" id="wBall_1"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_2"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_3"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_4"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_5"><div class="wInnerBall"></div></div></div></div>');
         }
@@ -218,7 +247,29 @@
                 $('#bgloadding').remove();
             });
         }
+        function CheckRow() {
+            for (var i = 0; i < vm.data.LapBaoCaoListDisplay.length; i++) {
+                var LapBaoCao = vm.data.LapBaoCaoListDisplay[i];
+                if (LapBaoCao.DuyetId != 0 && LapBaoCao.isSelected) {
+                    vm.data.RowChecked = false;
+                    return;
+                }
+            }
+            vm.data.RowChecked = true;
+        }
+        function XemBaoCao(value)
+        {
+            var tuNgay = value.TuNgay;
+            var denNgay = value.DenNgay;
+            var bieumau = value.Report;
+            var CoSoId = vm.data.userInfo.CoSoId || 0;
+            var NhanVienId = vm.data.userInfo.NhanVienId || 0;
 
+            var data = '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
+
+            $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=' + bieumau + '&data=' + data);
+            $('#reportmodal').modal('show');
+        }
         function initTableState(tableState) {
             tableState = tableState || {};
 

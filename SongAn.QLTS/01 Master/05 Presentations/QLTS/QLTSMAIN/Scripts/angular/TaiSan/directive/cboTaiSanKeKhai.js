@@ -5,13 +5,20 @@
     module.directive('cboTaiSanKeKhai', function () {
         return {
             restrict: 'E',
+            transclude: true,
             scope: {
                 onSelected: '&',
                 input: '<',
                 config: '<',
                 value: '=',
                 maTaiSan: '=',
+                loaiKeKhai: '<',
                 disabled: '<'
+            },
+            link: function(scope, element, attrs, ctrl, transclude) {
+                transclude(scope, function(clone, scope) {
+                    element.append(clone);
+                });
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -26,7 +33,7 @@
         /*** PRIVATE ***/
 
         var vm = this,
-            service = TaiSanService, userInfo, LoaiKeKhai = '1|2|3|4';
+            service = TaiSanService, userInfo;
 
         /*** VIEW MODEL ***/
 
@@ -35,8 +42,9 @@
         vm.data = {};
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
-        vm.inputSearch.TaiSanId = 0;
+        vm.inputSearch.TaiSanId = '';
         vm.inputSearch.MaTaiSan = '';
+        vm.inputSearch.LoaiKeKhai = '';
 
         /*** INIT FUNCTION ***/
 
@@ -55,29 +63,19 @@
 
         /*** EVENT FUNCTION ***/
 
-        $scope.$watch('value', function (newValue, oldValue) {
-            if (!newValue) { vm.data.TaiSan = {}; return; }
-            delete vm.inputSearch;
-            vm.inputSearch = {};
-            vm.inputSearch.TaiSanId = newValue;
-            getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 0) {
-                    vm.data.TaiSan = success.data.data[0];
-                } else {
-                    delete vm.data.TaiSan;
-                    vm.data.TaiSan = {};
-                }
-                $scope.onSelected({ data: vm.data.TaiSan });
-            });
-        });
+        $scope.$watchGroup(['value', 'maTaiSan', 'loaiKeKhai'], function (newValues, oldValues) {
+            console.log('$scope.$watchGroup:', 'newValues', newValues, 'oldValues', oldValues);
+            if (!newValues[0] && !newValues[1] && !newValues[2]) { vm.data.TaiSan = {}; return; }
+            if (newValues[0] == oldValues[0] && newValues[1] == oldValues[1] && newValues[2] == oldValues[2]) { vm.data.TaiSan = {}; return; }
 
-        $scope.$watch('maTaiSan', function (newValue, oldValue) {
-            if (!newValue) { vm.data.TaiSan = {}; return; }
             delete vm.inputSearch;
             vm.inputSearch = {};
-            vm.inputSearch.MaTaiSan = newValue;
+            vm.inputSearch.TaiSanId = newValues[0];
+            vm.inputSearch.MaTaiSan = newValues[1];
+            vm.inputSearch.LoaiKeKhai = newValues[2];
+            console.log('vm.inputSearch', vm.inputSearch);
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 0) {
+                if (success.data.data && success.data.data.length == 1) {
                     vm.data.TaiSan = success.data.data[0];
                 } else {
                     delete vm.data.TaiSan;
@@ -102,10 +100,10 @@
             $scope.value = item.TaiSanId;
         };
         vm.action.search = function ($select) {
-            $select.search = $select.search || '';
-            delete vm.inputSearch;
-            vm.inputSearch = {};
+            vm.inputSearch.TaiSanId = '';
+            vm.inputSearch.MaTaiSan = '';
             vm.inputSearch.SearchString = $select.search;
+            vm.inputSearch.LoaiKeKhai = $scope.loaiKeKhai;
             getPage();
         }
 
@@ -118,9 +116,9 @@
 
             var data = {};
             data.search = vm.inputSearch.SearchString || '';
-            data.TaiSanId = vm.inputSearch.TaiSanId || 0;
+            data.TaiSanId = vm.inputSearch.TaiSanId || '';
             data.MaTaiSan = vm.inputSearch.MaTaiSan || '';
-            data.LoaiKeKhai = LoaiKeKhai;
+            data.LoaiKeKhai = vm.inputSearch.LoaiKeKhai || '';
 
             data.CoSoId = userInfo.CoSoId || 0;
             data.NhanVienId = userInfo.NhanVienId || 0;
@@ -128,7 +126,7 @@
             service.getCombobox(data)
                 .then(function (success) {
                     vm.status.isLoading = false;
-                    console.log(success);
+                    console.log('service.getCombobox', success);
                     if (success.data.data) {
                         vm.data.TaiSanListDisplay = success.data.data;
                     }

@@ -136,6 +136,7 @@
 
             var data = {};
             data.NhanVienId = userInfo.NhanVienId || 0;
+            //data.COSO_ID = userInfo.CoSoId || 0;
             TraCuuTaiSanService.getListMenuCoSo(data).then(function (success) {
                 console.log(success);
                 if (success.data && success.data.data) {

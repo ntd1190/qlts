@@ -39,11 +39,11 @@
         vm.action = {};
 
         vm.action.ChotNam = function () {
-            var d = new Date();
-            if (parseInt(vm.data.nam) > parseInt(d.getFullYear().toString())) {
-                utility.AlertError("Không thể chốt năm này!");
-                return;
-            }
+            //var d = new Date();
+            //if (parseInt(vm.data.nam) > parseInt(d.getFullYear().toString())) {
+            //    utility.AlertError("Không thể chốt năm này!");
+            //    return;
+            //}
 
             utility.addloadding($('body'));
             var data = {};
@@ -54,8 +54,12 @@
             ChotSoLieuNamService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    if (parseInt(result.data.data[0]["ID"]) < 0)
-                        utility.AlertError("Không thể chốt!");
+                    if (parseInt(result.data.data[0]["ID"]) < 0) {
+                        if (parseInt(result.data.data[0]["ID"]) == -1)
+                            utility.AlertError("Năm " + vm.data.nam + " đã chốt !");
+                        else if (parseInt(result.data.data[0]["ID"]) == -2 || parseInt(result.data.data[0]["ID"]) == -3)
+                            utility.AlertError("Năm không hợp lệ!");
+                    }
                     else
                         utility.AlertSuccess("Chốt năm thành công!");
 

@@ -35,6 +35,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                     biz.TaiSanId = Protector.Int(_listId[i].Split('_')[0]);
                     biz.PhongBanId = Protector.Int(_listId[i].Split('_')[1]);
                     biz.NhanVienId = Protector.Int(_listId[i].Split('_')[2]);
+                    biz.Nam = Protector.Decimal(_listId[i].Split('_')[3]);
 
                     IEnumerable<dynamic> result = await biz.Execute();
                     if (result.Count() > 0)
@@ -76,7 +77,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
             {
                 if (Protector.Int(_listId[i].Split('_')[0]) < 1 || 
                     Protector.Int(_listId[i].Split('_')[1]) < 1 ||
-                    Protector.Int(_listId[i].Split('_')[2]) < 1)
+                    Protector.Int(_listId[i].Split('_')[2]) < 1 ||
+                    Protector.Int(_listId[i].Split('_')[3]) < 1)
                 {
                     throw new FormatException("ID không hợp lệ");
                 }

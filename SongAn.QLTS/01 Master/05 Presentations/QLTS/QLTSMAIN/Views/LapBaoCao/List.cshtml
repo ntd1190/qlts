@@ -31,17 +31,21 @@
                     <a class="btn btn-sm btn-primary" ng-click="ctrl.action.add()">Lập báo cáo (F2)</a>&nbsp;&nbsp;&nbsp;
                 </span>
                 <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.GuiCapTren()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
             </div>
             <div class="table-containe panel-body">
                 <table st-table="ctrl.data.LapBaoCaoListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
                     <thead class="bg-default text-primary">
                         <tr>
                             <th class="text-center" style="width: 40px;">Chọn</th>
+                            
                             <th class="text-center" style="width: 150px;">Kỳ báo cáo</th>
-                            <th class="text-center" >Diễn giải</th>
-                            <th class="text-center" style="width: 150px;">Ngày tạo</th>
-                            <th class="text-center" style="width: 150px;">Ngày gửi</th>
-                            <th class="text-center" style="width: 150px;">Trạng thái</th>
+                            <th class="text-center"  style="min-width: 250px;">Diễn giải</th>
+                            <th class="text-center" style="width: 100px;">Từ ngày</th>
+                            <th class="text-center" style="width: 100px;">Đến ngày</th>
+                            <th class="text-center" style="width: 100px;">Ngày tạo</th>
+                            <th class="text-center" style="width: 150px;">Người tạo</th>
+                            <th class="text-center" style="width: 100px;">Trạng thái</th>
                         </tr>
 
                     </thead>
@@ -56,17 +60,21 @@
                             <td st-select-row="LapBaoCao" st-select-mode="multiple" ng-click="ctrl.action.CheckRow()" class="text-center"><i class="fa fa-fw text-primary" ng-class="(LapBaoCao.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
                             <td><a ng-bind="LapBaoCao.TenKyBaoCao" ng-click="ctrl.action.edit(LapBaoCao.LapBaoCaoId)" href="javascript:void(0);"></a></td>
                             <td><a ng-bind="LapBaoCao.DienGiai" ng-click="ctrl.action.edit(LapBaoCao.LapBaoCaoId)" href="javascript:void(0);"></a></td>
+                            <td> <span>{{ LapBaoCao.TuNgay | date : 'dd/MM/yyyy'}}</span></td>
+                            <td> <span>{{ LapBaoCao.DenNgay | date : 'dd/MM/yyyy'}}</span></td>
                             <td> <span >{{ LapBaoCao.NgayTao | date : 'dd/MM/yyyy'}}</span></td>
-                            <td> <span >{{ LapBaoCao.NgayGui | date : 'dd/MM/yyyy'}}</span></td>
-                            <td ng-if="LapBaoCao.DuyetId==0" style="padding-left: 3.5%;">
+                            <td>
+                                <span ng-bind="LapBaoCao.HoTen"></span>
+                            </td>
+                            <td ng-if="LapBaoCao.DuyetId==0">
                                 <span class="form-control label label-warning" ng-if="LapBaoCao.GuiCapTren==1">Đã gửi - Chờ duyệt</span>
-                                <span class="form-control label label-warning" ng-bind="LapBaoCao.TrangThai" ng-if="LapBaoCao.GuiCapTren!=1"></span>
+                                <span class="form-control label label-default" ng-if="LapBaoCao.GuiCapTren!=1">Chưa gửi</span>
 
                             </td>
-                            <td ng-if="LapBaoCao.DuyetId==1" style="padding-left: 3.5%;">
+                            <td ng-if="LapBaoCao.DuyetId==1">
                                 <span class="form-control label label-success" ng-if="LapBaoCao.DuyetId==1" ng-bind="LapBaoCao.TrangThai"></span>
                             </td>
-                            <td ng-if="LapBaoCao.DuyetId==2" style="padding-left: 3.5%;">
+                            <td ng-if="LapBaoCao.DuyetId==2">
                                 <span class="form-control label label-danger" ng-if="LapBaoCao.DuyetId==2" ng-bind="LapBaoCao.TrangThai"></span> <i class="fa fa-question-circle-o" ng-if="LapBaoCao.NoiDungDuyet ? true:false" aria-hidden="true" data-placement="left" title="{{LapBaoCao.NoiDungDuyet}}"></i>
                             </td>
                         </tr>
@@ -104,9 +112,9 @@
                         </tr>
                         <tr ng-repeat="LapBaoCaoChiTiet in ctrl.data.LapBaoCaoChiTietListDisplay" ng-class="(LapBaoCaoChiTiet.isSelected==true)?'info':''">
                             <td class="text-center">{{$index + 1}}</td>
-                            <td class="text-center"><a href="">Xem</a></td>
+                            <td class="text-center"><a href="javascript:void(0);" ng-click="ctrl.action.XemBaoCao(LapBaoCaoChiTiet)">Xem</a></td>
                             <td ng-bind="LapBaoCaoChiTiet.TenBaoCao"></td>
-                            <td class="text-center"></td>
+                            <td ng-bind="LapBaoCaoChiTiet.NoiDungDuyet"></td>
                             <td class="text-center">
                                 <div ng-if="(LapBaoCaoChiTiet.DuyetId!=1 && LapBaoCaoChiTiet.DuyetId!=2 )? true:false">
                                     <span class="form-control label label-warning">Chưa duyệt</span>
@@ -221,7 +229,19 @@
         <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
     </div>
 </div>
-
+<div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myLargeModalLabel">Xem báo cáo</h4>
+            </div>
+            <div class="modal-body">
+                <iframe src="" width="100%" height="1000px"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
 @section ImportStyles{}
 @section SetupStyles{
     <style type="text/css">
@@ -269,6 +289,9 @@
                     color: inherit;
                     margin: -13px -7px;
                 }
+                    .label {
+            font-size: 90% !important;
+        }
     </style>
     <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
 }

@@ -18,7 +18,7 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
         public int TaiSanId { get; set; }
         public int NhanVienId { get; set; }
         public int PhongBanId { get; set; }
-
+        public decimal Nam { get; set; }
 
         #endregion
 
@@ -79,6 +79,7 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
                 p.Add("TaiSanId", TaiSanId, DbType.String);
                 p.Add("PhongBanId", PhongBanId, DbType.String);
                 p.Add("NhanVienId", NhanVienId, DbType.String);
+                p.Add("Nam", Nam, DbType.Decimal);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_TheoDoi_GetTheoDoiById",

@@ -49,21 +49,29 @@ namespace SongAn.QLTS.Api.QLTS.Models.DieuChuyen
                 bizHeader.CoSoId = _phieuDieuChuyen.CoSoId;
                 bizHeader.NhanVienId = _LoginId;
 
-                var result = await bizHeader.Execute();
-
-                foreach (var item in _listChiTiet)
+                IEnumerable<dynamic> result = await bizHeader.Execute();
+                if (result.Count() > 0)
                 {
-                    bizLine = new InsertDieuChuyenChiTietBiz(context);
-                    bizLine.DieuChuyenId = Protector.Int(_dieuChuyenId);
-                    bizLine.TaiSanId = item.TaiSanId;
-                    bizLine.PhongBanChuyenDen = item.PhongBanChuyenDen;
-                    bizLine.NhanVienTiepNhan = item.NhanVienTiepNhan;
-                    bizLine.PhongBanSuDung = item.PhongBanSuDung;
-                    bizLine.NhanVienSuDung = item.NhanVienSuDung;
-                    bizLine.LyDo = item.LyDo;
-                    bizLine.SoLuong = item.SoLuong;
+                    var obj = result.FirstOrDefault();
 
-                    var result_line = await bizLine.Execute();
+                    if (Protector.Int(obj.ID) >= 0)
+                    {
+                        foreach (var item in _listChiTiet)
+                        {
+                            bizLine = new InsertDieuChuyenChiTietBiz(context);
+                            bizLine.DieuChuyenId = Protector.Int(_dieuChuyenId);
+                            bizLine.TaiSanId = item.TaiSanId;
+                            bizLine.PhongBanChuyenDen = item.PhongBanChuyenDen;
+                            bizLine.NhanVienTiepNhan = item.NhanVienTiepNhan;
+                            bizLine.PhongBanSuDung = item.PhongBanSuDung;
+                            bizLine.NhanVienSuDung = item.NhanVienSuDung;
+                            bizLine.LyDo = item.LyDo;
+                            bizLine.SoLuong = item.SoLuong;
+
+                            var result_line = await bizLine.Execute();
+                        }
+                    }
+
                 }
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

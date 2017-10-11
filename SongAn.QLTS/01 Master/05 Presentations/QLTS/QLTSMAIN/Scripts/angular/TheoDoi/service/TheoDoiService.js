@@ -106,6 +106,7 @@
                     PhongBanId_Old: obj_old.PhongBanId,
                     NhanVienId: obj.NhanVienId,
                     NhanVienId_Old: obj_old.NhanVienId,
+                    Nam: obj.Nam,
                     SLTon: obj.SLTon,
                     SLTang: 0,
                     SLGiam: 0
@@ -123,7 +124,8 @@
                 data: $.param({
                     TaiSanId: data.taiSanId,
                     PhongBanId : data.phongBanId,
-                    NhanVienId : data.nhanVienId
+                    NhanVienId: data.nhanVienId,
+                    Nam: data.nam
                 })
             }
             return $http(req);

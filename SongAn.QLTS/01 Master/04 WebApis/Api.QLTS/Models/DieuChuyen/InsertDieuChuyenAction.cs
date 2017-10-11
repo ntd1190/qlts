@@ -49,20 +49,23 @@ namespace SongAn.QLTS.Api.QLTS.Models.DieuChuyen
                     DieuChuyenId = Protector.Int(obj.DieuChuyenIdI);
                 }
 
-                foreach (var item in _listChiTiet)
+                if (DieuChuyenId > 0)
                 {
-                    bizLine = new InsertDieuChuyenChiTietBiz(context);
-                    bizLine.DieuChuyenId = Protector.Int(DieuChuyenId);
-                    bizLine.TaiSanId = item.TaiSanId;
-                    bizLine.PhongBanChuyenDen = item.PhongBanChuyenDen;
-                    bizLine.NhanVienTiepNhan = item.NhanVienTiepNhan;
-                    bizLine.PhongBanSuDung = item.PhongBanSuDung;
-                    bizLine.NhanVienSuDung = item.NhanVienSuDung;
-                    bizLine.LyDo = item.LyDo;
-                    bizLine.SoLuong = item.SoLuong;
+                    foreach (var item in _listChiTiet)
+                    {
+                        bizLine = new InsertDieuChuyenChiTietBiz(context);
+                        bizLine.DieuChuyenId = Protector.Int(DieuChuyenId);
+                        bizLine.TaiSanId = item.TaiSanId;
+                        bizLine.PhongBanChuyenDen = item.PhongBanChuyenDen;
+                        bizLine.NhanVienTiepNhan = item.NhanVienTiepNhan;
+                        bizLine.PhongBanSuDung = item.PhongBanSuDung;
+                        bizLine.NhanVienSuDung = item.NhanVienSuDung;
+                        bizLine.LyDo = item.LyDo;
+                        bizLine.SoLuong = item.SoLuong;
 
-                    var result_line = await bizLine.Execute();
-                }
+                        var result_line = await bizLine.Execute();
+                    }
+                }                
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
 

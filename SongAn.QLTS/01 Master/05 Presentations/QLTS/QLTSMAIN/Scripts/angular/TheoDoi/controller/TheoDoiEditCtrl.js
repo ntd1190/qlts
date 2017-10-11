@@ -27,7 +27,8 @@
             isEdit: false,
             TaiSanId : 0,
             PhongBanId : 0,
-            NhanVienId: 0
+            NhanVienId: 0,
+            Nam: 0
         };
 
         //HOT-KEY       
@@ -112,6 +113,7 @@
                 vm.data.TaiSanId = data.taiSanId;
                 vm.data.PhongBanId = data.phongBanId;
                 vm.data.NhanVienId = data.nhanVienId;
+                vm.data.Nam = data.nam;
                 refresh();
                 setEnableButton();
                 getById();
@@ -146,7 +148,8 @@
 
             if (vm.data.TaiSanId > 0 &&
                 vm.data.PhongBanId > 0 &&
-                vm.data.NhanVienId > 0) {
+                vm.data.NhanVienId > 0 &&
+                vm.data.Nam > 0) {
                 edit();
             } else {                
                 add();
@@ -257,6 +260,7 @@
             vm.data.objTheoDoi.TaiSanId = 0;
             vm.data.objTheoDoi.PhongBanId = 0;
             vm.data.objTheoDoi.NhanVienId = 0;
+            vm.data.objTheoDoi.Nam = 0;
 
             vm.data.objTheoDoi.NgayGhiTang = moment().format('DD/MM/YYYY');
             vm.data.objTheoDoi.NgayTrangCap = moment().format('DD/MM/YYYY');
@@ -265,6 +269,7 @@
             vm.data.TaiSanId = 0;
             vm.data.PhongBanId = 0;
             vm.data.NhanVienId = 0;
+            vm.data.Nam = 0;
         }
 
         function refresh() {
@@ -354,8 +359,9 @@
             data.taiSanId = vm.data.TaiSanId;
             data.phongBanId = vm.data.PhongBanId;
             data.nhanVienId = vm.data.NhanVienId;
+            data.nam = vm.data.Nam;
 
-            if (vm.data.TaiSanId > 0 && vm.data.NhanVienId > 0 && vm.data.PhongBanId > 0) {
+            if (vm.data.TaiSanId > 0 && vm.data.NhanVienId > 0 && vm.data.PhongBanId > 0 && vm.data.Nam > 0) {
                 vm.status.isLoading = true;
                 TheoDoiService.GetById(data).then(function (success) {
                     if (success.data) {

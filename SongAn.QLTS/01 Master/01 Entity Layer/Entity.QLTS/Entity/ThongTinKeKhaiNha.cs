@@ -12,6 +12,7 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
     public partial class ThongTinKeKhaiNha
     {
         public virtual int TaiSanId { get; set; }
+        public virtual int ThuocDat { get; set; }
         public virtual string DiaChi { get; set; }
         public virtual string GiayTo { get; set; }
         public virtual int CapHang { get; set; }

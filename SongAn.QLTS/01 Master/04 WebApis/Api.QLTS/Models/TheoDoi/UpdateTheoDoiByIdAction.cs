@@ -23,6 +23,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
         public string PhongBanId_Old { get; set; }
         public string NhanVienId { get; set; }
         public string NhanVienId_Old { get; set; }
+        public string Nam { get; set; }
         public decimal SLTon { get; set; }
         public decimal SLTang { get; set; }
         public decimal SLGiam { get; set; }
@@ -53,6 +54,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                 biz.PhongBanId_Old = Protector.Int(PhongBanId_Old);
                 biz.NhanVienId = Protector.Int(NhanVienId);
                 biz.NhanVienId_Old = Protector.Int(NhanVienId_Old);
+                biz.Nam = Protector.Decimal(Nam);
                 biz.SLTon = Protector.Decimal(SLTon);
                 biz.SLTang = 0;
                 biz.SLGiam = 0;
