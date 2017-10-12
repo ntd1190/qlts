@@ -31,7 +31,6 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
             {
                 string reportname = Request.QueryString["Name"] + ".rpt";
                 string search = Request.QueryString["Data"];
-                string ngay = Request.QueryString["Ngay"];
                 string exportexcel = Request.QueryString["export"];
 
                 CrystalReportViewer1.HasCrystalLogo = false;
@@ -202,14 +201,59 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 }
 
                 /* REPORT BÁO CÁO KÊ KHAI TÀI SẢN */
-                if (reportname == "rptTaiSan_KeKhai.rpt")
+                if (reportname == "rptTaiSan_KeKhaiDat.rpt")
                 {
-
                     CrystalReportViewer1.SeparatePages = true;
-                    var biz = new ReportTaiSanKeKhaiByIdBiz(context);
-                    biz.TaiSanId = Request.QueryString["TaiSanId"];
-                    biz.LoaiKeKhai = Request.QueryString["LoaiKeKhai"];
-                    ds = biz.ExecuteBiz();
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanKeKhaiDatBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_KeKhaiDat.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_KeKhaiOto.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanKeKhaiOtoBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_KeKhaiOto.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_KeKhai500.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanKeKhai500Biz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_KeKhai500.xml"));
+                    }
                 }
 
                 ds.Tables[0].TableName = "Tables";
@@ -217,7 +261,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptTongHopTangGiamTSCD.xml");
+                // ds.WriteXmlSchema(@"D:\rptTaiSan_KeKhaiOto.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

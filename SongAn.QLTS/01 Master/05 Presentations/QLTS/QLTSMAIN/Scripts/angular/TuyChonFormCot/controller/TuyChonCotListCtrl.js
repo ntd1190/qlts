@@ -25,6 +25,7 @@
             inputSearch: {
                 MaForm: ''
             },
+            userInfo: {}
         };
 
         vm.action = {
@@ -44,6 +45,10 @@
         function onInitView(config) {
             if (config && config.controllerId) {
                 controllerId = config.controllerId;
+            }
+
+            if (config && config.userInfo) {
+                vm.data.userInfo = config.userInfo;
             }
 
             if (config && config.MaForm) {
@@ -74,7 +79,7 @@
             }
 
             if (listSelected && listSelected.length > 0) {
-                TuyChonCotService.saveListCot(listSelected).then(function (result) {
+                TuyChonCotService.saveListCot(listSelected, vm.data.userInfo.UserId).then(function (result) {
                     vm.data.isLoading = false;
                     getPage(_tableState);
                 }, function (error) {
@@ -87,7 +92,7 @@
             vm.data.isLoading = true;
             vm.data.showList = true;
 
-            TuyChonCotService.getAll(vm.data.inputSearch.MaForm)
+            TuyChonCotService.getAll(vm.data.inputSearch.MaForm, vm.data.userInfo.UserId)
                 .then(function (success) {
                     if (success.data.data) {
                         vm.data.listCot = success.data.data;

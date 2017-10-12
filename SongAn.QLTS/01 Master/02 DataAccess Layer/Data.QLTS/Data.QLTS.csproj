@@ -71,7 +71,9 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
-    <Compile Include="CrystalReport\ReportTaiSanKeKhaiByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhai500Dac.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoDac.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiGiamDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
@@ -84,7 +86,10 @@
     <Compile Include="TraCuuTaiSan\LuocSuDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
-    <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiById.sql" />
+    <Content Include="CoSo\Procedures\sp_CoSo_GetListCoSoTrucThuocById.sql" />
+    <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhai500.sql" />
+    <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiOto.sql" />
+    <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiDat.sql" />
     <Content Include="CrystalReport\Procedures\sp_DanhGia_report_DanhGiaTaiSanById.sql" />
     <Content Include="CrystalReport\Procedures\sp_ThayDoiThongTin_report_TDTTById.sql" />
     <Content Include="DanhGia\Procedures\sp_DanhGia_GetListDanhGiaByCriteria.sql" />

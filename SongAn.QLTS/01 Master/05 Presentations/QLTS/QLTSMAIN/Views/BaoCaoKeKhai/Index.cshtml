@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "Báo cáo tổng hợp";
+}
+
+<div class="container-fluid">
+    <div ng-controller="TaiSanBaoCaoCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <strong>
+                Báo Cáo Tổng Hợp
+            </strong>
+        </div>
+
+        <div class="panel-body" style="width:600px; margin:0 auto">
+            <form class="form-horizontal">
+                <div class="form-group">
+                    <label>Chọn Biểu</label>
+                    <select class="form-control" id="cbxPhanLoai" style="padding:0px 10px" data-placeholder="Chọn biểu in báo cáo kê khai" ng-model="ctrl.data.bieuIn">
+                        <option value="Dat">Trụ sở làm việc, cơ sở hoạt động sự nghiệp</option>
+                        <option value="Oto">Báo cáo kê khai xe ô tô</option>
+                        <option value="500">Báo cáo kê khai tài sản trên 500 triệu</option>
+                    </select>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 nam">
+                        <div class="form-group">
+                            <label>Chọn Năm</label>
+                            <select class="form-control" ng-model="ctrl.data.Year">
+                                <option ng-repeat="year in ctrl.temp.Years" value="{{year}}" ng-bind="year"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="panel-footer">
+           <div style="text-align:center">
+               <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i></i> Xuất Excel</a>
+               <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()" style="margin-left:60px"><i></i> In Danh Sách</a>
+           </div>
+            
+        </div>
+
+    </div>
+
+    <div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myLargeModalLabel">In phiếu</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="1000px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+<script src="~/Scripts/angular/BaoCaoKeKhai/controller/BaoCaoKeKhaiCtrl.js"></script>
+}

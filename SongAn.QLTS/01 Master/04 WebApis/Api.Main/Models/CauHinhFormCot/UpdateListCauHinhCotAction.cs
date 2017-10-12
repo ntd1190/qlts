@@ -22,6 +22,7 @@ namespace SongAn.QLTS.Api.Main.Models.CauHinhFormCot
     {
         #region public
         public string listCot { get; set; }
+        public string userId { get; set; }
         #endregion
 
         #region private
@@ -57,9 +58,20 @@ namespace SongAn.QLTS.Api.Main.Models.CauHinhFormCot
                 validate();
 
                 var biz = new UpdateListCauHinhCotBiz(context);
-                biz.listCot = _listCot;
+                var bizND = new UpdateListCauHinhFromCotBiz(context);
 
-                IEnumerable<dynamic> data = await biz.Execute();
+                //biz.listCot = _listCot;
+                //IEnumerable<dynamic> data = await biz.Execute();
+                IEnumerable<dynamic> data = _listCot;
+
+                foreach (var cot in _listCot)
+                {
+                    bizND = new UpdateListCauHinhFromCotBiz(context);
+                    bizND.UserId = Protector.Int(userId);
+                    bizND.CauHinhFormCotId = Protector.Int(cot.CauHinhFormCotId);
+                    bizND.HienThiYN = cot.HienThiYN;
+                    var result = await bizND.Execute();
+                }
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, data, null);
             }

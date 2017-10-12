@@ -115,6 +115,7 @@
          * VIEW MODEL
          */
         vm.data = {
+            userInfo: {},
             showButtonNew: false,
             showButtonXoaChon: false,
             isLoading: false,
@@ -176,6 +177,7 @@
             if (config && config.userInfo) {
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
                 vm.data.UserLoginId = config.userInfo.CoSoId;
+                vm.data.userInfo = config.userInfo;
                 setEnableButton();
             }
             initEventListener();
@@ -233,7 +235,7 @@
 
         function loadCotList() {
             if (vm.data.useCotListDb) {
-                TuyChonCotService.getAll('FL0009').then(function (success) {
+                TuyChonCotService.getAll('FL0009', vm.data.userInfo.UserId).then(function (success) {
                     if (success.data && success.data.data.length>0) {
                         vm.data.listCot = success.data.data;
                     }

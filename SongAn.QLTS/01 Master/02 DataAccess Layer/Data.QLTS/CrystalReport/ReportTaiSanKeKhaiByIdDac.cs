@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SongAn.QLTS.Data.QLTS.CrystalReport
 {
-    public class ReportTaiSanKeKhaiByIdDac : BaseRepositoryDataset
+    public class ReportTaiSanKeKhaiDatDac : BaseRepositoryDataset
     {
         #region public properties
 
@@ -27,7 +27,7 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public ReportTaiSanKeKhaiByIdDac(ContextDto context) : base(context.dbQLTSConnection)
+        public ReportTaiSanKeKhaiDatDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -72,7 +72,7 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
                  new SqlParameter("@LoaiKeKhai", SqlDbType.VarChar) {Value = LoaiKeKhai},
 
             };
-            DataSet ds = getData("sp_TaiSan_report_KeKhaiById", prm);
+            DataSet ds = getData("sp_TaiSan_report_KeKhaiDat", prm);
             return ds;
 
         }

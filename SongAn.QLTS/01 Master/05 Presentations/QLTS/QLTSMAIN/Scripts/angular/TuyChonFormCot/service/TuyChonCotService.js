@@ -22,21 +22,21 @@
         return service;
 
         // lưu danh sách cột đã thay đổi
-        function saveListCot(data) {
+        function saveListCot(data, userId) {
             var url = api.url + api.saveListCot;
 
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                data: { listCot: angular.toJson(data) }
+                data: { listCot: angular.toJson(data), userId: userId }
             }
 
             return $http(req);
         }
 
         // lấy tất cả các cột của form, dùng cho form hiển thị dữ liệu (VD: danh sách nhân viên)
-        function getAll(maForm) {
+        function getAll(maForm, userId) {
             var url = api.url + api.getListCot;
 
             var req = {
@@ -45,6 +45,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
                     maForm: maForm,
+                    userId: userId,
                     sortname:'ThuTu',
                     sortdir:'asc',
                 })

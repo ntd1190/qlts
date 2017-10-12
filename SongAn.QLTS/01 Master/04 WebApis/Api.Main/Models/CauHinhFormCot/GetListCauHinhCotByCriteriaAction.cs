@@ -28,12 +28,14 @@ namespace SongAn.QLTS.Api.Main.Models.CauHinhFormCot
 
         public string search { get; set; }
         public string maForm { get; set; }
+        public string userId { get; set; }
         #endregion
 
         #region private
         private int _draw;
         private int _start;
         private int _length;
+        private int _userId;
         #endregion
 
         #region init & validate
@@ -52,6 +54,7 @@ namespace SongAn.QLTS.Api.Main.Models.CauHinhFormCot
             fields = Protector.String(fields);
             search = Protector.String(search);
             maForm = Protector.String(maForm);
+            _userId = Protector.Int(userId);
         }
 
         /// <summary>
@@ -78,6 +81,7 @@ namespace SongAn.QLTS.Api.Main.Models.CauHinhFormCot
                 biz.FieldsField = fields;
                 biz.SearchString = search;
                 biz.MaForm = maForm;
+                biz.UserId = _userId;
 
                 biz.Skip = _start;
                 biz.Take = _length;

@@ -68,7 +68,9 @@
     <Compile Include="CrystalReport\ReportGhiTangByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportDanhGiaByIdBiz.cs" />
-    <Compile Include="CrystalReport\ReportTaiSanKeKhaiByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhai500Biz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoBiz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatBiz.cs" />
     <Compile Include="CrystalReport\ReportTDTTNhaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKiemKeByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportSuDungByIdBiz.cs" />

@@ -29,6 +29,7 @@ namespace SongAn.QLTS.Data.Main.CaiHinhFormCot
         /// tìm kiếm quick search
         /// </summary>
         public string MaForm { get; set; }
+        public int UserId { get; set; }
 
         /// <summary>
         /// Mệnh đề order by
@@ -116,6 +117,7 @@ namespace SongAn.QLTS.Data.Main.CaiHinhFormCot
                 p.Add("FIELD", FieldsField, DbType.String);
                 p.Add("SEARCH_STRING", SearchString, DbType.String);
                 p.Add("MA_FORM", MaForm, DbType.String);
+                p.Add("USER_ID", UserId, DbType.Int32);
                 p.Add("ORDER_CLAUSE", OrderClause, DbType.String);
                 p.Add("SKIP", Skip, DbType.Int16);
                 p.Add("TAKE", Take, DbType.Int16);

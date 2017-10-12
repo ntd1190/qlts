@@ -131,7 +131,7 @@
 
                 <div class="btn-group-sm text-left">
                     <button type="button" class="btn btn-primary" ng-if="ctrl.data.showButtonSave" id="btnLuu" ng-click="ctrl.action.save(ctrl.data.objVaiTro)">Lưu (F8)</button> &nbsp;&nbsp;
-                    <button type="button" class="btn btn-default" ng-click="ctrl.action.remove(ctrl.data.objVaiTro.VaiTroId)" ng-if="ctrl.data.objVaiTro.VaiTroId>0 && ctrl.data.showButtonXoa">Xóa</button>
+                    <button type="button" class="btn btn-danger" ng-click="ctrl.action.remove(ctrl.data.objVaiTro.VaiTroId)" ng-if="ctrl.data.objVaiTro.VaiTroId>0 && ctrl.data.showButtonXoa"><i class="fa fa-trash-o"></i> Xóa</button>
                     <label ng-if="ctrl.data.objVaiTro.VaiTroId>0">&nbsp;&nbsp;</label>
                     <button type="button" class="btn btn-default" ng-click="ctrl.action.resetEdit(ctrl.data.objVaiTro.VaiTroId)">Thiết lập lại</button> &nbsp;&nbsp;
                     <button type="button" class="btn btn-default" ng-click="ctrl.action.closeEdit(ctrl.data.objVaiTro)">Đóng</button>

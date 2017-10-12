@@ -32,7 +32,7 @@
             <span ng-if="ctrl.action.checkQuyenTacVu('N')">
                 <a class="btn btn-sm btn-primary" href="~/danhgiataisan/create">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
-            <button class="btn btn-sm btn-default" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()">Xóa chọn</button>
+            <button class="btn btn-sm btn-danger" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
         </div>
         <div class="table-containe panel-body">
             <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.ListDanhGia" st-pipe="ctrl.action.getPage">

@@ -124,7 +124,7 @@
         }
         function loadCotList() {
             if (1 === 1) {
-                TuyChonCotService.getAll('FL0020').then(function (success) {
+                TuyChonCotService.getAll('FL0020', vm.data.userInfo.UserId).then(function (success) {
                     if (success.data && success.data.data) {
                         vm.data.listCot = success.data.data;
                     }

@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="CauHinhFormCot\UpdateListCauHinhCotBiz.cs" />
     <Compile Include="CauHinhFormCot\GetListCauHinhCotByCriteriaBiz.cs" />
+    <Compile Include="CauHinhFormCot\UpdateListCauHinhFromCotBiz.cs" />
     <Compile Include="NguoiDung\GetListNguoiDungByCriteraBiz.cs" />
     <Compile Include="PhanQuyen\GetListChucNangByVaiTroIdBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

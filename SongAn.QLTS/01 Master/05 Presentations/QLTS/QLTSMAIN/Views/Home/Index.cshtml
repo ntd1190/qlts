@@ -3,8 +3,340 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<h4>Welcome : @Html.Raw(ViewBag.UserInfo)</h4>
+<div style="min-height: 246px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel-heading">
+                <div class="panel-title clearfix">
+                    <span style="font-weight: 500;font-size: 26px;color:#F3565D; font-weight: bold;">HOẠT ĐỘNG QUẢN LÝ TÀI SẢN</span>
+                </div>
+            </div>
+           
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-hospital-o fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">2621</div>
+                            <div>Tổng tài sản</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/QLTSMAIN/theodoi/list">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-arrow-up fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>Ghi tăng</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/QLTSMAIN/ghitang/list">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-arrow-right fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>Điều chuyển</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/QLTSMAIN/dieuchuyen/list">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-arrow-down fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Ghi giảm</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="/QLTSMAIN/ghigiam/list">
+                    <div class="panel-footer">
+                        <span class="pull-left">Xem chi tiết</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Thông kê tài sản theo năm
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li>
+                                    <a href="#">Action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Another action</a>
+                                </li>
+                                <li>
+                                    <a href="#">Something else here</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li>
+                                    <a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div id="morris-area-chart" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                        <svg height="357" version="1.1" width="650" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="49.515625" y="323" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#aaaaaa" d="M62.015625,323H625" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="49.515625" y="248.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">7,500</tspan></text><path fill="none" stroke="#aaaaaa" d="M62.015625,248.5H625" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="49.515625" y="174" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">15,000</tspan></text><path fill="none" stroke="#aaaaaa" d="M62.015625,174H625" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="49.515625" y="99.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">22,500</tspan></text><path fill="none" stroke="#aaaaaa" d="M62.015625,99.5H625" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="49.515625" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">30,000</tspan></text><path fill="none" stroke="#aaaaaa" d="M62.015625,25H625" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="521.0223268529769" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2017</tspan></text><text x="271.3390985722965" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2016</tspan></text><path fill="#7cb57c" stroke="none" d="M62.015625,270.2242C77.74908869987848,264.76086666666663,109.21601609963548,253.42320833333332,124.94947979951397,248.37086666666664C140.68294349939245,243.31852499999997,172.14987089914945,236.7218892531876,187.88333459902793,229.80546666666666C203.44578238912516,222.96422258652095,234.57067796931955,195.381541160221,250.13312575941677,193.34019999999998C265.5245576397327,191.32129116022097,296.3074214003645,212.0797880952381,311.6988532806804,213.56446666666665C327.4323169805589,215.0821380952381,358.8992443803159,204.33888333333334,374.6327080801944,205.3496C390.3661717800729,206.36031666666668,421.8330991798299,239.5916998178506,437.5665628797084,221.65019999999998C453.1290106698056,203.90371648451728,484.25390625,71.25456666666668,499.8163540400972,62.59766666666667C515.3788018301944,53.94076666666667,546.5036974103889,139.70165200364298,562.0661452004861,152.39499999999998C577.7996089003645,165.22783533697628,609.2665363001215,161.62554999999998,625,164.70239999999998L625,323L62.015625,323Z" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></path><path fill="none" stroke="#4da74d" d="M62.015625,270.2242C77.74908869987848,264.76086666666663,109.21601609963548,253.42320833333332,124.94947979951397,248.37086666666664C140.68294349939245,243.31852499999997,172.14987089914945,236.7218892531876,187.88333459902793,229.80546666666666C203.44578238912516,222.96422258652095,234.57067796931955,195.381541160221,250.13312575941677,193.34019999999998C265.5245576397327,191.32129116022097,296.3074214003645,212.0797880952381,311.6988532806804,213.56446666666665C327.4323169805589,215.0821380952381,358.8992443803159,204.33888333333334,374.6327080801944,205.3496C390.3661717800729,206.36031666666668,421.8330991798299,239.5916998178506,437.5665628797084,221.65019999999998C453.1290106698056,203.90371648451728,484.25390625,71.25456666666668,499.8163540400972,62.59766666666667C515.3788018301944,53.94076666666667,546.5036974103889,139.70165200364298,562.0661452004861,152.39499999999998C577.7996089003645,165.22783533697628,609.2665363001215,161.62554999999998,625,164.70239999999998" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><circle cx="62.015625" cy="270.2242" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="124.94947979951397" cy="248.37086666666664" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="187.88333459902793" cy="229.80546666666666" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="250.13312575941677" cy="193.34019999999998" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="311.6988532806804" cy="213.56446666666665" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="374.6327080801944" cy="205.3496" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437.5665628797084" cy="221.65019999999998" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="499.8163540400972" cy="62.59766666666667" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="562.0661452004861" cy="152.39499999999998" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="625" cy="164.70239999999998" r="2" fill="#4da74d" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><path fill="#a8b4bd" stroke="none" d="M62.015625,296.51773333333335C77.74908869987848,290.54283333333336,109.21601609963548,277.85175833333335,124.94947979951397,272.61813333333333C140.68294349939245,267.3845083333333,172.14987089914945,257.51018469945353,187.88333459902793,254.64873333333333C203.44578238912516,251.81838469945353,234.57067796931955,252.15196804788212,250.13312575941677,249.85093333333333C265.5245576397327,247.5751847145488,296.3074214003645,239.53322912087913,311.6988532806804,236.3416C327.4323169805589,233.0790457875458,358.8992443803159,223.89885833333332,374.6327080801944,224.0342C390.3661717800729,224.16954166666667,421.8330991798299,251.25343315118397,437.5665628797084,237.42433333333332C453.1290106698056,223.74554981785062,484.25390625,122.11323333333331,499.8163540400972,114.00266666666664C515.3788018301944,105.89209999999997,546.5036974103889,164.02529134790527,562.0661452004861,172.53979999999999C577.7996089003645,181.1478746812386,609.2665363001215,180.00469999999999,625,182.493L625,323L62.015625,323Z" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></path><path fill="none" stroke="#7a92a3" d="M62.015625,296.51773333333335C77.74908869987848,290.54283333333336,109.21601609963548,277.85175833333335,124.94947979951397,272.61813333333333C140.68294349939245,267.3845083333333,172.14987089914945,257.51018469945353,187.88333459902793,254.64873333333333C203.44578238912516,251.81838469945353,234.57067796931955,252.15196804788212,250.13312575941677,249.85093333333333C265.5245576397327,247.5751847145488,296.3074214003645,239.53322912087913,311.6988532806804,236.3416C327.4323169805589,233.0790457875458,358.8992443803159,223.89885833333332,374.6327080801944,224.0342C390.3661717800729,224.16954166666667,421.8330991798299,251.25343315118397,437.5665628797084,237.42433333333332C453.1290106698056,223.74554981785062,484.25390625,122.11323333333331,499.8163540400972,114.00266666666664C515.3788018301944,105.89209999999997,546.5036974103889,164.02529134790527,562.0661452004861,172.53979999999999C577.7996089003645,181.1478746812386,609.2665363001215,180.00469999999999,625,182.493" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><circle cx="62.015625" cy="296.51773333333335" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="124.94947979951397" cy="272.61813333333333" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="187.88333459902793" cy="254.64873333333333" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="250.13312575941677" cy="249.85093333333333" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="311.6988532806804" cy="236.3416" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="374.6327080801944" cy="224.0342" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437.5665628797084" cy="237.42433333333332" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="499.8163540400972" cy="114.00266666666664" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="562.0661452004861" cy="172.53979999999999" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="625" cy="182.493" r="2" fill="#7a92a3" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><path fill="#2677b5" stroke="none" d="M62.015625,296.51773333333335C77.74908869987848,296.2396,109.21601609963548,298.19398333333334,124.94947979951397,295.4052C140.68294349939245,292.6164166666666,172.14987089914945,275.442185428051,187.88333459902793,274.2074666666667C203.44578238912516,272.98616876138436,234.57067796931955,287.9508370165746,250.13312575941677,285.58113333333336C265.5245576397327,283.23747034990794,296.3074214003645,257.6909258241758,311.6988532806804,255.35399999999998C327.4323169805589,252.96514249084248,358.8992443803159,264.20708333333334,374.6327080801944,266.678C390.3661717800729,269.14891666666665,421.8330991798299,286.8605249544627,437.5665628797084,275.1213333333333C453.1290106698056,263.5097416211293,484.25390625,180.55972500000001,499.8163540400972,173.27486666666667C515.3788018301944,165.99000833333332,546.5036974103889,208.6416179417122,562.0661452004861,216.84246666666667C577.7996089003645,225.13343460837888,609.2665363001215,233.64221666666666,625,239.24213333333333L625,323L62.015625,323Z" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></path><path fill="none" stroke="#0b62a4" d="M62.015625,296.51773333333335C77.74908869987848,296.2396,109.21601609963548,298.19398333333334,124.94947979951397,295.4052C140.68294349939245,292.6164166666666,172.14987089914945,275.442185428051,187.88333459902793,274.2074666666667C203.44578238912516,272.98616876138436,234.57067796931955,287.9508370165746,250.13312575941677,285.58113333333336C265.5245576397327,283.23747034990794,296.3074214003645,257.6909258241758,311.6988532806804,255.35399999999998C327.4323169805589,252.96514249084248,358.8992443803159,264.20708333333334,374.6327080801944,266.678C390.3661717800729,269.14891666666665,421.8330991798299,286.8605249544627,437.5665628797084,275.1213333333333C453.1290106698056,263.5097416211293,484.25390625,180.55972500000001,499.8163540400972,173.27486666666667C515.3788018301944,165.99000833333332,546.5036974103889,208.6416179417122,562.0661452004861,216.84246666666667C577.7996089003645,225.13343460837888,609.2665363001215,233.64221666666666,625,239.24213333333333" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><circle cx="62.015625" cy="296.51773333333335" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="124.94947979951397" cy="295.4052" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="187.88333459902793" cy="274.2074666666667" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="250.13312575941677" cy="285.58113333333336" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="311.6988532806804" cy="255.35399999999998" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="374.6327080801944" cy="266.678" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="437.5665628797084" cy="275.1213333333333" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="499.8163540400972" cy="173.27486666666667" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="562.0661452004861" cy="216.84246666666667" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle><circle cx="625" cy="239.24213333333333" r="2" fill="#0b62a4" stroke="#ffffff" stroke-width="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></circle></svg><div class="morris-hover morris-default-style" style="left: 131.852px; top: 166px; display: none;">
+                            <div class="morris-hover-row-label">2010 Q3</div><div class="morris-hover-point" style="color: #0b62a4">
+                                iPhone:
+                                4,912
+                            </div><div class="morris-hover-point" style="color: #7A92A3">
+                                iPad:
+                                1,969
+                            </div><div class="morris-hover-point" style="color: #4da74d">
+                                iPod Touch:
+                                2,501
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Ghi tăng tài sản theo năm
+                    <div class="pull-right">
+                        
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">Ngày</th>
+                                            <th class="text-center" style="width:80px" >Giờ</th>
+                                            <th class="text-center" style="width:70px"> Số lượng</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>3326</td>
+                                            <td>10/21/2017</td>
+                                            <td>3:29 PM</td>
+                                            <td>14</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3325</td>
+                                            <td>10/21/2017</td>
+                                            <td>3:20 PM</td>
+                                            <td>1</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3324</td>
+                                            <td>10/21/2017</td>
+                                            <td>3:03 PM</td>
+                                            <td>7</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3323</td>
+                                            <td>10/21/2017</td>
+                                            <td>3:00 PM</td>
+                                            <td>8</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3322</td>
+                                            <td>10/21/2017</td>
+                                            <td>2:49 PM</td>
+                                            <td>10</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3321</td>
+                                            <td>10/21/2017</td>
+                                            <td>2:23 PM</td>
+                                            <td>77</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3320</td>
+                                            <td>10/21/2017</td>
+                                            <td>2:15 PM</td>
+                                            <td>25</td>
+                                        </tr>
+                                        <tr>
+                                            <td>3319</td>
+                                            <td>10/21/2017</td>
+                                            <td>2:13 PM</td>
+                                            <td>47</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.col-lg-4 (nested) -->
+                        <div class="col-lg-8">
+                            <div id="morris-bar-chart" style="position: relative; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);">
+                                <svg height="357" version="1.1" width="423.328125" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative; left: -0.65625px;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><text x="32.84375" y="323" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">0</tspan></text><path fill="none" stroke="#aaaaaa" d="M45.34375,323H398.328125" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.84375" y="248.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">25</tspan></text><path fill="none" stroke="#aaaaaa" d="M45.34375,248.5H398.328125" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.84375" y="174" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">50</tspan></text><path fill="none" stroke="#aaaaaa" d="M45.34375,174H398.328125" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.84375" y="99.5" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">75</tspan></text><path fill="none" stroke="#aaaaaa" d="M45.34375,99.5H398.328125" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="32.84375" y="25" text-anchor="end" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: end; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">100</tspan></text><path fill="none" stroke="#aaaaaa" d="M45.34375,25H398.328125" stroke-width="0.5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="373.11495535714283" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2017</tspan></text><text x="272.2622767857143" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2015</tspan></text><text x="171.40959821428572" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2013</tspan></text><text x="70.55691964285714" y="335.5" text-anchor="middle" font-family="sans-serif" font-size="12px" stroke="none" fill="#888888" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: sans-serif; font-size: 12px; font-weight: normal;" font-weight="normal" transform="matrix(1,0,0,1,0,7)"><tspan dy="4" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">2011</tspan></text><rect x="51.647042410714285" y="25" width="17.409877232142858" height="298" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="72.05691964285714" y="54.80000000000001" width="17.409877232142858" height="268.2" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="102.07338169642856" y="99.5" width="17.409877232142858" height="223.5" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="122.48325892857142" y="129.3" width="17.409877232142858" height="193.7" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="152.49972098214283" y="174" width="17.409877232142858" height="149" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="172.9095982142857" y="203.8" width="17.409877232142858" height="119.19999999999999" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="202.92606026785714" y="99.5" width="17.409877232142858" height="223.5" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="223.3359375" y="129.3" width="17.409877232142858" height="193.7" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="253.35239955357142" y="174" width="17.409877232142858" height="149" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="273.7622767857143" y="203.8" width="17.409877232142858" height="119.19999999999999" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="303.7787388392857" y="99.5" width="17.409877232142858" height="223.5" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="324.18861607142856" y="129.3" width="17.409877232142858" height="193.7" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="354.205078125" y="25" width="17.409877232142858" height="298" rx="0" ry="0" fill="#0b62a4" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect><rect x="374.61495535714283" y="54.80000000000001" width="17.409877232142858" height="268.2" rx="0" ry="0" fill="#7a92a3" stroke="none" fill-opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); fill-opacity: 1;"></rect></svg><div class="morris-hover morris-default-style" style="left: 26.5413px; top: 140px; display: none;">
+                                    <div class="morris-hover-row-label">2006</div><div class="morris-hover-point" style="color: #0b62a4">
+                                        Series A:
+                                        100
+                                    </div><div class="morris-hover-point" style="color: #7a92a3">
+                                        Series B:
+                                        90
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.col-lg-8 (nested) -->
+                    </div>
+                    <!-- /.row -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+         
+        </div>
+        <!-- /.col-lg-8 -->
+        <div class="col-lg-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bell fa-fw"></i> Thông báo
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-shopping-cart fa-fw"></i> Kế hoạch mua sắm
+                            <span class="pull-right text-muted small">
+                                <em>4 phút trước</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-wrench fa-fw"></i> Bảo dưỡng - Sửa chữa
+                            <span class="pull-right text-muted small">
+                                <em>12 phút trước</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-pie-chart fa-fw"></i> Duyệt báo cáo
+                            <span class="pull-right text-muted small">
+                                <em>27 phút trước</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-tablet fa-fw"></i> Đề nghị trang cấp
+                            <span class="pull-right text-muted small">
+                                <em>43 phút trước</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-arrow-up fa-fw"></i> Ghi tăng
+                            <span class="pull-right text-muted small">
+                                <em>11:32 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-pie-chart fa-fw"></i> Duyệt báo cáo
+                            <span class="pull-right text-muted small">
+                                <em>11:13 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-exchange fa-fw"></i> Thay đổi thông tin
+                            <span class="pull-right text-muted small">
+                                <em>10:57 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-arrow-right fa-fw"></i> Điều chuyển
+                            <span class="pull-right text-muted small">
+                                <em>9:49 AM</em>
+                            </span>
+                        </a>
+                        <a href="#" class="list-group-item">
+                            <i class="fa fa-money fa-fw"></i> Cho thuê - mượn
+                            <span class="pull-right text-muted small">
+                                <em>Hôm qua</em>
+                            </span>
+                        </a>
+                    </div>
+                    <!-- /.list-group -->
+                    <a href="#" class="btn btn-default btn-block">Xem tất cả</a>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Báo cáo
+                </div>
+                <div class="panel-body">
+                    <div id="morris-donut-chart"><svg height="357" version="1.1" width="294" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="overflow: hidden; position: relative;"><desc style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Created with Raphaël 2.2.0</desc><defs style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></defs><path fill="none" stroke="#0b62a4" d="M147,272.3333333333333A91.33333333333333,91.33333333333333,0,0,0,233.35180688739524,210.75135669275903" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#0b62a4" stroke="#ffffff" d="M147,275.3333333333333A94.33333333333333,94.33333333333333,0,0,0,236.1881801063243,211.72859103668176L271.8004216328778,223.99831113260063A132,132,0,0,1,147,313Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#3980b5" d="M233.35180688739524,210.75135669275903A91.33333333333333,91.33333333333333,0,0,0,65.0802706076015,140.61515489624878" stroke-width="2" opacity="1" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 1;"></path><path fill="#3980b5" stroke="#ffffff" d="M236.1881801063243,211.72859103668176A94.33333333333333,94.33333333333333,0,0,0,62.38947657646432,139.28864538554163L24.120405911402244,120.42273234437317A137,137,0,0,1,276.52771033109286,225.62703503913855Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><path fill="none" stroke="#679dc6" d="M65.0802706076015,140.61515489624878A91.33333333333333,91.33333333333333,0,0,0,146.97130678756912,272.33332882621403" stroke-width="2" opacity="0" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); opacity: 0;"></path><path fill="#679dc6" stroke="#ffffff" d="M62.38947657646432,139.28864538554163A94.33333333333333,94.33333333333333,0,0,0,146.97036430978855,275.33332867816995L146.95853097765465,312.99999348606116A132,132,0,0,1,28.60506262996421,122.63358152888509Z" stroke-width="3" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);"></path><text x="147" y="171" text-anchor="middle" font-family="&quot;initial&quot;" font-size="15px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: initial; font-size: 15px; font-weight: 800;" font-weight="800" transform="matrix(1.4267,0,0,1.4267,-62.7153,-77.6517)" stroke-width="0.7009390206812651"><tspan dy="6" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">Tài sản cố định</tspan></text><text x="147" y="191" text-anchor="middle" font-family="&quot;initial&quot;" font-size="14px" stroke="none" fill="#000000" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0); text-anchor: middle; font-family: initial; font-size: 14px;" transform="matrix(1.9028,0,0,1.9028,-132.793,-165.2083)" stroke-width="0.5255474452554745"><tspan dy="5" style="-webkit-tap-highlight-color: rgba(0, 0, 0, 0);">30</tspan></text></svg></div>
+                    <a href="#" class="btn btn-default btn-block">Xem chi tiết</a>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+        </div>
+        <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
+</div>
 
-<h1>Home Page</h1>
-
+<link href="~/lib/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />

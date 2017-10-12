@@ -141,7 +141,7 @@
 
             <div class="panel-footer hidden-print">
                 <a class="btn btn-sm btn-primary" data-toggle="collapse" ng-if="ctrlList.data.showButtonNew" ng-click="ctrlList.action.addNguoiDung()">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-sm btn-default" ng-if="ctrlList.data.showButtonXoaChon" ng-click="ctrlList.action.deleteSelected('')">Xóa chọn</button>
+                <button class="btn btn-sm btn-danger" ng-if="ctrlList.data.showButtonXoaChon" ng-click="ctrlList.action.deleteSelected('')"><i class="fa fa-trash-o"></i> Xóa chọn</button>
             </div>
         </div>
         <!-- popup cập nhật edit người dùng -->
@@ -269,7 +269,7 @@
     </div>
     <!-- /popup danh sách -->
     <!-- popup danh sách tùy chọn cột -->
-    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.TuyChonCotPopup,MaForm:'FL0009'})">
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:mainCtrl.controllerId.TuyChonCotPopup,MaForm:'FL0009'})">
         <div class="panel-heading ui-draggable-handle">
             <div class="panel-title">
                 <span>Tùy chọn cột</span>

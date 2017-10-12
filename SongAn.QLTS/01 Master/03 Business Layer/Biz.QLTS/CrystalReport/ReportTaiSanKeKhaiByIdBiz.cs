@@ -4,7 +4,7 @@ using System.Data;
 
 namespace SongAn.QLTS.Biz.QLTS.CrystalReport
 {
-    public class ReportTaiSanKeKhaiByIdBiz : ReportTaiSanKeKhaiByIdDac
+    public class ReportTaiSanKeKhaiByIdBiz : ReportTaiSanKeKhaiDatDac
     {
         #region public properties
 

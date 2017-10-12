@@ -30,7 +30,7 @@
                 <span ng-if="ctrl.data.showButtonNew">
                     <a class="btn btn-sm btn-primary" ng-click="ctrl.action.add()">Lập báo cáo (F2)</a>&nbsp;&nbsp;&nbsp;
                 </span>
-                <button class="btn btn-sm btn-default" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()">Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.GuiCapTren()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
             </div>
             <div class="table-containe panel-body">
