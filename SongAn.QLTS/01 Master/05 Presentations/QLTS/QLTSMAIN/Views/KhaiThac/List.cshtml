@@ -41,7 +41,7 @@
 
     <div ng-controller="KhaiThacListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
-            <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()">Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+            <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()"><i class="fa fa-plus"></i> Mới (F2)</button>&nbsp;&nbsp;&nbsp;
             <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
         </div>
         <div class="table-responsive  panel-body">
@@ -225,7 +225,7 @@
             </form>
         </div>
         <div class="panel-footer">
-            <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
             <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
         </div>

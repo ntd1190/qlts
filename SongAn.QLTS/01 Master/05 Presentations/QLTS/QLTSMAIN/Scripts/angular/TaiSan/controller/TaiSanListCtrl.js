@@ -3,12 +3,13 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('TaiSanListCtrl', function (TaiSanService, utility, $timeout) {
+    module.controller('TaiSanListCtrl', function (TaiSanService, utility, $timeout, $rootScope, TuyChonCotService) {
 
         /*** PRIVATE ***/
         var vm = this,
             service = TaiSanService,
             TaiSanId = 0,
+            MaForm = 'FL0027',
             userInfo,
             _tableState,
             linkUrl;
@@ -67,6 +68,9 @@
             taisan.isView = true;
             getById(taisan.TaiSanId);
         }
+        vm.action.checkCot = function (cot) {
+            return cot.HienThiYN;
+        }
 
         /*** HOT KEY ***/
 
@@ -95,7 +99,26 @@
             if (config && config.linkUrl) {
                 linkUrl = config.linkUrl;
             }
+
+            catchTuyChonCotPopupEvent();
         };
+
+        /*** EVENT FUNCTION ***/
+
+        function catchTuyChonCotPopupEvent() {
+            // nhân sự kiện áp dụng
+            $rootScope.$on('TuyChonCotPopup' + '.action.ap-dung', function (event, data) {
+                $('#' + 'TuyChonCotPopup').collapse('hide');
+                _tableState.pagination.start = 0;
+                getPage(_tableState);
+            });
+
+            $(document).ready(function () {
+                $('#' + 'TuyChonCotPopup').on('show.bs.collapse', function () {
+                    $rootScope.$broadcast('TuyChonCotPopup' + '.action.refresh');
+                });
+            });
+        }
 
         /*** BIZ FUNCTION ***/
 
@@ -260,6 +283,7 @@
                     vm.data.ListTaiSan = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);//set the number of pages so the pagination can update
                 }
+                loadCotList();
             }, function (error) {
                 vm.status.isLoading = false;
                 console.log(error);
@@ -353,6 +377,16 @@
             });
         }
 
+        function loadCotList() {
+            if (1 === 1) {
+                TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {
+                    console.log('TuyChonCotService.getAll:', success, userInfo, MaForm, vm.data.listCot);
+                    if (success.data && success.data.data) {
+                        vm.data.listCot = success.data.data;
+                    }
+                }, function (error) { });
+            }
+        }
     });
 
     module.filter('sumOfValue', function () {

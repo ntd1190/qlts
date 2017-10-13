@@ -2,9 +2,9 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService,TaiSanService, utility, $timeout, $scope, $q) {
+    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService, TaiSanService, TuyChonCotService, utility, $rootScope, $timeout, $scope, $q) {
         var vm = this, userInfo, _tableState,
-            isEdit = false, linkUrl = '', service = DanhGiaTaiSanService;
+            isEdit = false, linkUrl = '', MaForm = 'FL0029', service = DanhGiaTaiSanService;
 
         vm.error = {};
 
@@ -60,6 +60,10 @@
             getPage(_tableState);
         };
 
+        vm.action.checkCot = function (cot) {
+            return cot.HienThiYN;
+        }
+
         /*** HOT KEY ***/
         vm.keys = {
             //press F2 -> open popup
@@ -98,10 +102,25 @@
             if (config && config.userInfo) {
                 userInfo = config.userInfo;
             }
+            catchTuyChonCotPopupEvent();
         };
 
         /***EVENT FUNCTION ***/
 
+        function catchTuyChonCotPopupEvent() {
+            // nhân sự kiện áp dụng
+            $rootScope.$on('TuyChonCotPopup' + '.action.ap-dung', function (event, data) {
+                $('#' + 'TuyChonCotPopup').collapse('hide');
+                _tableState.pagination.start = 0;
+                getPage(_tableState);
+            });
+
+            $(document).ready(function () {
+                $('#' + 'TuyChonCotPopup').on('show.bs.collapse', function () {
+                    $rootScope.$broadcast('TuyChonCotPopup' + '.action.refresh');
+                });
+            });
+        }
 
         /*** BIZ FUNCTION ***/
 
@@ -262,6 +281,7 @@
                     vm.data.ListDanhGia = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);//set the number of pages so the pagination can update
                 }
+                loadCotList();
             }, function (error) {
                 vm.status.isLoading = false;
                 console.log(error);
@@ -303,6 +323,15 @@
 
             return deferred.promise;
         }
-
+        function loadCotList() {
+            if (1 === 1) {
+                TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {
+                    console.log('TuyChonCotService.getAll:', success, userInfo, MaForm, vm.data.listCot);
+                    if (success.data && success.data.data) {
+                        vm.data.listCot = success.data.data;
+                    }
+                }, function (error) { });
+            }
+        }
     });
 })();

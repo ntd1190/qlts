@@ -9,17 +9,18 @@ using System.Threading.Tasks;
 
 namespace SongAn.QLTS.UI.QLTSMAIN.Controllers
 {
-    [CustomAuthorize(FunctionCodes = "CN0008")]
     public class NuocSanXuatController : BaseController
     {
         private string FunctionCode = "CN0008";
 
+        [CustomAuthorize(FunctionCodes = "CN0008")]
         public ActionResult Index()
         {
             string __VIEW_NAME = "Index";
             return View(__VIEW_NAME);
         }
 
+        [CustomAuthorize(FunctionCodes = "CN0008")]
         public ActionResult List()
         {
             ViewBag.userInfo = LoadUserInfo(FunctionCode);

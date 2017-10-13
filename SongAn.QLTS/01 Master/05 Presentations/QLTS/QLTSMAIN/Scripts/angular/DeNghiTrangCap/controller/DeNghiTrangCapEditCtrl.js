@@ -380,8 +380,9 @@
                     utility.checkInValid(vm.data.listChiTiet[index].DonViTinh, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].PhuongThucId, 'isEmpty') ||
                     utility.checkInValid(vm.data.listChiTiet[index].NgayDeNghi, 'isEmpty') ||
-                    utility.checkInValid(vm.data.listChiTiet[index].DuToan, 'isEmpty') ||
-                    utility.checkInValid(vm.data.listChiTiet[index].DuToanDuocDuyet, 'isEmpty')) {
+                    utility.checkInValid(vm.data.listChiTiet[index].DuToan, 'isEmpty')
+                    //utility.checkInValid(vm.data.listChiTiet[index].DuToanDuocDuyet, 'isEmpty')
+                    ) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                 }

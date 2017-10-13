@@ -31,7 +31,7 @@
                     <a class="btn btn-sm btn-primary" ng-click="ctrl.action.add()">Lập báo cáo (F2)</a>&nbsp;&nbsp;&nbsp;
                 </span>
                 <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-danger" ng-click="ctrl.action.GuiCapTren()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
+                <button ng-if="ctrl.data.showButtonDuyet && ctrl.data.RowChecked" class="btn btn-sm btn-warning" ng-click="ctrl.action.GuiCapTren()"><i class="fa fa-paper-plane-o" aria-hidden="true"></i> Gửi cấp trên</button>
             </div>
             <div class="table-containe panel-body">
                 <table st-table="ctrl.data.LapBaoCaoListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
@@ -179,7 +179,7 @@
                     </div>
                     <div class="col-sm-4">
                         <div class="row form-group form-group-sm"  ng-class="(ctrl.status.isInValidDenNgay)?'has-error':''">
-                            <label class="control-label col-sm-4"  style="padding-left: 0px;">Đến ngày <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                            <label class="control-label col-sm-4"  style="padding-left: 0px;padding-right: 0px;">Đến ngày <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-8">
                                 <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.objLapBaoCao.DenNgay"/>
                             </div>
@@ -187,7 +187,7 @@
                     </div>
                 </div>
                 <div class="row form-group form-group-sm">
-                    <label class="control-label col-sm-2" style="width: 11%;">Diễn giải</label>
+                    <label class="control-label col-sm-2" style="width: 11%;padding-left: 0px;">Diễn giải</label>
                     <div class="col-sm-10" style="width: 89%;">
                         <textarea rows="2" type="text" class="form-control" id="txtDienGiai" ng-model="ctrl.data.objLapBaoCao.DienGiai"></textarea>
                     </div>
@@ -224,7 +224,7 @@
         </div>
     </div>
     <div class="panel-footer">
-        <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-if="ctrl.data.showButtonSave" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
         <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.close()">Đóng</button>
     </div>

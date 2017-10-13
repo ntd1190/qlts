@@ -1,12 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Báo cáo tổng hợp";
+    ViewBag.Title = "Báo cáo kê khai";
 }
 
 <div class="container-fluid">
     <div ng-controller="TaiSanBaoCaoCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
             <strong>
-                Báo Cáo Tổng Hợp
+                Báo Cáo Kê Khai
             </strong>
         </div>
 
@@ -36,8 +36,8 @@
 
         <div class="panel-footer">
            <div style="text-align:center">
-               <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i></i> Xuất Excel</a>
-               <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()" style="margin-left:60px"><i></i> In Danh Sách</a>
+               <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i class="fa fa-file-excel-o"></i> Xuất Excel</a>
+               <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()" style="margin-left:60px"><i class="fa fa-print"></i> In Danh Sách</a>
            </div>
             
         </div>

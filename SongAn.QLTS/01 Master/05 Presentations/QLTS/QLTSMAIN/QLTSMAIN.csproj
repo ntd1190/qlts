@@ -222,6 +222,7 @@
     <Content Include="Scripts\angular\app\controllers\NhanVienListPopup.js" />
     <Content Include="Scripts\angular\app\controllers\PhongBanListCtrl.js" />
     <Content Include="Scripts\angular\app\controllers\ProfileCtrl.js" />
+    <Content Include="Scripts\angular\app\controllers\ThongBaoListCtrl.js" />
     <Content Include="Scripts\angular\app\controllers\TuyChonCotCtrl.js" />
     <Content Include="Scripts\angular\app\controllers\VaiTroCtrl.js" />
     <Content Include="Scripts\angular\app\directives\datetimepicker.directive.js" />
@@ -231,6 +232,7 @@
     <Content Include="Scripts\angular\app\models\NguoiDungService.js" />
     <Content Include="Scripts\angular\app\models\NhanVienService.js" />
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
+    <Content Include="Scripts\angular\app\models\ThongBaoService.js" />
     <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
@@ -696,7 +698,6 @@
     <Content Include="Views\DuyetMua\List.cshtml" />
     <Content Include="Views\BaoDuong\List.cshtml" />
     <Content Include="Views\BaoDuong\Edit.cshtml" />
-    <Content Include="Views\TheoDoi\List1.cshtml" />
     <Content Include="Views\BienBanKiemKe\List.cshtml" />
     <Content Include="Views\BienBanKiemKe\Edit.cshtml" />
     <Content Include="Views\DanhGiaTaiSan\Edit.cshtml" />

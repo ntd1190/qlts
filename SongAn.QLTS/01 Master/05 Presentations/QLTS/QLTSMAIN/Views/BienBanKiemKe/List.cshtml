@@ -43,7 +43,7 @@
     <div ng-controller="BienBanKiemKeListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
             <span ng-if="ctrl.data.showButtonNew">
-                <a class="btn btn-sm btn-primary" href="~/BienBanKiemKe/edit?id=0">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="~/BienBanKiemKe/edit?id=0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
         </div>

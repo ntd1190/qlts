@@ -81,6 +81,8 @@
     <Compile Include="PhanQuyen\GetQuyenTacVuByMaChucNangAndMaVaiTroDac.cs" />
     <Compile Include="PhanQuyen\GetListQuyenTacVuByVaiTroIdDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ThongBao\GetListThongBaoByCoSoIdDac.cs" />
+    <Compile Include="ThongBao\UpdateThongBaoByIdDac.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

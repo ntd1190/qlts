@@ -15,6 +15,7 @@
                                 <input class="form-control" ng-model="ctrl.inputSearch.search" autofocus>
                                 <span class="input-group-btn">
                                     <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                    <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
                                 </span>
                             </div>
                         </div>
@@ -25,7 +26,7 @@
 
         <div class="panel-heading">
             <span ng-if="ctrl.action.checkQuyenTacVu('N')">
-                <a class="btn btn-sm btn-primary" href="~/thaydoithongtinkekhai/create">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="~/thaydoithongtinkekhai/create"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <button class="btn btn-sm btn-danger" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
         </div>
@@ -34,7 +35,7 @@
                 <thead class="text-primary">
                     <tr>
                         <th class="text-center" style="width:35px;"></th>
-                        <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot">
+                        <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="cot.TenCot"></span>
                         </th>
                     </tr>
@@ -49,8 +50,8 @@
                         <td class="text-center text-primary" st-select-row="row" st-select-mode="" ng-click="ctrl.action.autoCheckAll()">
                             <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                         </td>
-                        <td ng-repeat="cot in ctrl.data.listCot" ng-switch="cot.MaCot">
-                            <a  href="~/thaydoithongtinkekhai/edit/{{row.ThayDoiThongTinId}}" ng-switch-when="Ngay" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></a>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                            <a href="~/thaydoithongtinkekhai/edit/{{row.ThayDoiThongTinId}}" ng-switch-when="Ngay" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></a>
                             <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                         </td>
                     </tr>
@@ -88,7 +89,7 @@
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_New.DienTich|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_New.DienTich|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
@@ -141,7 +142,7 @@
                                     </div>
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
@@ -185,7 +186,7 @@
                             <span class="panel-title">Thông tin thay đổi (Nhà)</span>
                         </div>
                         <div class="panel-body">
-                            <fieldset >
+                            <fieldset>
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Địa chỉ<span class="text-danger">&nbsp;*</span></span>
@@ -197,11 +198,11 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_New.DienTich|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_New.DienTich|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Tổng diện tích sàn</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_New.TongDienTichSan|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_New.TongDienTichSan|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
@@ -242,7 +243,7 @@
                             <span class="panel-title">Thông tin cũ (Nhà)</span>
                         </div>
                         <div class="panel-body">
-                            <fieldset >
+                            <fieldset>
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Địa chỉ<span class="text-danger">&nbsp;*</span></span>
@@ -254,11 +255,11 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Diện tích</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.DienTichCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Tổng diện tích sàn</span>
-                                        <span class="form-control"  ng-bind="ctrl.data.TTKK_Old.TongDienTichSanCu|number:'':'':2" />
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TongDienTichSanCu|number:'':'':2" />
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Làm TSLV</span>
@@ -302,7 +303,7 @@
                             <span class="panel-title">Thông tin thay đổi (Ô tô)</span>
                         </div>
                         <div class="panel-body">
-                            <fieldset >
+                            <fieldset>
                                 <div class="row">
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Nhãn hiệu</span>
@@ -407,7 +408,7 @@
                             <span class="panel-title">Thông tin thay đổi (500 triệu)</span>
                         </div>
                         <div class="panel-body">
-                            <fieldset >
+                            <fieldset>
                                 <div class="row">
                                     <div class="col-sm-12 form-group form-group-sm">
                                         <span>Ký hiệu</span>
@@ -448,6 +449,46 @@
             </div><!-- thông tin trên 500 -->
         </div>
     </div>
+
+    <!-- popup danh sách tùy chọn cột -->
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0028'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuyChonCotPopup">Đóng</a>
+        </div>
+    </div>
+    <!-- / popup danh sách tùy chọn cột -->
 </div>
 
 @section ImportStyles{
@@ -463,4 +504,7 @@
     <script src="~/Scripts/angular/ThayDoiThongTinKeKhai/service/ThayDoiThongTinKeKhaiService.js"></script>
     <script src="~/Scripts/angular/ThayDoiThongTinKeKhai/controller/ThayDoiThongTinKeKhaiListCtrl.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
+
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
 }

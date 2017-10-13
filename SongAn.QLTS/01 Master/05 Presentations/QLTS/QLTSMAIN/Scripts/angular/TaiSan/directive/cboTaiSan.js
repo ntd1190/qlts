@@ -115,7 +115,7 @@
         function getPage() {
             var data = {};
             data.search = vm.inputSearch.SearchString || '';
-            data.TaiSanId = vm.inputSearch.TaiSanId || 0;
+            data.TaiSanId = vm.inputSearch.TaiSanId || '';
             data.MaTaiSan = vm.inputSearch.MaTaiSan || '';
 
             data.CoSoId = userInfo.CoSoId || 0;

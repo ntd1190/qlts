@@ -81,6 +81,7 @@
     <Compile Include="Controllers\PhanQuyenController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ThongBaoController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Models\CauHinhFormCot\UpdateListCauHinhCotAction.cs" />
     <Compile Include="Models\CauHinhFormCot\GetListCauHinhCotByCriteriaAction.cs" />
@@ -98,6 +99,8 @@
     <Compile Include="Models\PhanQuyen\GetQuyenTacVuByMaChucNangAndMaVaiTroAction.cs" />
     <Compile Include="Models\QuyenTacVu\UpdateQuyenTacVuAction.cs" />
     <Compile Include="Models\Menu\GetListMenuAction.cs" />
+    <Compile Include="Models\ThongBao\GetListThongBaoByCoSoIdAction.cs" />
+    <Compile Include="Models\ThongBao\UpdateThongBaoByIdAction.cs" />
     <Compile Include="Models\VaiTro\GetListVaiTroAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

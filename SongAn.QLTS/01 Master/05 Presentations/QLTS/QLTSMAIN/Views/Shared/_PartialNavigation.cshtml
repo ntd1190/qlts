@@ -7,66 +7,61 @@
     <div class="page-header-inner">
         <div class="page-logo">
             <a href="~/home/index">
-                <img src="~/lib/images/logo.png" alt="logo" class="logo-default" style="width: 168px;"/>
+                <img src="~/lib/images/logo.png" alt="logo" class="logo-default" style="width: 168px;" />
             </a>
             <div class="menu-toggler sidebar-toggler" onclick="handleSidebarToggler()">
             </div>
         </div>
 
         <div class="page-top">
-            <div class="top-menu">
+            <div class="top-menu" ng-controller="ThongBaoListCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({CoSoId:  @(User.CoSoId),UserId:  @(User.UserId),linkUrl:'@(Url.Content("~/"))'})">
                 <ul class="nav navbar-nav pull-right">
                     <li class="separator hide">
                     </li>
                     <li class="dropdown dropdown-extended dropdown-notification dropdown-dark" id="header_notification_bar">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <i class="fa fa-bell-o" aria-hidden="true"></i>
-                            <span class="badge" style="background-color: #F3565D;">
-                                3
+                            <span ng-bind="ctrl.data.TongSo" class="badge" style="background-color: #F3565D;">
+                                
                             </span>
                         </a>
-                        <ul class="dropdown-menu">
+                        @*<ul class="dropdown-menu">
                             <li class="external">
-                                <h3><span class="bold">3 Thông báo mới</span> </h3>
-                                
+                                <h3><span class="bold">{{ctrl.data.TongSo}} Thông báo mới</span> </h3>
                             </li>
                             <li>
-                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 250px;">
-                                    <ul class="dropdown-menu-list scroller" style="height: 250px; overflow: hidden; width: auto;" data-handle-color="#637283" data-initialized="1">
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">Vừa xong</span>
+                                <div class="slimScrollDiv" style="position: relative; overflow-y: scroll; width: auto; height: 250px;">
+                                    <ul class="dropdown-menu-list scroller" data-handle-color="#637283" data-initialized="1">
+                                        <li ng-repeat="ThongBao in ctrl.data.ThongBaoListDisplay">
+                                            <a href="javascript:void(0)" ng-click="ctrl.action.update(ThongBao.ThongBaoId, ThongBao.Loai)">
+                                                <span class="time" style="min-width:77px;">{{ ThongBao.TimeDiff}}</span>
                                                 <span class="details">
-                                                   Duyệt Kế hoạc mua sắm
+                                                    {{ ThongBao.TenThongBao}}
                                                 </span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">3 phút</span>
-                                                <span class="details">
-                                                    Duyệt Kế hoạc mua sắm
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="javascript:;">
-                                                <span class="time">10 phút</span>
-                                                <span class="details">
-                                                    Duyệt Kế hoạc mua sắm
-                                                </span>
-                                            </a>
-                                        </li>
-                      
                                     </ul><div class="slimScrollBar" style="background: rgb(99, 114, 131); width: 7px; position: absolute; top: 0px; opacity: 0.4; display: none; border-radius: 7px; z-index: 99; right: 1px; height: 121.359px;"></div><div class="slimScrollRail" style="width: 7px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 7px; background: rgb(234, 234, 234); opacity: 0.2; z-index: 90; right: 1px;"></div>
                                 </div>
-                            </li>
-                        </ul>
+                                </li>
+                         </ul>*@
+                        <div class="dropdown-menu list-group no-padding">
+                            <div class="list-group-item">
+                                <span ng-bind="ctrl.data.TongSo"></span> Thông báo mới
+                            </div>
+                            <div class="slimScrollDiv" style="position: relative; overflow-y: auto; width: auto; max-height: 250px;">
+                                <a href="javascript:void(0)" ng-click="ctrl.action.update(ThongBao.ThongBaoId, ThongBao.Loai)" class="list-group-item" ng-repeat="ThongBao in ctrl.data.ThongBaoListDisplay">
+                                    {{ ThongBao.TenThongBao}}
+                                    <span class="pull-right text-muted small">
+                                        <em>{{ ThongBao.TimeDiff}}</em>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
                     </li>
                     <li class="dropdown dropdown-user dropdown-dark">
                         <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                             <span class="username username-hide-on-mobile">
-                               @(User != null ? User.Name : "") 
+                                @(User != null ? User.Name : "")
                             </span>
                             <img alt="" class="img-circle" src="~/lib/images/avatar.png">
                         </a>
@@ -145,7 +140,7 @@
                 </form>
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupNguoiDung" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
             </div>
@@ -180,13 +175,46 @@
         }
 
 
-        </script>
-
+    </script>
 }
 else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
 {
 }
-else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+    <style>
+        div.slimScrollDiv::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        div.slimScrollDiv::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+            border-radius: 10px;
+        }
+
+        div.slimScrollDiv::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+        }
+
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu:after {
+            border-bottom-color: rgba(0,0,0,0.3);
+        }
+
+        .page-header.navbar .top-menu .navbar-nav > li.dropdown-dark .dropdown-menu {
+            background: #fff;
+        }
+
+        .slimScrollDiv .list-group-item {
+            border-right: 0px;
+            border-radius: 0px;
+        }
+
+        .slimScrollDiv .list-group-item:first-child, .list-group-item:last-child {
+            border-radius: 0px;
+        }
+    </style>
+}
 else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true)
 {
 
@@ -197,4 +225,6 @@ else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
     <script src="~/Scripts/angular/app/controllers/ProfileCtrl.js"></script>
     <script src="~/Scripts/angular/app/controllers/NguoiDungEditCtrl.js"></script>
     <script src="~/Scripts/angular/NguoiDung/service/NguoiDungService.js"></script>
+    <script src="~/Scripts/angular/app/controllers/ThongBaoListCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/ThongBaoService.js"></script>
 }

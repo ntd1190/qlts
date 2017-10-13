@@ -77,7 +77,7 @@
                 </div>
 
                 <div class="panel-footer">
-                    <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#popupThemNguoiDung" ng-click="ctrl.action.add();">Mới (F2)</a> &nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" data-toggle="collapse" data-target="#popupThemNguoiDung" ng-click="ctrl.action.add();"><i class="fa fa-plus"></i> Mới (F2)</a> &nbsp;&nbsp;&nbsp;
                     <a class="btn btn-sm btn-default " ng-click="ctrl.action.excel('#tableToExport');">Excel</a> &nbsp;&nbsp;&nbsp;
                     <a class="btn btn-sm btn-default " ng-click="ctrl.action.print('tableToExport');">Print</a>
                 </div>
@@ -130,7 +130,7 @@
                 </div>
 
                 <div class="btn-group-sm text-left">
-                    <button type="button" class="btn btn-primary" ng-if="ctrl.data.showButtonSave" id="btnLuu" ng-click="ctrl.action.save(ctrl.data.objVaiTro)">Lưu (F8)</button> &nbsp;&nbsp;
+                    <button type="button" class="btn btn-primary" ng-if="ctrl.data.showButtonSave" id="btnLuu" ng-click="ctrl.action.save(ctrl.data.objVaiTro)"><i class="fa fa-save"></i> Lưu (F8)</button> &nbsp;&nbsp;
                     <button type="button" class="btn btn-danger" ng-click="ctrl.action.remove(ctrl.data.objVaiTro.VaiTroId)" ng-if="ctrl.data.objVaiTro.VaiTroId>0 && ctrl.data.showButtonXoa"><i class="fa fa-trash-o"></i> Xóa</button>
                     <label ng-if="ctrl.data.objVaiTro.VaiTroId>0">&nbsp;&nbsp;</label>
                     <button type="button" class="btn btn-default" ng-click="ctrl.action.resetEdit(ctrl.data.objVaiTro.VaiTroId)">Thiết lập lại</button> &nbsp;&nbsp;
