@@ -44,7 +44,7 @@ namespace SongAn.QLTS.Data.QLTS.PhongBan
         /// <summary>
         /// Số dòng skip (để phân trang)
         /// </summary>
-        public int? Skip  { get; set; }
+        public int? Skip { get; set; }
 
         /// <summary>
         /// Số dòng take (để phân trang)
