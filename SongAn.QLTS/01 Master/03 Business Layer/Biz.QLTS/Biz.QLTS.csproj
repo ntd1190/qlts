@@ -76,6 +76,7 @@
     <Compile Include="CrystalReport\ReportSuDungByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiGiamBiz.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiTangBiz.cs" />
+    <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Biz.cs" />
     <Compile Include="CrystalReport\ReportTongHopTaiSanCoDinhBiz.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDBiz.cs" />
     <Compile Include="DanhGia\GetListNguyenGiaByDanhGia.cs" />
@@ -182,6 +183,7 @@
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListNguyenGiaByTaiSanIdBiz.cs" />
     <Compile Include="TaiSan\DeleteListTaiSanBiz.cs" />
+    <Compile Include="TaiSan\CheckMaTaiSanBiz.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhai500ByIdBiz.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiNhaByIdBiz.cs" />
     <Compile Include="TaiSan\GetThongTinKeKhaiOtoByIdBiz.cs" />

@@ -76,6 +76,7 @@
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiGiamDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
+    <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoChiTietDac.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoDac.cs" />
@@ -83,6 +84,7 @@
     <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoChiTietByIdDac.cs" />
     <Compile Include="LapBaoCao\GetLapBaoCaoByIdDac.cs" />
     <Compile Include="LapBaoCao\GetListDmBaoCaoDac.cs" />
+    <Compile Include="TaiSan\CheckMaTaiSanDac.cs" />
     <Compile Include="TraCuuTaiSan\LuocSuDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListTaiSanByCriteriaDac.cs" />
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
@@ -244,6 +246,11 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
+    <Content Include="NhanVien\Procedures\sp_NhanVien_cbxNhanVienByPhongBanId.sql" />
+    <Content Include="PhongBan\Procedures\sp_PhongBan_cbxPhongBanById.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_cbxTaiSanSuDungById.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_cbxTaiSanSuDungByCriteria.sql" />
+    <Content Include="TaiSan\Procedures\sp_TaiSan_CheckMaTaiSan.sql" />
     <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_LuocSu.sql" />
     <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListTaiSanByCriteria.sql" />
     <Content Include="TraCuuTaiSan\Procedures\sp_TraCuuTaiSan_GetListMenuCoSoByNhanVienId.sql" />

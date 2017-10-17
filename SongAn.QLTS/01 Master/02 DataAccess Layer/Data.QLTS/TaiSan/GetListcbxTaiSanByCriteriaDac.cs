@@ -25,6 +25,7 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
         public virtual string LoaiKeKhai { get; set; }
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
+        public virtual string FunctionCode { get; set; }
         #endregion
 
         #region private variable

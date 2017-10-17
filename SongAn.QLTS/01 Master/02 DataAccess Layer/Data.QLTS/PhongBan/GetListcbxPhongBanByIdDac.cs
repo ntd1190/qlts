@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SongAn.QLTS.Data.QLTS.PhongBan
 {
-    public class GetListcbxPhongBanByIdDac :BaseRepositoryAsync
+    public class GetListcbxPhongBanByIdDac : BaseRepositoryAsync
     {
         #region public properties
 
@@ -25,6 +25,7 @@ namespace SongAn.QLTS.Data.QLTS.PhongBan
         /// Mệnh đề where
         /// </summary>
         public string Search { get; set; }
+        public string FunctionCode { get; set; }
         public int PhongBanId { get; set; }
 
 
@@ -87,6 +88,7 @@ namespace SongAn.QLTS.Data.QLTS.PhongBan
                 p.Add("NhanVienId", NhanVienId, DbType.String);
                 p.Add("Search", Search, DbType.String);
                 p.Add("PhongBanId", PhongBanId, DbType.Int32);
+                p.Add("FunctionCode", FunctionCode, DbType.String);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_PhongBan_cbxPhongBanById",

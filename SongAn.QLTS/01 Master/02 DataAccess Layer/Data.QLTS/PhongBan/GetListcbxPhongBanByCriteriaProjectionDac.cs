@@ -35,8 +35,8 @@ namespace SongAn.QLTS.Data.QLTS.PhongBan
         /// Mệnh đề where
         /// </summary>
         public string Search { get; set; }
+        public string FunctionCode { get; set; }
 
-        
 
         #endregion
 
@@ -96,7 +96,7 @@ namespace SongAn.QLTS.Data.QLTS.PhongBan
                 p.Add("CoSoId", CoSoId, DbType.String);
                 p.Add("NhanVienId", NhanVienId, DbType.String);
                 p.Add("Search", Search, DbType.String);
-
+                p.Add("FunctionCode", FunctionCode, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_PhongBan_cbxPhongBanByCriteria",
                     param: p,

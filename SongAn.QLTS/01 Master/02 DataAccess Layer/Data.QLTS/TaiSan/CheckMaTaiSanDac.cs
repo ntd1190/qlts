@@ -1,9 +1,9 @@
 ﻿/*****************************************************************************
-1. Create Date  : 2017.09.01
+1. Create Date  : 2017.08.31
 2. Creator      : NGUYỄN THANH BÌNH
 3. Function     : 
-4. Description  : 
-5. History      : 2017.09.01 (NGUYỄN THANH BÌNH) - Tao moi
+4. Description  : INSERT TÀI SẢN
+5. History      : 2017.08.31 (NGUYỄN THANH BÌNH) - Tao moi
 *****************************************************************************/
 using Dapper;
 using Dapper.FastCrud;
@@ -16,15 +16,14 @@ using System.Threading.Tasks;
 
 namespace SongAn.QLTS.Data.QLTS.TaiSan
 {
-    public class GetListcbxTaiSanSuDungByCriteriaDac : BaseRepositoryAsync
+    public class CheckMaTaiSanDac : BaseRepositoryAsync
     {
         #region public properties
-        public virtual string Search { get; set; }
         public virtual int TaiSanId { get; set; }
         public virtual string MaTaiSan { get; set; }
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
-        public virtual string FunctionCode { get; set; }
+        public virtual string MESSAGE { get; set; }
         #endregion
 
         #region private variable
@@ -32,7 +31,7 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
         #endregion
 
         #region constructor
-        public GetListcbxTaiSanSuDungByCriteriaDac(ContextDto context) : base(context.dbQLTSConnection)
+        public CheckMaTaiSanDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -55,10 +54,14 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
             return await WithConnection(async c =>
             {
                 var p = new DynamicParameters(this);
+                p.Add("@MESSAGE", dbType: DbType.String, direction: ParameterDirection.Output, size: 4000);
+
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_TaiSan_cbxTaiSanSuDungByCriteria",
+                    sql: "sp_TaiSan_CheckMaTaiSan",
                     param: p,
                     commandType: CommandType.StoredProcedure);
+
+                MESSAGE = p.Get<string>("MESSAGE");
 
                 return objResult;
             });
