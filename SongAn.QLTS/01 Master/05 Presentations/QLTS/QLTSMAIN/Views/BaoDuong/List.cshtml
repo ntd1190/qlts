@@ -42,7 +42,7 @@
             <table st-table="ctrl.data.BaoDuongListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
-                        <th class="text-center" style="width: 40px;">Chọn</th>                       
+                        <th class="text-center" style="width: 40px;">Chọn</th>
                         <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="::cot.TenCot"></span>
                         </th>
@@ -172,42 +172,18 @@
 
 
 
-    @section ImportStyles{}
-    @section SetupStyles{
-        <style type="text/css">
-            .st-sort-ascent:before {
-                content: '\25B2';
-            }
-
-            .st-sort-descent:before {
-                content: '\25BC';
-            }
-
-            .select-page {
-                width: 50px;
-                text-align: center;
-            }
-
-            .pagination li a input {
-                padding: 0;
-                margin: -5px 0;
-            }
-        </style>
-        <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-    }
-    @section ImportScripts{}
-    @section SetupScripts{}
-    @section ImportAngular{
-        <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongListCtrl.js"></script>
-        <script src="~/Scripts/angular/BaoDuong/service/BaoDuongService.js"></script>
-        <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongFilterCtrl.js"></script>
-        <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongEditCtrl.js"></script>
-        <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
-        <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
-        <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-        <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-        @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-    }
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongListCtrl.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/service/BaoDuongService.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/BaoDuong/controller/BaoDuongEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+}
 
 
 

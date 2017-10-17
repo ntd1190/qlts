@@ -42,7 +42,7 @@
                 </label>
             </div>
         </div>
-        <div class="table-container panel-body"> 
+        <div class="table-container panel-body">
             <table st-table="ctrl.data.DuyetMuaList" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
@@ -52,7 +52,7 @@
                         <th class="text-center" st-sort="NoiDung">Nội dung</th>
                         <th class="text-center" style="width: 100px;" st-sort="NgayTao">Ngày gửi</th>
                         <th class="text-center" style="width: 130px;" st-sort="TenNhanVien">Người gửi</th>
-                        <th class="text-center"  style="width: 150px;" st-sort="TrangThai">Trạng thái</th>
+                        <th class="text-center" style="width: 150px;" st-sort="TrangThai">Trạng thái</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -152,7 +152,7 @@
                 </tbody>
                 <tfoot>
                     <tr>
-                        <td colspan="100" >
+                        <td colspan="100">
                             <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
                         </td>
                     </tr>
@@ -196,72 +196,19 @@
                 <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuChoiPopup" aria-expanded="true">Đóng</a>
 
             </div>
-        </div> 
+        </div>
     </div>
 
 </div>
 
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-
-        .top-alert {
-            position: fixed;
-            top: 10px;
-            width: 100%;
-            z-index: 100000;
-            left: 0;
-            padding: 20px;
-            display: inline-block;
-            text-align: center;
-        }
-
-            .top-alert .alert {
-                width: auto !important;
-                height: 100%;
-                display: inline;
-                position: relative;
-                margin: 0;
-            }
-
-                .top-alert .alert .close {
-                    position: absolute;
-                    top: 11px;
-                    right: 10px;
-                    color: inherit;
-                    margin: -13px -7px;
-                }
-                .label {
-            font-size: 90% !important;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/DuyetMua/service/DuyetMuaService.js"></script>
     <script src="~/Scripts/angular/DuyetMua/controller/DuyetMuaListCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
 }
 
 

@@ -40,7 +40,7 @@
                     <div class="row form-group form-group-sm" ng-class="ctrl.error.TDTT_TaiSanId?'has-error':''">
                         <span class="col-sm-3">Tên tài sản cũ<span class="text-danger">&nbsp;*</span></span>
                         <div class="col-sm-8" ng-if="ctrl.status.isEdit == false">
-                            <cbo-tai-san-ke-khai ng-keypress="ctrl.action.keyPressTDTT($event)" data-name="TDTT_TaiSanId" data-next="TDTT_TenTaiSanMoi"
+                            <cbo-tai-san-ke-khai ng-keypress="ctrl.action.keyPressTDTT($event)" data-function-code="CN0027" data-name="TDTT_TaiSanId" data-next="TDTT_TenTaiSanMoi"
                                                  data-disabled="ctrl.status.isEdit" data-config="{userInfo:@(ViewBag.userInfo)}" data-value="ctrl.data.TDTT.TaiSanId" on-selected="ctrl.action.getTaiSanKeKhai(data)" template-url="~/taisan/showview?viewname=cbotaisankekhai"></cbo-tai-san-ke-khai>
                         </div>
                         <div class="col-sm-8" ng-if="ctrl.status.isEdit == true">
@@ -463,8 +463,6 @@
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/HienTrangSuDung/cboHienTrangSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanKeKhai.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     <script src="~/Scripts/angular/ThayDoiThongTinKeKHai/service/ThayDoiThongTinKeKhaiService.js"></script>

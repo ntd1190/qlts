@@ -47,7 +47,7 @@
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanId?'has-error':''">
                             <label class="control-label col-sm-3">Bộ phận đề nghị</label>
                             <div class="col-sm-7">
-                                <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuDeNghi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                                <cbo-phong-ban id="cbxPhongBan" data-function-code="CN0019" data-value="ctrl.data.phieuDeNghi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
                             </div>
                         </div>
                     </div>
@@ -182,36 +182,7 @@
 
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-
-        .col-sm-2 {
-            width: 18%;
-        }
-
-        .col-sm-1 {
-            width: 9%;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -219,8 +190,6 @@
     <script src="~/Scripts/angular/DeNghiTrangCap/service/DeNghiTrangCapService.js"></script>
     <script src="~/Scripts/angular/DeNghiTrangCap/controller/DenNghiTrangCapFilterCtrl.js"></script>
     <script src="~/Scripts/angular/DeNghiTrangCap/controller/DeNghiTrangCapEditCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

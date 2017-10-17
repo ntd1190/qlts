@@ -69,6 +69,7 @@
                         <div class="col-sm-10" style="width:  89.2%;">
                             <cbo-tai-san-su-dung ng-keypress="ctrl.action.keyPressDanhGia($event)" data-name="DanhGia_TaiSanId" data-next="btn_addNguyenGia"
                                                  data-disabled="ctrl.status.isEdit"
+                                                 data-function-code="CN0033"
                                                  data-config="{userInfo:@(ViewBag.userInfo)}"
                                                  data-value="ctrl.data.DanhGia.TaiSanId"
                                                  data-phong-ban="ctrl.data.DanhGia.PhongBanId"
@@ -246,35 +247,10 @@
 @section ImportStyles{
     @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportStyles", true } });}
 }
-@section SetupStyles{
-    <style>
-        .row.heading {
-            font-weight: 700;
-            margin: 10px 0;
-        }
-
-        .col-xs-1, .col-sm-1, .col-md-1, .col-lg-1, .col-xs-2, .col-sm-2, .col-md-2, .col-lg-2, .col-xs-3, .col-sm-3, .col-md-3, .col-lg-3, .col-xs-4, .col-sm-4, .col-md-4, .col-lg-4, .col-xs-5, .col-sm-5, .col-md-5, .col-lg-5, .col-xs-6, .col-sm-6, .col-md-6, .col-lg-6, .col-xs-7, .col-sm-7, .col-md-7, .col-lg-7, .col-xs-8, .col-sm-8, .col-md-8, .col-lg-8, .col-xs-9, .col-sm-9, .col-md-9, .col-lg-9, .col-xs-10, .col-sm-10, .col-md-10, .col-lg-10, .col-xs-11, .col-sm-11, .col-md-11, .col-lg-11, .col-xs-12, .col-sm-12, .col-md-12, .col-lg-12 {
-            padding-right: 5px;
-            padding-left: 5px;
-        }
-
-        .row {
-            margin-right: 0px;
-            margin-left: 0px;
-        }
-
-        .form-group.row {
-            margin-right: 0;
-            margin-left: 0;
-        }
-    </style>
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-
     <script src="~/Scripts/angular/DanhGiaTaiSan/controller/DanhGiaTaiSanEditCtrl.js"></script>
     <script src="~/Scripts/angular/DanhGiaTaiSan/service/DanhGiaTaiSanService.js"></script>
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

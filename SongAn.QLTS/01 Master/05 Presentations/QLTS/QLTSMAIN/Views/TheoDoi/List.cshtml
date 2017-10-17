@@ -163,8 +163,8 @@
             </div>
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TaiSanId)?'has-error':''">
                 <label class="control-label col-sm-3">Tài sản</label>
-                <div class="col-sm-9">
-                    <cbo-tai-san id="cbxTaiSan" data-value="ctrl.data.objTheoDoi.TaiSanId" ma-tai-san="ctrl.data.objTheoDoi.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"
+                <div class="col-sm-9"> 
+                    <cbo-tai-san id="cbxTaiSan" data-function-code="CN0026" data-value="ctrl.data.objTheoDoi.TaiSanId" ma-tai-san="ctrl.data.objTheoDoi.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"
                                  on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san>
                 </div>
             </div>
@@ -189,7 +189,7 @@
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.PhongBanId)?'has-error':''">
                 <label class="control-label col-sm-3">Bộ phận</label>
                 <div class="col-sm-9">
-                    <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.objTheoDoi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
+                    <cbo-phong-ban id="cbxPhongBan" data-function-code="CN0026" data-value="ctrl.data.objTheoDoi.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
                                    on-selected="ctrl.action.resetNhanVienId(data)"></cbo-phong-ban>
                 </div>
             </div>
@@ -247,24 +247,6 @@
             overflow-y: auto;
             overflow-x: auto;
         }
-
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
     </style>
 }
 @section ImportScripts{}
@@ -273,8 +255,6 @@
     <script src="~/Scripts/angular/TheoDoi/service/TheoDoiService.js"></script>
     <script src="~/Scripts/angular/TheoDoi/controller/TheoDoiListCtrl.js"></script>
     <script src="~/Scripts/angular/TheoDoi/controller/TheoDoiEditCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

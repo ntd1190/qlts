@@ -44,7 +44,7 @@
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanId?'has-error':''">
                             <label class="control-label col-sm-3">Bộ phận<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-7">
-                                <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuBienBanKiemKe.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
+                                <cbo-phong-ban id="cbxPhongBan" data-function-code="CN0031" data-value="ctrl.data.phieuBienBanKiemKe.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"
                                                on-selected="ctrl.action.resetNhanVienId(data)"></cbo-phong-ban>
                             </div>
                         </div>
@@ -237,33 +237,7 @@
 </div>
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-
-       td > span {
-            background-color: #eee !important;
-            opacity: 1;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -274,8 +248,6 @@
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

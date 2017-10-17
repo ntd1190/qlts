@@ -122,35 +122,13 @@
 </div>
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-    </style>
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/LoaiTaiSan/service/LoaiTaiSanService.js"></script>
     <script src="~/Scripts/angular/LoaiTaiSan/controller/LoaiTaiSanListCtrl.js"></script>
     <script src="~/Scripts/angular/LoaiTaiSan/controller/LoaiTaiSanEditCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/NhomTaiSan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 

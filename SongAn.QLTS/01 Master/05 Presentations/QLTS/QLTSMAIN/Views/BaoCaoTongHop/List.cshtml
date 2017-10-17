@@ -19,6 +19,7 @@
                         <option value="2">Số ghi tăng tài sản</option>
                         <option value="3">Số ghi giảm tài sản</option>
                         <option value="4">Tình hình tăng giảm tài sản cố định</option>
+                        <option value="5">Sổ tài sản cố định (Biểu S21-DN TT 200/2014/TT-BTC)</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -108,32 +109,9 @@
 
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>  
     <script src="~/Scripts/angular/BaoCaoTongHop/controller/BaoCaoTongHopListCtrl.js"></script>
 }

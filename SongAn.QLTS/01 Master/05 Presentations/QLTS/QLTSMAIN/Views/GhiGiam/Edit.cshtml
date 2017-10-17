@@ -45,7 +45,7 @@
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.PhongBan?'has-error':''">
                     <label class="control-label col-sm-2">Bộ phận đề nghị <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                     <div class="col-sm-9">
-                        <cbo-phong-ban id="cbxPhongBan" data-value="ctrl.data.phieuGhiGiam.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                        <cbo-phong-ban id="cbxPhongBan" data-function-code="CN0023" data-value="ctrl.data.phieuGhiGiam.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
                     </div>
                 </div>
 
@@ -99,7 +99,7 @@
                             </td>
                             <td class="form-group form-group-sm">
                                 <!-- tai san-->
-                                <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId" ma-tai-san="GhiGiamChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                                <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0023" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId" ma-tai-san="GhiGiamChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                                      on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                             </td>
                             <td class="form-group form-group-sm">
@@ -159,28 +159,7 @@
     </div>
 </div>
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -188,8 +167,6 @@
     <script src="~/Scripts/angular/GhiGiam/controller/GhiGiamFilterCtrl.js"></script>
     <script src="~/Scripts/angular/GhiGiam/service/GhiGiamService.js"></script>
     <script src="~/Scripts/angular/GhiGiam/controller/GhiGiamEditCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

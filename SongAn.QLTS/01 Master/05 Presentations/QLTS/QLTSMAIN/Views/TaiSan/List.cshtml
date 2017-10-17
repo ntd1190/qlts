@@ -26,7 +26,7 @@
 
         <div class="panel-heading">
             <span ng-if="ctrl.action.checkQuyenTacVu('N')">
-                <a class="btn btn-sm btn-primary" href="~/taisan/create"><i class="fa fa-plus"></i> <i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="~/taisan/create"> <i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <button class="btn btn-sm btn-danger" ng-if="ctrl.action.checkQuyenTacVu('D')" ng-click="ctrl.action.removeList()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
         </div>
@@ -271,17 +271,11 @@
     </div>
 </div>
 
-@section ImportStyles{
-
-
-}
+@section ImportStyles{}
 @section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-
     <script src="~/Scripts/angular/TaiSan/controller/TaiSanListCtrl.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
 

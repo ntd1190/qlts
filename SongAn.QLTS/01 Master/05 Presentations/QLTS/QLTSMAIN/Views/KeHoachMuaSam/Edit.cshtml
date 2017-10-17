@@ -157,17 +157,13 @@
 </div>
 <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
 @section ImportStyles{}
-@section SetupStyles{
-
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
 
     <script src="~/Scripts/angular/KeHoachMuaSam/controller/KeHoachMuaSamEditCtrl.js"></script>
     <script src="~/Scripts/angular/KeHoachMuaSam/service/KeHoachMuaSamService.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 
 }

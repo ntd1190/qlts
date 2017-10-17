@@ -144,7 +144,7 @@
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.TaiSanId)?'has-error':''">
                     <label class="control-label col-sm-3">Tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                     <div class="col-sm-9">
-                        <cbo-tai-san-su-dung id="cbxTaiSan" data-value="ctrl.data.objKhaiThac.TaiSanId" data-phong-ban="ctrl.data.objKhaiThac.PhongBanId" data-nhan-vien="ctrl.data.objKhaiThac.NhanVienIdKT" ma-tai-san="ctrl.data.objKhaiThac.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                        <cbo-tai-san-su-dung id="cbxTaiSan" data-function-code="CN0034" data-value="ctrl.data.objKhaiThac.TaiSanId" data-phong-ban="ctrl.data.objKhaiThac.PhongBanId" data-nhan-vien="ctrl.data.objKhaiThac.NhanVienIdKT" ma-tai-san="ctrl.data.objKhaiThac.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                              on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                     </div>
                 </div>
@@ -275,42 +275,7 @@
 
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .wrap {
-            width: auto;
-        }
-
-        .wrap table {
-            width: auto;
-            table-layout: fixed;
-        }
-
-        .inner_table {
-            height: 400px;
-            overflow-y: auto;
-            overflow-x: auto;
-        }
-
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-    </style>
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -318,8 +283,6 @@
     <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacListCtrl.js"></script>
     <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacEditCtrl.js"></script>
     <script src="~/Scripts/angular/KhaiThac/controller/KhaiThacFilterCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

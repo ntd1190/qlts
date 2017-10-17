@@ -24,7 +24,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Bộ phận</label>
                         <div class="col-sm-9">
-                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DuyetBaoCaoFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DuyetBaoCaoFilterCtrl',FunctionCode:'CN0041',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
                         </div>
                     </div>
 
@@ -258,40 +258,13 @@
 </div>
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-
-        .label {
-            font-size: 90% !important;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/DuyetBaoCao/controller/DuyetBaoCaoListCtrl.js"></script>
     <script src="~/Scripts/angular/DuyetBaoCao/service/DuyetBaoCaoService.js"></script>
     <script src="~/Scripts/angular/DuyetBaoCao/controller/DuyetBaoCaoFilterCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 

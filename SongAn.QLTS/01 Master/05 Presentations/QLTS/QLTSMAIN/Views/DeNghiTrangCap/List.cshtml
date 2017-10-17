@@ -25,7 +25,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-2">Bộ phận</label>
                         <div class="col-sm-9">
-                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DenNghiTrangCapFilterCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'DenNghiTrangCapFilterCtrl',NameId:'cbxPhongBan',FunctionCode:'CN0019',userInfo:" + ViewBag.UserInfo + "}" } });}
                         </div>
                     </div>
 
@@ -55,7 +55,7 @@
                             <th class="text-center" style="width: 120px;" st-sort="Ngay">Ngày lập</th>
                             <th class="text-center" style="width: 150px;" st-sort="TenPhongBan">Bộ phận đề nghị</th>
                             <th class="text-center" st-sort="NoiDung">Nội dung đề nghị</th>*@
-                        <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                        <th class="text-center" @*st-sort="{{cot.MaCot}}"*@ ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="::cot.TenCot"></span>
                         </th>
                         <th class="text-center" style="width: 150px;">Trạng thái</th>
@@ -94,14 +94,14 @@
                         </td>
                         <td ng-if="DenNghiTrangCap.DuyetId==0" style="padding-left: 3.5%;">
                             <span class="form-control label label-warning" ng-if="DenNghiTrangCap.GuiCapTren==1">Đã gửi - Chờ duyệt</span>
-                            <span class="form-control label label-warning" ng-bind="DenNghiTrangCap.TrangThai"  ng-if="DenNghiTrangCap.GuiCapTren!=1"></span>
+                            <span class="form-control label label-warning" ng-bind="DenNghiTrangCap.TrangThai" ng-if="DenNghiTrangCap.GuiCapTren!=1"></span>
 
                         </td>
                         <td ng-if="DenNghiTrangCap.DuyetId==1" style="padding-left: 3.5%;">
                             <span class="form-control label label-success" ng-if="DenNghiTrangCap.DuyetId==1" ng-bind="DenNghiTrangCap.TrangThai"></span>
                         </td>
                         <td ng-if="DenNghiTrangCap.DuyetId==2" style="padding-left: 3.5%;">
-                            <span class="form-control label label-danger" ng-if="DenNghiTrangCap.DuyetId==2" ng-bind="DenNghiTrangCap.TrangThai"></span> <i class="fa fa-question-circle-o"  ng-if="DenNghiTrangCap.NoiDungDuyet ? true:false" aria-hidden="true" data-placement="left" title="{{DenNghiTrangCap.NoiDungDuyet}}"></i>
+                            <span class="form-control label label-danger" ng-if="DenNghiTrangCap.DuyetId==2" ng-bind="DenNghiTrangCap.TrangThai"></span> <i class="fa fa-question-circle-o" ng-if="DenNghiTrangCap.NoiDungDuyet ? true:false" aria-hidden="true" data-placement="left" title="{{DenNghiTrangCap.NoiDungDuyet}}"></i>
                         </td>
                     </tr>
                 </tbody>
@@ -222,32 +222,7 @@
 
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-
-        .label {
-            font-size: 90% !important;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -257,8 +232,6 @@
     <script src="~/Scripts/angular/DeNghiTrangCap/controller/DeNghiTrangCapEditCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 

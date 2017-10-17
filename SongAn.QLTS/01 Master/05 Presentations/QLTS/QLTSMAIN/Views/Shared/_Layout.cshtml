@@ -11,18 +11,17 @@
 
     @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "ImportStyles", true } });}
     <link href="~/lib/images/LOGO_ICON.png" rel="icon" />
-    <link href="~/lib/Select/Select.css" rel="stylesheet" />
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-    <script src="~/lib/modernizr/modernizr-2.6.2.js"></script>
     <link href="~/lib/MetroAdmin/css/layout.css" rel="stylesheet" />
     <link href="~/lib/MetroAdmin/css/light.css" rel="stylesheet" />
+    <link href="~/lib/Select/Select.css" rel="stylesheet" />
+    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     @(RenderSection("SetupStyles", false))
     @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "SetupStyles", true } });}
 </head>
 <body ng-app="app" class="page-header-fixed page-sidebar-closed-hide-logo page-sidebar-closed-hide-logo">
     <div class="page-header navbar navbar-fixed-top">
-                @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "Html", true } });}
+        @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "Html", true } });}
     </div>
     <div class="clearfix">
     </div>
@@ -50,6 +49,7 @@
             <i class="icon-arrow-up"></i>
         </div>
     </div>
+    <script src="~/lib/modernizr/modernizr-2.6.2.js"></script>
     <script src="~/lib/jquery/jquery-3.1.1.js"></script>
     <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
     <script src="~/lib/jQuery-Mask-Plugin-master/jquery.mask.min.js"></script>
@@ -65,6 +65,8 @@
     <script src="~/lib/angular/angular-cookies.min.js"></script>
     <script src="~/lib/angular-smart-table/smart-table.min.js"></script>
     <script src="~/Scripts/angular/app/app.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     <script src="~/Scripts/angular/app/models/AccountService.js"></script>
     <script src="~/Scripts/angular/app/models/utility.js"></script>
     <script src="~/Scripts/angular/shared/filter/Number.Filter.js"></script>

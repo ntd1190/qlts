@@ -59,7 +59,7 @@
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
                             <a ng-switch-when="SoChungTu" ng-switch-when-separator="," href="~/danhgiataisan/edit/{{row.DanhGiaId}}" ng-bind="row[cot.MaCot]"></a>
-                            <div class="text-center" ng-switch-when="NgayDanhGia,NgayChungTu" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
+                            <div class="text-center" ng-switch-when="NgayDanhGia,NgayChungTu,NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
                             <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                         </td>
                     </tr>
@@ -167,28 +167,14 @@
     <!-- / popup danh sách tùy chọn cột -->
 </div>
 
-@section ImportStyles{
-    <style type="text/css">
-        .row.heading {
-            font-weight: 700;
-        }
-
-            .row.heading hr {
-                border-top: 1px solid #808080;
-                margin: 5px 0;
-            }
-    </style>
-}
+@section ImportStyles{}
 @section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
     <script src="~/Scripts/angular/DanhGiaTaiSan/controller/DanhGiaTaiSanListCtrl.js"></script>
     <script src="~/Scripts/angular/DanhGiaTaiSan/service/DanhGiaTaiSanService.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
-
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
 }

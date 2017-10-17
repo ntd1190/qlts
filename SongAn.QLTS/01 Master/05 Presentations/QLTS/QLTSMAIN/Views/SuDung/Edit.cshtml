@@ -99,7 +99,7 @@
                             <input type="text" id="txtMaTaiSan{{$index}}" class="form-control text-left" ng-model="SuDungChiTiet.MaTaiSan" ng-keydown="ctrl.action.keyPress(SuDungChiTiet.MaTaiSan,'txtMaTaiSan'+$index,'txtSoSanPhamPhucVu'+$index,$index,$event)" />
                         </td>
                         <td class="form-group form-group-sm">
-                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-value="SuDungChiTiet.TaiSanId" data-phong-ban="SuDungChiTiet.PhongBanId" data-nhan-vien="SuDungChiTiet.NhanVienId" ma-tai-san="SuDungChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0035" data-value="SuDungChiTiet.TaiSanId" data-phong-ban="SuDungChiTiet.PhongBanId" data-nhan-vien="SuDungChiTiet.NhanVienId" ma-tai-san="SuDungChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                                  on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                         </td>
                         <td class="form-group form-group-sm">
@@ -159,28 +159,7 @@
 </div>
 
 @section ImportStyles{}
-@section SetupStyles{
-    <style type="text/css">
-        .st-sort-ascent:before {
-            content: '\25B2';
-        }
-
-        .st-sort-descent:before {
-            content: '\25BC';
-        }
-
-        .select-page {
-            width: 50px;
-            text-align: center;
-        }
-
-        .pagination li a input {
-            padding: 0;
-            margin: -5px 0;
-        }
-    </style>
-    <link href="~/lib/bootstrap/css/loadingPage.css" rel="stylesheet" />
-}
+@section SetupStyles{}
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
@@ -190,9 +169,6 @@
     <script src="~/Scripts/angular/SuDung/controller/SuDungEditCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/directive/keyboard.directive.js"></script>
-    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
