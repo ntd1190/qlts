@@ -598,6 +598,12 @@
       <DependentUpon>rptTongHopGhiTang.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptTongHopSoTSCDBieuS21.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptTongHopSoTSCDBieuS21.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptTongHopTaiSanCoDinh.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -827,7 +833,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTDTT_Tren500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>rptTDTT_Tren500.cs</LastGenOutput>
+      <LastGenOutput>rptTDTT_Tren5001.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopGhiGiam.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
@@ -836,6 +842,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopGhiTang.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTongHopGhiTang.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTongHopSoTSCDBieuS21.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTongHopSoTSCDBieuS21.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTongHopTaiSanCoDinh.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
