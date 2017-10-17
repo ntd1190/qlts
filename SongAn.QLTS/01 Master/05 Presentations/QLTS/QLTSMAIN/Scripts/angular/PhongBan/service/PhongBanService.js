@@ -72,7 +72,7 @@
 
             return $http(req);
         }
-        function getCombobox(CoSoId, NhanVienId, Search) {
+        function getCombobox(CoSoId, NhanVienId, Search, FunctionCode) {
             var url = api.url + api.GetCombobox;
 
             var req = {
@@ -82,13 +82,14 @@
                 data: $.param({
                     Search: Search,
                     CoSoId: CoSoId,
-                    NhanVienId: NhanVienId
+                    NhanVienId: NhanVienId,
+                    FunctionCode: FunctionCode
                 })
             }
 
             return $http(req);
         }
-        function getComboboxById(CoSoId, NhanVienId, Search,PhongBanId) {
+        function getComboboxById(CoSoId, NhanVienId, Search,PhongBanId,functionCode) {
             var url = api.url + api.GetComboboxById;
 
             var req = {
@@ -99,7 +100,8 @@
                     Search: Search,
                     CoSoId: CoSoId,
                     NhanVienId: NhanVienId,
-                    PhongBanId:PhongBanId
+                    functionCode: functionCode,
+                    PhongBanId: PhongBanId
                 })
             }
 

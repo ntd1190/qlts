@@ -11,6 +11,7 @@
                 config: '<',
                 value: '=',
                 maTaiSan: '=',
+                functionCode: '@',
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -40,7 +41,7 @@
         /*** INIT FUNCTION ***/
 
         function onInitView(config) {
-            console.log(config);
+            console.log('onInitView', config, $scope);
             if (config && config.controllerId) {
                 vm.controllerId = config.controllerId;
             }
@@ -120,6 +121,7 @@
 
             data.CoSoId = userInfo.CoSoId || 0;
             data.NhanVienId = userInfo.NhanVienId || 0;
+            data.FunctionCode = $scope.functionCode || '';
 
             return $q(function (resolve, reject) {
                 service.getCombobox(data)

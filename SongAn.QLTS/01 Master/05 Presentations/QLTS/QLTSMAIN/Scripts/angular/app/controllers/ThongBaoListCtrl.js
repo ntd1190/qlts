@@ -47,13 +47,13 @@
             ThongBaoService.update(data).then(function (success) {
                 if (success.data.data) {
                     if (loai == 'DeNghi') {
-                        window.location = vm.data.linkUrl + 'denghitrangcap/list';
+                        window.location = vm.data.linkUrl + 'duyetcap/list';
                     }
                     else if (loai == 'BaoCao') {
-                        window.location = vm.data.linkUrl + 'LapBaoCao/list';
+                        window.location = vm.data.linkUrl + 'duyetbaocao/list';
                     }
                     else if (loai == 'MuaSam') {
-                        window.location = vm.data.linkUrl + 'kehoachmuasam/list';
+                        window.location = vm.data.linkUrl + 'duyetmua/list';
                     }
                 }
             }, function (error) {

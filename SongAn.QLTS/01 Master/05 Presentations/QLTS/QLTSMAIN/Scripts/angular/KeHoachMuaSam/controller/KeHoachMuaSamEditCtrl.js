@@ -109,6 +109,8 @@
                 $("#txtNam").focus();
                 return;
             }
+            if (!checkList())
+                return;
             var kehoachmuasam = utility.clone(vm.data.objKeHoachMuaSam);
             var data = {};
             data.kehoachmuasam = angular.toJson(kehoachmuasam);
@@ -140,7 +142,8 @@
                 $("#txtNam").focus();
                 return;
             }
-            checkList();
+            if (!checkList())
+                return;
             var kehoachmuasam = utility.clone(vm.data.objKeHoachMuaSam);
             var data = {};
             data.kehoachmuasam = angular.toJson(kehoachmuasam);
@@ -169,9 +172,16 @@
         }
         function checkList() {
             var hasError = false;
-            if (!vm.data.listChiTiet || vm.data.listChiTiet.length === 0) { return true; }
+            if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0) { return true; }
             for (var index = 0; index < vm.data.listChiTiet.length; index++) {
-                if (!vm.data.listChiTiet[index].TenTaiSan || !vm.data.listChiTiet[index].LoaiId || !vm.data.listChiTiet[index].PhuongThucId || !vm.data.listChiTiet[index].DonViTinh || !vm.data.listChiTiet[index].SoLuong || !vm.data.listChiTiet[index].DonGia || !vm.data.listChiTiet[index].HinhThucId) {
+                if (utility.checkInValid(vm.data.listChiTiet[index].TenTaiSan, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].LoaiId, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].HinhThucId, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].PhuongThucId, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].DonViTinh, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].DonGia, 'isEmpty') ||
+                    utility.checkInValid(vm.data.listChiTiet[index].Ngay, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                 }
@@ -182,6 +192,7 @@
 
             return !hasError;
         }
+        
         function refresh() {
             $("#txtNam").focus();
             getById(MuaSamId);

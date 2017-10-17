@@ -22,6 +22,8 @@
             getTTKK_NhaById: 'GetThongTinKeKhaiNhaById',
             getTTKK_OtoById: 'GetThongTinKeKhaiOtoById',
             getTTKK_500ById: 'GetThongTinKeKhai500ById',
+
+            checkMaTaiSan: 'CheckMaTaiSan',
         }
         var service = {};
         service.insert = function (data) {
@@ -108,7 +110,7 @@
 
             return $http(req);
         }
-        service.getComboboxSuDung = function (CoSoId, NhanVienId, Search, MaTaiSan, TaiSanId) {
+        service.getComboboxSuDung = function (CoSoId, NhanVienId, Search, MaTaiSan, TaiSanId, FunctionCode) {
             var url = api.url + api.getComboboxSuDung;
 
             var req = {
@@ -120,13 +122,14 @@
                     MaTaiSan: MaTaiSan,
                     TaiSanId: TaiSanId,
                     CoSoId: CoSoId,
-                    NhanVienId: NhanVienId
+                    NhanVienId: NhanVienId,
+                    FunctionCode: FunctionCode
                 })
             }
 
             return $http(req);
         }
-        service.getComboboxSuDungById = function (CoSoId, TaiSanId,PhongBanId , NhanVienId) {
+        service.getComboboxSuDungById = function (CoSoId, TaiSanId, PhongBanId, NhanVienId, FunctionCode) {
             var url = api.url + api.getComboboxSuDungById;
 
             var req = {
@@ -137,7 +140,8 @@
                     CoSoId: CoSoId,
                     TaiSanId: TaiSanId,
                     PhongBanId: PhongBanId,
-                    NhanVienId: NhanVienId
+                    NhanVienId: NhanVienId,
+                    FunctionCode: FunctionCode
                 })
             }
 
@@ -211,6 +215,19 @@
 
         service.getTTKK_500ById = function (data) {
             var url = api.url + api.getTTKK_500ById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        };
+
+        service.checkMaTaiSan = function (data) {
+            var url = api.url + api.checkMaTaiSan;
 
             var req = {
                 url: url,

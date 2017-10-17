@@ -38,6 +38,7 @@ app.controller('PhongBanCombobox', function ($rootScope, $scope, PhongBanService
     var userInfo;
     vm.controllerId = 'PhongBanCombobox';
     vm.NameId = 'cbxPhongBan';
+    vm.FunctionCode = '';
     vm.data = {
         PhongBanList: [],
         PhongBanListDisplay: [],
@@ -68,6 +69,10 @@ app.controller('PhongBanCombobox', function ($rootScope, $scope, PhongBanService
         if (config && config.userInfo) {
             userInfo = config.userInfo;
         }
+        if (config && config.FunctionCode) {
+            vm.FunctionCode = config.FunctionCode;
+        }
+        
         initEventListener();
         getPage();
     }
@@ -92,7 +97,8 @@ app.controller('PhongBanCombobox', function ($rootScope, $scope, PhongBanService
         var CoSoId = userInfo.CoSoId;
         var NhanVienId = userInfo.NhanVienId;
         var Search = '';
-        PhongBanService.getCombobox(CoSoId, NhanVienId,Search).then(function (success) {
+        var FunctionCode = vm.FunctionCode;
+        PhongBanService.getCombobox(CoSoId, NhanVienId, Search, FunctionCode).then(function (success) {
             if (success.data.data) {
                 vm.data.PhongBanListDisplay = success.data.data;
             }

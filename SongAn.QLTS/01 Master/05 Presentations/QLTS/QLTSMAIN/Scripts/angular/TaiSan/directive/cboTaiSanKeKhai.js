@@ -13,7 +13,8 @@
                 value: '=',
                 maTaiSan: '=',
                 loaiKeKhai: '<',
-                disabled: '<'
+                disabled: '<',
+                functionCode: '@',
             },
             link: function(scope, element, attrs, ctrl, transclude) {
                 transclude(scope, function(clone, scope) {
@@ -122,6 +123,7 @@
 
             data.CoSoId = userInfo.CoSoId || 0;
             data.NhanVienId = userInfo.NhanVienId || 0;
+            data.FunctionCode = $scope.functionCode || 0;
 
             service.getCombobox(data)
                 .then(function (success) {

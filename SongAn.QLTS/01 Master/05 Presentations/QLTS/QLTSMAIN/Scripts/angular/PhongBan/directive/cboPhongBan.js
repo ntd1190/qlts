@@ -10,7 +10,8 @@
                 input: '<',
                 config: '<',
                 value: '=',
-                disabled: '<'
+                disabled: '<',
+                functionCode: '@',
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -60,19 +61,19 @@
             if (!newValue) {
                 vm.data.PhongBan = {};
                 return;
-            } 
+            }
             vm.inputSearch = {};
             vm.inputSearch.PhongBanId = newValue;
 
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 0) {
+                if (success.data.data && success.data.data.length == 1) {
                     vm.data.PhongBan = success.data.data[0];
                 } else {
                     delete vm.data.PhongBan;
                     vm.data.PhongBan = {};
                 }
                 console.log('_________________________________lấy duoc PHONGBAN');
-                $scope.onSelected({data:vm.data.PhongBan});
+                $scope.onSelected({ data: vm.data.PhongBan });
             });
         });
 
@@ -108,10 +109,12 @@
             var NhanVienId = userInfo.NhanVienId || 0;
             var search = vm.inputSearch.SearchString || '';
             var PhongBanId = vm.inputSearch.PhongBanId || 0;
+            var FunctionCode = $scope.functionCode || 0;
 
             return $q(function (resolve, reject) {
-                service.getComboboxById(CoSoId, NhanVienId, vm.inputSearch.SearchString, PhongBanId)
+                service.getComboboxById(CoSoId, NhanVienId, search, PhongBanId, FunctionCode)
                     .then(function (success) {
+                        console.log('service.getComboboxById', success);
                         vm.status.isLoading = false;
                         if (success.data.data) {
                             vm.data.PhongBanListDisplay = success.data.data;
@@ -119,7 +122,7 @@
                         return resolve(success);
                     }, function (error) {
                         console.log(error);
-                        
+
                         return reject(error);
                     });
             });

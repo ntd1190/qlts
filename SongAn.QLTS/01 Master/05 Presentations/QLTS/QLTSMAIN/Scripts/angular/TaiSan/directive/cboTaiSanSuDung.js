@@ -14,6 +14,7 @@
                 phongBan: '=',
                 nhanVien: '=',
                 disabled: '<',
+                functionCode: '@',
             },
             controller: controller,
             controllerAs: 'ctrl',
@@ -125,7 +126,7 @@
             var NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getComboboxSuDung(CoSoId, NhanVienId, vm.inputSearch.SearchString, vm.inputSearch.MaTaiSan, vm.inputSearch.TaiSanId)
+                service.getComboboxSuDung(CoSoId, NhanVienId, vm.inputSearch.SearchString, vm.inputSearch.MaTaiSan, vm.inputSearch.TaiSanId, $scope.functionCode)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);
@@ -150,7 +151,7 @@
         function getPageById() {
             var CoSoId = userInfo.CoSoId || 0;
             return $q(function (resolve, reject) {
-                service.getComboboxSuDungById(CoSoId, vm.inputSearch.TaiSanId, vm.inputSearch.PhongBanId, vm.inputSearch.NhanVienId)
+                service.getComboboxSuDungById(CoSoId, vm.inputSearch.TaiSanId, vm.inputSearch.PhongBanId, vm.inputSearch.NhanVienId, $scope.functionCode)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);

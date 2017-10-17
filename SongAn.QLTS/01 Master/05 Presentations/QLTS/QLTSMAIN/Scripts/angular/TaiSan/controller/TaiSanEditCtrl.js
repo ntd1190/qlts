@@ -95,11 +95,17 @@
 
             if (has_error) { return; }
 
-            if (isEdit == 1 && checkQuyenUI('M')) {
-                update();
-            } else if (isEdit == 0 && checkQuyenUI('N')) {
-                insert();
-            }
+            checkMaTaiSan().then(function (success) {
+                if (isEdit == 1 && checkQuyenUI('M')) {
+                    update();
+                } else if (isEdit == 0 && checkQuyenUI('N')) {
+                    insert();
+                }
+            }, function (error) {
+                vm.error.TaiSan_MaTaiSan = 'Mã tài sản đã tồn tại';
+                $('[data-name=TaiSan_MaTaiSan]').focus();
+                utility.AlertError(vm.error.TaiSan_MaTaiSan);
+            });
         }
 
         vm.action.removeList = function () {
@@ -110,12 +116,29 @@
         };
 
         vm.action.keyPressTaiSan = function (event) {
+            console.log('vm.action.keyPressTaiSan', event);
             if (event.keyCode != 13) { return; }
-            if (checkInputTaiSan($(event.target).data('name')) === false) {
-                return;
+
+            if ($(event.target).data('name') == 'TaiSan_MaTaiSan') {
+                if (checkInputTaiSan($(event.target).data('name')) === false) {
+                    return;
+                }
+                $('[data-name="' + $(event.target).data('next') + '"] input').focus();
+                $('[data-name="' + $(event.target).data('next') + '"]').focus();
+                checkMaTaiSan().then(function (success) {
+                }, function (error) {
+                    vm.error.TaiSan_MaTaiSan = 'Mã tài sản đã tồn tại';
+                    $('[data-name=TaiSan_MaTaiSan]').focus();
+                    utility.AlertError(vm.error.TaiSan_MaTaiSan);
+                });
             }
-            $('[data-name="' + $(event.target).data('next') + '"] input').focus();
-            $('[data-name="' + $(event.target).data('next') + '"]').focus();
+            else {
+                if (checkInputTaiSan($(event.target).data('name')) === false) {
+                    return;
+                }
+                $('[data-name="' + $(event.target).data('next') + '"] input').focus();
+                $('[data-name="' + $(event.target).data('next') + '"]').focus();
+            }
         }
 
         vm.action.keyPressTTCK = function (event) {
@@ -136,7 +159,7 @@
             $timeout(function () {
                 $('[data-name="' + $(event.target).data('next') + '"] input').focus();
                 $('[data-name="' + $(event.target).data('next') + '"]').focus();
-            },0);
+            }, 0);
         }
 
         vm.action.keyPressTTKK = function (event) {
@@ -192,10 +215,15 @@
             }
             loadData();
             vm.action.addNguyenGia();
+            EventListener();
         };
 
         /***EVENT FUNCTION ***/
 
+        function EventListener() {
+            $(document).ready(function () {
+            });
+        }
         $scope.$watch(`
             ctrl.data.TTKK_Dat.LamTruSo+
             ctrl.data.TTKK_Dat.CoSoHDSuNghiep+
@@ -1033,6 +1061,32 @@
             }, function (error) {
                 console.log(error);
             });
+        }
+
+        function checkMaTaiSan() {
+            var deferred = $q.defer();
+            var data = {};
+            data.TaiSanId = TaiSanId;
+            data.MaTaiSan = vm.data.TaiSan.MaTaiSan;
+            data.CoSoId = userInfo.CoSoId;
+            data.NhanVienId = userInfo.NhanVienId;
+
+            TaiSanService.checkMaTaiSan(data).then(function (success) {
+                console.log(success);
+                if (success.data.data.length > 0) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Không thể thêm tài sản');
+                }
+            });
+            return deferred.promise;
         }
     });
 
