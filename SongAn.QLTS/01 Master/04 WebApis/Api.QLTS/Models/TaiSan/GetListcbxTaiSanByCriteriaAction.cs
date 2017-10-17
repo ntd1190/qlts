@@ -26,6 +26,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
         public string LoaiKeKhai { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
+        public string FunctionCode { get; set; }
         #endregion
         #region private
         #endregion
@@ -49,6 +50,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
                 biz.LoaiKeKhai = LoaiKeKhai;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
+                biz.FunctionCode = FunctionCode;
 
                 var result = await biz.Execute();
 

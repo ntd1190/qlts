@@ -1,30 +1,27 @@
 ﻿/*****************************************************************************
-1. Create Date : 2017.08.31
+1. Create Date : 2017.10.16
 2. Creator     : NGUYỄN THANH BÌNH
 3. Description : 
-4. History     : 2017.08.31(NGUYỄN THANH BÌNH) - Tao moi
+4. History     : 2017.10.16(NGUYỄN THANH BÌNH) - Tao moi
 *****************************************************************************/
-using Newtonsoft.Json;
 using SongAn.QLTS.Biz.QLTS.TaiSan;
 using SongAn.QLTS.Util.Common.CustomException;
 using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
+namespace SongAn.QLTS.Api.QLTS.Models.TaiSan
 {
-    public class GetListcbxTaiSanSuDungByIdAction
+    public class CheckMaTaiSanAction
     {
 
         #region public
-        public virtual int CoSoId { get; set; }
-        public virtual int TaiSanId { get; set; }
-        public virtual int PhongBanId { get; set; }
-        public virtual int NhanVienId { get; set; }
-        public virtual string FunctionCode { get; set; }
+        public int TaiSanId { get; set; }
+        public string MaTaiSan { get; set; }
+        public int CoSoId { get; set; }
+        public int NhanVienId { get; set; }
         #endregion
         #region private
         #endregion
@@ -41,14 +38,18 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                 init();
                 validate();
 
-                var biz = new GetListcbxTaiSanSuDungByIdBiz(context);
-                biz.CoSoId = CoSoId;
-                biz.TaiSanId = TaiSanId;
-                biz.PhongBanId = PhongBanId;
-                biz.NhanVienId = NhanVienId;
-                biz.FunctionCode = FunctionCode;
+                var biz = new CheckMaTaiSanBiz(context);
+                biz.TaiSanId = Protector.Int(TaiSanId, 0);
+                biz.MaTaiSan = Protector.String(MaTaiSan, "");
+                biz.CoSoId = Protector.Int(CoSoId, 0);
+                biz.NhanVienId = Protector.Int(NhanVienId, 0);
 
                 var result = await biz.Execute();
+
+                if (string.IsNullOrEmpty(biz.MESSAGE) == false)
+                {
+                    throw new BaseException(biz.MESSAGE.Split('|')[2]);
+                }
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);
             }

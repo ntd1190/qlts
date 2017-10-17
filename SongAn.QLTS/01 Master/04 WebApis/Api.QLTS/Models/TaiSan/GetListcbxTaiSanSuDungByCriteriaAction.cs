@@ -25,6 +25,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
         public virtual string MaTaiSan { get; set; }
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
+        public virtual string FunctionCode { get; set; }
         #endregion
         #region private
         #endregion
@@ -47,6 +48,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                 biz.MaTaiSan = MaTaiSan;
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
+                biz.FunctionCode = FunctionCode;
 
                 var result = await biz.Execute();
 

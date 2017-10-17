@@ -16,6 +16,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.Phongban
         public string CoSoId { get; set; }
         public string NhanVienId { get; set; }
         public string PhongBanId { get; set; }
+        public string FunctionCode { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
             GetListcbxPhongBanByIdBiz biz = new GetListcbxPhongBanByIdBiz(context);
@@ -26,6 +27,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.Phongban
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
                 biz.PhongBanId = Protector.Int(PhongBanId);
+                biz.FunctionCode = Protector.String(FunctionCode);
                 
                 IEnumerable<dynamic> listPhongBan = await biz.Execute();
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

@@ -259,6 +259,7 @@
     <Compile Include="Models\TaiSan\GetListcbxTaiSanByCriteriaAction.cs" />
     <Compile Include="Models\TaiSan\GetListNguyenGiaByTaiSanIdAction.cs" />
     <Compile Include="Models\TaiSan\DeleteListTaiSanAction.cs" />
+    <Compile Include="Models\TaiSan\CheckMaTaiSanAction.cs" />
     <Compile Include="Models\TaiSan\GetTaiSanByIdAction.cs" />
     <Compile Include="Models\TaiSan\GetTaiSanByMaAction.cs" />
     <Compile Include="Models\TaiSan\GetThongTinKeKhai500ByIdAction.cs" />
