@@ -32,6 +32,7 @@
                                     <input class="form-control" ng-model="ctrl.inputSearch.search" autofocus>
                                     <span class="input-group-btn">
                                         <button class="btn btn-sm btn-primary" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                                        <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
                                     </span>
                                 </div>
                             </div>
@@ -47,7 +48,8 @@
                     </span>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.ListTaiSan" st-pipe="ctrl.action.getPageTaiSan">
+                    <table class="table table-bordered table-condensed table-hover table-striped" style="min-width:1000px;"
+                           st-table="ctrl.data.ListTaiSan" st-pipe="ctrl.action.getPageTaiSan">
                         <thead class="text-info">
                             <tr>
                                 <th class="text-center" style="width:35px;">#</th>
@@ -64,6 +66,8 @@
                                 <td class="text-center"><span ng-bind="(ctrl.cache.tableState.pagination.start + $index) + 1"></span></td>
                                 <td ng-repeat="cot in ctrl.data.ListCotTaiSan|filter:{HienThiYN:true}" ng-switch="cot.MaCot">
                                     <div ng-switch-when="LoaiKeKhai" ng-switch-when-separator="," ng-bind="(ctrl.data.ListLoaiKeKhai|filter:{LoaiKeKhai:row[cot.MaCot]})[0].NoiDung"></div>
+                                    <div class="text-right" ng-switch-when="SoLuong" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
+                                    <div class="text-right" ng-switch-when="NguyenGia,ThanhTien" ng-switch-when-separator="," ng-bind="(row[cot.MaCot]||0)|number"></div>
                                     <a href="javascript:void(0)" ng-switch-when="TenTaiSan" ng-switch-when-separator="," ng-bind="row[cot.MaCot]" ng-click="ctrl.action.xemLuocSu(row)"></a>
                                     <div ng-switch-default ng-bind="row[cot.MaCot]"></div>
                                 </td>
@@ -228,6 +232,45 @@
               data-tai-san-id="ctrl.data.timeline.TaiSanId"
               data-template-url="timeline.html"
               data-home-url="@(Url.Content("~/"))"></timeline>
+    <!-- popup danh sách tùy chọn cột -->
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0030'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuyChonCotPopup">Đóng</a>
+        </div>
+    </div>
+    <!-- / popup danh sách tùy chọn cột -->
 </div>
 
 <!-- CƠ SỞ MENU -->
@@ -263,15 +306,15 @@
                             <span class="pull-right" ng-bind="timeline.Ngay|date:'dd/MM/yyyy'"></span>
                         </div>
                         <div class="panel-body">
-                            <span ng-bind="timeline.NoiDung"></span>
+                            <span ng-bind-html="timeline.NoiDung"></span>
                             <div class="clearfix">
-                                <a class="btn btn-xs btn-primary pull-right" href="{{ctrl.temp.type.link+timeline.Id}}">chi tiết</a>
+                                <a class="btn btn-xs btn-primary pull-right" href="{{ctrl.temp.type.link+timeline.Id}}" ng-click="ctrl.action.xemChiTiet(timeline)">chi tiết</a>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-       </div>
+        </div>
         <div class="panel-footer clearfix text-center">
             <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#{{tagId}}">Đóng</a>
         </div>
@@ -413,4 +456,6 @@
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
     <script src="~/Scripts/angular/TraCuuTaiSan/service/TraCuuTaiSanService.js"></script>
     <script src="~/Scripts/angular/TraCuuTaiSan/controller/TraCuuTaiSanCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
 }

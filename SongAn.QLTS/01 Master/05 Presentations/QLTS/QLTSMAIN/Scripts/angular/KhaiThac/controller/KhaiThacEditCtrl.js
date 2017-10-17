@@ -73,6 +73,9 @@
         }
 
         function setEnableButton() {
+            if (document.referrer.toUpperCase().indexOf("TRACUUTAISAN") > 1) {
+                return;
+            }
             vm.data.showButtonXoa = false;
             vm.data.showButtonSave = false;
             if (vm.data.listQuyenTacVu.length > 0) {

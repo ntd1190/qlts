@@ -226,6 +226,9 @@
         /*** BIZ FUNCTION ***/
 
         function setEnableButton() {
+            if (document.referrer.toUpperCase().indexOf("TRACUUTAISAN") > 1) {
+                return;
+            }
             if (vm.data.listQuyenTacVu.length > 0) {
 
                 // Co quyen them moi

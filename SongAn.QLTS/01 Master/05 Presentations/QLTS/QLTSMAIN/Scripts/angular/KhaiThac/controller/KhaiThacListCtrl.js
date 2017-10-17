@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, KhaiThacService, TuyChonCotService, utility) {
+    function controller($rootScope, $scope, KhaiThacService, TuyChonCotService, utility, $timeout) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -138,6 +138,14 @@
             }
         }
         function setEnableButton() {
+            if (document.referrer.toUpperCase().indexOf("TRACUUTAISAN") > 1) {
+                var res = window.location.href.split("/");
+                var id = res[res.length - 1];
+                $timeout(function () {
+                    vm.action.edit(id);
+                }, 0);
+                return;
+            }
             if (vm.data.listQuyenTacVu.length > 0) {
 
                 // Co quyen them moi

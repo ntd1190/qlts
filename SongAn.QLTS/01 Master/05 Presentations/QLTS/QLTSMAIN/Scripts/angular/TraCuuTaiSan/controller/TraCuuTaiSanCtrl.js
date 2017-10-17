@@ -1,8 +1,9 @@
 ﻿(function () {
     var module = angular.module('app');
 
-    module.controller('TraCuuTaiSanCtrl', function (TraCuuTaiSanService, TaiSanService, $q, $timeout, utility) {
+    module.controller('TraCuuTaiSanCtrl', function (TraCuuTaiSanService, TuyChonCotService, TaiSanService, $q, $timeout, utility, $rootScope) {
         var vm = this
+        , MaForm = 'FL0030'
         , userInfo;
 
         vm.cache = {};
@@ -41,6 +42,18 @@
             config = config || {};
             userInfo = config.userInfo || {};
             loadCoSo();
+
+            $rootScope.$on('TuyChonCotPopup' + '.action.ap-dung', function (event, data) {
+                $('#' + 'TuyChonCotPopup').collapse('hide');
+                vm.cache.tableState.pagination.start = 0;
+                getPageTaiSan(vm.cache.tableState);
+            });
+
+            $(document).ready(function () {
+                $('#' + 'TuyChonCotPopup').on('show.bs.collapse', function () {
+                    $rootScope.$broadcast('TuyChonCotPopup' + '.action.refresh');
+                });
+            });
         }
 
         /*** ACTION FUNCTION ***/
@@ -212,6 +225,7 @@
                 if (success.data && success.data.data) {
                     vm.data.ListTaiSan = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);//set the number of pages so the pagination can update
+                    loadCotList();
                 }
                 return deferred.resolve(success);
             }, function (error) {
@@ -324,6 +338,17 @@
             });
         }
 
+        function loadCotList() {
+            if (1 === 1) {
+                TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {
+                    console.log('TuyChonCotService.getAll:', success, userInfo, MaForm, vm.data.listCot);
+                    if (success.data && success.data.data) {
+                        vm.data.ListCotTaiSan = success.data.data;
+                    }
+                }, function (error) { });
+            }
+        }
+
         /*** HELPER FUNCTION ***/
 
         function setupNavTree() {
@@ -381,8 +406,9 @@
                     { type: 'GHITANG', title: 'Ghi tăng', link: $scope.homeUrl + 'ghitang/edit/', icon: 'fa fa-fw fa-arrow-up', style: 'panel panel-success' },
                     { type: 'GHIGIAM', title: 'Ghi giảm', link: $scope.homeUrl + 'ghigiam/edit/', icon: 'fa fa-fw fa-arrow-down', style: 'panel panel-danger' },
                     { type: 'TDTT', title: 'Thay đổi thông tin', link: $scope.homeUrl + 'thaydoithongtinkekhai/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-default' },
-                    { type: 'KHAITHAC', title: 'Khai thác', link: $scope.homeUrl + 'khaithac/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-info' },
+                    { type: 'KHAITHAC', title: 'Khai thác', link: $scope.homeUrl + 'khaithac/list/', icon: 'fa fa-fw fa-edit', style: 'panel panel-info' },
                     { type: 'DIEUCHUYEN', title: 'Điều chuyển', link: $scope.homeUrl + 'dieuchuyen/edit/', icon: 'fa fa-fw fa-edit', style: 'panel panel-warning' },
+                    { type: 'BAODUONG', title: 'Bão dưỡng - Sửa chữa', link: $scope.homeUrl + 'baoduong/edit/', icon: 'fa fa-fw fa-wrench', style: 'panel panel-warning' },
                 ]
 
                 activate();
@@ -417,6 +443,7 @@
                 vm.action = {};
 
                 /*** BIZ FUNCTION ***/
+
                 /** API FUNCTION ***/
                 function getLuocSu() {
                     var data = {};

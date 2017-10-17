@@ -215,6 +215,9 @@
         }
 
         function checkQuyenUI(quyen) {
+            if (document.referrer.toUpperCase().indexOf("TRACUUTAISAN") > 1) {
+                return;
+            }
             var listQuyenTacVu;
             // kiểm tra danh sách quyền khác null
             if (userInfo && userInfo.DsQuyenTacVu) {
