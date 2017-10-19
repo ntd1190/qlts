@@ -30,5 +30,6 @@ namespace SongAn.QLTS.Entity.QLTS_MAIN.Entity
         public virtual string NguoiTao { get; set; }
         public virtual string NguoiSua { get; set; }
         public virtual int CtrVersion { get; set; }
+        public virtual int CoSoId { get; set; }
     }
 }
