@@ -30,7 +30,7 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> GetListcbxKhoTaiSanByProjection([FromBody]GetListcbxKhoTaiSanByProjectionAction action)
+        public async Task<IHttpActionResult> GetListcbxKhoTaiSanByCriteria([FromBody]GetListcbxKhoTaiSanByCriteriaAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);

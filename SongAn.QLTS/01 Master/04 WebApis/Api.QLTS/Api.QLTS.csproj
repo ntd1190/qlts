@@ -72,8 +72,10 @@
     <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
+    <Compile Include="Controllers\GiayBaoHongController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\KhoPhieuNhapController.cs" />
     <Compile Include="Controllers\LapBaoCaoController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
@@ -109,6 +111,7 @@
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
     <Compile Include="Models\ChotSoLieuNam\ChotSoLieuNamAction.cs" />
+    <Compile Include="Models\CoSo\cbxGetListCoSoByCriteriaAction.cs" />
     <Compile Include="Models\DanhGia\GetListNguyenGiaByDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\DeleteDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\UpdateDanhGiaAction.cs" />
@@ -151,6 +154,12 @@
     <Compile Include="Models\GhiTang\GetListGhiTangChiTietByGhiTangIdAction.cs" />
     <Compile Include="Models\GhiTang\InsertGhiTangAction.cs" />
     <Compile Include="Models\GhiTang\UpdateGhiTangByGhiTangIdAction.cs" />
+    <Compile Include="Models\GiayBaoHong\DeleteListGiayBaoHongByIdAction.cs" />
+    <Compile Include="Models\GiayBaoHong\GetListGiayBaoHongByIdAction.cs" />
+    <Compile Include="Models\GiayBaoHong\GetListGiayBaoHongByProjectionAction.cs" />
+    <Compile Include="Models\GiayBaoHong\GetListGiayBaoHongChiTietByBaoHongIdAction.cs" />
+    <Compile Include="Models\GiayBaoHong\InsertGiayBaoHongAction.cs" />
+    <Compile Include="Models\GiayBaoHong\UpdateGiayBaoHongByIdAction.cs" />
     <Compile Include="Models\HienTrangSuDung\GetListcbxNhaCungCapByCriteriaAction.cs" />
     <Compile Include="Models\HienTrangSuDung\GetHienTrangSuDungByIdAction.cs" />
     <Compile Include="Models\KeHoachMuaSam\GetKeHoachMuaSamChiTietByMuaSamIdAction.cs" />
@@ -160,6 +169,12 @@
     <Compile Include="Models\KhaiThac\GetListKhaiThacByProjectionAction.cs" />
     <Compile Include="Models\KhaiThac\InsertKhaiThacAction.cs" />
     <Compile Include="Models\KhaiThac\UpdateKhaiThacByIdAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\DeleteListKhoPhieuNhapByIdAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\GetListKhoPhieuNhapByIdAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\GetListKhoPhieuNhapByProjectionAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\GetListKhoPhieuNhapChiTietByIdAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\InsertKhoPhieuNhapAction.cs" />
+    <Compile Include="Models\KhoPhieuNhap\UpdateKhoPhieuNhapByIdAction.cs" />
     <Compile Include="Models\LapBaoCao\GuiCapTrenAction.cs" />
     <Compile Include="Models\LapBaoCao\DeleteListLapBaoCaoAction.cs" />
     <Compile Include="Models\LapBaoCao\GetLapBaoCaoByIdAction.cs" />
@@ -217,7 +232,7 @@
     <Compile Include="Models\NguonNganSach\InsertNguonNganSachAction.cs" />
     <Compile Include="Models\NguonNganSach\UpdateNguonNganSachAction.cs" />
     <Compile Include="Models\KhoTaiSan\DeleteListKhoTaiSanAction.cs" />
-    <Compile Include="Models\KhoTaiSan\GetListcbxKhoTaiSanByProjectionAction.cs" />
+    <Compile Include="Models\KhoTaiSan\GetListcbxKhoTaiSanByAction.cs" />
     <Compile Include="Models\KhoTaiSan\GetListKhoTaiSanByProjectionAction.cs" />
     <Compile Include="Models\KhoTaiSan\GetKhoTaiSanByIdAction.cs" />
     <Compile Include="Models\KhoTaiSan\InsertKhoTaiSanAction.cs" />

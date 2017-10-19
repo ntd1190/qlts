@@ -101,6 +101,7 @@
     <Compile Include="Models\Menu\GetListMenuAction.cs" />
     <Compile Include="Models\ThongBao\GetListThongBaoByCoSoIdAction.cs" />
     <Compile Include="Models\ThongBao\UpdateThongBaoByIdAction.cs" />
+    <Compile Include="Models\VaiTro\GetListVaiTroByCriteriaAction.cs" />
     <Compile Include="Models\VaiTro\GetListVaiTroAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -2,6 +2,8 @@
 using SongAn.QLTS.Data.Repository;
 using SongAn.QLTS.Data.Repository.QLTS_MAIN;
 using SongAn.QLTS.Entity.QLTS_MAIN.Entity;
+using SongAn.QLTS.Util.Common.Api;
+using SongAn.QLTS.Util.Common.Dto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,9 +15,10 @@ using System.Web.Http;
 
 namespace SongAn.QLTS.Api.Main.Controllers
 {
-    public class VaiTroController : ApiController
+    public class VaiTroController : BaseApiController
     {
         string _connectionString = ConfigurationManager.ConnectionStrings["dbMainConnection"].ConnectionString;
+        public VaiTroController() : base() { }
 
         // Test Controller
         [HttpGet]
@@ -24,6 +27,16 @@ namespace SongAn.QLTS.Api.Main.Controllers
             return Ok("test test ok, id = " + id);
         }
 
+        #region NEW
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListVaiTroByCriteria([FromBody]GetListVaiTroByCriteriaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        #endregion
+
+        #region OLD
         [HttpGet]
         [Authorize]
         public async Task<IHttpActionResult> GetListVaiTro()
@@ -167,5 +180,6 @@ namespace SongAn.QLTS.Api.Main.Controllers
 
             return Ok(objResult);
         }
+        #endregion OLD
     }
 }
