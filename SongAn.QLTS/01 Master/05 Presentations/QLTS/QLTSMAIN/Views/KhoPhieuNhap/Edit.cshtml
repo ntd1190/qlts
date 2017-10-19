@@ -72,7 +72,7 @@
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoTaiSanId?'has-error':''">
                             <label class="control-label col-sm-4">Kho<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                             <div class="col-sm-7">
-                                <cbo-phong-ban id="cbxKho" data-function-code="CN0044" data-value="ctrl.data.phieuKhoPhieuNhap.KhoTaiSanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phongban/showview?viewname=cbophongban"></cbo-phong-ban>
+                                <cbo-kho-tai-san id="cbxKho" data-function-code="CN0044" data-khotaisanid="ctrl.data.phieuKhoPhieuNhap.KhoTaiSanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/khotaisan/showview?viewname=cboKhoTaiSan"></cbo-kho-tai-san>
                             </div>
                         </div>
                     </div>
@@ -280,6 +280,7 @@
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NguonNganSach/cboNguonNganSach.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NhaCungCap/cboNhaCungCap.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/KhoTaiSan/cboKhoTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 
