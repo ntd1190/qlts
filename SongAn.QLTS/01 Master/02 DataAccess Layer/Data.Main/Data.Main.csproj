@@ -83,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ThongBao\GetListThongBaoByCoSoIdDac.cs" />
     <Compile Include="ThongBao\UpdateThongBaoByIdDac.cs" />
+    <Compile Include="VaiTro\GetListVaiTroByCriteriaDac.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -94,7 +95,6 @@
     <Folder Include="Menu\Dto\" />
     <Folder Include="Menu\Procedures\" />
     <Folder Include="NguoiDung\Dto\" />
-    <Folder Include="VaiTro\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
@@ -113,6 +113,7 @@
     <Content Include="CaiHinhFormCot\Procedures\0.MSSQL_QLDN_MAIN.dbo.sp_CauHinhFormCot_GetListCauHinhFormCotByCriteria.sql" />
     <Content Include="NguoiDung\Procedures\0.MSSQL_QLDN_MAIN.dbo.sp_NguoiDung_GetListNguoiDungByCriteria.sql" />
     <Content Include="NguoiDung\Procedures\0.MSSQL_QLDN_MAIN.dbo.sp_NguoiDung_GetListNguoiDungById.sql" />
+    <Content Include="VaiTro\Procedures\sp_VaiTro_GetListVaiTroByCriteria.sql" />
     <None Include="PhanQuyen\Procedures\0.MSSQL_QLDN_MAIN.dbo.sp_PhanQuyen_GetQuyenTacVuByMaChucNangAndMaVaiTro.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,13 +1,13 @@
 ﻿/*****************************************************************************
-1. Create Date  : 2017.08.15
-2. Creator      : Nguyen Ngoc Tan
-3. Function     : QLDNMAIN/KhoTaiSan/List
+1. Create Date  : 2017.10.19
+2. Creator      : NGUYỄN THANH BÌNH
+3. Function     : 
 4. Description  : 
-5. History      : 2017.08.15(Nguyen Ngoc Tan) - Tao moi
+5. History      : 2017.10.19 (NGUYỄN THANH BÌNH) - Tao moi
 *****************************************************************************/
+using SongAn.QLTS.Data.QLTS.KhoTaiSan;
 using SongAn.QLTS.Util.Common.Dto;
 using System.Collections.Generic;
-using System.Data;
 using System.Threading.Tasks;
 
 namespace SongAn.QLTS.Biz.QLTS.KhoTaiSan
@@ -23,7 +23,7 @@ namespace SongAn.QLTS.Biz.QLTS.KhoTaiSan
     /// -   Neu biz co xu ly phuc tap, ket hop nhieu dac thi se 
     ///     khoi tao nhieu dac trong ham execute cua biz.
     /// </remarks>
-    public class GetListcbxKhoTaiSanByCriteriaBiz : SongAn.QLTS.Data.QLTS.KhoTaiSan.GetListcbxKhoTaiSanByCriteriaProjectionDac
+    public class GetListcbxKhoTaiSanByCriteriaBiz :GetListcbxKhoTaiSanByCriteriaDac
     {
         #region public properties
 
