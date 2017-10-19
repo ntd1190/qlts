@@ -19,6 +19,13 @@
             },
             F8: function (name, code) {
                 vm.action.save();
+            },
+            DELETE: function (name, code) {
+                var fc = function () {
+                    vm.data.listChiTiet.splice(vm.data.listChiTiet.length - 1, 1);
+                    $("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                }
+                $timeout(fc, 6);
             }
         };
         //end HOT-KEY

@@ -185,6 +185,7 @@
     <Content Include="lib\images\background.jpg" />
     <Content Include="lib\images\logo%402x.png" />
     <Content Include="lib\images\logo.png" />
+    <Content Include="lib\images\logoehis.png" />
     <Content Include="lib\images\LOGO_ICON.png" />
     <Content Include="lib\images\phone.png" />
     <Content Include="lib\images\sidebar-toggle.png" />
@@ -247,6 +248,7 @@
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
     <Content Include="Scripts\angular\ChotSoLieuNam\controller\ChotSoLieuNamListCtrl.js" />
     <Content Include="Scripts\angular\ChotSoLieuNam\service\ChotSoLieuNamService.js" />
+    <Content Include="Scripts\angular\CoSo\directive\cboCoSo.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\service\DanhGiaTaiSanService.js" />
@@ -276,11 +278,20 @@
     <Content Include="Scripts\angular\GhiTang\controller\GhiTangListCtrl.js" />
     <Content Include="Scripts\angular\DuyetMua\controller\DuyetMuaListCtrl.js" />
     <Content Include="Scripts\angular\DuyetMua\service\DuyetMuaService.js" />
+    <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongEditCtrl.js" />
+    <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongFilterCtrl.js" />
+    <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongListCtrl.js" />
+    <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
     <Content Include="Scripts\angular\KhachHang\directive\cboKhachHang.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacEditCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacFilterCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacListCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\service\KhaiThacService.js" />
+    <Content Include="Scripts\angular\KhoTaiSan\directive\cboKhoTaiSan.js" />
+    <Content Include="Scripts\angular\KhoPhieuNhap\controller\KhoPhieuNhapEditCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuNhap\controller\KhoPhieuNhapFilterCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuNhap\controller\KhoPhieuNhapListCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuNhap\service\KhoPhieuNhapService.js" />
     <Content Include="Scripts\angular\NhanVien\directive\cboNhanVienByPhongBan.js" />
     <Content Include="Scripts\angular\GhiTang\service\GhiTangService.js" />
     <Content Include="Scripts\angular\HangSanXuat\directive\cboHangSanXuat.js" />
@@ -328,7 +339,6 @@
     <Content Include="Scripts\angular\NguonNganSach\controller\NguonNganSachEditCtrl.js" />
     <Content Include="Scripts\angular\NguonNganSach\controller\NguonNganSachListCtrl.js" />
     <Content Include="Scripts\angular\NguonNganSach\service\NguonNganSachService.js" />
-    <Content Include="Scripts\angular\KhoTaiSan\controller\Combobox.js" />
     <Content Include="Scripts\angular\KhoTaiSan\controller\KhoTaiSanEditCtrl.js" />
     <Content Include="Scripts\angular\KhoTaiSan\controller\KhoTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\KhoTaiSan\service\KhoTaiSanService.js" />
@@ -435,9 +445,11 @@
     <Compile Include="Controllers\DeNghiTrangCapController.cs" />
     <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
+    <Compile Include="Controllers\GiayBaoHongController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
+    <Compile Include="Controllers\KhoPhieuNhapController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -477,6 +489,12 @@
     </Compile>
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptGiayBaoHongById.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptGiayBaoHongById.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptTaiSan_KeKhai500.cs">
       <DependentUpon>rptTaiSan_KeKhai500.rpt</DependentUpon>
@@ -660,7 +678,7 @@
     <Content Include="Views\NguonNganSach\Combobox.cshtml" />
     <Content Include="Views\NguonNganSach\List.cshtml" />
     <Content Include="Views\Shared\_PartialNavigationMenu.cshtml" />
-    <Content Include="Views\KhoTaiSan\Combobox.cshtml" />
+    <Content Include="Views\KhoTaiSan\cboKhoTaiSan.cshtml" />
     <Content Include="Views\KhoTaiSan\List.cshtml" />
     <Content Include="Views\DuAn\Combobox.cshtml" />
     <Content Include="Views\DuAn\List.cshtml" />
@@ -719,6 +737,11 @@
     <Content Include="Views\DuyetBaoCao\List.cshtml" />
     <Content Include="Views\ChotSoLieuNam\List.cshtml" />
     <Content Include="Views\BaoCaoKeKhai\Index.cshtml" />
+    <Content Include="Views\CoSo\cboCoSo.cshtml" />
+    <Content Include="Views\GiayBaoHong\List.cshtml" />
+    <Content Include="Views\GiayBaoHong\Edit.cshtml" />
+    <Content Include="Views\KhoPhieuNhap\List.cshtml" />
+    <Content Include="Views\KhoPhieuNhap\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -771,6 +794,10 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptGiayBaoHongById.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptGiayBaoHongById.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhai500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTaiSan_KeKhai500.cs</LastGenOutput>

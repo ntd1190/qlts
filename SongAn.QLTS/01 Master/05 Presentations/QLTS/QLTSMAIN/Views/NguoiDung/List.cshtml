@@ -42,7 +42,7 @@
                                 </div>
                             </div>
                         </div>
-             
+
 
                     </form>
                 </div>
@@ -57,7 +57,7 @@
     </div>
     <!-- /panel tìm kiếm -->
     <!-- popup danh sách vai trò  -->
-    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="VaiTroListCtrl as ctrl" id="VaiTroListPopup">
+    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="VaiTroListCtrl as ctrl" id="VaiTroListPopup" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
         <div class="panel-heading ui-draggable-handle">
             <div class="panel-title">
                 <span>Danh sách vai trò</span>
@@ -223,7 +223,7 @@
     </div>
     <!-- /popup cập nhật -->
     <!-- popup danh sách vai tro edit-->
-    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="VaiTroListCtrl as ctrl" id="VaiTroListPopupEdit" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.VaiTroListPopupEdit})">
+    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="VaiTroListCtrl as ctrl" id="VaiTroListPopupEdit" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.VaiTroListPopupEdit,userInfo: @ViewBag.userInfo})">
         <div class="panel-heading ui-draggable-handle">
             <div class="panel-title">
                 <span>Danh sách vai trò</span>
@@ -313,7 +313,6 @@
 @section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
-    <script src="~/Scripts/angular/shared/smart-table/service/smart-table-helper.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     <script src="~/Scripts/angular/NguoiDung/controller/NguoiDungListCtrl.js"></script>

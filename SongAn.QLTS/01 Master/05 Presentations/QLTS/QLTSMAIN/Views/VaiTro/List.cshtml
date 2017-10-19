@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "Vai trò";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
 }
 <style type="text/css">
     .st-sort-ascent:before {
@@ -94,7 +95,7 @@
                 <a class="btn btn-primary" data-toggle="collapse" data-target="#popupThemNguoiDung"><i class="fa fa-remove"></i></a>
             </span>
         </div>
-        <div class="panel-body" style="width: 600px; height: 260px;">
+        <div class="panel-body" style="width: 600px; height: auto;">
 
             <form name="fNguoiDung" class="panel for form-horizontal" ng-show="!ctrl.status.isLoadingEdit">
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMa}">
@@ -108,10 +109,16 @@
                     <!--ng-class="{'has-error':fNguoiDung.txtTen.$touched && fNguoiDung.txtTen.$invalid}"-->
                     <label class="control-label col-sm-2">Tên</label>
                     <div class="col-sm-9">
-                        <input type="text" name="txtTen" id="txtTen" class="form-control" ng-model="ctrl.data.objVaiTro.TenVaiTro" required ng-keypress="ctrl.action.keyPress(ctrl.data.objVaiTro.TenVaiTro,'txtTen', 'txtMoTa',$event)" />
+                        <input type="text" name="txtTen" id="txtTen" class="form-control" ng-model="ctrl.data.objVaiTro.TenVaiTro" required ng-keypress="ctrl.action.keyPress(ctrl.data.objVaiTro.TenVaiTro,'txtTen', 'txtCoSoId',$event)" />
                     </div>
                 </div>
 
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-2">Mô tả</label>
+                    <div class="col-sm-9">
+                        <cbo-co-so data-config="{userInfo:@(ViewBag.userInfo),NameId:'txtCoSoId'}" data-cosoid="ctrl.data.objVaiTro.CoSoId" template-url="~/coso/showview?viewname=cbocoso" ng-keypress="ctrl.action.keyPress(ctrl.data.objVaiTro.CoSoId,'txtCoSoId', 'txtMoTa',$event)"></cbo-co-so>
+                    </div>
+                </div>
                 <div class="row form-group form-group-sm">
                     <label class="control-label col-sm-2">Mô tả</label>
                     <div class="col-sm-9">
@@ -148,6 +155,6 @@
     <script src="~/Scripts/angular/VaiTro/service/VaiTroService.js"></script>
     <script src="~/Scripts/angular/VaiTro/controller/VaiTroListCtrl.js"></script>
     <script src="~/Scripts/angular/VaiTro/controller/VaiTroEditCtrl.js"></script>
-    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
     <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+    @{Html.RenderPartial("~/views/coso/cbocoso.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

@@ -20,6 +20,7 @@
         getListProjection: 'getListProjection',
         remove: 'DeleteCoSo',
         removeList: 'DeleteListCoSo',
+        getcboCoSo: 'cbxGetListCoSoByCriteria'
     }
 
     var service = {
@@ -30,9 +31,23 @@
             insert: insert,
             update: update,
             removeList: removeList,
+            getPagecboCoSo: getPagecboCoSo,
         };
 
         return service;
+
+        function getPagecboCoSo(data) {
+            var url = api.url + api.getcboCoSo;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        }
 
         function removeList(ids) {
             var url = api.url + api.removeList;

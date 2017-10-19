@@ -8,10 +8,11 @@
     function VaiTroService($http, API_BASE) {
         var api = {
             url: API_BASE + 'api.main/vaitro/',
-            
+
             insert: 'insertVaiTro',
             update: 'updateVaiTro',
             GetList: 'GetListVaiTro',
+            getPage: 'GetListVaiTroByCriteria',
             GetById: 'GetVaiTroById',
             GetListBySearchString: 'GetListVaiTroBySearchString',
             getList: 'getList',
@@ -24,12 +25,26 @@
             insert: insert,
             update: update,
             getAll: getAll,
+            getPage: getPage,
             findAll: findAll,
             getById: getById,
             remove: remove
         }
 
         return service;
+
+        function getPage(data) {
+            var url = api.url + api.getPage;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                data: data
+            }
+
+            return $http(req);
+        }
 
         function insert(obj) {
             var url = api.url + api.insert;

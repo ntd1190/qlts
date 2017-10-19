@@ -32,6 +32,13 @@
                 if (vm.data.showButtonSave) {
                     save();
                 }
+            },
+            DELETE: function (name, code) {
+                var fc = function () {
+                    vm.data.listChiTiet.splice(vm.data.listChiTiet.length - 1, 1);
+                    $("#txtTenTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                }
+                $timeout(fc, 6);
             }
         };
         //HOT-KEY

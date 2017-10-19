@@ -1,0 +1,24 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Tables">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAXCNT" type="xs:int" minOccurs="0" />
+              <xs:element name="TenDonVi" type="xs:string" minOccurs="0" />
+              <xs:element name="TenDonViChuQuan" type="xs:string" minOccurs="0" />
+              <xs:element name="TS_TaiSanId" type="xs:int" minOccurs="0" />
+              <xs:element name="TS_TenTaiSan" type="xs:string" minOccurs="0" />
+              <xs:element name="TS_LoaiKeKhai" type="xs:int" minOccurs="0" />
+              <xs:element name="TaiSanId" type="xs:int" minOccurs="0" />
+              <xs:element name="KyHieu" type="xs:string" minOccurs="0" />
+              <xs:element name="HienTrangSuDung" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

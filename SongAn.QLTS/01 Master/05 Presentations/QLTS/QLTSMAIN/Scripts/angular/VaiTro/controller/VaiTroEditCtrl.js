@@ -79,6 +79,10 @@
             closeEdit: closeEdit,
             keyPress: keyPress
         };
+        vm.action.SelectCoSo = function (data) {
+            console.log('vm.action.SelectCoSo', vm.data.objVaiTro.CoSoId);
+            vm.data.objVaiTro.CoSoId = data.CoSoId;
+        }
 
         $rootScope.isOpenPopup = false;
 
@@ -92,6 +96,7 @@
             if (ctrlId && ctrlId.userInfo) {
                 vm.data.listQuyenTacVu = ctrlId.userInfo.DsQuyenTacVu.split(',');
                 vm.data.UserLoginId = ctrlId.userInfo.NhanVienId;
+                vm.userInfo = ctrlId.userInfo;
                 setEnableButton();
             }
         }
@@ -150,6 +155,7 @@
                     vm.status.isInValidTen = utility.checkInValid(value, 'isEmpty');
                     if (!vm.status.isInValidTen) {
                         //set focus for the next input
+                        $('#' + ToId + ' input').focus();
                         $window.document.getElementById(ToId).focus();
                     }
                 } else {

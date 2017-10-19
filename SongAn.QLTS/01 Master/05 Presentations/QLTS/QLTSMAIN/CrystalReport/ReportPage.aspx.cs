@@ -80,6 +80,12 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     biz.SuDungId = search;
                     ds = biz.ExecuteDac();
                 }
+                else if (reportname == "rptGiayBaoHongById.rpt")
+                {
+                    ReportGiayBaoHongByIdBiz biz = new ReportGiayBaoHongByIdBiz(context);
+                    biz.GiayBaoHongId = search;
+                    ds = biz.ExecuteDac();
+                }
                 else if (reportname == "rptTongHopTaiSanCoDinh.rpt" || reportname == "rptTongHopTaiSanCoDinhExcel.rpt")
                 {
                     ReportTongHopTaiSanCoDinhBiz biz = new ReportTongHopTaiSanCoDinhBiz(context);
@@ -280,7 +286,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptTongHopSoTSCDBieuS21.xml");
+                //ds.WriteXmlSchema(@"D:\rptGiayBaoHongById.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

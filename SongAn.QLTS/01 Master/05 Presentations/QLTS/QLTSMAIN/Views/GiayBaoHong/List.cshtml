@@ -1,0 +1,192 @@
+﻿
+@{
+    ViewBag.Title = "Giấy báo hỏng";
+}
+<div class="container-fluid">
+
+    <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="GiayBaoHongFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading clearfix">
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Giấy báo hỏng</span>
+            <div class="btn-group btn-group-sm pull-right">
+                <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
+                <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
+            </div>
+        </div>
+        <div class="collapse fade" id="SearchCollapse">
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Ngày</label>
+                        <div class="form-inline col-sm-9">
+                            <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.startDate" /> ~
+                            <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.endDate" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Bộ phận</label>
+                        <div class="col-sm-9">
+                            @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'GiayBaoHongFilterCtrl',NameId:'cbxPhongBan',FunctionCode:'CN0019',userInfo:" + ViewBag.UserInfo + "}" } });}
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.search()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div>
+
+    <div ng-controller="GiayBaoHongListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <span ng-if="ctrl.data.showButtonNew">
+                <a class="btn btn-sm btn-primary" href="~/GiayBaoHong/edit?id=0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </div>
+        <div class="table-containe panel-body">
+            <table st-table="ctrl.data.GiayBaoHongListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="width: 40px;">Chọn</th>
+                        <th class="text-center" @*st-sort="{{cot.MaCot}}"*@ ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                            <span ng-bind="::cot.TenCot"></span>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="GiayBaoHong in ctrl.data.GiayBaoHongListDisplay" ng-click="ctrl.action.getPageDetail(GiayBaoHong.GiayBaoHongId)" id="row_{{GiayBaoHong.GiayBaoHongId}}" ng-class="(GiayBaoHong.isSelected==true)?'info':''">
+                        <td st-select-row="GiayBaoHong" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(GiayBaoHong.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                            <a ng-switch-when="SoChungTu" href="~/GiayBaoHong/edit?id={{GiayBaoHong.GiayBaoHongId}}">{{ GiayBaoHong.SoChungTu}}</a>
+                            <span ng-switch-when="Ngay">{{ GiayBaoHong.Ngay | date : 'dd/MM/yyyy'}}</span>
+                            <span ng-switch-when="NgayTao">{{ GiayBaoHong.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                            <span ng-switch-when="NoiDung" style="display:block;min-width:350px">{{ GiayBaoHong.NoiDung}}</span>
+                            <span ng-switch-default ng-bind="::GiayBaoHong[cot.MaCot]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="panel-heading">
+            <span>Thông tin chi tiết</span>
+        </div>
+
+        <div class="table-responsive  panel-body">
+            <table st-table="ctrl.data.GiayBaoHongChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                <thead class="bg-default text-primary">
+                    <tr>
+                        <th class="text-center" style="min-width: 40px;vertical-align:middle">STT</th>
+                        <th class="text-center" style="min-width: 250px;vertical-align:middle">Tên tài sản</th>
+                        <th class="text-center" style="min-width: 150px;vertical-align:middle">Bộ phận</th>
+                        <th class="text-center" style="min-width: 150px;vertical-align:middle">Cán bộ</th>
+                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Số lượng</th>
+                        <th class="text-center" style="min-width: 200px;vertical-align:middle">Lý do</th>
+                        <th class="text-center" style="min-width: 200px;vertical-align:middle">Ghi chú</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="ctrl.status.isLoading">
+                        <td colspan="100" class="text-center">
+                            <i class="fa fa-fw fa-spin fa-spinner"></i>
+                        </td>
+                    </tr>
+                    <tr ng-repeat="GiayBaoHongChiTiet in ctrl.data.GiayBaoHongChiTietListDisplay" ng-class="(GiayBaoHongChiTiet.isSelected==true)?'info':''">
+                        <td class="text-center">{{$index + 1}}</td>
+                        <td><span ng-bind="GiayBaoHongChiTiet.TenTaiSan"></span></td>
+                        <td><span ng-bind="GiayBaoHongChiTiet.TenPhongBan"></span></td>
+                        <td><span ng-bind="GiayBaoHongChiTiet.TenNhanVien"></span></td>
+                        <td class="text-right"><span ng-bind="GiayBaoHongChiTiet.SoLuong|number"></span></td>
+                        <td><span ng-bind="GiayBaoHongChiTiet.LyDo"></span></td>
+                        <td><span ng-bind="GiayBaoHongChiTiet.GhiChu"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100">
+                            <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+
+    </div>
+
+
+    <!-- popup danh sách tùy chọn cột -->
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0031'})">
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#TuyChonCotPopup">Đóng</a>
+        </div>
+    </div>
+    <!-- / popup danh sách tùy chọn cột -->
+
+
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/GiayBaoHong/controller/GiayBaoHongListCtrl.js"></script>
+    <script src="~/Scripts/angular/GiayBaoHong/service/GiayBaoHongService.js"></script>
+    <script src="~/Scripts/angular/GiayBaoHong/controller/GiayBaoHongFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/GiayBaoHong/controller/GiayBaoHongEditCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
+    <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+}
+
+
+
+
