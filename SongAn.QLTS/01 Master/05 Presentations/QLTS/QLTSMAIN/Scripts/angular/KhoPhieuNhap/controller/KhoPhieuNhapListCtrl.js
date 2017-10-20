@@ -125,7 +125,7 @@
         }
         function loadCotList() {
             if (1 === 1) {
-                TuyChonCotService.getAll('FL0031', vm.data.userInfo.UserId).then(function (success) {
+                TuyChonCotService.getAll('FL0032', vm.data.userInfo.UserId).then(function (success) {
                     if (success.data && success.data.data) {
                         vm.data.listCot = success.data.data;
                     }
@@ -265,7 +265,7 @@
             var TuNgay = vm.data.TuNgay;
             var DenNgay = vm.data.DenNgay;
             var KhoTaiSanId = vm.data.KhoTaiSanIds;
-            var SoChungTu = "";
+            var SoPhieu = "";
 
             KhoPhieuNhapService.getPage(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId, TuNgay, DenNgay, KhoTaiSanId, SoPhieu).then(function (success) {
                 if (success.data.data) {

@@ -58,6 +58,8 @@
         vm.data.showButtonXoa = false;
         vm.data.showButtonNew = false;
         vm.data.Tilte = 'Thêm';
+
+        
         /*** INIT FUNCTION ***/
 
         // chạy khi controller được khởi tạo
@@ -333,7 +335,7 @@
 
             var phieuKhoPhieuNhap = utility.clone(vm.data.phieuKhoPhieuNhap);
             var data = {};
-            data.KhoPhieuNhapId = phieuKhoPhieuNhapId;
+            data.khoPhieuNhapId = phieuKhoPhieuNhapId;
             data.phieuKhoPhieuNhap = angular.toJson(phieuKhoPhieuNhap);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
@@ -353,7 +355,27 @@
                 });
         }
 
+        function refresh() {
+            vm.error.SoPhieu = false;
+            vm.error.Loai = false;
+            vm.error.NgayNhap = false;
+            vm.error.SoHoaDon = false;
+            vm.error.Seri = false;
+            vm.error.NgayHD = false;
+            vm.error.KhoTaiSanId = false;
+            vm.error.NguonNganSachId = false;
+            vm.error.BBKiem = false;
+            vm.error.NhaCungCapId = false;
+            vm.error.ChietKhau = false;
+            vm.error.NguoiGiao = false;
+            vm.error.TaiKhoanCo = false;
+            vm.error.TaiKhoanNo = false;
+            vm.error.NoiDung = false;
+        }
+
         function InvalidateDataPhieuKhoPhieuNhap() {
+            refresh();
+
             var obj = vm.data.phieuKhoPhieuNhap;
 
             vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
@@ -376,6 +398,16 @@
             if (vm.error.NhaCungCapId) {
                 $("#cbxNhaCungCap").focus();
                 return null;
+            }
+            if (angular.isUndefined(obj.ChietKhau) === false) {
+                if (obj.ChietKhau.toString().length > 0) {
+                    if (parseInt(obj.ChietKhau) < 0) {
+                        vm.error.ChietKhau = true;
+                        $("#txtChietKhau").focus();
+                        utility.AlertError('Chiết khấu không hợp lệ!');
+                        return null;
+                    }
+                }
             }
 
             return 1;

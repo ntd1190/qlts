@@ -50,6 +50,7 @@
             vm.data.listKhoTaiSan = [];
             vm.data.startDate = moment().format("01/01/YYYY");
             vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
+            vm.data.khoTaiSanId = 0;
             $rootScope.$broadcast('KhoPhieuNhapFilterCtrl.action.clearData');
         };
 
@@ -78,6 +79,7 @@
         }
 
         function getDataFilter() {
+            vm.data.listKhoTaiSan = [{"KhoTaiSanId": vm.data.khoTaiSanId}];
             var data = {};
             data.startDate = vm.data.startDate;
             data.endDate = vm.data.endDate;

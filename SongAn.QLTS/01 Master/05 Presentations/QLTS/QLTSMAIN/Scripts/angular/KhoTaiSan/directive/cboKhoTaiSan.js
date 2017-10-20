@@ -52,7 +52,7 @@
 
                 $scope.$watch('KhoTaiSanId', function (newValue, oldValue) {
                     console.log('$scope.$watch[KhoTaiSanId]:', 'newValue=', newValue, 'oldValue=', oldValue, 'vm.data.KhoTaiSan=', vm.data.KhoTaiSan);
-                    if (!newValue) { return; }
+                    if (!newValue) { vm.data.KhoTaiSan = {}; return; }
                     delete vm.inputSearch; vm.inputSearch = {};
                     vm.inputSearch.KhoTaiSanId = newValue;
                     getPage().then(function (success) {

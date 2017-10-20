@@ -106,7 +106,7 @@
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.ChietKhau?'has-error':''">
                             <label class="control-label col-sm-4">Chiết khấu</label>
                             <div class="col-sm-7">
-                                <input type="text" id="txtChietKhau" class="form-control" placeholder="" ng-model="ctrl.data.phieuKhoPhieuNhap.ChietKhau" ng-keypress="ctrl.action.keyPressKhoPhieuNhap(ctrl.data.phieuKhoPhieuNhap.ChietKhau,'txtChietKhau','txtNguoiGiao',$event)" />
+                                <input type="number" id="txtChietKhau" class="form-control text-right" placeholder="" ng-model="ctrl.data.phieuKhoPhieuNhap.ChietKhau" ng-keypress="ctrl.action.keyPressKhoPhieuNhap(ctrl.data.phieuKhoPhieuNhap.ChietKhau,'txtChietKhau','txtNguoiGiao',$event)" />
                             </div>
                         </div>
                     </div>
@@ -169,7 +169,7 @@
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Giá mua</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Giá bán</th>
                         <th class="text-center" style="min-width: 80px; vertical-align:middle">VAT</th>
-                        <th class="text-center" style="min-width: 130px; vertical-align:middle">Thành tiền</th>
+                        <th class="text-center" style="min-width: 150px; vertical-align:middle">Thành tiền chưa VAT</th>
                     </tr>
                 </thead>
                 <tbody>
