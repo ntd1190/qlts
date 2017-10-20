@@ -70,6 +70,7 @@
     <Compile Include="CrystalReport\ReportGiayBaoHongByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportDanhGiaByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportKhoPhieuNhapByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhai500Biz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoBiz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatBiz.cs" />

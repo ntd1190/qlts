@@ -73,6 +73,7 @@
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
     <Compile Include="CrystalReport\ReportGiayBaoHongByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportKhoPhieuNhapByIdDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhai500Dac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatDac.cs" />
