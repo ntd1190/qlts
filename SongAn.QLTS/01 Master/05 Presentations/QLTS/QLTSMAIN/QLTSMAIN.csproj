@@ -496,6 +496,12 @@
       <DependentUpon>rptGiayBaoHongById.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptKhoPhieuNhapById.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKhoPhieuNhapById.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptTaiSan_KeKhai500.cs">
       <DependentUpon>rptTaiSan_KeKhai500.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -797,6 +803,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptGiayBaoHongById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptGiayBaoHongById.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKhoPhieuNhapById.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKhoPhieuNhapById.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhai500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
