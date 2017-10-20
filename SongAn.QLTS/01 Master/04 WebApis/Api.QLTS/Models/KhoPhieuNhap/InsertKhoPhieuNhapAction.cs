@@ -40,18 +40,18 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoPhieuNhap
                 bizHeader.NhaCungCapId = Protector.Int(_phieuKhoPhieuNhap.NhaCungCapId);
                 bizHeader.NgayNhap = _phieuKhoPhieuNhap.NgayNhap;
                 bizHeader.SoPhieu = _phieuKhoPhieuNhap.SoPhieu;
-                bizHeader.Seri = _phieuKhoPhieuNhap.Seri;
+                bizHeader.Seri = Protector.String(_phieuKhoPhieuNhap.Seri);
                 bizHeader.SoHoaDon = _phieuKhoPhieuNhap.SoHoaDon;
                 bizHeader.NgayHD = _phieuKhoPhieuNhap.NgayHD;
-                bizHeader.BBKiem = _phieuKhoPhieuNhap.BBKiem;
+                bizHeader.BBKiem = Protector.String(_phieuKhoPhieuNhap.BBKiem);
                 bizHeader.ChietKhau = _phieuKhoPhieuNhap.ChietKhau;
-                bizHeader.NguoiGiao = _phieuKhoPhieuNhap.NguoiGiao;
+                bizHeader.NguoiGiao = Protector.String(_phieuKhoPhieuNhap.NguoiGiao);
                 bizHeader.Loai = _phieuKhoPhieuNhap.Loai;
-                bizHeader.TaiKhoanNo = _phieuKhoPhieuNhap.TaiKhoanNo;
-                bizHeader.TaiKhoanCo = _phieuKhoPhieuNhap.TaiKhoanCo;
-                bizHeader.NoiDung = _phieuKhoPhieuNhap.NoiDung;
+                bizHeader.TaiKhoanNo = Protector.String(_phieuKhoPhieuNhap.TaiKhoanNo);
+                bizHeader.TaiKhoanCo = Protector.String(_phieuKhoPhieuNhap.TaiKhoanCo);
+                bizHeader.NoiDung = Protector.String(_phieuKhoPhieuNhap.NoiDung);
                 bizHeader.CoSoId = _phieuKhoPhieuNhap.CoSoId;
-                bizHeader.NguoiTao = _phieuKhoPhieuNhap.NguoiTao;
+                bizHeader.NguoiTao = _LoginId;
                 bizHeader.MyTable_KhoPhieuNhapChiTiet = MyTable_KhoPhieuNhapChiTiet;
 
                 var result = await bizHeader.Execute();
