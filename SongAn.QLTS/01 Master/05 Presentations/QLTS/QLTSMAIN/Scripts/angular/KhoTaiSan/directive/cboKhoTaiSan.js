@@ -17,6 +17,7 @@
                 disabled: '<',
                 functionCode: '@',
                 multiple: '<',
+                exclude: '<'
             },
             controller: function ($scope, $http, $q, $timeout, KhoTaiSanService) {
                 /*** PRIVATE ***/
@@ -78,6 +79,25 @@
                     delete vm.inputSearch; vm.inputSearch = {};
                     vm.inputSearch.Search = $select.search;
                     getPage();
+                }
+
+                vm.filter = {};
+                vm.filter.exclude = function (item) {
+                    console.log('vm.filter.exclude', $scope.exclude);
+                    if (angular.isUndefined($scope.exclude)) { return true; }
+                    var arr = [];
+                    if (angular.isNumber($scope.exclude) || angular.isString($scope.exclude)) {
+                        arr.push($scope.exclude);
+                    }
+                    if (angular.isArray($scope.exclude)) {
+                        arr = $scope.exclude;
+                    }
+                    for (var index in arr) {
+                        if (arr[index] == item.KhoTaiSanId) {
+                            return false;
+                        }
+                    }
+                    return true;
                 }
 
                 /*** API FUNCTION ***/

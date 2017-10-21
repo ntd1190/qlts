@@ -220,10 +220,16 @@
             var ids = KhoPhieuNhapListSelected.join(',');
             if (ids.length > 0) {
                 KhoPhieuNhapService.DeleteList(ids).then(function (success) {
+                    if (success.data.data > 0) {
+                        if (parseInt(success.data.data) > 0) {
+                            utility.AlertError(success.data.data + ' phiếu xóa không thành công!');
+                        }
+                    } else {
+                        utility.AlertSuccess('Xóa thành công!');
+                    }
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
-                    alert('Xóa thành công!')
                 }, function (error) {
                     vm.data.isLoading = false;
                     alert(error.data.error.code + " : " + error.data.error.message);

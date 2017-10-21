@@ -183,7 +183,14 @@
             var ids = KhoPhieuNhapListSelected.join(',');
             if (ids.length > 0) {
                 KhoPhieuNhapService.DeleteList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
+                    if (success.data.data > 0) {
+                        if (parseInt(success.data.data) > 0) {
+                            utility.AlertError(success.data.data + ' phiếu xóa không thành công!');
+                        }
+                    } else {
+                        utility.AlertSuccess('Xóa thành công!');
+                    }
+
                     window.location.href = vm.data.linkUrl + 'KhoPhieuNhap/list';
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
@@ -313,11 +320,17 @@
             KhoPhieuNhapService.insert(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Thêm thành công");
+                    if (parseInt(result.data.data[0]["KhoPhieuNhapIdI"]) < 0) {
+                        utility.AlertError("Tháng đã chốt!");
+                    }
+                    else {
+                        utility.AlertSuccess("Nhập kho thành công");
 
-                    $timeout(function () {
-                        window.location = vm.data.linkUrl + 'KhoPhieuNhap/edit/' + result.data.data[0].KhoPhieuNhapIdI;
-                    }, 2000);
+                        $timeout(function () {
+                            window.location = vm.data.linkUrl + 'KhoPhieuNhap/edit/' + result.data.data[0].KhoPhieuNhapIdI;
+                        }, 2000);
+                    }
+                    
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();
@@ -343,7 +356,14 @@
             KhoPhieuNhapService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    utility.AlertSuccess("Cập nhật thành công");
+                    if (parseInt(result.data.data[0]["ID"]) < 0) {
+                        if (parseInt(result.data.data[0]["ID"]) == -1)
+                            utility.AlertError("Tháng đã chốt!");
+                        else if (parseInt(result.data.data[0]["ID"]) == -2)
+                            utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!!");
+                    }
+                    else
+                        utility.AlertSuccess("Cập nhật thành công");
                 }, function error(result) {
                     console.log(result);
                     utility.removeloadding();
