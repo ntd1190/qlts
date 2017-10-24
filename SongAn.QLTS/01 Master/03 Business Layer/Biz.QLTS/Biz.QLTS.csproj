@@ -62,6 +62,7 @@
     <Compile Include="ChotSoLieuNam\ChotSoLieuNamBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
     <Compile Include="CoSo\cbxGetListCoSoByCriteriaBiz.cs" />
+    <Compile Include="CrystalReport\ReportNhapXuatTonBiz.cs" />
     <Compile Include="CrystalReport\ReportBaoDuongByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportGhiGiamBiz.cs" />
     <Compile Include="CrystalReport\ReportDeNghiTrangCapByIdBiz.cs" />
