@@ -1,0 +1,114 @@
+﻿@{
+    ViewBag.Title = "Báo cáo nhập xuất tồn";
+}
+
+<div class="container-fluid">
+    <div ng-controller="BaoCaoNhapXuatTonListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+        <div class="panel-heading">
+            <strong>
+                Báo Cáo Nhập Xuất Tồn
+            </strong>
+        </div>
+
+        <div class="panel-body" style="width:500px; margin:0 auto">
+            <form class="form-horizontal">
+                <div class="row">
+                    <div class="col-md-4" style="width:26%; margin-left:18px">
+                        <div class="form-group">
+                            <label>Từ Tháng</label>
+                            <select class="form-control" id="fromMonth" ng-change="ctrl.action.getValThang()" ng-model="ctrl.data.startMonth">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="width:26%; margin-left:18px">
+                        <div class="form-group">
+                            <label>Đến Tháng</label>
+                            <select class="form-control" id="toMonth" ng-change="ctrl.action.getValThang()" ng-model="ctrl.data.endMonth">
+                                <option value="1">01</option>
+                                <option value="2">02</option>
+                                <option value="3">03</option>
+                                <option value="4">04</option>
+                                <option value="5">05</option>
+                                <option value="6">06</option>
+                                <option value="7">07</option>
+                                <option value="8">08</option>
+                                <option value="9">09</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-4 nam" style="width:26%; margin-left:18px">
+                        <div class="form-group">
+                            <label>Năm</label>
+                            <select class="form-control" id="nam" ng-change="ctrl.action.getValNam()" ng-model="ctrl.data.nam">
+                                <option value="2015">2015</option>
+                                <option value="2016">2016</option>
+                                <option value="2017">2017</option>
+                                <option value="2018">2018</option>
+                                <option value="2019">2019</option>
+                                <option value="2020">2020</option>
+                                <option value="2021">2021</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+        <div class="panel-footer">
+            <div style="text-align:center">
+                @*<a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i class="fa fa-file-excel-o"></i> Xuất Excel</a>*@
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()" style="margin-left:0px"><i class="fa fa-print"></i> In Báo Cáo</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myLargeModalLabel">In báo cáo</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="1000px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section ImportStyles{}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/BaoCaoNhapXuatTon/controller/BaoCaoNhapXuatTonListCtrl.js"></script>
+}

@@ -237,6 +237,7 @@
     <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\BaoCaoNhapXuatTon\controller\BaoCaoNhapXuatTonListCtrl.js" />
     <Content Include="Scripts\angular\BaoCaoTongHop\controller\BaoCaoTongHopListCtrl.js" />
     <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongEditCtrl.js" />
     <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongFilterCtrl.js" />
@@ -434,6 +435,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoCaoNhapXuatTonController.cs" />
     <Compile Include="Controllers\BaoCaoTongHopController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
@@ -748,6 +750,7 @@
     <Content Include="Views\GiayBaoHong\Edit.cshtml" />
     <Content Include="Views\KhoPhieuNhap\List.cshtml" />
     <Content Include="Views\KhoPhieuNhap\Edit.cshtml" />
+    <Content Include="Views\BaoCaoNhapXuatTon\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -758,6 +761,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\angular\BaoCaoNhapXuatTon\service\" />
     <Folder Include="Scripts\angular\BaoCaoTongHop\service\" />
     <Folder Include="Scripts\angular\HienTrangSuDung\controller\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
