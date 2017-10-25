@@ -40,8 +40,8 @@
 
             vm.data.startMonth = moment().format('MM');
             vm.data.endMonth = moment().format('MM');
-            vm.data.startDate = moment().format('DD/MM/YYYY');
-            vm.data.endDate = moment().format('DD/MM/YYYY');
+            vm.data.startDate = '01' + moment().format('/MM/YYYY');
+            vm.data.endDate = new Date(d.getFullYear().toString(), vm.data.endMonth, 0).getDate() + moment().format('/MM/YYYY');
             vm.data.nguon = "1";
             vm.data.nam = d.getFullYear().toString();
         }

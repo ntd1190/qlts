@@ -12,6 +12,7 @@
             removeList: 'DeleteListTaiSan',
             getListNguyenGiaByTaiSanId: 'getListNguyenGiaByTaiSanId',
             GetCombobox: 'GetListcbxTaiSanByCriteria',
+            getComboboxTonKho: 'GetListcbxTaiSanTonKhoByCriteria',
             getComboboxSuDung: 'GetListcbxTaiSanSuDungByCriteria',
             getComboboxSuDungById: 'GetListcbxTaiSanSuDungById',
             GetMaTaiSan: 'GetTaiSanByMa',
@@ -100,6 +101,18 @@
         };
         service.getCombobox = function (data) {
             var url = api.url + api.GetCombobox;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+
+            return $http(req);
+        }
+        service.getComboboxTonKho = function (data) {
+            var url = api.url + api.getComboboxTonKho;
 
             var req = {
                 url: url,

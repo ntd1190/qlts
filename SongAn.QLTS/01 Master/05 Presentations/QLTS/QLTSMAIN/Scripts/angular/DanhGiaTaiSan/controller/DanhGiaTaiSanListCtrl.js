@@ -160,12 +160,6 @@
 
             if (!listQuyenTacVu || listQuyenTacVu.length < 1) { return false; }
 
-            if (isEdit == 0) { // trường hợp thêm mới
-                if (quyen != 'N') { return false; }
-            } else { // trường hợp update
-                if (quyen == 'N') { return false; }
-            }
-
             return listQuyenTacVu.indexOf(quyen) >= 0;
         }
 

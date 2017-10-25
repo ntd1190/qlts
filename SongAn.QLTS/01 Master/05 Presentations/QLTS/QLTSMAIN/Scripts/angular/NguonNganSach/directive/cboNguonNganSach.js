@@ -60,13 +60,13 @@
         /*** EVENT FUNCTION ***/
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (!newValue || vm.data.NguonNganSach.NguonNganSachId == newValue) { return; }
+            if (angular.isUndefined(newValue)) { return; }
             
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.NguonNganSachId = newValue;
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 0) {
+                if (success.data.data && success.data.data.length == 1) {
                     vm.data.NguonNganSach = success.data.data[0];
                 } else {
                     delete vm.data.NguonNganSach;
@@ -100,7 +100,7 @@
         function getPage() {
             var data = {};
             data.search = vm.inputSearch.SearchString || '';
-            data.NguonNganSachId = vm.inputSearch.NguonNganSachId || 0;
+            data.NguonNganSachId = vm.inputSearch.NguonNganSachId;
             data.MaNguonNganSach = vm.inputSearch.MaNguonNganSach || '';
 
             data.CoSoId = userInfo.CoSoId || 0;

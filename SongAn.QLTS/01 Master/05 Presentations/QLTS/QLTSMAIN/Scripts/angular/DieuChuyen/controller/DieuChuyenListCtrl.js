@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, DieuChuyenService, TuyChonCotService) {
+    function controller($rootScope, $scope, DieuChuyenService, TuyChonCotService, utility) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -227,7 +227,6 @@
                     }
                     else {
                         utility.AlertSuccess('Xóa thành công!');
-                        window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
                     }
 
                     vm.data.isLoading = false;

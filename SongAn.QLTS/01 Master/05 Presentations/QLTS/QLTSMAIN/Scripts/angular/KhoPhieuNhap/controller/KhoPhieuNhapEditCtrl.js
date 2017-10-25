@@ -191,7 +191,10 @@
                         utility.AlertSuccess('Xóa thành công!');
                     }
 
-                    window.location.href = vm.data.linkUrl + 'KhoPhieuNhap/list';
+                    $timeout(function () {
+                        window.location.href = vm.data.linkUrl + 'KhoPhieuNhap/list';
+                    }, 600);
+                    
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
                 });
@@ -303,7 +306,7 @@
             chitiet.GiaMua = 0;
             chitiet.GiaBan = 0;
             chitiet.VAT = 0;
-            chitiet.HangDung = "";
+            chitiet.HanDung = "";
             chitiet.LoSanXuat = "";
             vm.data.listChiTiet.push(chitiet);
         }

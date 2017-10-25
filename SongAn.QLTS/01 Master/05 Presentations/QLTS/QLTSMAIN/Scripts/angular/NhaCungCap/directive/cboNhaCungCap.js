@@ -57,12 +57,16 @@
         /*** EVENT FUNCTION ***/
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            console.log('$scope.$watch:value', newValue, oldValue);
+            if (angular.isUndefined(newValue)) { return; }
+            console.log('$scope.$watch:OK');
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.NhaCungCapId = newValue;
+            console.log('vm.inputSearch', vm.inputSearch);
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length > 1) {
+                console.log('getPage()',success);
+                if (success.data.data && success.data.data.length == 2) {
                     vm.data.NhaCungCap = success.data.data[1];
                 } else {
                     delete vm.data.NhaCungCap;
@@ -95,8 +99,7 @@
         function getPage() {
             var data = {};
             data.search = vm.inputSearch.SearchString || '';
-            data.TaiSanId = vm.inputSearch.TaiSanId || 0;
-            data.MaTaiSan = vm.inputSearch.MaTaiSan || '';
+            data.NhaCungCapId = vm.inputSearch.NhaCungCapId;
 
             data.CoSoId = userInfo.CoSoId || 0;
             data.NhanVienId = userInfo.NhanVienId || 0;

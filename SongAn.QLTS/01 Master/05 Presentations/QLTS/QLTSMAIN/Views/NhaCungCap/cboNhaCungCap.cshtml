@@ -2,7 +2,7 @@
 @if (ViewBag.Html != null && (bool)ViewBag.Html == true)
 {
     <ui-select ng-model="ctrl.data.NhaCungCap" data-ng-disabled="disabled" on-select="ctrl.action.onSelected($item, $model)" theme="bootstrap" id="{{ctrl.NameId}}">
-        <ui-select-match placeholder="{{$select.selected.TenNhaCungCap || 'Nhà cung cấp'}}">{{$select.selected.TenNhaCungCap}}</ui-select-match>
+        <ui-select-match placeholder="{{$select.selected.TenNhaCungCap}}">{{$select.selected.TenNhaCungCap}}</ui-select-match>
         <ui-select-choices repeat="item in ctrl.data.NhaCungCapListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
             <div ng-if="!item.NhaCungCapId">.</div>
             <div ng-if="item.NhaCungCapId">

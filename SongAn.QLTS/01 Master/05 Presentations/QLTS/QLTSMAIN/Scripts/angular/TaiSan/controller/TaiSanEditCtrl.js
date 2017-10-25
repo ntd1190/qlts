@@ -244,27 +244,28 @@
             });
 
         // tính hao mòn
-        $scope.$watch(`
-            ctrl.data.NguyenGia+
-            ctrl.data.TaiSan.TyLeHaoMon+
-            ctrl.data.TaiSan.NgayBDHaoMon+
-            ctrl.data.TaiSan.NgayMua`
-            , function () {
-                tinhHaoMon();
-                tinhGTConLai();
-            })
+        $scope.$watchGroup([
+            'ctrl.data.NguyenGia'
+            , 'ctrl.data.TaiSan.SoNamSuDung'
+            , 'ctrl.data.TaiSan.TyLeHaoMon'
+            , 'ctrl.data.TaiSan.NgayBDHaoMon'
+            , 'ctrl.data.TaiSan.NgayMua'
+        ], function () {
+            tinhHaoMon();
+            tinhGTConLai();
+        })
 
         // tính khấu hao
-        $scope.$watch(`
-            ctrl.data.NguyenGia+
-            ctrl.data.TaiSan.KyTinhKhauHao+
-            ctrl.data.TaiSan.NgayBDKhauHao+
-            ctrl.data.TaiSan.TyLeKhauHao+
-            ctrl.data.TaiSan.SoKyKhauHao+
-            ctrl.data.TaiSan.GiaTriKhauHao`
-            , function () {
-                tinhKhauHao();
-            })
+        $scope.$watchGroup([
+            'ctrl.data.TaiSan.NguyenGia'
+            , 'ctrl.data.TaiSan.KyTinhKhauHao'
+            , 'ctrl.data.TaiSan.NgayBDKhauHao'
+            , 'ctrl.data.TaiSan.TyLeKhauHao'
+            , 'ctrl.data.TaiSan.SoKyKhauHao'
+            , 'ctrl.data.TaiSan.GiaTriKhauHao'
+        ], function () {
+            tinhKhauHao();
+        })
 
         /*** BIZ FUNCTION ***/
 
@@ -283,7 +284,7 @@
 
         function tinhGTConLai() {
             vm.data.TaiSan.NamTheoDoi = moment(vm.data.TaiSan.NgayMua, 'DD/MM/YYYY').year();
-            vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.SoNamSDConLai * vm.data.TaiSan.HaoMonNam;
+            vm.data.TaiSan.GiaTriConLai = vm.data.NguyenGia - vm.data.TaiSan.HaoMonLuyKe;
         }
 
         function tinhKhauHao() {

@@ -195,7 +195,10 @@
                     }
                     else {
                         utility.AlertSuccess('Xóa thành công!');
-                        window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
+
+                        $timeout(function () {
+                            window.location.href = vm.data.linkUrl + 'DieuChuyen/list';
+                        }, 600);
                     }
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);

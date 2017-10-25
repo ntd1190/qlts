@@ -283,11 +283,16 @@
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongFilterCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongListCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
+    <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoChiTietListCtrl.js" />
+    <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoListCtrl.js" />
+    <Content Include="Scripts\angular\KhoTonKho\service\KhoTonKhoService.js" />
     <Content Include="Scripts\angular\KhachHang\directive\cboKhachHang.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacEditCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacFilterCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\controller\KhaiThacListCtrl.js" />
     <Content Include="Scripts\angular\KhaiThac\service\KhaiThacService.js" />
+    <Content Include="Scripts\angular\KhoPhieuXuat\controller\KhoPhieuXuatEditCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuXuat\service\KhoPhieuXuatService.js" />
     <Content Include="Scripts\angular\KhoTaiSan\directive\cboKhoTaiSan.js" />
     <Content Include="Scripts\angular\KhoPhieuNhap\controller\KhoPhieuNhapEditCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuNhap\controller\KhoPhieuNhapFilterCtrl.js" />
@@ -381,6 +386,7 @@
     <Content Include="Scripts\angular\SuDung\controller\SuDungListCtrl.js" />
     <Content Include="Scripts\angular\SuDung\service\SuDungService.js" />
     <Content Include="Scripts\angular\BaoCaoKeKhai\controller\BaoCaoKeKhaiCtrl.js" />
+    <Content Include="Scripts\angular\TaiSan\directive\cboTaiSanTonKho.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiListCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\controller\ThayDoiThongTinKeKhaiEditCtrl.js" />
     <Content Include="Scripts\angular\ThayDoiThongTinKeKhai\service\ThayDoiThongTinKeKhaiService.js" />
@@ -450,8 +456,10 @@
     <Compile Include="Controllers\GiayBaoHongController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\KhoTonKhoController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\KhoPhieuNhapController.cs" />
+    <Compile Include="Controllers\KhoPhieuXuatController.cs" />
     <Compile Include="Controllers\NhaCungCapController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -502,6 +510,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptKhoPhieuNhapById.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptNhapXuatTon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptNhapXuatTon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptTaiSan_KeKhai500.cs">
@@ -751,6 +765,11 @@
     <Content Include="Views\KhoPhieuNhap\List.cshtml" />
     <Content Include="Views\KhoPhieuNhap\Edit.cshtml" />
     <Content Include="Views\BaoCaoNhapXuatTon\List.cshtml" />
+    <Content Include="Views\KhoPhieuXuat\Edit.cshtml" />
+    <Content Include="Views\KhoPhieuXuat\List.cshtml" />
+    <Content Include="Views\TaiSan\cboTaiSanTonKho.cshtml" />
+    <Content Include="Views\KhoTonKho\Edit.cshtml" />
+    <Content Include="Views\KhoTonKho\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -764,6 +783,7 @@
     <Folder Include="Scripts\angular\BaoCaoNhapXuatTon\service\" />
     <Folder Include="Scripts\angular\BaoCaoTongHop\service\" />
     <Folder Include="Scripts\angular\HienTrangSuDung\controller\" />
+    <Folder Include="Scripts\angular\KhoPhieuXuat\directive\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
   </ItemGroup>
   <ItemGroup>
@@ -811,6 +831,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptKhoPhieuNhapById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptKhoPhieuNhapById.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptNhapXuatTon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptNhapXuatTon.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhai500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

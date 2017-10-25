@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, KhoPhieuNhapService, TuyChonCotService) {
+    function controller($rootScope, $scope, KhoPhieuNhapService, TuyChonCotService, utility) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
