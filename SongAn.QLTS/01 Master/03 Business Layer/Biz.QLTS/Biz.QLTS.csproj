@@ -89,6 +89,9 @@
     <Compile Include="DanhGia\InsertDanhGiaBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaBiz.cs" />
+    <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaBiz.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoBiz.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoChiTietBiz.cs" />
     <Compile Include="DuyetBaoCao\GetListDuyetBaoCaoByCriteriaBiz.cs" />
@@ -128,6 +131,11 @@
     <Compile Include="KhoPhieuNhap\GetListKhoPhieuNhapChiTietByIdBiz.cs" />
     <Compile Include="KhoPhieuNhap\InsertKhoPhieuNhapBiz.cs" />
     <Compile Include="KhoPhieuNhap\UpdateKhoPhieuNhapByIdBiz.cs" />
+    <Compile Include="KhoPhieuXuat\GetKhoPhieuXuatChiTietByIdBiz.cs" />
+    <Compile Include="KhoPhieuXuat\GetKhoPhieuXuatByIdBiz.cs" />
+    <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByCriteriaBiz.cs" />
+    <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoPhieuXuat\InsertKhoPhieuXuatBiz.cs" />
     <Compile Include="LapBaoCao\DeleteLapBaoCaoChiTietBiz.cs" />
     <Compile Include="LapBaoCao\DeleteLapBaoCaoByIdBiz.cs" />
     <Compile Include="LapBaoCao\GetLapBaoCaoByIdBiz.cs" />
@@ -195,6 +203,7 @@
     <Compile Include="SuDung\InsertSuDungBiz.cs" />
     <Compile Include="SuDung\InsertSuDungChiTietBiz.cs" />
     <Compile Include="SuDung\UpdateSuDungByIdBiz.cs" />
+    <Compile Include="TaiSan\GetListcbxTaiSanTonKhoByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByIdBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanSuDungByCriteriaBiz.cs" />
     <Compile Include="TaiSan\GetListcbxTaiSanByCriteriaBiz.cs" />

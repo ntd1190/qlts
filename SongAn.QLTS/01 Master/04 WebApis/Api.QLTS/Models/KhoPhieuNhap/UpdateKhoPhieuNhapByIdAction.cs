@@ -102,11 +102,11 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoPhieuNhap
             MyTable_KhoPhieuNhapChiTiet.Columns.Add("GiaMua", typeof(decimal));
             MyTable_KhoPhieuNhapChiTiet.Columns.Add("GiaBan", typeof(decimal));
             MyTable_KhoPhieuNhapChiTiet.Columns.Add("VAT", typeof(decimal));
-            MyTable_KhoPhieuNhapChiTiet.Columns.Add("HangDung", typeof(string));
+            MyTable_KhoPhieuNhapChiTiet.Columns.Add("HanDung", typeof(string));
             MyTable_KhoPhieuNhapChiTiet.Columns.Add("LoSanXuat", typeof(string));
             foreach (var item in _listChiTiet)
             {
-                MyTable_KhoPhieuNhapChiTiet.Rows.Add(item.KhoPhieuNhapId, Protector.Int(item.TaiSanId), Protector.Decimal(item.SoLuong), Protector.Decimal(item.DonGia), Protector.Decimal(item.GiaMua), Protector.Decimal(item.GiaBan), Protector.Decimal(item.VAT), Protector.String(item.HangDung), Protector.String(item.LoSanXuat));
+                MyTable_KhoPhieuNhapChiTiet.Rows.Add(item.KhoPhieuNhapId, Protector.Int(item.TaiSanId), Protector.Decimal(item.SoLuong), Protector.Decimal(item.DonGia), Protector.Decimal(item.GiaMua), Protector.Decimal(item.GiaBan), Protector.Decimal(item.VAT), Protector.String(item.HanDung), Protector.String(item.LoSanXuat));
             }
 
             //////////////////////////////////////////////////////////////////////////

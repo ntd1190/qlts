@@ -14,7 +14,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhaCungCap
     {
         public string Search { get; set; }
         public string MaNhaCungCap { get; set; }
-        public int NhaCungCapId { get; set; }
+        public string NhaCungCapId { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         #region private

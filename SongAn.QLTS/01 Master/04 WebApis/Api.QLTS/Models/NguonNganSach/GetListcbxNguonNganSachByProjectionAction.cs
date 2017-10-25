@@ -15,7 +15,7 @@ namespace  SongAn.QLTS.Api.QLTS.Models.NguonNganSach
 
         public string Search { get; set; }
         public string MaNguonNganSach { get; set; }
-        public int NguonNganSachId { get; set; }
+        public string NguonNganSachId { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
