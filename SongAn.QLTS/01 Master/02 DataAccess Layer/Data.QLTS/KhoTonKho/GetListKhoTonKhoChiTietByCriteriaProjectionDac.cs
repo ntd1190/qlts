@@ -1,7 +1,7 @@
 ﻿/*****************************************************************************
 1. Create Date  : 2017.04.17
 2. Creator      : Nguyen Ngoc Tan
-3. Function     : QLDNMAIN/NhaCungCap/NhaCungCap
+3. Function     : QLDNMAIN/KhoTaiSan/KhoTaiSan
 4. Description  : Goi sp de lay danh sach phong ban voi dieu kien
 5. History      : 2017.04.17(Nguyen Ngoc Tan) - Tao moi
 *****************************************************************************/
@@ -13,19 +13,46 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Data.QLTS.NhaCungCap
+namespace SongAn.QLTS.Data.QLTS.KhoTonKho
 {
     /// <summary>
     /// DAC Lấy danh sách Phong ban theo điều kiện
     /// </summary>
-    public class GetListcbxNhaCungCapByCriteriaProjectionDac : BaseRepositoryAsync
+    public class GetListKhoTonKhoChiTietByCriteriaProjectionDac : BaseRepositoryAsync
     {
         #region public properties
+
+        /// <summary>
+        /// Danh sách các CoSo cần lấy
+        /// </summary>
+        public string CoSoId { get; set; }
+        /// <summary>
+        /// Danh sách các CoSo cần lấy
+        /// </summary>
+        public string NhanVienId { get; set; }
+        public int KhoTaiSanId { get; set; }
+        public int KhoTonKhoId { get; set; }
+        public string ThangNam { get; set; }
+        /// <summary>
+        /// Mệnh đề where
+        /// </summary>
         public string Search { get; set; }
-        public string MaNhaCungCap { get; set; }
-        public string NhaCungCapId { get; set; }
-        public int CoSoId { get; set; }
-        public int NhanVienId { get; set; }
+
+        /// <summary>
+        /// Mệnh đề order by
+        /// </summary>
+        public string OrderClause { get; set; }
+
+        /// <summary>
+        /// Số dòng skip (để phân trang)
+        /// </summary>
+        public int? Skip  { get; set; }
+
+        /// <summary>
+        /// Số dòng take (để phân trang)
+        /// </summary>
+        public int? Take { get; set; }
+
         #endregion
 
         #region private variable
@@ -39,7 +66,7 @@ namespace SongAn.QLTS.Data.QLTS.NhaCungCap
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListcbxNhaCungCapByCriteriaProjectionDac(ContextDto context) : base(context.dbQLTSConnection)
+        public GetListKhoTonKhoChiTietByCriteriaProjectionDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -80,10 +107,18 @@ namespace SongAn.QLTS.Data.QLTS.NhaCungCap
 
             return await WithConnection(async c =>
             {
-                var p = new DynamicParameters(this);
-
+                var p = new DynamicParameters();
+                p.Add("CoSoId", CoSoId, DbType.String);
+                p.Add("NhanVienId", NhanVienId, DbType.String);
+                p.Add("Search", Search, DbType.String);
+                p.Add("OrderClause", OrderClause, DbType.String);
+                p.Add("Skip", Skip, DbType.Int16);
+                p.Add("Take", Take, DbType.Int16);
+                p.Add("KhoTaiSanId", KhoTaiSanId, DbType.String);
+                p.Add("KhoTonKhoId", KhoTonKhoId, DbType.String);
+                p.Add("ThangNam", ThangNam, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_NhaCungCap_cbxNhaCungCapByCriteria",
+                    sql: "sp_KhoTonKho_GetListKhoTonKhoChiTietByCriteria",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

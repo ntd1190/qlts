@@ -1,11 +1,4 @@
-﻿/*****************************************************************************
-1. Create Date  : 2017.04.17
-2. Creator      : Nguyen Ngoc Tan
-3. Function     : QLDNMAIN/NhaCungCap/NhaCungCap
-4. Description  : Goi sp de lay danh sach phong ban voi dieu kien
-5. History      : 2017.04.17(Nguyen Ngoc Tan) - Tao moi
-*****************************************************************************/
-using Dapper;
+﻿using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Repository;
@@ -13,25 +6,20 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Data.QLTS.NhaCungCap
+namespace SongAn.QLTS.Data.QLTS.KhoPhieuXuat
 {
-    /// <summary>
-    /// DAC Lấy danh sách Phong ban theo điều kiện
-    /// </summary>
-    public class GetListcbxNhaCungCapByCriteriaProjectionDac : BaseRepositoryAsync
+    public class DeleteKhoPhieuXuatDac : BaseRepositoryAsync
     {
         #region public properties
-        public string Search { get; set; }
-        public string MaNhaCungCap { get; set; }
-        public string NhaCungCapId { get; set; }
-        public int CoSoId { get; set; }
-        public int NhanVienId { get; set; }
+
+        public virtual string KhoPhieuXuatId { get; set; }
+        public virtual int COSO_ID { get; set; }
+        public virtual int NHANVIEN_ID { get; set; }
+        public virtual string MESSAGE { get; set; }
+
         #endregion
-
         #region private variable
-
         ContextDto _context;
-
         #endregion
 
         #region constructor
@@ -39,7 +27,7 @@ namespace SongAn.QLTS.Data.QLTS.NhaCungCap
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListcbxNhaCungCapByCriteriaProjectionDac(ContextDto context) : base(context.dbQLTSConnection)
+        public DeleteKhoPhieuXuatDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -51,18 +39,12 @@ namespace SongAn.QLTS.Data.QLTS.NhaCungCap
         /// <summary>
         /// Ham khoi tao gia tri mac dinh cho cac bien
         /// </summary>
-        private void Init()
-        {
-
-        }
+        private void Init()        {        }
 
         /// <summary>
         /// Ham chuan hoa gia tri cac bien
         /// </summary>
-        private void Validate()
-        {
-
-        }
+        private void Validate() { }
 
         #endregion
 
@@ -81,17 +63,19 @@ namespace SongAn.QLTS.Data.QLTS.NhaCungCap
             return await WithConnection(async c =>
             {
                 var p = new DynamicParameters(this);
+                p.Add("@MESSAGE", dbType: DbType.String, direction: ParameterDirection.Output, size: 4000);
 
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_NhaCungCap_cbxNhaCungCapByCriteria",
-                    param: p,
-                    commandType: CommandType.StoredProcedure);
+                        sql: "sp_KhoPhieuXuat_DeleteKhoPhieuXuat",
+                        param: p,
+                        commandType: CommandType.StoredProcedure);
+
+                MESSAGE = p.Get<string>("MESSAGE");
 
                 return objResult;
             });
         }
 
         #endregion
-
     }
 }

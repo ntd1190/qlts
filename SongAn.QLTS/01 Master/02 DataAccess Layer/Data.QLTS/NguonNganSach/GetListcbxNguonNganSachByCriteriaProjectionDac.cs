@@ -23,7 +23,7 @@ namespace SongAn.QLTS.Data.QLTS.NguonNganSach
         #region public properties
         public string Search { get; set; }
         public string MaNguonNganSach { get; set; }
-        public int NguonNganSachId { get; set; }
+        public string NguonNganSachId { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
         #endregion

@@ -65,6 +65,8 @@
     <Compile Include="Entity\DieuChuyen.cs" />
     <Compile Include="Entity\DieuChuyenChiTiet.cs" />
     <Compile Include="Entity\DanhGia.cs" />
+    <Compile Include="Entity\KhoTonKhoChiTiet.cs" />
+    <Compile Include="Entity\KhoTonKho.cs" />
     <Compile Include="Entity\GhiGiamChiTiet.cs" />
     <Compile Include="Entity\GhiTang.cs" />
     <Compile Include="Entity\GhiTangChiTiet.cs" />
@@ -72,7 +74,9 @@
     <Compile Include="Entity\GiayBaoHong.cs" />
     <Compile Include="Entity\GiayBaoHongChiTiet.cs" />
     <Compile Include="Entity\KhaiThac.cs" />
+    <Compile Include="Entity\KhoPhieuXuat.cs" />
     <Compile Include="Entity\KhoPhieuNhap.cs" />
+    <Compile Include="Entity\KhoPhieuXuatChiTiet.cs" />
     <Compile Include="Entity\KhoPhieuNhapChiTiet.cs" />
     <Compile Include="Entity\LapBaoCaoChiTiet.cs" />
     <Compile Include="Entity\LapBaoCao.cs" />
@@ -121,6 +125,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
