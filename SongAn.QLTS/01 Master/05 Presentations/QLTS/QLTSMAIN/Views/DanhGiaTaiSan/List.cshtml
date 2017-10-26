@@ -12,7 +12,7 @@
     <div class="panel panel-default" ng-controller="DanhGiaTaiSanListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/DanhGiaTaiSan/"))'})" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
-                <span><i class="fa fa-fw fa-star-o"></i>Tài sản</span>
+                <span><i class="fa fa-fw fa-star-o"></i>Đánh giá lại tài sản</span>
                 <div class="pull-right">
                     <form class="form-inline ng-pristine ng-valid">
                         <div class="form-group form-group-sm">
@@ -42,7 +42,7 @@
                 <thead class="text-primary">
                     <tr>
                         <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
-                            <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                            @*<i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>*@
                         </th>
                         <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="cot.TenCot"></span>
@@ -56,7 +56,7 @@
                         </td>
                     </tr>
                     <tr ng-repeat="row in ctrl.data.ListDanhGia" ng-click="ctrl.action.TaiSanInfo(row)" ng-class="row.isView?'info':''">
-                        <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                        <td class="text-center text-primary" st-select-row="row" st-select-mode="single" ng-click="ctrl.action.autoCheckAll()">
                             <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">

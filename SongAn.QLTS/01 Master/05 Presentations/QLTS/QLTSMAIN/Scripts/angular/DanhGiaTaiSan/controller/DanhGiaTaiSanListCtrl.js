@@ -17,7 +17,7 @@
         vm.data = {};
         vm.data.TaiSan = {};
         vm.data.DanhGia = {};
-        vm.data.ListDanhGia = {};
+        vm.data.ListDanhGia = [];
         vm.data.listCot = [
             { MaCot: 'SoChungTu', TenCot: 'Số chứng từ', HienThiYN: true, DoRong: 100 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
@@ -33,7 +33,7 @@
         vm.action.removeList = function () {
             if (checkQuyenUI('D') == false) { return; }
             if (confirm('Bạn có muốn xóa tài sản ?')) {
-                removeList();
+                removeList(getListDanhGiaSelected().DanhGiaId);
             }
         };
         vm.action.autoCheckAll = function () {
@@ -211,22 +211,28 @@
             vm.data.TaiSan.HaoMonLuyKe = vm.data.TaiSan.HaoMonLuyKe | 0;
             vm.data.TaiSan.GiaTriConLai = vm.data.TaiSan.GiaTriConLai | 0;
         }
+        function getListDanhGiaSelected() {
+            for (var index in vm.data.ListDanhGia) {
+                if (vm.data.ListDanhGia[index].isSelected == true) {
+                    return vm.data.ListDanhGia[index];
+                }
+            }
+            return {};
+        }
 
         /*** API FUNCTION TÀI SẢN ***/
 
 
-        function removeList() {
+        function removeList(id) {
             var data = {};
-            data.TaiSanIds = vm.data.TaiSan.TaiSanId;
+            data.DanhGiaId = id;
             data.CoSoId = userInfo.CoSoId;
             data.NhanVienId = userInfo.NhanVienId;
 
-            TaiSanService.removeList(data).then(function (success) {
+            service.removeById(data).then(function (success) {
                 console.log(success);
                 utility.AlertSuccess('Xóa tài sản thành công');
-                $timeout(function () {
-                    window.location = linkUrl + 'list/';
-                }, 2000);
+                vm.action.search();
             }, function (error) {
                 console.log(error);
                 if (error.status === 400) {

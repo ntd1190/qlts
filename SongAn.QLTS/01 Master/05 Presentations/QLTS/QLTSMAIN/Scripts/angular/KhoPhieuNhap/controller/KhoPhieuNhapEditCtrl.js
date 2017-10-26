@@ -461,6 +461,12 @@
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
                 }
+                else if (parseFloat(vm.data.listChiTiet[index].VAT)>=100) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Bạn vui lòng nhập lại VAT!');
+                    return hasError;
+                }
                 else {
                     hasError = false;
                     vm.data.listChiTiet[index].isError = false;

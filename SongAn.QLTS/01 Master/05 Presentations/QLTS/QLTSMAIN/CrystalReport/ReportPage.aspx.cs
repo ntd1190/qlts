@@ -197,6 +197,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                                 biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
                             biz.CoSoId = Protector.Int(search.Split('|')[3]);
                             biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                            biz.KhoTaiSanId = Protector.String(search.Split('|')[5]);
                             ds = biz.ExecuteDac();
                         }
                     }

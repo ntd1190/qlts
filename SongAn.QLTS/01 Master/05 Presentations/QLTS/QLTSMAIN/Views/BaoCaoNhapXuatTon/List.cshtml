@@ -75,6 +75,14 @@
                         </div>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-sm-11">
+                        <div class="">
+                            <label>Kho</label>
+                            <cbo-kho-tai-san id="cbxKho" data-function-code="CN0047" data-khotaisanid="ctrl.data.KhoTaiSanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/khotaisan/showview?viewname=cboKhoTaiSan"></cbo-kho-tai-san>
+                        </div>
+                    </div>
+                </div>
             </form>
 
         </div>
@@ -111,4 +119,5 @@
 @section SetupScripts{}
 @section ImportAngular{
     <script src="~/Scripts/angular/BaoCaoNhapXuatTon/controller/BaoCaoNhapXuatTonListCtrl.js"></script>
+    @{Html.RenderPartial("~/views/KhoTaiSan/cboKhoTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

@@ -23,6 +23,7 @@
         vm.data.startDate = '';
         vm.data.endDate = '';
         vm.data.nguon = '1';
+        vm.data.KhoTaiSanId = 0;
 
         vm.onInitView = function (config) {
             if (config && config.userInfo) {
@@ -68,8 +69,9 @@
             var denNgay = vm.data.endDate;
             var CoSoId = vm.data.userInfo.CoSoId || 0;
             var NhanVienId = vm.data.userInfo.NhanVienId || 0;
+            var khoTaiSanId = vm.data.KhoTaiSanId || 0;
 
-            var data = nguon + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
+            var data = nguon + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId + '|' + khoTaiSanId;
 
             $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptNhapXuatTon&data=' + data);
 
