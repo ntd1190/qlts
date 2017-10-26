@@ -19,6 +19,7 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
         public DateTime DenNgay { get; set; }
         public int CoSoId { get; set; }
         public int NhanVienId { get; set; }
+        public string KhoTaiSanId { get; set; }
 
         #endregion
 
@@ -76,6 +77,7 @@ namespace SongAn.QLTS.Data.QLTS.CrystalReport
                  new SqlParameter("@DenNgay", SqlDbType.DateTime) {Value = DenNgay},
                  new SqlParameter("@CoSoId", SqlDbType.Int) {Value = CoSoId},
                  new SqlParameter("@NhanVienId", SqlDbType.Int) {Value = NhanVienId},
+                 new SqlParameter("@KhoTaiSanId", SqlDbType.NVarChar) {Value = KhoTaiSanId},
 
             };
             DataSet ds = getData("sp_BaoCao_BaoCaoNhapXuatTon", prm);
