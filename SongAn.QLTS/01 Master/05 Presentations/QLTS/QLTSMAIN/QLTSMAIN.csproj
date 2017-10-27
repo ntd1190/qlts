@@ -249,6 +249,8 @@
     <Content Include="Scripts\angular\BienBanKiemKe\service\KiemKeService.js" />
     <Content Include="Scripts\angular\ChotSoLieuNam\controller\ChotSoLieuNamListCtrl.js" />
     <Content Include="Scripts\angular\ChotSoLieuNam\service\ChotSoLieuNamService.js" />
+    <Content Include="Scripts\angular\ChotSoLieuThang\controller\ChotSoLieuThangListCtrl.js" />
+    <Content Include="Scripts\angular\ChotSoLieuThang\service\ChotSoLieuThangService.js" />
     <Content Include="Scripts\angular\CoSo\directive\cboCoSo.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanListCtrl.js" />
     <Content Include="Scripts\angular\DanhGiaTaiSan\controller\DanhGiaTaiSanEditCtrl.js" />
@@ -283,6 +285,8 @@
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongFilterCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongListCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
+    <Content Include="Scripts\angular\KhoPhieuXuat\controller\KhoPhieuXuatFilterCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuXuat\controller\KhoPhieuXuatListCtrl.js" />
     <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoChiTietListCtrl.js" />
     <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoListCtrl.js" />
     <Content Include="Scripts\angular\KhoTonKho\service\KhoTonKhoService.js" />
@@ -445,6 +449,7 @@
     <Compile Include="Controllers\BaoCaoTongHopController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
+    <Compile Include="Controllers\ChotSoLieuThangController.cs" />
     <Compile Include="Controllers\DanhGiaTaiSanController.cs" />
     <Compile Include="Controllers\DuyetBaoCaoController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
@@ -770,6 +775,7 @@
     <Content Include="Views\TaiSan\cboTaiSanTonKho.cshtml" />
     <Content Include="Views\KhoTonKho\Edit.cshtml" />
     <Content Include="Views\KhoTonKho\List.cshtml" />
+    <Content Include="Views\ChotSoLieuThang\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

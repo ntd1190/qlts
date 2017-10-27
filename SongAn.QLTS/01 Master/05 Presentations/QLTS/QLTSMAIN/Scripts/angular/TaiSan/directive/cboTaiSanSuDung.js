@@ -12,6 +12,7 @@
                 value: '=',
                 maTaiSan: '=',
                 phongBan: '=',
+                phongBanFilter: '<',
                 nhanVien: '=',
                 disabled: '<',
                 functionCode: '@',
@@ -60,12 +61,13 @@
                 vm.data.TaiSan = {};
                 return;
             }
-
+            debugger
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.TaiSanId = $scope.value;
             vm.inputSearch.PhongBanId = $scope.phongBan;
             vm.inputSearch.NhanVienId = $scope.nhanVien;
+
             getPageById().then(function (success) {
                 if (success.data.data && success.data.data.length > 0) {
                     vm.data.TaiSan = success.data.data[0];
@@ -93,7 +95,14 @@
                 $scope.onSelected({ data: vm.data.TaiSan });
             });
         });
-
+        $scope.$watch('phongBanFilter', function (newValue, oldValue) {
+            console.log(newValue);
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.PhongBanFilter = $scope.phongBanFilter;
+            getPage();
+        });
         activate()
         function activate() {
             onInitView($scope.config);
@@ -114,6 +123,7 @@
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.SearchString = $select.search;
+            vm.inputSearch.PhongBanFilter = $scope.phongBanFilter;
             getPage();
         }
 
@@ -126,7 +136,7 @@
             var NhanVienId = userInfo.NhanVienId || 0;
 
             return $q(function (resolve, reject) {
-                service.getComboboxSuDung(CoSoId, NhanVienId, vm.inputSearch.SearchString, vm.inputSearch.MaTaiSan, vm.inputSearch.TaiSanId, $scope.functionCode)
+                service.getComboboxSuDung(CoSoId, NhanVienId, vm.inputSearch.SearchString, vm.inputSearch.MaTaiSan, vm.inputSearch.TaiSanId, $scope.functionCode, vm.inputSearch.PhongBanFilter)
                     .then(function (success) {
                         vm.status.isLoading = false;
                         console.log(success);

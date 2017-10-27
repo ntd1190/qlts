@@ -99,7 +99,7 @@
                             </td>
                             <td class="form-group form-group-sm">
                                 <!-- tai san-->
-                                <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0023" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId" ma-tai-san="GhiGiamChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                                <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0023" data-value="GhiGiamChiTiet.TaiSanId" data-phong-ban="GhiGiamChiTiet.PhongBanId" data-phong-ban-filter="ctrl.data.phieuGhiGiam.PhongBanId" data-nhan-vien="GhiGiamChiTiet.NhanVienId" ma-tai-san="GhiGiamChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                                      on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                             </td>
                             <td class="form-group form-group-sm">

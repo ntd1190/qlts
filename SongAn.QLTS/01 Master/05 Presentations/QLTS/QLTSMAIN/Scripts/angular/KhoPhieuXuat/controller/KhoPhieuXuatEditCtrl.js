@@ -91,7 +91,6 @@
             }
             $('[data-name="' + $(event.target).data('next') + '"] input').focus();
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
-
         }
         vm.action.keyPressChiTiet = function (event, index) {
             if (event.keyCode != 13) { return; }
@@ -129,7 +128,7 @@
             chitiet.DonViTinh = data.DonViTinh;
             chitiet.DonGia = data.DonGia;
             chitiet.SoLuongTon = data.SoLuong;
-            chitiet.HangDung = data.HangDung;
+            chitiet.HanDung = data.HanDung;
             chitiet.GiaMua = data.GiaMua;
             chitiet.GiaBan = data.GiaBan;
             chitiet.LoSanXuat = data.LoSanXuat;

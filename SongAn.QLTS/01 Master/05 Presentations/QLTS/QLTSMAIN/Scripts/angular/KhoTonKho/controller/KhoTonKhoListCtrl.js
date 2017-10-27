@@ -79,7 +79,8 @@
             getPage: getPage,
             deleteSelected: deleteSelected,
             DongY: DongY,
-            close: close
+            close: close,
+            CheckRow: CheckRow
         };
         activate();
         vm.onInitView = onInitView;
@@ -127,12 +128,12 @@
             for (var i = 0; i < vm.data.KhoTonKhoList.length; i++) {
                 var KhoTonKho = vm.data.KhoTonKhoList[i];
                 if (KhoTonKho.isSelected) {
-                    KhoTonKhoSelected.push(KhoTonKho.MuaSamId);
+                    KhoTonKhoSelected.push(KhoTonKho.KhoTonKhoId);
                 }
             }
             var ids = KhoTonKhoSelected.join(',');
             if (ids.length > 0) {
-                KhoTonKhoService.removeList(ids).then(function (success) {
+                KhoTonKhoService.remove(ids).then(function (success) {
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
@@ -152,7 +153,7 @@
         function CheckRow() {
             for (var i = 0; i < vm.data.KhoTonKhoList.length; i++) {
                 var KhoTonKho = vm.data.KhoTonKhoList[i];
-                if (KhoTonKho.DuyetId != 0 && KhoTonKho.isSelected) {
+                if (KhoTonKho.TrangThai == 1 && KhoTonKho.isSelected) {
                     vm.data.RowChecked = false;
                     return;
                 }

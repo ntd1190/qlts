@@ -39,7 +39,7 @@
                             <th class="text-center" style="width: 50px" st-sort="DonViTinh">ĐVT</th>
                             <th class="text-center" style="width: 250px" st-sort="TenNguonNganSach">Nguồn</th>
                             <th class="text-center" style="width: 250px" st-sort="TenNhaCungCap">Nhà cung cấp</th>
-                            <th class="text-center" style="width: 100px" st-sort="HangDung">Hạng dùng</th>
+                            <th class="text-center" style="width: 100px" st-sort="HanDung">Hạn dùng</th>
                             <th class="text-center" style="width: 100px" st-sort="LoSanXuat">Lô SX</th>
                             <th class="text-center" style="width: 100px" st-sort="TonDau">Số lượng</th>
                             <th class="text-center" style="width: 100px" st-sort="DonGia">Đơn giá</th>
@@ -59,11 +59,11 @@
                             <td><span ng-bind="KhoTonKhoChiTiet.DonViTinh"></span></td>
                             <td><span ng-bind="KhoTonKhoChiTiet.TenNguonNganSach"></span></td>
                             <td><span ng-bind="KhoTonKhoChiTiet.TenNhaCungCap"></span></td>
-                            <td><span ng-bind="KhoTonKhoChiTiet.HangDung"></span></td>
+                            <td><span ng-bind="KhoTonKhoChiTiet.HanDung"></span></td>
                             <td><span ng-bind="KhoTonKhoChiTiet.LoSanXuat"></span></td>
-                            <td><span ng-bind="KhoTonKhoChiTiet.TonDau"></span></td>
-                            <td><span ng-bind="KhoTonKhoChiTiet.DonGia"></span></td>
-                            <td><span ng-bind="KhoTonKhoChiTiet.SoTien"></span></td>
+                            <td class="text-right"><span ng-bind="KhoTonKhoChiTiet.TonDau"></span></td>
+                            <td class="text-right"><span ng-bind="KhoTonKhoChiTiet.DonGia"></span></td>
+                            <td class="text-right"><span ng-bind="KhoTonKhoChiTiet.SoTien"></span></td>
                         </tr>
                     </tbody>
                     
@@ -78,7 +78,8 @@
         </div>
         <div class="panel-footer">
             <button class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonNew" ng-click="ctrl.action.add()"><i class="fa fa-plus"></i> Mới (F2)</button>&nbsp;&nbsp;&nbsp;
-            <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
+            <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
         <div class="panel panel-primary ui-draggable collapse fade" id="KhoTonKhoEditPopup" >
             <div class="panel-heading ui-draggable-handle">
@@ -101,7 +102,7 @@
                     <div class="row form-group form-group-sm" ng-class="(cctrl.status.isInValidTenTaiSan)?'has-error':''">
                         <label class="control-label col-sm-3">Tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                         <div class="col-sm-9">
-                            <cbo-tai-san id="cbxTaiSan" data-function-code="CN0045" data-value="ctrl.data.objKhoTonKho.TaiSanId" ma-tai-san="ctrl.data.objKhoTonKho.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"
+                            <cbo-tai-san id="cbxTaiSan" data-function-code="CN0045" data-value="ctrl.data.objKhoTonKho.TaiSanId"  data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisan"
                                          on-selected="ctrl.action.getDataTaiSan(data)"></cbo-tai-san>
                         </div>
                     </div>

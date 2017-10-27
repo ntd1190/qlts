@@ -123,7 +123,7 @@
 
             return $http(req);
         }
-        service.getComboboxSuDung = function (CoSoId, NhanVienId, Search, MaTaiSan, TaiSanId, FunctionCode) {
+        service.getComboboxSuDung = function (CoSoId, NhanVienId, Search, MaTaiSan, TaiSanId, FunctionCode, PhongBanFilter) {
             var url = api.url + api.getComboboxSuDung;
 
             var req = {
@@ -136,7 +136,8 @@
                     TaiSanId: TaiSanId,
                     CoSoId: CoSoId,
                     NhanVienId: NhanVienId,
-                    FunctionCode: FunctionCode
+                    FunctionCode: FunctionCode,
+                    PhongBanFilter: PhongBanFilter
                 })
             }
 

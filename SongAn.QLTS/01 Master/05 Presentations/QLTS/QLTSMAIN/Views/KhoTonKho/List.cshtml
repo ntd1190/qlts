@@ -34,6 +34,7 @@
                         <th class="text-center" style="width: 50px;">Chọn</th>
                         <th class="text-center" style="width: 100px;" st-sort="Nam">Tháng năm</th>
                         <th class="text-center" st-sort="TenKhoTaiSan">Tên kho</th>
+                        <th class="text-center" style="width: 150px;" st-sort="TrangThai">Trạng thái</th>
                         <th class="text-center" style="width: 150px;" st-sort="NgayTao">Ngày tạo</th>
                         <th class="text-center" style="width: 150px;" st-sort="HoTen">Người tạo</th>
                     </tr>
@@ -44,11 +45,14 @@
                             <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
                     </tr>
-                    <tr ng-repeat="KhoTonKho in ctrl.data.KhoTonKhoList" ng-click="ctrl.action.getPageChiTiet(KhoTonKho.MuaSamId)" id="row_{{KhoTonKho.MuaSamId}}" ng-class="(KhoTonKho.isSelected==true)?'info':''">
-                        <td st-select-row="KhoTonKho" st-select-mode="multiple" ng-click="ctrl.action.CheckRow()" class="text-center"><i class="fa fa-fw text-primary" ng-class="(KhoTonKho.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                    <tr ng-repeat="KhoTonKho in ctrl.data.KhoTonKhoList"  id="row_{{KhoTonKho.MuaSamId}}" ng-class="(KhoTonKho.isSelected==true)?'info':''">
+                        <td st-select-row="KhoTonKho" st-select-mode="single" ng-click="ctrl.action.CheckRow()" class="text-center"><i class="fa fa-fw text-primary" ng-class="(KhoTonKho.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
                         <td><a ng-bind="KhoTonKho.ThangNam" href="~/KhoTonKho/edit/{{KhoTonKho.ThangNam}}-{{KhoTonKho.KhoTaiSanId}}"></a></td>
                         <td><a ng-bind="KhoTonKho.TenKhoTaiSan" href="~/KhoTonKho/edit/{{KhoTonKho.ThangNam}}-{{KhoTonKho.KhoTaiSanId}}"></a></td>
-                       
+                        <td >
+                            <span ng-if="KhoTonKho.TrangThai=='0'" class="text-warning text-center">Chưa khóa</span>
+                            <span ng-if="KhoTonKho.TrangThai=='1'" class="text-success text-center">Đã khóa</span>
+                        </td>
                         <td><span> {{ KhoTonKho.NgayTao | date : 'dd/MM/yyyy HH:mm'}} </span></td>
                         <td>
                             <span ng-bind="KhoTonKho.HoTen"></span>

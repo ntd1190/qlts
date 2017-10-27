@@ -86,7 +86,9 @@
             deleteSelected: deleteSelected,
             keyPress: keyPress,
             getDataTaiSan: getDataTaiSan,
-            save: save
+            save: save,
+            close: close,
+            refresh: refresh
 
         };
         vm.status = {
@@ -99,6 +101,9 @@
         };
         activate();
         vm.onInitView = onInitView;
+        vm.action.goBack = function () {
+            window.history.back();
+        };
         function activate() {
             eventAutoReload();
         }
@@ -157,7 +162,7 @@
             for (var i = 0; i < vm.data.KhoTonKhoListDisplay.length; i++) {
                 var KhoTonKho = vm.data.KhoTonKhoListDisplay[i];
                 if (KhoTonKho.isSelected) {
-                    KhoTonKhoSelected.push(KhoTonKho.KhoTonKhoId);
+                    KhoTonKhoSelected.push(KhoTonKho.KhoTonKhoChiTietId);
                 }
             }
             var ids = KhoTonKhoSelected.join(',');
@@ -166,7 +171,7 @@
                 vm.data.isLoading = false;
                 _tableState.pagination.start = 0;
                 getPageDetail(_tableState);
-                alert('Xóa thành công!')
+                utility.AlertSuccess('Xóa thành công!');
             }, function (error) {
                 vm.data.isLoading = false;
                 alert(error.data.error.code + " : " + error.data.error.message);
@@ -208,6 +213,12 @@
                     vm.data.KhoTonKhoListDisplay = success.data.data;
                     KhoTonKhoId = vm.data.KhoTonKhoListDisplay[0].KhoTonKhoId || 0;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);
+                    if(vm.data.KhoTonKhoListDisplay[0].TrangThai == 1)
+                    {
+                            vm.data.showButtonNew = false;
+                            vm.data.showButtonXoaChon = false;
+                            vm.data.showButtonSave = false;
+                    }
                 }
                 $('#bgloadding').remove();
                 vm.data.isLoading = false;
@@ -247,12 +258,35 @@
             $("#txtMaTaiSan").focus();
             $rootScope.isOpenPopup = true;
         }
-
+        function close()
+        {
+            delete vm.data.objKhoTonKho; vm.data.objKhoTonKho = { NhaCungCapId: 0, NguonNganSachId: 0 };
+            KhoTonKhoChiTietId = 0;
+            $rootScope.isOpenPopup = false;
+        }
+        
+        function refresh() {
+            delete vm.data.objKhoTonKho; vm.data.objKhoTonKho = { NhaCungCapId: 0, NguonNganSachId: 0 };
+            KhoTonKhoService.getTonKhoChiTietById(KhoTonKhoChiTietId).then(function (success) {
+              
+                vm.data.objKhoTonKho = success.data.data;
+            }, function (error) {
+                alert(error.data.error.code + " : " + error.data.error.message);
+            });
+        }
         function edit(id) {
-            $('#KhoTonKhoEditPopup').collapse('show');
-            $("#txtMaTaiSan").focus();
             KhoTonKhoChiTietId = id;
-            $rootScope.isOpenPopup = true;
+            KhoTonKhoService.getTonKhoChiTietById(KhoTonKhoChiTietId).then(function (success) {
+                vm.data.objKhoTonKho = success.data.data;
+                $('#KhoTonKhoEditPopup').collapse('show');
+                $("#txtMaTaiSan").focus();
+               
+                $rootScope.isOpenPopup = true;
+            }, function (error) {
+                vm.data.isLoading = false;
+                alert(error.data.error.code + " : " + error.data.error.message);
+            });
+           
         }
 
         function clearArray(array) {
@@ -267,6 +301,11 @@
             }
         }
         function editChiTiet() {
+            if (vm.data.objKhoTonKho.SLNhap > 0 || vm.data.objKhoTonKho.SLXuat > 0)
+            {
+                alert('Tài sản đã xuất hoặc sử dụng không thể sửa!');
+                return;
+            }
             vm.status.isInValidMaTaiSan = utility.checkInValid(vm.data.objKhoTonKho.MaTaiSan, 'isCode');
             if (vm.status.isInValidMaTaiSan) {
                 $("#txtMaTaiSan").focus();
@@ -292,11 +331,20 @@
                 $("#txtDonGia").focus();
                 return;
             }
-            vm.data.objKhoTonKho.NgungTheoDoi = vm.data.objKhoTonKho.NgungTheoDoi ? 1 : 0;
             vm.status.isLoading = true;
-            KhoTonKhoService.update(vm.data.objKhoTonKho).then(function (success) {
+            vm.data.objKhoTonKho.CoSoId = vm.data.CoSoId;
+            vm.data.objKhoTonKho.NguoiTao = vm.data.UserLoginId;
+            vm.data.objKhoTonKho.NgungTheoDoi = vm.data.objKhoTonKho.NgungTheoDoi ? 1 : 0;
+            vm.data.objKhoTonKho.KhoTonKhoId = KhoTonKhoId;
+            vm.data.objKhoTonKho.KhoTaiSanId = KhoTaiSanId;
+            vm.data.objKhoTonKho.ThangNam = ThangNam;
+            var objKhoTonKho = utility.clone(vm.data.objKhoTonKho);
+            var data = {};
+            data.KhoTonKho = angular.toJson(objKhoTonKho);
+            KhoTonKhoService.update(data).then(function (success) {
                 if (success.data.data) {
                     vm.data.objKhoTonKho = success.data.data;
+                    utility.AlertSuccess('Cập nhật thành công!');
                     $rootScope.$broadcast('sa.qltsmain.KhoTonKho.KhoTonKho.reload');
                 }
 
@@ -346,6 +394,7 @@
             KhoTonKhoService.insert(data).then(function (success) {
                 if (success.data.result) {
                     KhoTonKhoId = success.data.KhoTonKhoId;
+                    utility.AlertSuccess('Thêm thành công!');
                 }
                 vm.status.isLoading = false;
                 $('#KhoTonKhoEditPopup').collapse('hide');
@@ -407,7 +456,6 @@
         }
         function getDataTaiSan(data) {
             console.log(data);
-
             vm.data.objKhoTonKho.TaiSanId = data.TaiSanId;
             vm.data.objKhoTonKho.MaTaiSan = data.MaTaiSan;
         }

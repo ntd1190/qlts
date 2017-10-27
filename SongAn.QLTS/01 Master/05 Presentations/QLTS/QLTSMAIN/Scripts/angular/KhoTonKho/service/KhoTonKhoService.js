@@ -6,21 +6,22 @@
         .factory('KhoTonKhoService', KhoTonKhoService);
 
     function KhoTonKhoService($http, API_BASE) {
-    var api = {
-        url: API_BASE+'Api.QLTS/KhoTonKho/',
-        insert: 'InsertKhoTonKho',
-        update: 'UpdateKhoTonKho',
-        GetList: 'GetListKhoTonKho',
-        GetPage: 'GetListKhoTonKhoByProjection',
-        getPageDetail: 'GetListKhoTonKhoChiTietByProjection',
-        GetById: 'GetKhoTonKhoById',
-        GetListBySearchString: 'GetListKhoTonKhoBySearchString',
-        getList: 'getList',
-        getListCount: 'getListCount',
-        getListProjection: 'getListProjection',
-        remove: 'DeleteKhoTonKho',
-        removeList: 'DeleteListKhoTonKho',
-        GetTaiSanById: 'GetKhoTaiSanById'
+        var api = {
+            url: API_BASE+'Api.QLTS/KhoTonKho/',
+            insert: 'InsertKhoTonKho',
+            update: 'UpdateKhoTonKho',
+            GetList: 'GetListKhoTonKho',
+            GetPage: 'GetListKhoTonKhoByProjection',
+            getPageDetail: 'GetListKhoTonKhoChiTietByProjection',
+            GetById: 'GetKhoTonKhoById',
+            GetListBySearchString: 'GetListKhoTonKhoBySearchString',
+            getList: 'getList',
+            getListCount: 'getListCount',
+            getListProjection: 'getListProjection',
+            remove: 'DeleteKhoTonKho',
+            removeList: 'DeleteListKhoTonKho',
+            GetTaiSanById: 'GetKhoTaiSanById',
+            getTonKhoChiTietById: 'GetKhoTonKhoChiTietById'
     }
 
     var service = {
@@ -31,7 +32,9 @@
             insert: insert,
             update: update,
             removeList: removeList,
-            gettaisanById: gettaisanById
+            remove: remove,
+            gettaisanById: gettaisanById,
+            getTonKhoChiTietById: getTonKhoChiTietById
         };
 
         return service;
@@ -50,7 +53,20 @@
 
             return $http(req);
         }
+        function remove(ids) {
+            var url = api.url + api.remove;
 
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    ids: ids
+                })
+            }
+
+            return $http(req);
+        }
         function getPage(draw, start, length, searchString, sortName, sortDir, CoSoId, NhanVienId) {
             var url =api.url + api.GetPage;
 
@@ -113,13 +129,15 @@
             return $http(req);
         }
 
-        function update(obj) {
+        function update(data) {
             var url = api.url + api.update;
             var req = {
                 url: url,
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                data:obj
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    KhoTonKho: data.KhoTonKho,
+                })
             }
             return $http(req);
         }
@@ -134,7 +152,17 @@
             }
             return $http(req);
         };
-
+        function getTonKhoChiTietById(id) {
+            var url = api.url + api.getTonKhoChiTietById;
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({ TonKhoChiTietId: id })
+            }
+            return $http(req);
+        };
+        
         function getList() {
             var url = api.url + api.GetListBySearchString;
 

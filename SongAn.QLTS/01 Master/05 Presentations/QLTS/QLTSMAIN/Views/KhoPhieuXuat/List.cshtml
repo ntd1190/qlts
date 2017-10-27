@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Phiếu nhập kho";
+    ViewBag.Title = "Phiếu xuất kho";
 }
 <div class="container-fluid">
-    <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="KhoPhieuNhapFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+    <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="KhoPhieuXuatFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
         <div class="panel-heading clearfix">
-            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Phiếu nhập kho</span>
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Phiếu xuất kho</span>
             <div class="btn-group btn-group-sm pull-right">
                 <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
                 <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
@@ -36,24 +36,24 @@
     </div>
     <!--end filter-->
 
-    <div ng-controller="KhoPhieuNhapListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
+    <div ng-controller="KhoPhieuXuatListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
-            <span ng-if="ctrl.data.showButtonNew">
-                <a class="btn btn-sm btn-primary" href="~/KhoPhieuNhap/edit?id=0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                <a class="btn btn-sm btn-primary" href="~/KhoPhieuXuat/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
-            <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
+            <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                <button class="btn btn-sm btn-danger" ng-click="ctrl.action.removePhieuXuat()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
+            </span>
         </div>
         <div class="table-container  panel-body">
-            <table st-table="ctrl.data.KhoPhieuNhapListDisplay" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
+            <table st-table="ctrl.data.listKhoPhieuXuat" st-pipe="ctrl.action.getPage" class="table table-bordered table-condensed table-responsive table-hover ">
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="width: 40px;">Chọn</th>
-                        <th class="text-center" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
-                            <span ng-bind="::cot.TenCot"></span>
+                        <th class="text-center" ng-repeat="cot in ctrl.data.listCotPhieuXuat|filter:ctrl.action.checkCot" st-sort="{{cot.MaCot}}">
+                            <span ng-bind="cot.TenCot"></span>
                         </th>
-
                     </tr>
-
                 </thead>
                 <tbody>
                     <tr ng-if="ctrl.status.isLoading">
@@ -61,15 +61,15 @@
                             <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
                     </tr>
-                    <tr ng-repeat="KhoPhieuNhap in ctrl.data.KhoPhieuNhapListDisplay" ng-click="ctrl.action.getPageDetail(KhoPhieuNhap.KhoPhieuNhapId)" id="row_{{KhoPhieuNhap.KhoPhieuNhapId}}" ng-class="(KhoPhieuNhap.isSelected==true)?'info':''">
-                        <td st-select-row="KhoPhieuNhap" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(KhoPhieuNhap.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
-                        <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                            <a ng-switch-when="SoPhieu" href="~/KhoPhieuNhap/edit?id={{KhoPhieuNhap.KhoPhieuNhapId}}">{{ KhoPhieuNhap.SoPhieu}}</a>
-                            <span ng-switch-when="NgayNhap">{{ KhoPhieuNhap.NgayNhap | date : 'dd/MM/yyyy'}}</span>
-                            <span ng-switch-when="NgayTao">{{ KhoPhieuNhap.NgayTao | date : 'dd/MM/yyyy'}}</span>
-                            <span ng-switch-default ng-bind="::KhoPhieuNhap[cot.MaCot]"></span>
+                    <tr ng-repeat="KhoPhieuXuat in ctrl.data.listKhoPhieuXuat" ng-click="ctrl.action.xemChiTiet(KhoPhieuXuat)" st-select-row="KhoPhieuXuat" ng-class="(KhoPhieuXuat.isSelected==true)?'info':''">
+                        <td class="text-center text-primary" ng-click="ctrl.action.autoCheckAll()">
+                            <i class="fa fa-fw" ng-class="(KhoPhieuXuat.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i>
                         </td>
-
+                        <td ng-repeat="cot in ctrl.data.listCotPhieuXuat|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                            <a ng-switch-when="SoPhieu" href="~/KhoPhieuXuat/edit/{{KhoPhieuXuat.KhoPhieuXuatId}}" ng-bind="KhoPhieuXuat.SoPhieu"></a>
+                            <div class="text-center" ng-switch-when="NgayXuat,NgayTao" ng-switch-when-separator="," ng-bind="KhoPhieuXuat.NgayXuat | date : 'dd/MM/yyyy'"></div>
+                            <span ng-switch-default ng-bind="KhoPhieuXuat[cot.MaCot]"></span>
+                        </td>
                     </tr>
                 </tbody>
                 <tfoot>
@@ -87,7 +87,7 @@
         </div>
 
         <div class="table-responsive  panel-body">
-            <table st-table="ctrl.data.KhoPhieuNhapChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+            <table st-table="ctrl.data.listChiTiet" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-hover">
                 <thead class="bg-default text-primary">
                     <tr>
                         <th class="text-center" style="min-width: 40px;vertical-align:middle">STT</th>
@@ -98,8 +98,6 @@
                         <th class="text-center" style="min-width: 90px;vertical-align:middle">Số lượng</th>
                         <th class="text-center" style="min-width: 100px;vertical-align:middle">Đơn giá</th>
                         <th class="text-center" style="min-width: 120px;vertical-align:middle">Số tiền</th>
-                        <th class="text-center" style="min-width: 70px;vertical-align:middle">Thuế (%)</th>
-                        <th class="text-center" style="min-width: 100px;vertical-align:middle">Tiền thuế</th>
                         <th class="text-center" style="min-width: 120px;vertical-align:middle">Tổng tiền</th>
 
                     </tr>
@@ -110,24 +108,22 @@
                             <i class="fa fa-fw fa-spin fa-spinner"></i>
                         </td>
                     </tr>
-                    <tr ng-repeat="KhoPhieuNhapChiTiet in ctrl.data.KhoPhieuNhapChiTietListDisplay" ng-class="(KhoPhieuNhapChiTiet.isSelected==true)?'info':''">
+                    <tr ng-repeat="KhoPhieuXuatChiTiet in ctrl.data.listChiTiet" ng-class="(KhoPhieuXuatChiTiet.isSelected==true)?'info':''">
                         <td class="text-center">{{$index + 1}}</td>
-                        <td><span ng-bind="KhoPhieuNhapChiTiet.TenTaiSan"></span></td>
-                        <td><span ng-bind="KhoPhieuNhapChiTiet.DonViTinh"></span></td>
-                        <td><span ng-bind="KhoPhieuNhapChiTiet.HangDung"></span></td>
-                        <td><span ng-bind="KhoPhieuNhapChiTiet.LoSanXuat"></span></td>
-                        <td class="text-right"><span ng-bind="KhoPhieuNhapChiTiet.SoLuong|number"></span></td>
-                        <td class="text-right"><span ng-bind="KhoPhieuNhapChiTiet.DonGia|number"></span></td>
-                        <td class="text-right"><span ng-bind="(+KhoPhieuNhapChiTiet.SoLuong*KhoPhieuNhapChiTiet.DonGia)|number"></span></td>
-                        <td class="text-right"><span ng-bind="KhoPhieuNhapChiTiet.VAT|number"></span></td>
-                        <td class="text-right"><span ng-bind="KhoPhieuNhapChiTiet.TienThue|number"></span></td>
-                        <td class="text-right"><span ng-bind="(+KhoPhieuNhapChiTiet.SoLuong*KhoPhieuNhapChiTiet.DonGia + KhoPhieuNhapChiTiet.TienThue)|number"></span></td>
+                        <td><span ng-bind="KhoPhieuXuatChiTiet.TenTaiSan"></span></td>
+                        <td><span ng-bind="KhoPhieuXuatChiTiet.DonViTinh"></span></td>
+                        <td><span ng-bind="KhoPhieuXuatChiTiet.HangDung"></span></td>
+                        <td><span ng-bind="KhoPhieuXuatChiTiet.LoSanXuat"></span></td>
+                        <td class="text-right"><span ng-bind="KhoPhieuXuatChiTiet.SoLuong|number"></span></td>
+                        <td class="text-right"><span ng-bind="KhoPhieuXuatChiTiet.DonGia|number"></span></td>
+                        <td class="text-right"><span ng-bind="(+KhoPhieuXuatChiTiet.SoLuong*KhoPhieuXuatChiTiet.DonGia)|number"></span></td>
+                        <td class="text-right"><span ng-bind="(+KhoPhieuXuatChiTiet.SoLuong*KhoPhieuXuatChiTiet.DonGia + KhoPhieuXuatChiTiet.TienThue)|number"></span></td>
                     </tr>
                 </tbody>
                 <tfoot>
                     <tr>
                         <td colspan="100">
-                            <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
+                            <p class="text-danger">Tổng số : <span ng-bind="ctrl.data.listChiTiet[0].MAXCNT"></span></p>
                         </td>
                     </tr>
                 </tfoot>
@@ -138,7 +134,7 @@
 
 
     <!-- popup danh sách tùy chọn cột -->
-    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0032'})">
+    <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0033'})">
         <div class="panel-heading ui-draggable-handle">
             <div class="panel-title">
                 <span>Tùy chọn cột</span>
@@ -183,15 +179,10 @@
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/KhoPhieuNhap/controller/KhoPhieuNhapListCtrl.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuNhap/service/KhoPhieuNhapService.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuNhap/controller/KhoPhieuNhapFilterCtrl.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuNhap/controller/KhoPhieuNhapEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuat/controller/KhoPhieuXuatListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuat/controller/KhoPhieuXuatFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuat/service/KhoPhieuXuatService.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
-    @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-    @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-    @{Html.RenderPartial("~/views/NguonNganSach/cboNguonNganSach.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-    @{Html.RenderPartial("~/views/NhaCungCap/cboNhaCungCap.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/KhoTaiSan/cboKhoTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
