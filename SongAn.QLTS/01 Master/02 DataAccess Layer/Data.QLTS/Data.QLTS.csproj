@@ -88,6 +88,7 @@
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoTonKho\CheckKhoTonKhoDac.cs" />
     <Compile Include="KhoTonKho\DeleteKhoTonKhoDac.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaProjectionDac.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaProjectionDac.cs" />

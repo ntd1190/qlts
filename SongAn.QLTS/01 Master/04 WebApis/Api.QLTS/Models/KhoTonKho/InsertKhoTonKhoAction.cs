@@ -26,7 +26,16 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
             try
             {
                 init();
-                validate();
+                CheckKhoTonKhoBiz check = new CheckKhoTonKhoBiz(context);
+                check.TaiSanId = _KhoTonKho.TaiSanId;
+                check.KhoTaiSanId = _KhoTonKho.KhoTaiSanId;
+                check.ThangNam = _KhoTonKho.ThangNam;
+                check.DonGia = _KhoTonKho.DonGia;
+                var number = await check.Execute();
+                if (number.FirstOrDefault().NumberRow > 0)
+                {
+                    throw new FormatException("Tài sản: "+ _KhoTonKho.TenTaiSan + "(" + _KhoTonKho.MaTaiSan + ") \n Đơn giá:" + _KhoTonKho.DonGia + "\n Đã tồn tại trong kho không thể thêm");
+                }
                 if (_KhoTonKho.KhoTonKhoId > 0)
                 {
                     KhoTonKhoChiTietRepository rpct = new KhoTonKhoChiTietRepository(context);
@@ -92,8 +101,6 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 
             KhoTonKho = JsonConvert.SerializeObject(__KhoTonKho);
             _KhoTonKho = JsonConvert.DeserializeObject<KhoTonKhoEntity>(KhoTonKho);
-
-            
         }
         public class KhoTonKhoEntity
         {
@@ -103,6 +110,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
             public virtual string ThangNam { get; set; }
             public virtual int NguoiTao { get; set; }
             public virtual int TaiSanId { get; set; }
+            public virtual string MaTaiSan { get; set; }
+            public virtual string TenTaiSan { get; set; }
             public virtual decimal DonGia { get; set; }
             public virtual decimal GiaMua { get; set; }
             public virtual decimal GiaBan { get; set; }
@@ -116,10 +125,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 
 
         }
-        private void validate()
-        {
-
-        }
+       
 
         #region helpers
         private ActionResultDto returnActionError(HttpStatusCode code, string message)

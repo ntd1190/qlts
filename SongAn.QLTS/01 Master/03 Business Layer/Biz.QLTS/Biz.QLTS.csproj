@@ -91,6 +91,7 @@
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoTonKho\CheckKhoTonKhoBiz.cs" />
     <Compile Include="KhoTonKho\DeleteKhoTonKhoBiz.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaBiz.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaBiz.cs" />

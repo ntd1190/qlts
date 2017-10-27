@@ -25,14 +25,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
                     dynamic result = new System.Dynamic.ExpandoObject();
                     var repo = new KhoTonKhoChiTietRepository(context);
                     await repo.UpdatePartial(_KhoTonKho,
-                         nameof(_KhoTonKho.KhoTonKhoId),
-                          nameof(_KhoTonKho.TaiSanId),
-                          nameof(_KhoTonKho.DonGia),
                           nameof(_KhoTonKho.GiaMua),
                           nameof(_KhoTonKho.GiaBan),
                           nameof(_KhoTonKho.TonDau),
-                          nameof(_KhoTonKho.SLNhap),
-                          nameof(_KhoTonKho.SLXuat),
                           nameof(_KhoTonKho.NguonNganSachId),
                           nameof(_KhoTonKho.NhaCungCapId),
                           nameof(_KhoTonKho.HanDung),
