@@ -25,10 +25,11 @@ namespace SongAn.QLTS.Data.QLTS.TaiSan
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         public virtual string FunctionCode { get; set; }
-        #endregion
+        public virtual string PhongBanFilter { get; set; }
+    #endregion
 
-        #region private variable
-        ContextDto _context;
+    #region private variable
+    ContextDto _context;
         #endregion
 
         #region constructor

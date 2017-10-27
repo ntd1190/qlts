@@ -72,6 +72,7 @@
     <Compile Include="BienBanKiemKe\InsertBienBanKiemKeDac.cs" />
     <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdDac.cs" />
     <Compile Include="ChotSoLieuNam\ChotSoLieuNamDac.cs" />
+    <Compile Include="ChotSoLieuThang\ChotSoLieuThangDac.cs" />
     <Compile Include="CoSo\cbxGetListCoSoByCriteriaDac.cs" />
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
@@ -87,6 +88,7 @@
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoTonKho\DeleteKhoTonKhoDac.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaProjectionDac.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaProjectionDac.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoChiTietDac.cs" />
@@ -277,6 +279,7 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
+    <Content Include="KeHoachMuaSam\Procedures\sp_KeHoachMuaSam_GetListKeHoachMuaSamByCriteria.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetKhoPhieuXuatChiTietById.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetKhoPhieuXuatById.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetListKhoPhieuXuatByCriteria.sql" />
@@ -319,7 +322,6 @@
     <Folder Include="GhiGiamChiTiet\Procedures\" />
     <Folder Include="GhiGiam\Procedures\" />
     <Folder Include="KeHoachMuaSamChiTiet\Procedures\" />
-    <Folder Include="KeHoachMuaSam\Procedures\" />
     <Folder Include="KhoTonKho\Procedures\" />
     <Folder Include="LapBaoCao\Procedures\" />
     <Folder Include="TheoDoi\Procedures\" />

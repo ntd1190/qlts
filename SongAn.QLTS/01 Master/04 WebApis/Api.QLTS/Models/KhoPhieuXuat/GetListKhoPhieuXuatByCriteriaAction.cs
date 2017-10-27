@@ -21,6 +21,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoPhieuXuat
         public  string KHOPHIEUXUATID { get; set; }
         public  string COSOID { get; set; }
         public  string NHANVIENID { get; set; }
+        public  string KHOTAISANID { get; set; }
+        public  string STARTDATE { get; set; }
+        public  string ENDDATE { get; set; }
 
         public  string FIELD { get; set; }
         public string sortName { get; set; }
@@ -58,6 +61,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoPhieuXuat
                 biz.NHANVIENID = Protector.String(NHANVIENID, "");
                 biz.SEARCH = Protector.String(SEARCH, "");
                 biz.SOPHIEU = Protector.String(SOPHIEU, "");
+                biz.STARTDATE = Protector.String(STARTDATE, "");
+                biz.ENDDATE = Protector.String(ENDDATE, "");
+                biz.KHOTAISANID = Protector.String(KHOTAISANID, "");
 
                 biz.FIELD = Protector.String(FIELD, "");
                 biz.ORDERCLAUSE = Protector.String(_orderClause, "");

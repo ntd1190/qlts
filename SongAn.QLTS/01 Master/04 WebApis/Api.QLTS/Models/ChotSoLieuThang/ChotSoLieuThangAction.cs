@@ -1,19 +1,25 @@
 ﻿using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
+using System.Linq;
+using SongAn.QLTS.Biz.QLTS.ChotSoLieuThang;
 using SongAn.QLTS.Data.Repository.QLTS;
+using System.Globalization;
 using Newtonsoft.Json;
 
-namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho 
+namespace SongAn.QLTS.Api.QLTS.Models.ChotSoLieuThang
 {
-    public class UpdateKhoTonKhoAction 
+    public class ChotSoLieuThangAction
     {
-        public string KhoTonKho { get; set; }
+        public string ThangNam { get; set; }
+        public string CoSoId { get; set; }
+        public string LoginId { get; set; }
 
         #region private
-        private SongAn.QLTS.Entity.QLTS.Entity.KhoTonKhoChiTiet _KhoTonKho;
+
         #endregion
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -22,24 +28,16 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
             {
                 init();
                 validate();
-                    dynamic result = new System.Dynamic.ExpandoObject();
-                    var repo = new KhoTonKhoChiTietRepository(context);
-                    await repo.UpdatePartial(_KhoTonKho,
-                         nameof(_KhoTonKho.KhoTonKhoId),
-                          nameof(_KhoTonKho.TaiSanId),
-                          nameof(_KhoTonKho.DonGia),
-                          nameof(_KhoTonKho.GiaMua),
-                          nameof(_KhoTonKho.GiaBan),
-                          nameof(_KhoTonKho.TonDau),
-                          nameof(_KhoTonKho.SLNhap),
-                          nameof(_KhoTonKho.SLXuat),
-                          nameof(_KhoTonKho.NguonNganSachId),
-                          nameof(_KhoTonKho.NhaCungCapId),
-                          nameof(_KhoTonKho.HanDung),
-                          nameof(_KhoTonKho.LoSanXuat)
-                         );
-                    result.data = this;
-                    return returnActionResult(HttpStatusCode.OK, result.data, null);
+
+                var biz = new ChotSoLieuThangBiz(context);
+                biz.ThangNam = Protector.String(ThangNam);
+                biz.CoSoId = Protector.String(CoSoId);
+                biz.NhanVienId = Protector.String(LoginId);
+                var result = await biz.Execute();
+
+                dynamic _metaData = new System.Dynamic.ExpandoObject();
+
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, _metaData);
             }
             catch (FormatException ex)
             {
@@ -53,11 +51,6 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 
         private void init()
         {
-            var __KhoTonKho = JsonConvert.DeserializeObject<dynamic>(KhoTonKho);
-
-            KhoTonKho = JsonConvert.SerializeObject(__KhoTonKho);
-            _KhoTonKho = JsonConvert.DeserializeObject<SongAn.QLTS.Entity.QLTS.Entity.KhoTonKhoChiTiet>(KhoTonKho);
-
 
         }
 

@@ -72,15 +72,9 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
                     KhoTonKhoChiTiet.LoSanXuat = _KhoTonKho.LoSanXuat;
                     await rpct.Insert(KhoTonKhoChiTiet);
                 }
-
-                
-
                // var result;
-
-
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
-
-                return ActionHelper.returnActionResult(HttpStatusCode.OK, null, _metaData);
+                return ActionHelper.returnActionResult(HttpStatusCode.OK, _KhoTonKho, _metaData);
             }
             catch (FormatException ex)
             {

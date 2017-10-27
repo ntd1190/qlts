@@ -26,6 +26,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
         public virtual int CoSoId { get; set; }
         public virtual int NhanVienId { get; set; }
         public virtual string FunctionCode { get; set; }
+        public virtual string PhongBanFilter { get; set; }
         #endregion
         #region private
         #endregion
@@ -49,7 +50,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhomTaiSan
                 biz.CoSoId = CoSoId;
                 biz.NhanVienId = NhanVienId;
                 biz.FunctionCode = FunctionCode;
-
+                biz.PhongBanFilter = PhongBanFilter;
                 var result = await biz.Execute();
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, result, null);

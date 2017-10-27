@@ -1,19 +1,20 @@
-﻿using SongAn.QLTS.Util.Common.Dto;
+﻿using SongAn.QLTS.Data.Repository.QLTS;
+using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Net;
+using System.Text;
 using System.Threading.Tasks;
-using SongAn.QLTS.Data.Repository.QLTS;
-using Newtonsoft.Json;
 
-namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho 
+namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 {
-    public class UpdateKhoTonKhoAction 
+    public class DeleteKhoTonKhoAction
     {
-        public string KhoTonKho { get; set; }
-
+        public string ids { get; set; }
         #region private
-        private SongAn.QLTS.Entity.QLTS.Entity.KhoTonKhoChiTiet _KhoTonKho;
+        private List<int> _listId;
         #endregion
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -22,24 +23,17 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
             {
                 init();
                 validate();
-                    dynamic result = new System.Dynamic.ExpandoObject();
-                    var repo = new KhoTonKhoChiTietRepository(context);
-                    await repo.UpdatePartial(_KhoTonKho,
-                         nameof(_KhoTonKho.KhoTonKhoId),
-                          nameof(_KhoTonKho.TaiSanId),
-                          nameof(_KhoTonKho.DonGia),
-                          nameof(_KhoTonKho.GiaMua),
-                          nameof(_KhoTonKho.GiaBan),
-                          nameof(_KhoTonKho.TonDau),
-                          nameof(_KhoTonKho.SLNhap),
-                          nameof(_KhoTonKho.SLXuat),
-                          nameof(_KhoTonKho.NguonNganSachId),
-                          nameof(_KhoTonKho.NhaCungCapId),
-                          nameof(_KhoTonKho.HanDung),
-                          nameof(_KhoTonKho.LoSanXuat)
-                         );
-                    result.data = this;
-                    return returnActionResult(HttpStatusCode.OK, result.data, null);
+
+                var count = 0;
+                for (int i = 0; i < _listId.Count; i++)
+                {
+                    Biz.QLTS.KhoTonKho.DeleteKhoTonKhoBiz biz = new Biz.QLTS.KhoTonKho.DeleteKhoTonKhoBiz(context);
+                    biz.KhoTonKhoId = _listId[i].ToString();
+                    await biz.Execute();
+                    count++;
+                }
+
+                return returnActionResult(HttpStatusCode.OK, count, null);
             }
             catch (FormatException ex)
             {
@@ -53,17 +47,24 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 
         private void init()
         {
-            var __KhoTonKho = JsonConvert.DeserializeObject<dynamic>(KhoTonKho);
+            var _ids = ids.Split(',');
+            _listId = new List<int>();
 
-            KhoTonKho = JsonConvert.SerializeObject(__KhoTonKho);
-            _KhoTonKho = JsonConvert.DeserializeObject<SongAn.QLTS.Entity.QLTS.Entity.KhoTonKhoChiTiet>(KhoTonKho);
-
-
+            for (int i = 0; i < _ids.Length; i++)
+            {
+                _listId.Add(Protector.Int(_ids[i]));
+            }
         }
 
         private void validate()
         {
-
+            for (int i = 0; i < _listId.Count; i++)
+            {
+                if (_listId[i] < 1)
+                {
+                    throw new FormatException("KhoTonKhoId không hợp lệ");
+                }
+            }
         }
 
         #region helpers

@@ -65,6 +65,7 @@
     <Compile Include="Controllers\BaoDuongController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
+    <Compile Include="Controllers\ChotSoLieuThangController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\KhoTonKhoController.cs" />
     <Compile Include="Controllers\DuyetBaoCaoController.cs" />
@@ -113,6 +114,7 @@
     <Compile Include="Models\BienBanKiemKe\InsertBienBanKiemKeAction.cs" />
     <Compile Include="Models\BienBanKiemKe\UpdateBienBanKiemKeByIdAction.cs" />
     <Compile Include="Models\ChotSoLieuNam\ChotSoLieuNamAction.cs" />
+    <Compile Include="Models\ChotSoLieuThang\ChotSoLieuThangAction.cs" />
     <Compile Include="Models\CoSo\cbxGetListCoSoByCriteriaAction.cs" />
     <Compile Include="Models\DanhGia\GetListNguyenGiaByDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\DeleteDanhGiaAction.cs" />
@@ -121,7 +123,9 @@
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\KhoPhieuXuat\DeleteKhoPhieuXuatAction.cs" />
+    <Compile Include="Models\KhoTonKho\DeleteKhoTonKhoAction.cs" />
     <Compile Include="Models\KhoTonKho\DeleteListKhoTonKhoAction.cs" />
+    <Compile Include="Models\KhoTonKho\GetKhoTonKhoChiTietByIdAction.cs" />
     <Compile Include="Models\KhoTonKho\GetListKhoTonKhoChiTietByProjectionAction.cs" />
     <Compile Include="Models\KhoTonKho\GetListKhoTonKhoByProjectionAction.cs" />
     <Compile Include="Models\KhoTonKho\InsertKhoTonKhoAction.cs" />

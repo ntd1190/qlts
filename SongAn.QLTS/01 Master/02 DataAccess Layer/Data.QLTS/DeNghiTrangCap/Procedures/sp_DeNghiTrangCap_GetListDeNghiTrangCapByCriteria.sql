@@ -1,6 +1,6 @@
 ﻿USE [QLTS]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]    Script Date: 9/19/2017 10:24:40 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]    Script Date: 10/27/2017 08:52:02 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9,7 +9,7 @@ GO
 
 ALTER PROC [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]
 ( 
-	  @CoSoId	        INT	
+	  @CoSoId	        NVARCHAR(10)	
 	, @SoPhieu		    nvarchar(500)	= null		
 	, @Search			nvarchar(500)   = null	
 	, @TuNgay			DATETIME		= null		
@@ -27,7 +27,9 @@ SET NOCOUNT ON
 ---- Khai báo và chuẩn bị biến
 ---- Biến nội bộ có tiền tố V_ phía trước
 	DECLARE @V_SQL NVARCHAR(4000) 
-
+	,@Nam	VARCHAR(MAX)	=	NULL
+	--LAY SO LIEU CAU HINH THONG SO
+	EXEC sp_ThongSoUser_GetThongSo @LOAITHONGSO='SoLieuNam',@NHANVIEN=@LoginId,@NAM=@Nam OUTPUT;
 
 
 	SET @Search = ISNULL(@Search, '')
@@ -67,14 +69,15 @@ SET NOCOUNT ON
 	-- selects all rows from the table according to search criteria
 
 	SET @V_SQL = N'
-	SELECT COUNT(*) OVER () AS MAXCNT, H.DeNghiId, H.Ngay, H.SoPhieu, H.PhanLoaiId, PL.TenPhanLoai, H.PhongBanId, PB.TenPhongBan, H.NoiDung, H.CoSoId,
-			H.DuyetId,H.NoiDungDuyet,D.TrangThai,H.NguoiTao,nv.TenNhanVien TenNhanVien,H.NgayTao,H.CtrVersion
+	SELECT COUNT(*) OVER () AS MAXCNT, H.DeNghiId, H.Ngay, H.SoPhieu, H.PhanLoaiId, PL.TenPhanLoai, H.PhongBanId,ISNULL(PB.TenPhongBan,cs.TenCoSo) as TenPhongBan, H.NoiDung, H.CoSoId,
+			H.DuyetId,H.NoiDungDuyet,D.TrangThai,H.NguoiTao,H.GuiCapTren,nv.TenNhanVien TenNhanVien,H.NgayTao,H.CtrVersion
 	FROM dbo.DeNghiTrangCap H 
 	LEFT JOIN dbo.NhanVien nv ON nv.NhanVienId = H.NguoiTao 
 	LEFT JOIN dbo.PhongBan PB ON PB.PhongBanId = h.PhongBanId
 	LEFT JOIN dbo.PhanLoai PL ON PL.PhanLoaiId = h.PhanLoaiId
 	LEFT JOIN dbo.Duyet D ON D.DuyetId = h.DuyetId
-	WHERE 1 = 1 and CAST(Ngay AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) ' 
+	LEFT JOIN dbo.CoSo cs ON cs.CoSoId = h.CoSoId
+	WHERE YEAR(h.ngay)='''+@Nam+''' and CAST(Ngay AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) ' 
 
 	-- Build Where clause
 	-- Where clause Quick search
@@ -92,7 +95,7 @@ SET NOCOUNT ON
 	
 	IF @IS_VIEW = 'VB' 
 	BEGIN    
-		SET @V_SQL = @V_SQL + ' and H.CoSoId =''' + @CoSoId + '''';   
+		SET @V_SQL = @V_SQL + ' and  H.CoSoId =''' + @CoSoId + '''';   
 	END
 	IF @IS_VIEW = 'VR' 
 	BEGIN    
@@ -105,7 +108,7 @@ SET NOCOUNT ON
 
 	-- Build Order clause
 	IF @OrderClause > ''
-	SET @V_SQL = @V_SQL + ' ORDER BY ' + @OrderClause
+	SET @V_SQL = @V_SQL + ' ORDER BY  H.Ngay desc,' + @OrderClause
 
 	-- Build Skip clause
 	SET @V_SQL = @V_SQL + ' ' + 'OFFSET '+ CAST(@Skip AS nvarchar(20)) +' ROWS'

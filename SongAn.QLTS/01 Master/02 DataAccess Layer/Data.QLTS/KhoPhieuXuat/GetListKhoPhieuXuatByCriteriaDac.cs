@@ -19,6 +19,9 @@ namespace SongAn.QLTS.Data.QLTS.KhoPhieuXuat
         public virtual string KHOPHIEUXUATID { get; set; }
         public virtual string COSOID { get; set; }
         public virtual string NHANVIENID { get; set; }
+        public virtual string STARTDATE { get; set; }
+        public virtual string ENDDATE { get; set; }
+        public virtual string KHOTAISANID { get; set; }
 
         public virtual string FIELD { get; set; }
         public virtual string ORDERCLAUSE { get; set; }

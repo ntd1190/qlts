@@ -26,7 +26,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhoTonKho
 
                 var count = 0;
 
-                var repo = new KhoTonKhoRepository(context);
+                var repo = new KhoTonKhoChiTietRepository(context);
 
                 for (int i = 0; i < _listId.Count; i++)
                 {

@@ -49,5 +49,17 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteKhoTonKho([FromBody]DeleteKhoTonKhoAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetKhoTonKhoChiTietById([FromBody]GetKhoTonKhoChiTietByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

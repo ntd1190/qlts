@@ -60,6 +60,7 @@
     <Compile Include="BienBanKiemKe\InsertBienBanKiemKeBiz.cs" />
     <Compile Include="BienBanKiemKe\UpdateBienBanKiemKeByIdBiz.cs" />
     <Compile Include="ChotSoLieuNam\ChotSoLieuNamBiz.cs" />
+    <Compile Include="ChotSoLieuThang\ChotSoLieuThangBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
     <Compile Include="CoSo\cbxGetListCoSoByCriteriaBiz.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonBiz.cs" />
@@ -90,6 +91,7 @@
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoTonKho\DeleteKhoTonKhoBiz.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaBiz.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoByCriteriaBiz.cs" />
     <Compile Include="DuyetBaoCao\DuyetDuyetBaoCaoBiz.cs" />

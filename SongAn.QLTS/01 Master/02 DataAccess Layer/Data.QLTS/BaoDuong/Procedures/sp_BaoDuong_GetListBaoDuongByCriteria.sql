@@ -1,6 +1,6 @@
 ﻿USE [QLTS]
 GO
-/****** Object:  StoredProcedure [dbo].[sp_BaoDuong_GetListBaoDuongByCriteria]    Script Date: 9/19/2017 10:28:39 AM ******/
+/****** Object:  StoredProcedure [dbo].[sp_BaoDuong_GetListBaoDuongByCriteria]    Script Date: 10/27/2017 09:17:29 AM ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -9,7 +9,7 @@ GO
 
 ALTER PROC [dbo].[sp_BaoDuong_GetListBaoDuongByCriteria]
 ( 
-	  @CoSoId	        INT		
+	  @CoSoId	        NVARCHAR(10)		
 	, @Search			nvarchar(500)   = null	
 	, @TuNgay			DATETIME		= null		
 	, @DenNgay			DATETIME		= null		
@@ -24,8 +24,9 @@ SET NOCOUNT ON
 ------------------------------------------------  
 ---- Khai báo và chuẩn bị biến
 ---- Biến nội bộ có tiền tố V_ phía trước
-	DECLARE @V_SQL NVARCHAR(4000) 
-
+	DECLARE @V_SQL NVARCHAR(4000) ,@Nam	VARCHAR(MAX)	=	NULL
+	--LAY SO LIEU CAU HINH THONG SO
+	EXEC sp_ThongSoUser_GetThongSo @LOAITHONGSO='SoLieuNam',@NHANVIEN=@LoginId,@NAM=@Nam OUTPUT;
 	SET @Search = ISNULL(@Search, '')
 	----------
 
@@ -65,7 +66,7 @@ SET NOCOUNT ON
 	LEFT JOIN NhanVien ndd ON ndd.NhanVienId = h.NguoiDuyet
 	LEFT JOIN dbo.PhongBan pb ON pb.PhongBanId = h.PhongBanId
 	LEFT JOIN dbo.NhanVien nv ON nv.NhanVienId = h.NhanVienId
-	WHERE CAST(H.NgayBaoDuong AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) ' 
+	WHERE CAST(H.NgayBaoDuong AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) and YEAR(H.NgayBaoDuong)='''+@Nam+'''' 
 
 	-- Build Where clause
 	-- Where clause Quick search
