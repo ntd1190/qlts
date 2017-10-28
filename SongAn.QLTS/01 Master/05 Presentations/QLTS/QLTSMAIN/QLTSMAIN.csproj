@@ -287,6 +287,8 @@
     <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
     <Content Include="Scripts\angular\KhoPhieuXuat\controller\KhoPhieuXuatFilterCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuXuat\controller\KhoPhieuXuatListCtrl.js" />
+    <Content Include="Scripts\angular\CauHinhHeThong\controller\CauHinhHeThongListCtrl.js" />
+    <Content Include="Scripts\angular\CauHinhHeThong\service\CauHinhHeThongService.js" />
     <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoChiTietListCtrl.js" />
     <Content Include="Scripts\angular\KhoTonKho\controller\KhoTonKhoListCtrl.js" />
     <Content Include="Scripts\angular\KhoTonKho\service\KhoTonKhoService.js" />
@@ -461,6 +463,7 @@
     <Compile Include="Controllers\GiayBaoHongController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
+    <Compile Include="Controllers\CauHinhHeThongController.cs" />
     <Compile Include="Controllers\KhoTonKhoController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
     <Compile Include="Controllers\KhoPhieuNhapController.cs" />
@@ -776,6 +779,7 @@
     <Content Include="Views\KhoTonKho\Edit.cshtml" />
     <Content Include="Views\KhoTonKho\List.cshtml" />
     <Content Include="Views\ChotSoLieuThang\List.cshtml" />
+    <Content Include="Views\CauHinhHeThong\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

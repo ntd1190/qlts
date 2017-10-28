@@ -33,7 +33,7 @@
         function activate() {
             var d = new Date();
             vm.data.nam = d.getFullYear().toString();
-            vm.data.thang = '01';//moment().format('MM');
+            vm.data.thang = moment().format('MM');
         }
 
         /* ACTION FUNCTION */
@@ -41,12 +41,12 @@
 
         vm.action.ChotThang = function () {
             var thangNam = vm.data.thang + vm.data.nam.substr(vm.data.nam.length - 2);
-            alert(thangNam);
+            //alert(thangNam);
 
-            return;
+            //return;
             utility.addloadding($('body'));
             var data = {};
-            data.ThangNam = vm.data.thangNam;
+            data.ThangNam = thangNam;
             data.CoSoId = vm.data.userInfo.CoSoId || 0;
             data.LoginId = vm.data.userInfo.NhanVienId || 0;
 
