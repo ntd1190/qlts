@@ -67,6 +67,7 @@
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\ChotSoLieuThangController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
+    <Compile Include="Controllers\ThongSoController.cs" />
     <Compile Include="Controllers\KhoTonKhoController.cs" />
     <Compile Include="Controllers\DuyetBaoCaoController.cs" />
     <Compile Include="Controllers\DuyetMuaController.cs" />
@@ -123,6 +124,7 @@
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
     <Compile Include="Models\KhoPhieuXuat\DeleteKhoPhieuXuatAction.cs" />
+    <Compile Include="Models\ThongSo\GetListThongSoByProjectionAction.cs" />
     <Compile Include="Models\KhoTonKho\DeleteKhoTonKhoAction.cs" />
     <Compile Include="Models\KhoTonKho\DeleteListKhoTonKhoAction.cs" />
     <Compile Include="Models\KhoTonKho\GetKhoTonKhoChiTietByIdAction.cs" />
@@ -316,6 +318,7 @@
     <Compile Include="Models\TheoDoi\GetListTheoDoiByProjectionAction.cs" />
     <Compile Include="Models\TheoDoi\InsertTheoDoiAction.cs" />
     <Compile Include="Models\TheoDoi\UpdateTheoDoiByIdAction.cs" />
+    <Compile Include="Models\ThongSo\UpdateThongSoAction.cs" />
     <Compile Include="Models\TraCuuTaiSan\LuocSuAction.cs" />
     <Compile Include="Models\TraCuuTaiSan\GetListTaiSanByCriteriaAction.cs" />
     <Compile Include="Models\TraCuuTaiSan\GetListMenuCoSoByNhanVienIdAction.cs" />

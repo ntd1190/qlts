@@ -88,6 +88,8 @@
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatDac.cs" />
+    <Compile Include="ThongSo\UpdateInsertThongSoDac.cs" />
+    <Compile Include="ThongSo\GetListThongSoByCriteriaProjectionDac.cs" />
     <Compile Include="KhoTonKho\CheckKhoTonKhoDac.cs" />
     <Compile Include="KhoTonKho\DeleteKhoTonKhoDac.cs" />
     <Compile Include="KhoTonKho\GetListKhoTonKhoChiTietByCriteriaProjectionDac.cs" />
@@ -326,6 +328,7 @@
     <Folder Include="KhoTonKho\Procedures\" />
     <Folder Include="LapBaoCao\Procedures\" />
     <Folder Include="TheoDoi\Procedures\" />
+    <Folder Include="ThongSo\Procedures\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="BaoDuong\Procedures\sp_BaoDuong_DeleteBaoDuongById.sql" />
