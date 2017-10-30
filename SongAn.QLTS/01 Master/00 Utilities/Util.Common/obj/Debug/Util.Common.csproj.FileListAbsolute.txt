@@ -23,4 +23,3 @@ D:\WebProject\SongAn.QLTS\01 Master\00 Utilities\Util.Common\bin\Debug\System.We
 D:\WebProject\SongAn.QLTS\01 Master\00 Utilities\Util.Common\bin\Debug\System.Web.WebPages.Razor.xml
 D:\WebProject\SongAn.QLTS\01 Master\00 Utilities\Util.Common\obj\Debug\Util.Common.dll
 D:\WebProject\SongAn.QLTS\01 Master\00 Utilities\Util.Common\obj\Debug\Util.Common.pdb
-D:\WebProject\SongAn.QLTS\01 Master\00 Utilities\Util.Common\obj\Debug\Util.Common.csprojResolveAssemblyReference.cache

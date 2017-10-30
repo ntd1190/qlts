@@ -17,7 +17,6 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int NhanVienId { get; set; }
-        public virtual int PhongBanId { get; set; }
         public virtual string MaNhanVien { get; set; }
         public virtual string TenNhanVien { get; set; }
         public virtual string DienThoai { get; set; }

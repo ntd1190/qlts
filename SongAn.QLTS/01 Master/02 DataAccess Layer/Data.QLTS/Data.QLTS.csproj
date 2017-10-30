@@ -77,6 +77,7 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdDac.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonDac.cs" />
     <Compile Include="CrystalReport\ReportGiayBaoHongByIdDac.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuNhapByIdDac.cs" />
@@ -87,7 +88,16 @@
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\DeleteKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatByIdDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatChiTietByIdDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetListKhoPhieuXuatByCriteriaDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\InsertKhoPhieuXuatDac.cs" />
+    <Compile Include="KhoPhieuXuatKhac\UpdateKhoPhieuXuatDac.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatDac.cs" />
+    <Compile Include="NhanVien\DeleteNhanVienByIdDac.cs" />
+    <Compile Include="NhanVien\InsertNhanVienDac.cs" />
+    <Compile Include="NhanVien\UpdateNhanVienByIdDac.cs" />
     <Compile Include="ThongSo\UpdateInsertThongSoDac.cs" />
     <Compile Include="ThongSo\GetListThongSoByCriteriaProjectionDac.cs" />
     <Compile Include="KhoTonKho\CheckKhoTonKhoDac.cs" />
@@ -125,6 +135,7 @@
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetListCoSoTrucThuocById.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_cbxGetListCoSoByCriteria.sql" />
+    <Content Include="CrystalReport\Procedures\sp_KhoPhieuXuat_report_KhoPhieuXuatById.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhai500.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiOto.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiDat.sql" />
@@ -283,6 +294,12 @@
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
     <Content Include="KeHoachMuaSam\Procedures\sp_KeHoachMuaSam_GetListKeHoachMuaSamByCriteria.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_DeleteKhoPhieuXuat.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_GetKhoPhieuXuatById.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_GetKhoPhieuXuatChiTietById.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_GetListKhoPhieuXuatByCriteria.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_InsertKhoPhieuXuat.sql" />
+    <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_UpdateKhoPhieuXuat.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetKhoPhieuXuatChiTietById.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetKhoPhieuXuatById.sql" />
     <Content Include="KhoPhieuXuat\Procedures\sp_KhoPhieuXuat_GetListKhoPhieuXuatByCriteria.sql" />
