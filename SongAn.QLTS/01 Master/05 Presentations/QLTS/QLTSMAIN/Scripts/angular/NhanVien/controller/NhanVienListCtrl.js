@@ -4,7 +4,7 @@
     angular.module("app")
         .controller("NhanVienListCtrl", controller)
 
-    function controller($rootScope, $scope, NhanVienService) {
+    function controller($rootScope, $scope, NhanVienService, utility) {
         var vm = this;
         //HOT-KEY       
         vm.keys = {
@@ -137,7 +137,7 @@
                 vm.data.isLoading = false;
                 _tableState.pagination.start = 0;
                 getPage(_tableState);
-                alert('Xóa thành công!')
+                utility.AlertSuccess('Xóa thành công!');
             }, function (error) {
                 vm.data.isLoading = false;
                 alert(error.data.error.code + " : " + error.data.error.message);

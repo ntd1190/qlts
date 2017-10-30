@@ -133,15 +133,15 @@
                     if (checkSoLuongTon() != null)
                         return;
                 }
-                
+
                 update();
             }
-            else {                
+            else {
                 insert();
             }
         };
         function compareList() {
-            var _1  = vm.data.listChiTiet;
+            var _1 = vm.data.listChiTiet;
             var _2 = vm.data.list1ChiTietGoc;
 
             for (var index1 in vm.data.listChiTiet) {
@@ -153,10 +153,10 @@
                     vm.data.list1ChiTietGoc[index1].PhongBanSuDung = parseInt(vm.data.list1ChiTietGoc[index1].PhongBanSuDung);
                     vm.data.list1ChiTietGoc[index1].NhanVienSuDung = parseInt(vm.data.list1ChiTietGoc[index1].NhanVienSuDung);
                 }
-                
+
                 if (angular.toJson(vm.data.listChiTiet[index1]) === angular.toJson(vm.data.list1ChiTietGoc[index1])) {
-                //if (JSON.stringify(vm.data.listChiTiet[index1]) === JSON.stringify(vm.data.list1ChiTietGoc[index1])) {
-                    
+                    //if (JSON.stringify(vm.data.listChiTiet[index1]) === JSON.stringify(vm.data.list1ChiTietGoc[index1])) {
+
                 }
                 else {
                     return false;
@@ -265,8 +265,8 @@
                         if (vm.data.listChiTiet[index].TaiSanId > 0) {
                             $("#" + ToId + " input").focus();
                         }
-                            }, 100);
-                    
+                    }, 100);
+
                     //if (value != "") {
                     //    $timeout(function () {
                     //        getTaiSan(value);
@@ -275,7 +275,7 @@
                 }
                 else $("#" + ToId).focus();
             }
-            //check TAB key is press
+                //check TAB key is press
             else if (event.keyCode == '9') {
                 if (fromId == ('txtMaTaiSan' + index)) {
                     vm.data.listChiTiet[index].TempMaTaiSan = value;
@@ -283,7 +283,7 @@
             }
         }
 
-        
+
         vm.action.getDataTaiSan = function (data, index) {
             console.log(data);
             console.log(index);
@@ -296,7 +296,7 @@
             vm.data.listChiTiet[index.$index].NhanVienSuDung = data.NhanVienId;
             vm.data.listChiTiet[index.$index].TenNhanVienSuDung = data.TenNhanVien;
             vm.data.listChiTiet[index.$index].SoLuongTon = data.SoLuongTon;
-            
+
         }
 
         vm.action.resetNhanVienId = function (data, index) {
@@ -372,8 +372,7 @@
                     if (parseInt(result.data.data[0]["DieuChuyenIdI"]) < 0) {
                         utility.AlertError("Năm đã chốt hoặc ngày điều chuyển không hợp lệ!");
                     }
-                    else
-                    {
+                    else {
                         utility.AlertSuccess("Điều chuyển thành công");
 
                         $timeout(function () {
@@ -446,7 +445,7 @@
                 return null;
             }
 
-           
+
             return 1;
         }
 
@@ -514,9 +513,8 @@
                     if (vm.data.listChiTiet[index1].TaiSanId == _taiSanId) {
                         _soLuongChuyen += vm.data.listChiTiet[index1].SoLuong * 1;
 
-                        if (vm.data.listChiTiet[index1].PhongBanSuDung == vm.data.listChiTiet[index1].PhongBanChuyenDen && 
-                            vm.data.listChiTiet[index1].NhanVienSuDung == vm.data.listChiTiet[index1].NhanVienTiepNhan)
-                        {
+                        if (vm.data.listChiTiet[index1].PhongBanSuDung == vm.data.listChiTiet[index1].PhongBanChuyenDen &&
+                            vm.data.listChiTiet[index1].NhanVienSuDung == vm.data.listChiTiet[index1].NhanVienTiepNhan) {
                             vm.data.listChiTiet[index1].isError = true;
                             utility.AlertError("Bạn không thể điều chuyển đến phòng hiện tại đang sử dụng!");
                             return index1;
@@ -528,8 +526,7 @@
                     utility.AlertError("[<b>" + vm.data.listChiTiet[index].TenTaiSan + '</b>] Không đủ số lượng điều chuyển!');
                     return index;
                 }
-                else
-                {
+                else {
                     _taiSanId = 0;
                     _soLuongTon = 0;
                     _soLuongChuyen = 0;

@@ -83,7 +83,11 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    nhanVien: obj.nhanVien,
+                    phongBanId: obj.phongBanId,
+                    coSoId: obj.coSoId
+                })
             }
             return $http(req);
         }
@@ -127,7 +131,11 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    nhanVien: obj.nhanVien,
+                    phongBanId: obj.phongBanId,
+                    coSoId: obj.coSoId
+                })
             }
             return $http(req);
         }

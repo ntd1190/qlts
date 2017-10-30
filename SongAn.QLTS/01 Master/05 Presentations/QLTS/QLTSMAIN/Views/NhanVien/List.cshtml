@@ -105,7 +105,8 @@
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.PhongBan)?'has-error':''">
                 <label class="control-label col-sm-3">Bộ phận</label>
                 <div class="col-sm-9">
-                    @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'NhanVienEditCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}
+                    @*@{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'NhanVienEditCtrl',NameId:'cbxPhongBan',userInfo:" + ViewBag.UserInfo + "}" } });}*@
+                    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:'NhanVienEditCtrl',NameId:'cbxPhongBan',FunctionCode:'CN0005',userInfo:" + ViewBag.UserInfo + "}" } });}
                 </div>
             </div>
             <div class="row form-group form-group-sm">
@@ -156,6 +157,7 @@
     <script src="~/Scripts/angular/NhanVien/controller/NhanVienListCtrl.js"></script>
     <script src="~/Scripts/angular/NhanVien/controller/NhanVienEditCtrl.js"></script>
     @{Html.RenderPartial("~/views/PhongBan/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/PhongBan/ComboboxMuti.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

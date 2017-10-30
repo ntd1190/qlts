@@ -22,7 +22,8 @@
             showButtonSave: false,
             listQuyenTacVu: [],
             objNhanVien: {},
-            isEdit: false
+            isEdit: false,
+            listBoPhan : []
         };
         //HOT-KEY       
         vm.keys = {
@@ -97,8 +98,23 @@
             });
             $scope.$on('NhanVienEditCtrl.action.SelectData', function (event, data) {
                 vm.data.PhongBan = data;
-                vm.data.objNhanVien.PhongBanId = vm.data.PhongBan.PhongBanId;
+                vm.data.objNhanVien.PhongBanId = joinStr(vm.data.PhongBan, "PhongBanId");
             });
+        }
+
+        function joinStr(array, property) {
+            var result = '';
+
+            var list = new Array();
+            if (array) {
+                for (var i = 0; i < array.length; i++) {
+                    list.push(array[i][property]);
+                }
+
+                result = list.join(',');
+            } else result = result || '';
+
+            return result;
         }
 
         function save() {
@@ -130,9 +146,15 @@
             }
            
             vm.status.isLoading = true;
-            NhanVienService.update(vm.data.objNhanVien).then(function (success) {
+            var nhanVien = utility.clone(vm.data.objNhanVien);
+            var data = {};
+            data.nhanVien = angular.toJson(nhanVien);
+            data.phongBanId = vm.data.objNhanVien.PhongBanId;
+            data.coSoId = vm.data.CoSoId;
+            NhanVienService.update(data).then(function (success) {
                 if (success.data.data) {
                     vm.data.objNhanVien = success.data.data;
+                    utility.AlertSuccess('Cập nhật thành công!');
                     $rootScope.$broadcast('sa.qltsmain.NhanVien.NhanVien.reload');
                 }
                
@@ -164,9 +186,15 @@
             vm.status.isLoading = true;
             vm.data.objNhanVien.CoSoId = vm.data.CoSoId;
             vm.data.objNhanVien.NguoiTao = vm.data.UserLoginId;
-            NhanVienService.insert(vm.data.objNhanVien).then(function (success) {
-                if (success.data.result) {
-                    NhanVienId = success.data.NhanVienId;
+            var nhanVien = utility.clone(vm.data.objNhanVien);
+            var data = {};
+            data.nhanVien = angular.toJson(nhanVien);
+            data.phongBanId = vm.data.objNhanVien.PhongBanId;
+            data.coSoId = vm.data.CoSoId;
+            NhanVienService.insert(data).then(function (success) {
+                if (success.data.data) {
+                    NhanVienId = success.data.data[0].NhanVienIdI;
+                    utility.AlertSuccess('Thêm thành công!');
                 }
                 vm.status.isLoading = false;
                 $('#NhanVienEditPopup').collapse('hide');
@@ -258,8 +286,15 @@
                 NhanVienService.getById(id).then(function (success) {
                     if (success.data) {
                         vm.data.objNhanVien = success.data.data[0];
-                        vm.data.PhongBan = { PhongBanId: vm.data.objNhanVien.PhongBanId, MaPhongBan: vm.data.objNhanVien.MaPhongBan, TenPhongBan: vm.data.objNhanVien.TenPhongBan };
-                        $rootScope.$broadcast('NhanVienEditCtrl.action.loadData', vm.data.PhongBan);
+
+                        var PhongbanSelected = [];
+                        for (var index = 0; index < success.data.data.length; index++) {
+                            //vm.data.PhongBan = { PhongBanId: vm.data.objNhanVien.PhongBanId, MaPhongBan: vm.data.objNhanVien.MaPhongBan, TenPhongBan: vm.data.objNhanVien.TenPhongBan };
+                            vm.data.PhongBan = { PhongBanId: success.data.data[index].PhongBanId, MaPhongBan: success.data.data[index].MaPhongBan, TenPhongBan: success.data.data[index].TenPhongBan };
+                            PhongbanSelected.push(vm.data.PhongBan);
+                        }
+                        
+                        $rootScope.$broadcast('NhanVienEditCtrl.action.loadData', PhongbanSelected);
                     }
                     vm.status.isLoading = false;
                 });

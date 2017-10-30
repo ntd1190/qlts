@@ -13,18 +13,18 @@
         var vm = this;
         vm.view = {};
         vm.config = {
-            functionCode: 'CN0046'
+            functionCode: 'CN0050'
         };
         vm.error = {};
         vm.data = {};
         vm.data.listChiTiet = [];
         vm.data.KhoPhieuXuat = {
-            Loai: 'CK',
+            Loai: 'XK',
             NgayXuat: moment().format('DD/MM/YYYY'),
             ThangNam: moment().format('MMYY')
         };
         vm.data.LoaiPhieuXuat = [
-            { MaLoai: 'CK', TenLoai: 'Xuất chuyển kho' }
+            { MaLoai: 'XK', TenLoai: 'Xuất kho' }
         ]
 
         /*** INIT FUNCTION ***/
@@ -104,8 +104,8 @@
             }, 0);
         }
         vm.action.goBack = function () {
-            if (!document.referrer || document.referrer.toUpperCase().indexOf('/KHOPHIEUXUAT/') > 0) {
-                window.location = linkUrl + 'KhoPhieuXuat/list/';
+            if (!document.referrer || document.referrer.toUpperCase().indexOf('/KHOPHIEUXUATKHAC/') > 0) {
+                window.location = linkUrl + 'KhoPhieuXuatKhac/list/';
                 return;
             }
             window.history.back();
@@ -144,7 +144,7 @@
             if (checkQuyenUI('N')) {
                 insert().then(function (success) {
                     $timeout(function () {
-                        window.location = linkUrl + 'KhoPhieuXuat/edit/' + vm.data.KhoPhieuXuat.KhoPhieuXuatId;
+                        window.location = linkUrl + 'KhoPhieuXuatKhac/edit/' + vm.data.KhoPhieuXuat.KhoPhieuXuatId;
                     }, 2000);
                     utility.AlertSuccess("Thêm phiếu xuất thành công");
                     utility.removeloadding();
@@ -179,7 +179,7 @@
                 utility.addloadding($('body'));
                 remove().then(function (success) {
                     $timeout(function () {
-                        window.location = linkUrl + 'KhoPhieuXuat/list/';
+                        window.location = linkUrl + 'KhoPhieuXuatKhac/list/';
                     }, 1000);
                     utility.AlertSuccess("Xóa phiếu xuất thành công");
                     utility.removeloadding();
@@ -223,7 +223,7 @@
             getById(khoPhieuXuatId).then(function () {
                 if (!vm.data.KhoPhieuXuat.KhoPhieuXuatId) {
                     $timeout(function () {
-                        window.location = linkUrl + 'KhoPhieuXuat/list/';
+                        window.location = linkUrl + 'KhoPhieuXuatKhac/list/';
                     }, 0);
                 }
             });
@@ -281,6 +281,7 @@
         function prepareKhoPhieuXuat(phieu) {
             phieu.NgayXuat = moment(phieu.NgayXuat, 'DD/MM/YYYY').format('YYYY-MM-DD');
             phieu.NgayTao = moment();
+            phieu.KhoNhanId = '';
             console.log(phieu);
             return phieu;
         }

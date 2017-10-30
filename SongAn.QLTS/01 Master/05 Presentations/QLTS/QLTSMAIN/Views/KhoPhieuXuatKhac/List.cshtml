@@ -1,10 +1,10 @@
 ﻿@{
-    ViewBag.Title = "Danh sách phiếu xuất chuyển kho";
+    ViewBag.Title = "Phiếu xuất kho";
 }
 <div class="container-fluid">
     <div class="panel panel-default" style="margin-bottom:-1px" ng-controller="KhoPhieuXuatFilterCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
         <div class="panel-heading clearfix">
-            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>@(ViewBag.Title)</span>
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>Phiếu xuất kho</span>
             <div class="btn-group btn-group-sm pull-right">
                 <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
                 <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
@@ -39,7 +39,7 @@
     <div ng-controller="KhoPhieuXuatListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
             <span ng-if="ctrl.action.checkQuyenTacVu('N')">
-                <a class="btn btn-sm btn-primary" href="~/KhoPhieuXuat/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="~/KhoPhieuXuatKhac/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <span ng-if="ctrl.action.checkQuyenTacVu('D')">
                 <button class="btn btn-sm btn-danger" ng-click="ctrl.action.removePhieuXuat()"><i class="fa fa-trash-o"></i> Xóa chọn</button>
@@ -66,7 +66,7 @@
                             <i class="fa fa-fw" ng-class="(KhoPhieuXuat.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i>
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCotPhieuXuat|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                            <a ng-switch-when="SoPhieu" href="~/KhoPhieuXuat/edit/{{KhoPhieuXuat.KhoPhieuXuatId}}" ng-bind="KhoPhieuXuat.SoPhieu"></a>
+                            <a ng-switch-when="SoPhieu" href="~/KhoPhieuXuatKhac/edit/{{KhoPhieuXuat.KhoPhieuXuatId}}" ng-bind="KhoPhieuXuat.SoPhieu"></a>
                             <div class="text-center" ng-switch-when="NgayXuat,NgayTao" ng-switch-when-separator="," ng-bind="KhoPhieuXuat.NgayXuat | date : 'dd/MM/yyyy'"></div>
                             <span ng-switch-default ng-bind="KhoPhieuXuat[cot.MaCot]"></span>
                         </td>
@@ -179,9 +179,9 @@
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/KhoPhieuXuat/controller/KhoPhieuXuatListCtrl.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuXuat/controller/KhoPhieuXuatFilterCtrl.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuXuat/service/KhoPhieuXuatService.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuatKhac/controller/KhoPhieuXuatListCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuatKhac/controller/KhoPhieuXuatFilterCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuatKhac/service/KhoPhieuXuatService.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
     @{Html.RenderPartial("~/views/KhoTaiSan/cboKhoTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}

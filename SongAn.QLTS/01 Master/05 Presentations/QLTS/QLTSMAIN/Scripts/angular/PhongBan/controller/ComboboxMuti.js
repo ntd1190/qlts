@@ -78,7 +78,7 @@ app.controller('PhongBanCombobox', function ($rootScope, $scope, PhongBanService
     }
     function initEventListener() {
         $scope.$on(vm.controllerId + '.action.loadData', function (event, data) {
-            vm.data.PhongBan = data;
+            vm.data.PhongBan.selected = data;
         });
         $scope.$on(vm.controllerId + '.action.clearData', function (event) {
             vm.data.PhongBan = {};

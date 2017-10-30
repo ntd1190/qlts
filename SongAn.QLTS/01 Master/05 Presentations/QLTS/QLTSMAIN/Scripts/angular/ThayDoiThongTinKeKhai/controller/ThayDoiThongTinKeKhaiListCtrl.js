@@ -19,7 +19,7 @@
         vm.inputSearch = {};
 
         vm.data.listCot = [
-            { MaCot: 'Ngay', TenCot: 'Ngày thay đổi', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'Ngay', TenCot: 'Ngày thay đổi', HienThiYN: true, DoRong:200 },
             { MaCot: 'MaTaiSan', TenCot: 'Mã tài sản', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenTaiSan', TenCot: 'Tên tài sản', HienThiYN: true, DoRong: 0 },
             { MaCot: 'LyDo', TenCot: 'Lý do', HienThiYN: true, DoRong: 0 },
@@ -425,14 +425,14 @@
         }
 
         function loadCotList() {
-            if (1 === 1) {
-                TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {
-                    console.log('TuyChonCotService.getAll:', success, userInfo, MaForm, vm.data.listCot);
-                    if (success.data && success.data.data) {
-                        vm.data.listCot = success.data.data;
-                    }
-                }, function (error) { });
-            }
+            //if (1 === 1) {
+            //    TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {
+            //        console.log('TuyChonCotService.getAll:', success, userInfo, MaForm, vm.data.listCot);
+            //        if (success.data && success.data.data) {
+            //            vm.data.listCot = success.data.data;
+            //        }
+            //    }, function (error) { });
+            //}
         }
     });
 })();

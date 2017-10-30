@@ -919,7 +919,7 @@
             TaiSanService.insert(data).then(function (success) {
                 console.log(success);
                 $timeout(function () {
-                    window.location = linkUrl + 'edit/' + success.data.data[0].TaiSanId;
+                    window.location = linkUrl + 'list/';//+ success.data.data[0].TaiSanId;
                 }, 2000);
                 utility.removeloadding();
                 utility.AlertSuccess('Thêm tài sản thành công');

@@ -74,9 +74,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-4">
+                    @*<div class="col-sm-4">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_KhoNhanId?'has-error':''">
-                            <label class="control-label col-sm-4">Kho nhận</label>
+                            <label class="control-label col-sm-4">Kho nhập</label>
                             <div class="col-sm-7">
                                 <cbo-kho-tai-san data-function-code="{{ctrl.config.functionCode}}"
                                                  data-khotaisanid="ctrl.data.KhoPhieuXuat.KhoNhanId"
@@ -87,7 +87,7 @@
                                                  template-url="~/khotaisan/showview?viewname=cboKhoTaiSan"></cbo-kho-tai-san>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                 </div>
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_LyDo?'has-error':''">
                     <label class="control-label col-sm-1" style="width:11%">Nội dung</label>
@@ -238,8 +238,8 @@
 @section ImportScripts{}
 @section SetupScripts{}
 @section ImportAngular{
-    <script src="~/Scripts/angular/KhoPhieuXuat/service/KhoPhieuXuatService.js"></script>
-    <script src="~/Scripts/angular/KhoPhieuXuat/controller/KhoPhieuXuatEditCtrl.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuatKhac/service/KhoPhieuXuatService.js"></script>
+    <script src="~/Scripts/angular/KhoPhieuXuatKhac/controller/KhoPhieuXuatEditCtrl.js"></script>
     @{Html.RenderPartial("~/views/KhoTaiSan/cboKhoTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanTonKho.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

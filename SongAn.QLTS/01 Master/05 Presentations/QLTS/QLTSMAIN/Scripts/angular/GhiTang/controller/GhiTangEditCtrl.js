@@ -226,6 +226,11 @@
                 else if (fromId == ('txtMaTaiSan' + index)) {
 
                     vm.data.listChiTiet[index].TempMaTaiSan = value;
+                    $timeout(function () {
+                        if (vm.data.listChiTiet[index].TaiSanId > 0) {
+                            $("#" + ToId + " input").focus();
+                        }
+                    }, 100);
                     //if (value != "") {
                     //    $timeout(function () {
                     //        getTaiSan(value);
@@ -266,7 +271,7 @@
             vm.data.listChiTiet[index.$index].MaTaiSan = data.MaTaiSan || vm.data.listChiTiet[index.$index].MaTaiSan;;
             vm.data.listChiTiet[index.$index].NguyenGia = data.NguyenGia;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
-            if (data.TaiSanId > 0) $("#cbxPhongBan" + index.$index).find('input').focus()
+            //if (data.TaiSanId > 0) $("#cbxPhongBan" + index.$index).find('input').focus();
 
         }
         vm.action.nhanVienByPhongBanSelected = function (data, index) {
@@ -319,6 +324,12 @@
             chitiet.NhanVienId = 0;
             chitiet.SoLuong = 0;
             vm.data.listChiTiet.push(chitiet);
+            $timeout(function () {
+                $//("#txtMaTaiSan" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                jQuery("#txtNgayBatDauSuDung" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                    mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
+                })
+            }, 100);
         }
 
         function insert() {
@@ -487,6 +498,11 @@
                         console.log(result.data.data);
                         vm.data.listChiTiet = result.data.data;
                         vm.data.listChiTietGoc = angular.copy(result.data.data);
+                        $timeout(function () {
+                            jQuery("#txtNgayBatDauSuDung" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                                mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
+                            })
+                        }, 100);
                     }
                 }, function error(result) {
                     console.log(result);
