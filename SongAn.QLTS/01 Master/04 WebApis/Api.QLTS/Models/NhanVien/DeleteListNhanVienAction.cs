@@ -3,6 +3,7 @@ using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
 using System;
 using System.Collections.Generic;
+using SongAn.QLTS.Biz.QLTS.NhanVien;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -26,13 +27,20 @@ namespace SongAn.QLTS.Api.QLTS.Models.NhanVien
 
                 var count = 0;
 
-                var repo = new NhanVienRepository(context);
-
+                //var repo = new NhanVienRepository(context);
+                var biz = new DeleteNhanVienByIdBiz(context);
                 for (int i = 0; i < _listId.Count; i++)
                 {
-                    if (_listId[i] > 0 && await repo.Delete(_listId[i]))
+                    biz.NhanVienId = Protector.Int(_listId[i]);
+
+                    IEnumerable<dynamic> result = await biz.Execute();
+                    if (result.Count() > 0)
                     {
-                        count++;
+                        var obj = result.FirstOrDefault();
+                        if (Protector.Int(obj.ID) < 0)
+                        {
+                            count = count + 1;
+                        }
                     }
                 }
 

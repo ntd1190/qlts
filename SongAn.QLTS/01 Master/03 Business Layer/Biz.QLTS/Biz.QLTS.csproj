@@ -63,6 +63,7 @@
     <Compile Include="ChotSoLieuThang\ChotSoLieuThangBiz.cs" />
     <Compile Include="CoSo\GetCoSoByIdBiz.cs" />
     <Compile Include="CoSo\cbxGetListCoSoByCriteriaBiz.cs" />
+    <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonBiz.cs" />
     <Compile Include="CrystalReport\ReportBaoDuongByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportGhiGiamBiz.cs" />
@@ -90,7 +91,16 @@
     <Compile Include="DanhGia\InsertDanhGiaBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\DeleteKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatByIdBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatChiTietByIdBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\GetListKhoPhieuXuatByCriteriaBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\InsertKhoPhieuXuatBiz.cs" />
+    <Compile Include="KhoPhieuXuatKhac\UpdateKhoPhieuXuatBiz.cs" />
     <Compile Include="KhoPhieuXuat\DeleteKhoPhieuXuatBiz.cs" />
+    <Compile Include="NhanVien\DeleteNhanVienByIdBiz.cs" />
+    <Compile Include="NhanVien\InsertNhanVienBiz.cs" />
+    <Compile Include="NhanVien\UpdateNhanVienByIdBiz.cs" />
     <Compile Include="ThongSo\UpdateInsertThongSoBiz.cs" />
     <Compile Include="ThongSo\GetListThongSoByCriteriaBiz.cs" />
     <Compile Include="KhoTonKho\CheckKhoTonKhoBiz.cs" />

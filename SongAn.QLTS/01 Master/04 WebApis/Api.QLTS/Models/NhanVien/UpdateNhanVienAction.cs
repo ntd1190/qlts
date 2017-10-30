@@ -2,34 +2,56 @@
 using System;
 using System.Net;
 using SongAn.QLTS.Util.Common.Dto;
+using SongAn.QLTS.Biz.QLTS.NhanVien;
 using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Helper;
+using System.Collections.Generic;
+using Newtonsoft.Json;
 
 namespace  SongAn.QLTS.Api.QLTS.Models.NhanVien
 {
-    public class UpdateNhanVienAction : SongAn.QLTS.Entity.QLTS.Entity.NhanVien
+    public class UpdateNhanVienAction 
     {
-        private int _NhanVienId;
-        private int _CtrVersion;
+        #region public
+        public string nhanVien { get; set; }
+        public string phongBanId { get; set; }
+        public string coSoId { get; set; }
+        #endregion
+
+        #region private
+        private Entity.QLTS.Entity.NhanVien _nhanVien;
+        #endregion
         public async Task<dynamic> Execute(ContextDto context)
         {
             try
             {
                 dynamic result = new System.Dynamic.ExpandoObject();
 
-            var repo = new NhanVienRepository(context);
-            await repo.UpdatePartial(this,
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.MaNhanVien),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.TenNhanVien),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.DienThoai),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.PhongBanId),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.ChucDanh),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.Email),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.DiaChi),
-                nameof(SongAn.QLTS.Entity.QLTS.Entity.NhanVien.GhiChu)
-                 );
-            result.data = this;
-            return returnActionResult(HttpStatusCode.OK, result.data, null);
+                init();
+                validate();
+
+                if (_nhanVien.NhanVienId < 1)
+                {
+                    return returnActionError(HttpStatusCode.BadRequest, "Không tìm thấy NhanVienId");
+                }
+
+                var bizNhanVien = new UpdateNhanVienByIdBiz(context);
+
+                bizNhanVien.NhanVienId = Protector.Int(_nhanVien.NhanVienId);
+                bizNhanVien.MaNhanVien = Protector.String(_nhanVien.MaNhanVien);
+                bizNhanVien.TenNhanVien = Protector.String(_nhanVien.TenNhanVien);
+                bizNhanVien.DienThoai = Protector.String(_nhanVien.DienThoai);
+                bizNhanVien.ChucDanh = Protector.String(_nhanVien.ChucDanh);
+                bizNhanVien.Email = Protector.String(_nhanVien.Email);
+                bizNhanVien.DiaChi = Protector.String(_nhanVien.DiaChi);
+                bizNhanVien.GhiChu = Protector.String(_nhanVien.GhiChu);
+                bizNhanVien.NguoiTao = Protector.Int(_nhanVien.NguoiTao);
+                bizNhanVien.CoSoId = Protector.Int(coSoId);
+                bizNhanVien.PhongBanId = Protector.String(phongBanId);
+
+                IEnumerable<dynamic> NhanVienIdINum = await bizNhanVien.Execute();
+
+                return returnActionResult(HttpStatusCode.OK, NhanVienIdINum, null);
             }
             catch (FormatException ex)
             {
@@ -42,7 +64,7 @@ namespace  SongAn.QLTS.Api.QLTS.Models.NhanVien
         }
         private void validate()
         {
-            var _id = Protector.Int(NhanVienId);
+            var _id = Protector.Int(_nhanVien.NhanVienId);
 
             if (_id < 1)
             {
@@ -52,8 +74,10 @@ namespace  SongAn.QLTS.Api.QLTS.Models.NhanVien
 
         private void init()
         {
-            _NhanVienId = Protector.Int(NhanVienId);
-            _CtrVersion = Protector.Int(CtrVersion);
+            var __nhanvien = JsonConvert.DeserializeObject<dynamic>(nhanVien);
+            nhanVien = JsonConvert.SerializeObject(__nhanvien);
+            _nhanVien = JsonConvert.DeserializeObject<Entity.QLTS.Entity.NhanVien>(nhanVien);
+
         }
 
         private ActionResultDto returnActionError(HttpStatusCode code, string message)
