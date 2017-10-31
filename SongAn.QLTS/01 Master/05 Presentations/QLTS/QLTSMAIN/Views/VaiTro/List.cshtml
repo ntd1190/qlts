@@ -112,9 +112,8 @@
                         <input type="text" name="txtTen" id="txtTen" class="form-control" ng-model="ctrl.data.objVaiTro.TenVaiTro" required ng-keypress="ctrl.action.keyPress(ctrl.data.objVaiTro.TenVaiTro,'txtTen', 'txtCoSoId',$event)" />
                     </div>
                 </div>
-
-                <div class="row form-group form-group-sm">
-                    <label class="control-label col-sm-2">Mô tả</label>
+                <div class="row form-group form-group-sm" ng-if="ctrl.data.showcboCoSo==true">
+                    <label class="control-label col-sm-2">Cơ sở</label>
                     <div class="col-sm-9">
                         <cbo-co-so data-config="{userInfo:@(ViewBag.userInfo),NameId:'txtCoSoId'}" data-cosoid="ctrl.data.objVaiTro.CoSoId" template-url="~/coso/showview?viewname=cbocoso" ng-keypress="ctrl.action.keyPress(ctrl.data.objVaiTro.CoSoId,'txtCoSoId', 'txtMoTa',$event)"></cbo-co-so>
                     </div>

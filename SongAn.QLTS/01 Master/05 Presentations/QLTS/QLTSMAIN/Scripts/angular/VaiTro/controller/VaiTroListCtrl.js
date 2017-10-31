@@ -84,7 +84,7 @@
 
         vm.data = {
             dsVaiTro: [],
-            objVaiTro: {}
+            objVaiTro: {},
         };
 
         vm.action = {
@@ -265,6 +265,7 @@
             data.draw = 1;
             data.NHANVIEN_ID = userInfo.NhanVienId || 0;
             data.COSO_ID = userInfo.CoSoId || 0;
+            data.USER_ID = userInfo.UserId || 0;
             VaiTroService.getPage(data).then(function (result) {
                 console.log('VaiTroService.getPage', result);
                 if (result.data.data) {
@@ -282,6 +283,7 @@
             data.search = text || '';
             data.NHANVIEN_ID = userInfo.NhanVienId || 0;
             data.COSO_ID = userInfo.CoSoId || 0;
+            data.USER_ID = userInfo.UserId || 0;
             VaiTroService.getPage(data).then(function (result) {
                 console.log('VaiTroService.getPage', result);
                 if (result.data.data) {

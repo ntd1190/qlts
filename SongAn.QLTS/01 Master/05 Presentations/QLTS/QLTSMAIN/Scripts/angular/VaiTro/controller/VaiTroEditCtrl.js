@@ -64,6 +64,7 @@
             UserLoginId: '',
             showButtonXoa: false,
             showButtonSave: false,
+            showcboCoSo: false,
             listQuyenTacVu: [],
         };
 
@@ -118,6 +119,9 @@
                 // Co quyen Sua
                 if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
                     vm.data.showButtonSave = true;
+                }
+                if (vm.data.listQuyenTacVu.indexOf("VA") > 0) {
+                    vm.data.showcboCoSo = true;
                 }
             }
         }
@@ -202,7 +206,6 @@
         }
 
         function save(obj) {
-
             //check validate fields of fNguoiDung
             vm.status.isInValidMa = utility.checkInValid(obj.MaVaiTro, 'isCode');
             if (vm.status.isInValidMa) {
@@ -217,6 +220,8 @@
                 return;
             }
             //end check
+
+            if (vm.data.showcboCoSo == false) { obj.CoSoId = vm.userInfo.CoSoId }
 
             if (obj.VaiTroId != null && obj.VaiTroId != undefined && obj.VaiTroId && obj.VaiTroId != '') {
                 update(obj);
