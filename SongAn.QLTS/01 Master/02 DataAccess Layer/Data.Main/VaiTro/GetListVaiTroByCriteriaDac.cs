@@ -18,6 +18,7 @@ namespace SongAn.QLTS.Data.Main.VaiTro
         public string ORDERCLAUSE { get; set; }
         public int NHANVIEN_ID { get; set; }
         public int COSO_ID { get; set; }
+        public int USER_ID { get; set; }
         public int SKIP { get; set; }
         public int TAKE { get; set; }
 

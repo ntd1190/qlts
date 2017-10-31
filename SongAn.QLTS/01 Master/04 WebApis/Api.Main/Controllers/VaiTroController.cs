@@ -129,6 +129,7 @@ namespace SongAn.QLTS.Api.Main.Controllers
                 nameof(VaiTro.TenVaiTro),
                 nameof(VaiTro.MoTa),
                 nameof(VaiTro.KhoaYN),
+                nameof(VaiTro.CoSoId),
                 nameof(VaiTro.NgaySuaDT)
                  );
 

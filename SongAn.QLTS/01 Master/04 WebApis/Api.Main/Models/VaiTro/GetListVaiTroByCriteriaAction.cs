@@ -23,6 +23,7 @@ namespace SongAn.QLTS.Api.Main.Models.VaiTro
         public string Search { get; set; }
         public string NHANVIEN_ID { get; set; }
         public string COSO_ID { get; set; }
+        public string USER_ID { get; set; }
 
         public string draw { get; set; }
         public string start { get; set; }
@@ -59,6 +60,7 @@ namespace SongAn.QLTS.Api.Main.Models.VaiTro
 
                 biz.NHANVIEN_ID = Protector.Int(NHANVIEN_ID, 0);
                 biz.COSO_ID = Protector.Int(COSO_ID, 0);
+                biz.USER_ID = Protector.Int(USER_ID, 0);
 
                 biz.ORDERCLAUSE = _orderClause;
                 biz.SKIP = Protector.Int(start, 0);
