@@ -1,32 +1,21 @@
-﻿using SongAn.QLTS.Util.Common.Dto;
+﻿using SongAn.QLTS.Data.Repository.QLTS;
+using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Helper;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.Threading.Tasks;
+using SongAn.QLTS.Biz.QLTS.HopDong;
 using System.Linq;
-using SongAn.QLTS.Biz.QLTS.TheoDoi;
-using SongAn.QLTS.Data.Repository.QLTS;
-using System.Globalization;
-using Newtonsoft.Json;
+using System.Net;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
+namespace SongAn.QLTS.Api.QLTS.Models.HopDong
 {
-    public class InsertTheoDoiAction
+    public class DeleteListHopDongByIdAction
     {
-        public string TaiSanId { get; set; }
-        public string NgayGhiTang { get; set; }
-        public string NgayTrangCap { get; set; }
-        public string NgayBatDauSuDung { get; set; }
-        public string PhongBanId { get; set; }
-        public string NhanVienId { get; set; }
-        public decimal SLTon { get; set; }
-        public decimal SLTang { get; set; }
-        public decimal SLGiam { get; set; }
-        public string HopDongId { get; set; }
-
+        public string ids { get; set; }
         #region private
-
+        private List<int> _listId;
         #endregion
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -36,22 +25,25 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                 init();
                 validate();
 
-                var biz = new InsertTheoDoiBiz(context);
-                biz.TaiSanId = Protector.Int(TaiSanId);
-                biz.NgayTrangCap = DateTime.ParseExact(NgayTrangCap, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
-                biz.NgayGhiTang = DateTime.ParseExact(NgayGhiTang, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
-                biz.NgayBatDauSuDung = DateTime.ParseExact(NgayBatDauSuDung, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
-                biz.PhongBanId = Protector.Int(PhongBanId);
-                biz.NhanVienId = Protector.Int(NhanVienId);
-                biz.SLTon = Protector.Decimal(SLTon);
-                biz.SLTang = 0;
-                biz.SLGiam = 0;
-                biz.HopDongId = Protector.Int(HopDongId);
-                var result = await biz.Execute();
+                var count = 0;
 
-                dynamic _metaData = new System.Dynamic.ExpandoObject();
+                var biz = new DeleteHopDongByIdBiz(context);
+                for (int i = 0; i < _listId.Count; i++)
+                {
+                    biz.HopDongId = Protector.Int(_listId[i]);
 
-                return ActionHelper.returnActionResult(HttpStatusCode.OK, result, _metaData);
+                    IEnumerable<dynamic> result = await biz.Execute();
+                    if (result.Count() > 0)
+                    {
+                        var obj = result.FirstOrDefault();
+                        if (Protector.Int(obj.ID) < 0)
+                        {
+                            count = count + 1;
+                        }
+                    }
+                }
+
+                return returnActionResult(HttpStatusCode.OK, count, null);
             }
             catch (FormatException ex)
             {
@@ -65,12 +57,24 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
 
         private void init()
         {
+            var _ids = ids.Split(',');
+            _listId = new List<int>();
 
+            for (int i = 0; i < _ids.Length; i++)
+            {
+                _listId.Add(Protector.Int(_ids[i]));
+            }
         }
 
         private void validate()
         {
-
+            for (int i = 0; i < _listId.Count; i++)
+            {
+                if (_listId[i] < 1)
+                {
+                    throw new FormatException("HopDongId không hợp lệ");
+                }
+            }
         }
 
         #region helpers

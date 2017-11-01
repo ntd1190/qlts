@@ -22,6 +22,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NguoiDung
         public string sortName { get; set; }
         public string sortDir { get; set; }
         public string fields { get; set; }
+        public string UserId { get; set; }
 
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -71,6 +72,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NguoiDung
                 biz.OrderClause = orderClause;
                 biz.Skip = _start;
                 biz.Take = _length;
+                biz.UserId = UserId;
                 IEnumerable<dynamic> listNguoiDung = await biz.Execute();
                 if (listNguoiDung.Count() > 0)
                 {

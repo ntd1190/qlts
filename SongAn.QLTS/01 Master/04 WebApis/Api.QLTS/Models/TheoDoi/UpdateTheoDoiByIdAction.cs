@@ -27,6 +27,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
         public decimal SLTon { get; set; }
         public decimal SLTang { get; set; }
         public decimal SLGiam { get; set; }
+        public string HopDongId { get; set; }
 
         #region private
 
@@ -58,6 +59,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                 biz.SLTon = Protector.Decimal(SLTon);
                 biz.SLTang = 0;
                 biz.SLGiam = 0;
+                biz.HopDongId = Protector.Int(HopDongId);
                 var result = await biz.Execute();
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

@@ -29,6 +29,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhaiThac
         public decimal DonVi { get; set; }
         public string GhiChu { get; set; }
         public int CtrVersion { get; set; }
+        public string HopDongId { get; set; }
 
         #region private
 
@@ -63,6 +64,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhaiThac
                 bizHeader.DonVi = Protector.Decimal(DonVi);
                 bizHeader.GhiChu = GhiChu;
                 bizHeader.CtrVersion = Protector.Int(CtrVersion);
+                bizHeader.HopDongId = Protector.Int(HopDongId);
 
                 IEnumerable<dynamic> result = await bizHeader.Execute();
 

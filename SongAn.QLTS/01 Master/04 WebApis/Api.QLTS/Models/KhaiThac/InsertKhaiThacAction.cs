@@ -29,6 +29,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhaiThac
         public string GhiChu { get; set; }
         public string CoSoId { get; set; }
         public string NhanVienId { get; set; }
+        public string HopDongId { get; set; }
 
         #region private
 
@@ -58,6 +59,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.KhaiThac
                 bizHeader.GhiChu = GhiChu;
                 bizHeader.NhanVienId = Protector.Int(NhanVienId);
                 bizHeader.CoSoId = Protector.Int(CoSoId);
+                bizHeader.HopDongId = Protector.Int(HopDongId);
 
                 IEnumerable<dynamic> result = await bizHeader.Execute();
 

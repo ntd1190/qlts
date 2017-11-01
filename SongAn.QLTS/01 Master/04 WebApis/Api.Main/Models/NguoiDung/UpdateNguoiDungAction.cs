@@ -31,6 +31,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NguoiDung
                    nameof(VaiTroId),
                    nameof(NhanVienId),
                    nameof(PasswordHash),
+                   nameof(CoSoId),
                    nameof(Email),
                    nameof(DienThoai)
                  );
@@ -42,6 +43,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.NguoiDung
                    nameof(HoTen),
                    nameof(VaiTroId),
                    nameof(NhanVienId),
+                   nameof(CoSoId),
                    nameof(Email),
                    nameof(DienThoai)
                  );
