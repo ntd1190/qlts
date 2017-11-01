@@ -19,6 +19,7 @@ namespace SongAn.QLTS.Data.QLTS.GhiTang
         public int? PhongBanId { get; set; }
         public int? NhanVienId { get; set; }
         public decimal SoLuong { get; set; }
+        public int HopDongId { get; set; }
 
         #endregion
 
@@ -81,6 +82,7 @@ namespace SongAn.QLTS.Data.QLTS.GhiTang
                 p.Add("PhongBanId", PhongBanId, DbType.Int32);
                 p.Add("NhanVienId", NhanVienId, DbType.Int32);
                 p.Add("SoLuong", SoLuong, DbType.Decimal);
+                p.Add("HopDongId", HopDongId, DbType.Int32);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_GhiTangChiTiet_InsertGhiTangChiTiet",

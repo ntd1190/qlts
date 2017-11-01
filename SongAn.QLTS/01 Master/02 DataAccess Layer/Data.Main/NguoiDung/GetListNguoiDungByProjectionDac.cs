@@ -28,6 +28,7 @@ namespace SongAn.QLTS.Data.QLTS.NguoiDung
         public string VaiTroId { get; set; }
         public string NhanVien { get; set; }
         public string LoginId { get; set; }
+        public string UserId { get; set; }
 
         /// <summary>
         /// Mệnh đề order by
@@ -111,6 +112,7 @@ namespace SongAn.QLTS.Data.QLTS.NguoiDung
                 p.Add("SEARCH_DENNGAY", DenNgay, DbType.String);
                 p.Add("SEARCH_NHANVIEN", NhanVien, DbType.String);
                 p.Add("CoSoId", LoginId, DbType.String);
+                p.Add("USER_ID", UserId, DbType.String);
                 p.Add("ORDER_CLAUSE", OrderClause, DbType.String);
                 p.Add("SKIP", Skip, DbType.Int16);
                 p.Add("TAKE", Take, DbType.Int16);

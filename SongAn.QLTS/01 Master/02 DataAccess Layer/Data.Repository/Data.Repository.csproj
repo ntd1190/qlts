@@ -53,6 +53,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="QLTS\CoSoRepository.cs" />
+    <Compile Include="QLTS\LoaiXeRepository.cs" />
     <Compile Include="QLTS\KhoTonKhoChiTietRepository.cs" />
     <Compile Include="QLTS\KhoTonKhoRepository.cs" />
     <Compile Include="QLTS\LapBaoCaoChiTietRepository.cs" />

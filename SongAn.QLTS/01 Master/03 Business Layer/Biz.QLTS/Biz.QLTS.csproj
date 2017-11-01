@@ -74,7 +74,10 @@
     <Compile Include="CrystalReport\ReportKeHoachMuaSamBiz.cs" />
     <Compile Include="CrystalReport\ReportDanhGiaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuNhapByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSan500TSNNBiz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhai500Biz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanOtoTSNNBiz.cs" />
+    <Compile Include="CrystalReport\ReportTaiSanNhaDatTSNNBiz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoBiz.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiDatBiz.cs" />
     <Compile Include="CrystalReport\ReportTDTTNhaByIdBiz.cs" />
@@ -91,6 +94,13 @@
     <Compile Include="DanhGia\InsertDanhGiaBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="LoaiXe\GetListcbxLoaiXeByCriteriaBiz.cs" />
+    <Compile Include="HopDong\DeleteHopDongByIdBiz.cs" />
+    <Compile Include="HopDong\GetHopDongByIdBiz.cs" />
+    <Compile Include="HopDong\GetListcbxHopDongByIdBiz.cs" />
+    <Compile Include="HopDong\GetListHopDongByCriteriaBiz.cs" />
+    <Compile Include="HopDong\InsertHopDongBiz.cs" />
+    <Compile Include="HopDong\UpdateHopDongByIdBiz.cs" />
     <Compile Include="KhoPhieuXuatKhac\DeleteKhoPhieuXuatBiz.cs" />
     <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatByIdBiz.cs" />
     <Compile Include="KhoPhieuXuatKhac\GetKhoPhieuXuatChiTietByIdBiz.cs" />
@@ -170,7 +180,7 @@
     <Compile Include="GhiTang\InsertGhiTangBiz.cs" />
     <Compile Include="GhiTang\InsertGhiTangChiTietBiz.cs" />
     <Compile Include="GhiTang\UpdateGhiTangByGhiTangIdBiz.cs" />
-    <Compile Include="HienTrangSuDung\GetListcbxNhaCungCapByCriteriaBiz.cs" />
+    <Compile Include="HienTrangSuDung\GetListcbxHienTrangSuDungByCriteriaBiz.cs" />
     <Compile Include="KeHoachMuaSamChiTiet\DeleteKeHoachMuaSamChiTietByIdBiz.cs" />
     <Compile Include="KeHoachMuaSamChiTiet\GetKeHoachMuaSamChiTietByMuaSamIdBiz.cs" />
     <Compile Include="KeHoachMuaSam\DeleteKeHoachMuaSamByIdBiz.cs" />
