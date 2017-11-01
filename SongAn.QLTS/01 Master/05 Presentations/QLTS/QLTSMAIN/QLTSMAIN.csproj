@@ -237,6 +237,7 @@
     <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\BaoCaoTaiSan\controller\BaoCaoTaiSanCtrl.js" />
     <Content Include="Scripts\angular\BaoCaoNhapXuatTon\controller\BaoCaoNhapXuatTonListCtrl.js" />
     <Content Include="Scripts\angular\BaoCaoTongHop\controller\BaoCaoTongHopListCtrl.js" />
     <Content Include="Scripts\angular\BaoDuong\controller\BaoDuongEditCtrl.js" />
@@ -285,6 +286,8 @@
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongFilterCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongListCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
+    <Content Include="Scripts\angular\LoaiXe\directive\cboLoaiXe.js" />
+    <Content Include="Scripts\angular\LoaiXe\service\LoaiXeService.js" />
     <Content Include="Scripts\angular\HopDong\controller\HopDongEditCtrl.js" />
     <Content Include="Scripts\angular\HopDong\controller\HopDongListCtrl.js" />
     <Content Include="Scripts\angular\HopDong\directive\cboHopDong.js" />
@@ -457,6 +460,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoCaoTaiSanController.cs" />
     <Compile Include="Controllers\BaoCaoNhapXuatTonController.cs" />
     <Compile Include="Controllers\BaoCaoTongHopController.cs" />
     <Compile Include="Controllers\BienBanKiemKeController.cs" />
@@ -471,6 +475,7 @@
     <Compile Include="Controllers\DieuChuyenController.cs" />
     <Compile Include="Controllers\GhiTangController.cs" />
     <Compile Include="Controllers\GiayBaoHongController.cs" />
+    <Compile Include="Controllers\LoaiXeController.cs" />
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
     <Compile Include="Controllers\CauHinhHeThongController.cs" />
@@ -545,8 +550,44 @@
       <DependentUpon>rptNhapXuatTon.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_500_DVSN.cs">
+      <DependentUpon>rptTaiSan_500_DVSN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_500_TSNN.cs">
+      <DependentUpon>rptTaiSan_500_TSNN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptTaiSan_KeKhai500.cs">
       <DependentUpon>rptTaiSan_KeKhai500.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_NhaDat_DVSN.cs">
+      <DependentUpon>rptTaiSan_NhaDat_DVSN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_Oto_DVSN.cs">
+      <DependentUpon>rptTaiSan_Oto_DVSN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_Oto_TSNN.cs">
+      <DependentUpon>rptTaiSan_Oto_TSNN.rpt</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <SubType>Component</SubType>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptTaiSan_NhaDat_TSNN.cs">
+      <DependentUpon>rptTaiSan_NhaDat_TSNN.rpt</DependentUpon>
       <AutoGen>True</AutoGen>
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
@@ -801,6 +842,8 @@
     <Content Include="Views\CauHinhHeThong\List.cshtml" />
     <Content Include="Views\KhoPhieuXuatKhac\Edit.cshtml" />
     <Content Include="Views\KhoPhieuXuatKhac\List.cshtml" />
+    <Content Include="Views\LoaiXe\cboLoaiXe.cshtml" />
+    <Content Include="Views\BaoCaoTaiSan\List.cshtml" />
     <Content Include="Views\HopDong\List.cshtml" />
     <Content Include="Views\HopDong\cboHopDong.cshtml" />
     <None Include="Web.Debug.config">
@@ -818,6 +861,7 @@
     <Folder Include="Scripts\angular\HienTrangSuDung\controller\" />
     <Folder Include="Scripts\angular\KhoPhieuXuatKhac\directive\" />
     <Folder Include="Scripts\angular\KhoPhieuXuat\directive\" />
+    <Folder Include="Scripts\angular\LoaiXe\controller\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
   </ItemGroup>
   <ItemGroup>
@@ -874,9 +918,33 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptNhapXuatTon.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_500_DVSN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_500_DVSN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_500_TSNN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_500_TSNN.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhai500.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptTaiSan_KeKhai500.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_NhaDat_DVSN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_NhaDat_DVSN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_Oto_DVSN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_Oto_DVSN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_Oto_TSNN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_Oto_TSNN.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_NhaDat_TSNN.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptTaiSan_NhaDat_TSNN.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptTaiSan_KeKhaiOto.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
