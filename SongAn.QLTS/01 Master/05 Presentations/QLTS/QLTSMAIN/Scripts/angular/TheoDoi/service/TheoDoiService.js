@@ -83,8 +83,8 @@
                     NhanVienId: obj.NhanVienId,
                     SLTon: obj.SLTon,
                     SLTang: 0,
-                    SLGiam: 0
-
+                    SLGiam: 0,
+                    HopDongId:obj.HopDongId
                 })
             }
             return $http(req);
@@ -109,7 +109,8 @@
                     Nam: obj.Nam,
                     SLTon: obj.SLTon,
                     SLTang: 0,
-                    SLGiam: 0
+                    SLGiam: 0,
+                    HopDongId: obj.HopDongId
                 })
             }
             return $http(req);

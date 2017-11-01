@@ -69,6 +69,7 @@
                             <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>
                             <th class="text-center" style="min-width: 160px; vertical-align:middle">Bộ phận sử dụng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 160px; vertical-align:middle">Cán bộ<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 160px; vertical-align:middle">Hợp đồng</th>
                             <th class="text-center" style="min-width: 140px; vertical-align:middle">Ngày BĐ sử dụng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 90px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 100px; vertical-align:middle">Nguyên giá</th>
@@ -111,6 +112,11 @@
                                 <!-- nhan vien-->
                                 <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="GhiTangChiTiet.NhanVienId" data-phongbanid="GhiTangChiTiet.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showview?viewname=cbonhanvienbyphongban"
                                                             on-selected="ctrl.action.nhanVienByPhongBanSelected(data, { $index })"></cbo-nhan-vien-by-phong-ban>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!-- hopdong-->
+                                <cbo-hop-dong id="cbxHopDong{{$index}}" data-function-code="CN0024" data-value="GhiTangChiTiet.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showview?viewname=cbohopdong"
+                                                            ></cbo-hop-dong>
                             </td>
                             <td class="form-group form-group-sm">
                                 <!--ngay bd su dung-->
@@ -177,6 +183,7 @@
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NhanVien/cboNhanVienByPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/HopDong/cboHopDong.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

@@ -260,6 +260,118 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                     ds = biz.ExecuteBiz();
                 }
 
+                /* REPORT BÁO CÁO DANH MỤC TÀI SẢN TSNN */
+                if (reportname == "rptTaiSan_NhaDat_TSNN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanNhaDatTSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_NhaDat_TSNN.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_Oto_TSNN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanOtoTSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_Oto_TSNN.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_500_TSNN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSan500TSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_500_TSNN.xml"));
+                    }
+                }
+
+                /* REPORT BÁO CÁO DANH MỤC TÀI SẢN DVSN */
+                if (reportname == "rptTaiSan_NhaDat_DVSN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanNhaDatTSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_NhaDat_DVSN.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_Oto_DVSN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSanOtoTSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_Oto_DVSN.xml"));
+                    }
+                }
+                if (reportname == "rptTaiSan_500_DVSN.rpt")
+                {
+                    CrystalReportViewer1.SeparatePages = true;
+
+                    var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                    if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                    {
+                        var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                        var biz = new ReportTaiSan500TSNNBiz(context);
+                        biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                        biz.COSO_ID = _params[3];
+                        biz.NHANVIEN_ID = _params[4];
+                        ds = biz.ExecuteBiz();
+
+                        ds.Tables[0].TableName = "Tables";
+                        ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptTaiSan_500_DVSN.xml"));
+                    }
+                }
+
                 /* REPORT BÁO CÁO KÊ KHAI TÀI SẢN */
                 if (reportname == "rptTaiSan_KeKhaiDat.rpt")
                 {

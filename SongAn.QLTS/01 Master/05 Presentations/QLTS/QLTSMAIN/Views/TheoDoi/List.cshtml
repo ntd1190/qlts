@@ -73,6 +73,7 @@
                             <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
                                 <a ng-switch-when="MaTaiSan" ng-bind="TheoDoi.MaTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId,TheoDoi.Nam)" href="javascript:void(0);"></a>
                                 <a ng-switch-when="TenTaiSan" ng-bind="TheoDoi.TenTaiSan" ng-click="ctrl.action.edit(TheoDoi.TaiSanId,TheoDoi.PhongBanId,TheoDoi.NhanVienId,TheoDoi.Nam)" href="javascript:void(0);"></a>
+                                <a ng-switch-when="SoHopDong" href="~/hopdong/list/{{TheoDoi.HopDongId}}">{{ TheoDoi.SoHopDong}}</a>
                                 <span ng-switch-when="NgayGhiTang">{{ TheoDoi.NgayGhiTang | date : 'dd/MM/yyyy'}}</span>
                                 <span ng-switch-when="NgayTrangCap">{{ TheoDoi.NgayTrangCap | date : 'dd/MM/yyyy'}}</span>
                                 <span ng-switch-when="NgayBatDauSuDung">{{ TheoDoi.NgayBatDauSuDung | date : 'dd/MM/yyyy'}}</span>
@@ -203,7 +204,13 @@
             <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SLTon)?'has-error':''">
                 <label class="control-label col-sm-3">Số lượng</label>
                 <div class="col-sm-9">
-                    <input type="text" id="txtSLTon" class="form-control text-right" ng-model="ctrl.data.objTheoDoi.SLTon" number-format />
+                    <input type="text" id="txtSLTon" class="form-control text-right" ng-model="ctrl.data.objTheoDoi.SLTon" number-format ng-keypress="ctrl.action.keyPress(ctrl.data.objTheoDoi.SLTon,'txtSLTon','cbxHopDong',$event)"/>
+                </div>
+            </div>
+            <div class="row form-group form-group-sm" ng-class="(ctrl.validate.HopDongId)?'has-error':''">
+                <label class="control-label col-sm-3">Hợp đồng</label>
+                <div class="col-sm-9">
+                    <cbo-hop-dong id="cbxHopDong" data-function-code="CN0026" data-value="ctrl.data.objTheoDoi.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showview?viewname=cbohopdong"></cbo-hop-dong>
                 </div>
             </div>
         </form>
@@ -262,7 +269,7 @@
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NhanVien/cboNhanVienByPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-
+    @{Html.RenderPartial("~/views/HopDong/cboHopDong.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

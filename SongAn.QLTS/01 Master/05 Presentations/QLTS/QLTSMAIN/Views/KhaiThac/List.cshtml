@@ -55,6 +55,7 @@
                         <th class="text-center" style="min-width: 130px; vertical-align:middle"  rowspan="2">Bộ phận sử dụng</th>
                         <th class="text-center" style="min-width: 80px; vertical-align:middle" rowspan="2">ĐVT</th>
                         <th class="text-center" style="min-width: 200px; vertical-align:middle"  rowspan="2">Đơn vị thuê</th>
+                        <th class="text-center" style="min-width: 100px; vertical-align:middle" rowspan="2">Hợp đồng</th>
                         <th class="text-center" style="min-width: 110px; vertical-align:middle" rowspan="2">Số lượng thuê</th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Đơn giá thuê</th>
                         <th class="text-center" style="min-width: 100px; vertical-align:middle"  rowspan="2">Thời gian BĐ</th>
@@ -89,6 +90,9 @@
                         <td class="text-left"><span>{{ KhaiThac.TenPhongBan }}</span></td>
                         <td class="text-left"><span>{{ KhaiThac.DonViTinh }}</span></td>
                         <td class="text-left"><span>{{ KhaiThac.TenKhachHang }}</span></td>
+                        <td class="text-left">
+                            <a href="~/hopdong/list/{{KhaiThac.HopDongId}}">{{ KhaiThac.SoHopDong}}</a>
+                        </td>
                         <td class="text-right"><span>{{ KhaiThac.SoLuongKhaiThac }}</span></td>
                         <td class="text-right"><span>{{ KhaiThac.DonGiaKhaiThac |number}}</span></td>
                         <td class="text-center"><span>{{ KhaiThac.ThoiGianBatDau | date : 'dd/MM/yyyy'}}</span></td>
@@ -164,6 +168,12 @@
                     <label class="control-label col-sm-3">Đơn vị thuê</label>
                     <div class="col-sm-9">
                         <cbo-khach-hang id="cbxKhachHang" data-value="ctrl.data.objKhaiThac.KhachHangNCCId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/khachhang/showview?viewname=cbokhachhang"></cbo-khach-hang>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="(ctrl.validate.HopDongId)?'has-error':''">
+                    <label class="control-label col-sm-3">Hợp đồng</label>
+                    <div class="col-sm-9">
+                        <cbo-hop-dong id="cbxHopDong" data-function-code="CN0034" data-value="ctrl.data.objKhaiThac.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showview?viewname=cbohopdong"></cbo-hop-dong>
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="(ctrl.validate.SoLuongKhaiThac)?'has-error':''">
@@ -292,7 +302,7 @@
     @{Html.RenderPartial("~/views/PhongBan/cboPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/KhachHang/cboKhachHang.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NhanVien/cboNhanVienByPhongBan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
-
+    @{Html.RenderPartial("~/views/HopDong/cboHopDong.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }
 
 

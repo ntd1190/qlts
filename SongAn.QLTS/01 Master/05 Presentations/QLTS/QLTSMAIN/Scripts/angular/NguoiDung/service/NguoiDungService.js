@@ -47,7 +47,7 @@
             return $http(req);
         }
 
-        function getPage(draw, start, length, searchString, sortName, sortDir, fields,LoginId) {
+        function getPage(draw, start, length, searchString, sortName, sortDir, fields,LoginId,UserId) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -62,7 +62,8 @@
                     sortName: sortName,
                     sortDir: sortDir,
                     fields: fields,
-                    LoginId: LoginId
+                    LoginId: LoginId,
+                    UserId: UserId
                 })
             }
 

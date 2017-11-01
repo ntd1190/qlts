@@ -7,7 +7,7 @@
     <div class="panel panel-default" ng-controller="ThayDoiThongTinKeKhaiListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/thaydoithongtinkekhai/"))'})" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
-                <span><i class="fa fa-fw fa-star-o"></i>Tài sản</span>
+                <span><i class="fa fa-fw fa-star-o"></i>Thay đổi thông tin kê khai</span>
                 <div class="pull-right">
                     <form class="form-inline ng-pristine ng-valid">
                         <div class="form-group form-group-sm">
@@ -311,13 +311,7 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Loại xe</span>
-
-                                        <select class="form-control" ng-model="ctrl.data.TTKK_New.LoaiXe">
-                                            <option value="1">Xe 1 bánh</option>
-                                            <option value="2">Xe lăng</option>
-                                            <option value="3">Xe tăng</option>
-                                            <option value="4">Xe xích đu</option>
-                                        </select>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_New.TenLoaiXe"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Chức danh</span>
@@ -362,13 +356,7 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Loại xe</span>
-
-                                        <select class="form-control" ng-model="ctrl.data.TTKK_Old.LoaiXeCu">
-                                            <option value="1">Xe 1 bánh</option>
-                                            <option value="2">Xe lăng</option>
-                                            <option value="3">Xe tăng</option>
-                                            <option value="4">Xe xích đu</option>
-                                        </select>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.LoaiXeCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Chức danh</span>
@@ -376,7 +364,7 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Hiện trạng sử dụng</span>
-                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.TenHienTrangSuDungCu"></span>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.HienTrangSuDungCu"></span>
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Biển kiểm soát</span>
@@ -502,4 +490,5 @@
 
     <script src="~/Scripts/angular/TuyChonFormCot/controller/TuyChonCotListCtrl.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+    @{Html.RenderPartial("~/views/LoaiXe/cboLoaiXe.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

@@ -285,6 +285,10 @@
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongFilterCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\controller\GiayBaoHongListCtrl.js" />
     <Content Include="Scripts\angular\GiayBaoHong\service\GiayBaoHongService.js" />
+    <Content Include="Scripts\angular\HopDong\controller\HopDongEditCtrl.js" />
+    <Content Include="Scripts\angular\HopDong\controller\HopDongListCtrl.js" />
+    <Content Include="Scripts\angular\HopDong\directive\cboHopDong.js" />
+    <Content Include="Scripts\angular\HopDong\service\HopDongService.js" />
     <Content Include="Scripts\angular\KhoPhieuXuatKhac\controller\KhoPhieuXuatEditCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuXuatKhac\controller\KhoPhieuXuatFilterCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuXuatKhac\controller\KhoPhieuXuatListCtrl.js" />
@@ -381,10 +385,12 @@
     <Content Include="Scripts\angular\PhongBan\service\PhongBanService.js" />
     <Content Include="Scripts\angular\PhuongThuc\directive\cboPhuongThuc.js" />
     <Content Include="Scripts\angular\PhuongThuc\service\PhuongThucService.js" />
+    <Content Include="Scripts\angular\shared\directive\file-bind.directive.js" />
     <Content Include="Scripts\angular\shared\directive\keyboard.directive.js" />
     <Content Include="Scripts\angular\shared\directive\input-number.js" />
     <Content Include="Scripts\angular\shared\directive\number-format.js" />
     <Content Include="Scripts\angular\shared\filter\Number.Filter.js" />
+    <Content Include="Scripts\angular\shared\service\upload.service.js" />
     <Content Include="Scripts\angular\shared\service\xlsx.full.min.js" />
     <Content Include="Scripts\angular\shared\dialog-message\dialogMessage.js" />
     <Content Include="Scripts\angular\shared\dialog-message\template\dialog-message.template.html" />
@@ -468,6 +474,7 @@
     <Compile Include="Controllers\HienTrangSuDungController.cs" />
     <Compile Include="Controllers\GhiGiamController.cs" />
     <Compile Include="Controllers\CauHinhHeThongController.cs" />
+    <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\KhoPhieuXuatKhacController.cs" />
     <Compile Include="Controllers\KhoTonKhoController.cs" />
     <Compile Include="Controllers\KhaiThacController.cs" />
@@ -498,6 +505,7 @@
     <Compile Include="Controllers\ThayDoiThongTinKeKhaiController.cs" />
     <Compile Include="Controllers\TaiSanController.cs" />
     <Compile Include="Controllers\TheoDoiController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="CrystalReport\CrystalImageHandler.aspx.cs">
       <DependentUpon>CrystalImageHandler.aspx</DependentUpon>
@@ -793,6 +801,8 @@
     <Content Include="Views\CauHinhHeThong\List.cshtml" />
     <Content Include="Views\KhoPhieuXuatKhac\Edit.cshtml" />
     <Content Include="Views\KhoPhieuXuatKhac\List.cshtml" />
+    <Content Include="Views\HopDong\List.cshtml" />
+    <Content Include="Views\HopDong\cboHopDong.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

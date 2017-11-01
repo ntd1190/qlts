@@ -27,7 +27,8 @@
 
                 var vm = this;
                 vm.data = {};
-
+                vm.data.CoSo = {};
+                vm.inputSearch = {};
                 /*** INIT FUNCTION ***/
 
                 activate();
@@ -49,7 +50,7 @@
                 /*** EVENT FUNCTION ***/
 
                 $scope.$watch('CoSoId', function (newValue, oldValue) {
-                    if (newValue == oldValue) { return; }
+                    if (newValue == vm.data.CoSo.CoSoId) { return; }
                     delete vm.inputSearch;
                     vm.inputSearch = {};
                     vm.inputSearch.CoSoId = newValue;

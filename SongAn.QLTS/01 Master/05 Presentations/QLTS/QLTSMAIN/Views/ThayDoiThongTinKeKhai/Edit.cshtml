@@ -296,15 +296,9 @@
                                     </div>
                                     <div class="col-sm-6 form-group form-group-sm">
                                         <span>Loại xe</span>
-
-                                        <select class="form-control" ng-model="ctrl.data.TTKK_Old.LoaiXeCu">
-                                            <option value="1">Xe 1 bánh</option>
-                                            <option value="2">Xe lăng</option>
-                                            <option value="3">Xe tăng</option>
-                                            <option value="4">Xe xích đu</option>
-                                        </select>
+                                        <span class="form-control" ng-bind="ctrl.data.TTKK_Old.LoaiXeCu"></span>
                                     </div>
-                                    <div class="col-sm-6 form-group form-group-sm">
+                                    <div class="col-sm-6 form-group form-group-sm" style="float: right;">
                                         <span>Chức danh</span>
                                         <span class="form-control" ng-bind="ctrl.data.TTKK_Old.ChucDanhCu"></span>
                                     </div>
@@ -336,7 +330,7 @@
                 <div class="col-sm-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <span class="panel-title">Thông tin cũ (Ô tô)</span>
+                            <span class="panel-title">Thông tin mới (Ô tô)</span>
                         </div>
                         <div class="panel-body">
                             <div class="row">
@@ -347,14 +341,9 @@
                                 <div class="col-sm-6 form-group form-group-sm" ng-class="ctrl.error.TTKKOto_New_LoaiXe?'has-error':''">
                                     <span>Loại xe</span>
 
-                                    <select class="form-control" ng-model="ctrl.data.TTKK_New.LoaiXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKKOto_New_LoaiXe" data-next="TTKKOto_New_ChucDanh">
-                                        <option value="1">Xe 1 bánh</option>
-                                        <option value="2">Xe lăng</option>
-                                        <option value="3">Xe tăng</option>
-                                        <option value="4">Xe xích đu</option>
-                                    </select>
+                                    <cbo-loai-xe data-value="ctrl.data.TTKK_New.LoaiXe" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/LoaiXe/showview?viewname=cboLoaiXe" data-name="TTKK_New_LoaiXe"></cbo-loai-xe>
                                 </div>
-                                <div class="col-sm-6 form-group form-group-sm" ng-class="ctrl.error.TTKKOto_New_ChucDanh?'has-error':''">
+                                <div class="col-sm-6 form-group form-group-sm" ng-class="ctrl.error.TTKKOto_New_ChucDanh?'has-error':''" style="float: right;">
                                     <span>Chức danh</span>
                                     <input class="form-control" ng-model="ctrl.data.TTKK_New.ChucDanh" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKKOto_New_ChucDanh" data-next="TTKKOto_New_HienTrangSuDung" />
                                 </div>
@@ -468,4 +457,5 @@
     <script src="~/Scripts/angular/ThayDoiThongTinKeKHai/service/ThayDoiThongTinKeKhaiService.js"></script>
     <script src="~/Scripts/angular/TaiSan/service/TaiSanService.js"></script>
     <script src="~/Scripts/angular/ThayDoiThongTinKeKHai/controller/ThayDoiThongTinKeKhaiEditCtrl.js"></script>
+    @{Html.RenderPartial("~/views/LoaiXe/cboLoaiXe.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

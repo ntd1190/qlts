@@ -12,7 +12,8 @@
         ])
         .value('API_BASE', 'http://localhost/qltsapi/')
         .value('SETTING', {
-            DEBUG: true
+            DEBUG: true,
+            HOME_URL: 'http://localhost/QLTSMain/'
         })
         .run(run)
         .config(config);
@@ -58,7 +59,7 @@
             var heigth = $(window).height();
             el.css({
                 left: (width - el.width()) / 2,
-                top: (heigth - el.height()) / 2
+                top: (heigth - el.height()) / 3
             });
         })
 

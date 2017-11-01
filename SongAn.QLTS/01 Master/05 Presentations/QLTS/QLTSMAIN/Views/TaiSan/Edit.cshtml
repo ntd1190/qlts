@@ -602,12 +602,7 @@
                                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TTKK_Oto_LoaiXe?'has-error':''">
                                             <span class="col-sm-4">Loại xe <span class="text-danger">*</span></span>
                                             <div class="col-sm-8">
-                                                <select class="form-control" ng-model="ctrl.data.TTKK_Oto.LoaiXe" ng-keypress="ctrl.action.keyPressTTKK($event)" data-name="TTKK_Oto_LoaiXe" data-next="TTKK_Oto_HienTrangSuDung">
-                                                    <option value="1">Xe 1 bánh</option>
-                                                    <option value="2">Xe lăng</option>
-                                                    <option value="3">Xe tăng</option>
-                                                    <option value="4">Xe xích đu</option>
-                                                </select>
+                                                <cbo-loai-xe data-value="ctrl.data.TTKK_Oto.LoaiXe" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/LoaiXe/showview?viewname=cboLoaiXe" data-name="TTKK_Oto_LoaiXe"></cbo-loai-xe>
                                             </div>
                                         </div>
                                     </div>
@@ -754,4 +749,5 @@
     @{Html.RenderPartial("~/views/NuocSanXuat/cboNuocSanXuat.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/NguonNganSach/cboNguonNganSach.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/LoaiXe/cboLoaiXe.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

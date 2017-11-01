@@ -185,6 +185,12 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row form-group form-group-sm" ng-if="ctrl.data.showcboCoSo==true"ng-class="{'has-error':ctrl.status.isInValidCoSo}">
+                        <label class="control-label col-sm-3">Cơ sở</label>
+                        <div class="col-sm-9">
+                            <cbo-co-so data-config="{userInfo:@(ViewBag.userInfo),NameId:'txtCoSoId'}" data-cosoid="ctrl.data.objNguoiDung.CoSoId" template-url="~/coso/showview?viewname=cbocoso" ng-keypress="ctrl.action.keyPress(ctrl.data.objNguoiDung.CoSoId,'txtCoSoId', 'txtEmail',$event)"></cbo-co-so>
+                        </div>
+                    </div>
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-3">Nhân viên</label>
                         <div class="col-sm-9">
@@ -326,4 +332,5 @@
     <script src="~/Scripts/angular/VaiTro/service/VaiTroService.js"></script>
     <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
     @{Html.RenderPartial("~/views/NhanVien/Combobox.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    @{Html.RenderPartial("~/views/coso/cbocoso.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
 }

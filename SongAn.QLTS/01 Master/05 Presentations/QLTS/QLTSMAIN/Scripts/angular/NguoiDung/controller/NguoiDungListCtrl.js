@@ -304,7 +304,7 @@
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
             var fields = "";
-            NguoiDungService.getPage(draw, start, number, searchString, sortName, sortDir, fields,vm.data.UserLoginId).then(function (success) {
+            NguoiDungService.getPage(draw, start, number, searchString, sortName, sortDir, fields, vm.data.UserLoginId, vm.data.userInfo.UserId).then(function (success) {
                 if (success.data.data) {
                     vm.data.listNguoiDung = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);

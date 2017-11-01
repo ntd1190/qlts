@@ -344,6 +344,9 @@
                         $("#" + ToId).find('input').focus();
                     }
                 }
+                else if (fromId == 'txtSLTon') {
+                    $("#" + ToId).find('input').focus();
+                }
                 else $("#" + ToId).focus();
             }
         }

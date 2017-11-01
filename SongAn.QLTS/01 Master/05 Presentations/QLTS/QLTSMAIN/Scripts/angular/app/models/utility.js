@@ -14,6 +14,7 @@
             setQueryString: updateQueryStringParameter,
             checkInValid: checkInValid,
             joinStr: joinStr,
+            getFileExt: getFileExt,
             convertDateFormat: convertDateFormat,
             AlertSuccess: AlertSuccess,
             AlertError: AlertError,
@@ -43,7 +44,10 @@
 
             return tableState;
         }
-
+        function getFileExt(fileName) {
+            var fileNameSplit = fileName.split('.');
+            return fileNameSplit[fileNameSplit.length - 1];
+        }
         function checkInValid(value, type) {
             switch (type) {
                 case 'isCode':

@@ -90,7 +90,8 @@
                     DonVi:obj.DonVi,
                     GhiChu: obj.GhiChu,
                     CoSoId: obj.CoSoId,
-                    NhanVienId:obj.NguoiTao
+                    NhanVienId: obj.NguoiTao,
+                    HopDongId:obj.HopDongId
                 })
             }
             return $http(req);
@@ -117,7 +118,8 @@
                     NopNganSach: obj.NopNganSach,
                     DonVi: obj.DonVi,
                     GhiChu: obj.GhiChu,
-                    CtrVersion: obj.CtrVersion
+                    CtrVersion: obj.CtrVersion,
+                    HopDongId: obj.HopDongId
                 })
             }
             return $http(req);

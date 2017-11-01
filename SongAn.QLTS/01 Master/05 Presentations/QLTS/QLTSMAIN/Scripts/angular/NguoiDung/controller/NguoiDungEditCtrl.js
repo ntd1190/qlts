@@ -42,7 +42,7 @@
     function NguoiDungEditCtrl($rootScope, $scope, NguoiDungService, utility, $window, $filter) {
         var controllerId = 'NguoiDungEditCtrl';
         var NguoiDungId = 0;
-        var vm = this;
+        var vm = this, userInfo;
         vm.data = {
             objNguoiDung: {
                 MaTrangThai: 'CV_BD',
@@ -51,9 +51,10 @@
             listQuyenTacVu: [],
             listVaiTro: [],
             listNhanVien: [],
-            UserLoginId:'',
+            UserLoginId: '',
             showButtonXoa: false,
             showButtonSave: false,
+            showcboCoSo: false
         };
         //HOT-KEY       
         vm.keys = {
@@ -79,7 +80,7 @@
             isInValidTenNguoiDung: false,
             isInValidVaiTro: false,
             isInValidEmail: false,
-            isInValidPassword:false
+            isInValidPassword: false
         };
         vm.action = {
             save: save,
@@ -106,8 +107,9 @@
             initEventListener();
             if (ctrlId && ctrlId.userInfo) {
                 vm.data.listQuyenTacVu = ctrlId.userInfo.DsQuyenTacVu.split(',');
-                vm.data.objNguoiDung.CoSoId =  ctrlId.userInfo.CoSoId;
+                vm.data.objNguoiDung.CoSoId = ctrlId.userInfo.CoSoId;
                 vm.data.UserLoginId = ctrlId.userInfo.NhanVienId;
+                userInfo = ctrlId.userInfo;
                 setEnableButton();
             }
         }
@@ -129,6 +131,9 @@
                 // Co quyen Sua
                 if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
                     vm.data.showButtonSave = NguoiDungId > 0 ? true : vm.data.showButtonSave;
+                }
+                if (vm.data.listQuyenTacVu.indexOf("VA") > 0) {
+                    vm.data.showcboCoSo = true;
                 }
             }
         }
@@ -157,8 +162,8 @@
             setEnableButton();
             if (NguoiDungId > 0) {
                 NguoiDungService.getById(NguoiDungId).then(function (result) {
-                    if (result.data.data.length>0)
-                    {
+                    console.log('NguoiDungService.getById:', result);
+                    if (result.data.data.length > 0) {
                         vm.data.listVaiTro = [];
                         vm.data.listNhanVien = [];
                         vm.data.objNguoiDung = result.data.data[0];
@@ -166,7 +171,7 @@
                         var NhanVien = { NhanVienId: vm.data.objNguoiDung.NhanVienId, MaNhanVien: vm.data.objNguoiDung.MaNhanVien, TenNhanVien: vm.data.objNguoiDung.TenNhanVien };
                         $rootScope.$broadcast('NhanVienEditCtrl.action.loadData', NhanVien);
                         $('#popupThongTinNguoiDung').collapse('show');
-                      
+
                     }
                     else $rootScope.$broadcast('NguoiDungListCtrl.action.refresh');
                 })
@@ -179,7 +184,7 @@
                 vm.status.isInValidVaiTro = false;
                 vm.status.isInValidEmail = false;
                 vm.status.isInValidPassword = false;
-                
+
                 $("#txtMaNguoiDung").focus();
             }
         }
@@ -194,10 +199,15 @@
                 $window.document.getElementById('txtTenNguoiDung').focus();
                 return;
             }
-        
+
             vm.status.isInValidVaiTro = utility.checkInValid(vm.data.listVaiTro.length > 0 ? vm.data.listVaiTro[0].VaiTroId : '', 'isEmpty');
             if (vm.status.isInValidVaiTro) {
                 $window.document.getElementById('popVaiTro').focus();
+                return;
+            }
+            vm.status.isInValidCoSo = utility.checkInValid(vm.data.objNguoiDung.CoSoId, 'isEmpty');
+            if (vm.status.isInValidCoSo) {
+                $('#txtCoSoId input').focus();
                 return;
             }
             vm.status.isInValidEmail = utility.checkInValid(vm.data.objNguoiDung.Email, 'Email');
@@ -206,14 +216,15 @@
                 return;
             }
             vm.status.isInValidPassword = utility.checkInValid(vm.data.objNguoiDung.PasswordHash, 'isEmpty');
-                if (vm.status.isInValidPassword) {
+            if (vm.status.isInValidPassword) {
                 $window.document.getElementById('txtPassword').focus();
                 return;
             }
             vm.data.objNguoiDung.NguoiTao = vm.data.UserLoginId;
             vm.data.objNguoiDung.VaiTroId = joinStr(vm.data.listVaiTro, 'VaiTroId');
-           
+
             NguoiDungService.insert(vm.data.objNguoiDung).then(function (success) {
+                console.log('NguoiDungService.insert:', success);
                 if (success.data.result) {
                     NguoiDungId = success.data.NguoiDungId;
                 }
@@ -260,10 +271,16 @@
                 $window.document.getElementById('popVaiTro').focus();
                 return;
             }
+            vm.status.isInValidCoSo = utility.checkInValid(vm.data.objNguoiDung.CoSoId, 'isEmpty');
+            if (vm.status.isInValidCoSo) {
+                $('#txtCoSoId input').focus();
+                return;
+            }
             vm.data.objNguoiDung.NguoiTao = vm.data.UserLoginId;
             vm.data.objNguoiDung.VaiTroId = joinStr(vm.data.listVaiTro, 'VaiTroId');
-          
+
             NguoiDungService.update(vm.data.objNguoiDung).then(function (success) {
+                console.log('NguoiDungService.insert:', success);
                 closeEdit();
                 $rootScope.isOpenPopup = false;
                 vm.status.isLoading = true;
@@ -294,7 +311,7 @@
                     }
                 } else {
                     $window.document.getElementById(ToId).focus();
-                }   
+                }
             }
         }
         function resetEdit(id) {
@@ -304,7 +321,7 @@
             vm.status.isInValidEmail = false;
             vm.status.isInValidPassword = false;
             refresh();
-           
+
         };
         function closeEdit() {
             vm.data.listVaiTro = [];
@@ -322,6 +339,8 @@
             $('#popupThongTinNguoiDung').collapse('hide');
         }
         function save() {
+            if (vm.data.showcboCoSo == false) { vm.data.objNguoiDung.CoSoId = userInfo.CoSoId }
+
             if (NguoiDungId > 0) {
                 update();
             } else {
