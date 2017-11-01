@@ -65,6 +65,8 @@
     <Compile Include="Entity\DieuChuyen.cs" />
     <Compile Include="Entity\DieuChuyenChiTiet.cs" />
     <Compile Include="Entity\DanhGia.cs" />
+    <Compile Include="Entity\LoaiXe.cs" />
+    <Compile Include="Entity\HopDong.cs" />
     <Compile Include="Entity\KhoTonKhoChiTiet.cs" />
     <Compile Include="Entity\KhoTonKho.cs" />
     <Compile Include="Entity\GhiGiamChiTiet.cs" />

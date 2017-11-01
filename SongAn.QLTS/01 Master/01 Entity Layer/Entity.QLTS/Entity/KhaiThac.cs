@@ -29,5 +29,6 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual int NguoiTao { get; set; }
         public virtual DateTime NgayTao { get; set; }
         public virtual int CtrVersion { get; set; }
+        public virtual int HopDongId { get; set; }
     }
 }

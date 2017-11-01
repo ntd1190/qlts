@@ -20,6 +20,6 @@ namespace SongAn.QLTS.Entity.QLTS.Entity
         public virtual int? PhongBanId { get; set; }
         public virtual int? NhanVienId { get; set; }
         public virtual decimal SoLuong { get; set; }
-
+        public virtual int? HopDongId { get; set; }
     }
 }
