@@ -7,7 +7,7 @@
 <div class="container-fluid" keyboard="mainCtrl.keys">
     <div class="panel panel-default" ng-controller="KhoPhieuXuatEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, khoPhieuXuatId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
-            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.view.Title}} phiếu nhập kho</span>
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.view.Title}} phiếu chuyển kho</span>
         </div>
 
         <div class="panel-body">
@@ -20,7 +20,7 @@
                                 <input type="text" class="form-control" placeholder="" ng-model="ctrl.data.KhoPhieuXuat.SoPhieu"
                                        ng-keydown="ctrl.action.keyPressKhoPhieuXuat($event)"
                                        data-name="KhoPhieuXuat_SoPhieu"
-                                       data-next="KhoPhieuXuat_Loai" autofocus />
+                                       data-next="KhoPhieuXuat_NgayXuat" autofocus />
                             </div>
                         </div>
                     </div>
@@ -43,7 +43,7 @@
                                 <input type="text" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.KhoPhieuXuat.NgayXuat"
                                        ng-keydown="ctrl.action.keyPressKhoPhieuXuat($event)"
                                        data-name="KhoPhieuXuat_NgayXuat"
-                                       data-next="KhoPhieuXuat_KhoXuatId" />
+                                       data-next="KhoPhieuXuat_NguoiNhanHang" />
                             </div>
                         </div>
                     </div>
@@ -55,7 +55,7 @@
                                        ng-model="ctrl.data.KhoPhieuXuat.NguoiNhanHang"
                                        ng-keydown="ctrl.action.keyPressKhoPhieuXuat($event)"
                                        data-name="KhoPhieuXuat_NguoiNhanHang"
-                                       data-next="KhoPhieuXuat_LyDo" />
+                                       data-next="KhoPhieuXuat_KhoXuatId" />
                             </div>
                         </div>
                     </div>
@@ -115,15 +115,15 @@
                     <tr>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
                         <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
-                        <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã tài sản</th>
                         <th class="text-center" style="min-width: 300px; vertical-align:middle">Tên tài sản<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                         <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>
                         <th class="text-center" style="min-width: 70px; vertical-align:middle">Date</th>
                         <th class="text-center" style="min-width: 80px; vertical-align:middle">Lô SX</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Đơn giá<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Nguồn ngân sách</th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Nhà cung cấp</th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Đơn giá</th>
+                        <th class="text-center" style="min-width: 160px; vertical-align:middle">Nguồn ngân sách</th>
+                        <th class="text-center" style="min-width: 160px; vertical-align:middle">Nhà cung cấp</th>
                         <th class="text-center" style="min-width: 150px; vertical-align:middle">Thành tiền</th>
                     </tr>
                 </thead>
@@ -145,7 +145,7 @@
                             <!--mataisan-->
                             <span class="form-control text-left" ng-bind="PhieuXuatChiTiet.MaTaiSan"></span>
                         </td>
-                        <td class="form-group form-group-sm">
+                        <td class="form-group form-group-sm" ng-class="ctrl.error.listChiTiet_TaiSanId{{$index}}?'has-error':''">
                             <cbo-tai-san-ton-kho data-functioncode="ctrl.config.functionCode"
                                                  data-taisanid="PhieuXuatChiTiet.TaiSanId"
                                                  data-khotaisanid="ctrl.data.KhoPhieuXuat.KhoXuatId"
@@ -170,7 +170,7 @@
                             <!--lô-->
                             <span type="text" class="form-control text-left" ng-bind="PhieuXuatChiTiet.LoSanXuat"></span>
                         </td>
-                        <td class="text-right form-group form-group-sm">
+                        <td class="text-right form-group form-group-sm" ng-class="ctrl.error.listChiTiet_SoLuong{{$index}}?'has-error':''">
                             <!--soluong-->
                             <input type="number" class="form-control text-right"
                                    ng-model="PhieuXuatChiTiet.SoLuong"
@@ -181,7 +181,7 @@
                         </td>
                         <td class="text-right form-group form-group-sm">
                             <!--don gia-->
-                            <span type="text" class="form-control text-right" ng-bind="PhieuXuatChiTiet.DonGia"></span>
+                            <span type="text" class="form-control text-right" ng-bind="PhieuXuatChiTiet.DonGia|number"></span>
                         </td>
                         <td class="form-group form-group-sm">
                             <!--TenNguonNganSach-->

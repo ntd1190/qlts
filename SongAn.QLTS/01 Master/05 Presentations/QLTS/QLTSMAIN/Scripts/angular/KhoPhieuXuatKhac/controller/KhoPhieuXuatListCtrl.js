@@ -75,7 +75,7 @@
         vm.keys = {
             F2: function (name, code) {
                 if (checkQuyenUI('N')) {
-                    window.location = linkUrl + 'KhoPhieuXuat/edit/0';
+                    window.location = linkUrl + 'KhoPhieuXuatKhac/edit/0';
                 }
             },
             F3: function (name, code) { },

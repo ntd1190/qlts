@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Thông tin kho phiếu nhập";
+    ViewBag.Title = "Thông tin phiếu xuất";
     ViewBag.id = ViewBag.id ?? 0;
     ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
@@ -7,7 +7,7 @@
 <div class="container-fluid" keyboard="mainCtrl.keys">
     <div class="panel panel-default" ng-controller="KhoPhieuXuatEditCtrl as ctrl" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, khoPhieuXuatId:@(ViewBag.id), linkUrl:'@(Url.Content("~/"))'})">
         <div class="panel-heading">
-            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.view.Title}} phiếu nhập kho</span>
+            <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.view.Title}} phiếu xuất kho</span>
         </div>
 
         <div class="panel-body">
@@ -24,18 +24,6 @@
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-sm-4">
-                            <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_Loai?'has-error':''">
-                                <label class="control-label col-sm-4">Loại<span class="text-danger">&nbsp;*</span></label>
-                                <div class="col-sm-7">
-                                    <select class="form-control"
-                                            ng-model="ctrl.data.KhoPhieuXuat.Loai"
-                                            data-name="KhoPhieuXuat_Loai"
-                                            data-next="KhoPhieuXuat_NgayXuat"
-                                            ng-options="loai.MaLoai as loai.TenLoai for loai in ctrl.data.LoaiPhieuXuat"></select>
-                                </div>
-                            </div>
-                        </div>*@
                     <div class="col-sm-4">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_NgayXuat?'has-error':''">
                             <label class="control-label col-sm-4">Ngày xuất<span class="text-danger">&nbsp;*</span></label>
@@ -55,7 +43,7 @@
                                        ng-model="ctrl.data.KhoPhieuXuat.NguoiNhanHang"
                                        ng-keydown="ctrl.action.keyPressKhoPhieuXuat($event)"
                                        data-name="KhoPhieuXuat_NguoiNhanHang"
-                                       data-next="KhoPhieuXuat_LyDo" />
+                                       data-next="KhoPhieuXuat_KhoXuatId" />
                             </div>
                         </div>
                     </div>
@@ -69,25 +57,11 @@
                                                  data-khotaisanid="ctrl.data.KhoPhieuXuat.KhoXuatId"
                                                  data-config="{userInfo:@(ViewBag.userInfo)}"
                                                  data-name="KhoPhieuXuat_KhoXuatId"
-                                                 data-next="KhoPhieuXuat_KhoNhanId"
+                                                 data-next="KhoPhieuXuat_LyDo"
                                                  template-url="~/khotaisan/showview?viewname=cboKhoTaiSan"></cbo-kho-tai-san>
                             </div>
                         </div>
                     </div>
-                    @*<div class="col-sm-4">
-                        <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_KhoNhanId?'has-error':''">
-                            <label class="control-label col-sm-4">Kho nhập</label>
-                            <div class="col-sm-7">
-                                <cbo-kho-tai-san data-function-code="{{ctrl.config.functionCode}}"
-                                                 data-khotaisanid="ctrl.data.KhoPhieuXuat.KhoNhanId"
-                                                 data-exclude="ctrl.data.KhoPhieuXuat.KhoXuatId"
-                                                 data-config="{userInfo:@(ViewBag.userInfo)}"
-                                                 data-name="KhoPhieuXuat_KhoNhanId"
-                                                 data-next="KhoPhieuXuat_NguoiNhanHang"
-                                                 template-url="~/khotaisan/showview?viewname=cboKhoTaiSan"></cbo-kho-tai-san>
-                            </div>
-                        </div>
-                    </div>*@
                 </div>
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.KhoPhieuXuat_LyDo?'has-error':''">
                     <label class="control-label col-sm-1" style="width:11%">Nội dung</label>
@@ -121,7 +95,7 @@
                         <th class="text-center" style="min-width: 70px; vertical-align:middle">Date</th>
                         <th class="text-center" style="min-width: 80px; vertical-align:middle">Lô SX</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Đơn giá<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                        <th class="text-center" style="min-width: 120px; vertical-align:middle">Đơn giá</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Nguồn ngân sách</th>
                         <th class="text-center" style="min-width: 120px; vertical-align:middle">Nhà cung cấp</th>
                         <th class="text-center" style="min-width: 150px; vertical-align:middle">Thành tiền</th>
@@ -145,7 +119,7 @@
                             <!--mataisan-->
                             <span class="form-control text-left" ng-bind="PhieuXuatChiTiet.MaTaiSan"></span>
                         </td>
-                        <td class="form-group form-group-sm">
+                        <td class="form-group form-group-sm" ng-class="ctrl.error.listChiTiet_TaiSanId{{$index}}?'has-error':''">
                             <cbo-tai-san-ton-kho data-functioncode="ctrl.config.functionCode"
                                                  data-taisanid="PhieuXuatChiTiet.TaiSanId"
                                                  data-khotaisanid="ctrl.data.KhoPhieuXuat.KhoXuatId"
@@ -170,7 +144,7 @@
                             <!--lô-->
                             <span type="text" class="form-control text-left" ng-bind="PhieuXuatChiTiet.LoSanXuat"></span>
                         </td>
-                        <td class="text-right form-group form-group-sm">
+                        <td class="text-right form-group form-group-sm" ng-class="ctrl.error.listChiTiet_SoLuong{{$index}}?'has-error':''">
                             <!--soluong-->
                             <input type="number" class="form-control text-right"
                                    ng-model="PhieuXuatChiTiet.SoLuong"

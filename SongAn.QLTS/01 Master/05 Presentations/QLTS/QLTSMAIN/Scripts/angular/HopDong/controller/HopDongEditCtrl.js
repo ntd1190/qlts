@@ -88,7 +88,9 @@
             $('#HopDongEditPopup').on('shown.bs.collapse', function () {
                 //set focus                
                 $window.document.getElementById('txtSoHopDong').focus();
-                vm.data.objHopDong.NgayHopDong = moment().format('DD/MM/YYYY');
+                if (HopDongId <= 0) {
+                    vm.data.objHopDong.NgayHopDong = moment().format('DD/MM/YYYY');
+                }
                 $rootScope.isOpenPopup = true;
             });
 

@@ -95,6 +95,8 @@
         vm.action.keyPressChiTiet = function (event, index) {
             if (event.keyCode != 13) { return; }
 
+            if (checkInputChiTiet('', index) == false) { return; }
+
             if (vm.data.listChiTiet && (vm.data.listChiTiet.length - 1) == index) {
                 vm.action.addChiTiet();
             }
@@ -139,8 +141,10 @@
             chitiet.TenNhaCungCap = data.TenNhaCungCap;
         }
         vm.action.save = function () {
-            utility.addloadding($('body'));
+            if (checkInputPhieuXuat() == false) { return; }
+            if (checkListChiTiet() == false) { return; }
 
+            utility.addloadding($('body'));
             if (checkQuyenUI('N')) {
                 insert().then(function (success) {
                     $timeout(function () {
@@ -161,13 +165,13 @@
             if (checkQuyenUI('M')) {
                 update().then(function (success) {
                     loadData();
-                    utility.AlertSuccess("Thay đổi thông tin phiếu xuất thành công");
+                    utility.AlertSuccess("Cập nhật thông tin phiếu xuất thành công");
                     utility.removeloadding();
                 }, function (error) {
                     if (error.status === 400) {
                         utility.AlertError(error.data.error.message.split('|')[2]);
                     } else {
-                        utility.AlertError('Không thể thay đổi thông tin phiếu xuất');
+                        utility.AlertError('Không thể cập nhật thông tin phiếu xuất');
                     }
                     utility.removeloadding();
                 });
@@ -261,7 +265,62 @@
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
-                if (vm.data[obj_name][prop_name] > 0) {
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            if (first_error_name) {
+                $('[data-name="' + first_error_name + '"] input').focus();
+                $('[data-name="' + first_error_name + '"]').focus();
+            }
+
+            return !has_error;
+        }
+
+        function checkListChiTiet() {
+            var first_error_index = -1;
+            var has_error = false;
+            for (var index in vm.data.listChiTiet) {
+                if (checkInputChiTiet('', index) == false) {
+                    first_error_index = first_error_index == -1 ? index : first_error_index;
+                    has_error = true;
+                }
+            }
+            if (has_error) {
+                checkInputChiTiet('', first_error_index);
+            }
+
+            return !has_error;
+        }
+
+        function checkInputChiTiet(inputName, index) {
+            console.log('checkInputChiTiet:', inputName);
+            inputName = inputName || '';
+            var has_error = false;
+            var first_error_name = '';
+            var obj_name = 'listChiTiet';
+            var prop_name = '';
+            var error_name = '';
+
+            prop_name = 'TaiSanId';
+            error_name = obj_name + '_' + prop_name + index;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][index][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            prop_name = 'SoLuong';
+            error_name = obj_name + '_' + prop_name + index;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][index][prop_name] || vm.data[obj_name][index][prop_name] < 1) {
                     first_error_name = has_error ? first_error_name : error_name;
                     vm.error[error_name] = '.';
                     has_error = true;

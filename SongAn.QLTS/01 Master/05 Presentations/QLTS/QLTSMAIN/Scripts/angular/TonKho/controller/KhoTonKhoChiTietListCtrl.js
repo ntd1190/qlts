@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module("app")
-        .controller("HopDongListCtrl", controller)
+        .controller("KhoTonKhoChiTietListCtrl", controller)
 
-    function controller($rootScope, $scope, HopDongService, utility, $timeout) {
+    function controller($rootScope, $scope, KhoTonKhoService, $window, utility, $timeout) {
         var vm = this;
         //HOT-KEY       
         vm.keys = {
@@ -35,11 +35,8 @@
             },
             //press F2 -> open popup
             F2: function (name, code) {
-                if (!$rootScope.isOpenPopup && vm.data.showButtonNew) {
-                    $rootScope.$broadcast('HopDongEditCtrl.HopDongId', 0);
-                    $rootScope.$broadcast('HopDongEditCtrl.onInitView', 0);
-                    $('#HopDongEditPopup').collapse('show');
-                    $rootScope.isOpenPopup = true;
+                if (vm.data.showButtonNew) {
+                    add();
                 }
             },
 
@@ -47,42 +44,55 @@
             F3: function (name, code) {
                 if (!$rootScope.isOpenPopup) {
                     $("#txtsearch").focus();
-                    getPage();
+                    getPageDetail();
                 }
             },
 
             //press F8 -> search
             F8: function (name, code) {
-                if (!$rootScope.isOpenPopup) {
-                    return;
+                if ($rootScope.isOpenPopup && vm.data.showButtonSave) {
+                    save();
                 }
             }
         };
         //end HOT-KEY
         var _tableState = {};
+        var KhoTaiSanId = 0;
         vm.data = {
             userInfo: {},
             showButtonNew: false,
             showButtonXoaChon: false,
+            showButtonSave:false,
             listQuyenTacVu: [],
-            HopDongList: [],
-            HopDongListDisplay: [],
-            HopDongSelected: [],
+            KhoTonKhoList: [],
+            KhoTonKhoListDisplay: [],
+            KhoTonKhoSelected: [],
             isLoading: false,
-            searchString: ''
+            searchString: '',
+            TenTaiSan: '',
+            ThangNam: '',
+            objThongTin: {},
+            UserLoginId: '',
+            CoSoId: '',
         };
 
         vm.action = {
-            alert: alert,
-            edit: edit,
-            add: add,
-            getPage: getPage,
-            deleteSelected: deleteSelected,
+            getPageTonKho: getPageTonKho,
+            DongY: DongY
         };
-
-
+        vm.status = {
+            isLoading: false,
+            isInValidMaTaiSan: false,
+            isInValidTenTaiSan: false,
+            isInValidNguonNganSach: false,
+            isInValidSoLuong: false,
+            isInValidDonGia: false,
+        };
         activate();
         vm.onInitView = onInitView;
+        vm.action.goBack = function () {
+            window.history.back();
+        };
         function activate() {
             eventAutoReload();
         }
@@ -90,74 +100,19 @@
             if (config && config.userInfo) {
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
                 vm.data.userInfo = config.userInfo;
-                setEnableButton();
+                vm.data.UserLoginId = config.userInfo.NhanVienId;
+                vm.data.CoSoId = config.userInfo.CoSoId;
             }
+            if (KhoTaiSanId == 0) $('#KhoTonKhoEditPopup').collapse('show');
         }
-        function setEnableButton() {
-            if (document.referrer.toUpperCase().indexOf("THEODOI") > 1 ||
-                document.referrer.toUpperCase().indexOf("KHAITHAC") > 1 ||
-                document.referrer.toUpperCase().indexOf("GHITANG") > 1) {
-                var res = window.location.href.split("/");
-                var id = res[res.length - 1];
-                if (id !== 'list') {
-                    $timeout(function () {
-                        vm.action.edit(id);
-                    }, 0);
-                }                
-                return;
-            }
-            if (vm.data.listQuyenTacVu.length > 0) {
 
-                // Co quyen them moi
-                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
-                    vm.data.showButtonNew = true;
-                }
-
-                // Co quyen Xoa
-                if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
-                    vm.data.showButtonXoaChon = true;
-                }
-
-                // Co quyen Sua
-                if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
-
-                }
-            }
-        }
         function eventAutoReload() {
-            $scope.$on('sa.qltsmain.HopDong.HopDong.reload', function (event) {
-                getPage(_tableState);
+            $scope.$on('sa.qltsmain.KhoTonKho.KhoTonKho.reload', function (event) {
+                getPageTonKho(_tableState);
             });
         }
 
-        function deleteSelected() {
-            if (!confirm('Bạn có muốn xóa các mục đã chọn không?')) { return; }
-
-            vm.data.isLoading = true;
-
-            var HopDongSelected = new Array();
-
-            for (var i = 0; i < vm.data.HopDongListDisplay.length; i++) {
-                var HopDong = vm.data.HopDongListDisplay[i];
-                if (HopDong.isSelected) {
-                    HopDongSelected.push(HopDong.HopDongId);
-                }
-            }
-            var ids = HopDongSelected.join(',');
-
-            HopDongService.removeList(ids).then(function (success) {
-                vm.data.isLoading = false;
-                _tableState.pagination.start = 0;
-                getPage(_tableState);
-                utility.AlertSuccess('Xóa thành công!');
-            }, function (error) {
-                vm.data.isLoading = false;
-                alert(error.data.error.code + " : " + error.data.error.message);
-            });
-
-        }
-
-        function getPage(tableState) {
+        function getPageTonKho(tableState) {
             vm.data.isLoading = true;
 
             if (tableState) {
@@ -170,21 +125,23 @@
                 tableState = initTableState(tableState);
                 _tableState = tableState;
             }
-
+            utility.addloadding($('body'));
             tableState.draw = tableState.draw + 1 || 1;
             var draw = tableState.draw;
             var start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
             var number = tableState.pagination.number || 10;  // Number of entries showed per page.
-            var sortName = tableState.sort.predicate || 'HopDongId';
+            var sortName = tableState.sort.predicate || 'KhoTonKhoId';
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
             var CoSoId = vm.data.userInfo.CoSoId;
             var NhanVienId = vm.data.userInfo.NhanVienId;
-            HopDongService.getPage(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId).then(function (success) {
-                if (success.data.data) {
-                    vm.data.HopDongListDisplay = success.data.data;
+
+            KhoTonKhoService.getPageTonKho(draw, start, number, searchString, sortName, sortDir, CoSoId, NhanVienId, KhoTaiSanId).then(function (success) {
+                if (success.data.data.length>0) {
+                    vm.data.KhoTonKhoListDisplay = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);
                 }
+                $('#bgloadding').remove();
                 vm.data.isLoading = false;
             }, function (error) {
                 vm.data.isLoading = false;
@@ -192,8 +149,8 @@
                     alert(error.data.error.message);
                 } else {
                     alert(error.data.Message);
-
                 }
+                $('#bgloadding').remove();
             });
         }
 
@@ -214,22 +171,14 @@
             return tableState;
         }
 
-        function add() {
-            $rootScope.HopDongId = 0;
-            $('#HopDongEditPopup').collapse('show');
-            $("#txtMa").focus();
-            $rootScope.isOpenPopup = true;
-        }
-
-        function edit(id) {
-            $rootScope.$broadcast('HopDongEditCtrl.HopDongId', id);
-            $('#HopDongEditPopup').collapse('show');
-            $("#txtMa").focus();
-            $rootScope.isOpenPopup = true;
-        }
-
         function clearArray(array) {
             while (array.length) { array.pop(); }
+        }
+        function DongY()
+        {
+            KhoTaiSanId = vm.data.objThongTin.KhoTaiSanId;
+            getPageTonKho(_tableState);
+            $('#KhoTonKhoEditPopup').collapse('hide');
         }
 
 
