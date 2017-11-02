@@ -126,6 +126,7 @@
     <Compile Include="Models\DanhGia\InsertDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
+    <Compile Include="Models\KhoTonKho\GetListTonKhoByProjectionAction.cs" />
     <Compile Include="Models\LoaiXe\GetLoaiXeByIdAction.cs" />
     <Compile Include="Models\LoaiXe\GetListcbxLoaiXeByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\DeleteListHopDongByIdAction.cs" />

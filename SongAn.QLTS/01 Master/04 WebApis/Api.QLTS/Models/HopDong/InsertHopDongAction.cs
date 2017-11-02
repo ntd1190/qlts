@@ -60,7 +60,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.HopDong
         private void init()
         {
             var __hopDong = JsonConvert.DeserializeObject<dynamic>(hopDong);
-            __hopDong.NgayNhap = DateTime.ParseExact(__hopDong.NgayHopDong.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            __hopDong.NgayHopDong = DateTime.ParseExact(__hopDong.NgayHopDong.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
             hopDong = JsonConvert.SerializeObject(__hopDong);
             _hopDong = JsonConvert.DeserializeObject<Entity.QLTS.Entity.HopDong>(hopDong);
         }

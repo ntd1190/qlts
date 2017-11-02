@@ -77,6 +77,8 @@
     <Compile Include="CoSo\GetListcbxCoSoByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiChoThueTSNNBieu05Dac.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiTinhHinhXuLyTSBieu06Dac.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdDac.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonDac.cs" />
     <Compile Include="CrystalReport\ReportGiayBaoHongByIdDac.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="KhoTonKho\GetListTonKhoByCriteriaProjectionDac.cs" />
     <Compile Include="LoaiXe\GetListcbxLoaiXeByCriteriaDac.cs" />
     <Compile Include="HopDong\DeleteHopDongByIdDac.cs" />
     <Compile Include="HopDong\GetListcbxHopDongByIdDac.cs" />

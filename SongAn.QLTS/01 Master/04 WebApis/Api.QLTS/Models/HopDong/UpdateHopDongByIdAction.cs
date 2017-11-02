@@ -7,6 +7,7 @@ using SongAn.QLTS.Data.Repository.QLTS;
 using SongAn.QLTS.Util.Common.Helper;
 using System.Collections.Generic;
 using Newtonsoft.Json;
+using System.Globalization;
 
 namespace SongAn.QLTS.Api.QLTS.Models.HopDong
 {
@@ -73,6 +74,7 @@ namespace SongAn.QLTS.Api.QLTS.Models.HopDong
         private void init()
         {
             var __hopDong = JsonConvert.DeserializeObject<dynamic>(hopDong);
+            __hopDong.NgayHopDong = DateTime.ParseExact(__hopDong.NgayHopDong.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
             hopDong = JsonConvert.SerializeObject(__hopDong);
             _hopDong = JsonConvert.DeserializeObject<Entity.QLTS.Entity.HopDong>(hopDong);
         }
