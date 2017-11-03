@@ -78,6 +78,8 @@
     <Compile Include="CoSo\GetListCoSoSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="CoSo\GetCoSoById.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiChoThueTSNNBieu05Dac.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiKeHoachMuaSamTSNNBieu01Dac.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiKetQuaMuaSamTSNNBieu02Dac.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiTinhHinhXuLyTSBieu06Dac.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdDac.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonDac.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="CrystalReport\ReportKhoPhieuNhapByIdDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSan500TSNNDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhai500Dac.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiNhaDatBieu03Dac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanOtoTSNNDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanNhaDatTSNNDac.cs" />
     <Compile Include="CrystalReport\ReportTaiSanKeKhaiOtoDac.cs" />
@@ -93,6 +96,7 @@
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="KhoaSoLieu\CheckKhoaSoLieuDac.cs" />
     <Compile Include="KhoTonKho\GetListTonKhoByCriteriaProjectionDac.cs" />
     <Compile Include="LoaiXe\GetListcbxLoaiXeByCriteriaDac.cs" />
     <Compile Include="HopDong\DeleteHopDongByIdDac.cs" />
@@ -151,6 +155,7 @@
     <Content Include="CrystalReport\Procedures\sp_KhoPhieuXuat_report_KhoPhieuXuatById.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_500_TSNN.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhai500.sql" />
+    <Content Include="CrystalReport\Procedures\sp_CongKhai_report_NhaDatBieu03.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_Oto_TSNN.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_NhaDat_TSNN.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhaiOto.sql" />
