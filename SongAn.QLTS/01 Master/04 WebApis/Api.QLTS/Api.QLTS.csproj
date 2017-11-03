@@ -67,6 +67,7 @@
     <Compile Include="Controllers\ChotSoLieuNamController.cs" />
     <Compile Include="Controllers\ChotSoLieuThangController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
+    <Compile Include="Controllers\KhoaSoLieuController.cs" />
     <Compile Include="Controllers\LoaiXeController.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\KhoPhieuXuatKhacController.cs" />
@@ -126,6 +127,7 @@
     <Compile Include="Models\DanhGia\InsertDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
+    <Compile Include="Models\KhoaSoLieu\CheckKhoaSoLieuAction.cs" />
     <Compile Include="Models\KhoTonKho\GetListTonKhoByProjectionAction.cs" />
     <Compile Include="Models\LoaiXe\GetLoaiXeByIdAction.cs" />
     <Compile Include="Models\LoaiXe\GetListcbxLoaiXeByCriteriaAction.cs" />
