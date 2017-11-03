@@ -536,7 +536,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                ds.WriteXmlSchema(@"D:\rptCongKhaiKeHoachMuaSamTSBieu01.xml");
+                //ds.WriteXmlSchema(@"D:\rptKetQuaMuaSamTSNNBieu02.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

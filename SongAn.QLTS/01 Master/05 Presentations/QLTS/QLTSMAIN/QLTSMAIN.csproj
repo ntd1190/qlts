@@ -550,6 +550,12 @@
       <DependentUpon>rptKeHoachMuaSamTSNNBieu01.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptKetQuaMuaSamTSNNBieu02.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKetQuaMuaSamTSNNBieu02.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptPhieuXuatChuyenById.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -946,6 +952,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptKeHoachMuaSamTSNNBieu01.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptKeHoachMuaSamTSNNBieu01.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKetQuaMuaSamTSNNBieu02.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKetQuaMuaSamTSNNBieu02.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptPhieuXuatChuyenById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
