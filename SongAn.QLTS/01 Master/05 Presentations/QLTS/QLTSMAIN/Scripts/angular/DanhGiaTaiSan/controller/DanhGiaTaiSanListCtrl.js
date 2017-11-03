@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService, TaiSanService, TuyChonCotService, utility, $rootScope, $timeout, $scope, $q) {
+    module.controller('DanhGiaTaiSanListCtrl', function (DanhGiaTaiSanService, TaiSanService, TuyChonCotService, utility, $rootScope, $timeout, $scope, $q, KhoaSoLieuService) {
         var vm = this, userInfo, _tableState,
             isEdit = false, linkUrl = '', MaForm = 'FL0029', service = DanhGiaTaiSanService;
 
@@ -33,7 +33,19 @@
         vm.action.removeList = function () {
             if (checkQuyenUI('D') == false) { return; }
             if (confirm('Bạn có muốn xóa tài sản ?')) {
-                removeList(getListDanhGiaSelected().DanhGiaId);
+                for (var index in vm.data.ListDanhGia) {
+                    if (vm.data.ListDanhGia[index].isSelected == true) {
+                        var selected = vm.data.ListDanhGia[index];
+                        checkKhoaSoLieuNam(selected.NgayDanhGia.substring(0, 4)).then(function (success) {
+                            removeList(selected.DanhGiaId);
+                        }, function (error) {
+                            utility.AlertError('Số liêu năm ' + selected.NgayDanhGia.substring(0, 4) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+                            return;
+                        });
+                    }
+                }
+                
+               
             }
         };
         vm.action.autoCheckAll = function () {
@@ -332,6 +344,24 @@
                     }
                 }, function (error) { });
             }
+        }
+        function checkKhoaSoLieuNam(Nam) {
+            var deferred = $q.defer();
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
         }
     });
 })();

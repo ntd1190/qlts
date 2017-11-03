@@ -1,6 +1,6 @@
 ﻿(function () {
     'use strict';
-    angular.module('app').controller('BaoCaoCongKhaiListCtrl', function ($rootScope, $scope, utility) {
+    angular.module('app').controller('BaoCaoCongKhaiListCtrl', function ($rootScope, $scope, utility, $timeout) {
         /* PRIVATE */
 
         var vm = this;
@@ -42,6 +42,11 @@
             vm.data.quy = "1";
             vm.data.bieuIn = "1";
             vm.data.nam = d.getFullYear().toString();
+            
+            $timeout(function () {
+                vm.data.condition = '3';
+                vm.action.getValCondition();
+            }, 10);
         }
 
         /* ACTION FUNCTION */
@@ -103,11 +108,11 @@
 
 
             if (bieuIn.toString() == "1") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKeHoachMuaSamTSNNBieu01&data=' + data);
             } else if (bieuIn.toString() == "2") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKetQuaMuaSamTSNNBieu02&data=' + data);
             } else if (bieuIn.toString() == "3") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptCongKhaiNhaDatBieu03&data=' + data);
             } else if (bieuIn.toString() == "4") {
                 
             } else if (bieuIn.toString() == "5") {
@@ -129,10 +134,10 @@
             var data = bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId;
 
             if (bieuIn.toString() == "1") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKeHoachMuaSamTSNNBieu01&export=1&data=' + data);
             }
             else if (bieuIn.toString() == "2") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKetQuaMuaSamTSNNBieu02&export=1&data=' + data);
             }
             else if (bieuIn.toString() == "3") {
                 

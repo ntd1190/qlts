@@ -2,7 +2,7 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    app.controller('BaoDuongEditCtrl', function ($rootScope, $scope, BaoDuongService, TaiSanService, utility, $timeout) {
+    app.controller('BaoDuongEditCtrl', function ($rootScope, $scope, BaoDuongService, TaiSanService, utility, $timeout, $q, KhoaSoLieuService) {
         /*** PRIVATE ***/
 
         var vm = this;
@@ -120,13 +120,17 @@
                 return;
             if (InvalidateDataPhieuBaoDuongChiTiet())
                 return;
+            checkKhoaSoLieuNam().then(function (success) {
+                if (phieuBaoDuongId > 0) {
+                    update();
+                }
+                else {
+                    insert();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.phieuBaoDuong.NgayBaoDuong.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
 
-            if (phieuBaoDuongId > 0) {                
-                update();
-            }
-            else {
-                insert();                
-            }
         };
 
         vm.action.removePhieuBaoDuong = function () {
@@ -146,12 +150,17 @@
 
             var ids = BaoDuongListSelected.join(',');
             if (ids.length > 0) {
-                BaoDuongService.DeleteList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
-                    window.location.href = vm.data.linkUrl + 'BaoDuong/list';
+                checkKhoaSoLieuNam().then(function (success) {
+                    BaoDuongService.DeleteList(ids).then(function (success) {
+                        utility.AlertSuccess('Xóa thành công!');
+                        window.location.href = vm.data.linkUrl + 'BaoDuong/list';
+                    }, function (error) {
+                        alert(error.data.error.code + " : " + error.data.error.message);
+                    });
                 }, function (error) {
-                    alert(error.data.error.code + " : " + error.data.error.message);
+                    utility.AlertError('Số liêu năm ' + vm.data.phieuBaoDuong.NgayBaoDuong.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
                 });
+                
 
             } else {
                 utility.AlertError('Không tìm thấy phiếu để xóa!');
@@ -509,7 +518,26 @@
             var date = moment(strDate, strFormat);
             return 'ngày ' + date.format('DD') + ' tháng ' + date.format('MM') + ' năm ' + date.format('YYYY');
         }
-
+        function checkKhoaSoLieuNam() {
+            var deferred = $q.defer();
+            var Nam = vm.data.phieuBaoDuong.NgayBaoDuong.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
         function removeListItem(list, item, prop) {
             var list_length = list.length;
             for (var i = 0; i < list_length; i++) {

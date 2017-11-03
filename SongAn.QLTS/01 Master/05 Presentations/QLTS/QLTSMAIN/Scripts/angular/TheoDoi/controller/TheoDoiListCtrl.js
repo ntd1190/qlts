@@ -198,7 +198,7 @@
                         utility.AlertSuccess(sl + ' dòng được xóa thành công.');
                     }
                     else
-                        utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
+                        utility.AlertError('Không thể xóa!');
                 }
                 else {
                     utility.AlertSuccess('Xóa thành công!');

@@ -88,7 +88,7 @@
                             <input type="text" id="txtMaTaiSan{{$index}}" class="form-control text-left" ng-model="GiayBaoHongChiTiet.MaTaiSan" ng-keydown="ctrl.action.keyPress(GiayBaoHongChiTiet.MaTaiSan,'txtMaTaiSan'+$index,'txtSoLuong'+$index,$index,$event)" />
                         </td>
                         <td class="form-group form-group-sm">
-                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0035" data-value="GiayBaoHongChiTiet.TaiSanId" data-phong-ban="GiayBaoHongChiTiet.PhongBanId" data-nhan-vien="GiayBaoHongChiTiet.NhanVienId" ma-tai-san="GiayBaoHongChiTiet.TempMaTaiSan" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
+                            <cbo-tai-san-su-dung id="cbxTaiSan{{$index}}" data-function-code="CN0035" data-value="GiayBaoHongChiTiet.TaiSanId" data-phong-ban="GiayBaoHongChiTiet.PhongBanId" data-nhan-vien="GiayBaoHongChiTiet.NhanVienId" ma-tai-san="GiayBaoHongChiTiet.TempMaTaiSan" data-phong-ban-filter="ctrl.data.phieuGiayBaoHong.PhongBanId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/taisan/showview?viewname=cbotaisansudung"
                                                  on-selected="ctrl.action.getDataTaiSan(data, {$index})"></cbo-tai-san-su-dung>
                         </td>
                         <td class="form-group form-group-sm">
@@ -157,6 +157,7 @@
     @{Html.RenderPartial("~/views/LoaiTaiSan/cboLoaiTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSan.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
     @{Html.RenderPartial("~/views/TaiSan/cboTaiSanSuDung.cshtml", new ViewDataDictionary { { "ImportAngular", true } });}
+    <script src="~/Scripts/angular/KhoaSoLieu/service/KhoaSoLieuService.js"></script>
 }
 
 

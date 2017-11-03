@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('ThayDoiThongTinKeKhaiEditCtrl', function (ThayDoiThongTinKeKhaiService, TaiSanService, utility, $timeout, $scope, $q) {
+    module.controller('ThayDoiThongTinKeKhaiEditCtrl', function (ThayDoiThongTinKeKhaiService, TaiSanService, utility, $timeout, $scope, $q, KhoaSoLieuService) {
 
         /*** PRIVATE ***/
 
@@ -138,55 +138,65 @@
             has_error = checkInputTTKK() == false ? true : has_error;
             has_error = checkInputTDTT() == false ? true : has_error;
             if (has_error) { return; }
+            checkKhoaSoLieuNam().then(function (success) {
+                utility.addloadding($('body'));
+                if (isEdit == true && checkQuyenUI('M')) {
+                    update().then(function (success) {
+                        loadData();
+                        utility.AlertSuccess('Lưu thông tin thành công');
+                        utility.removeloadding();
+                    }, function (error) {
+                        if (error.status === 400) {
+                            utility.AlertError(error.data.error.message);
+                        } else {
+                            utility.AlertError('Không thể thêm thông tin');
+                        }
+                        utility.removeloadding();
+                    });
+                } else if (isEdit == false && checkQuyenUI('N')) {
+                    insert().then(function (success) {
+                        $timeout(function () {
+                            window.location = linkUrl + 'edit/' + success.data.data[0].ThayDoiThongTinId;
+                        }, 2000);
+                        utility.AlertSuccess('Thêm thông tin thành công');
+                        utility.removeloadding();
+                    }, function (error) {
+                        if (error.status === 400) {
+                            utility.AlertError(error.data.error.message);
+                        } else {
+                            utility.AlertError('Không thể lưu thông tin');
+                        }
+                        utility.removeloadding();
+                    });
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.TDTT.Ngay.substring(6,12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
 
-            utility.addloadding($('body'));
-            if (isEdit == true && checkQuyenUI('M')) {
-                update().then(function (success) {
-                    loadData();
-                    utility.AlertSuccess('Lưu thông tin thành công');
-                    utility.removeloadding();
-                }, function (error) {
-                    if (error.status === 400) {
-                        utility.AlertError(error.data.error.message);
-                    } else {
-                        utility.AlertError('Không thể thêm thông tin');
-                    }
-                    utility.removeloadding();
-                });
-            } else if (isEdit == false && checkQuyenUI('N')) {
-                insert().then(function (success) {
-                    $timeout(function () {
-                        window.location = linkUrl + 'edit/' + success.data.data[0].ThayDoiThongTinId;
-                    }, 2000);
-                    utility.AlertSuccess('Thêm thông tin thành công');
-                    utility.removeloadding();
-                }, function (error) {
-                    if (error.status === 400) {
-                        utility.AlertError(error.data.error.message);
-                    } else {
-                        utility.AlertError('Không thể lưu thông tin');
-                    }
-                    utility.removeloadding();
-                });
-            }
+            
         }
 
         vm.action.removeList = function () {
             if (checkQuyenUI('D') == false) { return; }
             if (confirm('Bạn có muốn xóa thay đổi thông tin ?')) {
-                utility.addloadding($('body'));
-                removeTDTT().then(function (success) {
-                    utility.removeloadding();
-                    utility.AlertSuccess('Xóa thông tin thành công');
-                    window.location = linkUrl + 'list/';
+                checkKhoaSoLieuNam().then(function (success) {
+                    utility.addloadding($('body'));
+                    removeTDTT().then(function (success) {
+                        utility.removeloadding();
+                        utility.AlertSuccess('Xóa thông tin thành công');
+                        window.location = linkUrl + 'list/';
+                    }, function (error) {
+                        utility.removeloadding();
+                        if (error.status === 400) {
+                            utility.AlertError(error.data.error.message);
+                        } else {
+                            utility.AlertError('Không thể xóa thay đổi thông tin');
+                        }
+                    })
                 }, function (error) {
-                    utility.removeloadding();
-                    if (error.status === 400) {
-                        utility.AlertError(error.data.error.message);
-                    } else {
-                        utility.AlertError('Không thể xóa thay đổi thông tin');
-                    }
-                })
+                    utility.AlertError('Số liêu năm ' + vm.data.TDTT.Ngay.substring(6,12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+                });
+                
             }
         }
 
@@ -1015,6 +1025,25 @@
             });
             return deferred.promise;
         }
-
+        function checkKhoaSoLieuNam() {
+            var deferred = $q.defer();
+            var Nam = vm.data.TDTT.Ngay.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
     });
 })();

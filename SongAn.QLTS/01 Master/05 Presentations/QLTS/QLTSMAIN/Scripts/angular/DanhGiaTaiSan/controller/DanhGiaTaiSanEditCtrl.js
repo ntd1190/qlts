@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('DanhGiaTaiSanEditCtrl', function (DanhGiaTaiSanService, TaiSanService, utility, $timeout, $scope, $q) {
+    module.controller('DanhGiaTaiSanEditCtrl', function (DanhGiaTaiSanService, TaiSanService, utility, $timeout, $scope, $q, KhoaSoLieuService) {
         var vm = this, userInfo, TaiSanSD,
             isEdit = false, DanhGiaId = 0, linkUrl = '';
 
@@ -59,6 +59,8 @@
                 loadDataTaiSan();
             } else {
                 vm.action.addNguyenGia();
+                    vm.data.DanhGia.NgayChungTu = moment().format('DD/MM/YYYY');
+                    vm.data.DanhGia.NgayDanhGia = moment().format('DD/MM/YYYY');
             }
         };
 
@@ -93,18 +95,27 @@
             }
 
             if (has_error) { return; }
-
-            if (isEdit == 1 && checkQuyenUI('M')) {
-                update();
-            } else if (isEdit == 0 && checkQuyenUI('N')) {
-                insert();
-            }
+            checkKhoaSoLieuNam().then(function (success) {
+                if (isEdit == 1 && checkQuyenUI('M')) {
+                    update();
+                } else if (isEdit == 0 && checkQuyenUI('N')) {
+                    insert();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.DanhGia.NgayDanhGia.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
+            
         }
 
         vm.action.removeList = function () {
             if (checkQuyenUI('D') == false) { return; }
             if (confirm('Bạn có muốn xóa tài sản ?')) {
-                removeList();
+                checkKhoaSoLieuNam().then(function (success) {
+                    removeList();
+                }, function (error) {
+                    utility.AlertError('Số liêu năm ' + vm.data.DanhGia.NgayDanhGia.substring(6,12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+                });
+               
             }
         };
 
@@ -507,7 +518,26 @@
                 }
             });
         }
-
+        function checkKhoaSoLieuNam() {
+            var deferred = $q.defer();
+            var Nam = vm.data.DanhGia.NgayDanhGia.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
         function getListNguyenGia() {
             var deferred = $q.defer();
 

@@ -2,7 +2,7 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    app.controller('DeNghiTrangCapEditCtrl', function ($rootScope, $scope, DenNghiTrangCapService, utility, $timeout) {
+    app.controller('DeNghiTrangCapEditCtrl', function ($rootScope, $scope, DenNghiTrangCapService, utility, $timeout, KhoaSoLieuService, $q) {
         /*** PRIVATE ***/
 
         var vm = this;
@@ -147,12 +147,17 @@
                 return;
             if (!InvalidateDataPhieuDeNghiChiTiet())
                 return;
-            if (phieuDeNghiId > 0) {
-                update();
-            }
-            else {
-                insert();
-            }
+            checkKhoaSoLieuNam().then(function (success) {
+
+                if (phieuDeNghiId > 0) {
+                    update();
+                }
+                else {
+                    insert();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.phieuDeNghi.Ngay.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
         };
 
         vm.action.removePhieuDeNghi = function () {
@@ -165,23 +170,27 @@
             if (!confirm('Bạn có muốn xóa phiếu này?')) {
                 return;
             }
+            checkKhoaSoLieuNam().then(function (success) {
 
-            var DeNghiTrangCapListSelected = new Array();
+                var DeNghiTrangCapListSelected = new Array();
 
-            DeNghiTrangCapListSelected.push(phieuDeNghiId);
+                DeNghiTrangCapListSelected.push(phieuDeNghiId);
 
-            var ids = DeNghiTrangCapListSelected.join(',');
-            if (ids.length > 0) {
-                DenNghiTrangCapService.DeleteList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
-                    window.location.href = vm.data.linkUrl + 'denghitrangcap/list';
-                }, function (error) {
-                    alert(error.data.error.code + " : " + error.data.error.message);
-                });
+                var ids = DeNghiTrangCapListSelected.join(',');
+                if (ids.length > 0) {
+                    DenNghiTrangCapService.DeleteList(ids).then(function (success) {
+                        utility.AlertSuccess('Xóa thành công!');
+                        window.location.href = vm.data.linkUrl + 'denghitrangcap/list';
+                    }, function (error) {
+                        alert(error.data.error.code + " : " + error.data.error.message);
+                    });
 
-            } else {
-                utility.AlertError('Không tìm thấy phiếu để xóa!');
-            }
+                } else {
+                    utility.AlertError('Không tìm thấy phiếu để xóa!');
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.phieuDeNghi.Ngay.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
         };
         vm.action.keyPressDeNghi = function (value, fromId, ToId, event) {
 
@@ -464,7 +473,27 @@
 
             return list;
         }
-
+        function checkKhoaSoLieuNam() {
+            debugger
+            var deferred = $q.defer();
+            var Nam = vm.data.phieuDeNghi.Ngay.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
     });// end controller
 
     app.directive("keyboard", keyboard);
@@ -501,5 +530,5 @@
         }
     };
     //end HOT-KEY
-
+   
 })();

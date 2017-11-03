@@ -2,7 +2,7 @@
     'use strict';
     var module = angular.module('app');
 
-    module.controller('ThayDoiThongTinKeKhaiListCtrl', function (ThayDoiThongTinKeKhaiService, TaiSanService, TuyChonCotService, utility, $timeout, $scope, $rootScope, $q) {
+    module.controller('ThayDoiThongTinKeKhaiListCtrl', function (ThayDoiThongTinKeKhaiService, TaiSanService, TuyChonCotService, utility, $timeout, $scope, $rootScope, $q, KhoaSoLieuService) {
 
         /*** PRIVATE ***/
 
@@ -86,19 +86,29 @@
         vm.action.removeList = function () {
             if (checkQuyenUI('D') == false) { return; }
             if (confirm('Bạn có muốn xóa thay đổi thông tin ?')) {
-                utility.addloadding($('body'));
-                removeTDTT().then(function (success) {
-                    utility.removeloadding();
-                    utility.AlertSuccess('Xóa thông tin thành công');
-                    vm.action.search();
-                }, function (error) {
-                    utility.removeloadding();
-                    if (error.status === 400) {
-                        utility.AlertError(error.data.error.message);
-                    } else {
-                        utility.AlertError('Không thể thay đổi thông tin kê khai');
+                for (var index in vm.data.TDTTList) {
+                    if (vm.data.TDTTList[index].isSelected) {
+                        var selected = vm.data.TDTTList[index];
+                        checkKhoaSoLieuNam(selected.Ngay.substring(0, 4)).then(function (success) {
+                            utility.addloadding($('body'));
+                            removeTDTT().then(function (success) {
+                                utility.removeloadding();
+                                utility.AlertSuccess('Xóa thông tin thành công');
+                                vm.action.search();
+                            }, function (error) {
+                                utility.removeloadding();
+                                if (error.status === 400) {
+                                    utility.AlertError(error.data.error.message);
+                                } else {
+                                    utility.AlertError('Không thể thay đổi thông tin kê khai');
+                                }
+                            })
+                        }, function (error) {
+                            utility.AlertError('Số liêu năm ' + selected.Ngay.substring(0, 4) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+                            return;
+                        });
                     }
-                })
+                }
             }
         }
         vm.action.checkCot = function (cot) {
@@ -423,7 +433,24 @@
             });
             return deferred.promise;
         }
-
+          function checkKhoaSoLieuNam(Nam) {
+            var deferred = $q.defer();
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
         function loadCotList() {
             //if (1 === 1) {
             //    TuyChonCotService.getAll(MaForm, userInfo.UserId).then(function (success) {

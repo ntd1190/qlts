@@ -6,7 +6,7 @@
     angular.module('app')
         .controller('KhaiThacEditCtrl', controller)
 
-    function controller($rootScope, $scope, KhaiThacService, $window, utility, $timeout) {
+    function controller($rootScope, $scope, KhaiThacService, $window, utility, $timeout, $q, KhoaSoLieuService) {
 
         var vm = this;
 
@@ -151,12 +151,16 @@
             var obj = InvalidateData();
             if (obj == null)
                 return;
-
-            if (vm.data.KhaiThacId > 0) {
-                edit();
-            } else {
-                add();
-            }
+            checkKhoaSoLieuNam().then(function (success) {
+                if (vm.data.KhaiThacId > 0) {
+                    edit();
+                } else {
+                    add();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.objKhaiThac.ThoiGianBatDau.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
+           
         }
 
         function edit() {
@@ -445,7 +449,26 @@
             $('#KhaiThacEditPopup').collapse('hide');
             $rootScope.isOpenPopup = false;
         }
-
+        function checkKhoaSoLieuNam() {
+            var deferred = $q.defer();
+            var Nam = vm.data.objKhaiThac.ThoiGianBatDau.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, vm.data.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
         function getById() {
             var data = {};
             data.KhaiThacId = vm.data.KhaiThacId;

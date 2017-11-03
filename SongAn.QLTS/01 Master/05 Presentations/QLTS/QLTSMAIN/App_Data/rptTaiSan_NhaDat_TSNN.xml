@@ -1,0 +1,43 @@
+<?xml version="1.0" standalone="yes"?>
+<xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Tables">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="MAXCNT" type="xs:int" minOccurs="0" />
+              <xs:element name="TenDonVi" type="xs:string" minOccurs="0" />
+              <xs:element name="TenDonViChuQuan" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_DAT_TaiSanId" type="xs:int" minOccurs="0" />
+              <xs:element name="TTKK_DAT_TenTaiSan" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_DAT_DiaChi" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_DAT_DienTich" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_GiayTo" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_DAT_BiLanChiem" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_ChoThue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_BoTrong" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_CoSoHDSuNghiep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_LamTruSo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_NhaO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_DAT_SuDungKhac" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_TenTaiSan" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_NHA_DienTich" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_BiLanChiem" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_BoTrong" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_CapHang" type="xs:int" minOccurs="0" />
+              <xs:element name="TTKK_NHA_ChoThue" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_CoSoHDSuNghiep" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_DiaChi" type="xs:string" minOccurs="0" />
+              <xs:element name="TTKK_NHA_LamTruSo" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_NamSuDung" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_NhaO" type="xs:decimal" minOccurs="0" />
+              <xs:element name="TTKK_NHA_SoTang" type="xs:int" minOccurs="0" />
+              <xs:element name="TTKK_NHA_SuDungKhac" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

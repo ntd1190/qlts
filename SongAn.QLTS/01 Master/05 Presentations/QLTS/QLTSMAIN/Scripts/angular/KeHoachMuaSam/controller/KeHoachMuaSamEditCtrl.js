@@ -3,7 +3,7 @@
 
          angular.module('app')
         .controller('KeHoachMuaSamEditCtrl', controller)
-    function controller($rootScope, $scope, KeHoachMuaSamService, $window, utility,$timeout) {
+         function controller($rootScope, $scope, KeHoachMuaSamService, $window, utility, $timeout, KhoaSoLieuService, $q) {
         var MuaSamId = 0;
         var vm = this;
         vm.status = {
@@ -100,11 +100,16 @@
             });
         }
         function save() {
-            if (vm.data.objKeHoachMuaSam.MuaSamId > 0) {
-                edit();
-            } else {
-                add();
-            }
+            checkKhoaSoLieuNam().then(function (success) {
+                if (vm.data.objKeHoachMuaSam.MuaSamId > 0) {
+                    edit();
+                } else {
+                    add();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.objKeHoachMuaSam.Nam + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
+           
         }
         function In() {
             $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKeHoachMuaSam&data=' + vm.data.objKeHoachMuaSam.MuaSamId);
@@ -118,6 +123,7 @@
             }
             if (!checkList())
                 return;
+           
             var kehoachmuasam = utility.clone(vm.data.objKeHoachMuaSam);
             var data = {};
             data.kehoachmuasam = angular.toJson(kehoachmuasam);
@@ -149,6 +155,7 @@
                 $("#txtNam").focus();
                 return;
             }
+         
             if (!checkList())
                 return;
             var kehoachmuasam = utility.clone(vm.data.objKeHoachMuaSam);
@@ -271,13 +278,18 @@
             KeHoachMuaSamSelected.push(vm.data.objKeHoachMuaSam.MuaSamId);
             var ids = KeHoachMuaSamSelected.join(',');
             if (ids.length > 0) {
-                KeHoachMuaSamService.removeList(ids).then(function (success) {
-                    utility.AlertSuccess('Xóa thành công!');
-                    window.location = '/QLTSMAIN/kehoachmuasam/list';
+                checkKhoaSoLieuNam().then(function (success) {
+                    KeHoachMuaSamService.removeList(ids).then(function (success) {
+                        utility.AlertSuccess('Xóa thành công!');
+                        window.location = '/QLTSMAIN/kehoachmuasam/list';
+                    }, function (error) {
+                        vm.data.isLoading = false;
+                        alert(error.data.error.code + " : " + error.data.error.message);
+                    });
                 }, function (error) {
-                    vm.data.isLoading = false;
-                    alert(error.data.error.code + " : " + error.data.error.message);
+                    utility.AlertError('Số liêu năm ' + vm.data.objKeHoachMuaSam.Nam + ' đã bị khóa. Vui lòng kiểm tra lại !');
                 });
+                
 
             } else {
                 utility.AlertError('Không tìm thấy phiếu để xóa!');
@@ -341,6 +353,26 @@
         function DeleteChiTiet(i) {
                 vm.data.listChiTiet.splice(i, 1);   
           
+        }
+        function checkKhoaSoLieuNam()
+        {
+            var deferred = $q.defer();
+            KhoaSoLieuService.CheckKhoaSoLieu(vm.data.objKeHoachMuaSam.Nam, vm.data.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
         }
        
     }

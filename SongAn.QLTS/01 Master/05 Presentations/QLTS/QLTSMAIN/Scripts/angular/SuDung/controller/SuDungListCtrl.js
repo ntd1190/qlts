@@ -39,7 +39,7 @@
     };
     //end HOT-KEY
 
-    function controller($rootScope, $scope, SuDungService, TuyChonCotService, utility) {
+    function controller($rootScope, $scope, SuDungService, TuyChonCotService, utility, $q, KhoaSoLieuService) {
         var vm = this;
 
         $rootScope.isOpenPopupTimKiem = false;
@@ -208,24 +208,32 @@
             for (var i = 0; i < vm.data.SuDungListDisplay.length; i++) {
                 var select = vm.data.SuDungListDisplay[i];
                 if (select.isSelected) {
-                    SuDungListSelected.push(select.SuDungId);
+                    
+                    checkKhoaSoLieuNam(select.Nam).then(function (success) {
+                        SuDungListSelected.push(select.SuDungId);
+                        var ids = SuDungListSelected.join(',');
+                        if (ids.length > 0) {
+                            SuDungService.DeleteList(ids).then(function (success) {
+                                vm.data.isLoading = false;
+                                _tableState.pagination.start = 0;
+                                getPage(_tableState);
+                                utility.AlertSuccess('Xóa thành công!');
+                            }, function (error) {
+                                vm.data.isLoading = false;
+                                alert(error.data.error.code + " : " + error.data.error.message);
+                            });
+
+                        } else {
+                            alert('Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.');
+                        }
+
+                    }, function (error) {
+                        utility.AlertError('Số liêu năm ' + select.Nam + ' đã bị khóa. Vui lòng kiểm tra lại !');
+                        return;
+                    });
                 }
             }
-            var ids = SuDungListSelected.join(',');
-            if (ids.length > 0) {
-                SuDungService.DeleteList(ids).then(function (success) {
-                    vm.data.isLoading = false;
-                    _tableState.pagination.start = 0;
-                    getPage(_tableState);
-                    utility.AlertSuccess('Xóa thành công!');
-                }, function (error) {
-                    vm.data.isLoading = false;
-                    alert(error.data.error.code + " : " + error.data.error.message);
-                });
-
-            } else {
-                alert('Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.');
-            }
+       
 
         }
 
@@ -323,7 +331,24 @@
         function clearArray(array) {
             while (array.length) { array.pop(); }
         }
-
+        function checkKhoaSoLieuNam(Nam) {
+            var deferred = $q.defer();
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, vm.data.userInfo.CoSoId).then(function (success) {
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
 
     }
 })();

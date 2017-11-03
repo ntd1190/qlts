@@ -211,6 +211,25 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                         }
                     }
                 }
+                else if (reportname == "rptCongKhaiNhaDatBieu03.rpt")
+                {
+                    if (search != null && search != "")
+                    {
+                        var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                        if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                        {
+                            var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                            var biz = new ReportCongKhaiNhaDatBieu03Biz(context);
+                            biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                            biz.COSO_ID = _params[3];
+                            biz.NHANVIEN_ID = _params[4];
+                            ds = biz.ExecuteBiz();
+
+                            ds.Tables[0].TableName = "Tables";
+                            ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptCongKhaiNhaDatBieu03.xml"));
+                        }
+                    }
+                }
                 else if (reportname == "rptChoThueTSNNBieu05.rpt")
                 {
                     ReportCongKhaiChoThueTSNNBieu05Biz biz = new ReportCongKhaiChoThueTSNNBieu05Biz(context);
@@ -235,6 +254,48 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 else if (reportname == "rptTinhHinhXuLyTSBieu06.rpt")
                 {
                     ReportCongKhaiTinhHinhXuLyTSBieu06Biz biz = new ReportCongKhaiTinhHinhXuLyTSBieu06Biz(context);
+
+                    if (search != null && search != "")
+                    {
+                        if (search != null && search != "")
+                        {
+                            if (search.Split('|').Length > 1)
+                            {
+                                if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                    biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                                if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                    biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                                biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                                biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                                ds = biz.ExecuteDac();
+                            }
+                        }
+                    }
+                }
+                else if (reportname == "rptKeHoachMuaSamTSNNBieu01.rpt")
+                {
+                    ReportCongKhaiKeHoachMuaSamTSNNBieu01Biz biz = new ReportCongKhaiKeHoachMuaSamTSNNBieu01Biz(context);
+
+                    if (search != null && search != "")
+                    {
+                        if (search != null && search != "")
+                        {
+                            if (search.Split('|').Length > 1)
+                            {
+                                if (search.Split('|')[1] != "" && search.Split('|')[1] != "__/__/____")
+                                    biz.TuNgay = DateTime.ParseExact(search.Split('|')[1], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                                if (search.Split('|')[2] != "" && search.Split('|')[2] != "__/__/____")
+                                    biz.DenNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                                biz.CoSoId = Protector.Int(search.Split('|')[3]);
+                                biz.NhanVienId = Protector.Int(search.Split('|')[4]);
+                                ds = biz.ExecuteDac();
+                            }
+                        }
+                    }
+                }
+                else if (reportname == "rptKetQuaMuaSamTSNNBieu02.rpt")
+                {
+                    ReportCongKhaiKetQuaMuaSamTSNNBieu02Biz biz = new ReportCongKhaiKetQuaMuaSamTSNNBieu02Biz(context);
 
                     if (search != null && search != "")
                     {
@@ -475,7 +536,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 {
                     ds.Tables[1].TableName = "Tables1";
                 }
-                //ds.WriteXmlSchema(@"D:\rptTinhHinhXuLyTSBieu06.xml");
+                ds.WriteXmlSchema(@"D:\rptCongKhaiKeHoachMuaSamTSBieu01.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

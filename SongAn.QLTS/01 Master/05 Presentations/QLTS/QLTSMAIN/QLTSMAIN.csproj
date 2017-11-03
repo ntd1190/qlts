@@ -267,6 +267,7 @@
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenFilterCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenListCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\service\DieuChuyenService.js" />
+    <Content Include="Scripts\angular\KhoaSoLieu\service\KhoaSoLieuService.js" />
     <Content Include="Scripts\angular\DuAn\directive\cboDuAn.js" />
     <Content Include="Scripts\angular\DuyetBaoCao\controller\DuyetBaoCaoFilterCtrl.js" />
     <Content Include="Scripts\angular\DuyetBaoCao\controller\DuyetBaoCaoListCtrl.js" />
@@ -535,6 +536,18 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptChoThueTSNNBieu05.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptCongKhaiNhaDatBieu03.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptCongKhaiNhaDatBieu03.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKeHoachMuaSamTSNNBieu01.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKeHoachMuaSamTSNNBieu01.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptPhieuXuatChuyenById.cs">
@@ -925,6 +938,14 @@
     <EmbeddedResource Include="CrystalReport\Report\rptChoThueTSNNBieu05.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptChoThueTSNNBieu05.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptCongKhaiNhaDatBieu03.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptCongKhaiNhaDatBieu03.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKeHoachMuaSamTSNNBieu01.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKeHoachMuaSamTSNNBieu01.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptPhieuXuatChuyenById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

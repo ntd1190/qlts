@@ -2,7 +2,7 @@
 (function () {
     'use strict';
     var app = angular.module('app');
-    app.controller('GhiTangEditCtrl', function ($rootScope, $scope, GhiTangService,TaiSanService, utility, $timeout) {
+    app.controller('GhiTangEditCtrl', function ($rootScope, $scope, GhiTangService, TaiSanService, utility, $timeout, KhoaSoLieuService, $q) {
         /*** PRIVATE ***/
 
         var vm = this;
@@ -122,13 +122,18 @@
                 return;
             if (InvalidateDataPhieuGhiTangChiTiet())
                 return;
-            if (phieuGhiTangId > 0) {
-                var cp = compareList();
-                update(cp);
-            }
-            else {
-                insert();
-            }
+            checkKhoaSoLieuNam().then(function (success) {
+
+                if (phieuGhiTangId > 0) {
+                    var cp = compareList();
+                    update(cp);
+                }
+                else {
+                    insert();
+                }
+            }, function (error) {
+                utility.AlertError('Số liêu năm ' + vm.data.phieuGhiTang.NgayGhiTang.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
+            });
         };
 
         vm.action.removePhieuGhiTang = function () {
@@ -148,24 +153,29 @@
 
             var ids = GhiTangListSelected.join(',');
             if (ids.length > 0) {
-                GhiTangService.DeleteList(ids).then(function (success) {
-                   
-                    if (success.data.data > 0) {
-                        if (GhiTangListSelected.length > parseInt(success.data.data)) {
-                            var sl = GhiTangListSelected.length - parseInt(success.data.data);
-                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
-                        }                            
-                        else
-                            utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
-                    } else {
-                        utility.AlertSuccess('Xóa thành công!');
-                    }
+                checkKhoaSoLieuNam().then(function (success) {
 
-                    $timeout(function () {
-                        window.location.href = vm.data.linkUrl + 'ghitang/list';
-                    }, 600);
+                    GhiTangService.DeleteList(ids).then(function (success) {
+
+                        if (success.data.data > 0) {
+                            if (GhiTangListSelected.length > parseInt(success.data.data)) {
+                                var sl = GhiTangListSelected.length - parseInt(success.data.data);
+                                utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                            }
+                            else
+                                utility.AlertError('Tài sản đã được sử dụng. Không thể xóa!');
+                        } else {
+                            utility.AlertSuccess('Xóa thành công!');
+                        }
+
+                        $timeout(function () {
+                            window.location.href = vm.data.linkUrl + 'ghitang/list';
+                        }, 600);
+                    }, function (error) {
+                        alert(error.data.error.code + " : " + error.data.error.message);
+                    });
                 }, function (error) {
-                    alert(error.data.error.code + " : " + error.data.error.message);
+                    utility.AlertError('Số liêu năm ' + vm.data.phieuGhiTang.NgayGhiTang.substring(6, 12) + ' đã bị khóa. Vui lòng kiểm tra lại !');
                 });
 
             } else {
@@ -249,7 +259,7 @@
                 }
                 else $("#" + ToId).focus();
             }
-            //check TAB key is press
+                //check TAB key is press
             else if (event.keyCode == '9') {
                 if (fromId == ('txtMaTaiSan' + index)) {
                     vm.data.listChiTiet[index].TempMaTaiSan = value;
@@ -380,8 +390,7 @@
             GhiTangService.update(data)
                 .then(function success(result) {
                     utility.removeloadding();
-                    if (parseInt(result.data.data[0]["ID"]) < 0)
-                    {
+                    if (parseInt(result.data.data[0]["ID"]) < 0) {
                         if (parseInt(result.data.data[0]["ID"]) == -1)
                             utility.AlertError("Không thể cập nhật. Tài sản đã được sử dụng. Số lượng không đủ!");
                         else if (parseInt(result.data.data[0]["ID"]) == -2)
@@ -422,15 +431,14 @@
                 return null;
             }
 
-           
+
             return 1;
         }
 
         function InvalidateDataPhieuGhiTangChiTiet() {
             var hasError = false;
 
-            if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0)
-            {
+            if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0) {
                 utility.AlertError('Bạn chưa nhập thông tin chi tiết!');
                 return true;
             }
@@ -461,8 +469,7 @@
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
                 }
-                else
-                {
+                else {
                     hasError = false;
                     vm.data.listChiTiet[index].isError = false;
                 }
@@ -515,10 +522,10 @@
 
             TaiSanService.getCombobox(CoSoId, NhanVienId, "")
                 .then(function (success) {
-                 
+
                     console.log(success);
                     if (success.data.data) {
-                        
+
                         for (var index in success.data.data) {
                             if (success.data.data[index].MaTaiSan.toUpperCase() == maTaiSan.toUpperCase()) {
                                 vm.data.TaiSan = success.data.data[index];
@@ -528,11 +535,11 @@
                     }
                 }, function error(result) {
                     console.log(result);
-                 
+
                     if (result.status === 400) {
                         alert(result.data.error.message);
                     } else {
-                        
+
                     }
                 });
         }
@@ -563,7 +570,27 @@
             }
             return 1;
         }
-
+        function checkKhoaSoLieuNam() {
+            debugger
+            var deferred = $q.defer();
+            var Nam = vm.data.phieuGhiTang.NgayGhiTang.substring(6, 12);
+            KhoaSoLieuService.CheckKhoaSoLieu(Nam, userInfo.CoSoId).then(function (success) {
+                console.log(success);
+                if (success.data.data[0].TrangThai == 1) {
+                    return deferred.reject(success);
+                } else {
+                    return deferred.resolve(success);
+                }
+            }, function (error) {
+                console.log(error);
+                if (error.status === 400) {
+                    utility.AlertError(error.data.error.message);
+                } else {
+                    utility.AlertError('Lỗi !');
+                }
+            });
+            return deferred.promise;
+        }
 
 
         /*** HELPERS ***/

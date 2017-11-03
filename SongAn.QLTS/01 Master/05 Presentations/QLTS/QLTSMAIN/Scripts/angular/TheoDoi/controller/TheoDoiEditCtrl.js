@@ -163,7 +163,10 @@
                 if (success.data.data) {
 
                     if (parseInt(success.data.data[0].ID) < 0) {
-                        utility.AlertError('Cập nhật thất bại!');
+                        utility.AlertError('Số liệu đã bị khóa. Vui lòng kiểm tra lại !');
+                    }
+                    else if (parseInt(success.data.data[0].ID) == -1) {
+                        utility.AlertError('Số liêu năm đã bị khóa. Vui lòng kiểm tra lại !');
                     }
                     else {
                         utility.AlertSuccess('Cập nhật thành công');
@@ -187,11 +190,14 @@
             vm.data.objTheoDoi.NguoiTao = vm.data.UserLoginId;
             TheoDoiService.insert(vm.data.objTheoDoi).then(function (success) {
                 if (success.data.data) {
-                    if (parseInt(success.data.data[0].ID) < 0) {
-                        utility.AlertError('Tài sản của phòng ban nay đã tồn tại. Thêm thất bại!');
+                    if (parseInt(success.data.data[0].ID) > 0) {
+                        utility.AlertSuccess('Khai báo thành công');
+                    }
+                    else if (parseInt(success.data.data[0].ID) ==-1) {
+                        utility.AlertError('Số liêu năm đã bị khóa. Vui lòng kiểm tra lại !');
                     }
                     else {
-                        utility.AlertSuccess('Khai báo thành công');
+                        utility.AlertError('Thêm thất bại!');
                     }
                 }
                 
