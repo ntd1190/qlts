@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhoCongNoNCC\GetListReportKhoCongNoNCCByProjectionDac.cs" />
+    <Compile Include="KhoCongNoNCC\GetListReportKhoCongNoNCCChiTietByProjectionDac.cs" />
     <Compile Include="KhoHangHoa\GetListKhoHangHoaPopDMByProjectionDac.cs" />
     <Compile Include="KhoHangHoa\UpdateXoaListKhoHangHoaV2Dac.cs" />
     <Compile Include="KhoImportDauKy\ImportDauKyDac.cs" />
@@ -72,9 +74,11 @@
     <Compile Include="KhoKhoHang\UpdateXoaListKhoKhoHangDac.cs" />
     <Compile Include="KhoKiemKe\GetListKhoKiemKeByIdDac.cs" />
     <Compile Include="KhoKiemKe\GetListKhoKiemKeByProjectionDac.cs" />
+    <Compile Include="KhoKiemKe\GetListReportKiemKeByCriteriaDac.cs" />
     <Compile Include="KhoKyChiTiet\GetListKyChiTietByCriteriaDac.cs" />
     <Compile Include="KhoNhomHangHoa\UpdateXoaListKhoNhomHangHoaDac.cs" />
     <Compile Include="KhoNuocSanXuat\DeleteListKhoNuocSanXuatbyKhoIdDac.cs" />
+    <Compile Include="KhoPhieuBaoHanhThongKe\GetListPhieuBaoHanhThongKeByProjectionDac.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetThongTinByDienThoaiDac.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetThongTinBySeriesDac.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetListChiTietByPhieuBaoHanhIdDac.cs" />
@@ -97,30 +101,37 @@
     <Compile Include="KhoPhieuChuyen\UpdateXoaKhoPhieuChuyenDac.cs" />
     <Compile Include="KhoPhieuChuyen\UpdateKhoPhieuChuyenDac.cs" />
     <Compile Include="KhoPhieuChuyen\InsertKhoPhieuChuyenDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\DeleteKhoPhieuNhapSeriesBySoPhieuDac.cs" />
     <Compile Include="KhoPhieuNhapV2\DeleteListChiTietByPhieuNhapIdDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapSeriesBySoPhieuDac.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListReportPhieuNhapByProjectionDac.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListChiTietByPhieuNhapIdDac.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByCriteriaDac.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByIdDac.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListSeriesReportPhieuNhapByIdDac.cs" />
     <Compile Include="KhoPhieuNhapV2\InsertKhoPhieuNhapDac.cs" />
     <Compile Include="KhoPhieuNhapV2\LuuSoCaiDac.cs" />
     <Compile Include="KhoPhieuNhapV2\UpdateKhoPhieuNhapDac.cs" />
     <Compile Include="KhoPhieuNhapV2\UpdateXoaListKhoPhieuNhapDac.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetListKhoPhieuBaoHanhByCriteriaDac.cs" />
     <Compile Include="KhoPhieuThu\GetListReportPhieuThuByProjectionDac.cs" />
+    <Compile Include="KhoPhieuXuat\CheckExistsSeriesDac.cs" />
     <Compile Include="KhoPhieuXuat\DeletePhieuSeriesDac.cs" />
     <Compile Include="KhoPhieuXuat\DeleteListChiTietByPhieuXuatIdDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListAutoKhoPhieuSeriesBySoPhieuDac.cs" />
     <Compile Include="KhoPhieuXuat\GetListChiTietByPhieuNhapIdDac.cs" />
     <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByCriteriaDac.cs" />
     <Compile Include="KhoPhieuXuat\GetListKhoPhieuSeriesBySoPhieuDac.cs" />
     <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByIdDac.cs" />
     <Compile Include="KhoPhieuXuat\GetListReportPhieuXuatByProjectionDac.cs" />
+    <Compile Include="KhoPhieuXuat\GetListSeriesReportPhieuXuatByIdDac.cs" />
     <Compile Include="KhoPhieuXuat\InsertKhoPhieuXuatDac.cs" />
     <Compile Include="KhoPhieuXuat\LuuSoCaiDac.cs" />
     <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatDac.cs" />
     <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatSauKhiLuuSoCaiDac.cs" />
     <Compile Include="KhoPhieuXuat\UpdateXoaListKhoPhieuXuatDac.cs" />
     <Compile Include="KhoCongNoNCC\GetListKhoCongNoNCCByProjectionDac.cs" />
+    <Compile Include="KhoSoDuTonKho\GetListReportKhoSoDuTonKhoByCriteriaDac.cs" />
     <Compile Include="KhoTheKho\GetListKhoTheKhoByProjectionDac.cs" />
     <Compile Include="KhoSoDuTonKho\GetListKhoSoDuTonKhoByProjectionDac.cs" />
     <Compile Include="KhoPhieuChi\GetListKhoPhieuChiByIdDac.cs" />
@@ -157,6 +168,7 @@
     <Compile Include="KhoTonKho\UpdateTonDauKhoChiTietByTonKhoChiTietIdDac.cs" />
     <Compile Include="KhoTonKho\UpdateTrangThaiByTonKhoIdDac.cs" />
     <Compile Include="KhoXuatNhapTon\GetListKhoXuatNhapTonByCriteriaDac.cs" />
+    <Compile Include="KhoXuatNhapTon\GetListReportKhoXuatNhapTonByCriteriaDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrangThai\GetListTrangThaiPopupByChucNangDac.cs" />
   </ItemGroup>

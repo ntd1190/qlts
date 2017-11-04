@@ -1,4 +1,11 @@
-﻿using Dapper;
+﻿/*****************************************************************************
+1. Create Date  : 2017.09.12
+2. Creator      : HOI
+3. Function     : QLDNKHO/KHOKIEMKE/REPORT
+4. Description  : 
+5. History      : 
+*****************************************************************************/
+using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
@@ -8,14 +15,15 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 
-namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
+namespace SongAn.QLDN.Data.QLKho.KhoKiemKe
 {
-    public class GetListReportPhieuChiByProjectionDac : BaseRepositoryDataset
+    public class GetListReportKiemKeByCriteriaDac : BaseRepositoryDataset
     {
         #region public properties
+               
+        public string KHO_ID { get; set; }
+        public string NGAY { get; set; }
 
-        public string PhieuChiId { get; set; }
-        public string LoginId { get; set; }
 
         #endregion
 
@@ -30,7 +38,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListReportPhieuChiByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListReportKiemKeByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -70,11 +78,11 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
             Validate();
             List<SqlParameter> prm = new List<SqlParameter>()
             {
-                 new SqlParameter("@SEARCH_PhieuChiID", SqlDbType.VarChar) {Value = PhieuChiId},
-                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
+                 new SqlParameter("@NGAY", SqlDbType.VarChar) {Value = NGAY},
+                 new SqlParameter("@KHO_ID", SqlDbType.VarChar) {Value = KHO_ID},
 
             };
-            DataSet ds = getData("sp_KhoPhieuChi_GetListReportPhieuChiByCriteria", prm);
+            DataSet ds = getData("sp_KhoKiemKe_GetListReportKiemKeByCriteria", prm);
             return ds;
 
         }

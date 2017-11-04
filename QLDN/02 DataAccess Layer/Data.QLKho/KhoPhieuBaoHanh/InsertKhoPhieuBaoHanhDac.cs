@@ -34,6 +34,9 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuBaoHanh
         public virtual string PhuKienKemTheo { get; set; }
         public virtual string TrangThaiTiepNhan { get; set; }
         public virtual string SanPhamCty { get; set; }
+        public virtual string Email { get; set; }
+        public virtual string LoaiBaoHanh { get; set; }
+
         public int LOGIN_ID { get; set; }
         public string MESSAGE { get; set; }
         #endregion

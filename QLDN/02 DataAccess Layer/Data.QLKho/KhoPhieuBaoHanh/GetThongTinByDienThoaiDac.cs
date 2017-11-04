@@ -23,6 +23,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuBaoHanh
     {
         #region public properties
         public string DIENTHOAI { get; set; }
+        public string LOAI_BAO_HANH { get; set; }
         public int LOGIN_ID { get; set; }
         public int SKIP { get; set; }
         public int TAKE { get; set; }

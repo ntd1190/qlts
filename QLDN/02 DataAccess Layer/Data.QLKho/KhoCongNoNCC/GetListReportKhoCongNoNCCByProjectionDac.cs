@@ -1,9 +1,9 @@
 ﻿/*****************************************************************************
-1. Create Date  : 2017.06.07
-2. Creator      : NGUYỄN THANH BÌNH
-3. Function     : QLDNKHO/KHOHANGSANXUAT/LIST
-4. Description  : LẤY DANH SÁCH HÃNG SẢN XUẤT
-5. History      : 2017.06.07 (NGUYỄN THANH BÌNH) - Tao moi
+1. Create Date  : 2017.09.12
+2. Creator      : HOI
+3. Function     : QLDNKHO/CONNONHACUNGCAP/REPORT
+4. Description  : 
+5. History      : 
 *****************************************************************************/
 using Dapper;
 using Dapper.FastCrud;
@@ -11,45 +11,41 @@ using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
+namespace SongAn.QLDN.Data.QLKho.KhoCongNoNCC
 {
-    /// <summary>
-    /// DAC Lấy danh sách Phong ban theo điều kiện
-    /// </summary>
-    public class GetListKhoKhoHangPopupByCriteriaDac : BaseRepositoryAsync
+    public class GetListReportKhoCongNoNCCByProjectionDac : BaseRepositoryDataset
     {
         #region public properties
+        public string FieldsField { get; set; }
 
         /// <summary>
-        /// Danh sách các field cần lấy
+        /// tìm kiếm quick search
         /// </summary>
-        public string FIELD { get; set; }
-
+        public string TuNgay { get; set; }
+        public string DenNgay { get; set; }
+        public string KhachHangId { get; set; }
+        public string LoginId { get; set; }
         /// <summary>
-        /// quick search
+        /// Danh sách hang hoa
         /// </summary>
-        public string SEARCH_STRING { get; set; }
-
+        ///  
         /// <summary>
         /// Mệnh đề order by
         /// </summary>
-        public string ORDER_CLAUSE { get; set; }
+        public string OrderClause { get; set; }
 
         /// <summary>
         /// Số dòng skip (để phân trang)
         /// </summary>
-        public int? SKIP { get; set; }
+        public int? Skip { get; set; }
 
         /// <summary>
         /// Số dòng take (để phân trang)
         /// </summary>
-        public int? TAKE { get; set; }
-        public int? VIEW_ALL { get; set; }
-
-        public virtual int LOGIN_ID { get; set; }
-        //public string MESSAGE { get; set; }
+        public int? Take { get; set; }
 
         #endregion
 
@@ -64,7 +60,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListKhoKhoHangPopupByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListReportKhoCongNoNCCByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -79,9 +75,9 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
         private void Init()
         {
 
-            SKIP = SKIP != null ? SKIP.Value : 0;
+            Skip = Skip != null ? Skip.Value : 0;
 
-            SKIP = SKIP != null ? SKIP.Value : 100;
+            Take =  100000;
         }
 
         /// <summary>
@@ -101,23 +97,24 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
         /// </summary>
         /// <param name="context">Bien moi truong</param>
         /// <returns></returns>
-        public virtual async Task<IEnumerable<dynamic>> Execute()
+        public virtual DataSet Execute()
         {
             Init();
             Validate();
+            List<SqlParameter> prm = new List<SqlParameter>()
+            {                 
+                 new SqlParameter("@SEARCH_TUNGAY", DbType.String) {Value = TuNgay},
+                 new SqlParameter("@SEARCH_DENNGAY",DbType.String) {Value = DenNgay},
+                 new SqlParameter("@SEARCH_KHACHHANGID", DbType.String) {Value = KhachHangId},                 
+                 new SqlParameter("@LOGIN_ID", DbType.String) {Value = LoginId},
+                 new SqlParameter("@ORDER_CLAUSE", SqlDbType.VarChar) {Value = ""}                 
+            };
 
-            return await WithConnection(async c =>
-            {
-                var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KhoKhoHang_GetListKhoKhoHangPopupByCriteria",
-                    param: this,
-                    commandType: CommandType.StoredProcedure);
+            DataSet ds = getData("sp_KhoCongNoNCC_GetListKhoCongNoNCCByCriteria", prm);
+            return ds;
 
-                return objResult;
-            });
         }
 
         #endregion
-
     }
 }

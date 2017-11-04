@@ -27,6 +27,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuBaoHanh
         public string DIENTHOAI { get; set; }
         public string THONG_TIN_KHACH_HANG { get; set; }
         public string SAN_PHAM_CTY { get; set; }
+        public string LOAI_BAO_HANH { get; set; }
         public DateTime? START_DATE { get; set; }
         public DateTime? END_DATE { get; set; }
         public string ORDER_CLAUSE { get; set; }

@@ -1,4 +1,5 @@
-﻿using Dapper;
+﻿
+using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
@@ -8,14 +9,14 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 
-namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
+namespace SongAn.QLDN.Data.QLKho.KhoPhieuNhap
 {
-    public class GetListReportPhieuChiByProjectionDac : BaseRepositoryDataset
+    public class GetListSeriesReportPhieuNhapByIdDac : BaseRepositoryDataset
     {
         #region public properties
 
-        public string PhieuChiId { get; set; }
-        public string LoginId { get; set; }
+        public string PhieuNhapId { get; set; }
+
 
         #endregion
 
@@ -30,7 +31,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListReportPhieuChiByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListSeriesReportPhieuNhapByIdDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -70,11 +71,10 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
             Validate();
             List<SqlParameter> prm = new List<SqlParameter>()
             {
-                 new SqlParameter("@SEARCH_PhieuChiID", SqlDbType.VarChar) {Value = PhieuChiId},
-                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
+                 new SqlParameter("@PHIEU_NHAP_ID", SqlDbType.VarChar) {Value = PhieuNhapId},
 
             };
-            DataSet ds = getData("sp_KhoPhieuChi_GetListReportPhieuChiByCriteria", prm);
+            DataSet ds = getData("sp_KhoPhieuNhap_GetListSeriesReportPhieuNhapById", prm);
             return ds;
 
         }

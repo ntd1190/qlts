@@ -22,10 +22,13 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
     public class DeletePhieuSeriesDac : BaseRepositoryAsync
     {
         #region public properties
-        public string SOPHIEU { get; set; }
-        public int? HANGHOAID { get; set; }
+        
+        public string SO_PHIEU { get; set; }
+        public int? HANG_HOA_ID { get; set; }
+        public int? LOGIN_ID { get; set; }
         #endregion
 
+        public string MESSAGE { get; set; }
         #region private variable
 
         ContextDto _context;
@@ -72,12 +75,13 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
 
             return await WithConnection(async c =>
             {
-                var p = new DynamicParameters();
-
+                var p = new DynamicParameters(this);
+                p.Add("@MESSAGE", dbType: DbType.String, direction: ParameterDirection.Output, size: 4000);
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KhoPhieuXuat_DeletePhieuSeries",
-                    param: this,
+                    sql: "sp_KhoPhieuSeries_DeletePhieuSeries",  //sp_KhoPhieuXuat_DeletePhieuSeries
+                    param: p,
                     commandType: CommandType.StoredProcedure);
+                MESSAGE = p.Get<string>("MESSAGE");
 
                 return objResult;
             });

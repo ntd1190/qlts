@@ -66,6 +66,7 @@
     <Compile Include="MSSQL_QLDN_QLNS\KhoBaoCaoTheoKyChiTietRepository.cs" />
     <Compile Include="MSSQL_QLDN_QLNS\KhoKhachHangRepository.cs" />
     <Compile Include="MSSQL_QLDN_QLNS\KhoKiemKeRepository.cs" />
+    <Compile Include="MSSQL_QLDN_QLNS\KhoPhieuNhapSeriesRepository.cs" />
     <Compile Include="MSSQL_QLDN_QLNS\KhoPhieuSeriesRepository.cs" />
     <Compile Include="MSSQL_QLDN_QLNS\KhoPhieuChiRepository.cs" />
     <Compile Include="MSSQL_QLDN_QLNS\KhoPhieuChuyenChiTietRepository.cs" />

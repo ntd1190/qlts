@@ -25,6 +25,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
         public int PHIEU_XUAT_ID { get; set; }
         public int LOGIN_ID { get; set; }
         public string MESSAGE { get; set; }
+        public string KHOA_MO { get; set; }
         #endregion
 
         #region private variable

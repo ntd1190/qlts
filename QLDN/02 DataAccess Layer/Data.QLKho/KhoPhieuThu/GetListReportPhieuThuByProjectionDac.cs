@@ -15,7 +15,8 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuThu
         #region public properties
 
         public string PhieuThuId { get; set; }
-       
+        public string LoginId { get; set; }
+
 
         #endregion
 
@@ -71,7 +72,8 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuThu
             List<SqlParameter> prm = new List<SqlParameter>()
             {
                  new SqlParameter("@SEARCH_PhieuThuID", SqlDbType.VarChar) {Value = PhieuThuId},
-                
+                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
+
             };
             DataSet ds = getData("sp_KhoPhieuThu_GetListReportPhieuThuByCriteria", prm);
             return ds;

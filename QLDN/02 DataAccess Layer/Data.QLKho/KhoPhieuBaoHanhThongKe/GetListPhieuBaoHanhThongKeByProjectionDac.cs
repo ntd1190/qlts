@@ -6,9 +6,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
+namespace SongAn.QLDN.Data.QLNS.KhoPhieuBaoHanhThongKe
 {
-    public class GetListKhoKhoHangPopupDMByCriteriaDac : BaseRepositoryAsync
+    public class GetListPhieuBaoHanhThongKeByProjectionDac : BaseRepositoryAsync
     {
         #region public properties
         public string FieldsField { get; set; }
@@ -19,9 +19,16 @@ namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
         public string SearchString { get; set; }
 
         /// <summary>
-        /// Danh sách hang hoa
+        /// Danh sách issue khách hàng
         /// </summary>
         ///  
+        public string TuNgay { get; set; }
+        public string DenNgay { get; set; }
+        public string NhanVien { get; set; }
+        public string PhongBan { get; set; }
+        public string ChiNhanh { get; set; }
+        public string LoginId { get; set; }
+
         /// <summary>
         /// Mệnh đề order by
         /// </summary>
@@ -37,9 +44,6 @@ namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
         /// </summary>
         public int? Take { get; set; }
 
-        public string KhoId { get; set; }
-        public string LeftJoinHH { get; set; }
-
         #endregion
 
         #region private variable
@@ -53,7 +57,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListKhoKhoHangPopupDMByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListPhieuBaoHanhThongKeByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -67,6 +71,9 @@ namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
         /// </summary>
         private void Init()
         {
+            FieldsField = FieldsField.Equals("") ? nameof(Entity.MSSQL_QLDN_QLNS.Entity.NhanVien.NhanVienId) : FieldsField;
+
+            OrderClause = OrderClause.Equals("") ? nameof(Entity.MSSQL_QLDN_QLNS.Entity.NhanVien.NhanVienId) : OrderClause;
 
             Skip = Skip != null ? Skip.Value : 0;
 
@@ -99,17 +106,21 @@ namespace SongAn.QLDN.Data.QLKho.KhoHangHoa
             {
                 var p = new DynamicParameters();
                 p.Add("FIELD", FieldsField, DbType.String);
-                p.Add("SEARCH_SEARCHSTRING", SearchString, DbType.String);
+                p.Add("TU_NGAY", TuNgay, DbType.String);
+                p.Add("DEN_NGAY", DenNgay, DbType.String);
+                p.Add("LIST_NHAN_VIEN_ID", NhanVien, DbType.String);
+                p.Add("PHONG_BAN_ID", PhongBan, DbType.String);
+                p.Add("CHI_NHANH_ID", ChiNhanh, DbType.String);                
                 p.Add("ORDER_CLAUSE", OrderClause, DbType.String);
                 p.Add("SKIP", Skip, DbType.Int16);
                 p.Add("TAKE", Take, DbType.Int16);
-                p.Add("KHO_ID", KhoId, DbType.String);
-                p.Add("LEFT_JOIN_HH", LeftJoinHH, DbType.String);
+                p.Add("LOGIN_ID", LoginId, DbType.String);
 
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KhoHangHoa_GetListKhoHangHoaPopDMByCriteria",
+                    sql: "sp_PhieuBaoHanhThongKe_GetListPhieuBaoHanhThongKeByCriteria",
                     param: p,
-                    commandType: CommandType.StoredProcedure);
+                    commandType: CommandType.StoredProcedure,
+                    commandTimeout: 0);
 
                 return objResult;
             });

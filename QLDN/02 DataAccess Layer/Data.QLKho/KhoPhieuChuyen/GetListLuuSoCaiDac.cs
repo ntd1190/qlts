@@ -30,6 +30,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChuyen
         public decimal DONGIA { get; set; }
         public decimal SOLUONG { get; set; }
         public int LOGIN_ID { get; set; }
+        public string KHOA_MO { get; set; }
         public string MESSAGE { get; set; }
         #endregion
 

@@ -1,58 +1,34 @@
 ﻿/*****************************************************************************
-1. Create Date  : 2017.06.07
-2. Creator      : NGUYỄN THANH BÌNH
-3. Function     : QLDNKHO/KHOHANGSANXUAT/LIST
-4. Description  : LẤY DANH SÁCH HÃNG SẢN XUẤT
-5. History      : 2017.06.07 (NGUYỄN THANH BÌNH) - Tao moi
+1. Create Date  : 2017.10.19
+2. Creator      : HOI
+3. Function     : 
+4. Description  : 
+5. History      : 
 *****************************************************************************/
 using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
+namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
 {
     /// <summary>
     /// DAC Lấy danh sách Phong ban theo điều kiện
     /// </summary>
-    public class GetListKhoKhoHangPopupByCriteriaDac : BaseRepositoryAsync
+    public class CheckExistsSeriesDac : BaseRepositoryAsync
     {
         #region public properties
-
-        /// <summary>
-        /// Danh sách các field cần lấy
-        /// </summary>
-        public string FIELD { get; set; }
-
-        /// <summary>
-        /// quick search
-        /// </summary>
-        public string SEARCH_STRING { get; set; }
-
-        /// <summary>
-        /// Mệnh đề order by
-        /// </summary>
-        public string ORDER_CLAUSE { get; set; }
-
-        /// <summary>
-        /// Số dòng skip (để phân trang)
-        /// </summary>
-        public int? SKIP { get; set; }
-
-        /// <summary>
-        /// Số dòng take (để phân trang)
-        /// </summary>
-        public int? TAKE { get; set; }
-        public int? VIEW_ALL { get; set; }
-
-        public virtual int LOGIN_ID { get; set; }
-        //public string MESSAGE { get; set; }
-
+        public string IS_NEW { get; set; }
+        public int? ID { get; set; }
+        public string SO_PHIEU { get; set; }
+        public int? HANG_HOA_ID { get; set; }       
         #endregion
-
+        public string LIST_SERIES { get; set; }
+        public string MESSAGE { get; set; }
         #region private variable
 
         ContextDto _context;
@@ -64,7 +40,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListKhoKhoHangPopupByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
+        public CheckExistsSeriesDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -76,21 +52,12 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
         /// <summary>
         /// Ham khoi tao gia tri mac dinh cho cac bien
         /// </summary>
-        private void Init()
-        {
-
-            SKIP = SKIP != null ? SKIP.Value : 0;
-
-            SKIP = SKIP != null ? SKIP.Value : 100;
-        }
+        private void Init() { }
 
         /// <summary>
         /// Ham chuan hoa gia tri cac bien
         /// </summary>
-        private void Validate()
-        {
-
-        }
+        private void Validate() { }
 
         #endregion
 
@@ -108,10 +75,13 @@ namespace SongAn.QLDN.Data.QLKho.KhoKhoHang
 
             return await WithConnection(async c =>
             {
+                var p = new DynamicParameters(this);
+                p.Add("@MESSAGE", dbType: DbType.String, direction: ParameterDirection.Output, size: 4000);
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KhoKhoHang_GetListKhoKhoHangPopupByCriteria",
-                    param: this,
+                    sql: "sp_KhoPhieuSeries_CheckExistsSeries",  
+                    param: p,
                     commandType: CommandType.StoredProcedure);
+                MESSAGE = p.Get<string>("MESSAGE");
 
                 return objResult;
             });

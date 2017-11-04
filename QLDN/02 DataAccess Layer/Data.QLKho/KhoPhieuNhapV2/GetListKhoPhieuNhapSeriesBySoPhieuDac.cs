@@ -1,22 +1,29 @@
-﻿using Dapper;
+﻿/*****************************************************************************
+1. Create Date  : 2017.10.05
+2. Creator      : HOI
+3. Function     : 
+4. Description  : GỌI SP LẤY Series PHIẾU NHAP
+5. History      : 
+*****************************************************************************/
+using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
 using System.Threading.Tasks;
 
-
-namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
+namespace SongAn.QLDN.Data.QLKho.KhoPhieuNhapV2
 {
-    public class GetListReportPhieuChiByProjectionDac : BaseRepositoryDataset
+    /// <summary>
+    /// DAC Lấy danh sách Phong ban theo điều kiện
+    /// </summary>
+    public class GetListKhoPhieuNhapSeriesBySoPhieuDac : BaseRepositoryAsync
     {
         #region public properties
-
-        public string PhieuChiId { get; set; }
-        public string LoginId { get; set; }
-
+        public string SOPHIEU { get; set; }
+        public int? HANGHOAID { get; set; }
         #endregion
 
         #region private variable
@@ -30,7 +37,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListReportPhieuChiByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListKhoPhieuNhapSeriesBySoPhieuDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -42,10 +49,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// <summary>
         /// Ham khoi tao gia tri mac dinh cho cac bien
         /// </summary>
-        private void Init()
-        {
-
-        }
+        private void Init() { }
 
         /// <summary>
         /// Ham chuan hoa gia tri cac bien
@@ -64,21 +68,25 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// </summary>
         /// <param name="context">Bien moi truong</param>
         /// <returns></returns>
-        public virtual DataSet Execute()
+        public virtual async Task<IEnumerable<dynamic>> Execute()
         {
             Init();
             Validate();
-            List<SqlParameter> prm = new List<SqlParameter>()
+
+            return await WithConnection(async c =>
             {
-                 new SqlParameter("@SEARCH_PhieuChiID", SqlDbType.VarChar) {Value = PhieuChiId},
-                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
+                var p = new DynamicParameters();
 
-            };
-            DataSet ds = getData("sp_KhoPhieuChi_GetListReportPhieuChiByCriteria", prm);
-            return ds;
+                var objResult = await c.QueryAsync<dynamic>(
+                    sql: "sp_KhoPhieuNhapSeries_GetListSeriesBySoPhieu",
+                    param: this,
+                    commandType: CommandType.StoredProcedure);
 
+                return objResult;
+            });
         }
 
         #endregion
+
     }
 }

@@ -1,14 +1,24 @@
-﻿using Dapper;
+﻿/*****************************************************************************
+1. Create Date  : 2017.09.12
+2. Creator      : HOI
+3. Function     : QLDNKHO/KHOKIEMKE/REPORT
+4. Description  : 
+5. History      : 
+*****************************************************************************/
+using Dapper;
 using Dapper.FastCrud;
 using SongAn.QLDN.Util.Common.Dto;
 using SongAn.QLDN.Util.Common.Repository;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
+
+
 
 namespace SongAn.QLDN.Data.QLKho.KhoXuatNhapTon
 {
-    public class GetListKhoXuatNhapTonByCriteriaDac : BaseRepositoryAsync
+    public class GetListReportKhoXuatNhapTonByCriteriaDac : BaseRepositoryDataset
     {
         #region public properties
 
@@ -17,7 +27,6 @@ namespace SongAn.QLDN.Data.QLKho.KhoXuatNhapTon
         public string DEN_NGAY { get; set; }
 
         public string KHO_ID { get; set; }
-
         public string HANG_HOA_ID { get; set; }
         public string NHOM_HANG_HOA_ID { get; set; }
         public string LOGIN_ID { get; set; }
@@ -35,7 +44,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoXuatNhapTon
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListKhoXuatNhapTonByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListReportKhoXuatNhapTonByCriteriaDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -49,7 +58,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoXuatNhapTon
         /// </summary>
         private void Init()
         {
-
+            
         }
 
         /// <summary>
@@ -63,28 +72,30 @@ namespace SongAn.QLDN.Data.QLKho.KhoXuatNhapTon
         #endregion
 
         #region execute
-
+       
         /// <summary>
         /// Ham xu ly chinh, chi nhan 1 bien moi truong
         /// </summary>
         /// <param name="context">Bien moi truong</param>
         /// <returns></returns>
-        public virtual async Task<IEnumerable<dynamic>> Execute()
+        public virtual DataSet Execute()
         {
             Init();
             Validate();
+            List<SqlParameter> prm = new List<SqlParameter>()
+            {                 
+                 new SqlParameter("@KHO_ID", SqlDbType.VarChar) {Value = KHO_ID},
+                 new SqlParameter("@TU_NGAY", SqlDbType.VarChar) {Value = TU_NGAY},
+                 new SqlParameter("@DEN_NGAY", SqlDbType.VarChar) {Value = DEN_NGAY},
+                 new SqlParameter("@HANG_HOA_ID", SqlDbType.VarChar) {Value = HANG_HOA_ID},
+                 new SqlParameter("@NHOM_HANG_HOA_ID", SqlDbType.VarChar) {Value = NHOM_HANG_HOA_ID},
+                 new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LOGIN_ID},
+            };
 
-            return await WithConnection(async c =>
-            {
-                var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KhoBaoCaoTheoKyChiTiet_DonGiaNhap",
-                    param: this,
-                    commandType: CommandType.StoredProcedure);
+            DataSet ds = getData("sp_KhoBaoCaoTheoKyChiTiet_DonGiaNhap", prm);
+            return ds;
 
-                return objResult;
-            });
         }
-
         #endregion
     }
 }

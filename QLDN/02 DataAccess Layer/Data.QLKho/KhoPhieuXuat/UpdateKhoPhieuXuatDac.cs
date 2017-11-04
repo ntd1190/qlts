@@ -21,6 +21,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
         #region public properties
         public virtual int PhieuXuatId { get; set; }
         public virtual int? KhachHangId { get; set; }
+        public virtual string DiaChi { get; set; }
         public virtual string LoaiPhieu { get; set; }
         public virtual string SoPhieu { get; set; }
         public virtual string NguoiNhanHang { get; set; }

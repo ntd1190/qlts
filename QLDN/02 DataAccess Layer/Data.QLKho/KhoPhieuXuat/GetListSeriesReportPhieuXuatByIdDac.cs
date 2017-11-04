@@ -8,13 +8,14 @@ using System.Data.SqlClient;
 using System.Threading.Tasks;
 
 
-namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
+namespace SongAn.QLDN.Data.QLKho.KhoPhieuXuat
 {
-    public class GetListReportPhieuChiByProjectionDac : BaseRepositoryDataset
+    public class GetListSeriesReportPhieuXuatByIdDac : BaseRepositoryDataset
     {
         #region public properties
 
-        public string PhieuChiId { get; set; }
+        public string PhieuXuatId { get; set; }
+        public string isSeriesAuto { get; set; }
         public string LoginId { get; set; }
 
         #endregion
@@ -30,7 +31,7 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListReportPhieuChiByProjectionDac(ContextDto context) : base(context.dbQLNSConnection)
+        public GetListSeriesReportPhieuXuatByIdDac(ContextDto context) : base(context.dbQLNSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -70,11 +71,11 @@ namespace SongAn.QLDN.Data.QLKho.KhoPhieuChi
             Validate();
             List<SqlParameter> prm = new List<SqlParameter>()
             {
-                 new SqlParameter("@SEARCH_PhieuChiID", SqlDbType.VarChar) {Value = PhieuChiId},
+                 new SqlParameter("@PHIEU_XUAT_ID", SqlDbType.VarChar) {Value = PhieuXuatId},
+                 new SqlParameter("@IS_SERIES_AUTO", SqlDbType.VarChar) {Value = isSeriesAuto},
                  new SqlParameter("@LOGIN_ID", SqlDbType.VarChar) {Value = LoginId},
-
             };
-            DataSet ds = getData("sp_KhoPhieuChi_GetListReportPhieuChiByCriteria", prm);
+            DataSet ds = getData("sp_KhoPhieuXuat_GetListSeriesReportPhieuXuatById", prm);
             return ds;
 
         }
