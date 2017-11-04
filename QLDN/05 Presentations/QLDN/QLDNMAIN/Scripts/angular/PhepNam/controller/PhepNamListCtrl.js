@@ -130,13 +130,33 @@
             listCot: [
                 { MaCot: 'NhanVienID', TenCot: 'ID', HienThiYN: false, DoRong: 100 },
                 { MaCot: 'NhanVien', TenCot: 'Tên', HienThiYN: true, DoRong: 100 },
-                { MaCot: 'NghiPhep', TenCot: 'Nghỉ có phép', HienThiYN: true, DoRong: 100 },
-                { MaCot: 'NghiKhongPhep', TenCot: 'Nghỉ không phép', HienThiYN: true, DoRong: 100 },
-                { MaCot: 'SoNgayPhep', TenCot: 'Số ngày phép', HienThiYN: true, DoRong: 100 },
-                { MaCot: 'SoNgayConLai', TenCot: 'Số ngày còn lại', HienThiYN: true, DoRong: 100 },
+
+                { MaCot: 'NghiTinhPhepNam', TenCot: 'Nghỉ có tính <br> phép năm (1)', HienThiYN: true, DoRong: 70 },
+                { MaCot: 'NghiKhongTinhPhepNam', TenCot: 'Nghỉ không tính<br>phép năm (2)', HienThiYN: true, DoRong: 70 },
+
+                { MaCot: 'NghiPhep', TenCot: 'Tổng Số ngày nghỉ<br> (3)=(1)+(2)', HienThiYN: true, DoRong: 60 },
+                { MaCot: 'SoNgayPhep', TenCot: 'Phép năm<br>(4)', HienThiYN: true, DoRong: 60 },
+                { MaCot: 'SoNgayConLai', TenCot: 'Phép năm còn lại<br>(5)=(4)-(1)', HienThiYN: true, DoRong: 100 },
+
+                { MaCot: 'NghiKhongPhep', TenCot: 'Nghỉ không phép', HienThiYN: false, DoRong: 60 },
+                { MaCot: 'NghiCoLuongCoTinhPhepNam', TenCot: 'NghiCoLuong <br> CoTinhPhepNam', HienThiYN: false, DoRong: 100 },
+                { MaCot: 'NghiCoLuongKhongTinhPhepNam', TenCot: 'NghiCoLuong <br> KhongTinhPhepNam', HienThiYN: false, DoRong: 100 },
+                { MaCot: 'NghiKhongLuongCoTinhPhepNam', TenCot: 'NghiKhongLuong <br> CoTinhPhepNam', HienThiYN: false, DoRong: 100 },
+                { MaCot: 'NghiKhongLuongCoTinhPhepNam', TenCot: 'NghiKhongLuong <br> KhongTinhPhepNam', HienThiYN: false, DoRong: 100 },
+
+             
+
+
             ],
         };
 
+        /*
+        Nghỉ có lương - tính phép năm - không tính phép năm
+Nghỉ không lương - tính phép năm - không tính phép năm
+Số ngày nghỉ
+Phép năm
+Phép năm còn lại
+        */
         vm.action = {
             getPage: getPage,
             search: search,
@@ -184,7 +204,8 @@
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
                 vm.data.UserLoginId = config.userInfo.NhanVienId;
                 setEnableButton();
-                vm.data.searchString = $('#tungay').val() + '|' + $('#denngay').val() + '|' + vm.data.UserLoginId + '|' + '|';
+                vm.data.searchString = $('#tungay').val() + '|' + $('#denngay').val() + '|' +'' + '|' + '|';
+                //vm.data.searchString = $('#tungay').val() + '|' + $('#denngay').val() + '|' + vm.data.UserLoginId + '|' + '|';
                 getPage()
             }
             initEventListener();

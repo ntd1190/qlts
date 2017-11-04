@@ -121,7 +121,7 @@
 
         function save() {
             if (validNhanVien() == false) { }
-            else if (vm.status.isEdit) {
+            else if (nhanVienId != 0) {
                 updateNhanVien();
             } else {
                 insertNhanVien();

@@ -5,13 +5,14 @@
         .module('app', [
          // Angular modules 
          'ngCookies',
+         'ngSanitize',
          // Custom modules 
          // 3rd Party Modules
         'smart-table',
         'ngStorage',
         ])
         .value('API_BASE', 'http://localhost/qldnapi/')
-        //.value('API_BASE', 'http://192.168.1.201:8088/QLDNAPI/')
+        //.value('API_BASE', 'http://hr.ehis.vn/QLDNAPI/')
         .value('SETTING', {
             DEBUG: true
         })

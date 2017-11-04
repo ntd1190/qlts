@@ -74,10 +74,13 @@
 
         activate();
 
-        function activate() {            
-            $('#tungay').val(moment().format('DD/MM/YYYY'));
+        function activate() {
+            var d = new Date();
+            var ddmmyy = '01/01/'+ d.getFullYear();                        
+            $('#tungay').val(ddmmyy);
             //$('#tungay').val(moment().subtract(1, 'months').startOf('month').format('DD/MM/YYYY'));
-            $('#denngay').val(moment().subtract(1, 'months').endOf('month').format('DD/MM/YYYY'));
+            //$('#denngay').val(moment().subtract(1, 'months').endOf('month').format('DD/MM/YYYY'));
+            $('#denngay').val(moment().format('DD/MM/YYYY'));
         }
         function pad(str, max) {
             str = str.toString();
@@ -94,8 +97,8 @@
             vm.data.listChiNhanh = [];
             vm.data.searchString = '';
 
-            $('#tungay').val(moment().subtract(1, 'months').startOf('month').format('DD/MM/YYYY'));
-            $('#denngay').val(moment().subtract(1, 'months').endOf('month').format('DD/MM/YYYY'));
+            $('#tungay').val(moment().format('DD/MM/YYYY'));
+            $('#denngay').val(moment().format('DD/MM/YYYY'));
         }
 
 
