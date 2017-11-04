@@ -91,5 +91,12 @@ namespace SongAn.QLDN.Api.QLKho.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         #endregion
+
+        [HttpPost]
+        public async Task<IHttpActionResult> sendEmail([FromBody]sendEmailAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

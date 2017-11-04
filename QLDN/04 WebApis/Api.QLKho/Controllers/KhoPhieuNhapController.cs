@@ -6,6 +6,7 @@
 5. History      : 2017.06.09 (NGUYỄN THANH BÌNH) - Tao moi
 *****************************************************************************/
 using SongAn.QLDN.Api.QLKho.Models.KhoPhieuNhap;
+using SongAn.QLDN.Api.QLKho.Models.KhoPhieuNhapV2;
 using SongAn.QLDN.Util.Common.Api;
 using SongAn.QLDN.Util.Common.Dto;
 using System.Threading.Tasks;
@@ -83,5 +84,21 @@ namespace SongAn.QLDN.Api.QLKho.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         #endregion
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertKhoPhieuNhapSeries([FromBody]InsertKhoPhieuNhapSeriesAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListKhoPhieuNhapSeriesBySoPhieu([FromBody]GetListKhoPhieuNhapSeriesBySoPhieuAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        
     }
 }

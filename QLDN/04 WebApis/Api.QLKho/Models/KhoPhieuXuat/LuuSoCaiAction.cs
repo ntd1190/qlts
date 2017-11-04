@@ -24,6 +24,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuXuat
         #region PUBLIC
         public string phieuXuatId { get; set; }
         public string LoginId { get; set; }
+        public string KhoaMo { get; set; }
         #endregion
 
         #region private
@@ -65,6 +66,8 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuXuat
                 var biz = new LuuSoCaiBiz(context);
                 biz.PHIEU_XUAT_ID = _phieuXuatId;
                 biz.LOGIN_ID = _LoginId;
+                biz.KHOA_MO = KhoaMo;
+
                 var result = await biz.Execute();
 
                 if (string.IsNullOrEmpty(biz.MESSAGE) == false)

@@ -21,6 +21,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
 
         #region PUBLIC
         public virtual string DienThoai { get; set; }
+        public virtual string LoaiBaoHanh { get; set; }
         public string loginId { get; set; }
         public string sortName { get; set; }
         public string sortDir { get; set; }
@@ -73,6 +74,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
                 var biz = new GetThongTinByDienThoaiBiz(context);
                 biz.DIENTHOAI = DienThoai;
                 biz.LOGIN_ID = _LoginId;
+                biz.LOAI_BAO_HANH = LoaiBaoHanh;
                 biz.SKIP = _start;
                 biz.TAKE = _length;
 

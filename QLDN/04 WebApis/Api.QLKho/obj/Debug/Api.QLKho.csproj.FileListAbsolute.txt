@@ -28,10 +28,6 @@ D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\SongAn.QLDN.Data.Repository.pd
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\SongAn.QLDN.Biz.Main.pdb
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\SongAn.QLDN.Biz.QLKho.pdb
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\SongAn.QLDN.Api.QLNS.pdb
-D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\Newtonsoft.Json.xml
-D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\System.Net.Http.Formatting.xml
-D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\System.Web.Http.xml
-D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\System.Web.Http.WebHost.xml
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\System.Web.Mvc.xml
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\System.Web.WebPages.xml
 D:\WebProject\QLDN\04 WebApis\Api.QLKho\bin\Debug\Dapper.xml

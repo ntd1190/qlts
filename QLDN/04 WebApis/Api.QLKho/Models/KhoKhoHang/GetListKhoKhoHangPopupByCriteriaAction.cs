@@ -27,6 +27,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKhoHang
         public string sortDir { get; set; }
         public string fields { get; set; }
         public string loginId { get; set; }
+        public string viewAll { get; set; }
         #endregion
 
         #region private
@@ -34,6 +35,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKhoHang
         private int _start;
         private int _length;
         private int _loginId;
+        private int _viewAll;
         #endregion
 
         #region init & validate
@@ -47,6 +49,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKhoHang
             _start = Protector.Int(start);
             _length = Protector.Int(length);
             _loginId = Protector.Int(loginId);
+            _viewAll = Protector.Int(viewAll);
 
             sortName = Protector.String(sortName, "KHO_ID");
             sortDir = Protector.String(sortDir, "asc");
@@ -83,6 +86,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKhoHang
                 biz.SKIP = _start;
                 biz.TAKE = _length;
                 biz.LOGIN_ID = _loginId;
+                biz.VIEW_ALL = _viewAll;
                 var list = await biz.Execute();
 
                 if (list.Count() > 0)

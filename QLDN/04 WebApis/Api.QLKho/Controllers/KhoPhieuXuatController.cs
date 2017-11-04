@@ -101,5 +101,19 @@ namespace SongAn.QLDN.Api.QLKho.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+        
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListAutoKhoPhieuSeriesBySoPhieu([FromBody]GetListAutoKhoPhieuSeriesBySoPhieuAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteSeriesByCriteria([FromBody]DeleteSeriesByCriteriaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

@@ -8,7 +8,7 @@ using SongAn.QLDN.Api.QLNS.Models.KhoLuocSu;
 
 namespace SongAn.QLDN.Api.QLKho.Models.KhoKiemKe
 {
-    public class InsertKhoKiemKeAction : SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity.KhoKiemKe
+    public class InsertKhoKiemKeAction : Entity.MSSQL_QLDN_QLNS.Entity.KhoKiemKe
     {
 
         #region public
@@ -29,6 +29,16 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKiemKe
                 KiemKe.NgayTao = NgayTao;
                 KiemKe.XoaYN = "N";
                 KiemKe.CtrlVersion   = 1;
+                KiemKe.TruongBanTen = TruongBanTen;
+                KiemKe.TruongBanChucVu = TruongBanChucVu;
+                KiemKe.TruongBanDaiDien = TruongBanDaiDien;
+                KiemKe.UyVienTen = UyVienTen;
+                KiemKe.UyVienChucVu = UyVienChucVu;
+                KiemKe.UyVienDaiDien = UyVienDaiDien;
+                KiemKe.UyVienTen2 = UyVienTen2;
+                KiemKe.UyVienChucVu2 = UyVienChucVu2;
+                KiemKe.UyVienDaiDien2 = UyVienDaiDien2;
+
                 KhoKiemKeRepository repo = new KhoKiemKeRepository(context);
                 await repo.Insert(KiemKe);
                 InsertKhoLuocSuAction ls = new InsertKhoLuocSuAction();

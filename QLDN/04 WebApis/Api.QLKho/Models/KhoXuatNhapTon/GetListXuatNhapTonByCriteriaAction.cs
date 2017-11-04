@@ -16,6 +16,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoXuatNhapTon
         public string DenNgay { get; set; }
         public string KhoId { get; set; }
         public string HangHoaId { get; set; }
+        public string NhomHangHoaId { get; set; }
         public string LoginId { get; set; }
         #endregion
 
@@ -56,8 +57,9 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoXuatNhapTon
                 var biz = new GetListKhoXuatNhapTonByCriteriaBiz(context);
                 biz.TU_NGAY = TuNgay;
                 biz.DEN_NGAY = DenNgay;
-                biz.KHO_ID = Protector.Int(KhoId);
-                biz.HANG_HOA_ID = Protector.Int(HangHoaId);
+                biz.KHO_ID = KhoId;
+                biz.HANG_HOA_ID = HangHoaId;
+                biz.NHOM_HANG_HOA_ID = NhomHangHoaId;
                 biz.LOGIN_ID = LoginId;
                 var result = await biz.Execute();
 

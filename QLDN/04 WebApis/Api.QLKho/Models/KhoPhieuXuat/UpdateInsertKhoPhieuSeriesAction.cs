@@ -64,29 +64,57 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuXuat
             {
                 init();
                 validate();
-                DeletePhieuSeriesDac dac = new DeletePhieuSeriesDac(context);
-                dac.SOPHIEU = _listChiTiet[0].SoPhieu;
-                dac.HANGHOAID = _listChiTiet[0].HangHoaId;
-                var b = dac.Execute();
+                string serialList = "";
+              
                 foreach (var item in _listChiTiet)
                 {
-                    Id = item.Id;
-                    Series = item.Series;
-                    SoPhieu = item.SoPhieu;
-                    MaHangHoa = item.MaHangHoa;
-                    HangHoaId = item.HangHoaId;
-                    ThoiGianBaoHanh = item.ThoiGianBaoHanh;
-                    NguoiTao = _LoginId;
-                    NgayTao = DateTime.Now;
-                    XoaYN = "N";
-                    CtrVersion = 1;
-                    if (!String.IsNullOrEmpty(Series))
+                    var biz = new CheckExistsSeriesBiz(context); // Check the series exists or not
+                    biz.IS_NEW = item.Id > 0 ? "N" : "Y"; //Y: insert, N: update
+                    biz.ID = item.Id;
+                    biz.SO_PHIEU = item.SoPhieu;
+                    biz.HANG_HOA_ID = item.HangHoaId;
+                    biz.LIST_SERIES = item.Series;
+                    var result = await biz.Execute();
+                    if (string.IsNullOrEmpty(biz.MESSAGE) == false)
                     {
-                        KhoPhieuSeriesRepository repo = new KhoPhieuSeriesRepository(context);
-                        await repo.Insert(this);
+                        serialList = serialList+ (serialList != "" ? ", " : "") + item.Series ;
                     }
-
+                    else
+                    {
+                        if (item.Id > 0)
+                        {
+                            Id = item.Id;
+                            Series = item.Series;
+                            IsAuto = item.IsAuto;
+                            KhoPhieuSeriesRepository repoUpdate = new KhoPhieuSeriesRepository(context);
+                            await repoUpdate.UpdatePartial(this, nameof(Series), nameof(IsAuto));
+                        }
+                        else
+                        {
+                            Id = item.Id;
+                            Series = item.Series;
+                            SoPhieu = item.SoPhieu;
+                            MaHangHoa = item.MaHangHoa;
+                            HangHoaId = item.HangHoaId;
+                            ThoiGianBaoHanh = item.ThoiGianBaoHanh;
+                            NguoiTao = _LoginId;
+                            NgayTao = DateTime.Now;
+                            XoaYN = "N";
+                            CtrVersion = 1;
+                            IsAuto = "N";
+                            KhoPhieuSeriesRepository repo = new KhoPhieuSeriesRepository(context);
+                            await repo.Insert(this);
+                        }
+                    }
+                    
                 }
+                // }
+
+                if (serialList != "")
+                {
+                    throw new BaseException("Số series: "+ serialList +" đã tồn tại!" );
+                }
+
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, this, _metaData);

@@ -68,6 +68,8 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
                 biz.SanPhamCty = SanPhamCty;
                 biz.CtrVersion = CtrVersion;
                 biz.LOGIN_ID = _LoginId;
+                biz.Email = Email;
+                biz.LoaiBaoHanh = LoaiBaoHanh;
 
                 var result = await biz.Execute();
 

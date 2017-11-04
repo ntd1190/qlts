@@ -31,7 +31,7 @@ namespace SongAn.QLDN.Api.QLNS.Models.KhoKhachHang
                 var _KhoKhachHangId = Protector.Int(KhachHangId);
                 GetListKhoKhachHangByCriteriaBiz biz = new GetListKhoKhachHangByCriteriaBiz(context);
                 biz.KhachHang = KhachHangId;
-                biz.FieldsField = "KhachHangId,A.Ma,A.Ten,A.Loai,A.DienThoai,A.DiDong,A.Email,A.TinhThanhPhoId,B.TenTT,A.QuanHuyenId,C.TenQuanHuyen,A.PhuongXaId,D.TenPhuongXa,A.DiaChi,A.AnyDesk,A.CtrVersion";
+                biz.FieldsField = "KhachHangId, A.Ma, A.Ten, A.Loai, A.DienThoai, A.DiDong, A.Email, A.TinhThanhPhoId, B.TenTT, A.QuanHuyenId, C.TenQuanHuyen, A.PhuongXaId, D.TenPhuongXa, A.DiaChi, A.AnyDesk, A.MaSoThue, A.GhiChu, A.CtrVersion";
                 biz.OrderClause = "A.KhachHangId asc";
                 var KhoKhachHang = await biz.Execute();
 

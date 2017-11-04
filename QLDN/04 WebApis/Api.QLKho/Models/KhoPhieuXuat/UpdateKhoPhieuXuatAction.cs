@@ -86,6 +86,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuXuat
                 biz.ChiPhi = _PhieuXuat.ChiPhi ?? 0;
                 biz.LoaiPhieu = _PhieuXuat.LoaiPhieu;
                 biz.KhachHangId = _PhieuXuat.KhachHangId;
+                biz.DiaChi = _PhieuXuat.DiaChi;
                 biz.KhoXuat = _PhieuXuat.KhoXuat;
                 biz.NgayChungTu = _PhieuXuat.NgayChungTu;
                 biz.NgayThanhToan = _PhieuXuat.NgayThanhToan;

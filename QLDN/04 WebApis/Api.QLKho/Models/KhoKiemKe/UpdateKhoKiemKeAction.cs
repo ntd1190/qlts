@@ -1,15 +1,14 @@
-﻿using SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity;
-using SongAn.QLDN.Util.Common.Dto;
-using SongAn.QLDN.Data.Repository.MSSQL_QLDN_QLNS;
+﻿using SongAn.QLDN.Util.Common.Dto;
 using System.Threading.Tasks;
 using System;
 using SongAn.QLDN.Util.Common.Helper;
 using System.Net;
 using SongAn.QLDN.Api.QLNS.Models.KhoLuocSu;
+using SongAn.QLDN.Data.Repository.MSSQL_QLDN_QLNS;
 
 namespace SongAn.QLDN.Api.QLKho.Models.KhoKiemKe
 {
-    public class UpdateKhoKiemKeAction : SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity.KhoKiemKe
+    public class UpdateKhoKiemKeAction : Entity.MSSQL_QLDN_QLNS.Entity.KhoKiemKe
     {
         private int _HoaDonId;
         public async Task<dynamic> Execute(ContextDto context)
@@ -24,6 +23,15 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoKiemKe
                 nameof(TieuDe),
                 nameof(KhoHangId),
                 nameof(Hinh),
+                nameof(TruongBanTen),
+                nameof(TruongBanChucVu),
+                nameof(TruongBanDaiDien),
+                nameof(UyVienTen),
+                nameof(UyVienChucVu),
+                nameof(UyVienDaiDien),
+                nameof(UyVienTen2),
+                nameof(UyVienChucVu2),
+                nameof(UyVienDaiDien2),
                 nameof(TrangThai));
                 result.ReturnCode = HttpStatusCode.OK;
                 result.ReturnData = new

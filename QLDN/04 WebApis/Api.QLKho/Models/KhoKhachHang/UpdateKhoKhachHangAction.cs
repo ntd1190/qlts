@@ -32,7 +32,9 @@ namespace SongAn.QLDN.Api.QLNS.Models.KhoKhachHang
                     nameof(TinhThanhPhoId),
                     nameof(QuanHuyenId),
                     nameof(PhuongXaId),
-                    nameof(AnyDesk)
+                    nameof(AnyDesk),
+                    nameof(GhiChu),
+                    nameof(MaSoThue)
                      );
                 result.data = this;
                 InsertLuocSuAction ls = new InsertLuocSuAction();

@@ -68,14 +68,13 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuChuyen
                     biz.CtrVersion = Protector.Int(item.KPC_CTRVERSION, -1);
                     biz.XoaYN = "Y";
                     var result = await biz.Execute();
-                    if (String.IsNullOrEmpty(biz.MESSAGE))
-                    {
-                        ls.InsertKhoLuocSu(context, "KhoPhieuChuyen", result.FirstOrDefault().PhieuChuyenId, "Delete", _LoginId);
-                    }
-                    else
+
+                    if (string.IsNullOrEmpty(biz.MESSAGE) == false)
                     {
                         throw new BaseException(biz.MESSAGE.Split('|')[2]);
                     }
+
+                    ls.InsertKhoLuocSu(context, "KhoPhieuChuyen", result.FirstOrDefault().PhieuChuyenId, "Delete", _LoginId);
                 }
 
                 dynamic metaData = new System.Dynamic.ExpandoObject();

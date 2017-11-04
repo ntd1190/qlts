@@ -66,6 +66,12 @@ namespace SongAn.QLDN.Api.QLNS.Models.Issue
         {
 
             _CtrVersion = Protector.Int(CtrVersion);
+
+            // 2017.07.11 binhnt them chuc nang update NgayKetThuc
+            if(MaTrangThai == "3") // trang thai: da xu ly
+            {
+                NgayKetThuc = DateTime.Now;
+            }
         }
 
         private ActionResultDto returnActionError(HttpStatusCode code, string message)

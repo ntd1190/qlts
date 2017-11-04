@@ -66,6 +66,8 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
                 biz.TrangThaiTiepNhan = TrangThaiTiepNhan;
                 biz.SanPhamCty = SanPhamCty;
                 biz.LOGIN_ID = _LoginId;
+                biz.Email = Email;
+                biz.LoaiBaoHanh = LoaiBaoHanh;
 
                 var result = await biz.Execute();
                 if (String.IsNullOrEmpty(biz.MESSAGE))

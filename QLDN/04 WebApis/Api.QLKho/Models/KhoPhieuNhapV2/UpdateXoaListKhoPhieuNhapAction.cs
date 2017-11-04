@@ -67,11 +67,14 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuNhap
                     biz.CTRVERSION = Protector.Int(item.KPN_CTRVERSION, -1);
                     biz.XOA = "Y";
                     var result = await biz.Execute();
-                    if (biz.RESULT != null && biz.RESULT.Value > 0)
+
+                    if (string.IsNullOrEmpty(biz.MESSAGE) == false)
                     {
-                        item.XoaYN = "Y";
-                        ls.InsertKhoLuocSu(context, "KhoPhieuNhap", biz.PHIEU_NHAP_ID, "Delete", _LoginId);
+                        throw new BaseException(biz.MESSAGE.Split('|')[2]);
                     }
+
+                    item.XoaYN = "Y";
+                    ls.InsertKhoLuocSu(context, "KhoPhieuNhap", biz.PHIEU_NHAP_ID, "Delete", _LoginId);
                 }
 
                 dynamic metaData = new System.Dynamic.ExpandoObject();

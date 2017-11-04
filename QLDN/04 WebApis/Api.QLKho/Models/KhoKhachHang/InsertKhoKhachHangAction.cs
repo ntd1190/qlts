@@ -25,6 +25,8 @@ namespace SongAn.QLDN.Api.QLNS.Models.KhoKhachHang
         public string Huyen { get; set; }
         public string Xa { get; set; }
         public string AnyDesk { get; set; }
+        public string GhiChu { get; set; }
+        public string MaSoThue { get; set; }
 
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
@@ -42,6 +44,8 @@ namespace SongAn.QLDN.Api.QLNS.Models.KhoKhachHang
                 khachhang.QuanHuyenId = Protector.Short(Huyen);
                 khachhang.PhuongXaId = Protector.Short(Xa);
                 khachhang.AnyDesk = AnyDesk;
+                khachhang.GhiChu = GhiChu;
+                khachhang.MaSoThue = MaSoThue;
                 khachhang.NgayTao = DateTime.Now;
                 khachhang.NguoiTao = 1;
                 khachhang.XoaYN = "N";

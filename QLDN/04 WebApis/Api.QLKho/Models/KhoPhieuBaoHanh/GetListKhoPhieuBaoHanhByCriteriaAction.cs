@@ -27,7 +27,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
         public string DienThoai { get; set; }
         public string thongTinKhachHang { get; set; }
         public string sanPhamCty { get; set; }
-
+        public string LoaiBaoHanh { get; set; }
         public string sortName { get; set; }
         public string sortDir { get; set; }
         public string draw { get; set; }
@@ -72,8 +72,8 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
             _length = Protector.Int(length, 0);
             _LoginId = Protector.Int(loginId, 0);
 
-            sortName = Protector.String(sortName, "KPBH_ID");
-            sortDir = Protector.String(sortDir, "asc");
+            sortName = Protector.String(sortName, "KPBH.NgayHen");
+            sortDir = Protector.String(sortDir, "DESC");
             _orderClause = sortName + " " + sortDir;
         }
 
@@ -105,7 +105,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
                 biz.ORDER_CLAUSE = _orderClause;
                 biz.SKIP = _start;
                 biz.TAKE = _length;
-
+                biz.LOAI_BAO_HANH = LoaiBaoHanh;
                 biz.MA_FORM = maForm;
                 biz.LOGIN_ID = _LoginId;
 

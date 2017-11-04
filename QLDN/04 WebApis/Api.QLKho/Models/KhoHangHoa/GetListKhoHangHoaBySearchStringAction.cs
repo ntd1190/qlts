@@ -22,6 +22,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoHangHoa
         public string fields { get; set; }
         public string loai { get; set; }
         public string khoId { get; set; }
+        public string leftjoinHH { get; set; }
 
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -54,6 +55,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoHangHoa
                     biz.Skip = _start;
                     biz.Take = _length;
                     biz.KhoId = Protector.String(khoId);
+                    biz.LeftJoinHH = Protector.String(leftjoinHH);
                     listHangHoa = await biz.Execute();
                 }
                 else

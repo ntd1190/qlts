@@ -31,6 +31,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuChuyen
         public string KhoXuatId { get; set; }
         public string KhoNhapId { get; set; }
         public string NgayXuat { get; set; }
+        public string KhoaMo { get; set; }
         #endregion
 
         #region private
@@ -78,29 +79,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuChuyen
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
 
                
-                // TODO load chi tiêt
-                //var dac = new GetListCheckSoLuongTheKhoDac(context);
-                //foreach (var list in _listChiTiet)
-                //{
-                //    dac.NGAY_XUAT = _NgayXuat;
-                //    dac.HANGHOAID = list.HangHoaId;
-                //    dac.LO_HANG = list.LoHang;
-                //    dac.GIA_NHAP = list.DonGia;
-                //    dac.KHOHANGID = Protector.Int(KhoXuatId);
-                //    dac.LOGIN_ID = _LoginId;
-                //    var listTC = await dac.Execute();
-                //    if (listTC.Count() > 0)
-                //    {
-                //        if (listTC.FirstOrDefault().TonCuoi < list.SoLuong)
-                //        {
-                //            HangHoaerror = HangHoaerror + "- "+list.TenHangHoa+" ("+list.SoLuong+")" + "\n";
-                //        }
-                //    }
-                //    else
-                //    {
-                //        HangHoaerror = HangHoaerror + "-" + list.TenHangHoa + "(" + list.SoLuong + ")" + "\n";
-                //    }
-                //}
+               
                 if(HangHoaerror=="")
                 {
                     var dacsc = new GetListLuuSoCaiDac(context);
@@ -112,33 +91,15 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuChuyen
                     dacsc.SOLUONG = _listChiTiet.FirstOrDefault().SoLuong;
                     dacsc.DONGIA = _listChiTiet.FirstOrDefault().DonGia;
                     dacsc.LOGIN_ID = _LoginId;
+                    dacsc.KHOA_MO = KhoaMo;
                     await dacsc.Execute();
-                    /*
-                    foreach (var list in _listChiTiet)
-                    {
-                       
-                        dacsc.PHIEUID = list.PhieuChuyenId;
-                        dacsc.PHIEUCHITIETID = list.PhieuChuyenChiTietId;
-                        dacsc.KHOHANGNHAPID = Protector.Int(KhoNhapId);
-                        dacsc.KHOHANGXUATID = Protector.Int(KhoXuatId);
-                        dacsc.HANGHOAID = list.HangHoaId;
-                        dacsc.SOLUONG = list.SoLuong;
-                        dacsc.DONGIA = list.DonGia;
-                        await dacsc.Execute();
-                    }
-                    var repoPhieuChuyen = new KhoPhieuChuyenRepository(context);
-                    var phieunhap = new Entity.MSSQL_QLDN_QLNS.Entity.KhoPhieuChuyen();
-                    phieunhap.PhieuChuyenId = _listChiTiet.FirstOrDefault().PhieuChuyenId;
-                    phieunhap.MaTrangThai = "KPC_LSC";
-                    var resultUpdatePhieuChuyen = await repoPhieuChuyen.UpdatePartial(phieunhap
-                        , nameof(phieunhap.MaTrangThai));
-                    */
+            
                     if (string.IsNullOrEmpty(dacsc.MESSAGE) == false)
                     {
                         throw new BaseException(dacsc.MESSAGE.Split('|')[2]);
                     }
 
-                    result = "Lưu sổ cái thành công! ";
+                    result = "Khóa phiếu thành công! ";
                 }
                 else
                 {

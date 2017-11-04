@@ -21,6 +21,8 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
 
         #region PUBLIC
         public virtual string Series { get; set; }
+        public virtual string LoaiBaoHanh { get; set; }
+
         public string loginId { get; set; }
         #endregion
 
@@ -56,7 +58,7 @@ namespace SongAn.QLDN.Api.QLKho.Models.KhoPhieuBaoHanh
                 var biz = new GetThongTinBySeriesBiz(context);
                 biz.SERIES = Series;
                 biz.LOGIN_ID = _LoginId;
-
+                biz.LOAI_BAO_HANH = LoaiBaoHanh;
                 var result = await biz.Execute();
 
                 if (string.IsNullOrEmpty(biz.MESSAGE) == false)

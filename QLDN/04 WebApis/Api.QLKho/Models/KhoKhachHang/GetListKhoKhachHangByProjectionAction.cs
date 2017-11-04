@@ -67,7 +67,7 @@ namespace SongAn.QLDN.Api.QLNS.Models.KhoKhachHang
                 if (fields != null && fields != "") biz.quicksearch = string.Format(" (A.Ma LIKE N'%{0}%' OR A.Ten LIKE N'%{0}%')", fields);
                 var orderClause = sortName + " " + sortDir;
                 var total = 0;
-                biz.Ma_Form = "FL0003";
+                biz.Ma_Form = "FL0033";
                 biz.FieldsField = "*";
                 biz.OrderClause = orderClause;
                 biz.Skip = _start;
