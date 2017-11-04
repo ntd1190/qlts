@@ -114,7 +114,7 @@
             } else if (bieuIn.toString() == "3") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptCongKhaiNhaDatBieu03&data=' + data);
             } else if (bieuIn.toString() == "4") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptCongKhaiKhacBieu04&data=' + data);
             } else if (bieuIn.toString() == "5") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptChoThueTSNNBieu05&data=' + data);
             } else if (bieuIn.toString() == "6") {
@@ -140,10 +140,10 @@
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptKetQuaMuaSamTSNNBieu02&export=1&data=' + data);
             }
             else if (bieuIn.toString() == "3") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptCongKhaiNhaDatBieu03&export=1&data=' + data);
             }
             else if (bieuIn.toString() == "4") {
-                
+                $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptCongKhaiKhacBieu04&export=1&data=' + data);
             }
             else if (bieuIn.toString() == "5") {
                 $('#reportmodal').find('iframe').attr('src', '../../../QLTSMAIN/CrystalReport/ReportPage.aspx?name=rptChoThueTSNNBieu05&export=1&data=' + data);

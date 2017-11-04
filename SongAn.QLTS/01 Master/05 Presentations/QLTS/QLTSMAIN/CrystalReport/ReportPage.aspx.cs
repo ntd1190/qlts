@@ -230,6 +230,25 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                         }
                     }
                 }
+                else if (reportname == "rptCongKhaiKhacBieu04.rpt")
+                {
+                    if (search != null && search != "")
+                    {
+                        var _params = Protector.String(search, string.Empty) != string.Empty ? search.Split('|') : new string[] { };
+                        if (_params.Length > 4)// bieuIn + '|' + tuNgay + '|' + denNgay + '|' + CoSoId + '|' + NhanVienId
+                        {
+                            var _year = Protector.DateTime(_params[1], "dd/MM/yyyy", true);
+                            var biz = new ReportCongKhaiKhacBieu04Biz(context);
+                            biz.Year = _year != null ? _year.Value.ToString("yyyy") : string.Empty;
+                            biz.COSO_ID = _params[3];
+                            biz.NHANVIEN_ID = _params[4];
+                            ds = biz.ExecuteBiz();
+
+                            ds.Tables[0].TableName = "Tables";
+                            ds.WriteXmlSchema(Server.MapPath(@"~/App_Data/rptCongKhaiKhacBieu04.xml"));
+                        }
+                    }
+                }
                 else if (reportname == "rptChoThueTSNNBieu05.rpt")
                 {
                     ReportCongKhaiChoThueTSNNBieu05Biz biz = new ReportCongKhaiChoThueTSNNBieu05Biz(context);
