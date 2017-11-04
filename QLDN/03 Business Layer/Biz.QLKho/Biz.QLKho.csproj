@@ -35,6 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper.FastCrud, Version=2.4.1.0, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhoCongNoNCC\GetListReportKhoCongNoNCCByProjectionBiz.cs" />
+    <Compile Include="KhoCongNoNCC\GetListReportKhoCongNoNCCChiTietByProjectionBiz.cs" />
     <Compile Include="KhoHangHoa\UpdateXoaListKhoHangHoaV2Biz.cs" />
     <Compile Include="KhoHangHoa\GetListKhoHangHoaPopDMByCriteriaBiz.cs" />
     <Compile Include="KhoImportDauKy\ImportDauKyBiz.cs" />
@@ -57,9 +60,11 @@
     <Compile Include="KhoDuyetPhieu\GetListKhoDuyetPhieuByCriteriaBiz.cs" />
     <Compile Include="KhoKhachHang\UpdateXoaListKhoKhachHangBiz.cs" />
     <Compile Include="KhoKiemKe\GetListKhoKiemKeByCriteriaBiz.cs" />
+    <Compile Include="KhoKiemKe\GetListReportKiemKeByCriteriaBiz.cs" />
     <Compile Include="KhoKyChiTiet\GetListKyChiTietByCriteriaBiz.cs" />
     <Compile Include="KhoNhomHangHoa\UpdateXoaListKhoNhomHangHoaBiz.cs" />
     <Compile Include="KhoNuocSanXuat\DeleteListKhoNuocSanXuatBiz.cs" />
+    <Compile Include="KhoPhieuBaoHanhThongKe\GetListPhieuBaoHanhThongKeByProjectionBiz.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetThongTinByDienThoaiBiz.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetThongTinBySeriesBiz.cs" />
     <Compile Include="KhoPhieuBaoHanh\GetListKhoPhieuBaoHanhByIdBiz.cs" />
@@ -81,27 +86,33 @@
     <Compile Include="KhoPhieuChuyen\UpdateXoaKhoPhieuChuyenBiz.cs" />
     <Compile Include="KhoPhieuChuyen\UpdateKhoPhieuChuyenBiz.cs" />
     <Compile Include="KhoPhieuChuyen\InsertKhoPhieuChuyenBiz.cs" />
+    <Compile Include="KhoPhieuNhapV2\DeleteKhoPhieuNhapSeriesBySoPhieuBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\DeleteListChiTietByPhieuNhapIdBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListReportPhieuNhapByCriteraBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListChiTietByPhieuNhapIdBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByCriteriaBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\GetListKhoPhieuNhapByIdBiz.cs" />
+    <Compile Include="KhoPhieuNhapV2\GetListSeriesReportPhieuNhapByIdBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\InsertKhoPhieuNhapBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\LuuSoCaiBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\UpdateKhoPhieuNhapBiz.cs" />
     <Compile Include="KhoPhieuNhapV2\UpdateXoaListKhoPhieuNhapBiz.cs" />
     <Compile Include="KhoPhieuThu\GetListReportPhieuThuByCriteraBiz.cs" />
+    <Compile Include="KhoPhieuXuat\CheckExistsSeriesBiz.cs" />
+    <Compile Include="KhoPhieuXuat\DeleteKhoPhieuSeriesBiz.cs" />
     <Compile Include="KhoPhieuXuat\DeleteListChiTietByPhieuXuatIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\GetListChiTietByPhieuXuatIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByCriteriaBiz.cs" />
     <Compile Include="KhoPhieuXuat\GetListKhoPhieuXuatByIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\GetListReportPhieuXuatByCriteraBiz.cs" />
+    <Compile Include="KhoPhieuXuat\GetListSeriesReportPhieuXuatByIdBiz.cs" />
     <Compile Include="KhoPhieuXuat\InsertKhoPhieuXuatBiz.cs" />
     <Compile Include="KhoPhieuXuat\LuuSoCaiBiz.cs" />
     <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatBiz.cs" />
     <Compile Include="KhoPhieuXuat\UpdateKhoPhieuXuatSauKhiLuuSoCaiBiz.cs" />
     <Compile Include="KhoPhieuXuat\UpdateXoaListKhoPhieuXuatBiz.cs" />
     <Compile Include="KhoCongNoNCC\GetListKhoCongNoNCCByCriteriaBiz.cs" />
+    <Compile Include="KhoSoDuTonKho\GetListReportKhoSoDuTonKhoByCriteriaBiz.cs" />
     <Compile Include="KhoTheKho\GetListKhoTheKhoByCriteriaBiz.cs" />
     <Compile Include="KhoSoDuTonKho\GetListKhoSoDuTonKhoByCriteriaBiz.cs" />
     <Compile Include="KhoKhoHang\GetListKhoKhoHangPopupByCriteriaBiz.cs" />
@@ -140,6 +151,7 @@
     <Compile Include="KhoTonKho\UpdateTonDauKhoChiTietByTonKhoChiTietIdBiz.cs" />
     <Compile Include="KhoTonKho\UpdateTrangThaiByTonKhoIdBiz.cs" />
     <Compile Include="KhoXuatNhapTon\GetListKhoXuatNhapTonByCriteriaBiz.cs" />
+    <Compile Include="KhoXuatNhapTon\GetListReportKhoXuatNhapTonByCriteriaBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TrangThai\GetListTrangThaiPopupByChucNangBiz.cs" />
   </ItemGroup>
@@ -176,6 +188,76 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
+    <None Include="bin\Debug\SongAn.QLDN.Biz.QLKho.dll.config" />
+    <None Include="bin\Release\SongAn.QLDN.Biz.QLKho.dll.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Dapper.dll" />
+    <Content Include="bin\Debug\Dapper.FastCrud.dll" />
+    <Content Include="bin\Debug\Dapper.FastCrud.xml" />
+    <Content Include="bin\Debug\Dapper.xml" />
+    <Content Include="bin\Debug\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.dll" />
+    <Content Include="bin\Debug\Newtonsoft.Json.xml" />
+    <Content Include="bin\Debug\SongAn.QLDN.Biz.QLKho.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Biz.QLKho.pdb" />
+    <Content Include="bin\Debug\SongAn.QLDN.Data.QLKho.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Data.QLKho.pdb" />
+    <Content Include="bin\Debug\SongAn.QLDN.Data.Repository.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Data.Repository.pdb" />
+    <Content Include="bin\Debug\SongAn.QLDN.Entity.MSSQL_QLDN_MAIN.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Entity.MSSQL_QLDN_MAIN.pdb" />
+    <Content Include="bin\Debug\SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.pdb" />
+    <Content Include="bin\Debug\SongAn.QLDN.Util.Common.dll" />
+    <Content Include="bin\Debug\SongAn.QLDN.Util.Common.pdb" />
+    <Content Include="bin\Debug\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\Debug\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\Debug\System.Web.Http.dll" />
+    <Content Include="bin\Debug\System.Web.Http.xml" />
+    <Content Include="bin\Debug\System.Web.Mvc.dll" />
+    <Content Include="bin\Debug\System.Web.Mvc.xml" />
+    <Content Include="bin\Debug\System.Web.Razor.dll" />
+    <Content Include="bin\Debug\System.Web.Razor.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\Debug\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\Debug\System.Web.WebPages.xml" />
+    <Content Include="bin\Release\Dapper.dll" />
+    <Content Include="bin\Release\Dapper.FastCrud.dll" />
+    <Content Include="bin\Release\Dapper.FastCrud.xml" />
+    <Content Include="bin\Release\Dapper.xml" />
+    <Content Include="bin\Release\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.dll" />
+    <Content Include="bin\Release\Newtonsoft.Json.xml" />
+    <Content Include="bin\Release\SongAn.QLDN.Biz.QLKho.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Biz.QLKho.pdb" />
+    <Content Include="bin\Release\SongAn.QLDN.Data.QLKho.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Data.QLKho.pdb" />
+    <Content Include="bin\Release\SongAn.QLDN.Data.Repository.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Data.Repository.pdb" />
+    <Content Include="bin\Release\SongAn.QLDN.Entity.MSSQL_QLDN_MAIN.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Entity.MSSQL_QLDN_MAIN.pdb" />
+    <Content Include="bin\Release\SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.pdb" />
+    <Content Include="bin\Release\SongAn.QLDN.Util.Common.dll" />
+    <Content Include="bin\Release\SongAn.QLDN.Util.Common.pdb" />
+    <Content Include="bin\Release\System.Net.Http.Formatting.dll" />
+    <Content Include="bin\Release\System.Net.Http.Formatting.xml" />
+    <Content Include="bin\Release\System.Web.Http.dll" />
+    <Content Include="bin\Release\System.Web.Http.xml" />
+    <Content Include="bin\Release\System.Web.Mvc.dll" />
+    <Content Include="bin\Release\System.Web.Mvc.xml" />
+    <Content Include="bin\Release\System.Web.Razor.dll" />
+    <Content Include="bin\Release\System.Web.Razor.xml" />
+    <Content Include="bin\Release\System.Web.WebPages.Deployment.dll" />
+    <Content Include="bin\Release\System.Web.WebPages.Deployment.xml" />
+    <Content Include="bin\Release\System.Web.WebPages.dll" />
+    <Content Include="bin\Release\System.Web.WebPages.Razor.dll" />
+    <Content Include="bin\Release\System.Web.WebPages.Razor.xml" />
+    <Content Include="bin\Release\System.Web.WebPages.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
