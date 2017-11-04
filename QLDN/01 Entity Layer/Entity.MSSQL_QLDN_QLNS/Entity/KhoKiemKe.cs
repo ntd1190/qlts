@@ -27,5 +27,15 @@ namespace SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity
         public virtual DateTime? NgayTao { get; set; }
         public virtual string XoaYN { get; set; }
         public virtual int CtrlVersion { get; set; }
+
+        public virtual string TruongBanTen { get; set; }
+        public virtual string TruongBanChucVu { get; set; }
+        public virtual string TruongBanDaiDien { get; set; }
+        public virtual string UyVienTen { get; set; }
+        public virtual string UyVienChucVu { get; set; }
+        public virtual string UyVienDaiDien { get; set; }
+        public virtual string UyVienTen2 { get; set; }
+        public virtual string UyVienChucVu2 { get; set; }
+        public virtual string UyVienDaiDien2 { get; set; }
     }
 }

@@ -61,6 +61,7 @@
     <Compile Include="Entity\KhoBaoCaoTheoKyChiTiet.cs" />
     <Compile Include="Entity\KhoKhachHang.cs" />
     <Compile Include="Entity\KhoKiemKe.cs" />
+    <Compile Include="Entity\KhoPhieuNhapSeries.cs" />
     <Compile Include="Entity\KhoPhieuSeries.cs" />
     <Compile Include="Entity\KhoPhieuChi.cs" />
     <Compile Include="Entity\KhoPhieuChuyen.cs" />

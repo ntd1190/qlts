@@ -20,6 +20,7 @@ namespace SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int PhieuXuatId { get; set; }
         public virtual int? KhachHangId { get; set; }
+        public virtual string DiaChi { get; set; }
         public virtual string SoPhieu { get; set; }
         public virtual string LoaiPhieu { get; set; }
         public virtual string NguoiNhanHang { get; set; }

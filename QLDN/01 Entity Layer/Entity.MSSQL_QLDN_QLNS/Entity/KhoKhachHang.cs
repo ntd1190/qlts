@@ -32,6 +32,8 @@ namespace SongAn.QLDN.Entity.MSSQL_QLDN_QLNS.Entity
         public virtual int PhuongXaId { get; set; }
         public virtual DateTime NgayTao { get; set; }
         public virtual string AnyDesk { get; set; }
+        public virtual string GhiChu { get; set; }
+        public virtual string MaSoThue { get; set; }
         public virtual int? NguoiTao { get; set; }
         public virtual string XoaYN { get; set; }
         public virtual int CtrVersion { get; set; }
