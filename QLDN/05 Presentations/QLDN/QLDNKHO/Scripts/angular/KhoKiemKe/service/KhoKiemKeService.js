@@ -7,7 +7,7 @@
 
     function KhoKiemKeService($http, API_BASE) {
         var api = {
-            url: API_BASE + 'api.QLNS/KhoKiemKe/',
+            url: API_BASE + 'api.QLKHO/KhoKiemKe/',
             insert: 'InsertKhoKiemKe',
             update: 'UpdateKhoKiemKe',
             GetList: 'GetListKhoKiemKe',

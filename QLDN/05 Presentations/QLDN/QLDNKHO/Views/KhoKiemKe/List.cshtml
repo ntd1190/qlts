@@ -113,20 +113,21 @@
             <div class="panel-body" style="width: 700px; padding-top: 15px;padding-right: 50px; height:auto">
                 <form class="form-horizontal">
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidNgay}">
-                        <label class="control-label col-sm-3">Ngày</label>
-                        <div class="col-sm-9">
+                        <label class="control-label col-sm-2">Ngày (*)</label>
+                        <div class="col-sm-10">
                             <input class="datetimepicker form-control date" id="txtNgay" ng-model="ctrl.data.objKhoKiemKe.NgayTao" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.NgayTao,'txtNgay','txtTieuDe',$event)" placeholder="__/__/____" />
                         </div>
                     </div>
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTieuDe}">
-                        <label class="control-label col-sm-3">Tên kiểm kê</label>
-                        <div class="col-sm-9">
+                        <label class="control-label col-sm-2">Tiêu đề (*)</label>
+                        <div class="col-sm-10">
                             <input type="text" class="form-control" id="txtTieuDe" ng-model="ctrl.data.objKhoKiemKe.TieuDe" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtTieuDe','txtSoTien',$event)">
                         </div>
                     </div>
+
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidKho}">
-                        <label class="control-label col-sm-3">Kho hàng hóa</label>
-                        <div class="col-sm-9">
+                        <label class="control-label col-sm-2">Kho hàng (*)</label>
+                        <div class="col-sm-10">
                             <div class="form-control auto-height">
                                 <a class="pull-right" href="javascript:void(0)" ng-click="ctrl.action.clearListKhoHang()"><i class="fa fa-fw fa-remove"></i></a>
                                 <a href="javascript:void(0)" id="popKhoHang" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoHangListPopupEdit}}">
@@ -138,16 +139,54 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row form-group form-group-sm" >
+                        <label class="control-label col-sm-2">Trưởng ban</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtTruongBanTen" ng-model="ctrl.data.objKhoKiemKe.TruongBanTen" placeholder="ông / bà"  ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtTruongBanTen','txtTruongBanChucVu',$event)">
+                         </div>
+                           <div class="col-sm-3">
+                                <input type="text" class="form-control" id="txtTruongBanChucVu" ng-model="ctrl.data.objKhoKiemKe.TruongBanChucVu" placeholder="chức vụ" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtTruongBanChucVu','txtTruongBanDaiDien',$event)">
+                         </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txtTruongBanDaiDien" ng-model="ctrl.data.objKhoKiemKe.TruongBanDaiDien" placeholder="đại diện" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtTruongBanDaiDien','txtUyVienTen',$event)">
+                        </div>
+                    </div>
                     <div class="row form-group form-group-sm">
-                        <label class="control-label col-sm-3">Hình</label>
-                        <div class="col-sm-9">
+                        <label class="control-label col-sm-2">Ủy viên 1</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtUyVienTen" ng-model="ctrl.data.objKhoKiemKe.UyVienTen" placeholder="ông / bà" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienTen','txtUyVienChucVu',$event)">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txtUyVienChucVu" ng-model="ctrl.data.objKhoKiemKe.UyVienChucVu" placeholder="chức vụ" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienChucVu','txtUyVienDaiDien',$event)">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txtUyVienDaiDien" ng-model="ctrl.data.objKhoKiemKe.UyVienDaiDien" placeholder="đại diện" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienDaiDien','txtUyVienTen2',$event)">
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Ủy viên 2</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="txtUyVienTen2" ng-model="ctrl.data.objKhoKiemKe.UyVienTen2" placeholder="ông / bà" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienTen2','txtUyVienChucVu2',$event)">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txtUyVienChucVu2" ng-model="ctrl.data.objKhoKiemKe.UyVienChucVu2" placeholder="chức vụ" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienChucVu2','txtUyVienDaiDien2',$event)">
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="text" class="form-control" id="txtUyVienDaiDien2" ng-model="ctrl.data.objKhoKiemKe.UyVienDaiDien2" placeholder="đại diện" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TieuDe,'txtUyVienDaiDien2','txtSoTien',$event)">
+                        </div>
+                    </div>
+
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-2">Hình</label>
+                        <div class="col-sm-10">
                             <input type="file" class="form-control" file-bind="ctrl.data.file" />
                             <a href="@(Url.Content("~/content/upload/")){{ctrl.data.objKhoKiemKe.Hinh}}" target="_blank" ng-if="ctrl.data.objKhoKiemKe.Hinh">Xem hình</a>
                         </div>
                     </div>
                     <div class="row form-group form-group-sm">
-                        <label class="control-label col-sm-3">Trạng thái</label>
-                        <div class="col-sm-9">
+                        <label class="control-label col-sm-2">Trạng thái</label>
+                        <div class="col-sm-10">
                             <label class="radio-inline">
                                 <input type="radio" id="rdBatDau" name="TrangThai" value="KKK_BD" ng-model="ctrl.data.objKhoKiemKe.TrangThai" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoKiemKe.TrangThai,'rdChuyenKhoan','rdTienMat',$event)" />Bắt đầu 
                             </label>
@@ -164,6 +203,7 @@
                 <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupThongTinKhoKiemKe" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
                 <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrlList.action.deleteSelected(ctrl.data.objKhoKiemKe)" ng-if="ctrl.data.objKhoKiemKe.KhoKiemKeId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-fw fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
                 <button type="button" id="btnH" class="btn btn-sm btn-default" ng-click="ctrlList.action.GetListLuocSu(ctrl.data.objKhoKiemKe.KiemKeId)">H</button>
             </div>
 
@@ -172,7 +212,7 @@
 
 
     <!-- popup danh sách kho hang hoa -->
-    @{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:mainCtrl.controllerId.KhoHangListPopupEdit,showTable:true,isSelectOne:true}" } });}
+    @{Html.RenderPartial("~/views/KhoKhoHang/_KhoKhoHangListPopup.cshtml", new ViewDataDictionary { { "Html", true }, { "onInitView", "{controllerId:mainCtrl.controllerId.KhoHangListPopupEdit,showTable:true,isSelectOne:true,userInfo:" + ViewBag.userInfo + "}" } });}
     <!-- /popup danh sách -->
     <!-- popup danh sách tùy chọn cột -->
     <div class="panel panel-primary ui-draggable collapse fade" id="TuyChonCotPopup" ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId:mainCtrl.controllerId.TuyChonCotPopup,MaForm:'FM0016'})">
@@ -213,6 +253,22 @@
         </div>
     </div>
     <!-- / popup danh sách tùy chọn cột -->
+
+    <!-- report KiemKe-->
+    <div class="modal fade bs-example-modal-full" id="reportmodal" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myLargeModalLabel">Kiểm kê</h4>
+                </div>
+                <div class="modal-body">
+                    <iframe src="" width="100%" height="1000px"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 @section ImportScripts{}
 @section SetupScripts{}

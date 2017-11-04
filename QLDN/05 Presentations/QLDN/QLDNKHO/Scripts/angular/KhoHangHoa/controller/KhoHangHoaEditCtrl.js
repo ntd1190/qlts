@@ -19,7 +19,7 @@
                     var keyCode = keyCodes[keyName];
                     keyHandlers[keyCode] = { callback: callback, name: keyName };
                 });
-
+                debugger;
                 // Bind to document keydown event
                 $document.on("keydown", function (event) {
 
@@ -73,6 +73,14 @@
             isInValidMaHangHoa: false,
             isInValidTenHangHoa: false,
             isInValidDonViTinh: false,
+
+            isInValid: false,
+            
+            isInValidNhomHangHoa: false,
+            isInValidLoaiHangHoa: false,
+            isInValidHangSanXuat: false,
+            isInValidNuocSanXuat: false,
+            isInsert:''
         };
         vm.action = {
             save: save,
@@ -90,9 +98,12 @@
         activate();
         function activate() {
             $('#popupThongTinKhoHangHoa').on('hidden.bs.collapse', function () {
-                isOpenPopup = false;
+                console.log('popupThongTinKhoHangHoa hidden.bs.collapse')
+                isOpenPopup = false;      
+
             });
             $('#popupThongTinKhoHangHoa').on('shown.bs.collapse', function () {
+                console.log(vm.status)
                 $("#txtMaHangHoa").focus();
                 isOpenPopup = true;
             });
@@ -165,6 +176,7 @@
             utility.clearArray(vm.data.listKhoNuocSanXuat);
         }
         function refresh() {
+            debugger;
             setEnableButton();
             if (KhoHangHoaId > 0) {
                 KhoHangHoaService.getById(KhoHangHoaId).then(function (result) {
@@ -199,21 +211,58 @@
             }
         }
         function insert() {
+            debugger;
+            var flag = true;
             vm.status.isInValidMaHangHoa = utility.checkInValid(vm.data.objKhoHangHoa.MaHangHoa, 'isEmpty');
             if (vm.status.isInValidMaHangHoa) {
                 $window.document.getElementById('txtMaHangHoa').focus();
-                return;
+                flag = false;     
             }
+            else {
+                
+                checkMa();
+            }
+
             vm.status.isInValidTenHangHoa = utility.checkInValid(vm.data.objKhoHangHoa.TenHangHoa, 'isEmpty');
             if (vm.status.isInValidTenHangHoa) {
                 $window.document.getElementById('txtTenHangHoa').focus();
-                return;
+                flag = false;          
             }
             vm.status.isInValidDonViTinh = utility.checkInValid(vm.data.objKhoHangHoa.DonViTinh, 'isEmpty');
             if (vm.status.isInValidDonViTinh) {
                 $window.document.getElementById('txtDonViTinh').focus();
-                return;
+                flag = false;               
+            }            
+
+            if (vm.data.listKhoNhomHangHoa.length < 1) {
+                vm.status.isInValidNhomHangHoa = true;
+                flag = false;
+            } else {
+                vm.status.isInValidNhomHangHoa = false;
             }
+
+            if (vm.data.listKhoLoaiHangHoa.length < 1) {
+                vm.status.isInvalidLoaiHangHoa = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidLoaiHangHoa = false;
+            }
+
+            if (vm.data.listKhoHangSanXuat.length < 1) {
+                vm.status.isInvalidHangSanXuat = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidHangSanXuat = false;
+            }
+
+            if (vm.data.listKhoNuocSanXuat.length < 1) {
+                vm.status.isInvalidNuocSanXuat = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidNuocSanXuat = false;
+            }
+            if (!flag) return;
+
             vm.data.objKhoHangHoa.ThueMua = vm.data.objKhoHangHoa.ThueMua ? "Y" : "";
             vm.data.objKhoHangHoa.ThueBan = vm.data.objKhoHangHoa.ThueBan ? "Y" : "";
             vm.data.objKhoHangHoa.NguoiTao = vm.data.UserLoginId;
@@ -237,7 +286,8 @@
             }, function (error) {
                 console.log(error)
                 if (error.data.error) {
-                    alert(error.data.error.message);
+                    //alert(error.data.error.message);
+                    alert("Mã này đã tồn tại");
                 }
                 vm.status.isLoading = false;
             });
@@ -255,23 +305,55 @@
 
             return result;
         }
-        function update() {
-
+        function update() {           
+            debugger;
+            var flag = true;
             vm.status.isInValidMaHangHoa = utility.checkInValid(vm.data.objKhoHangHoa.MaHangHoa, 'isEmpty');
             if (vm.status.isInValidMaHangHoa) {
                 $window.document.getElementById('txtMaHangHoa').focus();
-                return;
-            }
+                flag = false;
+            }            
+
             vm.status.isInValidTenHangHoa = utility.checkInValid(vm.data.objKhoHangHoa.TenHangHoa, 'isEmpty');
             if (vm.status.isInValidTenHangHoa) {
                 $window.document.getElementById('txtTenHangHoa').focus();
-                return;
+                flag = false;
             }
             vm.status.isInValidDonViTinh = utility.checkInValid(vm.data.objKhoHangHoa.DonViTinh, 'isEmpty');
             if (vm.status.isInValidDonViTinh) {
                 $window.document.getElementById('txtDonViTinh').focus();
-                return;
+                flag = false;
             }
+            
+            if (vm.data.listKhoNhomHangHoa.length < 1) {
+                vm.status.isInValidNhomHangHoa = true;
+                flag = false;
+            } else {
+                vm.status.isInValidNhomHangHoa = false;
+            }
+
+            if (vm.data.listKhoLoaiHangHoa.length < 1) {
+                vm.status.isInvalidLoaiHangHoa = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidLoaiHangHoa = false;
+            }
+
+            if (vm.data.listKhoHangSanXuat.length < 1) {
+                vm.status.isInvalidHangSanXuat = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidHangSanXuat = false;
+            }
+
+            if (vm.data.listKhoNuocSanXuat.length < 1) {
+                vm.status.isInvalidNuocSanXuat = true;
+                flag = false;
+            } else {
+                vm.status.isInvalidNuocSanXuat = false;
+            }
+
+            if (!flag) return;
             vm.data.objKhoHangHoa.ThueMua = vm.data.objKhoHangHoa.ThueMua ? "Y" : "";
             vm.data.objKhoHangHoa.ThueBan = vm.data.objKhoHangHoa.ThueBan ? "Y" : "";
             vm.data.objKhoHangHoa.NguoiTao = vm.data.UserLoginId;
@@ -296,6 +378,7 @@
 
         }
         function keyPress(value, fromId, ToId, event) {
+            debugger;
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
@@ -328,14 +411,22 @@
             refresh();
         };
         function closeEdit() {
+            debugger;
             vm.data.listKhachHang = [];
             vm.data.listKhoNhomHangHoa = [];
             vm.data.listKhoLoaiHangHoa = [];
             vm.data.listKhoHangSanXuat = [];
             vm.data.listKhoNuocSanXuat = [];
-            vm.status.isInValidMaHangHoa = false;
-            vm.status.isInValidTenHangHoa = false;
-            vm.status.isInValidDonViTinh = false;
+            delete vm.status; vm.status = {};
+            //vm.status.isInValidMaHangHoa = false;
+            //vm.status.isInValidTenHangHoa = false;
+            //vm.status.isInValidDonViTinh = false;
+
+            //vm.status.isInValidNhomHangHoa = false;
+            //vm.status.isInValidLoaiHangHoa = false;
+            //vm.status.isInValidHangSanXuat = false;
+            //vm.status.isInValidNuocSanXuat = false;
+
             vm.data.objKhoHangHoa = {};
             KhoHangHoaId = 0;
             $('#popupThongTinKhoHangHoa').collapse('hide');
@@ -350,12 +441,12 @@
             }
             if (KhoHangHoaId > 0) {
                 update();
-            } else {
-                checkMa();
+            } else {                
                 insert();
             }
         }
         function checkMa() {
+            debugger;
             vm.status.isInValidMaHangHoa = utility.checkInValid(vm.data.objKhoHangHoa.MaHangHoa, 'isEmpty');
             if (vm.status.isInValidMaHangHoa) {
                 $window.document.getElementById('txtMaHangHoa').focus();
@@ -364,8 +455,10 @@
 
             KhoHangHoaService.getThongTinByMa(vm.data.objKhoHangHoa.MaHangHoa).then(function (result) {
                 if (result.data && result.data.data && result.data.data.length) {
-                    vm.status.isInValidMaHangHoa = true;
-                    $window.document.getElementById('txtMaHangHoa').focus();
+                    debugger;
+                    vm.status.isInValidMaHangHoa = true;                    
+                    $window.document.getElementById('txtMaHangHoa').focus();                    
+                    return;
                 } else {
                     vm.status.isInValidMaHangHoa = false;
                     $window.document.getElementById('txtTenHangHoa').focus();

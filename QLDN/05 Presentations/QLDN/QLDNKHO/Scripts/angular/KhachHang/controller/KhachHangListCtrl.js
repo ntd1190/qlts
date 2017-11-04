@@ -235,7 +235,7 @@
 
         function loadCotList() {
             if (vm.data.useCotListDb) {
-                TuyChonCotService.getAll('FL0003').then(function (success) {
+                TuyChonCotService.getAll('FL0033').then(function (success) {
                     if (success.data && success.data.data) {
                         vm.data.listCot = success.data.data;
                     }

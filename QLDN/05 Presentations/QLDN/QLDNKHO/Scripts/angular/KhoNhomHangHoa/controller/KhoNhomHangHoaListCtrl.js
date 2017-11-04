@@ -219,16 +219,16 @@
             tableState.draw = tableState.draw + 1 || 1;
 
             var draw = tableState.draw;
-            var start = /*tableState.pagination.start ||*/ 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
-            var number = /*tableState.pagination.number ||*/ 10;  // Number of entries showed per page.
-            var sortName = /*tableState.sort.predicate ||*/ 'NhomHangHoaId';
-            var sortDir = /*tableState.sort.reverse ? 'desc' :*/ 'asc';
+            var start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+            var number = tableState.pagination.number || 10;  // Number of entries showed per page.
+            var sortName =tableState.sort.predicate || 'NhomHangHoaId';
+            var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
             var fields = 'a.NhomHangHoaId,a.MaNhom,a.TenNhom,a.MoTa,a.NguoiTao,a.NgayTao,a.XoaYN';
             KhoNhomHangHoaService.getPage(draw, start, number, searchString, sortName, sortDir, fields).then(function (success) {
                 if (success.data.data) {
                     vm.data.KhoNhomHangHoaListDisplay = success.data.data;
-                   // tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);//set the number of pages so the pagination can update
+                    tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);//set the number of pages so the pagination can update
                 }
                 vm.data.isLoading = false;
             }, function (error) {

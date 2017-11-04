@@ -48,7 +48,8 @@
             initSearch: initSearch,
             getPage: getPage,
             excel: excel,
-            print: print
+            print: print,
+            In:In
         };
 
         vm.onInitView = onInitView;
@@ -91,11 +92,23 @@
             popupWinindow.document.close();
         };
 
+        function In() {
+            debugger;
+            var data = {};                         
+            data.searchString = inputSearch.searchString;
+            data.TuNgay = inputSearch.ngayTu != '' ? utility.convertDateFormat(inputSearch.ngayTu, 'DD/MM/YYYY', 'YYYYMMDD') : '';
+            data.DenNgay = inputSearch.ngayDen != '' ? utility.convertDateFormat(inputSearch.ngayDen, 'DD/MM/YYYY', 'YYYYMMDD') : '';
+            data.KhoHangId = inputSearch.khoHangId == undefined ? '' : inputSearch.khoHangId;
+            data.NhomHangHoaId = inputSearch.NhomHangHoaId == undefined ? '' : inputSearch.NhomHangHoaId;
+            data.HangHoaId = inputSearch.HangHoaId == undefined ? '' : inputSearch.HangHoaId;
+            data.LoginId = vm.data.LoginId;
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptKhoXuatNhapTon&KhoId=' + data.KhoHangId + '&TuNgay=' + data.TuNgay + '&DenNgay=' + data.DenNgay + '&LoginId=' + vm.data.LoginId + '&NhomHangHoaId=' + data.NhomHangHoaId + '&HangHoaId=' + data.HangHoaId);
+            $('#reportmodal').modal('show');
+        };
+
         /* ===========================
          * FUNCTION
          */
-
-
 
         function search(data) {
             getFilter(data);
@@ -111,28 +124,20 @@
             else {
                 vm.data.showList = true;
             }
-        }
-
-
-        
+        }        
 
         function getFilter(data) {
-
-
             inputSearch.searchString = (data && data.searchString) ? data.searchString : '';
-
             inputSearch.ngayTu = (data && data.ngayTu) ? data.ngayTu : '';
-
             inputSearch.ngayDen = (data && data.ngayDen) ? data.ngayDen : '';
-
             inputSearch.khoHangId = (data && data.khoHangId) ? data.khoHangId : '0';
-            
+            inputSearch.NhomHangHoaId = (data && data.NhomHangHoaId) ? data.NhomHangHoaId : '0';
             console.log(inputSearch);
         }
 
         function getPage(tableState) {
             vm.data.isLoading = true;
-
+            debugger;
             if (tableState) {
                 _tableState = tableState;
             }
@@ -163,16 +168,14 @@
             data.TuNgay = inputSearch.ngayTu != '' ? utility.convertDateFormat(inputSearch.ngayTu, 'DD/MM/YYYY', 'YYYYMMDD') : '';
             data.DenNgay = inputSearch.ngayDen != '' ? utility.convertDateFormat(inputSearch.ngayDen, 'DD/MM/YYYY', 'YYYYMMDD') : '';
             data.KhoHangId = inputSearch.khoHangId;
+            data.NhomHangHoaId = inputSearch.NhomHangHoaId;
             data.LoginId = vm.data.LoginId;
-
             // end chuẩn bị tham số 
 
             // gọi api
             KhoXuatNhapTonService.getFilter(data)
-
                 .then(function (success) {
                     console.log(success);
-
                     if (success.data.data) {
                         utility.clearArray(vm.data.listKhoXuatNhapTon);
                         while (success.data.data.length) {
@@ -230,7 +233,7 @@
 
     moduleXuatTon.filter('sumOfValue', function () {
         return function (data, key) {
-            debugger;
+            
             if (angular.isUndefined(data) && angular.isUndefined(key))
                 return 0;
             var sum = 0;

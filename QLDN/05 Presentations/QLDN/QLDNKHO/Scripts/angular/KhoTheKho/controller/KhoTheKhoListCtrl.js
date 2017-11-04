@@ -249,7 +249,7 @@
                                         if (HangHoaId == "") {
 
                                             appen = appen + "<div class='panel-body'>";
-                                            appen = appen + "<h4 '><i class='ng-binding'  style='font-size: 13px;> Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right; font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                            appen = appen + "<h4 '><i class='ng-binding'  style='font-size: 13px;> Mặt hàng: " + thekho.TenHangHoa.replace(',00','') + "</i><i class='ng-binding' style='float:right; font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             //appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;' > Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             appen = appen + "</div>"
                                             appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
@@ -261,14 +261,14 @@
                                                 appen = appen + "<th class='text-center' colspan='4' style='width: 150px;'>" + kho.TenKho + "</th>";
                                             }
 
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 200px;vertical-align:middle'>Tồn cuối</th>";
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 200px;vertical-align:middle'>Lô</th>";
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 300px;vertical-align:middle'>Số phiếu</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 100px;vertical-align:middle'>Tồn cuối</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 20px;vertical-align:middle'>Lô</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='vertical-align:middle'>Số phiếu</th>";
                                             appen = appen + "<tr>";
                                             for (var j = 0; j < vm.data.listKhoHang.length; j++) {
-                                                appen = appen + "<th class='text-center' style='width: 150px;'>Nhập</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                                 appen = appen + "<th class='text-center' style='width: 150px;'>Tiền nhập</th>";
-                                                appen = appen + "<th class='text-center' style='width: 150px;'>Xuất</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                                 appen = appen + "<th class='text-center' style='width: 150px;'>Tiền xuất</th>";
                                             }
                                             appen = appen + "</tr>";
@@ -290,10 +290,10 @@
                                                 for (var j = 0; j < vm.data.listKhoHang.length; j++) {
                                                     var kho = vm.data.listKhoHang[j];
                                                     if (kho.KhoHangId == thekho.KhoHangId) {
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                     }
                                                     else {
                                                         appen = appen + "<td style='text-align:right'></td>";
@@ -316,7 +316,7 @@
                                             appen = appen + "</tbody>";
                                             appen = appen + "</table>";
                                             appen = appen + "<div class='panel-body'>";
-                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;' > Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right ;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;' > Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right ;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             appen = appen + "</div>"
                                             appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                             appen = appen + "<thead class='bg-default text-primary'>";
@@ -327,14 +327,14 @@
                                                 appen = appen + "<th class='text-center' colspan='4' style='width: 150px;'>" + kho.TenKho + "</th>";
                                             }
 
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 200px;vertical-align:middle'>Tồn cuối</th>";
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 200px;vertical-align:middle'>Lô</th>";
-                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 300px;vertical-align:middle'>Số phiếu</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 100px;vertical-align:middle'>Tồn cuối</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='width: 20px;vertical-align:middle'>Lô</th>";
+                                            appen = appen + "<th class='text-center' rowspan='2' style='vertical-align:middle'>Số phiếu</th>";
                                             appen = appen + "<tr>";
                                             for (var j = 0; j < vm.data.listKhoHang.length; j++) {
-                                                appen = appen + "<th class='text-center' style='width: 150px;'>Nhập</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                                 appen = appen + "<th class='text-center' style='width: 150px;'>Tiền nhập</th>";
-                                                appen = appen + "<th class='text-center' style='width: 150px;'>Xuất</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                                 appen = appen + "<th class='text-center' style='width: 150px;'>Tiền xuất</th>";
                                             }
                                             appen = appen + "</tr>";
@@ -356,10 +356,10 @@
                                                 for (var j = 0; j < vm.data.listKhoHang.length; j++) {
                                                     var kho = vm.data.listKhoHang[j];
                                                     if (kho.KhoHangId == thekho.KhoHangId) {
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                     }
                                                     else {
                                                         appen = appen + "<td style='text-align:right'></td>";
@@ -385,10 +385,10 @@
                                         for (var j = 0; j < vm.data.listKhoHang.length; j++) {
                                             var kho = vm.data.listKhoHang[j];
                                             if (kho.KhoHangId == thekho.KhoHangId) {
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                             }
                                             else {
                                                 appen = appen + "<td style='text-align:right'></td>";
@@ -420,21 +420,21 @@
                                         if (HangHoaId == "") {
 
                                             appen = appen + "<div class='panel-body'>";
-                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;' > Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;' > Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             appen = appen + "</div>"
                                             appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                             appen = appen + "<thead class='bg-default text-primary'>";
                                             appen = appen + "<tr>";
                                             appen = appen + "<th class='text-center' style='width: 150px;'>Ngày</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Nhập</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền nhập</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Xuất</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền xuất</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Tồn cuối</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Lô</th>";
-                                            appen = appen + "<th class='text-center' style='width: 300px;'>Số phiếu</th>";
+                                            appen = appen + "<th class='text-center' style='width: 100px;'>Tồn cuối</th>";
+                                            appen = appen + "<th class='text-center' style='width: 20px;'>Lô</th>";
+                                            appen = appen + "<th class='text-center' style='width:300px'>Số phiếu</th>";
                                             appen = appen + "</tr>";
                                             appen = appen + "</thead>";
                                             appen = appen + "<tbody>";
@@ -449,12 +449,12 @@
                                             }else{
                                                 appen = appen + "<tr>";
                                                 appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                 TonCuoi = thekho.TonDau + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                 appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                 appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -479,12 +479,12 @@
                                             appen = appen + "<tfoot>";
                                             appen = appen + " <tr>";
                                             appen = appen + " <td class='text-primary text-center'>Tổng cộng</td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongNhap) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongNhap)==0?'':formatter.format(TongNhap)) + "</td>";
                                             appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienNhap) + "</td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongXuat) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienNhap)==0?'':formatter.format(TongTienNhap)) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongXuat)==0?'':formatter.format(TongXuat)) + "</td>";
                                             appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienXuat) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienXuat)==0?'':formatter.format(TongTienXuat)) + "</td>";
                                             appen = appen + " <td style='text-align:right'></td>";
                                             appen = appen + " <td style='text-align:right'></td>";
                                             appen = appen + " <td style='text-align:right'></td>";
@@ -496,21 +496,21 @@
                                             TongXuat = 0;
                                             TongTienXuat = 0;
                                             appen = appen + "<div class='panel-body'>";
-                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             appen = appen + "</div>"
                                             appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                             appen = appen + "<thead class='bg-default text-primary'>";
                                             appen = appen + "<tr>";
                                             appen = appen + "<th class='text-center' style='width: 150px;'>Ngày</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Nhập</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền nhập</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Xuất</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền xuất</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Tồn cuối</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Lô</th>";
-                                            appen = appen + "<th class='text-center' style='width: 300px;'>Số phiếu</th>";
+                                            appen = appen + "<th class='text-center' style='width: 100px;'>Tồn cuối</th>";
+                                            appen = appen + "<th class='text-center' style='width: 20px;'>Lô</th>";
+                                            appen = appen + "<th class='text-center' style='width:300px'>Số phiếu</th>";
                                             appen = appen + "</tr>";
                                             appen = appen + "</thead>";
                                             appen = appen + "<tbody>";
@@ -525,12 +525,12 @@
                                             } else {
                                                 appen = appen + "<tr>";
                                                 appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                 TonCuoi = thekho.TonDau + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                 appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                 appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -559,12 +559,12 @@
                                             appen = appen + "<tfoot>";
                                             appen = appen + " <tr>";
                                             appen = appen + " <td class='text-primary text-center'>Tổng cộng</td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongNhap) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongNhap)==0?'':formatter.format(TongNhap)) + "</td>";
                                             appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienNhap) + "</td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongXuat) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienNhap)==0?'':formatter.format(TongTienNhap)) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongXuat)==0?'':formatter.format(TongXuat)) + "</td>";
                                             appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienXuat) + "</td>";
+                                            appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienXuat)==0?'':formatter.format(TongTienXuat)) + "</td>";
                                             appen = appen + " <td style='text-align:right'></td>";
                                             appen = appen + " <td style='text-align:right'></td>";
                                             appen = appen + " <td style='text-align:right'></td>";
@@ -576,21 +576,21 @@
                                             TongXuat = 0;
                                             TongTienXuat = 0;
                                             appen = appen + "<div class='panel-body'>";
-                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                            appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                             appen = appen + "</div>"
                                             appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                             appen = appen + "<thead class='bg-default text-primary'>";
                                             appen = appen + "<tr>";
                                             appen = appen + "<th class='text-center' style='width: 150px;'>Ngày</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Nhập</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá nhập</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền nhập</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Xuất</th>";
+                                            appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Giá xuất</th>";
                                             appen = appen + "<th class='text-center' style='width: 200px;'>Tiền xuất</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Tồn cuối</th>";
-                                            appen = appen + "<th class='text-center' style='width: 200px;'>Lô</th>";
-                                            appen = appen + "<th class='text-center' style='width: 300px;'>Số phiếu</th>";
+                                            appen = appen + "<th class='text-center' style='width: 100px;'>Tồn cuối</th>";
+                                            appen = appen + "<th class='text-center' style='width: 20px;'>Lô</th>";
+                                            appen = appen + "<th class='text-center' style='width:300px'>Số phiếu</th>";
                                             appen = appen + "</tr>";
                                             appen = appen + "</thead>";
                                             appen = appen + "<tbody>";
@@ -605,12 +605,12 @@
                                             } else {
                                                 appen = appen + "<tr>";
                                                 appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                 TonCuoi = thekho.TonDau + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                 appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                 appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -637,12 +637,12 @@
                                                 appen = appen + "<tfoot>";
                                                 appen = appen + " <tr>";
                                                 appen = appen + " <td class='text-primary text-center'>Tổng cộng</td>";
-                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongNhap) + "</td>";
+                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongNhap)==0?'':formatter.format(TongNhap)) + "</td>";
                                                 appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienNhap) + "</td>";
-                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongXuat) + "</td>";
+                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienNhap)==0?'':formatter.format(TongTienNhap)) + "</td>";
+                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongXuat)==0?'':formatter.format(TongXuat)) + "</td>";
                                                 appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienXuat) + "</td>";
+                                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienXuat)==0?'':formatter.format(TongTienXuat)) + "</td>";
                                                 appen = appen + " <td style='text-align:right'></td>";
                                                 appen = appen + " <td style='text-align:right'></td>";
                                                 appen = appen + " <td style='text-align:right'></td>";
@@ -654,21 +654,21 @@
                                                 TongXuat = 0;
                                                 TongTienXuat = 0;
                                                 appen = appen + "<div class='panel-body'>";
-                                                appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                                appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                                 appen = appen + "</div>"
                                                 appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                                 appen = appen + "<thead class='bg-default text-primary'>";
                                                 appen = appen + "<tr>";
                                                 appen = appen + "<th class='text-center' style='width: 150px;'>Ngày</th>";
-                                                appen = appen + "<th class='text-center' style='width: 200px;'>Nhập</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                                 appen = appen + "<th class='text-center' style='width: 200px;'>Giá nhập</th>";
                                                 appen = appen + "<th class='text-center' style='width: 200px;'>Tiền nhập</th>";
-                                                appen = appen + "<th class='text-center' style='width: 200px;'>Xuất</th>";
+                                                appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                                 appen = appen + "<th class='text-center' style='width: 200px;'>Giá xuất</th>";
                                                 appen = appen + "<th class='text-center' style='width: 200px;'>Tiền xuất</th>";
-                                                appen = appen + "<th class='text-center' style='width: 200px;'>Tồn cuối</th>";
-                                                appen = appen + "<th class='text-center' style='width: 200px;'>Lô</th>";
-                                                appen = appen + "<th class='text-center' style='width: 300px;'>Số phiếu</th>";
+                                                appen = appen + "<th class='text-center' style='width: 100px;'>Tồn cuối</th>";
+                                                appen = appen + "<th class='text-center' style='width: 20px;'>Lô</th>";
+                                                appen = appen + "<th class='text-center' style='width:300px'>Số phiếu</th>";
                                                 appen = appen + "</tr>";
                                                 appen = appen + "</thead>";
                                                 appen = appen + "<tbody>";
@@ -683,12 +683,12 @@
                                                 } else {
                                                     appen = appen + "<tr>";
                                                     appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                     TonCuoi = thekho.TonDau + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                     appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                     appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -715,12 +715,12 @@
                                                     appen = appen + "<tfoot>";
                                                     appen = appen + " <tr>";
                                                     appen = appen + " <td class='text-primary text-center'>Tổng cộng</td>";
-                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongNhap) + "</td>";
+                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongNhap)==0?'':formatter.format(TongNhap)) + "</td>";
                                                     appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienNhap) + "</td>";
-                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongXuat) + "</td>";
+                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienNhap)==0?'':formatter.format(TongTienNhap)) + "</td>";
+                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongXuat)==0?'':formatter.format(TongXuat)) + "</td>";
                                                     appen = appen + " <td class='text-primary' style='text-align:right'></td>";
-                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienXuat) + "</td>";
+                                                    appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienXuat)==0?'':formatter.format(TongTienXuat)) + "</td>";
                                                     appen = appen + " <td style='text-align:right'></td>";
                                                     appen = appen + " <td style='text-align:right'></td>";
                                                     appen = appen + " <td style='text-align:right'></td>";
@@ -732,21 +732,21 @@
                                                     TongXuat = 0;
                                                     TongTienXuat = 0;
                                                     appen = appen + "<div class='panel-body'>";
-                                                    appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
+                                                    appen = appen + "<h4><i class='ng-binding' style='font-size: 13px;'> Mặt hàng: " + thekho.TenHangHoa.replace(',00', '') + "</i><i class='ng-binding' style='float:right;font-size: 13px;'>" + vm.data.searchString.split('|')[0] + "~" + vm.data.searchString.split('|')[1] + "</i></h4>";
                                                     appen = appen + "</div>"
                                                     appen = appen + "<table class='table table-bordered table-condensed table-responsive table-hover'>";
                                                     appen = appen + "<thead class='bg-default text-primary'>";
                                                     appen = appen + "<tr>";
                                                     appen = appen + "<th class='text-center' style='width: 150px;'>Ngày</th>";
-                                                    appen = appen + "<th class='text-center' style='width: 200px;'>Nhập</th>";
+                                                    appen = appen + "<th class='text-center' style='width: 50px;'>Nhập</th>";
                                                     appen = appen + "<th class='text-center' style='width: 200px;'>Giá nhập</th>";
                                                     appen = appen + "<th class='text-center' style='width: 200px;'>Tiền nhập</th>";
-                                                    appen = appen + "<th class='text-center' style='width: 200px;'>Xuất</th>";
+                                                    appen = appen + "<th class='text-center' style='width: 50px;'>Xuất</th>";
                                                     appen = appen + "<th class='text-center' style='width: 200px;'>Giá xuất</th>";
                                                     appen = appen + "<th class='text-center' style='width: 200px;'>Tiền xuất</th>";
-                                                    appen = appen + "<th class='text-center' style='width: 200px;'>Tồn cuối</th>";
-                                                    appen = appen + "<th class='text-center' style='width: 200px;'>Lô</th>";
-                                                    appen = appen + "<th class='text-center' style='width: 300px;'>Số phiếu</th>";
+                                                    appen = appen + "<th class='text-center' style='width: 100px;'>Tồn cuối</th>";
+                                                    appen = appen + "<th class='text-center' style='width: 20px;'>Lô</th>";
+                                                    appen = appen + "<th class='text-center' style='width:300px'>Số phiếu</th>";
                                                     appen = appen + "</tr>";
                                                     appen = appen + "</thead>";
                                                     appen = appen + "<tbody>";
@@ -761,12 +761,12 @@
                                                     } else {
                                                         appen = appen + "<tr>";
                                                         appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                        appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                        appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                         TonCuoi = thekho.TonDau + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                         appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                         appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -790,12 +790,12 @@
                                                     // tt
                                                     appen = appen + "<tr>";
                                                     appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                                    appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongNhap) == 0 ? '' : formatter.format(thekho.SoLuongNhap)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaNhap) ==0?'':formatter.format(thekho.DonGiaNhap) ) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.TienNhap) == 0 ? '' : formatter.format(thekho.TienNhap)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.SoLuongXuat)==0?'': formatter.format(thekho.SoLuongXuat)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + (formatter.format(thekho.DonGiaXuat)==0?'':formatter.format(thekho.DonGiaXuat)) + "</td>";
+                                                    appen = appen + "<td style='text-align:right'>" + ( formatter.format(thekho.TienXuat) ==0?'': formatter.format(thekho.TienXuat) ) + "</td>";
                                                     TonCuoi = TonCuoi + thekho.SoLuongNhap - thekho.SoLuongXuat;
                                                     appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
                                                     appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
@@ -809,40 +809,19 @@
                                                     TongTienXuat = TongTienXuat + thekho.TienXuat;
                                                 }
                                             }
-                                        }
-                                        
-                                        //// t t
-                                        //appen = appen + "<tr>";
-                                        //appen = appen + "<td class='text-center' >" + thekho.NgayTao + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongNhap) + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaNhap) + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienNhap) + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.SoLuongXuat) + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.DonGiaXuat) + "</td>";
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(thekho.TienXuat) + "</td>";
-                                        //TonCuoi = TonCuoi + thekho.SoLuongNhap - thekho.SoLuongXuat;
-                                        //appen = appen + "<td style='text-align:right'>" + formatter.format(TonCuoi) + "</td>";
-                                        //appen = appen + "<td style='text-align:left'>" + thekho.LOHANG + "</td>";
-                                        //if (thekho.SoPhieu.substring(0, 2) == "NM") appen = appen + "<td class='text-left' ><a  href='/QLDNKHO/khophieunhap/edit/" + thekho.PhieuId + "'>" + thekho.SoPhieu + "</a></td>";
-                                        //else if (thekho.SoPhieu.substring(0, 2) == "XB") appen = appen + "<td class='text-left' ><a  href='/QLDNKHO/khophieuxuat/edit/" + thekho.PhieuId + "'>" + thekho.SoPhieu + "</a></td>";
-                                        //else appen = appen + "<td class='text-left' ><a  href='/QLDNKHO/khophieuchuyen/edit/" + thekho.PhieuId + "'>" + thekho.SoPhieu + "</a></td>";
-                                        //appen = appen + "</tr>";
-                                        //TongNhap = TongNhap + thekho.SoLuongNhap;
-                                        //TongTienNhap = TongTienNhap + thekho.TienNhap;
-                                        //TongXuat = TongXuat + thekho.SoLuongXuat;
-                                        //TongTienXuat = TongTienXuat + thekho.TienXuat;
+                                        }                           
                                     }
                                 }//end for
                                 appen = appen + "</tbody>";
                                 appen = appen + "<tfoot>";
                                 appen = appen + " <tr>";
                                 appen = appen + " <td class='text-primary text-center'>Tổng cộng</td>";
-                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongNhap) + "</td>";
+                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongNhap)==0?'':formatter.format(TongNhap)) + "</td>";
                                 appen = appen + " <td style='text-align:right'></td>";
-                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongTienNhap) + "</td>";
-                                appen = appen + " <td class='text-primary' style='text-align:right'>" + formatter.format(TongXuat) + "</td>";
+                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongTienNhap)==0?'':formatter.format(TongTienNhap)) + "</td>";
+                                appen = appen + " <td class='text-primary' style='text-align:right'>" + (formatter.format(TongXuat)==0?'':formatter.format(TongXuat)) + "</td>";
                                 appen = appen + " <td style='text-align:right'></td>";
-                                appen = appen + " <td class='text-primary'  style='text-align:right'>" + formatter.format(TongTienXuat) + "</td>";
+                                appen = appen + " <td class='text-primary'  style='text-align:right'>" + (formatter.format(TongTienXuat)==0?'':formatter.format(TongTienXuat)) + "</td>";
                                 appen = appen + " <td style='text-align:right'></td>";
                                 appen = appen + " <td style='text-align:right'></td>";
                                 appen = appen + " <td style='text-align:right'></td>";

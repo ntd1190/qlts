@@ -18,6 +18,8 @@
             GetSoPhieuAuto: API_BASE + 'Api.QLKHO/KhoGetSoPhieuAuto/KhoGetSoPhieuAuto',
             // chi tiết phiếu nhập
             GetListChiTietByPhieuNhapId: 'GetListChiTietByPhieuNhapId',
+            LuuSerial: 'InsertKhoPhieuNhapSeries',
+            GetSeries: 'GetListKhoPhieuNhapSeriesBySoPhieu',
         }
 
         return {
@@ -131,6 +133,26 @@
                     })
                 }
 
+                return $http(req);
+            },
+            LuuSerial: function (data) {
+                var url = api.url + api.LuuSerial;
+                var req = {
+                    url: url,
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json; charset=UTF-8' },
+                    data: data
+                }
+                return $http(req);
+            },
+            GetSeries: function (data) {
+                var url = api.url + api.GetSeries;
+                var req = {
+                    url: url,
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                    data: $.param(data)
+                }
                 return $http(req);
             },
         };

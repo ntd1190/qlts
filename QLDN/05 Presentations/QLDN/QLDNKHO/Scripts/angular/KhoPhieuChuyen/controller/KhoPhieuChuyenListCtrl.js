@@ -152,7 +152,7 @@
             for (var i = 0; i < vm.data.listPhieuChuyen.length; i++) {
                 if (vm.data.listPhieuChuyen[i].isSelected) {
                     if (vm.data.listPhieuChuyen[i].MaTrangThai == 'KPC_LSC') {
-                        alert('Phiếu đã Lưu sổ cái, bạn không thể Xóa hay Sửa');
+                        alert('Phiếu đã khóa, bạn không thể Xóa hay Sửa');
                         return;
                     }
                     list.push(vm.data.listPhieuChuyen[i]);
@@ -173,7 +173,11 @@
                 }, function (result) {
                     console.log(result);
                     vm.status.isLoading = false;
-                    alert('Không thể xóa!')
+                    if (result.status === 400) {
+                        alert(result.data.error.message);
+                    } else {
+                        alert('Không thể xóa phiếu chuyển.');
+                    }
                 });
             } else {
                 alert('Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.');

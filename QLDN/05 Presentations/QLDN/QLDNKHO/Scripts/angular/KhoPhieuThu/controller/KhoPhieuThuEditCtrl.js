@@ -189,7 +189,9 @@
             utility.clearArray(vm.data.listTaiKhoanNo);
         }
         function In() {
-            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptPhieuThu&data=' + vm.data.objKhoPhieuThu.PhieuThuId);
+            if (vm.data.objKhoPhieuThu.PhieuThuId == '' || vm.data.objKhoPhieuThu.PhieuThuId == undefined)
+                return;
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptPhieuThu&data=' + vm.data.objKhoPhieuThu.PhieuThuId + '&LoginId=' + vm.data.UserLoginId);
             $('#reportmodal').modal('show');
         };
         function refresh() {

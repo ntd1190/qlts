@@ -88,6 +88,7 @@
             keyPress: keyPress,
             closeEdit: closeEdit,
             clearListKhoHang: clearListKhoHang,
+            In: In
         };
         vm.onInitView = onInitView;
         activate();
@@ -164,7 +165,27 @@
         function clearListKhoHang() {
             utility.clearArray(vm.data.listKhoHang);
         }
+        function In() {
+            debugger;
+            var strData = '';
+            strData = vm.data.objKhoKiemKe.TruongBanTen == null ? '' : vm.data.objKhoKiemKe.TruongBanTen;
+            strData = strData + '|' + (vm.data.objKhoKiemKe.TruongBanChucVu == null ? '' : vm.data.objKhoKiemKe.TruongBanChucVu);
+            strData = strData + '|' + (vm.data.objKhoKiemKe.TruongBanDaiDien == null ? '' : vm.data.objKhoKiemKe.TruongBanDaiDien);
+
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienTen == null ? '' : vm.data.objKhoKiemKe.UyVienTen);
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienChucVu == null ? '' : vm.data.objKhoKiemKe.UyVienChucVu);
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienDaiDien == null ? '' : vm.data.objKhoKiemKe.UyVienDaiDien);
+
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienTen2 == null ? '' : vm.data.objKhoKiemKe.UyVienTen2);
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienChucVu2 == null ? '' : vm.data.objKhoKiemKe.UyVienChucVu2);
+            strData = strData + '|' + (vm.data.objKhoKiemKe.UyVienDaiDien2 == null ? '' : vm.data.objKhoKiemKe.UyVienDaiDien2);
+
+            var ngay = utility.convertDateFormat(vm.data.objKhoKiemKe.NgayTao, 'DD/MM/YYYY', 'YYYY-MM-DD');
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptKiemKe&data='+strData+'&KhoId=' + vm.data.objKhoKiemKe.KhoHangId + '&Ngay=' + ngay);
+            $('#reportmodal').modal('show');
+        };
         function refresh() {
+            debugger
             setEnableButton();
             if (KhoKiemKeId > 0) {
                 KhoKiemKeService.getById(KhoKiemKeId).then(function (result) {

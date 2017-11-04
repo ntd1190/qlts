@@ -133,7 +133,7 @@
             search: search,
             excel: excel,
             print: print,
-
+            In: In
         };
 
         vm.onInitView = onInitView;
@@ -187,6 +187,13 @@
         };
 
 
+        function In() {
+            debugger;
+            var searchString = '';
+            searchString = vm.data.searchString == undefined ? '' : vm.data.searchString;            
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptKhoCongNoNCC&Data=' + searchString + '&LoginId=' + vm.data.UserLoginId);
+            $('#reportmodal').modal('show');
+        };
 
 
         function getPage(tableState) {

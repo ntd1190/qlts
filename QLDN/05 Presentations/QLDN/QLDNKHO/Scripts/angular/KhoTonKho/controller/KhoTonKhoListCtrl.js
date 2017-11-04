@@ -120,7 +120,7 @@
         }
 
         function updateTrangThai(item) {
-            if (vm.data.listQuyenTacVu.indexOf("L") > 0) {
+            if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
                 if (item) {
                     if (!confirm("Bạn có muốn chốt kho ? ")) { return; }
 

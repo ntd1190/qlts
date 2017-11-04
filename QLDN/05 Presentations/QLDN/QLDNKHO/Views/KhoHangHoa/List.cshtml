@@ -7,7 +7,7 @@
     <div class="panel panel-default hidden-print" ng-controller="KhoHangHoaFilterCtrl as ctrl" ng-init="ctrl.onInitView('KhoHangHoaFilterCtrl')" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
-                <span><i class="fa fa-fw fa-star-o"></i>Kho hàng hóa</span>
+                <span><i class="fa fa-fw fa-star-o"></i>Hàng hóa</span>
                 <div class="btn-group btn-group-sm pull-right">
                     <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìn kiếm (F3)</a>
                     <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i>Tùy chọn</a>
@@ -487,7 +487,7 @@
     <div ng-controller="KhoHangHoaListCtrl as ctrlList" keyboard="ctrlList.keys">
         <div class="panel panel-default" ng-init="ctrlList.onInitView({controllerId:mainCtrl.controllerId.KhoHangHoaList, loadListCot:true, showList:true,userInfo: @ViewBag.userInfo})">
             <div class="panel-body">
-                <h3 class="text-center no-margin">Danh sách kho hàng hóa</h3>
+                <h3 class="text-center no-margin">Danh sách hàng hóa</h3>
             </div>
 
             <div class="table-responsive" style="width:auto; height: auto;" ng-if="ctrlList.data.showList">
@@ -545,16 +545,16 @@
                 <form class="form-horizontal">
 
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaHangHoa}">
-                        <label class="control-label col-sm-3">Mã mặt hàng</label>
+                        <label class="control-label col-sm-3">Mã mặt hàng (*)</label>
                         <div class="col-sm-9">
                             <div class="input-group input-group-sm">
-                                <input type="text" class="form-control" id="txtMaHangHoa" ng-model="ctrl.data.objKhoHangHoa.MaHangHoa" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoHangHoa.TieuDe,'txtMaHangHoa','txtTenHangHoa',$event)" />
+                                <input type="text" class="form-control" id="txtMaHangHoa" ng-model="ctrl.data.objKhoHangHoa.MaHangHoa" ng-disabled="ctrl.data.objKhoHangHoa.HangHoaId" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoHangHoa.TieuDe,'txtMaHangHoa','txtTenHangHoa',$event)" />
                                 <a class="btn input-group-addon" href="javascript:void(0);" ng-click="ctrl.action.checkMa()">Kiểm tra</a>
                             </div>
                          </div>
                     </div>
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenHangHoa}">
-                        <label class="control-label col-sm-3">Tên mặt hàng</label>
+                        <label class="control-label col-sm-3">Tên mặt hàng (*)</label>
                         <div class="col-sm-9">
                                 <input type="text" class="form-control" id="txtTenHangHoa" ng-model="ctrl.data.objKhoHangHoa.TenHangHoa" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoHangHoa.TenHangHoa,'txtTenHangHoa','txtTuKhoa',$event)" />
                         </div>
@@ -566,7 +566,7 @@
                         </div>
                     </div>
                     <div class="row form-group form-group-sm"  ng-class="{'has-error':ctrl.status.isInValidDonViTinh}">
-                        <label class="control-label col-sm-3">Đơn vị tính</label>
+                        <label class="control-label col-sm-3">Đơn vị tính (*)</label>
                         <div class="col-sm-9">
                             <input type="text" class="form-control" id="txtDonViTinh" ng-model="ctrl.data.objKhoHangHoa.DonViTinh" ng-keypress="ctrl.action.keyPress(ctrl.data.objKhoHangHoa.DonViTinh,'txtDonViTinh','txtGiaMua',$event)">
                         </div>
@@ -608,8 +608,8 @@
                             <input type="text" min="0" max="360" maxlength="3" class="form-control" id="txtBaoHanh" ng-model="ctrl.data.objKhoHangHoa.ThoiGianBaoHanh"  number-format>
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm">
-                        <label for="txtKhachHang" class="control-label col-sm-3">Nhóm mặt hàng</label>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidNhomHangHoa}">
+                        <label for="txtKhachHang" class="control-label col-sm-3">Nhóm mặt hàng (*)</label>
                         <div class="col-sm-9">
                             <div class="form-control auto-height">
                                 <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.ClearlistKhoNhomHangHoa()"><i class="fa fa-fw fa-remove"></i></a>
@@ -623,8 +623,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm">
-                        <label for="txtKhachHang" class="control-label col-sm-3">Loại mặt hàng</label>
+                    <div class="row form-group form-group-sm"  ng-class="{'has-error':ctrl.status.isInvalidLoaiHangHoa}">
+                        <label for="txtKhachHang" class="control-label col-sm-3">Loại mặt hàng (*)</label>
                         <div class="col-sm-9">
                             <div class="form-control auto-height">
                                 <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.ClearlistKhoLoaiHangHoa()"><i class="fa fa-fw fa-remove"></i></a>
@@ -637,6 +637,7 @@
                             </div>
                         </div>
                     </div>
+                    <!--
                     <div class="row form-group form-group-sm">
                         <label for="txtKhachHang" class="control-label col-sm-3">Nhà cung cấp</label>
                         <div class="col-sm-9">
@@ -651,8 +652,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm">
-                        <label for="txtKhachHang" class="control-label col-sm-3">Hãng sản xuất</label>
+                    -->
+                    <div class="row form-group form-group-sm"  ng-class="{'has-error':ctrl.status.isInvalidHangSanXuat}">
+                        <label for="txtKhachHang" class="control-label col-sm-3">Hãng sản xuất (*)</label>
                         <div class="col-sm-9">
                             <div class="form-control auto-height">
                                 <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.ClearlistKhoHangSanXuat()"><i class="fa fa-fw fa-remove"></i></a>
@@ -665,8 +667,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm">
-                        <label for="txtKhachHang" class="control-label col-sm-3">Nước sản xuất</label>
+                    <div class="row form-group form-group-sm"  ng-class="{'has-error':ctrl.status.isInvalidNuocSanXuat}">
+                        <label for="txtKhachHang" class="control-label col-sm-3">Nước sản xuất (*)</label>
                         <div class="col-sm-9">
                             <div class="form-control auto-height">
                                 <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.ClearlistKhoNuocSanXuat()"><i class="fa fa-fw fa-remove"></i></a>
@@ -684,7 +686,7 @@
             <div class="panel-footer">
                 <button type="button" class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonSave" id="btnluu" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
-                <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupThongTinKhoHangHoa" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
                 <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrlList.action.deleteSelected(ctrl.data.objKhoHangHoa)" ng-if="ctrl.data.objKhoHangHoa.KhoHangHoaId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;
                 <button type="button" id="btnH" class="btn btn-sm btn-default" ng-click="ctrlList.action.GetListLuocSu(ctrl.data.objKhoHangHoa.HangHoaId)">H</button>
             </div>

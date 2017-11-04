@@ -21,11 +21,12 @@
         vm.status.isSelectedAll = false;
         vm.status.showTable = false;
         vm.status.isSelectOne = true;
+        vm.status.viewAll = false;
 
         vm.data = {};
         vm.data.searchString = '';
         vm.data.listKhoHang = [];
-
+        
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
@@ -61,6 +62,7 @@
         activate();
         function activate() { }
         vm.onInitView = function (config) {
+            debugger;
             if (config && config.controllerId) {
                 vm.controllerId = config.controllerId;
             }
@@ -75,6 +77,10 @@
             }
             if (config) {
                 vm.status.isSelectOne = config.isSelectOne;
+            }
+            
+            if (config) {
+                vm.status.viewAll = config.viewAll;
             }
 
             initEventListener();
@@ -165,19 +171,17 @@
             data.fields = '';
             data.search = vm.data.searchString;
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
-
-            KhoKhoHangListPopupService.getPage(data).then(function (result) {
-                console.log(result);
-
+            data.viewAll = vm.status.viewAll ? 1 : 0;
+            
+            KhoKhoHangListPopupService.getPage(data).then(function (result) {                
                 vm.status.isLoading = false;
                 if (result.data.data) {
                     delete vm.data.listKhoHang;
                     vm.data.listKhoHang = result.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(result.data.metaData.total / tableState.pagination.number);//set the number of pages so the pagination can update
                 }
-            }, function (result) {
+            }, function (result) {                
                 console.log(result);
-
                 vm.status.isLoading = false;
                 if (result.data.error !== null) {
                     alert(result.data.error.message);
@@ -192,8 +196,8 @@
     function service($http, API_BASE) {
         var api = {};
         api.url = API_BASE + 'api.QLKho/KhoKhoHang/';
-        api.GetPage = 'GetListKhoKhoHangPopupByCriteria';
-
+        api.GetPage = 'GetListKhoKhoHangPopupByCriteria';       
+        
         return {
             getPage: function (data) {
                 var url = api.url + api.GetPage;

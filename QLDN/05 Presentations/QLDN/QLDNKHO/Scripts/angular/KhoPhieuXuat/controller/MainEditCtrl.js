@@ -90,8 +90,9 @@
             //press F2 -> open popup
             F2: function (name, code) {
                 //alert("F2");
-            $('#' + vm.controllerId.KhoHangHoaListPopup).collapse('show');
-            $('#' + vm.controllerId.KhoHangHoaListPopup + ' input[autofocus]').focus();
+            //$('#' + vm.controllerId.KhoHangHoaListPopup).collapse('show');
+                //$('#' + vm.controllerId.KhoHangHoaListPopup + ' input[autofocus]').focus();
+                $scope.$broadcast(vm.controllerId.KhoPhieuXuatEdit + '.action.F2');
             },
 
             //press F3 -> run Quick search

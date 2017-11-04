@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace SongAn.QLDN.UI.QLDNKHO.Controllers
 {
-    [CustomAuthorize(FunctionCodes = "KHO0007")]
+    [CustomAuthorize(FunctionCodes = "KHO0023")]
     public class KhoKiemKeController : BaseController
     {
         // GET: KhoKiemKe
@@ -15,7 +15,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.Controllers
 
         public ActionResult List()
         {
-            string userLogin = LoadUserInfo("KHO0007");
+            string userLogin = LoadUserInfo("KHO0023");
 
             ViewBag.userInfo = userLogin;
 

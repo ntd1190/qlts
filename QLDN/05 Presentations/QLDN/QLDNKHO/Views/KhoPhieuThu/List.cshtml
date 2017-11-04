@@ -275,9 +275,10 @@
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidSoPhieu}">
                         <label class="control-label col-sm-3">Số</label>
                         <div class="col-sm-9">
-                            <span type="text" class="form-control" placeholder="NMddmmyy-No" ng-if="ctrl.KhoPhieuThuId()>0" ng-bind="ctrl.data.objKhoPhieuThu.SoPhieu" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SoPhieu" data-next="NoiDung"></span>
-                            <div class="input-group input-group-sm" ng-if="ctrl.KhoPhieuThuId()==0">
-                                <span type="text" class="form-control" placeholder="NMddmmyy-No" ng-bind="ctrl.data.objKhoPhieuThu.SoPhieu"></span>
+                            @*<span type="text" class="form-control" placeholder="NMddmmyy-No" ng-if="ctrl.KhoPhieuThuId()>0" ng-bind="ctrl.data.objKhoPhieuThu.SoPhieu" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SoPhieu" data-next="NoiDung"></span> *@
+                            <div class="input-group input-group-sm" @*ng-if="ctrl.KhoPhieuThuId()==0"*@>
+                                <input type="text" class="form-control" placeholder="NMddmmyy-No" ng-model="ctrl.data.objKhoPhieuThu.SoPhieu"/>
+                                
                                 <a class="btn input-group-addon" href="javascript:void(0)" ng-click="ctrl.action.getSoPhieu()" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SoPhieu" data-next="NoiDung"><i class="fa fa-fw fa-refresh"></i></a>
                             </div>
                         </div>

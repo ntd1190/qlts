@@ -49,6 +49,7 @@
 
         // nhận config từ view
         vm.onInitView = function (config) {
+            
             vm.data.fullDateString = fullDateString(moment().format('DDMMYYYY'), 'DDMMYYYY');
             if (config && config.controllerId) {
                 vm.controllerId = config.controllerId;
@@ -106,10 +107,10 @@
                     vm.data.phieuNhap.Hinh = vm.data.phieuNhap.Hinh.split('.')[0] + '.' + utility.getFileExt(vm.data.file[0].name);
                 }
             }
-
-            if (phieuNhapId > 0 && checkQuyenUI('M')) {
+            debugger
+            if (phieuNhapId > 0 && checkQuyenUI('M')) { ////if (phieuNhapId > 0 && (checkQuyenUI('M') || checkQuyenUI('A')) ) {            
                 updatePhieuNhap();
-            } else if (checkQuyenUI('N')) {
+            } else if (checkQuyenUI('N'))  {
                 insert();
             }
         };
@@ -131,7 +132,8 @@
             }
         }
 
-        vm.action.luuSoCai = function () {
+        vm.action.luuSoCai = function (KhoaMo) {
+            debugger;
             if (vm.status.isLoading) { return; }
             if (checkInputPhieuNhap() === false) { return; }
 
@@ -144,15 +146,32 @@
                 alert('Phiếu chưa có chi tiết');
                 return;
             }
-
-            if (checkQuyenUI('L') === false) {
-                alert('Bạn không có quyền khóa phiếu.');
-                return;
+            
+            if (KhoaMo == 'Y') {
+                if (checkQuyenUI('A') === false) {
+                    alert('Bạn không có quyền mở khóa phiếu.');
+                    return;
+                }
             }
-            if (confirm('Bạn thật sự muốn khóa phiếu?')) {
-                luuSoCai(phieuNhapId);
+            else {
+                if (checkQuyenUI('L') === false) {
+                    alert('Bạn không có quyền khóa phiếu.');
+                    return;
+                }
+            }
+
+            if (KhoaMo == 'Y') {
+                if (confirm('Bạn thật sự muốn mở khóa phiếu?')) {
+                    luuSoCai(phieuNhapId, KhoaMo);
+                }
+            } else {
+                if (confirm('Bạn thật sự muốn khóa phiếu?')) {
+                    luuSoCai(phieuNhapId, KhoaMo);
+                }
             }
         };
+
+     
         vm.action.keyPressEnter = function (event) {
             if (event.keyCode != 13) { return; }
             if (checkInputPhieuNhap($(event.target).data('name')) === false) {
@@ -183,9 +202,24 @@
         vm.action.goBack = function () {
             window.history.back();
         };
-
+        vm.action.emitKhoNhapId = function () {
+            var khoid = vm.data.phieuNhap.KhoNhap;
+            if (typeof khoid === 'undefined' || khoid === "" || khoid == 0) {
+                alert("Bạn chưa chọn kho nhập"); return;
+            }
+            $scope.$emit(vm.controllerId + '.data.khonhapidPop', khoid);
+        }
         vm.action.In = function () {
+            if (vm.data.phieuNhap.PhieuNhapId == '' || vm.data.phieuNhap.PhieuNhapId == undefined)
+                return;
             $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptPhieuNhap&data=' + vm.data.phieuNhap.PhieuNhapId);
+            $('#reportmodal').modal('show');
+        };
+
+        vm.action.InSeries = function () {
+            if (vm.data.phieuNhap.PhieuNhapId == '' || vm.data.phieuNhap.PhieuNhapId == undefined)
+                return;
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptPhieuNhapSeries&data=' + vm.data.phieuNhap.PhieuNhapId);
             $('#reportmodal').modal('show');
         };
         /*** BROADCAST / EMIT / ON FUNCTION ***/
@@ -255,6 +289,10 @@
             $scope.$on(vm.controllerId + '.action.F8', function (e, v) {
                 if (checkQuyenUI('N') === false && checkQuyenUI('M') === false) { return; }
                 vm.action.save();
+            });
+            //nhan f2
+            $scope.$on(vm.controllerId + '.action.F2', function (e, v) {
+                vm.action.emitKhoNhapId();
             });
             //$scope.$watch('ctrl.data.tienHang+ctrl.data.phieuNhap.ThueVAT', function () {
             //    vm.action.tinhThue();
@@ -379,17 +417,7 @@
         // lấy thông tin hàng hóa từ popup hàng hóa thêm vào chi tiết phiếu nhập
         function getListChiTietPopup(list) {
             for (var i = 0; i < list.length; i++) {
-
                 // TODO kiểm tra nếu đã có hàng hóa trong danh sách thì không thêm chi tiết
-
-                //var exist = false;
-                //for (var j = 0; j < vm.data.listChiTiet.length; j++) {
-                //    if (list[i].HangHoaId === vm.data.listChiTiet[j].HangHoaId) {
-                //        exist = true;
-                //    }
-                //}
-                //if (exist) { return; }
-
                 // TODO Thêm vào danh sách chi tiết
                 var chitiet = {};
                 chitiet.PhieuNhapChiTietId = 0;
@@ -401,28 +429,43 @@
                 chitiet.MaHangHoa = list[i].MaHangHoa;
                 chitiet.TenHangHoa = list[i].TenHangHoa;
                 chitiet.DonViTinh = list[i].DonViTinh;
+                chitiet.ThoiGianBaoHanh = list[i].ThoiGianBaoHanh;
                 vm.data.listChiTiet.unshift(chitiet);
             }
         }
 
         /* kiểm tra quyền tác vụ */
-        function checkQuyenUI(quyen) {
-            // kiểm tra lưu sổ cái
-            if (vm.data.phieuNhap && vm.data.phieuNhap.MaTrangThai === 'KPN_LSC') { return false; }
+        function checkQuyenUI(quyen) {                       
 
             var listQuyenTacVu;
             // kiểm tra danh sách quyền khác null
             if (userInfo && userInfo.DsQuyenTacVu) {
                 var listQuyenTacVu = userInfo.DsQuyenTacVu.split(',');
-            } else { return false; }
+            } else {
+                return false;
+            }
 
-            if (!listQuyenTacVu || listQuyenTacVu.length < 1) { return false; }
+            if (!listQuyenTacVu || listQuyenTacVu.length < 1) {
+                return false;
+            }
+
+            // kiểm tra lưu sổ cái
+            if (vm.data.phieuNhap && vm.data.phieuNhap.MaTrangThai === 'KPN_LSC') {
+                if (quyen != 'A') { // A: quyền được lưu mặc dù phiếu đã khóa
+                    return false;
+                }
+            }
 
             if (phieuNhapId == 0) { // trường hợp thêm mới
-                if (quyen != 'N') { return false; }
+                if (quyen != 'N') {
+                    return false; 
+                }
                 return listQuyenTacVu.indexOf(quyen) >= 0;
-            } else { // trường hợp update
-                if (quyen == 'N') { return false; }
+            } 
+            else { // trường hợp update
+                if (quyen == 'N') { 
+                    return false; 
+                }
                 return listQuyenTacVu.indexOf(quyen) >= 0;
             }
         }
@@ -451,16 +494,17 @@
         };
 
         // Lưu sổ cái
-        function luuSoCai(phieuId) {
-            vm.status.isLoading = true;
-
+        function luuSoCai(phieuId, KhoaMo) {
+            debugger;
+            vm.status.isLoading = true;            
             var data = {};
             data.phieuNhapId = phieuId;
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            data.KhoaMo = KhoaMo;
             KhoPhieuNhapService.luuSoCai(data)
                 .then(function success(result) {
                     vm.status.isLoading = false;
-                    alert('Lưu Sổ cái thành công');
+                    alert('Khóa phiếu thành công');
                     console.log(result);
 
                     getPhieuNhapById(phieuId);
@@ -495,7 +539,7 @@
         // thêm phiếu nhập vào database
         function insert() {
             vm.status.isLoading = true;
-
+            
             var phieunhap = utility.clone(vm.data.phieuNhap);
             preparePhieuNhap(phieunhap);
             var data = {};
@@ -552,6 +596,7 @@
 
         // lấy danh sách chi tiết của phiếu nhập kho
         function getListChiTietByPhieuNhapId(id) {
+            debugger
             vm.status.isLoading = true;
             var data = { phieuNhapId: id, loginId: userInfo ? userInfo.NhanVienId : 0 };
             KhoPhieuNhapService.getListChiTietByPhieuNhapId(data).then(function success(result) {
@@ -661,6 +706,87 @@
                 }
             });
         }
+        /*Series*/
+        vm.action.NhapSeries = function (hanghoa) {
+            debugger
+            vm.data.listSeries = [];
+            var listSeriesnumber = [];
+            var data = {};
+            data.loginId = userInfo ? userInfo.NhanVienId : 0;
+            data.SoPhieu = vm.data.phieuNhap.SoPhieu;
+            data.HangHoaId = hanghoa.HangHoaId;
+
+          
+            KhoPhieuNhapService.GetSeries(data)
+                .then(function success(result) {
+                    listSeriesnumber = result.data.data;
+                    for (var i = 0; i < hanghoa.SoLuong; i++) {
+                        var chitiet = {};
+                        chitiet.Series = listSeriesnumber.length > i ? listSeriesnumber[i].Series : '';
+                        chitiet.SoPhieu = vm.data.phieuNhap.SoPhieu;
+                        chitiet.HangHoaId = hanghoa.HangHoaId;
+                        chitiet.MaHangHoa = hanghoa.MaHangHoa;
+                        chitiet.TenHangHoa = hanghoa.TenHangHoa;
+                        chitiet.DonViTinh = hanghoa.DonViTinh;
+                        chitiet.DonGia = hanghoa.DonGia;
+                        chitiet.ThoiGianBaoHanh = listSeriesnumber.length > i ? (listSeriesnumber[i].ThoiGianBaoHanh ? listSeriesnumber[i].ThoiGianBaoHanh : hanghoa.ThoiGianBaoHanh) : hanghoa.ThoiGianBaoHanh;
+                        chitiet.error = false;
+                        vm.data.listSeries.push(chitiet);
+                    }
+                    vm.status.isLoading = false;
+
+                }, function error(result) {
+                    vm.status.isLoading = false;
+                    if (result.status === 400) {
+                        alert(result.data.error.message);
+                    } else {
+                    }
+                    console.log(result);
+                });
+
+
+            $('#SerialHangHoaPop').collapse('show');
+            $('#Series1').focus();
+        }
+
+        vm.action.changeSeries = function (index) {
+            vm.data.listSeries[index].error = false;
+            for (var i = 0; i < vm.data.listSeries.length; i++) {
+                var item = vm.data.listSeries[i];
+                if (vm.data.listSeries[index].Series != "" && index != i && item.Series == vm.data.listSeries[index].Series && vm.data.listSeries[i].error == false) {
+                    vm.data.listSeries[index].error = true;
+                    alert('Series ' + item.Series + ' đã có. Vui lòng nhập series khác!');
+                    return;
+                }
+            }
+        }
+        vm.action.LuuSerial = function () {
+            for (var i = 0; i < vm.data.listSeries.length; i++) {
+                var item = vm.data.listSeries[i];
+                if (vm.data.listSeries[i].error == true) {
+                    alert('Tồn tại series ' + item.Series + ' trùng nhau. Vui lòng kiểm tra lại!');
+                    return;
+                }
+            }
+            var data = {};
+            data.loginId = userInfo ? userInfo.NhanVienId : 0;
+
+            data.listChiTiet = angular.toJson(vm.data.listSeries);
+            KhoPhieuNhapService.LuuSerial(data)
+                .then(function success(result) {
+                    vm.status.isLoading = false;
+                    $('#SerialHangHoaPop').collapse('hide');
+                }, function error(result) {
+                    vm.status.isLoading = false;
+                    if (result.status === 400) {
+                        alert(result.data.error.message);
+                    } else {
+                    }
+                    console.log(result);
+                });
+
+        }
+        /*end series*/
 
         /*** HELPERS ***/
         function compare(dateTimeA, dateTimeB) {

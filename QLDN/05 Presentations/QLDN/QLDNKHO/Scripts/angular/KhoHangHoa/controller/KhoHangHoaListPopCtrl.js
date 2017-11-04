@@ -102,7 +102,8 @@
             showList: false,
             useCotListDb: true,
             UserLoginId: '',
-            loai:'',
+            loai: '',
+            leftjoinHH: '',
             listKhoHang: [],
             error: error,
             listKhoHangHoa: [],
@@ -158,6 +159,9 @@
             }
             if (config && config.loai) {
                 vm.data.loai = config.loai;
+            }
+            if (config && config.leftjoinHH) {
+                vm.data.leftjoinHH = config.leftjoinHH;
             }
             if (config && config.userInfo) {
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
@@ -233,7 +237,7 @@
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
             var fields = "";
-            KhoHangHoaService.getList(draw, start, number, searchString, sortName, sortDir, fields, vm.data.UserLoginId,vm.data.loai,vm.data.khoId).then(function (success) {
+            KhoHangHoaService.getList(draw, start, number, searchString, sortName, sortDir, fields, vm.data.UserLoginId,vm.data.loai,vm.data.khoId,vm.data.leftjoinHH).then(function (success) {
                 if (success.data.data) {
                     vm.data.listKhoHangHoa = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);
@@ -251,7 +255,9 @@
             loadCotList();
 
         }
-
+        vm.action.KhoFilter = function (item) {            
+            return (vm.data.khoId == item.KhoHangId);
+        }
         function getPageKho() {
 
 

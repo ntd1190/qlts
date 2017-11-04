@@ -22,7 +22,6 @@
 
         function getFilter(data) {
             var url = api.url + api.GetFilter;
-
             var req = {
                 url: url,
                 method: 'POST',
@@ -36,6 +35,7 @@
                     TuNgay: data.TuNgay,
                     DenNgay: data.DenNgay,
                     KhoId: data.KhoHangId,
+                    NhomHangHoaId: data.NhomHangHoaId,
                     LoginId: data.LoginId
                 })
             }

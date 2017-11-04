@@ -88,7 +88,8 @@
             <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listPhieuNhap" st-pipe="ctrl.action.getPage">
                 <thead class="text-primary">
                     <tr>
-                        <th class="text-center" ng-click="ctrl.action.checkAll()" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <!--<th class="text-center" ng-click="ctrl.action.checkAll()" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>-->
+                        <th class="text-center" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
                         <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
                             <span ng-bind="cot.TenCot"></span>
                         </th>
@@ -103,7 +104,12 @@
                 </tbody>
                 <tbody>
                     <tr ng-repeat="phieu in ctrl.data.listPhieuNhap" ng-class="(phieu.isSelected==true)?'info':''">
+                        <!--
                         <td class="text-center text-primary" st-select-row="phieu" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                            <i class="fa fa-fw" ng-class="phieu.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                        </td>
+                        -->
+                        <td class="text-center text-primary" st-select-row="phieu" >
                             <i class="fa fa-fw" ng-class="phieu.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                         </td>
                         <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">

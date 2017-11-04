@@ -76,8 +76,8 @@
 
         vm.action = {};
         vm.action.save = function () {
-            if (vm.data.phieuChuyen.MaTrangThai == 'KPC_LSC') {
-                alert('Phiếu đã Lưu sổ cái, bạn không thể Xóa hay Sửa');
+            if (vm.data.phieuChuyen.MaTrangThai == 'KPC_LSC' && !checkQuyenUI('A') ) {
+                alert('Phiếu đã khóa, bạn không thể Xóa hay Sửa');
                 return;
             }
             if (vm.status.isLoading) { return; }
@@ -125,8 +125,8 @@
                     vm.data.phieuChuyen.Hinh = vm.data.phieuChuyen.Hinh.split('.')[0] + '.' + utility.getFileExt(vm.data.file[0].name);
                 }
             }
-
-            if (phieuChuyenId > 0 && checkQuyenUI('M')) {
+            
+            if (phieuChuyenId > 0 && (checkQuyenUI('M')||checkQuyenUI('A')) ) {
                 updatePhieuChuyen();
             } else if (checkQuyenUI('N')) {
                 insert();
@@ -160,19 +160,31 @@
         vm.getPhieuChuyenId = function () {
             return phieuChuyenId || 0;
         }
-        vm.action.luuSoCai = function () {
+        vm.action.luuSoCai = function (KhoaMo) {
             if (vm.status.isLoading) { return; }
-            if (checkQuyenUI('L') === false) {
-                alert('Bạn không có quyền khóa phiếu');
-                return;
+            if (KhoaMo == 'Y') {
+                if (checkQuyenUI('A') === false) {
+                    alert('Bạn không có quyền mở khóa phiếu');
+                    return;
+                }
+                if (confirm('Bạn thật sự muốn mở khóa phiếu?')) {
+                    luuSoCai(phieuChuyenId, KhoaMo);
+                }
+            } else {
+                 if (checkQuyenUI('L') === false) {
+                    alert('Bạn không có quyền khóa phiếu');
+                    return;
+                }
+                if (confirm('Bạn thật sự muốn khóa phiếu?')) {
+                    luuSoCai(phieuChuyenId, KhoaMo);
+                }
             }
+            /*
             if (vm.data.phieuChuyen.MaTrangThai == 'KPC_LSC') {
-                alert('Phiếu này đã được khóa phiếu.');
+                alert('Phiếu này đã được khóa.');
                 return;
-            }
-            if (confirm('Bạn thật sự muốn khóa phiếu?')) {
-                luuSoCai(phieuChuyenId);
-            }
+            }*/
+            
         };
         vm.action.GetListLuocSu = function (phieuChuyenId, tableState) {
             vm.data.isLoading = true;
@@ -206,10 +218,19 @@
             });
 
         };
+        vm.action.emitKhoChuyenId = function () {
+            var khoid = vm.data.phieuChuyen.KhoXuat;
+            if (typeof khoid === 'undefined' || khoid === "" || khoid == 0) {
+                alert("Bạn chưa chọn kho xuất"); return;
+            }
+            $scope.$emit(vm.controllerId + '.data.khoxuatidPop', khoid);
+        }
         vm.action.goBack = function () {
             window.history.back();
         };
         vm.action.In = function () {
+            if (vm.data.phieuChuyen.PhieuChuyenId == '' || vm.data.phieuChuyen.PhieuChuyenId == undefined)
+                return;
             $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptPhieuChuyen&data=' + vm.data.phieuChuyen.PhieuChuyenId);
             $('#reportmodal').modal('show');
         };
@@ -280,6 +301,11 @@
                 console.log('F8');
                 vm.action.save();
             });
+            //nhan f2
+            $scope.$on(vm.controllerId + '.action.F2', function (e, v) {
+               
+                vm.action.emitKhoChuyenId();
+            });
 
         }
 
@@ -291,8 +317,8 @@
         }
 
         // Lưu sổ cái
-        function luuSoCai(phieuId) {
-
+        function luuSoCai(phieuId, KhoaMo) {
+            
             vm.status.isLoading = true;
             var phieuchuyen = utility.clone(vm.data.phieuChuyen);
             var data = {};
@@ -302,7 +328,7 @@
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
             data.phieuChuyen = angular.toJson(phieuchuyen);
             data.NgayXuat = phieuchuyen.NgayXuat;
-
+            data.KhoaMo = KhoaMo;
             KhoPhieuChuyenService.luuSoCai(data)
                 .then(function success(result) {
                     vm.status.isLoading = false;
@@ -391,9 +417,7 @@
 
         /* kiểm tra quyền tác vụ */
         function checkQuyenUI(quyen) {
-            // kiểm tra lưu sổ cái
-            if (vm.data.phieuChuyen && vm.data.phieuChuyen.MaTrangThai === 'KPC_LSC') { return false; }
-
+            
             var listQuyenTacVu;
             // kiểm tra danh sách quyền khác null
             if (userInfo && userInfo.DsQuyenTacVu) {
@@ -401,6 +425,13 @@
             } else { return false; }
 
             if (!listQuyenTacVu || listQuyenTacVu.length < 1) { return false; }
+
+            // kiểm tra lưu sổ cái
+            if (vm.data.phieuChuyen && vm.data.phieuChuyen.MaTrangThai === 'KPC_LSC') {
+                if (quyen != 'A') { // A: quyền được lưu mặc dù phiếu đã khóa
+                    return false;
+                }
+            }
 
             if (phieuChuyenId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }

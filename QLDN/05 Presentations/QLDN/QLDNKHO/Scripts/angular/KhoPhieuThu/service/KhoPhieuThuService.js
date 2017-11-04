@@ -7,7 +7,7 @@
 
     function KhoPhieuThuService($http, API_BASE) { 
         var api = {
-            url: API_BASE + 'api.QLNS/KhoPhieuThu/',
+            url: API_BASE + 'api.QLKHO/KhoPhieuThu/',
             insert: 'InsertKhoPhieuThu',
             update: 'UpdateKhoPhieuThu',
             GetList: 'GetListKhoPhieuThu',

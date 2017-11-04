@@ -25,6 +25,7 @@
             GetListChiTietByPhieuBaoHanhId: 'GetListChiTietByPhieuBaoHanhId',
             GetThongTinBySeries: 'GetThongTinBySeries',
             GetThongTinByDienThoai: 'GetThongTinByDienThoai',
+            sendEmail: 'sendEmail'
         }
         var service = {};
 
@@ -71,7 +72,9 @@
             return $http(req);
         };
         service.getPage = function (data) {
+            
             var url = api.url + api.getPage;
+            console.log(url);
 
             var req = {
                 url: url,
@@ -148,6 +151,7 @@
             return $http(req);
         };
         service.getThongTinByDienThoai = function (data) {
+            debugger;
             var url = api.url + api.GetThongTinByDienThoai;
             var req = {
                 url: url,
@@ -157,6 +161,19 @@
             }
             return $http(req);
         };
+
+        service.sendEmail = function (data) {
+            debugger;
+            var url = api.url + api.sendEmail;
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param(data)
+            }
+            return $http(req);
+        };
+
         // lược sử
         service.getListLuocSu = function (draw, start, length, searchString, sortName, sortDir, fields) {
             var url = API_BASE + 'api.QLKHO/KhoLuocSu/GetListKhoLuocSuByCriteria';

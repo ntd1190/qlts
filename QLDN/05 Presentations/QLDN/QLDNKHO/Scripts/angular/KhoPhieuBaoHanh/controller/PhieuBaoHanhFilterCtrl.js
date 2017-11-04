@@ -25,8 +25,8 @@
         vm.data.startDate = '';
         vm.data.endDate = '';
         vm.data.listTrangThai = [
-            { MaTrangThai: 'Y', TrangThai: 'Cty' },
-            { MaTrangThai: 'N', TrangThai: 'Ngoài cty' },
+            { MaTrangThai: 'Y', TrangThai: 'Khách hàng' },
+            { MaTrangThai: 'N', TrangThai: 'Nhà cung cấp' },
         ];
 
         /*** INIT FUNCTION ***/
@@ -66,11 +66,12 @@
             });
         }
         function emitSearch() {
+            debugger
             var inputSearch = {
                 Series: vm.data.Series,
                 DienThoai: vm.data.DienThoai,
                 ThongTinKhachHang: vm.data.ThongTinKhachHang,
-                SanPhamCty: vm.data.SanPhamCty,
+                LoaiBaoHanh: vm.data.LoaiBaoHanh,
                 startDate: vm.data.startDate,
                 endDate: vm.data.endDate,
             };
@@ -98,7 +99,7 @@
             vm.data.Series = '';
             vm.data.DienThoai = '';
             vm.data.ThongTinKhachHang = '';
-            vm.data.SanPhamCty = '';
+            vm.data.LoaiBaoHanh = 'Y';            
         }
     });
 })();

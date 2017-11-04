@@ -41,7 +41,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.NguoiGiaoHang?'has-error':''">
-                            <label class="control-label col-sm-4">Người giao hàng</label>
+                            <label class="control-label col-sm-4">Người giao hàng (*)</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" ng-model="ctrl.data.phieuNhap.NguoiGiaoHang" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="NguoiGiaoHang" data-next="TenKhachHang" autofocus />
                             </div>
@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
-                            <label class="control-label col-sm-4">Số</label>
+                            <label class="control-label col-sm-4">Số (*)</label>
                             <div class="col-sm-8">
                                 @*<span type="text" class="form-control" placeholder="NMddmmyy-No" ng-if="ctrl.getPhieuNhapId()>0" ng-bind="ctrl.data.phieuNhap.SoPhieu" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SoPhieu" data-next="TenKhachHang"></span>*@
                                 <div class="input-group input-group-sm" @*ng-if="ctrl.getPhieuNhapId()==0"*@>
@@ -84,7 +84,7 @@
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TenKhoNhap?'has-error':''">
-                            <label class="control-label col-sm-4">Kho nhập</label>
+                            <label class="control-label col-sm-4">Kho nhập (*)</label>
                             <div class="col-sm-8">
                                 <div class="form-control auto-height" ng-if="ctrl.action.checkQuyenTacVu('N')">
                                     <a class="pull-right" href="javascript:void(0)" tabindex="-1" ng-click="ctrl.data.phieuNhap.KhoNhap=0;ctrl.data.phieuNhap.TenKhoNhap=''"><i class="fa fa-fw fa-remove"></i></a>
@@ -101,7 +101,7 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.strNgayNhap?'has-error':''">
-                            <label class="control-label col-sm-4">Ngày nhập</label>
+                            <label class="control-label col-sm-4">Ngày nhập (*)</label>
                             <div class="col-sm-8">
                                 <input type="text" style="width:120px;" class="form-control datetimepicker date" ng-model="ctrl.data.phieuNhap.strNgayNhap" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="strNgayNhap" data-next="TenThuKho" />
                             </div>
@@ -110,7 +110,7 @@
                 </div>
 
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.NoiDung?'has-error':''">
-                    <label class="control-label col-sm-2">Nội dung</label>
+                    <label class="control-label col-sm-2">Nội dung (*)</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-model="ctrl.data.phieuNhap.NoiDung" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="NoiDung" data-next="MaTaiKhoanCo" />
                     </div>
@@ -225,26 +225,28 @@
                     </div>
                 </div>
             </form>
-            <a class="btn btn-sm btn-primary" href="javascript:void(0)" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoHangHoaListPopup}}" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+            @*<a class="btn btn-sm btn-primary" href="javascript:void(0)" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoHangHoaListPopup}}" ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
                 <i class="fa fa-fw fa-plus"></i>
                 Thêm chi tiết (F2)
-            </a>
+            </a>*@
+            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.emitKhoNhapId()"><i class="fa fa-fw fa-plus"></i>Thêm chi tiết (F2)</button>
         </div>
 
         <div class="table-responsive">
             <table class="table table-bordered table-condensed table-hover table-striped">
                 <thead class="text-primary">
                     <tr>
-                        <th class="text-center" style="width:35px;">#</th>
-                        <th class="text-center" style="width:50px;">Xóa</th>
+                        <th class="text-center" style="width:30px;">#</th>
+                        <th class="text-center" style="width:30px;">Xóa</th>
                         <th class="text-center" style="width:100px;">Mã hàng hóa</th>
                         <th class="text-center">Tên hàng hóa</th>
-                        <th class="text-center" style="width:75px;">Lô</th>
+                        <th class="text-center" style="width:50px;">Lô</th>
                         <th class="text-center" style="width:50px;">BH</th>
                         <th class="text-center" style="width:50px;">ĐVT</th>
-                        <th class="text-center" style="width:100px;">Số lượng</th>
-                        <th class="text-center" style="width:150px;">Đơn giá</th>
-                        <th class="text-center" style="width:150px;">Thành tiền</th>
+                        <th class="text-center" style="width:80px;">Số lượng</th>
+                        <th class="text-center" style="width:120px;">Đơn giá</th>
+                        <th class="text-center" style="width:120px;">Thành tiền</th>
+                        <th class="text-center" style="width:50px;">series</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -276,6 +278,12 @@
                         </td>
                         <td class="form-group form-group-sm">
                             <span class="form-control text-right" ng-bind="(chitiet.SoLuong*chitiet.DonGia)|number:'':'':2"></span>
+                        </td>
+
+                        <td class="form-group form-group-sm">
+                            <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.NhapSeries(chitiet)">
+                                <i class="fa fa-barcode" aria-hidden="true"></i>                                
+                            </a>
                         </td>
                     </tr>
                 </tbody>
@@ -313,7 +321,7 @@
         </div>
         <div class="panel-body"></div>
         <div class="panel-footer">
-            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+            <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')"> @*||ctrl.action.checkQuyenTacVu('A')*@
                 <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
             </span>
             <span ng-if="ctrl.action.checkQuyenTacVu('D')">
@@ -321,11 +329,77 @@
             </span>
             <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-fw fa-refresh"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;
             <span ng-if="ctrl.action.checkQuyenTacVu('L')">
-                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.luuSoCai()"><i class="fa fa-fw fa-lock"></i> Khóa phiếu</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.luuSoCai('')"><i class="fa fa-fw fa-lock"></i> Khóa phiếu</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <span ng-if="ctrl.action.checkQuyenTacVu('A')">
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.luuSoCai('Y')"><i class="fa fa-fw fa-lock"></i> Mở khóa </a>&nbsp;&nbsp;&nbsp;
             </span>
             <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-fw fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.InSeries()"><i class="fa fa-fw fa-print"></i> In Series</a>&nbsp;&nbsp;&nbsp;
             <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.xemLuocSu()">H</a>&nbsp;&nbsp;&nbsp;
         </div>
+        @*Series popup*@
+        <div class="panel panel-primary hidden-print collapse fade ui-draggable" id="SerialHangHoaPop">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title">
+                    <span>Danh sách nhập series hàng hóa</span>
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#SerialHangHoaPop"><i class="fa fa-fw fa-remove"></i></a>
+                </div>
+            </div>
+            <div class="panel-body" style="max-height:550px">
+
+                <table class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="width: 50px;">#</th>
+                            <th class="text-center">series</th>
+                            <th class="text-center">Mã hàng hóa</th>
+                            <th class="text-center">Tên hàng</th>
+                            <th class="text-center">ĐVT</th>
+                            <th class="text-center">Giá bán</th>
+                            <th class="text-center">Bảo hành(tháng)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="chitiet in ctrl.data.listSeries track by $index">
+                            <td class="text-center " ng-bind="{{$index+1}}"></td>
+                            <td class="form-group form-group-sm">
+                                <input type="text" id="Series{{$index+1}}" class="form-control text-right" ng-class="chitiet.error?'text-red':''" ng-model="chitiet.Series" ng-blur="ctrl.action.changeSeries($index)" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="Series{{$index+1}}" data-next="Series{{$index+2}}" />
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <div class="form-control">
+                                    <span ng-bind="chitiet.MaHangHoa">Hàng hóa</span>
+                                </div>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <span class="form-control auto-height" ng-bind="chitiet.TenHangHoa"></span>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <span class="form-control text-right" ng-bind="chitiet.DonViTinh"></span>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <span class="form-control text-right" ng-bind="chitiet.DonGia"></span>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <input type="text" min="0" maxlength="3" class="form-control" id="txtBaoHanh" ng-model="chitiet.ThoiGianBaoHanh" number-format>
+                            </td>
+                        </tr>
+
+
+                    </tbody>
+
+                </table>
+
+            </div>
+            <div class="panel-footer">
+                <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                    <button class="btn btn-sm btn-primary" ng-click="ctrl.action.LuuSerial()">Lưu</button>&nbsp;&nbsp;&nbsp;
+                </span>
+
+                <button class="btn btn-sm btn-default" data-toggle="collapse" data-target="#SerialHangHoaPop">Đóng</button>
+            </div>
+        </div>
+        @*Series popup*@
     </div>
     <!-- popup danh sách khách hàng -->
     <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="KhachHangListCtrl as ctrl" id="{{mainCtrl.controllerId.KhachHangListPopup}}" ng-init="ctrl.onInitView({controllerId:'KhachHangListPopup'})">
@@ -386,7 +460,7 @@
         </div>
     </div><!-- /popup danh sách khách hàng -->
     <!-- popup danh sách hàng hóa -->
-    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="KhoHangHoaListPopCtrl as ctrl" id="{{mainCtrl.controllerId.KhoHangHoaListPopup}}" ng-init="ctrl.onInitView({controllerId:'KhoHangHoaListPopup',loai:'1'})">
+    <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="KhoHangHoaListPopCtrl as ctrl" id="{{mainCtrl.controllerId.KhoHangHoaListPopup}}" ng-init="ctrl.onInitView({controllerId:'KhoHangHoaListPopup',loai:'1',leftjoinHH:'0'})">
         <div class="panel-heading ui-draggable-handle">
             <div class="panel-title">
                 <span>Danh sách hàng hóa</span>
@@ -418,7 +492,7 @@
                         <th class="text-center" st-sort="DonGiaNhap">Giá mua</th>
                         @*<th class="text-center" st-sort="DonGiaXuat">Giá bán</th>*@
                         @*<th class="text-center" st-sort="TonKho">Tồn kho</th>*@
-                        <th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-bind="::cot.TenKho"></th>
+                        <th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:ctrl.action.KhoFilter" ng-bind="::cot.TenKho"></th>
 
                     </tr>
                 </thead>
@@ -431,11 +505,12 @@
                         <td style="text-align:right"><span ng-bind="tonkho.DonGiaNhap"></span></td>
                         @*<td style="text-align:right"><span ng-bind="tonkho.DonGiaXuat"></span></td>*@
                         @*<td style="text-align:right"><span ng-bind="tonkho.TonKho"></span></td>*@
-                        <td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
+                        @*<td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
+                            <span ng-switch-default ng-bind="::tonkho[cot.MaKho]"></span>
+                        </td> *@
+                        <td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:ctrl.action.KhoFilter" ng-switch="cot.TenKho">
                             <span ng-switch-default ng-bind="::tonkho[cot.MaKho]"></span>
                         </td>
-
-
                     </tr>
                 </tbody>
                 <tfoot>
@@ -453,6 +528,9 @@
             <button class="btn btn-sm btn-default" data-toggle="collapse" data-target="#{{mainCtrl.controllerId.KhoHangHoaListPopup}}">Đóng</button>
         </div>
     </div><!-- /popup danh sách hàng hóa -->
+    
+    
+    
     <div class="modal fade bs-example-modal-full" id="reportmodal" data-backdrop="static" data-keyboard="false">
         <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
             <div class="modal-content">

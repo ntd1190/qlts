@@ -48,6 +48,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib, Version=1.0.0.16, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Users\THUCTAP_PC\Desktop\BarcodeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="BusinessRefinery.Barcode.Web">
+      <HintPath>..\..\..\..\..\QLDNKHO\bin\BusinessRefinery.Barcode.Web.dll</HintPath>
+    </Reference>
     <Reference Include="CrystalDecisions.CrystalReports.Design, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.CrystalReports.Engine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL" />
     <Reference Include="CrystalDecisions.CrystalReports.TemplateEngine, Version=13.0.2000.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=MSIL">
@@ -61,6 +68,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.ExceptionMessageBox, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=10.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\..\packages\Newtonsoft.Json.10.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -106,6 +114,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BarcodeLib.dll" />
     <Content Include="Content\Site.css" />
     <Content Include="CrystalReport\CrystalImageHandler.aspx" />
     <Content Include="CrystalReport\ReportPage.aspx" />
@@ -144,6 +153,7 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="lib\images\lolo_report.png" />
     <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhEditCtrl.js" />
     <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhListCtrl.js" />
     <Content Include="Scripts\angular\ChiNhanh\controller\ChiNhanhListPopup.js" />
@@ -158,6 +168,10 @@
     <Content Include="Scripts\angular\KhoKiemKe\controller\KhoKiemKeListCtrl.js" />
     <Content Include="Scripts\angular\KhoKiemKe\controller\MainCtrl.js" />
     <Content Include="Scripts\angular\KhoKiemKe\service\KhoKiemKeService.js" />
+    <Content Include="Scripts\angular\KhoPhieuBaoHanhThongKe\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuBaoHanhThongKe\controller\PhieuBaoHanhThongKeFilter.js" />
+    <Content Include="Scripts\angular\KhoPhieuBaoHanhThongKe\controller\PhieuBaoHanhThongKeListCtrl.js" />
+    <Content Include="Scripts\angular\KhoPhieuBaoHanhThongKe\service\PhieuBaoHanhThongKeService.js" />
     <Content Include="Scripts\angular\KhoPhieuBaoHanh\controller\MainEditCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuBaoHanh\controller\MainCtrl.js" />
     <Content Include="Scripts\angular\KhoPhieuBaoHanh\controller\PhieuBaoHanhChiTietEditCtrl.js" />
@@ -413,6 +427,7 @@
     <Compile Include="Controllers\KhoDuyetPhieuController.cs" />
     <Compile Include="Controllers\KhoImportExcelDauKyController.cs" />
     <Compile Include="Controllers\KhoKiemKeController.cs" />
+    <Compile Include="Controllers\KhoPhieuBaoHanhThongKeController.cs" />
     <Compile Include="Controllers\KhoPhieuChuyenController.cs" />
     <Compile Include="Controllers\KhoPhieuXuatController.cs" />
     <Compile Include="Controllers\KhoTongHopXuatNhapTonController.cs" />
@@ -450,6 +465,42 @@
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptInMaVach2.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptInMaVach2.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKhoCongNoNCC.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKhoCongNoNCC.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKhoCongNoNCCChiTiet.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKhoCongNoNCCChiTiet.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKhoSoDuTonKho.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKhoSoDuTonKho.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKhoXuatNhapTon.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKhoXuatNhapTon.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptKiemKe.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptKiemKe.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptPhieuChi1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -468,6 +519,12 @@
       <SubType>Component</SubType>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="CrystalReport\Report\rptPhieuNhapSeries.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPhieuNhapSeries.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="CrystalReport\Report\rptPhieuThu1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -478,6 +535,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptPhieuXuat.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptPhieuXuatSeries.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptPhieuXuatSeries.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Global.asax.cs">
@@ -536,6 +599,7 @@
     <Content Include="Views\KhoTonKho\List.cshtml" />
     <Content Include="Views\KhoTonKho\Edit.cshtml" />
     <Content Include="Views\KhoXuatNhapTon\List.cshtml" />
+    <Content Include="Views\KhoPhieuBaoHanhThongKe\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -597,6 +661,30 @@
     <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptInMaVach2.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptInMaVach2.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKhoCongNoNCC.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKhoCongNoNCC.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKhoCongNoNCCChiTiet.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKhoCongNoNCCChiTiet.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKhoSoDuTonKho.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKhoSoDuTonKho.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKhoXuatNhapTon.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKhoXuatNhapTon.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptKiemKe.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptKiemKe.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptPhieuChi.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPhieuChi1.cs</LastGenOutput>
@@ -609,6 +697,10 @@
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPhieuChuyen.cs</LastGenOutput>
     </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptPhieuNhapSeries.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPhieuNhapSeries.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptPhieuThu.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPhieuThu1.cs</LastGenOutput>
@@ -616,6 +708,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptPhieuXuat.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptPhieuXuat.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptPhieuXuatSeries.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptPhieuXuatSeries.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

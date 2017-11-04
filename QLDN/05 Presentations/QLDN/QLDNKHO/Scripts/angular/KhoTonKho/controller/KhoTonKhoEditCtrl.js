@@ -118,7 +118,7 @@
                     
                 }
 
-                if (vm.data.listQuyenTacVu.indexOf("L") > 0) {
+                if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
                     vm.data.showButtonSave = true;
                     if (vm.data.MaTrangThai == 'TonKho_KN')
                         vm.data.showButtonSaveAs = true;
@@ -137,7 +137,7 @@
 
             if (vm.status.isLoading) { return; }
 
-            if (vm.data.listQuyenTacVu.indexOf("L") <= 0) {
+            if (vm.data.listQuyenTacVu.indexOf("M") <= 0) {
                 alert('Bạn không có quyền lưu');
                 return;
             }

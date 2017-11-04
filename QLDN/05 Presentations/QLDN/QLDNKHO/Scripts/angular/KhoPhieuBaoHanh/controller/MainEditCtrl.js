@@ -29,6 +29,8 @@
             TrangThaiThietBiListPopup: 'TrangThaiThietBiListPopup',
             ThietBiListPopup: 'ThietBiListPopup',
             ThietBiThayTheListPopup: 'ThietBiThayTheListPopup',
+
+            KhoHangHoaListPopup: 'KhoHangHoaListPopup',
         }
 
         //HOT-KEY
@@ -100,6 +102,7 @@
             if (config && config.linkUrl) {
                 linkUrl = config.linkUrl;
             }
+            
         }
 
         activate();
@@ -141,6 +144,8 @@
             return listQuyenTacVu.indexOf(quyen) >= 0;
         }
 
+
+
         /*** EMIT / BROADCAST / ON / EVENT FUNCTION ***/
 
         function PhieuBaoHanhEditEvent() {
@@ -159,7 +164,7 @@
                 $('#' + vm.ctrl.phieuBaoHanhChiTietEdit).collapse('show');
             });
             $scope.$on(vm.ctrl.phieuBaoHanhEdit + '.action.getKhachHang', function (event, data) {
-                console.log(vm.ctrl.phieuBaoHanhEdit + '.action.getKhachHang');
+                console.log('hoivp: ');
                 console.log(data);
                 $scope.$broadcast(vm.ctrl.ThongTinDienThoaiCtrl + '.action.getFilter', data);
                 //$('#' + vm.ctrl.ThongTinDienThoaiCtrl).collapse('show');
@@ -218,6 +223,9 @@
                 $scope.$broadcast(vm.ctrl.phieuBaoHanhChiTietEdit + '.data.listThietBi', _data);
             });
         }
+
+
+
         function ThietBiThayTheListPopupEvent() {
             $scope.$on(vm.ctrl.ThietBiThayTheListPopup + '.action.ap-dung', function (event, data) {
                 console.log(data);
@@ -303,7 +311,7 @@
         vm.action.apDung = function () {
             if (vm.status.isLoading) { return; }
             var data = {};
-            data.listKhachHang = utility.clone(getListSelected());
+            data.listKhachHang = utility.clone(getListSelected(vm.data.listKhachHang));
             emitApdung(data)
         }
         vm.action.selectedItem = function (item) {
@@ -316,7 +324,9 @@
         /*** BIZ FUNCTION ***/
 
         function getFilter(filter) {
+            debugger
             vm.filter.DienThoai = filter.DienThoai;
+            vm.filter.LoaiBaoHanh = filter.LoaiBaoHanh;
         }
         function getListSelected(list) {
             var _listSelected = [];
@@ -336,6 +346,7 @@
 
             var data = {
                 DienThoai: vm.filter.DienThoai,
+                LoaiBaoHanh: vm.filter.LoaiBaoHanh,
                 loginId: userInfo.NhanVienId
             }
             ThongTinDienThoaiService.getThongTinByDienThoai(data).then(function (success) {

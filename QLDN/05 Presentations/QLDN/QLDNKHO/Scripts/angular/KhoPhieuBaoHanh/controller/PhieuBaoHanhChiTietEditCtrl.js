@@ -30,6 +30,7 @@
         vm.data.chiTiet = {
             ChiPhi: 0,
             ThueVAT: 0,
+            TienThue:0
         };
 
         vm.error = {};
@@ -100,7 +101,7 @@
             vm.data.chiTiet.TrangThaiThietBi = '';
             vm.data.chiTiet.TenTrangThaiThietBi = '';
         }
-        vm.action.getThietBi = function () {
+        vm.action.getThietBi = function () { debugger
             $scope.$emit(vm.controllerId + '.action.getThietBi', '');
         }
         vm.action.clearThietBi = function () {
@@ -122,8 +123,24 @@
             }, 100);
         }
 
-        /*** EMIT / BROADCAST / ON EVENT FUNCTION ***/
+        /*
+            Tính tiền thuế,
+        */
+        $scope.$watchGroup([
+            'ctrl.data.chiTiet.ThueVAT',
+            'ctrl.data.chiTiet.ChiPhi'
+            ], function () {
+                debugger
+                var thueVAT = vm.data.chiTiet.ThueVAT == undefined ? 0 : vm.data.chiTiet.ThueVAT;
+                var chiPhi = vm.data.chiTiet.ChiPhi == undefined ? 0 : vm.data.chiTiet.ChiPhi;
+                var tienThue = (thueVAT * chiPhi) == 0 ? 0 : (thueVAT * chiPhi / 100);                
+                vm.data.chiTiet.TienThue = tienThue ;                
+        });
 
+
+
+        /*** EMIT / BROADCAST / ON EVENT FUNCTION ***/
+    
         function initEventListener() {
             $scope.$on(vm.controllerId + '.action.edit', function (e, v) {
                 console.log(v);
@@ -225,6 +242,7 @@
                     has_error = true;
                 }
             }
+            /*
             name = 'MoTa';
             if (!inputName || inputName === name) {
                 vm.error[name] = '';
@@ -242,7 +260,7 @@
                     vm.error[name] = '.';
                     has_error = true;
                 }
-            }
+            }*/
             name = 'TrangThaiThietBi';
             if (!inputName || inputName === name) {
                 vm.error[name] = '';

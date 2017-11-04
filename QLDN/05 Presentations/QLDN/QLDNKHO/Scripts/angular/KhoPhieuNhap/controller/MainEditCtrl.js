@@ -50,6 +50,7 @@
             KhoTaiKhoanCoListPopupEvent();
             ThuKhoListPopupEvent();
             NguoiNhanHangListPopupEvent();
+            getKhoNhapIdPopup();
         }
 
 
@@ -84,8 +85,9 @@
             //press F2 -> open popup
             F2: function (name, code) {
                 //alert("F2");
-            $('#' + vm.controllerId.KhoHangHoaListPopup).collapse('show');
-            $('#' + vm.controllerId.KhoHangHoaListPopup + ' input[autofocus]').focus();
+            //$('#' + vm.controllerId.KhoHangHoaListPopup).collapse('show');
+            //$('#' + vm.controllerId.KhoHangHoaListPopup + ' input[autofocus]').focus();
+            $scope.$broadcast(vm.controllerId.KhoPhieuNhapEdit + '.action.F2');
             },
 
             //press F3 -> run Quick search
@@ -104,7 +106,14 @@
         vm.action = {};
 
         /*** BROADCAST / EMIT / ON FUNCTION ***/
-
+        function getKhoNhapIdPopup() {
+            $scope.$on(vm.controllerId.KhoPhieuNhapEdit + '.data.khonhapidPop', function (event, data) {
+                console.log("asdaaaaaaaaaaaaaaaaaaaaaaaasdasd");
+                vm.data.khoNhap = data;
+                $scope.$broadcast(vm.controllerId.KhoHangHoaListPopup + '.data.getKhoXuat', data);
+                $('#' + vm.controllerId.KhoHangHoaListPopup).collapse('show');
+            });
+        }
         function KhoPhieuNhapEditEvent() {
         }
 

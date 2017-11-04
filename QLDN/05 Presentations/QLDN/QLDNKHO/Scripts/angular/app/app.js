@@ -7,8 +7,14 @@
          // Custom modules 
          // 3rd Party Modules
         'smart-table',
+        'ngSanitize',
+        // Custom modules 
+        // 3rd Party Modules        
+        //'ngStorage',
+
         ])
         .value('API_BASE', 'http://localhost/qldnapi/')
+        //.value('API_BASE', 'http://hr.ehis.vn/QLDNAPI/')
         .value('SETTING', {
             DEBUG: true,
             HOME_URL: 'http://localhost/QLDNKHO/'

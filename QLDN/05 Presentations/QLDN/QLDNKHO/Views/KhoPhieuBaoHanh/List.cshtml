@@ -53,25 +53,23 @@
                             <input class="form-control" type="text" ng-model="ctrl.data.ThongTinKhachHang" />
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm">
-                        <label class="control-label col-sm-2">Sản phẩm</label>
+                    
+                    <div class="row form-group form-group-sm" >
+                        <label class="control-label col-sm-2">Bảo hành với</label>
                         <div class="col-sm-10">
-                            <div class="checkbox">
+                            <div class="checkbox">             
                                 <label>
-                                    <input type="checkbox" ng-model="ctrl.data.SanPhamCty" ng-true-value="''" />
-                                    <span>Tất cả</span>
+                                    <input type="radio" ng-model="ctrl.data.LoaiBaoHanh" value="Y" />
+                                    <span>Khách hàng</span>
                                 </label>
                                 <label>
-                                    <input type="checkbox" ng-model="ctrl.data.SanPhamCty" ng-true-value="'Y'" />
-                                    <span>Cty</span>
-                                </label>
-                                <label>
-                                    <input type="checkbox" ng-model="ctrl.data.SanPhamCty" ng-true-value="'N'" />
-                                    <span>Ngoài cty</span>
+                                    <input type="radio" ng-model="ctrl.data.LoaiBaoHanh" value="N" />
+                                    <span>Nhà cung cấp</span>
                                 </label>
                             </div>
                         </div>
                     </div>
+                    
                 </form>
             </div>
             <div class="panel-footer">
@@ -83,7 +81,7 @@
     <!-- panel danh sách -->
     <div class="panel panel-default" ng-controller="PhieuBaoHanhListCtrl as ctrl" ng-init="ctrl.onInitView({controllerId: mainCtrl.ctrl.PhieuBaoHanhList,userInfo:@(ViewBag.UserInfo),linkUrl:'@(Url.Content("~/khophieubaohanh/"))'})">
         <div class="panel-body">
-            <h3 class="text-center no-margin">Danh sách phiếu bảo hành</h3>
+            <h3 class="text-center no-margin" ng-bind="ctrl.data.title"></h3>
         </div>
         <div class="table-responsive">
             <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listPhieuBaoHanh" st-pipe="ctrl.action.getPage">

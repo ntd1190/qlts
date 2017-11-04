@@ -55,7 +55,7 @@
                             for (var k = 0; k < qtacvu.length; k++) {
                                 if (chucnang[j] == qtacvu[k]) check = "checked";
                             }
-                            dschucnang += "<label class='radio-inline'><input  type='checkbox' " + check + " onclick='UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[j] + "' />" + (chucnang[j] == "V" ? "Xem" : chucnang[j] == "N" ? "Mới" : chucnang[j] == "D" ? "Xóa" : chucnang[j] == "M" ? "Sửa" : chucnang[j] == "A" ? "Duyệt" : chucnang[j] == "L" ? "Sổ cái" : chucnang[j]) + "</label>"
+                            dschucnang += "<label class='radio-inline'><input  type='checkbox' " + check + " onclick='UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[j] + "' />" + (chucnang[j] == "V" ? "Xem" : chucnang[j] == "N" ? "Mới" : chucnang[j] == "D" ? "Xóa" : chucnang[j] == "M" ? "Sửa" : chucnang[j] == "A" ? "Mở" : chucnang[j] == "L" ? "Khóa" : chucnang[j]) + "</label>"
                         }
                         tbody += "<td data-Quyen='" + item.DSQuyenTacVu + "' >" + dschucnang + "</td>";
                         tbody += "</tr>";

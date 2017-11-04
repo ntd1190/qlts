@@ -123,7 +123,7 @@
             search: search,
             excel: excel,
             print: print,
-       
+            In:In       
         };
 
         vm.onInitView = onInitView;
@@ -176,7 +176,14 @@
             popupWinindow.document.close();
         };
 
-       
+        function In() {
+            debugger;            
+            var searchString='';         
+            searchString=vm.data.searchString==undefined?'':vm.data.searchString;           
+            $('#reportmodal').find('iframe').attr('src', '../../../QLDNKHO/CrystalReport/ReportPage.aspx?name=rptKhoSoDuTonKho&Data=' + searchString + '&LoginId=' + vm.data.UserLoginId);
+            $('#reportmodal').modal('show');
+        };
+
 
 
         function getPage(tableState) {

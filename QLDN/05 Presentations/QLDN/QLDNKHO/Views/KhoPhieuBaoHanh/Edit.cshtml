@@ -21,92 +21,151 @@
         </div>
         <div class="panel-body">
             <form class="form-horizontal">
-                <h3 class="text-center">Phiếu bảo hành</h3>
+                <h3 class="text-center">Phiếu bảo hành </h3>
+                
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.SeriesNo?'has-error':''">
-                            <label class="control-label col-sm-4">Serial / IMEI</label>
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.LoaiBaoHanh?'has-error':''">
+                            <label class="control-label col-sm-4">Bảo hành với</label>
                             <div class="col-sm-8">
-                                <div class="input-group input-group-sm">
-                                    <input class="form-control" type="text" ng-model="ctrl.data.phieuBaoHanh.SeriesNo" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SeriesNo" data-next="DienThoai" autofocus />
-                                    <a class="btn btn-default input-group-addon" href="javascript:void(0)" ng-click="ctrl.action.getThongTinBySeries()"><i class="fa fa-fw fa-search"></i></a>
+                                <div class="checkbox" >
+                                    <label>
+                                        <input type="radio" ng-disabled="ctrl.isEdit" ng-model="ctrl.data.phieuBaoHanh.LoaiBaoHanh" value="Y" />
+                                        <span>Khách hàng</span>
+                                    </label>
+                                    <label>
+                                        <input type="radio"  ng-disabled="ctrl.isEdit" ng-model="ctrl.data.phieuBaoHanh.LoaiBaoHanh" value="N" />
+                                        <span>Nhà cung cấp</span>
+                                    </label>
                                 </div>
                             </div>
                         </div>
                     </div>
+
+                  
+
+                </div>
+
+                @*-----------------------------------------------------------------------------*@
+
+                <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.DienThoai?'has-error':''">
-                            <label class="control-label col-sm-4">Điện thoại</label>
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.SeriesNo?'has-error':''">
+                            <label class="control-label col-sm-4">Serial / IMEI (*)</label>
                             <div class="col-sm-8">
                                 <div class="input-group input-group-sm">
-                                    <input class="form-control" type="text" ng-model="ctrl.data.phieuBaoHanh.DienThoai" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="DienThoai" data-next="TenKhachHang" />
-                                    <a class="btn btn-default input-group-addon" href="javascript:void(0)" ng-click="ctrl.action.getThongTinByDienThoai()"><i class="fa fa-fw fa-search"></i></a>
+                                    <input class="form-control" type="text"  ng-disabled="ctrl.isEdit" ng-model="ctrl.data.phieuBaoHanh.SeriesNo" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="SeriesNo" data-next="DienThoai" autofocus />
+                                    <a class="btn btn-default input-group-addon" href="javascript:void(0)" ng-if="!ctrl.isEdit" ng-click="ctrl.action.getThongTinBySeries()"><i class="fa fa-fw fa-search"></i></a>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.SeriesNo?'has-error':''">
+                            <label class="control-label col-sm-4">Ngày nhập/xuất</label>
+                            <div class="col-sm-8">
+                                <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.NgayNhapXuat|date:'dd/MM/yyyy'"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="row">
+                <div class="row">                  
+
                     <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.TenKhachHang?'has-error':''">
-                            <label class="control-label col-sm-4">Tên khách hàng</label>
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.DienThoai?'has-error':''">
+                            <label class="control-label col-sm-4">Điện thoại (*)</label>
                             <div class="col-sm-8">
-                                <input class="form-control" type="text" ng-model="ctrl.data.phieuBaoHanh.TenKhachHang" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenKhachHang" data-next="TenThietBi" />
+                                <div class="input-group input-group-sm" >
+                                    <input class="form-control" type="text"  ng-model="ctrl.data.phieuBaoHanh.DienThoai" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="DienThoai" data-next="TenKhachHang" />
+                                    <a class="btn btn-default input-group-addon" href="javascript:void(0)"  ng-if="!ctrl.isEdit" ng-click="ctrl.action.getThongTinByDienThoai()"><i class="fa fa-fw fa-search"></i></a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
-                            <label class="control-label col-sm-4">Phiếu xuất</label>
-                            <div class="col-sm-8">
-                                <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.SoPhieu"></span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.SeriesNo?'has-error':''">
-                            <label class="control-label col-sm-4">Ngày xuất</label>
-                            <div class="col-sm-8">
-                                <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.NgayXuat|date:'dd/MM/yyyy'"></span>
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-sm-6">
                         <div class="form-group form-group-sm" ng-class="ctrl.error.ThoiGianBaoHanh?'has-error':''">
-                            <label class="control-label col-sm-4">Thời gian BH (tháng)</label>
+                            <label class="control-label col-sm-4">Thời gian bảo hành</label>
                             <div class="col-sm-8">
                                 <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.ThoiGianBaoHanh"></span>
                             </div>
                         </div>
                     </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.TenKhachHang?'has-error':''">
+                            <label class="control-label col-sm-4">Tên khách hàng (*)</label>
+                            <div class="col-sm-8">
+                                <input class="form-control" type="text" ng-model="ctrl.data.phieuBaoHanh.TenKhachHang" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenKhachHang" data-next="TenThietBi" />
+                            </div>
+                        </div>
+                    </div>                                  
+
+                    <div class="col-sm-6">
+                        <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayHetHanBaoHanh?'has-error':''">
+                            <label class="control-label col-sm-4">Ngày hết hạn bảo hành</label>
+                            <div class="col-sm-8">                                
+                                <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.NgayHetHanBaoHanh|date:'dd/MM/yyyy'"></span>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="form-group form-group-sm" ng-class="ctrl.error.TenThietBi?'has-error':''">
-                            <label class="control-label col-sm-4">Tên thiết bị</label>
+                            <label class="control-label col-sm-4">Tên thiết bị (*)</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control" ng-model="ctrl.data.phieuBaoHanh.TenThietBi" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBi" data-next="HangSanXuat" />
                             </div>
                         </div>
                     </div>
                     <div class="col-sm-6">
-                        <div class="form-group form-group-sm" ng-class="ctrl.error.HangSanXuat?'has-error':''">
-                            <label class="control-label col-sm-4">Hãng sản xuất</label>
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.ThoiGianBaoHanhConLai?'has-error':''">
+                            <label class="control-label col-sm-4">Thời gian BH còn lại</label>
                             <div class="col-sm-8">
-                                <input type="text" class="form-control" ng-model="ctrl.data.phieuBaoHanh.HangSanXuat" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="HangSanXuat" data-next="TrangThaiTiepNhan" />
+                                <span class="form-control" ng-bind="ctrl.data.phieuBaoHanh.ThoiGianBaoHanhConLai"></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
+
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.HangSanXuat?'has-error':''">
+                            <label class="control-label col-sm-4">Hãng sản xuất (*)</label>
+                            <div class="col-sm-8">
+                                <input type="text" class="form-control" ng-model="ctrl.data.phieuBaoHanh.HangSanXuat" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="HangSanXuat" data-next="TrangThaiTiepNhan" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="form-group form-group-sm" ng-class="ctrl.error.SeriesNo?'has-error':''">
+                            <label class="control-label col-sm-4">Email khách hàng</label>
+                            <div class="col-sm-8">
+                                <div class="input-group input-group-sm">
+                                    <input class="form-control" type="text" placeholder="example@gmail.com" ng-model="ctrl.data.phieuBaoHanh.Email" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="Email" data-next="ChuanDoan" />
+                                    <a class="btn btn-default input-group-addon" href="javascript:void(0)" ng-click="ctrl.action.sendEmail()"><i class="fa fa-fw fa-send"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+             
+
                 <div class="row">
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.TrangThaiTiepNhan?'has-error':''">
-                            <label class="control-label col-sm-4">Trạng thái tiếp nhận</label>
+                            <label class="control-label col-sm-4">Trạng thái tiếp nhận (*)</label>
                             <div class="col-sm-8">
                                 <div class="form-control auto-height">
                                     <a class="pull-right" href="javascript:void(0)"><i class="fa fa-fw fa-remove"></i></a>
@@ -122,13 +181,15 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayHen?'has-error':''">
-                            <label class="control-label col-sm-4">Thời gian hẹn</label>
+                            <label class="control-label col-sm-4">Thời gian hẹn (*)</label>
                             <div class="col-sm-8">
                                 <input type="text" class="form-control datetimepicker date" ng-model="ctrl.data.phieuBaoHanh.NgayHen" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="NgayHen" data-next="SanPhamCty" />
                             </div>
                         </div>
                     </div>
                 </div>
+
+                @*
                 <div class="row form-group form-group-sm" ng-class="ctrl.error.SanPhamCty?'has-error':''">
                     <label class="control-label col-sm-2">Sản phẩm</label>
                     <div class="col-sm-10">
@@ -144,10 +205,13 @@
                         </div>
                     </div>
                 </div>
+                *@
+
+          
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="row form-group form-group-sm" ng-class="ctrl.error.ChuanDoan?'has-error':''">
-                            <label class="control-label col-sm-2">Chuẩn đoán</label>
+                            <label class="control-label col-sm-2">Chẩn đoán</label>
                             <div class="col-sm-10">
                                 <textarea class="form-control" ng-model="ctrl.data.phieuBaoHanh.ChuanDoan"></textarea>
                             </div>
@@ -239,9 +303,10 @@
             <span ng-if="ctrl.action.checkQuyenTacVu('V')">
                 <a class="btn btn-sm btn-default" href="~/khophieubaohanh/list">Quay lại</a>&nbsp;&nbsp;&nbsp;
             </span>
+            @*
             <span ng-if="ctrl.action.checkQuyenTacVu('V')">
-                <a class="btn btn-sm btn-default" href="javascript:void(0);">In</a>&nbsp;&nbsp;&nbsp;
-            </span>
+                <a class="btn btn-sm btn-default" href="javascript:void(0);">In</a>&nbsp;&nbsp;&nbsp; 
+            </span> *@
             <span ng-if="ctrl.action.checkQuyenTacVu('V')">
                 <a class="btn btn-sm btn-default" href="javascript:void(0);" ng-click="ctrl.action.xemLuocSu(ctrl.data.phieuCongTac.PhieuCongTacId)">H</a>&nbsp;&nbsp;&nbsp;
             </span>
@@ -260,15 +325,20 @@
         <div class="panel-body" style="width:600px; height:auto;">
             <form class="form-horizontal">
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.TenThietBi}">
-                    <label class="control-label col-sm-3">Thiết bị</label>
+                    <label class="control-label col-sm-3">Thiết bị (*)</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control" ng-if="ctrl.data.chiTiet.ThietBi?false:true" ng-model="ctrl.data.chiTiet.TenThietBi" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBi" data-next="MoTa" autofocus />
+                    </div>
+                    @*
                     <div class="col-sm-9">
                         <div class="input-group input-group-sm">
-                            <a class="btn input-group-addon" ng-click="ctrl.action.getThietBi()"><i class="fa fa-fw fa-search"></i></a>
+                            <!--<a class="btn input-group-addon" ng-click="ctrl.action.getThietBi()"><i class="fa fa-fw fa-search"></i></a> -->
                             <input type="text" class="form-control" ng-if="ctrl.data.chiTiet.ThietBi?false:true" ng-model="ctrl.data.chiTiet.TenThietBi" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBi" data-next="MoTa" autofocus />
-                            <span class="form-control" ng-if="ctrl.data.chiTiet.ThietBi>0" ng-bind="ctrl.data.chiTiet.TenThietBi"></span>
-                            <a class="btn input-group-addon" ng-click="ctrl.action.clearThietBi()"><i class="fa fa-fw fa-remove"></i></a>
+                            <!--<span class="form-control" ng-if="ctrl.data.chiTiet.ThietBi>0" ng-bind="ctrl.data.chiTiet.TenThietBi"></span> -->
+                            <!--<a class="btn input-group-addon" ng-click="ctrl.action.clearThietBi()"><i class="fa fa-fw fa-remove"></i></a>-->
                         </div>
                     </div>
+                    *@
                 </div>
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.MoTa}">
                     <label class="control-label col-sm-3">Mô tả</label>
@@ -279,13 +349,18 @@
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.TenThietBiThayThe}">
                     <label class="control-label col-sm-3">Thiết bị thay thế</label>
                     <div class="col-sm-9">
-                        <div class="input-group input-group-sm">
-                            <a class="btn input-group-addon" ng-click="ctrl.action.getThietBiThayThe()"><i class="fa fa-fw fa-search"></i></a>
-                            <input type="text" class="form-control" ng-if="ctrl.data.chiTiet.ThietBiThayThe?false:true" ng-model="ctrl.data.chiTiet.TenThietBiThayThe" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBiThayThe" data-next="ChiPhi" />
-                            <span class="form-control" ng-if="ctrl.data.chiTiet.ThietBiThayThe>0" ng-bind="ctrl.data.chiTiet.TenThietBiThayThe"></span>
-                            <a class="btn input-group-addon" ng-click="ctrl.action.clearThietBiThayThe()"><i class="fa fa-fw fa-remove"></i></a>
-                        </div>
+                        <input type="text" class="form-control" ng-if="ctrl.data.chiTiet.ThietBiThayThe?false:true" ng-model="ctrl.data.chiTiet.TenThietBiThayThe" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBiThayThe" data-next="ChiPhi" />
                     </div>
+                    @*
+    <div class="col-sm-9">
+        <div class="input-group input-group-sm">
+            <a class="btn input-group-addon" ng-click="ctrl.action.getThietBiThayThe()"><i class="fa fa-fw fa-search"></i></a>
+            <input type="text" class="form-control" ng-if="ctrl.data.chiTiet.ThietBiThayThe?false:true" ng-model="ctrl.data.chiTiet.TenThietBiThayThe" ng-keypress="ctrl.action.keyPressEnter($event)" data-name="TenThietBiThayThe" data-next="ChiPhi" />
+            <span class="form-control" ng-if="ctrl.data.chiTiet.ThietBiThayThe>0" ng-bind="ctrl.data.chiTiet.TenThietBiThayThe"></span>
+            <a class="btn input-group-addon" ng-click="ctrl.action.clearThietBiThayThe()"><i class="fa fa-fw fa-remove"></i></a>
+        </div>
+    </div>
+                    *@
                 </div>
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.ChiPhi}">
                     <label class="control-label col-sm-3">Chi phí</label>
@@ -294,7 +369,7 @@
                     </div>
                 </div>
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.TrangThaiThietBi}">
-                    <label class="control-label col-sm-3">Trạng thái thiết bị</label>
+                    <label class="control-label col-sm-3">Trạng thái thiết bị (*)</label>
                     <div class="col-sm-9">
                         <div class="form-control auto-height">
                             <a class="pull-right" href="javascript:void(0)" ng-click="ctrl.action.clearTrangThaiThietBi()"><i class="fa fa-fw fa-remove"></i></a>
@@ -316,7 +391,7 @@
                 <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.KhuyenMai}">
                     <label class="control-label col-sm-3">Thuế</label>
                     <div class="col-sm-9">
-                        <input type="text" class="form-control" ng-keypress="ctrl.action.keyPressEnter($event)" number-format />
+                        <input type="text" class="form-control" ng-model="ctrl.data.chiTiet.TienThue" ng-keypress="ctrl.action.keyPressEnter($event)" number-format />
                     </div>
                 </div>
             <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.error.KhuyenMai}">
@@ -365,9 +440,9 @@
                         <th class="text-center" st-sort="MaHangHoa">Mã hàng</th>
                         <th class="text-center" st-sort="TenHangHoa">Tên hàng</th>
                         <th class="text-center" st-sort="DonGiaNhap">Giá mua</th>
-                        <th class="text-center" st-sort="DonGiaXuat">Giá bán</th>
+                        <!--<th class="text-center" st-sort="DonGiaXuat">Giá bán</th>-->
                         <th class="text-center" st-sort="TonKho">Tồn kho</th>
-                        <th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-bind="::cot.TenKho"></th>
+                        <!--<th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-bind="::cot.TenKho"></th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -376,11 +451,12 @@
                         <td><a href="javascript:void(0)" ng-bind="tonkho.MaHangHoa"></a></td>
                         <td><a href="javascript:void(0)" ng-bind="tonkho.TenHangHoa"></a></td>
                         <td style="text-align:right"><span ng-bind="tonkho.DonGiaNhap"></span></td>
-                        <td style="text-align:right"><span ng-bind="tonkho.DonGiaXuat"></span></td>
+                        <!--<td style="text-align:right"><span ng-bind="tonkho.DonGiaXuat"></span></td>-->
                         <td style="text-align:right"><span ng-bind="tonkho.TonKho"></span></td>
-                        <td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
+                        <!--<td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
                             <span ng-switch-default ng-bind="::tonkho[cot.MaKho]"></span>
                         </td>
+                        -->
                     </tr>
                 </tbody>
                 <tfoot>
@@ -398,6 +474,7 @@
             <button class="btn btn-sm btn-default" data-toggle="collapse" data-target="#{{mainCtrl.ctrl.ThietBiListPopup}}">Đóng</button>
         </div>
     </div><!-- /popup danh sách Thiết bị -->
+    
     <!-- popup danh sách Thiết bị thay thế -->
     <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="KhoHangHoaListPopCtrl as ctrl" id="{{mainCtrl.ctrl.ThietBiThayTheListPopup}}" ng-init="ctrl.onInitView({controllerId:mainCtrl.ctrl.ThietBiThayTheListPopup,loai:'1'})">
         <div class="panel-heading ui-draggable-handle">
@@ -429,9 +506,9 @@
                         <th class="text-center" st-sort="MaHangHoa">Mã hàng</th>
                         <th class="text-center" st-sort="TenHangHoa">Tên hàng</th>
                         <th class="text-center" st-sort="DonGiaNhap">Giá mua</th>
-                        <th class="text-center" st-sort="DonGiaXuat">Giá bán</th>
+                        <!--<th class="text-center" st-sort="DonGiaXuat">Giá bán</th>-->
                         <th class="text-center" st-sort="TonKho">Tồn kho</th>
-                        <th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-bind="::cot.TenKho"></th>
+                        <!--<th class="text-center" st-sort="{{cot.MaKho}}" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-bind="::cot.TenKho"></th>-->
                     </tr>
                 </thead>
                 <tbody>
@@ -440,11 +517,11 @@
                         <td><a href="javascript:void(0)" ng-bind="tonkho.MaHangHoa"></a></td>
                         <td><a href="javascript:void(0)" ng-bind="tonkho.TenHangHoa"></a></td>
                         <td style="text-align:right"><span ng-bind="tonkho.DonGiaNhap"></span></td>
-                        <td style="text-align:right"><span ng-bind="tonkho.DonGiaXuat"></span></td>
+                        <!--<td style="text-align:right"><span ng-bind="tonkho.DonGiaXuat"></span></td>-->
                         <td style="text-align:right"><span ng-bind="tonkho.TonKho"></span></td>
-                        <td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
+                        <!--<td style="text-align:right" ng-repeat="cot in ctrl.data.listKhoHang|filter:cot.KhoHangId" ng-switch="cot.TenKho">
                             <span ng-switch-default ng-bind="::tonkho[cot.MaKho]"></span>
-                        </td>
+                        </td> -->
                     </tr>
                 </tbody>
                 <tfoot>
@@ -531,4 +608,5 @@
     <script src="~/Scripts/angular/KhoHangHoa/controller/KhoHangHoaListPopCtrl.js"></script>
     <script src="~/Scripts/angular/KhoHangHoa/service/KhoHangHoaService.js"></script>
     <script src="~/Scripts/angular/TuyChonFormCot/service/TuyChonCotService.js"></script>
+
 }

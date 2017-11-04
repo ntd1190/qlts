@@ -16,10 +16,10 @@ namespace SongAn.QLDN.UI.QLDNKHO.Controllers
             return RedirectToAction("List", "KhoTonKho");
         }
 
-        [CustomAuthorize(FunctionCodes = "KHO0015")]
+        [CustomAuthorize(FunctionCodes = "KHO0022")]
         public ActionResult List()
         {
-            string userLogin = LoadUserInfo("KHO0015");
+            string userLogin = LoadUserInfo("KHO0022");
 
             ViewBag.userInfo = userLogin;
 
@@ -32,7 +32,7 @@ namespace SongAn.QLDN.UI.QLDNKHO.Controllers
             {
                 return RedirectToAction("List");
             }
-            string userLogin = LoadUserInfo("KHO0015");
+            string userLogin = LoadUserInfo("KHO0022");
             ViewBag.userInfo = userLogin;
             ViewBag.id = id;
             return View();

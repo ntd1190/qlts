@@ -41,7 +41,7 @@
         vm.filter = {};
         vm.filter.startDate = moment();
         vm.filter.endDate = moment();
-        vm.filter.SanPhamCty = '';
+        vm.filter.LoaiBaoHanh = 'Y';
 
         /*** INIT FUNCTION ***/
 
@@ -55,6 +55,7 @@
                 vm.controllerId = config.controllerId;
             }
             initEventListener();
+            vm.data.title = 'Danh sách phiếu bảo hành ';
         }
 
         /*** ACTION FUNCTION ***/
@@ -117,11 +118,12 @@
         /* lấy thông tin filter */
         function getFilter(data) {
             console.log(data);
+            
             if (!data) { return; }
             vm.filter.Series = data.Series || '';
             vm.filter.DienThoai = data.DienThoai || '';
             vm.filter.TenKhachHang = data.TenKhachHang || '';
-            vm.filter.SanPhamCty = data.SanPhamCty || '';
+            vm.filter.LoaiBaoHanh = data.LoaiBaoHanh || 'Y';
             vm.filter.startDate = data.startDate || '';
             vm.filter.endDate = data.endDate || '';
         }
@@ -168,6 +170,7 @@
         }
 
         function getPage(tableState) {
+            
             vm.status.isLoading = true;
             vm.status.isSelectedAll = false;
 
@@ -190,12 +193,12 @@
             data.start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.;
             data.length = tableState.pagination.number || 10;  // Number of entries showed per page.;
             data.sortName = tableState.sort.predicate || '';
-            data.sortDir = tableState.sort.reverse ? 'desc' : 'asc';
+            data.sortDir = tableState.sort.reverse ? 'asc' : 'desc';
 
             data.Series = vm.filter.Series;
             data.DienThoai = vm.filter.DienThoai;
             data.ThongTinKhachHang = vm.filter.ThongTinKhachHang;
-            data.SanPhamCty = vm.filter.SanPhamCty;
+            data.LoaiBaoHanh = vm.filter.LoaiBaoHanh;
             data.strStartDate = utility.convertDateFormat(vm.filter.startDate, 'DD/MM/YYYY', 'YYYY-MM-DD');
             data.strEndDate = utility.convertDateFormat(vm.filter.endDate, 'DD/MM/YYYY', 'YYYY-MM-DD');
 
@@ -203,9 +206,10 @@
             data.maForm = maForm;
             data.loginId = userInfo ? userInfo.NhanVienId : 0;
 
-            console.log(vm.status.isLoading);
-            PhieuBaoHanhService.getPage(data).then(function (result) {
-                console.log(result);
+            vm.data.title = 'Danh sách phiếu bảo hành ' + (data.LoaiBaoHanh == 'N' ? 'với nhà cung cấp' : 'với khách hàng');
+            
+
+            PhieuBaoHanhService.getPage(data).then(function (result) {                
                 if (result.data.metaData.draw != tableState.draw) { return; }
 
                 vm.status.isLoading = false;

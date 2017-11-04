@@ -17,6 +17,8 @@
             LuuSoCai: 'LuuSoCai',
             LuuSerial: 'UpdateInsertKhoPhieuSeries',
             GetSeries: 'GetListKhoPhieuSeriesBySoPhieu',
+            GetSeriesAuto: 'GetListAutoKhoPhieuSeriesBySoPhieu',
+            DeleteSeries: 'DeleteSeriesByCriteria',
             GetSoPhieuAuto: API_BASE + 'Api.QLKHO/KhoGetSoPhieuAuto/KhoGetSoPhieuAuto',
             // chi tiết phiếu nhập
             GetListChiTietByPhieuXuatId: 'GetListChiTietByPhieuXuatId',
@@ -115,6 +117,26 @@
             },
             GetSeries: function (data) {
                 var url = api.url + api.GetSeries;
+                var req = {
+                    url: url,
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                    data: $.param(data)
+                }
+                return $http(req);
+            },
+            GetSeriesAuto: function (data) {
+                var url = api.url + api.GetSeriesAuto;
+                var req = {
+                    url: url,
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                    data: $.param(data)
+                }
+                return $http(req);
+            },
+            DeleteSeries: function (data) {
+                var url = api.url + api.DeleteSeries;
                 var req = {
                     url: url,
                     method: 'POST',

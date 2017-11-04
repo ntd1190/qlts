@@ -138,7 +138,7 @@
             return $http(req);
         };
 
-        function getList (draw, start, length, searchString, sortName, sortDir, fields,LoginId,loai,khoId) {
+        function getList (draw, start, length, searchString, sortName, sortDir, fields,LoginId,loai,khoId,leftjoinHH) {
             var url = api.url + api.GetListBySearchString;
 
             var req = {
@@ -155,7 +155,8 @@
                     fields: fields,
                     LoginId: LoginId,
                     loai: loai,
-                    khoId: khoId
+                    khoId: khoId,
+                    leftjoinHH: leftjoinHH
                 })
             }
 

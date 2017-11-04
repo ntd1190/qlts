@@ -167,7 +167,7 @@
 
             for (var i = 0; i < vm.data.listPhieuXuat.length; i++) {
                 if (vm.data.listPhieuXuat[i].isSelected && vm.data.listPhieuXuat[i].MaTrangThai === "KPX_LSC") {
-                    alert("Phiếu đã Lưu sổ cái, bạn không thể Xóa hay Sửa");
+                    alert("Phiếu đã khóa, bạn không thể Xóa hay Sửa");
                     return;
                 }
 
@@ -199,7 +199,11 @@
             }, function (result) {
                 console.log(result);
                 vm.status.isLoading = false;
-                alert('Không thể xóa!')
+                if (result.status === 400) {
+                    alert(result.data.error.message);
+                } else {
+                    alert('Không thể xóa phiếu xuât.');
+                }
             });
         }
 

@@ -99,8 +99,8 @@
         vm.controllerId = {
             KhoXuatNhapTonFilter: 'KhoXuatNhapTonFilterCtrl',
             KhoXuatNhapTonList: 'KhoXuatNhapTonListCtrl',
-            KhoKhoHangListPopup: 'KhoKhoHangListPopup'
-
+            KhoKhoHangListPopup: 'KhoKhoHangListPopup',
+            KhoNhomHangHoaListPopup:'KhoNhomHangHoaListPopup'
         }
 
         vm.onInitView = function (config) {
@@ -109,6 +109,7 @@
                 //console.log("Main CTRL" + config.userInfo);
             }
             KhoKhoHangListPopupEvent();
+            KhoNhomHangHoaListPopupEvent();
         }
 
         activate();
@@ -125,6 +126,15 @@
             });
         }
 
+
+        function KhoNhomHangHoaListPopupEvent() {
+            $scope.$on(vm.controllerId.KhoNhomHangHoaListPopup + '.action.ap-dung', function (e, v) {
+                console.log(v);
+                $scope.$broadcast(vm.controllerId.KhoXuatNhapTonFilter + '.data.listNhomHangHoa', v);
+                $('#' + vm.controllerId.KhoNhomHangHoaListPopup).collapse('hide');
+            });
+
+        }
         function catchKyFilterEvent() {
             $scope.$on(vm.controllerId.KhoXuatNhapTonFilter + '.action.filters', function (event, data) {
                 $rootScope.$broadcast(vm.controllerId.KhoXuatNhapTonList + '.action.get-filters', data);

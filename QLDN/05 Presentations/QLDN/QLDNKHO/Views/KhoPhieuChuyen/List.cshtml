@@ -74,7 +74,8 @@
             <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrl.data.listPhieuChuyen" st-pipe="ctrl.action.getPage">
                 <thead class="bg-default text-primary">
                     <tr>
-                        <th class="text-center" ng-click="ctrl.action.checkAll()" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
+                        <!--<th class="text-center" ng-click="ctrl.action.checkAll()" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>-->
+                        <th class="text-center" style="width:40px;"><i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i></th>
                         <th class="text-center" st-sort="{{cot.MaCot}}" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-bind="::cot.TenCot"></th>
                     </tr>
                 </thead>
@@ -83,7 +84,8 @@
                         <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
                     </tr>
                     <tr ng-repeat="phieu in ctrl.data.listPhieuChuyen" ng-class="(phieu.isSelected==true)?'info':''">
-                        <td class="text-primary text-center" st-select-row="phieu" st-select-mode="multiple"><i class="fa fa-fw" ng-class="phieu.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td class="text-primary text-center" st-select-row="phieu" ><i class="fa fa-fw" ng-class="phieu.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <!--<td class="text-primary text-center" st-select-row="phieu" st-select-mode="multiple"><i class="fa fa-fw" ng-class="phieu.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>-->
                         <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN=true" ng-switch="cot.MaCot">
                             <a href="~/khophieuchuyen/edit/{{phieu.PhieuChuyenId}}" ng-switch-when="SoPhieu" ng-bind="::phieu[cot.MaCot]"></a>
                             <a href="~/khophieuchuyen/edit/{{phieu.PhieuChuyenId}}" ng-switch-when="NoiDung" ng-bind="::phieu[cot.MaCot]"></a>
