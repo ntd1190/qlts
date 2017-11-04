@@ -66,6 +66,7 @@
     <Compile Include="CrystalReport\ReportCongKhaiChoThueTSNNBieu05Biz.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiKeHoachMuaSamTSNNBieu01Biz.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiKetQuaMuaSamTSNNBieu02Biz.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiKhacBieu04Biz.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiTinhHinhXuLyTSBieu06Biz.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonBiz.cs" />

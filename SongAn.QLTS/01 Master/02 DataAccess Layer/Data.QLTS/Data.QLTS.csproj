@@ -80,6 +80,7 @@
     <Compile Include="CrystalReport\ReportCongKhaiChoThueTSNNBieu05Dac.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiKeHoachMuaSamTSNNBieu01Dac.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiKetQuaMuaSamTSNNBieu02Dac.cs" />
+    <Compile Include="CrystalReport\ReportCongKhaiKhacBieu04Dac.cs" />
     <Compile Include="CrystalReport\ReportCongKhaiTinhHinhXuLyTSBieu06Dac.cs" />
     <Compile Include="CrystalReport\ReportKhoPhieuXuatByIdDac.cs" />
     <Compile Include="CrystalReport\ReportNhapXuatTonDac.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="TraCuuTaiSan\GetListMenuCoSoByNhanVienIdDac.cs" />
     <Content Include="CoSo\Procedures\sp_CoSo_GetListCoSoTrucThuocById.sql" />
     <Content Include="CoSo\Procedures\sp_CoSo_cbxGetListCoSoByCriteria.sql" />
+    <Content Include="CrystalReport\Procedures\sp_CongKhai_report_KhacBieu04.sql" />
     <Content Include="CrystalReport\Procedures\sp_KhoPhieuXuat_report_KhoPhieuXuatById.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_500_TSNN.sql" />
     <Content Include="CrystalReport\Procedures\sp_TaiSan_report_KeKhai500.sql" />
