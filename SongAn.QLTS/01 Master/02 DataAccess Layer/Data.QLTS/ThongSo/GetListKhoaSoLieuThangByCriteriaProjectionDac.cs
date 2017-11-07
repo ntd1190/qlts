@@ -2,29 +2,19 @@
 using Dapper.FastCrud;
 using SongAn.QLTS.Util.Common.Dto;
 using SongAn.QLTS.Util.Common.Repository;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLTS.Data.QLTS.TheoDoi
+namespace SongAn.QLTS.Data.QLTS.ThongSo
 {
-    public class InsertTheoDoiDac : BaseRepositoryAsync
+    public class GetListKhoaSoLieuThangByCriteriaProjectionDac : BaseRepositoryAsync
     {
         #region public properties
 
-        public int TaiSanId { get; set; }
-        public DateTime NgayTrangCap { get; set; }
-        public DateTime NgayGhiTang { get; set; }
-        public DateTime NgayBatDauSuDung { get; set; }
-        public int PhongBanId { get; set; }
-        public int NhanVienId { get; set; }
-        public decimal SLTon { get; set; }
-        public decimal SLTang { get; set; }
-        public decimal SLGiam { get; set; }
-        public int HopDongId { get; set; }
+
+        public string NhanVienId { get; set; }
         public string CoSoId { get; set; }
-        public string NguoiTao { get; set; }
 
         #endregion
 
@@ -39,7 +29,7 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public InsertTheoDoiDac(ContextDto context) : base(context.dbQLTSConnection)
+        public GetListKhoaSoLieuThangByCriteriaProjectionDac(ContextDto context) : base(context.dbQLTSConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
@@ -80,23 +70,10 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
 
             return await WithConnection(async c =>
             {
-
-                var p = new DynamicParameters();
-                p.Add("TaiSanId", TaiSanId, DbType.Int32);
-                p.Add("NgayGhiTang", NgayGhiTang, DbType.DateTime);
-                p.Add("NgayTrangCap", NgayTrangCap, DbType.DateTime);
-                p.Add("NgayBatDauSuDung", NgayBatDauSuDung, DbType.DateTime);
-                p.Add("PhongBanId", PhongBanId, DbType.Int32);
-                p.Add("NhanVienId", NhanVienId, DbType.Int32);
-                p.Add("SLTon", SLTon, DbType.Decimal);
-                p.Add("SLTang", SLTang, DbType.Decimal);
-                p.Add("SLGiam", SLGiam, DbType.Decimal);
-                p.Add("HopDongId", HopDongId, DbType.Int32);
-                p.Add("CoSoId", CoSoId, DbType.String);
-                p.Add("NguoiTao", NguoiTao, DbType.String);
+                var p = new DynamicParameters(this);
 
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_TheoDoi_InsertTheoDoi",
+                    sql: "sp_KhoaSoLieuThang_GetListKhoaSoLieuThang",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 

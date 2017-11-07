@@ -16,9 +16,14 @@ namespace SongAn.QLTS.Api.QLTS.Models.ThongSo
     public class UpdateThongSoAction
     {
         public string CauHinhHeThong { get; set; }
+        public string KhoaSoLieu { get; set; }
+        public string KhoaSoLieuThang { get; set; }
         public int NhanVienId { get; set; }
+        public int CoSoId { get; set; }
         #region private
         private List<ThongSoEntity>  _ThongSo;
+        private List<KhoaSoLieuEntity> _KhoaSoLieu;
+        private List<KhoaSoLieuThangEntity> _KhoaSoLieuThang;
         #endregion
 
         public async Task<ActionResultDto> Execute(ContextDto context)
@@ -34,6 +39,24 @@ namespace SongAn.QLTS.Api.QLTS.Models.ThongSo
                     biz.Ten = item.Ten;
                     biz.TaiSan = item.TaiSan;
                     biz.NhanVienId = NhanVienId;
+                    await biz.Execute();
+                }
+                foreach (var item in _KhoaSoLieu)
+                {
+                    UpdateInsertKhoaSoLieuBiz biz = new UpdateInsertKhoaSoLieuBiz(context);
+                    biz.KhoaSoLieuId = item.KhoaSoLieuId;
+                    biz.Nam = item.Nam;
+                    biz.TrangThai = item.TrangThai;
+                    biz.CoSoId = item.CoSoId;
+                    await biz.Execute();
+                }
+                foreach (var item in _KhoaSoLieuThang)
+                {
+                    UpdateInsertKhoaSoLieuThangBiz biz = new UpdateInsertKhoaSoLieuThangBiz(context);
+                    biz.KhoaSoLieuThangId = item.KhoaSoLieuThangId;
+                    biz.ThangNam = item.ThangNam;
+                    biz.TrangThai = item.TrangThai;
+                    biz.CoSoId = item.CoSoId;
                     await biz.Execute();
                 }
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
@@ -54,7 +77,16 @@ namespace SongAn.QLTS.Api.QLTS.Models.ThongSo
             var __CauHinhHeThong = JsonConvert.DeserializeObject<dynamic>(CauHinhHeThong);
             CauHinhHeThong = JsonConvert.SerializeObject(__CauHinhHeThong);
             _ThongSo = JsonConvert.DeserializeObject<List<ThongSoEntity>>(CauHinhHeThong);
-            
+
+
+            var __KhoaSoLieu = JsonConvert.DeserializeObject<dynamic>(KhoaSoLieu);
+            KhoaSoLieu = JsonConvert.SerializeObject(__KhoaSoLieu);
+            _KhoaSoLieu = JsonConvert.DeserializeObject<List<KhoaSoLieuEntity>>(KhoaSoLieu);
+
+            var __KhoaSoLieuThang = JsonConvert.DeserializeObject<dynamic>(KhoaSoLieuThang);
+            KhoaSoLieuThang = JsonConvert.SerializeObject(__KhoaSoLieuThang);
+            _KhoaSoLieuThang = JsonConvert.DeserializeObject<List<KhoaSoLieuThangEntity>>(KhoaSoLieuThang);
+
         }
         public class ThongSoEntity
         {
@@ -62,9 +94,26 @@ namespace SongAn.QLTS.Api.QLTS.Models.ThongSo
             public virtual string Loai { get; set; }
             public virtual string Ten { get; set; }
             public virtual string TaiSan { get; set; }
+            
+        }
+        public class KhoaSoLieuEntity
+        {
+            public virtual int KhoaSoLieuId { get; set; }
+            public virtual string Nam { get; set; }
+            public virtual string TrangThai { get; set; }
+            public virtual string CoSoId { get; set; }
 
         }
-       
+
+        public class KhoaSoLieuThangEntity
+        {
+            public virtual int KhoaSoLieuThangId { get; set; }
+            public virtual string ThangNam { get; set; }
+            public virtual string TrangThai { get; set; }
+            public virtual string CoSoId { get; set; }
+
+        }
+
 
         #region helpers
         private ActionResultDto returnActionError(HttpStatusCode code, string message)

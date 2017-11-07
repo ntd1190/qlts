@@ -22,6 +22,18 @@ namespace SongAn.QLTS.Api.QLTS.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         [HttpPost]
+        public async Task<IHttpActionResult> GetListKhoaSoLieuByProjection([FromBody]GetListKhoaSoLieuByProjectionAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListKhoaSoLieuThangByProjection([FromBody]GetListKhoaSoLieuThangByProjectionAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
         public async Task<IHttpActionResult> UpdateThongSo([FromBody]UpdateThongSoAction action)
         {
             ActionResultDto result = await action.Execute(context);

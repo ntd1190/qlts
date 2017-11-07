@@ -24,6 +24,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
         public decimal SLTang { get; set; }
         public decimal SLGiam { get; set; }
         public string HopDongId { get; set; }
+        public string CoSoId { get; set; }
+        public string NguoiTao { get; set; }
 
         #region private
 
@@ -47,6 +49,8 @@ namespace SongAn.QLTS.Api.QLTS.Models.TheoDoi
                 biz.SLTang = 0;
                 biz.SLGiam = 0;
                 biz.HopDongId = Protector.Int(HopDongId);
+                biz.CoSoId = Protector.String(CoSoId);
+                biz.NguoiTao = Protector.String(NguoiTao);
                 var result = await biz.Execute();
 
                 dynamic _metaData = new System.Dynamic.ExpandoObject();

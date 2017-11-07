@@ -100,6 +100,8 @@
     <Compile Include="DanhGia\InsertDanhGiaBiz.cs" />
     <Compile Include="DanhGia\GetListDanhGiaByCriteriaBiz.cs" />
     <Compile Include="DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdBiz.cs" />
+    <Compile Include="Home\GetListThongBaoBiz.cs" />
+    <Compile Include="Home\ThongKeTaiSanBiz.cs" />
     <Compile Include="KhoaSoLieu\CheckKhoaSoLieuBiz.cs" />
     <Compile Include="KhoTonKho\GetListTonKhoByCriteriaBiz.cs" />
     <Compile Include="LoaiXe\GetListcbxLoaiXeByCriteriaBiz.cs" />
@@ -119,6 +121,10 @@
     <Compile Include="NhanVien\DeleteNhanVienByIdBiz.cs" />
     <Compile Include="NhanVien\InsertNhanVienBiz.cs" />
     <Compile Include="NhanVien\UpdateNhanVienByIdBiz.cs" />
+    <Compile Include="ThongSo\GetListKhoaSoLieuByCriteriaBiz.cs" />
+    <Compile Include="ThongSo\GetListKhoaSoLieuThangByCriteriaBiz.cs" />
+    <Compile Include="ThongSo\UpdateInsertKhoaSoLieuBiz.cs" />
+    <Compile Include="ThongSo\UpdateInsertKhoaSoLieuThangBiz.cs" />
     <Compile Include="ThongSo\UpdateInsertThongSoBiz.cs" />
     <Compile Include="ThongSo\GetListThongSoByCriteriaBiz.cs" />
     <Compile Include="KhoTonKho\CheckKhoTonKhoBiz.cs" />

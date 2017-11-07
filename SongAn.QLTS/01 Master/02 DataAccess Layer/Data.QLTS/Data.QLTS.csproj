@@ -97,6 +97,8 @@
     <Compile Include="CrystalReport\ReportTongHopGhiTangDac.cs" />
     <Compile Include="CrystalReport\ReportTongHopSoTSCDBieuS21Dac.cs" />
     <Compile Include="CrystalReport\ReportTongHopTangGiamTSCDDac.cs" />
+    <Compile Include="Home\GetListThongBaoDac.cs" />
+    <Compile Include="Home\ThongKeTaiSanDac.cs" />
     <Compile Include="KhoaSoLieu\CheckKhoaSoLieuDac.cs" />
     <Compile Include="KhoTonKho\GetListTonKhoByCriteriaProjectionDac.cs" />
     <Compile Include="LoaiXe\GetListcbxLoaiXeByCriteriaDac.cs" />
@@ -116,6 +118,10 @@
     <Compile Include="NhanVien\DeleteNhanVienByIdDac.cs" />
     <Compile Include="NhanVien\InsertNhanVienDac.cs" />
     <Compile Include="NhanVien\UpdateNhanVienByIdDac.cs" />
+    <Compile Include="ThongSo\GetListKhoaSoLieuByCriteriaProjectionDac.cs" />
+    <Compile Include="ThongSo\GetListKhoaSoLieuThangByCriteriaProjectionDac.cs" />
+    <Compile Include="ThongSo\UpdateInsertKhoaSoLieuDac.cs" />
+    <Compile Include="ThongSo\UpdateInsertKhoaSoLieuThangDac.cs" />
     <Compile Include="ThongSo\UpdateInsertThongSoDac.cs" />
     <Compile Include="ThongSo\GetListThongSoByCriteriaProjectionDac.cs" />
     <Compile Include="KhoTonKho\CheckKhoTonKhoDac.cs" />
@@ -316,6 +322,8 @@
     <Compile Include="TheoDoi\GetListTheoDoiByIdDac.cs" />
     <Compile Include="TheoDoi\InsertTheoDoiDac.cs" />
     <Compile Include="TheoDoi\UpdateTheoDoiByIdDac.cs" />
+    <Content Include="Home\Procedures\sp_Home_GetListThongBao.sql" />
+    <Content Include="Home\Procedures\sp_Home_ThongKeTaiSan.sql" />
     <Content Include="LoaiXe\Procedures\sp_HienTrangSuDung_cbxHienTrangSuDungByCriteria.sql" />
     <Content Include="KeHoachMuaSam\Procedures\sp_KeHoachMuaSam_GetListKeHoachMuaSamByCriteria.sql" />
     <Content Include="KhoPhieuXuatKhac\Procedures\sp_KhoPhieuXuatKhac_DeleteKhoPhieuXuat.sql" />

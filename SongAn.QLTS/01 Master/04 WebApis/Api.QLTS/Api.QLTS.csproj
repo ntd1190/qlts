@@ -68,6 +68,7 @@
     <Compile Include="Controllers\ChotSoLieuThangController.cs" />
     <Compile Include="Controllers\DanhGiaController.cs" />
     <Compile Include="Controllers\KhoaSoLieuController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoaiXeController.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
     <Compile Include="Controllers\KhoPhieuXuatKhacController.cs" />
@@ -127,6 +128,8 @@
     <Compile Include="Models\DanhGia\InsertDanhGiaAction.cs" />
     <Compile Include="Models\DanhGia\GetListDanhGiaByCriteriaAction.cs" />
     <Compile Include="Models\DeNghiTrangCap\GetTongHopDeNghiTrangCapByDeNghiIdAction.cs" />
+    <Compile Include="Models\Home\GetListThongBaoAction.cs" />
+    <Compile Include="Models\Home\ThongKeTaiSanAction.cs" />
     <Compile Include="Models\KhoaSoLieu\CheckKhoaSoLieuAction.cs" />
     <Compile Include="Models\KhoTonKho\GetListTonKhoByProjectionAction.cs" />
     <Compile Include="Models\LoaiXe\GetLoaiXeByIdAction.cs" />
@@ -144,6 +147,8 @@
     <Compile Include="Models\KhoPhieuXuatKhac\InsertKhoPhieuXuatAction.cs" />
     <Compile Include="Models\KhoPhieuXuatKhac\UpdateKhoPhieuXuatAction.cs" />
     <Compile Include="Models\KhoPhieuXuat\DeleteKhoPhieuXuatAction.cs" />
+    <Compile Include="Models\ThongSo\GetListKhoaSoLieuByProjectionAction.cs" />
+    <Compile Include="Models\ThongSo\GetListKhoaSoLieuThangByProjectionAction.cs" />
     <Compile Include="Models\ThongSo\GetListThongSoByProjectionAction.cs" />
     <Compile Include="Models\KhoTonKho\DeleteKhoTonKhoAction.cs" />
     <Compile Include="Models\KhoTonKho\DeleteListKhoTonKhoAction.cs" />

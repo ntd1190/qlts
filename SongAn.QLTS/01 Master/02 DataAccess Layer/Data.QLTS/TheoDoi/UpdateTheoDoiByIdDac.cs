@@ -27,7 +27,8 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
         public decimal SLTang { get; set; }
         public decimal SLGiam { get; set; }
         public int HopDongId { get; set; }
-
+        public string CoSoId { get; set; }
+        public string NguoiTao { get; set; }
         #endregion
 
         #region private variable
@@ -98,6 +99,8 @@ namespace SongAn.QLTS.Data.QLTS.TheoDoi
                 p.Add("SLTang", SLTang, DbType.Decimal);
                 p.Add("SLGiam", SLGiam, DbType.Decimal);
                 p.Add("HopDongId", HopDongId, DbType.Int32);
+                p.Add("CoSoId", CoSoId, DbType.String);
+                p.Add("NguoiTao", NguoiTao, DbType.String);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_TheoDoi_UpdateTheoDoi",
