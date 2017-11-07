@@ -38,6 +38,9 @@
         /* ACTION FUNCTION */
         vm.action = {};
 
+        vm.action.goBack = function () {
+            window.history.back();
+        };
         vm.action.ChotNam = function () {
             //var d = new Date();
             //if (parseInt(vm.data.nam) > parseInt(d.getFullYear().toString())) {

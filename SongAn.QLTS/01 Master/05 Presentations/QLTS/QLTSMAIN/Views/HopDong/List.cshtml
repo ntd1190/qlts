@@ -39,8 +39,10 @@
                         <th class="text-center" style="width: 120px">Đại diện</th>
                         <th class="text-center" style="width: 100px">Giá trị HĐ</th>
                         <th class="text-center" style="width: 200px">Nôi dung</th>
+
                         <th class="text-center" style="width: 120px">Người tạo</th>
                         <th class="text-center" style="width: 120px">Ngày tạo</th>
+                        <th class="text-center" style="width: 50px">File</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -59,6 +61,7 @@
                         <td><span ng-bind="HopDong.NoiDung"></span></td>
                         <td><span ng-bind="HopDong.TenNguoiTao"></span></td>
                         <td><span> {{ HopDong.NgayTao | date : 'dd/MM/yyyy HH:mm'}} </span></td>
+                        <td><a href="/QLTSMAIN/content/upload/{{HopDong.FileDinhKem}}" target="_blank" class="ng-scope">Xem</a></td>
                     </tr>
                 </tbody>
                 <tfoot>

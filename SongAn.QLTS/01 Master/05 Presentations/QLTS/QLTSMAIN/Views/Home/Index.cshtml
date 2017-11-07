@@ -1,9 +1,10 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Quản lý tài sản";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{ }";
 }
 
-<div style="min-height: 246px;">
+<div style="min-height: 246px;" ng-controller="HomeCtrl as ctrl" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/"))'})">
     <div class="row">
         <div class="col-lg-12">
             <div class="panel-heading">
@@ -11,7 +12,7 @@
                     <span style="font-weight: 500;font-size: 26px;color:#F3565D; font-weight: bold;">HOẠT ĐỘNG QUẢN LÝ TÀI SẢN</span>
                 </div>
             </div>
-           
+
         </div>
         <!-- /.col-lg-12 -->
     </div>
@@ -25,7 +26,7 @@
                             <i class="fa fa-hospital-o fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">2621</div>
+                            <div class="huge" ng-bind="ctrl.data.ThongKeTaiSan.TongTaiSan">0</div>
                             <div>Tổng tài sản</div>
                         </div>
                     </div>
@@ -47,7 +48,7 @@
                             <i class="fa fa-arrow-up fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">12</div>
+                            <div class="huge" ng-bind="ctrl.data.ThongKeTaiSan.GhiTang">0</div>
                             <div>Ghi tăng</div>
                         </div>
                     </div>
@@ -69,7 +70,7 @@
                             <i class="fa fa-arrow-right fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">124</div>
+                            <div class="huge" ng-bind="ctrl.data.ThongKeTaiSan.DieuChuyen">0</div>
                             <div>Điều chuyển</div>
                         </div>
                     </div>
@@ -91,7 +92,7 @@
                             <i class="fa fa-arrow-down fa-5x"></i>
                         </div>
                         <div class="col-xs-9 text-right">
-                            <div class="huge">13</div>
+                            <div class="huge" ng-bind="ctrl.data.ThongKeTaiSan.GhiGiam">0</div>
                             <div>Ghi giảm</div>
                         </div>
                     </div>
@@ -160,7 +161,7 @@
                 <div class="panel-heading">
                     <i class="fa fa-bar-chart-o fa-fw"></i> Ghi tăng tài sản theo năm
                     <div class="pull-right">
-                        
+
                     </div>
                 </div>
                 <!-- /.panel-heading -->
@@ -173,7 +174,7 @@
                                         <tr>
                                             <th class="text-center">#</th>
                                             <th class="text-center">Ngày</th>
-                                            <th class="text-center" style="width:80px" >Giờ</th>
+                                            <th class="text-center" style="width:80px">Giờ</th>
                                             <th class="text-center" style="width:70px"> Số lượng</th>
                                         </tr>
                                     </thead>
@@ -251,7 +252,7 @@
                 </div>
                 <!-- /.panel-body -->
             </div>
-         
+
         </div>
         <!-- /.col-lg-8 -->
         <div class="col-lg-4">
@@ -261,64 +262,18 @@
                 </div>
                 <!-- /.panel-heading -->
                 <div class="panel-body">
-                    <div class="list-group">
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-shopping-cart fa-fw"></i> Kế hoạch mua sắm
+                    <span ng-if="ctrl.data.listThongBao.length == 0">Chưa có thông báo</span>
+                    <div class="list-group" ng-if="ctrl.data.listThongBao.length > 0">
+                        <a href="{{thongBao.link}}" class="list-group-item" ng-repeat="thongBao in ctrl.data.listThongBao">
+                            <i class="fa fa-fw {{thongBao.icon}}"></i>
+                            <span ng-bind="thongBao.TenThongBao"></span>
                             <span class="pull-right text-muted small">
-                                <em>4 phút trước</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-wrench fa-fw"></i> Bảo dưỡng - Sửa chữa
-                            <span class="pull-right text-muted small">
-                                <em>12 phút trước</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-pie-chart fa-fw"></i> Duyệt báo cáo
-                            <span class="pull-right text-muted small">
-                                <em>27 phút trước</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-tablet fa-fw"></i> Đề nghị trang cấp
-                            <span class="pull-right text-muted small">
-                                <em>43 phút trước</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-arrow-up fa-fw"></i> Ghi tăng
-                            <span class="pull-right text-muted small">
-                                <em>11:32 AM</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-pie-chart fa-fw"></i> Duyệt báo cáo
-                            <span class="pull-right text-muted small">
-                                <em>11:13 AM</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-exchange fa-fw"></i> Thay đổi thông tin
-                            <span class="pull-right text-muted small">
-                                <em>10:57 AM</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-arrow-right fa-fw"></i> Điều chuyển
-                            <span class="pull-right text-muted small">
-                                <em>9:49 AM</em>
-                            </span>
-                        </a>
-                        <a href="#" class="list-group-item">
-                            <i class="fa fa-money fa-fw"></i> Cho thuê - mượn
-                            <span class="pull-right text-muted small">
-                                <em>Hôm qua</em>
+                                <em ng-bind="thongBao.Label || (thongBao.NgayTao|date:'dd/MM/yyyy')"></em>
                             </span>
                         </a>
                     </div>
                     <!-- /.list-group -->
-                    <a href="#" class="btn btn-default btn-block">Xem tất cả</a>
+                    @*<a href="#" class="btn btn-default btn-block">Xem tất cả</a>*@
                 </div>
                 <!-- /.panel-body -->
             </div>
@@ -339,4 +294,14 @@
     <!-- /.row -->
 </div>
 
-<link href="~/lib/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />
+@section ImportStyles{
+    <link href="~/lib/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />
+}
+@section SetupStyles{}
+@section ImportScripts{}
+@section SetupScripts{}
+@section ImportAngular{
+    <script src="~/Scripts/angular/app/models/ThongBaoService.js"></script>
+    <script src="~/Scripts/angular/Home/service/HomeService.js"></script>
+    <script src="~/Scripts/angular/Home/controller/HomeCtrl.js"></script>
+}

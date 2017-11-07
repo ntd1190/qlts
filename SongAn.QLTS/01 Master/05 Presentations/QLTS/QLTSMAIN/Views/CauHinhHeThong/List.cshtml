@@ -3,9 +3,9 @@
     ViewBag.Title = "Cấu hình hệ thống";
 }
 <div class="container-fluid">
-   
+
     <div ng-controller="CauHinhHeThongListCtrl as ctrl" class="panel panel-default" keyboard="ctrl.keys" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})">
-         <div class="panel with-nav-tabs panel-primary" style="margin-bottom: 0px;">
+        <div class="panel with-nav-tabs panel-primary" style="margin-bottom: 0px;">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#tab1primary" data-toggle="tab">Tài sản cố định</a></li>
@@ -15,14 +15,31 @@
             <div class="panel-body">
                 <div class="tab-content">
                     <div class="tab-pane fade active in" id="tab1primary" style="height: 300px;">
-                        <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" ng-repeat="CauHinhHeThong in ctrl.data.CauHinhHeThongList" >
+                        <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required" ng-repeat="CauHinhHeThong in ctrl.data.CauHinhHeThongList">
                             <div class="row form-group form-group-sm" ng-if="CauHinhHeThong.Loai=='SoLieuNam'">
-                                <label class="control-label col-sm-1">Số liệu năm</label>
+                                <div class="col-sm-2 text-left" style="width:13%">
+                                    <label class="control-label">Sử dụng số liệu năm</label>
+                                </div>
                                 <div class="col-sm-1">
-                                    <input class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="txtNam" type="text" ng-model="CauHinhHeThong.Ten" >
+                                    <input class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="txtNam" type="text" ng-model="CauHinhHeThong.Ten">
                                 </div>
                             </div>
 
+                        </form>
+                        <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
+                            <div class="row form-group form-group-sm">
+                                <div class="col-sm-2 text-left" style="width:13%">
+                                    <label class="control-label">Khóa số liệu</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" ng-model="ctrl.KhoaSoLieuSelected" ng-change="ctrl.action.SelectKhoaSoLieu(ctrl.KhoaSoLieuSelected)">
+                                        <option ng-repeat="x in  ctrl.data.KhoaSoLieu" value="{{x.Nam}}">{{x.Nam}}</option>
+                                    </select>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-click="ctrl.action.CheckKhoaSoLieu(ctrl.CheckKhoaSoLieu)" ng-model="ctrl.CheckKhoaSoLieu" ng-true-value="'1'" ng-false-value="'0'">{{ctrl.TilteKhoa}}</label>
+                                    </div>
+                                </div>
+                            </div>
                         </form>
                     </div>
                     <div class="tab-pane fade " id="tab2primary" style="height: 300px;">
@@ -31,16 +48,31 @@
                                 <div class="col-sm-2 text-left" style="width:11.666667%">
                                     <label class="control-label">Số liệu tháng/năm</label>
                                 </div>
-                               
+
                                 <div class="col-sm-1">
                                     <input class="form-control ng-pristine ng-empty ng-invalid ng-invalid-required ng-touched" id="txtNam" type="text" ng-model="CauHinhHeThong.Ten">
                                 </div>
                             </div>
 
                         </form>
+                        <form class="form-horizontal ng-pristine ng-invalid ng-invalid-required">
+                            <div class="row form-group form-group-sm">
+                                <div class="col-sm-2 text-left" style="width:11.666667%">
+                                    <label class="control-label">Khóa số liệu</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <select class="form-control" ng-model="ctrl.KhoaSoLieuThangSelected" ng-change="ctrl.action.SelectKhoaSoLieuThang(ctrl.KhoaSoLieuThangSelected)">
+                                        <option ng-repeat="x in  ctrl.data.KhoaSoLieuThang" value="{{x.ThangNam}}">{{x.ThangNam}}</option>
+                                    </select>
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" ng-click="ctrl.action.CheckKhoaSoLieuThang(ctrl.CheckKhoaSoLieuThang)" ng-model="ctrl.CheckKhoaSoLieuThang" ng-true-value="'1'" ng-false-value="'0'">{{ctrl.TilteKhoaThang}}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                     <div class="panel-footer">
-                        <button type="button" class="btn btn-sm btn-primary ng-scope" id="btnluu"  ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button><!-- end ngIf: ctrl.data.showButtonSave -->&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-sm btn-primary ng-scope" id="btnluu" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button><!-- end ngIf: ctrl.data.showButtonSave -->&nbsp;&nbsp;&nbsp;
                         <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
                     </div>
                 </div>

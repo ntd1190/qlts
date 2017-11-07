@@ -267,6 +267,8 @@
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenFilterCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\controller\DieuChuyenListCtrl.js" />
     <Content Include="Scripts\angular\DieuChuyen\service\DieuChuyenService.js" />
+    <Content Include="Scripts\angular\Home\controller\HomeCtrl.js" />
+    <Content Include="Scripts\angular\Home\service\HomeService.js" />
     <Content Include="Scripts\angular\KhoaSoLieu\service\KhoaSoLieuService.js" />
     <Content Include="Scripts\angular\DuAn\directive\cboDuAn.js" />
     <Content Include="Scripts\angular\DuyetBaoCao\controller\DuyetBaoCaoFilterCtrl.js" />

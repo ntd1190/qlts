@@ -51,6 +51,7 @@
             listQuyenTacVu: [],
             CauHinhHeThongList: [],
             CauHinhHeThongSelected: [],
+            KhoaSoLieu: [],
             isLoading: false,
             UserLoginId: '',
             CoSoId: '',
@@ -60,7 +61,19 @@
             getPage: getPage,
             deleteSelected: deleteSelected,
             refresh: refresh,
+            SelectKhoaSoLieu: SelectKhoaSoLieu,
+            SelectKhoaSoLieuThang: SelectKhoaSoLieuThang,
+            CheckKhoaSoLieu: CheckKhoaSoLieu,
+            CheckKhoaSoLieuThang: CheckKhoaSoLieuThang
         };
+        vm.KhoaSoLieuSelected = moment().format("YYYY");
+        vm.CheckKhoaSoLieu = '0';
+        vm.TilteKhoa = 'Chưa Khóa';
+
+        vm.KhoaSoLieuThangSelected = moment().format("MMYY");
+        vm.CheckKhoaSoLieuThang = '0';
+        vm.TilteKhoaThang = 'Chưa Khóa';
+
         activate();
         vm.onInitView = onInitView;
         function activate() {
@@ -74,6 +87,8 @@
                 vm.data.CoSoId = config.userInfo.CoSoId;
                 setEnableButton();
                 getPage();
+                GetPageKhoa();
+                GetPageKhoaThang();
             }
         }
         function setEnableButton() {
@@ -151,6 +166,62 @@
                 $('#bgloadding').remove();
             });
         }
+        function GetPageKhoa() {
+            utility.addloadding($('body'));
+            var NhanVienId = vm.data.userInfo.NhanVienId;
+            var CoSoId = vm.data.userInfo.CoSoId;
+            CauHinhHeThongService.GetPageKhoa(NhanVienId,CoSoId).then(function (success) {
+                if (success.data.data) {
+                    $('#bgloadding').remove();
+                    vm.data.KhoaSoLieu = success.data.data;
+                    $.each(vm.data.KhoaSoLieu, function (index, value) {
+                        if (value.Nam.toString() == vm.KhoaSoLieuSelected.toString()) {
+                            vm.CheckKhoaSoLieu = value.TrangThai;
+                            if (value.TrangThai == 1)
+                                vm.TilteKhoa = 'Đã Khóa';
+                            else vm.TilteKhoa = 'Chưa Khóa';
+                        }
+                    });
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
+        }
+        function GetPageKhoaThang() {
+            utility.addloadding($('body'));
+            var NhanVienId = vm.data.userInfo.NhanVienId;
+            var CoSoId = vm.data.userInfo.CoSoId;
+            CauHinhHeThongService.GetPageKhoaThang(NhanVienId, CoSoId).then(function (success) {
+                if (success.data.data) {
+                    $('#bgloadding').remove();
+                    vm.data.KhoaSoLieuThang = success.data.data;
+                    $.each(vm.data.KhoaSoLieuThang, function (index, value) {
+                        if (parseInt(value.ThangNam) == parseInt(vm.KhoaSoLieuThangSelected)) {
+                            vm.CheckKhoaSoLieuThang = value.TrangThai;
+                            if (value.TrangThai == 1)
+                                vm.TilteKhoaThang = 'Đã Khóa';
+                            else vm.TilteKhoaThang = 'Chưa Khóa';
+                        }
+                    });
+                }
+                vm.data.isLoading = false;
+            }, function (error) {
+                vm.data.isLoading = false;
+                if (error.data.error != null) {
+                    alert(error.data.error.message);
+                } else {
+                    alert(error.data.Message);
+                }
+                $('#bgloadding').remove();
+            });
+        }
         function initTableState(tableState) {
             tableState = tableState || {};
             tableState.draw = tableState.draw || 0;
@@ -165,9 +236,14 @@
         }
         function save() {
             var objCauHinhHeThong = utility.clone(vm.data.CauHinhHeThongList);
+            var objKhoaSoLieu = utility.clone(vm.data.KhoaSoLieu);
+            var objKhoaSoLieuThang = utility.clone(vm.data.KhoaSoLieuThang);
             var data = {};
             data.CauHinhHeThong = angular.toJson(objCauHinhHeThong);
+            data.KhoaSoLieu = angular.toJson(objKhoaSoLieu);
+            data.KhoaSoLieuThang = angular.toJson(objKhoaSoLieuThang);
             data.NhanVienId = vm.data.UserLoginId;
+            data.CoSoId = vm.data.CoSoId;
             CauHinhHeThongService.update(data).then(function (success) {
                 if (success.data.data) {
                     vm.data.CauHinhHeThongList = success.data.data;
@@ -175,13 +251,57 @@
                 }
 
             }, function (error) {
-                vm.status.isLoading = false;
+                //vm.status.isLoading = false;
+                utility.AlertError('Cập nhật thất bại!');
             });
         }
         function refresh() {
             getPage();
         }
-    
+        function CheckKhoaSoLieu(value) {
+            $.each(vm.data.KhoaSoLieu, function (index, value) {
+                if (value.Nam.toString() == vm.KhoaSoLieuSelected.toString()) {
+                    value.TrangThai = vm.CheckKhoaSoLieu;
+                    if (value.TrangThai==1)
+                        vm.TilteKhoa = 'Đã Khóa';
+                    else vm.TilteKhoa = 'Chưa Khóa';
+                }
+            });
+        }
+        function SelectKhoaSoLieu(data) {
+            console.log(data);
+            vm.CheckKhoaSoLieu = '0';
+            vm.TilteKhoa = 'Chưa Khóa';
+            $.each(vm.data.KhoaSoLieu, function (index, value) {
+                if (value.Nam == data && value.TrangThai==1)
+                {
+                    vm.CheckKhoaSoLieu = '1';
+                    vm.TilteKhoa = 'Đã Khóa';
+                }
+            });
+        }
+        function CheckKhoaSoLieuThang(value) {
+            $.each(vm.data.KhoaSoLieuThang, function (index, value) {
+                if (parseInt(value.ThangNam) == parseInt(vm.KhoaSoLieuThangSelected)) {
+                    value.TrangThai = vm.CheckKhoaSoLieuThang;
+                    if (value.TrangThai == 1)
+                        vm.TilteKhoaThang = 'Đã Khóa';
+                    else vm.TilteKhoaThang = 'Chưa Khóa';
+                }
+            });
+        }
+        function SelectKhoaSoLieuThang(data) {
+            console.log(data);
+            vm.CheckKhoaSoLieuThang = '0';
+            vm.TilteKhoaThang = 'Chưa Khóa';
+            $.each(vm.data.KhoaSoLieuThang, function (index, value) {
+                if (parseInt(value.ThangNam) == parseInt(data) && value.TrangThai == 1) {
+                    vm.CheckKhoaSoLieuThang = '1';
+                    vm.TilteKhoaThang = 'Đã Khóa';
+                }
+            });
+        }
+        
         function clearArray(array) {
             while (array.length) { array.pop(); }
         }

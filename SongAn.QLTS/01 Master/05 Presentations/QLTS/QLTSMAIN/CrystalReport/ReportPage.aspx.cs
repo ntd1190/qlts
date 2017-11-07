@@ -551,6 +551,10 @@ namespace SongAn.QLDN.UI.QLDNKHO.CrystalReport
                 }
 
                 ds.Tables[0].TableName = "Tables";
+                if(ds.Tables[0].Rows.Count <=0 )
+                {
+                    Response.Write("<script>alert('Không có dữ liệu !');</script>");
+                }
                 if (reportname == "rptKiemKeById.rpt")
                 {
                     ds.Tables[1].TableName = "Tables1";

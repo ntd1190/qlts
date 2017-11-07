@@ -12,6 +12,8 @@
             update: 'UpdateThongSo',
             GetList: 'GetListCauHinhHeThong',
             GetPage: 'GetListThongSoByProjection',
+            GetPageKhoa: 'GetListKhoaSoLieuByProjection',
+            GetPageKhoaThang: 'GetListKhoaSoLieuThangByProjection',
             GetById: 'GetCauHinhHeThongById',
             GetListBySearchString: 'GetListCauHinhHeThongBySearchString',
             getList: 'getList',
@@ -29,6 +31,8 @@
             update: update,
             removeList: removeList,
             remove: remove,
+            GetPageKhoa: GetPageKhoa,
+            GetPageKhoaThang: GetPageKhoaThang
         };
 
         return service;
@@ -75,6 +79,38 @@
 
             return $http(req);
         }
+        function GetPageKhoa(NhanVienId, CoSoId) {
+            var url = api.url + api.GetPageKhoa;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    NhanVienId: NhanVienId,
+                    CoSoId: CoSoId
+                })
+            }
+
+            return $http(req);
+        }
+
+        function GetPageKhoaThang(NhanVienId, CoSoId) {
+            var url = api.url + api.GetPageKhoaThang;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    NhanVienId: NhanVienId,
+                    CoSoId: CoSoId
+                })
+            }
+
+            return $http(req);
+        }
+        
         function insert(data) {
             if (!data) {
                 return null;
@@ -100,7 +136,10 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
                     CauHinhHeThong: data.CauHinhHeThong,
-                    NhanVienId: data.NhanVienId
+                    KhoaSoLieu: data.KhoaSoLieu,
+                    KhoaSoLieuThang: data.KhoaSoLieuThang,
+                    NhanVienId: data.NhanVienId,
+                    CoSoId: data.CoSoId
                 })
             }
             return $http(req);

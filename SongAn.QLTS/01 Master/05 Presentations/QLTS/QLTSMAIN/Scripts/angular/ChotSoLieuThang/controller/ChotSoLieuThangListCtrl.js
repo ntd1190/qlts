@@ -39,6 +39,9 @@
         /* ACTION FUNCTION */
         vm.action = {};
 
+        vm.action.goBack = function () {
+            window.history.back();
+        };
         vm.action.ChotThang = function () {
             var thangNam = vm.data.thang + vm.data.nam.substr(vm.data.nam.length - 2);
             //alert(thangNam);

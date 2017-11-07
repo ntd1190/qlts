@@ -84,7 +84,9 @@
                     SLTon: obj.SLTon,
                     SLTang: 0,
                     SLGiam: 0,
-                    HopDongId:obj.HopDongId
+                    HopDongId: obj.HopDongId,
+                    CoSoId: obj.CoSoId,
+                    NguoiTao: obj.NguoiTao
                 })
             }
             return $http(req);
@@ -110,7 +112,9 @@
                     SLTon: obj.SLTon,
                     SLTang: 0,
                     SLGiam: 0,
-                    HopDongId: obj.HopDongId
+                    HopDongId: obj.HopDongId,
+                    CoSoId: obj.CoSoId,
+                    NguoiTao: obj.NguoiTao
                 })
             }
             return $http(req);

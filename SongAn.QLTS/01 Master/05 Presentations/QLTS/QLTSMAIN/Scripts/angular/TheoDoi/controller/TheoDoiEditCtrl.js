@@ -159,6 +159,8 @@
         function edit() {            
 
             vm.status.isLoading = true;
+            vm.data.objTheoDoi.CoSoId = vm.data.CoSoId;
+            vm.data.objTheoDoi.NguoiTao = vm.data.UserLoginId;
             TheoDoiService.update(vm.data.objTheoDoi, vm.data.objTheoDoi_Old).then(function (success) {
                 if (success.data.data) {
 
