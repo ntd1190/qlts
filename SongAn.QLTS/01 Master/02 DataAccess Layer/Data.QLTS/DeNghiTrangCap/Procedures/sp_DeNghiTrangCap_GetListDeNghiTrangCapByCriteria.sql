@@ -1,13 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]    Script Date: 10/27/2017 08:52:02 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-
-ALTER PROC [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]
+﻿ALTER PROC [dbo].[sp_DeNghiTrangCap_GetListDeNghiTrangCapByCriteria]
 ( 
 	  @CoSoId	        NVARCHAR(10)	
 	, @SoPhieu		    nvarchar(500)	= null		
@@ -77,6 +68,16 @@ SET NOCOUNT ON
 	LEFT JOIN dbo.PhanLoai PL ON PL.PhanLoaiId = h.PhanLoaiId
 	LEFT JOIN dbo.Duyet D ON D.DuyetId = h.DuyetId
 	LEFT JOIN dbo.CoSo cs ON cs.CoSoId = h.CoSoId
+	LEFT JOIN (SELECT pbnv.NhanVienId,
+		STUFF((
+				select CONCAT( '','' ,u1.PhongBanId)
+				from dbo.PhongBan u1 JOIN dbo.PhongBanNhanVien pbnv1 ON pbnv1.PhongBanId = u1.PhongBanId
+				where pbnv1.NhanVienId = pbnv.NhanVienId
+				for xml path('''')
+			),1,1,'''') PhongBanId
+			FROM dbo.PhongBanNhanVien pbnv
+			JOIN PhongBan b on pbnv.PhongBanId=b.PhongBanId 
+			GROUP BY pbnv.NhanVienId) pbnv ON pbnv.NhanVienId=h.NguoiTao
 	WHERE YEAR(h.ngay)='''+@Nam+''' and CAST(Ngay AS DATE) BETWEEN CAST(''' + CAST(@TuNgay AS VARCHAR) +''' AS DATE) AND CAST(''' + CAST(@DenNgay AS VARCHAR) + ''' AS DATE) ' 
 
 	-- Build Where clause
@@ -99,7 +100,9 @@ SET NOCOUNT ON
 	END
 	IF @IS_VIEW = 'VR' 
 	BEGIN    
-		SET @V_SQL = @V_SQL + ' and nv.PhongBanId = (select PhongBanId from NhanVien where NhanVienId=''' + @LoginId + ''')';   
+		SET @V_SQL = @V_SQL + ' and EXISTS (SELECT pbnv1.PhongBanId FROM dbo.NhanVien nv JOIN dbo.PhongBanNhanVien pbnv1 ON pbnv1.NhanVienId = nv.NhanVienId WHERE nv.NhanVienId=''' + @LoginId + '''' +
+							  ' AND CHARINDEX('','' + CAST(pbnv1.PhongBanId AS VARCHAR(10)) + '','', '','' + CAST(pbnv.PhongBanId AS VARCHAR(10)) + '','') > 0) ';   
+	 
 	END
 	IF @IS_VIEW = 'VE' 
 	BEGIN    

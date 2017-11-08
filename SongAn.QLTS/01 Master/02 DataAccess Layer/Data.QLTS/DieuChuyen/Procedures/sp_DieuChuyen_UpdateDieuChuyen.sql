@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DieuChuyen_UpdateDieuChuyen]    Script Date: 9/19/2017 10:34:52 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER proc [dbo].[sp_DieuChuyen_UpdateDieuChuyen]
+﻿ALTER proc [dbo].[sp_DieuChuyen_UpdateDieuChuyen]
 	@DieuChuyenId INT
 	,@SoChungTu NVARCHAR(50)
 	,@NgayChungTu datetime
@@ -35,7 +27,26 @@ BEGIN
 			@V_NHANVIENSUDUNG INT,
 			@V_PHONGBANCHUYENDEN INT,
 			@V_NHANVIENTIEPNHAN INT,
-			@V_SOLUONG NUMERIC(18,4)
+			@V_SOLUONG NUMERIC(18,4),
+			@V_CHOTNAM INT,
+			@V_NGAYDIEUCHUYEN_OLD DATETIME,
+			@V_DUYETID INT
+	
+	---------------------------------------------------------------------------------------------------
+	SELECT @V_NGAYDIEUCHUYEN_OLD = NgayDieuChuyen, @V_DUYETID = DuyetId FROM dbo.DieuChuyen WHERE DieuChuyenId = @DieuChuyenId
+	SELECT @V_CHOTNAM = TrangThai FROM dbo.KhoaSoLieu WHERE Nam = YEAR(@V_NGAYDIEUCHUYEN_OLD) AND CoSoId = @CoSoId
+
+	-- check chốt năm + duyệt
+	IF (@V_DUYETID = 1)
+	BEGIN
+		SELECT -2 AS ID RETURN
+	END
+	IF (@V_CHOTNAM = 1)
+	BEGIN
+		SELECT -3 AS ID RETURN
+	END
+
+	---------------------------------------------------------------------------------------------------
 
 	BEGIN TRAN
 		
@@ -60,15 +71,15 @@ BEGIN
 				SELECT TOP 1 @V_ROWID = ROWID, @V_TAISANID = TAISANID, @V_PHONGBANSUDUNG = PHONGBANSUDUNG, @V_NHANVIENSUDUNG = NHANVIENSUDUNG, @V_PHONGBANCHUYENDEN = PHONGBANCHUYENDEN, @V_NHANVIENTIEPNHAN = NHANVIENTIEPNHAN, @V_SOLUONG = SOLUONG FROM @V_TB_DIEUCHUYENCT
 
 				-- cập nhật sl phòng sử dụng
-				IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENSUDUNG AND PhongBanId = @V_PHONGBANSUDUNG )
+				IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENSUDUNG AND PhongBanId = @V_PHONGBANSUDUNG AND Nam = YEAR(@V_NGAYDIEUCHUYEN_OLD))
 				BEGIN
-					UPDATE dbo.TheoDoi SET SLGiam = SLGiam - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENSUDUNG AND PhongBanId = @V_PHONGBANSUDUNG 
+					UPDATE dbo.TheoDoi SET SLGiam = SLGiam - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENSUDUNG AND PhongBanId = @V_PHONGBANSUDUNG AND Nam = YEAR(@V_NGAYDIEUCHUYEN_OLD)
 				END
 
 				-- cập nhật sl phòng chuyển đến
-				IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENTIEPNHAN AND PhongBanId = @V_PHONGBANCHUYENDEN )
+				IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENTIEPNHAN AND PhongBanId = @V_PHONGBANCHUYENDEN AND Nam = YEAR(@V_NGAYDIEUCHUYEN_OLD))
 				BEGIN
-					UPDATE dbo.TheoDoi SET SLTang = SLTang - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENTIEPNHAN AND PhongBanId = @V_PHONGBANCHUYENDEN 
+					UPDATE dbo.TheoDoi SET SLTang = SLTang - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENTIEPNHAN AND PhongBanId = @V_PHONGBANCHUYENDEN AND Nam = YEAR(@V_NGAYDIEUCHUYEN_OLD)
 				END
 				
 
@@ -79,7 +90,7 @@ BEGIN
 
 			DELETE dbo.DieuChuyenChiTiet WHERE DieuChuyenId = @DieuChuyenId
 
-			SELECT @@ROWCOUNT
+			SELECT @@ROWCOUNT AS ID
 
 		END TRY
 		BEGIN CATCH

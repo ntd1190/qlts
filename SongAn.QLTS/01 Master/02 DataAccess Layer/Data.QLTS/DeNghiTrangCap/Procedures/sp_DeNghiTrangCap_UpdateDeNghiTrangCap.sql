@@ -1,11 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_UpdateDeNghiTrangCap]    Script Date: 9/7/2017 2:50:17 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER proc [dbo].[sp_DeNghiTrangCap_UpdateDeNghiTrangCap]
+﻿ALTER proc [dbo].[sp_DeNghiTrangCap_UpdateDeNghiTrangCap]
 	@DeNghiId INT
 	,@NgayLap DATETIME
 	,@SoPhieu NVARCHAR(50)

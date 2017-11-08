@@ -1,11 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCap_InsertDeNghiTrangCap]    Script Date: 9/7/2017 2:49:48 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER proc [dbo].[sp_DeNghiTrangCap_InsertDeNghiTrangCap]
+﻿ALTER proc [dbo].[sp_DeNghiTrangCap_InsertDeNghiTrangCap]
 	@NgayLap DATETIME
 	,@SoPhieu NVARCHAR(50)
 	,@PhanLoaiId INT
@@ -13,10 +6,12 @@ ALTER proc [dbo].[sp_DeNghiTrangCap_InsertDeNghiTrangCap]
 	,@NoiDung NVARCHAR(max)
 	,@CoSoId INT
 	,@NhanVienId INT
+	,@GuiCapTren INT
 as
 BEGIN
 	Declare @ErrMsg nvarchar(max)
-	
+	if(@PhongBanId = 0) SET @PhongBanId = NULL
+	if(@GuiCapTren = 0) SET @GuiCapTren = NULL
 	BEGIN TRAN
 		
 		BEGIN TRY
@@ -25,12 +20,12 @@ BEGIN
 			        ( Ngay ,			SoPhieu ,			PhanLoaiId ,
 			          PhongBanId ,		NoiDung ,			CoSoId ,
 			          DuyetId ,			NguoiDuyet ,		NguoiTao ,
-			          NgayTao ,			CtrVersion
+			          NgayTao ,			CtrVersion,GuiCapTren
 			        )
 			SELECT	 @NgayLap			,@SoPhieu			,@PhanLoaiId
 					 ,@PhongBanId		,@NoiDung			,@CoSoId
 					 ,0					,0					,@NhanVienId
-					 ,GETDATE()			,1
+					 ,GETDATE()			,1, @GuiCapTren
 
 			SELECT SCOPE_IDENTITY() AS DeNghiIdI
 

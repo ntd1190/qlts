@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId]    Script Date: 9/7/2017 2:51:18 PM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROC [dbo].[sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId]
+﻿ALTER PROC [dbo].[sp_DeNghiTrangCapChiTiet_GetDeNghiTrangCapChiTietByDeNghiId]
 	@DeNghiId INT
 AS  
 BEGIN
@@ -26,7 +18,7 @@ SET NOCOUNT ON
 			CONVERT(VARCHAR, CT.NgayDeNghi,103) NgayDeNghi,
 			CT.DuToan,
 			CT.DuToanDuocDuyet,
-			CT.GhiChu
+			CT.GhiChu,ct.DuyetId
 	FROM dbo.DeNghiTrangCapChiTiet CT
 	LEFT JOIN dbo.LoaiTaiSan LTS ON LTS.LoaiId = CT.LoaiId
 	LEFT JOIN dbo.PhuongThuc PT ON PT.PhuongThucId = CT.PhuongThucId

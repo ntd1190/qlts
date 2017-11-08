@@ -1,11 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DieuChuyenChiTiet_InsertDieuChuyenChiTiet]    Script Date: 9/19/2017 10:35:33 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER proc [dbo].[sp_DieuChuyenChiTiet_InsertDieuChuyenChiTiet]
+﻿ALTER proc [dbo].[sp_DieuChuyenChiTiet_InsertDieuChuyenChiTiet]
 	@DieuChuyenId INT
 	,@TaiSanId INT
 	,@PhongBanSuDung INT
@@ -33,16 +26,16 @@ BEGIN
 			*/
 
 			--------- giảm phòng su dung
-			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienSuDung AND PhongBanId = @PhongBanSuDung)
+			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienSuDung AND PhongBanId = @PhongBanSuDung AND Nam = YEAR(@V_NGAYDIEUCHUYEN))
 			BEGIN
-				UPDATE dbo.TheoDoi SET SLGiam = SLGiam + @SoLuong WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienSuDung AND PhongBanId = @PhongBanSuDung
+				UPDATE dbo.TheoDoi SET SLGiam = SLGiam + @SoLuong WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienSuDung AND PhongBanId = @PhongBanSuDung AND Nam = YEAR(@V_NGAYDIEUCHUYEN)
 			END
 			
 
 			--------- tăng phòng chuyển đến
-			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienTiepNhan AND PhongBanId = @PhongBanChuyenDen)
+			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienTiepNhan AND PhongBanId = @PhongBanChuyenDen AND Nam = YEAR(@V_NGAYDIEUCHUYEN))
 			BEGIN
-				UPDATE dbo.TheoDoi SET SLTang = SLTang + @SoLuong WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienTiepNhan AND PhongBanId = @PhongBanChuyenDen
+				UPDATE dbo.TheoDoi SET SLTang = SLTang + @SoLuong WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienTiepNhan AND PhongBanId = @PhongBanChuyenDen AND Nam = YEAR(@V_NGAYDIEUCHUYEN)
 			END
 			ELSE
 			BEGIN
@@ -50,11 +43,11 @@ BEGIN
 						( 
 							TaiSanId ,			NgayTrangCap ,			NgayBatDauSuDung ,		PhongBanId ,			
 							NhanVienId ,		SLTon ,					SLTang ,				SLGiam,
-							NgayGhiTang
+							NgayGhiTang	,		Nam
 						)
 				SELECT		@TaiSanId			,@V_NGAYDIEUCHUYEN		,@V_NGAYDIEUCHUYEN		,@PhongBanChuyenDen
 							,@NhanVienTiepNhan	,0						,@SoLuong				,0
-							,@V_NGAYDIEUCHUYEN
+							,@V_NGAYDIEUCHUYEN	,YEAR(@V_NGAYDIEUCHUYEN)
 			END
 
 			SELECT SCOPE_IDENTITY()

@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_DieuChuyen_InsertDieuChuyen]    Script Date: 9/19/2017 10:34:31 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER proc [dbo].[sp_DieuChuyen_InsertDieuChuyen]
+﻿ALTER proc [dbo].[sp_DieuChuyen_InsertDieuChuyen]
 	@SoChungTu NVARCHAR(50)
 	,@NgayChungTu datetime
 	,@NgayDieuChuyen datetime
@@ -15,7 +7,16 @@ ALTER proc [dbo].[sp_DieuChuyen_InsertDieuChuyen]
 	,@NhanVienId INT
 as
 BEGIN
-	Declare @ErrMsg nvarchar(max)
+	Declare @ErrMsg nvarchar(max),
+			@V_CHOTNAM INT
+
+	SELECT @V_CHOTNAM = TrangThai FROM dbo.KhoaSoLieu WHERE Nam = YEAR(@NgayDieuChuyen) AND CoSoId = @CoSoId
+
+	-- check chốt năm
+	IF (@V_CHOTNAM = 1)
+	BEGIN
+		SELECT -1 AS DieuChuyenIdI RETURN
+	END
 	
 	BEGIN TRAN
 		
