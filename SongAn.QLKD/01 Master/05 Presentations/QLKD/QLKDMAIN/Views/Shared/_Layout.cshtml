@@ -1,0 +1,78 @@
+﻿@*
+    ============================
+    + partial content template +
+    ============================
+    @if (ViewBag.Html != null && (bool)ViewBag.Html == true) { }
+    else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+    else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+    else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+    else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+    else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
+
+    =========================
+    + view content template +
+    =========================
+    @section ImportStyles{}
+    @section SetupStyles{}
+    @section ImportScripts{}
+    @section SetupScripts{}
+    @section ImportAngular{}
+*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="~/lib/bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/lib/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    @*<link href="~/lib/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" />*@
+    <link href="~/lib/timepicki/jquery.datetimepicker.min.css" rel="stylesheet" />
+    <link href="~/lib/sb-admin/css/sb-admin-2.min.css" rel="stylesheet" />
+    @(RenderSection("ImportStyles", false))
+
+    @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "ImportStyles", true } });}
+    <link href="~/lib/images/LOGO_ICON.png" rel="icon" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+
+    <script src="~/lib/modernizr/modernizr-2.6.2.js"></script>
+
+    @(RenderSection("SetupStyles", false))
+    @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "SetupStyles", true } });}
+</head>
+<body ng-app="app">
+    <div id="wrapper" style="background-color:#0d6aad;">
+        @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "Html", true } });}
+        <!-- Page Content -->
+        <div id="page-wrapper">
+            @RenderBody()
+        </div><!-- /#page-wrapper -->
+    </div><!-- /#wrapper -->
+
+    <script src="~/lib/jquery/jquery-3.1.1.js"></script>
+    <script src="~/lib/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/lib/jQuery-Mask-Plugin-master/jquery.mask.min.js"></script>
+    <script src="~/lib/moment/moment.min.js"></script>
+    <script src="~/lib/moment/vi.js"></script>
+    <script src="~/lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/lib/timepicki/jquery.datetimepicker.full.min.js"></script>
+    @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "ImportScripts", true } });}
+    @(RenderSection("ImportScripts", false))
+
+    <script src="~/lib/angular/angular.js"></script>
+    <script src="~/lib/angular/angular-cookies.min.js"></script>
+    <script src="~/lib/angular-storage/ngStorage.min.js"></script>
+    <script src="~/lib/angular-smart-table/smart-table.min.js"></script>
+
+    <script src="~/Scripts/angular/app/app.js"></script>
+    <script src="~/Scripts/angular/app/models/AccountService.js"></script>
+    <script src="~/Scripts/angular/app/models/utility.js"></script>
+    <script src="~/Scripts/angular/shared/directive/number-format.js"></script>
+
+    @{Html.RenderPartial("_PartialNavigation", new ViewDataDictionary { { "ImportAngular", true } });}
+    @(RenderSection("ImportAngular", false))
+
+    @(RenderSection("SetupScripts", false))
+</body>
+</html>

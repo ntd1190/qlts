@@ -1,0 +1,154 @@
+﻿@{
+
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+            <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:#0d6aad;height: 55px;">
+        <ul class="nav navbar-top-links navbar-left">
+            <li class="dropdown">
+                <header id="header">
+                    <h3 id="titlett" class="titlett">Quản lý tài sản</h3>
+                </header>
+            </li>
+        </ul>
+        <ul class="nav navbar-top-links navbar-right" style="background-color: #0d6aad; padding-top: 4px;color:white">
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" style="background-color: #0d6aad;color:white">
+                    <i class="fa fa-user fa-fw"></i> @(User != null ? User.Name : "") <i class="fa fa-caret-down"></i>
+                </a>
+                <ul class="dropdown-menu dropdown-user">
+                    <li>
+                        <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="~/account/logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                    </li>
+                </ul><!-- /.dropdown-user -->
+            </li><!-- /.dropdown -->
+        </ul>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse" style="background-color: #0d6aad">
+                <ul class="nav" id="side-menu" style="padding-top: 3px;">
+                    <li>
+                        <a href="javascript:void(0);"><i class="fa fa-lock"></i> <span>Quản trị hệ thống</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="~/nguoidung/list">Danh sách người dùng</a>
+                            </li>
+                           
+                            <li>
+                                <a href="~/vaitro/list">Danh sách vai trò</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <div class="logoright">
+
+                    <a>
+                        <img src="~/lib/images/logo.png" />
+                    </a>
+                    <p>
+                        <b>CÔNG TY TNHH SX TM - DV SONG ÂN</b>
+                    </p>
+                    <p>
+                        340/38 Quang Trung, Phường 10,
+                        <br>
+                        Quận Gò Vấp, Thành Phố Hồ Chí Minh
+                    </p>
+                    <br>
+                    <p class="phone"><i class="fa fa-phone"></i>Hỗ trợ: <b>0839 96 97 69</b></p>
+                    <p class="text-center size-11 margin-top-20">
+                        Developed by SongAn® Version <span id="version">1.0</span>
+                        <br>
+                        Copyright © 2016 SongAn
+                    </p>
+                </div>
+            </div>
+            <!-- /.sidebar-collapse -->
+        </div><!-- /.navbar-static-side -->
+
+    </nav><!-- /Navigation -->
+    <style>
+        .titlett {
+            color: #fff;
+            line-height: 50px;
+            margin: 0px;
+            height: 50px;
+            overflow: hidden;
+            font-weight: bold;
+            padding-left: 20px;
+            text-transform: uppercase;
+        }
+
+        .logoright p {
+            margin: 0px;
+            margin-bottom: 2px;
+            line-height: 14px;
+            font-size: 12px;
+        }
+
+        #side-menu a {
+            color: white;
+            text-decoration: none;
+        }
+
+            #side-menu a:hover, #side-menu a:focus {
+                background-color: #0d6aad;
+            }
+
+        #side-menu ul.nav.nav-second-level > li  {
+            background-color: #1974B3;
+        }
+
+        li > .active {
+            background-color: #0d6aad;
+        }
+
+        .logoright {
+            text-align: center;
+            color: #fff;
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    </style>
+    <script src="~/lib/jquery/jquery-3.1.1.js"></script>
+    <script>
+        activemenu();
+        function activemenu() {
+            var url = window.location.toString().toLowerCase();
+            $("#side-menu a").each(function () {
+                var href = $(this).attr("href").toLowerCase();
+                if (url.indexOf(href) > -1) {
+                    $(this).parent().parent().parent().addClass("active");
+                    $(this).parent().css('background-color', '#0d6aad');
+
+                }
+            });
+        }
+
+
+
+    </script>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true)
+{
+    <link href="~/lib/metisMenu/metisMenu.min.css" rel="stylesheet" />
+}
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true)
+{
+    <script src="~/lib/metisMenu/metisMenu.min.js"></script>
+
+}
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true)
+{
+    <script src="~/Scripts/angular/app/controllers/ProfileCtrl.js"></script>
+}
