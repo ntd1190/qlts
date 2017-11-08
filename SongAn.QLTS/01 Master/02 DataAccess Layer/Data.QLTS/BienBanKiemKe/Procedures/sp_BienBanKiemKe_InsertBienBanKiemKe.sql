@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_BienBanKiemKe_InsertBienBanKiemKe]    Script Date: 9/19/2017 10:31:32 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER proc [dbo].[sp_BienBanKiemKe_InsertBienBanKiemKe]
+﻿ALTER proc [dbo].[sp_BienBanKiemKe_InsertBienBanKiemKe]
 	@SoChungTu NVARCHAR(20),
 	@NgayChungTu DATETIME,
 	@NgayKiemKe DATETIME,

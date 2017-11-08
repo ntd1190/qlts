@@ -1,11 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_BienBanKiemKe_DeleteBienBanKiemKeById]    Script Date: 9/19/2017 10:30:26 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER proc [dbo].[sp_BienBanKiemKe_DeleteBienBanKiemKeById]
+﻿ALTER proc [dbo].[sp_BienBanKiemKe_DeleteBienBanKiemKeById]
 	@BienBanKiemKeId INT
 as
 BEGIN

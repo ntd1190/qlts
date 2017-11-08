@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_BaoDuong_InsertBaoDuong]    Script Date: 9/19/2017 10:29:05 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER proc [dbo].[sp_BaoDuong_InsertBaoDuong]
+﻿ALTER proc [dbo].[sp_BaoDuong_InsertBaoDuong]
 	@TaiSanId INT,
 	@PhongBanId INT,
 	@CanBoId INT,
