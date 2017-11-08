@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_GhiTang_UpdateGhiTang]    Script Date: 9/19/2017 10:38:42 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER proc [dbo].[sp_GhiTang_UpdateGhiTang]
+﻿ALTER proc [dbo].[sp_GhiTang_UpdateGhiTang]
 	@GhiTangId INT
 	,@SoChungTu NVARCHAR(50)
 	,@NgayChungTu datetime
@@ -33,8 +25,26 @@ BEGIN
 			@V_NGAYBATDAUSUDUNG DATETIME,
 			@V_PHONGBANID INT,
 			@V_NHANVIENID INT,
-			@V_SOLUONG NUMERIC(18,4)
+			@V_SOLUONG NUMERIC(18,4),
+			@V_CHOTNAM INT,
+			@V_NGAYGHITANG_OLD DATETIME,
+			@V_DUYETID INT
 
+	---------------------------------------------------------------------------------------------------
+	SELECT @V_NGAYGHITANG_OLD = NgayGhiTang, @V_DUYETID = DuyetId FROM dbo.GhiTang WHERE GhiTangId = @GhiTangId
+	SELECT @V_CHOTNAM = TrangThai FROM dbo.KhoaSoLieu WHERE Nam = YEAR(@V_NGAYGHITANG_OLD) AND CoSoId = @CoSoId
+
+	-- check chốt năm + duyệt
+	IF (@V_DUYETID = 1)
+	BEGIN
+		SELECT -2 AS ID RETURN
+	END
+	IF (@V_CHOTNAM = 1)
+	BEGIN
+		SELECT -3 AS ID RETURN
+	END
+
+	---------------------------------------------------------------------------------------------------
 	BEGIN TRAN
 		
 		BEGIN TRY
@@ -59,12 +69,12 @@ BEGIN
 				BEGIN
 					SELECT TOP 1 @V_ROWID = ROWID, @V_TAISANID = TAISANID, @V_NGAYBATDAUSUDUNG = NGAYBATDAUSUDUNG, @V_PHONGBANID = PHONGBANID, @V_NHANVIENID=NHANVIENID,@V_SOLUONG = SOLUONG FROM @V_TB_GHITANGCT
 
-					IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID )
+					IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID AND Nam = YEAR(@V_NGAYGHITANG_OLD))
 					BEGIN
 
-						UPDATE dbo.TheoDoi SET SLTang = SLTang - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID 
+						UPDATE dbo.TheoDoi SET SLTang = SLTang - @V_SOLUONG WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID AND Nam = YEAR(@V_NGAYGHITANG_OLD)
 
-						IF (SELECT SLTon + SLTang - SLGiam FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID) < 0
+						IF (SELECT SLTon + SLTang - SLGiam FROM dbo.TheoDoi WHERE TaiSanId = @V_TAISANID AND NhanVienId = @V_NHANVIENID AND PhongBanId = @V_PHONGBANID AND Nam = YEAR(@V_NGAYGHITANG_OLD)) < 0
 						BEGIN	
 							begin try rollback tran end try begin catch end CATCH
 							SELECT -1 AS ID

@@ -1,12 +1,4 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_GhiTangChiTiet_GetGhiTangChiTietByDeNghiId]    Script Date: 9/19/2017 10:38:58 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-
-ALTER PROC [dbo].[sp_GhiTangChiTiet_GetGhiTangChiTietByDeNghiId]
+﻿ALTER PROC [dbo].[sp_GhiTangChiTiet_GetGhiTangChiTietByDeNghiId]
 	@GhiTangId INT
 AS  
 BEGIN
@@ -24,12 +16,14 @@ SET NOCOUNT ON
 			CAST(ct.NhanVienId AS VARCHAR)NhanVienId,
 			nv.TenNhanVien,
 			ct.SoLuong,
-			ISNULL(SUM(ng.GiaTri),0) NguyenGia
+			ISNULL(SUM(ng.GiaTri),0) NguyenGia,
+			ct.HopDongId, HD.SoHopDong
 	FROM dbo.GhiTangChiTiet ct
 	LEFT JOIN dbo.PhongBan pb ON pb.PhongBanId = ct.PhongBanId
 	LEFT JOIN dbo.TaiSan ts ON ts.TaiSanId = ct.TaiSanId
 	LEFT JOIN dbo.NguyenGia ng ON ng.TaiSanId = ts.TaiSanId
 	LEFT JOIN dbo.NhanVien nv ON nv.NhanVienId = ct.NhanVienId
+	LEFT JOIN dbo.HopDong HD ON HD.HopDongId = ct.HopDongId
 	WHERE ct.GhiTangId = @GhiTangId
 	GROUP BY
 			ct.GhiTangChiTietId,
@@ -43,7 +37,8 @@ SET NOCOUNT ON
 			ct.NgayBatDauSuDung,
 			ct.NhanVienId,
 			nv.TenNhanVien,
-			ct.SoLuong
+			ct.SoLuong,
+			ct.HopDongId, HD.SoHopDong
 	
 SET NOCOUNT OFF
 END

@@ -1,21 +1,17 @@
-﻿USE [QLTS]
-GO
-/****** Object:  StoredProcedure [dbo].[sp_GhiTangChiTiet_InsertGhiTangChiTiet]    Script Date: 9/19/2017 10:39:29 AM ******/
-SET ANSI_NULLS ON
-GO
-SET QUOTED_IDENTIFIER ON
-GO
-ALTER proc [dbo].[sp_GhiTangChiTiet_InsertGhiTangChiTiet]
+﻿ALTER proc [dbo].[sp_GhiTangChiTiet_InsertGhiTangChiTiet]
 	@GhiTangId INT
 	,@TaiSanId INT
 	,@NgayBatDauSuDung DATETIME
 	,@PhongBanId INT
 	,@NhanVienId INT
 	,@SoLuong NUMERIC(18,4)
+	,@HopDongId INT
 as
 BEGIN
 	Declare @ErrMsg nvarchar(max)
 	DECLARE @V_NGAYGHITANG DATETIME
+
+	IF (@HopDongId = 0) SET @HopDongId = NULL
 
 	SELECT @V_NGAYGHITANG = NgayGhiTang FROM dbo.GhiTang WHERE GhiTangId = @GhiTangId
 	
@@ -27,26 +23,28 @@ BEGIN
 			
 			INSERT dbo.GhiTangChiTiet
 			        ( GhiTangId ,			TaiSanId ,			NgayBatDauSuDung ,
-			          PhongBanId ,			NhanVienId ,		SoLuong
+			          PhongBanId ,			NhanVienId ,		SoLuong,				HopDongId
 			        )
 			SELECT	@GhiTangId				,@TaiSanId			,@NgayBatDauSuDung
-					,@PhongBanId			,@NhanVienId		,@SoLuong
+					,@PhongBanId			,@NhanVienId		,@SoLuong,				@HopDongId
 			
-			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienId AND PhongBanId = @PhongBanId)
+			IF EXISTS(SELECT 1 FROM dbo.TheoDoi WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienId AND PhongBanId = @PhongBanId AND Nam = YEAR(@V_NGAYGHITANG))
 			BEGIN
-				UPDATE dbo.TheoDoi SET SLTang = SLTang + @SoLuong,NgayGhiTang=@V_NGAYGHITANG WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienId AND PhongBanId = @PhongBanId
+				UPDATE dbo.TheoDoi SET SLTang = SLTang + @SoLuong,NgayGhiTang=@V_NGAYGHITANG WHERE TaiSanId = @TaiSanId AND NhanVienId = @NhanVienId AND PhongBanId = @PhongBanId AND Nam = YEAR(@V_NGAYGHITANG)
 			END
 			ELSE
 			BEGIN
 				INSERT dbo.TheoDoi
 						( 
 							TaiSanId ,			NgayTrangCap ,			NgayBatDauSuDung ,		PhongBanId ,			
-							NhanVienId ,		SLTon ,					SLTang ,				SLGiam		, NgayGhiTang
+							NhanVienId ,		SLTon ,					SLTang ,				SLGiam		, 
+							NgayGhiTang ,		Nam,					HopDongId
 						)
 				SELECT		@TaiSanId			,@V_NGAYGHITANG			,@NgayBatDauSuDung		,@PhongBanId
-							,@NhanVienId		,0						,@SoLuong				,0			,@V_NGAYGHITANG
+							,@NhanVienId		,0						,@SoLuong				,0			
+							,@V_NGAYGHITANG,	YEAR(@V_NGAYGHITANG),	@HopDongId
 			END
-
+			
 			SELECT SCOPE_IDENTITY()
 		END TRY
 		BEGIN CATCH
