@@ -6,7 +6,7 @@
         .directive("keyboard", keyboard); // HOT-KEY
 
     //HOT-KEY
-    function keyboard($document, keyCodes) {        
+    function keyboard($document, keyCodes) {
         return {
             link: function (scope, element, attrs) {
 
@@ -29,9 +29,9 @@
                         event.preventDefault();
 
                         //Invoke the handler and digest
-                        //scope.$apply(function () {
-                        //    keyDown.callback(keyDown.name, event.keyCode);
-                        //})
+                        scope.$apply(function () {
+                            keyDown.callback(keyDown.name, event.keyCode);
+                        })
                     }
                 });
             }
@@ -43,9 +43,9 @@
         var vm = this;
 
         //HOT-KEY       
-        vm.keys = {     
+        vm.keys = {
             F8: function (name, code) {
-                if ($rootScope.isOpenPopup) {                                        
+                if ($rootScope.isOpenPopup) {
                     save(vm.data.objVaiTro);
                 }
             }
@@ -60,7 +60,11 @@
 
         vm.data = {
             dsVaiTro: [],
-            objVaiTro: {}
+            objVaiTro: {},
+            UserLoginId: '',
+            showButtonXoa: false,
+            showButtonSave: false,
+            listQuyenTacVu: [],
         };
 
         vm.action = {
@@ -82,7 +86,36 @@
             getById($rootScope.VaiTroId);
         });
 
+        vm.onInitView = onInitView;
         activate();
+        function onInitView(ctrlId) {
+            if (ctrlId && ctrlId.userInfo) {
+                vm.data.listQuyenTacVu = ctrlId.userInfo.DsQuyenTacVu.split(',');
+                vm.data.UserLoginId = ctrlId.userInfo.NhanVienId;
+                setEnableButton();
+            }
+        }
+        function setEnableButton() {
+            vm.data.showButtonXoa = false;
+            vm.data.showButtonSave = false;
+            if (vm.data.listQuyenTacVu.length > 0) {
+
+                // Co quyen them moi
+                if (vm.data.listQuyenTacVu.indexOf("N") > 0) {
+                    vm.data.showButtonSave = true;
+                }
+
+                // Co quyen Xoa
+                if (vm.data.listQuyenTacVu.indexOf("D") > 0) {
+                    vm.data.showButtonXoa = true;
+                }
+
+                // Co quyen Sua
+                if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
+                    vm.data.showButtonSave = true;
+                }
+            }
+        }
 
         function activate() {
             //status of the popup is hidden
@@ -100,15 +133,15 @@
 
         }
 
-       
+
 
         function keyPress(value, fromId, ToId, event) {
             //check Enter key is press
-            if (event.keyCode == '13') {             
+            if (event.keyCode == '13') {
                 //set condition of has-error
                 if (fromId == 'txtMa') {
                     vm.status.isInValidMa = utility.checkInValid(value, 'isCode');
-                    if(!vm.status.isInValidMa) {
+                    if (!vm.status.isInValidMa) {
                         //set focus for the next input
                         $window.document.getElementById(ToId).focus();
                     }
@@ -162,7 +195,7 @@
         }
 
         function save(obj) {
-          
+
             //check validate fields of fNguoiDung
             vm.status.isInValidMa = utility.checkInValid(obj.MaVaiTro, 'isCode');
             if (vm.status.isInValidMa) {
@@ -187,7 +220,7 @@
         }
 
         function insert(obj) {
-          
+
             VaiTroService.insert(obj).then(function (result) {
                 console.log(result);
                 if (result.data) {
@@ -201,9 +234,9 @@
                     alert(error.data.Message);
                 }
             });
-        }       
+        }
 
-        function update(obj) {            
+        function update(obj) {
             VaiTroService.update(obj).then(function (result) {
                 if (result.data) {
                     vm.data.objVaiTro = result.data;
@@ -246,5 +279,5 @@
         }
     }
 
-    
+
 })();

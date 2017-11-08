@@ -191,11 +191,32 @@
     <Content Include="Scripts\angular\app\models\TuyChonCotService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\ChucVu\ChucVuListCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\ChucVuService.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuEditCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuFilterCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\ChucVuListCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\ChucVu\List\service\ChucVuService.js" />
+    <Content Include="Scripts\angular\ChucVu\List\template\chuc-vu-list.template.html" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungEditCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungFilterCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungListCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\MainCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\service\NguoiDungService.js" />
+    <Content Include="Scripts\angular\NhanVien\Edit\MainCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\Edit\ThongTinNhanVienEditCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\MainCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienFilterCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListListCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\controller\NhanVienListPopupCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\List\service\NhanVienService.js" />
+    <Content Include="Scripts\angular\PhanQuyen\controller\PhanQuyenListCtrl.js" />
+    <Content Include="Scripts\angular\PhanQuyen\service\PhanQuyenService.js" />
+    <Content Include="Scripts\angular\PhongBanList\controller\PhongBanEditCtrl.js" />
+    <Content Include="Scripts\angular\PhongBanList\controller\PhongBanListCtrl.js" />
+    <Content Include="Scripts\angular\PhongBanList\service\PhongBanService.js" />
     <Content Include="Scripts\angular\shared\directive\keyboard.directive.js" />
     <Content Include="Scripts\angular\shared\directive\number-format.js" />
     <Content Include="Scripts\angular\shared\service\xlsx.full.min.js" />
@@ -244,9 +265,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ChucVuController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\PhanQuyenController.cs" />
+    <Compile Include="Controllers\PhongBanController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -271,6 +296,10 @@
     <Content Include="Views\Shared\_LayoutReport.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\NguoiDung\List.cshtml" />
+    <Content Include="Views\PhanQuyen\List.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\NhanVien\List.cshtml" />
+    <Content Include="Views\NhanVien\_NhanVienListPopup.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -282,6 +311,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
+    <Folder Include="Views\ChucVu\" />
+    <Folder Include="Views\PhongBan\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\00 Utilities\Util.Common\Util.Common.csproj">

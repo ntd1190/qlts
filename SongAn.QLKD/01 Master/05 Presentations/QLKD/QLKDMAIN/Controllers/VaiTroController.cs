@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
 {
-    public class VaiTroController : Controller
+    public class VaiTroController : BaseController
     {
         // GET: VaiTro
         public ActionResult Index()
@@ -19,6 +19,10 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
         [CustomAuthorize(FunctionCodes = "CN0005")]
         public ActionResult List()
         {
+            string userLogin = LoadUserInfo("CN0005");
+
+            ViewBag.userInfo = userLogin;
+
             string __VIEW_NAME = "List";
             return View(__VIEW_NAME);
         }

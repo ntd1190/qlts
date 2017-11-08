@@ -1,0 +1,35 @@
+﻿<table class="table table-bordered table-condensed table-hover table-responsive table-striped" st-table="ctrl.data.listNhanVien" st-pipe="ctrl.action.callServer">
+    <thead class="bg-primary">
+        <tr>
+            <th class="text-center" style="width: 50px;">Chọn</th>
+            <th ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" style="width:{{::cot.width}}">{{::cot.ten_cot}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-if="ctrl.data.isLoading">
+            <td colspan="100" class="text-center info">
+                <i class="fa fa-fw fa-spinner fa-pulse"></i>
+            </td>
+        </tr>
+        <tr ng-if="ctrl.data.error.code>0">
+            <td colspan="100" class="text-center danger">
+                {{ctrl.data.error.message}}
+            </td>
+        </tr>
+
+        <tr ng-repeat="nhanvien in ctrl.data.listNhanVien" ng-class="(nhanvien.isSelected==true)?'info':''">
+            <td class="text-primary text-center" st-select-row="nhanvien" st-select-mode="multiple"><i class="fa fa-fw" ng-class="nhanvien.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+            <td ng-repeat="cot in ctrl.data.listCot|filter:cot.chon=true" ng-switch="cot.ma_cot">
+                <span ng-switch-when="Ten">{{::nhanvien['Ho']+' '+nhanvien[cot.ma_cot]}}</span>
+                <span ng-switch-default>{{::nhanvien[cot.ma_cot]}}</span>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="100" class="text-center">
+                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+            </td>
+        </tr>
+    </tfoot>
+</table>

@@ -1,0 +1,148 @@
+﻿
+@{
+    ViewBag.Title = "Phân quyền vai trò";
+}
+<div class="container-fluid">
+    <div class="panel panel-default" ng-controller="PhanQuyenListCtrl as Ctrl" ng-init="Ctrl.onInitView({userInfo: @ViewBag.userInfo})">
+        <div class="panel-heading clearfix">
+            <div class="panel-title">
+                <i class="fa fa-fw fa-star-o"></i>
+                <span>Phân quyền vai trò</span>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="panel-heading">
+                <div class="row form-group form-group-sm">
+                    <label for="txtKhachHang" class="control-label col-sm-1">Vai trò</label>
+                    <div class="col-sm-5">
+                        <div class="form-control auto-height">
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#VaiTroListPopup"><i class="fa fa-fw fa-search"></i></a>
+                            <a class="pull-right" href="javascript:void(0);" ng-click="Ctrl.action.clearListVaiTro()"><i class="fa fa-fw fa-remove"></i></a>
+                            <a href="javascript:void(0);" data-toggle="collapse">
+                                <span class="" style="margin-right: 5px;" ng-bind="vt.TenVaiTro+','" ng-repeat="vt in Ctrl.data.listVaiTro"></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- popup danh sách phòng ban -->
+        <div class="panel panel-primary hidden-print collapse fade ui-draggable" ng-controller="VaiTroListCtrl as ctrl" id="VaiTroListPopup">
+            <div class="panel-heading ui-draggable-handle">
+                <div class="panel-title">
+                    <span>Danh sách vai trò</span>
+                    <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#VaiTroListPopup"><i class="fa fa-fw fa-remove"></i></a>
+                </div>
+            </div>
+            <div class="panel-body" style="width:auto;height:auto;">
+                <form class="form-inline pull-right">
+                    <div class="form-group form-group-sm">
+                        <span><i class="fa fa-fw fa-star-o"></i>Tìm kiếm vai trò</span>
+                    </div>
+                    <div class="form-group form-group-sm">
+                        <input name="txtTimKiem" type="text" class="form-control" ng-model="search" ng-keypress="$event.keyCode===13?ctrl.action.find(search):0" autofocus />
+                        <a class="btn btn-sm btn-primary" ng-click="ctrl.action.find(search)"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</a>
+                    </div>
+                </form>
+            </div>
+            <div id="tableToExport" class="list-margin panel-body" style="height:400px">
+                <table st-table="displayed" st-safe-src="ctrl.data.dsVaiTro" class="table table-bordered table-condensed table-hover table-responsive ">
+                    <thead class="panel-footer">
+                        <tr>
+                            <th class="text-center"></th>
+                            <th class="text-center" st-sort="MaVaiTro">Mã</th>
+                            <th class="text-center" st-sort="TenVaiTro">Tên</th>
+                        </tr>
+                    </thead>
+                    <tbody ng-if="!ctrl.status.isLoadingList">
+                        <tr ng-repeat="vaitro in displayed">
+                            <td class="text-primary text-center" st-select-row="vaitro" st-select-mode="single"><i class="fa fa-fw" ng-class="vaitro.isSelected==true?'fa-check-square-o':'fa-square-o'"></i></td>
+                            <td>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#popupThemNguoiDung" ng-click="ctrl.action.edit(vaitro.VaiTroId)" ng-bind="vaitro.MaVaiTro"></a>
+                            </td>
+                            <td ng-bind="vaitro.TenVaiTro"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <span ng-if="ctrl.status.isLoadingList">Đang tải</span>
+            </div>
+            <div class="panel-footer">
+                <button class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</button>
+                <button class="btn btn-sm btn-default" data-toggle="collapse" data-target="#VaiTroListPopup">Đóng</button>
+            </div>
+        </div><!-- /popup danh sách phòng ban -->
+        <div id="listabcd" class="table-container panel-body">
+            <table class="table table-bordered table-condensed table-hover table-responsive table-striped">
+                <caption class="text-center text-color" style="color:black;margin-top:-50px"> <h3>Danh sách chức năng</h3> </caption>
+                <thead class="text-primary">
+                    <tr>
+                        <th class="text-center" style="width: 50px;">#</th>
+                        <th class="text-center" style="width: 100px;">Mã CN</th>
+                        <th class="text-center" style="width: 250px;">Chức năng</th>
+                        <th class="text-center">Danh sách quyền</th>
+
+                    </tr>
+                </thead>
+                <tbody id="tbdata"></tbody>
+            </table>
+        </div>
+    </div>
+</div>
+@section ImportScripts{
+
+}
+@section SetupScripts{}
+@section ImportAngular{
+
+    <script type="text/javascript">
+
+
+        function UpdateQuyen(check, DSQuyen, ChucNangId, VaiTroId) {
+            var dsQuyenTacVu = "";
+            var chucNang = "";
+            var DSQuyenTacVu = $(check).parent().parent().data('quyen');
+            addloadding($('body'));
+            var quyen = "";
+            if ((dsQuyenTacVu == "" && DSQuyenTacVu) || (chucNang != ChucNangId && DSQuyenTacVu)) dsQuyenTacVu = DSQuyenTacVu;
+            var arrDSQuyen = DSQuyen.split(",");
+            dsQuyenTacVu = $(check).is(":checked") ? dsQuyenTacVu + "," + $(check).val() : dsQuyenTacVu.replace($(check).val(), "");
+            var arrDSQuyenTacVu = dsQuyenTacVu.split(",");
+            for (var j = 0; j < arrDSQuyen.length; j++)
+                for (var k = 0; k < arrDSQuyenTacVu.length; k++) {
+                    if (arrDSQuyenTacVu[k] == arrDSQuyen[j])
+                        quyen = quyen + arrDSQuyen[j] + ",";
+                }
+            $(check).parent().parent().data('quyen', quyen);
+            dsQuyenTacVu = quyen;
+            chucNang = ChucNangId;
+            $.ajax({
+                type: "POST",
+                url: window.API_BASE + 'api.QLKD/QuyenTacVu/UpdateQuyenTacVu',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    VaiTroId: VaiTroId,
+                    ChucNangId: ChucNangId,
+                    DSQuyenTacVu: quyen.substring(0, quyen.length - 1),
+                }), error: function (msg) {
+                    console.log(msg)
+                },
+                success: function (msg) {
+                    if (msg.data.ChucNangId > 0) removeloadding($('body'));
+                }
+            });
+        }
+        function addloadding(obj) {
+            $(obj).append('<div id="bgloadding"><div class="windows8"><div class="wBall" id="wBall_1"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_2"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_3"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_4"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_5"><div class="wInnerBall"></div></div></div></div>');
+        }
+        function removeloadding(obj) {
+            $('#bgloadding').remove();
+        }
+    </script>
+    <link href="~/lib/bootstrap/css/essentials.css" rel="stylesheet" />
+    <script src="~/Scripts/angular/VaiTroList/controller/VaiTroListCtrl.js"></script>
+    <script src="~/Scripts/angular/VaiTroList/service/VaiTroService.js"></script>
+    <script src="~/Scripts/angular/PhanQuyen/service/PhanQuyenService.js"></script>
+    <script src="~/Scripts/angular/PhanQuyen/controller/PhanQuyenListCtrl.js"></script>
+    <script src="~/Scripts/angular/app/models/keyCodes.js"></script>
+    <script src="~/Scripts/angular/shared/service/ExcelExport.js"></script>
+}

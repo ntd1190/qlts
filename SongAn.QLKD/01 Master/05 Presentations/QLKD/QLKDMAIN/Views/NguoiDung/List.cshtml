@@ -1,15 +1,15 @@
 ﻿
 @{
-    ViewBag.Title = "List";
+    ViewBag.Title = "Người dùng";
 }
 <div class="container-fluid" ng-controller="MainCtrl as mainCtrl" ng-init="mainCtrl.onInitView()">
     <!-- panel tìm kiếm -->
-    <div class="panel panel-default hidden-print" ng-controller="NguoiDungFilterCtrl as ctrl" ng-init="ctrl.onInitView('NguoiDungFilterCtrl')" keyboard="ctrl.keys">
+    <div class="panel panel-default" ng-controller="NguoiDungFilterCtrl as ctrl" ng-init="ctrl.onInitView('NguoiDungFilterCtrl')" keyboard="ctrl.keys">
         <div class="panel-heading">
             <div class="panel-title clearfix">
                 <span><i class="fa fa-fw fa-star-o"></i>Người dùng</span>
                 <div class="btn-group btn-group-sm pull-right">
-                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìn kiếm (F3)</a>
+                    <a class="btn btn-primary" data-toggle="collapse" data-target="#panelTimkiemCollapse"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</a>
                     <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i>Tùy chọn</a>
                 </div>
             </div>
@@ -124,7 +124,7 @@
                 <h3 class="text-center no-margin">Danh sách người dùng</h3>
             </div>
 
-            <div class="table-responsive" style="width:auto; height: auto;" ng-if="ctrlList.data.showList">
+            <div class="table-container panel-body" style="width:auto; height: auto;" ng-if="ctrlList.data.showList">
                 <table class="table table-bordered table-condensed table-responsive table-hover " st-table="ctrlList.data.listNguoiDung" st-pipe="ctrlList.action.getPage">
                     <thead class="bg-default text-primary">
                         <tr>
@@ -158,8 +158,8 @@
             </div>
 
             <div class="panel-footer hidden-print">
-                <a class="btn btn-sm btn-primary" data-toggle="collapse" ng-if="ctrlList.data.showButtonNew" ng-click="ctrlList.action.addNguoiDung()">Mới (F2)</a>&nbsp;&nbsp;&nbsp;
-                <button class="btn btn-sm btn-default" ng-if="ctrlList.data.showButtonXoaChon" ng-click="ctrlList.action.deleteSelected('')">Xóa chọn</button>
+                <button class="btn btn-sm btn-primary" ng-if="ctrlList.data.showButtonNew" ng-click="ctrlList.action.addNguoiDung()"><i class="fa fa-plus"></i> Mới (F2)</button>&nbsp;&nbsp;&nbsp;
+                <button class="btn btn-sm btn-danger" ng-if="ctrlList.data.showButtonXoaChon" ng-click="ctrlList.action.deleteSelected('')"><i class="fa fa-trash-o"></i> Xóa chọn</button>
             </div>
         </div>
         <!-- popup cập nhật edit người dùng -->
@@ -235,7 +235,7 @@
                 </form>
             </div>
             <div class="panel-footer">
-                <button type="button" class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonSave" id="btnluu" ng-click="ctrl.action.save()">Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonSave" id="btnluu" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
                 <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#popupThongTinNguoiDung" ng-click="ctrl.action.closeEdit()">Đóng</a>&nbsp;&nbsp;&nbsp;
                 <button type="button" id="btnXoaId" class="btn  btn-sm btn-default" ng-click="ctrlList.action.deleteSelected(ctrl.data.objNguoiDung.NguoiDungId)" ng-if="ctrl.data.objNguoiDung.NguoiDungId!=0 && ctrl.data.showButtonXoa">Xóa</button>&nbsp;&nbsp;&nbsp;

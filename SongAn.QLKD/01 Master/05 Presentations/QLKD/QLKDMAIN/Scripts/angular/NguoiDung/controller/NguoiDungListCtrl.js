@@ -151,8 +151,7 @@
             }
             if (config && config.userInfo) {
                 vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
-                vm.data.UserLoginId = config.userInfo.
-;
+                vm.data.UserLoginId = config.userInfo.NhanVienId;
                 setEnableButton();
             }
             initEventListener();
