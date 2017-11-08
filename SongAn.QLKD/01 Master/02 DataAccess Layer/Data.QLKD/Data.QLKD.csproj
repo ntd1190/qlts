@@ -53,9 +53,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChucVu\GetChucVuByIdDac.cs" />
+    <Compile Include="ChucVu\GetListChucVuByCriteriaDac.cs" />
+    <Compile Include="ChucVu\InsertChucVuDac.cs" />
+    <Compile Include="ChucVu\UpdateChucVuDac.cs" />
+    <Compile Include="ChucVu\UpdateXoaListChucVuDac.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteriaDac.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteriaListDac.cs" />
+    <Compile Include="NhanVien\GetThongTinNhanVienByIdDac.cs" />
+    <Compile Include="NhanVien\GetThongTinNhanVienByMaDac.cs" />
+    <Compile Include="PhongBan\GetListPhongBanSelectAllByCriteriaProjectionDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="ChucVu\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_ChucVu_GetListChucVuByCriteria.sql" />
+    <Content Include="ChucVu\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_ChucVu_InsertChucVu.sql" />
+    <Content Include="ChucVu\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_ChucVu_UpdateChucVu.sql" />
+    <Content Include="ChucVu\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_ChucVu_UpdateXoaListChucVu.sql" />
+    <Content Include="NhanVien\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_NhanVien_GetListNhanVienByCriteria.sql" />
+    <Content Include="NhanVien\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_NhanVien_GetListNhanVienByCriteriaList.sql" />
+    <Content Include="NhanVien\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_NhanVien_GetThongTinNhanVienById.sql" />
+    <Content Include="NhanVien\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_NhanVien_GetThongTinNhanVienByMa.sql" />
+    <Content Include="PhongBan\Procedures\0.MSSQL_QLDN_QLNS.dbo.sp_PhongBan_SelectAllByCriteriaProjection.sql" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">
       <Project>{c1722be3-c482-4e38-930e-2def7987daed}</Project>
@@ -73,6 +93,10 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ChucVu\Dto\" />
+    <Folder Include="NhanVien\Dto\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

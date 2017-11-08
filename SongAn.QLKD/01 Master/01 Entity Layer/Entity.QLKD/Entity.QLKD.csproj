@@ -54,6 +54,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\ChiNhanh.cs" />
+    <Compile Include="Entity\ChucVu.cs" />
+    <Compile Include="Entity\NhanVien.cs" />
+    <Compile Include="Entity\PhongBan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -63,7 +67,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Entity\" />
     <Folder Include="Resolver\" />
   </ItemGroup>
   <ItemGroup>

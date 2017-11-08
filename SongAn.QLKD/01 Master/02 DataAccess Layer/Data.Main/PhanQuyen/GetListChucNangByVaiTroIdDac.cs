@@ -23,7 +23,7 @@ namespace SongAn.QLKD.Data.Main.PhanQuyen
         /// Vai Trò Id
         /// </summary>
         public int VaiTroId { get; set; }
-
+        public string Loai { get; set; }
         #endregion
 
         #region private variable
@@ -78,6 +78,7 @@ namespace SongAn.QLKD.Data.Main.PhanQuyen
             {
                 var p = new DynamicParameters();
                 p.Add("VAITROID", VaiTroId, DbType.String);
+                p.Add("LOAI", Loai, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_PhanQuyen_GetListChucNang",
                     param: p,
