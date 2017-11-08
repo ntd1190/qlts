@@ -19,7 +19,7 @@ namespace SongAn.QLKD.Api.Main.Models.PhanQuyen
         /// Vai trò Id
         /// </summary>
         public string VaiTroId { get; set; }
-
+        public string Loai { get; set; }
         /// <summary>
         /// Mã Vai trò
         /// </summary>
@@ -80,7 +80,7 @@ namespace SongAn.QLKD.Api.Main.Models.PhanQuyen
                 var biz = new GetListChucNangByVaiTroIdBiz(context);
 
                 biz.VaiTroId = Protector.Int(VaiTroId);
-
+                biz.Loai = Loai;
                 var config = await biz.Execute();
 
                 return ActionHelper.returnActionResult(HttpStatusCode.OK, config, null);

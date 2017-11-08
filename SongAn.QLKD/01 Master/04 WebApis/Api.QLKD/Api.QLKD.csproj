@@ -54,6 +54,7 @@
       <HintPath>..\..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +63,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\ChucVuController.cs" />
+    <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\PhongBanController.cs" />
+    <Compile Include="Models\ChucVu\GetChucVuByIdAction.cs" />
+    <Compile Include="Models\ChucVu\GetListChucVuByCriteriaAction.cs" />
+    <Compile Include="Models\ChucVu\InsertChucVuAction.cs" />
+    <Compile Include="Models\ChucVu\UpdateChucVuAction.cs" />
+    <Compile Include="Models\ChucVu\UpdateXoaListChucVuAction.cs" />
+    <Compile Include="Models\NhanVien\DeleteListNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByCriteriaAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByCriteriaListAction.cs" />
+    <Compile Include="Models\NhanVien\GetListNhanVienByFilterAction.cs" />
+    <Compile Include="Models\NhanVien\GetNhanVienByIdAction.cs" />
+    <Compile Include="Models\NhanVien\GetThongTinNhanVienByIdAction.cs" />
+    <Compile Include="Models\NhanVien\GetThongTinNhanVienByMaAction.cs" />
+    <Compile Include="Models\NhanVien\InsertNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\InsertThongTinNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateThongTinNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateXoaListNhanVienAction.cs" />
+    <Compile Include="Models\Phongban\DeleteListPhongBanAction.cs" />
+    <Compile Include="Models\Phongban\DeletePhongBanAction.cs" />
+    <Compile Include="Models\Phongban\GetListPhongBanByProjectionAction.cs" />
+    <Compile Include="Models\Phongban\GetPhongBanByIdAction.cs" />
+    <Compile Include="Models\Phongban\InsertPhongBanAction.cs" />
+    <Compile Include="Models\Phongban\UpdatePhongBanAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -94,10 +121,7 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-    <Folder Include="Models\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetDir)$(TargetName).dll" "$(SolutionDir)04 WebApis\QLKDAPI\bin\$(TargetName).dll"</PostBuildEvent>

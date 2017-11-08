@@ -1,0 +1,2336 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Dapper.FastCrud</name>
+    </assembly>
+    <members>
+        <member name="T:Dapper.FastCrud.DapperExtensions">
+            <summary>
+            Class for Dapper extensions
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Get``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.ISelectSqlSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Queries the database for a single record based on its primary keys.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="entityKeys">The entity from which the primary keys will be extracted and used for filtering.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.GetAsync``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.ISelectSqlSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Queries the database for a single record based on its primary keys.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="entityKeys">The entity from which the primary keys will be extracted and used for filtering.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>Returns a single entity by a single id from table or NULL if none could be found.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Insert``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Inserts a row into the database, updating its properties based on the database generated fields.
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.InsertAsync``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Inserts a row into the database.
+            </summary>
+            <param name="connection"></param>
+            <param name="entityToInsert"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Update``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Updates a record in the database.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="entityToUpdate">The entity you wish to update.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>True if the item was updated.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.UpdateAsync``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Updates a record in the database.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="entityToUpdate">
+            The entity you wish to update.
+            For partial updates use an entity mapping override.
+            </param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>True if the item was updated.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.BulkUpdate``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalBulkSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Updates a number of records in the database.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="updateData">
+            The data used to update the records. 
+            The primary keys will be ignored.
+            For partial updates use an entity mapping override.
+            </param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The number of records updated.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.BulkUpdateAsync``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalBulkSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Updates a number of records in the database.
+            </summary>
+            <param name="connection">Database connection.</param>
+            <param name="updateData">
+            The data used to update the records. 
+            The primary keys will be ignored.
+            For partial updates use an entity mapping override.
+            </param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The number of records updated.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Delete``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Deletes an entity by its primary keys.
+            </summary>
+            <typeparam name="TEntity">Entity Type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="entityToDelete">The entity you wish to remove.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>True if the entity was found and successfully deleted.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.DeleteAsync``1(System.Data.IDbConnection,``0,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Deletes an entity by its primary keys.
+            </summary>
+            <typeparam name="TEntity">Entity Type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="entityToDelete">The entity you wish to remove.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>True if the entity was found and successfully deleted.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.BulkDelete``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalBulkSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Deletes all the records in the table or a range of records if a conditional clause was set up in the statement options.
+            </summary>
+            <typeparam name="TEntity">Entity Type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The number of records deleted.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.BulkDeleteAsync``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalBulkSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Deletes all the records in the table or a range of records if a conditional clause was set up in the statement options.
+            </summary>
+            <typeparam name="TEntity">Entity Type</typeparam>
+            <param name="connection">Database connection.</param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The number of records deleted.</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Count``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Counts all the records in a table or a range of records if a conditional clause was set up in the statement options.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The record count</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.CountAsync``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalSqlStatementOptionsBuilder{``0}})">
+            <summary>
+            Counts all the records in a table or a range of records if a conditional clause was set up in the statement options.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The record count</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.Find``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IRangedBatchSelectSqlSqlStatementOptionsOptionsBuilder{``0}})">
+            <summary>
+            Queries the database for a set of records.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The record count</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.DapperExtensions.FindAsync``1(System.Data.IDbConnection,System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.IRangedBatchSelectSqlSqlStatementOptionsOptionsBuilder{``0}})">
+            <summary>
+            Queries the database for a set of records.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="connection"></param>
+            <param name="statementOptions">Optional statement options (usage: statement => statement.SetTimeout().AttachToTransaction()...)</param>
+            <returns>The record count</returns>
+        </member>
+        <member name="T:Dapper.FastCrud.Sql">
+            <summary>
+            This SQL builder can be used for mapping table and column names to their SQL counterparts.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.Identifier(System.String)">
+            <summary>
+            Returns a parameter formatter for an SQL identifier, allowing it to be properly formatted by adding delimiters.
+            Do not use this method for table or column names.
+            </summary>
+            <param name="sqlIdentifier">An SQL identifier that is not a table or a column name.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.Table(Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the SQL table name of the main entity.
+            If you wish to resolve the table name of another entity, please use the generic overload instead.
+            The resolver can be used as-is in a formattable string expression.
+            </summary>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.Table``1(Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the SQL table name of the provided entity.
+            If you wish to resolve the table name of the main entity, please use the non-generic overload instead.
+            The resolver can be used as-is in a formattable string expression.
+            </summary>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.Column(System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the name of the database column attached to the specified property of the main entity.
+            If you wish to resolve the column name of another entity, please use the generic overload instead.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. <code>nameof(entity.propname)</code>)</param>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.TableAndColumn(System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the combined table and column attached to the specified property of the main entity.
+            If you wish to resolve the column name of another entity, please use the generic overload instead.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. <code>nameof(entity.propname)</code>)</param>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.Column``1(System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the name of the database column attached to the property of the provided entity.
+            If you wish to resolve the column name of the main entity, please use the non-generic overload instead.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. <code>nameof(entity.propname)</code>)</param>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Sql.TableAndColumn``1(System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns a parameter formatter for the combined table and column attached to the property of the provided entity.
+            If you wish to resolve the column name of the main entity, please use the non-generic overload instead.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. <code>nameof(entity.propname)</code>)</param>
+            <param name="entityMappingOverride">Overrides the entity mapping used in the query method.</param>
+        </member>
+        <member name="T:Dapper.FastCrud.OrmConfiguration">
+            <summary>
+            Sets up various FastCrud settings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.OrmConfiguration.ClearEntityRegistrations">
+            <summary>
+            Clears all the recorded entity registrations and entity ORM mappings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.OrmConfiguration.GetDefaultEntityMapping``1">
+            <summary>
+            Returns the default entity mapping for an entity.
+            This was either previously set by you in a call to <see cref="M:Dapper.FastCrud.OrmConfiguration.SetDefaultEntityMapping``1(Dapper.FastCrud.Mappings.EntityMapping{``0})"/> or it was auto-generated by the library.
+            
+            You can use the returned mappings to create new temporary mappings for the query calls or to override the defaults.
+            Once the mappings have been used in query calls, the instance will be frozen and it won't support further modifications, but you can always call <see cref="M:Dapper.FastCrud.Mappings.EntityMapping`1.Clone"/> to create a new instance.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.OrmConfiguration.RegisterEntity``1">
+            <summary>
+            Registers a new entity. Please continue setting up property mappings and other entity options with the returned default entity mapping instance.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.OrmConfiguration.SetDefaultEntityMapping``1(Dapper.FastCrud.Mappings.EntityMapping{``0})">
+            <summary>
+            Sets the default entity type mapping for the entity type.
+            This must be called before any query operations were made on the entity.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.OrmConfiguration.GetSqlBuilder``1(Dapper.FastCrud.Mappings.EntityMapping{``0})">
+            <summary>
+            Returns an SQL builder helpful for constructing verbatim SQL queries.
+            </summary>
+            <typeparam name="TEntity">Entity type</typeparam>
+            <param name="entityMapping">If NULL, de default entity mapping will be used.</param>
+        </member>
+        <member name="P:Dapper.FastCrud.OrmConfiguration.DefaultSqlStatementOptions">
+            <summary>
+            Gets or sets the default command options. 
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.OrmConfiguration.DefaultDialect">
+            <summary>
+            Gets or sets the default dialect. 
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.OrmConfiguration.Conventions">
+            <summary>
+            Gets or sets the conventions used by the library. Subclass <see cref="T:Dapper.FastCrud.Configuration.OrmConventions"/> to provide your own set of conventions.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.OrmConventions">
+            <summary>
+            Default conventions used by the library.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.GetTableName(System.Type)">
+            <summary>
+            Resolves an entity type name into a sql table name. 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.GetSchemaName(System.Type)">
+            <summary>
+            Returns the schema name for an entity type. It can return null.
+            In order for the schema to be used, you must also ensure that <see cref="!:IsUsingSqlSchemas"/> for the dialect also returns <c>true</c>.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.GetDatabaseOptions(Dapper.FastCrud.SqlDialect)">
+            <summary>
+            Returns various database specific options to be used by the sql builder for the specified dialect.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.GetEntityProperties(System.Type)">
+            <summary>
+            Gets the entity properties mapped to database columns.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.ConfigureEntityPropertyMapping(Dapper.FastCrud.Mappings.PropertyMapping)">
+            <summary>
+             Sets up an entity property mapping.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.IsSimpleSqlType(System.Type)">
+            <summary>
+            Return true if an entity property of the given type should be considered for a database mapping.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.ClearEntityToTableNameConversionRules">
+            <summary>
+            Clears all the entity to table name conventions.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.OrmConventions.AddEntityToTableNameConversionRule(System.String,System.String)">
+            <summary>
+            Adds a new rule used for converting an entity class name into a table name.
+            The rule will be added with the highest priority.
+            </summary>
+            <param name="classNameRegex">The regex that will have to match the class name (e.g. "(buffal|tomat|volcan)o$" ) </param>
+            <param name="sqlTableNameMatchReplacement">The match used to form the sql table name (e.g. "$1oes")</param>
+        </member>
+        <member name="E:Dapper.FastCrud.Configuration.PropertyChangedNotifier.PropertyChanged">
+            <summary>
+                Multicast event for property change notifications.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.PropertyChangedNotifier.SetProperty``1(``0@,``0,System.String)">
+            <summary>
+                Checks if a property already matches a desired value.  Sets the property and
+                notifies listeners only when necessary.
+            </summary>
+            <typeparam name="T">Type of the property.</typeparam>
+            <param name="storage">Reference to a property with both getter and setter.</param>
+            <param name="value">Desired value for the property.</param>
+            <param name="propertyName">
+                Name of the property used to notify listeners.  This
+                value is optional and can be provided automatically when invoked from compilers that
+                support CallerMemberName.
+            </param>
+            <returns>
+                True if the value was changed, false if the existing value matched the
+                desired value.
+            </returns>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.PropertyChangedNotifier.OnPropertyChanged(System.String)">
+            <summary>
+                Notifies listeners that a property value has changed.
+            </summary>
+            <param name="propertyName">
+                Name of the property used to notify listeners.  This
+                value is optional and can be provided automatically when invoked from compilers
+                that support <see cref="T:System.Runtime.CompilerServices.CallerMemberNameAttribute" />.
+            </param>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.SqlDatabaseOptions">
+            <summary>
+            Stores database options linked to a particular dialect.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.SqlDatabaseOptions.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.SqlDatabaseOptions.StartDelimiter">
+            <summary>
+            Gets the start delimiter used for SQL identifiers.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.SqlDatabaseOptions.EndDelimiter">
+            <summary>
+            Gets the end delimiter used for SQL identifiers.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.SqlDatabaseOptions.IsUsingSchemas">
+            <summary>
+            Gets a flag indicating the database is using schemas.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.SqlDatabaseOptions.ParameterPrefix">
+            <summary>
+            Gets the prefix used for named parameters
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.SqlStatementOptions">
+            <summary>
+            Stores basic command options.
+            This class can be inherited and set as default at <see cref="P:Dapper.FastCrud.OrmConfiguration.DefaultSqlStatementOptions"/>
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.SqlStatementOptions.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.SqlStatementOptions.CommandTimeout">
+            <summary>
+            Gets a timeout for the command being executed.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.IConditionalSqlStatementOptionsOptionsSetter`2">
+            <summary>
+            Conditional sql statement options setter. 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IConditionalSqlStatementOptionsOptionsSetter`2.Where(System.FormattableString)">
+            <summary>
+            Limits the result set with a where clause.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.IParameterizedSqlStatementOptionsSetter`2">
+            <summary>
+            Parameterized SQL statement options setter.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IParameterizedSqlStatementOptionsSetter`2.WithParameters(System.Object)">
+            <summary>
+            Sets the parameters to be used by the statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.IRangedConditionalSqlStatementOptionsSetter`2">
+            <summary>
+            Ranged conditional sql statement options setter. 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IRangedConditionalSqlStatementOptionsSetter`2.Top(System.Nullable{System.Int64})">
+            <summary>
+            Limits the results set by the top number of records returned.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IRangedConditionalSqlStatementOptionsSetter`2.OrderBy(System.FormattableString)">
+            <summary>
+            Adds an ORDER BY clause to the statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IRangedConditionalSqlStatementOptionsSetter`2.StreamResults">
+            <summary>
+            Causes the result set to be streamed.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IRangedConditionalSqlStatementOptionsSetter`2.Skip(System.Nullable{System.Int64})">
+            <summary>
+            Skips the initial set of results.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.IRelationalSqlStatementOptionsSetter`2">
+            <summary>
+            Statement options for entity relationships
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IRelationalSqlStatementOptionsSetter`2.Include``1(System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.ISqlRelationOptionsBuilder{``0}})">
+            <summary>
+            Includes a referred entity into the query. The relationship must be set up prior to calling this method.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2">
+            <summary>
+            Includes the set of options used in JOIN statements.
+            </summary>
+            <typeparam name="TReferredEntity">Joined entity</typeparam>
+            <typeparam name="TStatementOptionsBuilder">Options builder</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2.WithEntityMappingOverride(Dapper.FastCrud.Mappings.EntityMapping{`0})">
+            <summary>
+            Overrides the entity mapping for the current statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2.Where(System.FormattableString)">
+            <summary>
+            Limits the result set with a where clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2.OrderBy(System.FormattableString)">
+            <summary>
+            Adds an ORDER BY clause to the statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2.LeftOuterJoin">
+            <summary>
+            A left outer join is desired.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.ISqlRelationOptionsSetter`2.InnerJoin">
+            <summary>
+            An inner join is desired.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.IStandardSqlStatementOptionsSetter`2">
+            <summary>
+            Standard sql options setter for a statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IStandardSqlStatementOptionsSetter`2.WithTimeout(System.Nullable{System.TimeSpan})">
+            <summary>
+            Enforces a maximum time span on the current command.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IStandardSqlStatementOptionsSetter`2.AttachToTransaction(System.Data.IDbTransaction)">
+            <summary>
+            Attaches the current command to an existing transaction.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.IStandardSqlStatementOptionsSetter`2.WithEntityMappingOverride(Dapper.FastCrud.Mappings.EntityMapping{`0})">
+            <summary>
+            Overrides the entity mapping for the current statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.SqlJoinType">
+            <summary>
+            Specifies the type of join
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Configuration.StatementOptions.SqlJoinType.NotSpecified">
+            <summary>
+            Not set
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Configuration.StatementOptions.SqlJoinType.LeftOuterJoin">
+            <summary>
+            Left outer join
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Configuration.StatementOptions.SqlJoinType.InnerJoin">
+            <summary>
+            Inner join
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions">
+            <summary>
+            Groups together all the statement options related to a joined entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions.#ctor">
+            <summary>
+            Standard constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions.EntityMappingOverride">
+            <summary>
+            The entity mapping override to be used for the joined entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions.WhereClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions.OrderClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedRelationalSqlStatementOptions.JoinType">
+            <summary>
+            Gets or sets the SQL join type.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1">
+            <summary>
+            Aggregates all the options passed on through the exposed extension methods.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.RelationshipOptions">
+            <summary>
+            Gets the map of related entity types and their relationships.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.SqlStatementsFactoryChain">
+            <summary>
+            The factory used to create the sql statement factories.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.Transaction">
+            <summary>
+            The transaction to be used by the statement.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.EntityMappingOverride">
+            <summary>
+            The entity mapping override to be used for the main entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.CommandTimeout">
+            <summary>
+            Gets a timeout for the command being executed.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.Parameters">
+            <summary>
+            Parameters used by the statement.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.WhereClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.OrderClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.LimitResults">
+            <summary>
+            Gets or sets a limit on the number of rows returned.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.SkipResults">
+            <summary>
+            Gets or sets a number of rows to be skipped.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions`1.ForceStreamResults">
+            <summary>
+            Gets or sets a flag indicating the results should be streamed.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalBulkSqlStatementOptionsBuilder`1">
+            <summary>
+            Conditional sql options builder for statements of type bulk delete/update.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.ConditionalBulkSqlStatementOptionsBuilder`1">
+            <summary>
+            Conditional sql options builder for statements of type bulk delete/update.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.IConditionalSqlStatementOptionsBuilder`1">
+            <summary>
+            Statement sql options builder for a conditional statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.ConditionalSqlStatementOptionsBuilder`1">
+            <summary>
+            Statement sql options builder for a conditional statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.IRangedBatchSelectSqlSqlStatementOptionsOptionsBuilder`1">
+            <summary>
+            Ranged conditional sql options builder for a statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.RangedBatchSelectSqlSqlStatementOptionsOptionsBuilder`1">
+            <summary>
+            Ranged conditional sql options builder for a statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.ISelectSqlSqlStatementOptionsBuilder`1">
+            <summary>
+            Single statement options builder for a single record select.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.SelectSqlSqlStatementOptionsBuilder`1">
+            <summary>
+            Single statement options builder for a single record select.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.ISqlRelationOptionsBuilder`1">
+            <summary>
+            SQL statement options builder used in JOINs.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.SqlRelationOptionsBuilder`1">
+            <summary>
+            SQL statement options builder used in JOINs.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.IStandardSqlStatementOptionsBuilder`1">
+            <summary>
+            Standard sql options builder for a statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.StandardSqlStatementOptionsBuilder`1">
+            <summary>
+            Standard sql options builder for a statement.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2">
+            <summary>
+            Common options builder for JOINs.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2.WithEntityMappingOverride(Dapper.FastCrud.Mappings.EntityMapping{`0})">
+            <summary>
+            Overrides the entity mapping for the current statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2.Where(System.FormattableString)">
+            <summary>
+            Limits the result set with a where clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2.OrderBy(System.FormattableString)">
+            <summary>
+            Adds an ORDER BY clause to the statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2.LeftOuterJoin">
+            <summary>
+            A left outer join is desired.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedRelationalSqlStatementOptionsBuilder`2.InnerJoin">
+            <summary>
+            An inner join is desired.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2">
+            <summary>
+            Common options builder for all the non-JOIN type queries.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.Top(System.Nullable{System.Int64})">
+            <summary>
+            Limits the results set by the top number of records returned.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.OrderBy(System.FormattableString)">
+            <summary>
+            Adds an ORDER BY clause to the statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.Skip(System.Nullable{System.Int64})">
+            <summary>
+            Skips the initial set of results.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.StreamResults">
+            <summary>
+            Causes the result set to be streamed.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.Where(System.FormattableString)">
+            <summary>
+            Limits the result set with a where clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.WithParameters(System.Object)">
+            <summary>
+            Sets the parameters to be used by the statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.WithTimeout(System.Nullable{System.TimeSpan})">
+            <summary>
+            Enforces a maximum time span on the current command.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.AttachToTransaction(System.Data.IDbTransaction)">
+            <summary>
+            Attaches the current command to an existing transaction.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.WithEntityMappingOverride(Dapper.FastCrud.Mappings.EntityMapping{`0})">
+            <summary>
+            Overrides the entity mapping for the current statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Configuration.StatementOptions.Builders.Aggregated.AggregatedSqlStatementOptionsBuilder`2.Include``1(System.Action{Dapper.FastCrud.Configuration.StatementOptions.Builders.ISqlRelationOptionsBuilder{``0}})">
+            <summary>
+            Includes a referred entity into the query. The relationship and the associated mappings must be set up prior to calling this method.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.EntityDescriptors.EntityDescriptor">
+            <summary>
+            Basic entity descriptor, holding entity mappings for a specific entity type.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.EntityDescriptors.EntityDescriptor.DefaultEntityMapping">
+            <summary>
+            Returns the default entity mapping.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.EntityDescriptors.EntityDescriptor.EntityType">
+            <summary>
+            Gets the associated entity type.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.EntityDescriptors.EntityDescriptor`1">
+            <summary>
+            Typed entity descriptor, capable of producing statement builders associated with default entity mappings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.EntityDescriptors.EntityDescriptor`1.#ctor">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.EntityDescriptors.EntityDescriptor`1.GetSqlStatements(Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Returns the sql statements for an entity mapping, or the default one if the argument is null.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Formatters.SqlEntityFormattableParameter`1">
+            <summary>
+            Deferrs the resolution of a parameter for a specified entity until the query is ready to produce the SQL.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlEntityFormattableParameter`1.#ctor(Dapper.FastCrud.Formatters.SqlParameterElementType,System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlEntityFormattableParameter`1.GetSqlBuilder(Dapper.FastCrud.EntityDescriptors.EntityDescriptor,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            If overriden, returns the sql builder associated with the optional entity descriptor and entity mapping.
+            Note: Any or all the parameters can be <c>NULL</c>
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Formatters.SqlParameterElementType">
+            <summary>
+            Type of the parameter.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Formatters.SqlParameterFormatter">
+            <summary>
+            Deferrs the resolution of a parameter until the query is ready to produce the SQL.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlParameterFormatter.#ctor(Dapper.FastCrud.Formatters.SqlParameterElementType,System.String,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Constructor used when the entity type is set to the query's main one.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlParameterFormatter.#ctor(Dapper.FastCrud.Formatters.SqlParameterElementType,System.String,System.Type,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            Constructor used by entity type aware formatters.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlParameterFormatter.ParameterValue">
+            <summary>
+            Gets the original value of the parameter.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlParameterFormatter.ElementType">
+            <summary>
+            Gets the SQL representation of the parameter.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlParameterFormatter.EntityType">
+            <summary>
+            Gets the type of the entity attached to the resolver.
+            If NULL, the resolver was created for the main entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlParameterFormatter.EntityMappingOverride">
+            <summary>
+            Optional entity mapping .
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlParameterFormatter.GetSqlBuilder(Dapper.FastCrud.EntityDescriptors.EntityDescriptor,Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>
+            If overridden, returns the sql builder associated with the optional entity descriptor and entity mapping.
+            Note: Any or all the parameters can be <c>NULL</c>
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlParameterFormatter.ToString(System.String,System.IFormatProvider)">
+            <summary>
+            Formats the value of the current instance using the specified format.
+            </summary>
+            <returns>
+            The value of the current instance in the specified format.
+            </returns>
+            <param name="format">The format to use.-or- A null reference (Nothing in Visual Basic) to use the default format defined for the type of the <see cref="T:System.IFormattable"/> implementation. </param><param name="formatProvider">The provider to use to format the value.-or- A null reference (Nothing in Visual Basic) to obtain the numeric format information from the current locale setting of the operating system. </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlParameterFormatter.ToString">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <returns>
+            A string that represents the current object.
+            </returns>
+        </member>
+        <member name="T:Dapper.FastCrud.Formatters.SqlStatementFormatter">
+            <summary>
+            Used to properly format the parameters of a query
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlStatementFormatter.#ctor(Dapper.FastCrud.EntityDescriptors.EntityDescriptor,Dapper.FastCrud.Mappings.EntityMapping,Dapper.FastCrud.ISqlBuilder,System.Boolean)">
+            <summary>
+            Default constructor.
+            </summary>
+            <param name="mainEntityDescriptor">Main entity descriptor</param>
+            <param name="mainEntityMapping">Main entity mappings</param>
+            <param name="mainEntitySqlBuilder">SQL mapper for the main entity</param>
+            <param name="forceColumnAsTableColumnResolution">If true, the format identifier 'C' will be treated as 'TC' </param>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlStatementFormatter.MainEntityDescriptor">
+            <summary>
+            The main entity descriptor
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlStatementFormatter.MainEntityType">
+            <summary>
+            The main entity type used in the query
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlStatementFormatter.MainEntitySqlBuilder">
+            <summary>
+            The main entity sql builder. The SQL builder should not be used if the entity mapping doesn't match.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Formatters.SqlStatementFormatter.MainEntityMapping">
+            <summary>
+            The main entity mapping used by the query.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlStatementFormatter.GetFormat(System.Type)">
+            <summary>
+            Returns an object that provides formatting services for the specified type.
+            </summary>
+            <returns>
+            An instance of the object specified by <paramref name="formatType"/>, if the <see cref="T:System.IFormatProvider"/> implementation can supply that type of object; otherwise, null.
+            </returns>
+            <param name="formatType">An object that specifies the type of format object to return. </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Formatters.SqlStatementFormatter.Format(System.String,System.Object,System.IFormatProvider)">
+            <summary>
+            Converts the value of a specified object to an equivalent string representation using specified format and culture-specific formatting information.
+            </summary>
+            <returns>
+            The string representation of the value of <paramref name="arg"/>, formatted as specified by <paramref name="format"/> and <paramref name="formatProvider"/>.
+            </returns>
+            <param name="format">A format string containing formatting specifications. </param><param name="arg">An object to format. </param><param name="formatProvider">An object that supplies format information about the current instance. </param>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.AutoGeneratedEntityMapping`1">
+            <summary>
+            Discovers the orm mapping for a particular entity type.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.AutoGeneratedEntityMapping`1.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.EntityMapping">
+            <summary>
+            Holds information about table mapped properties for a particular entity type.
+            Multiple instances of such mappings can be active for a single entity type.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.#ctor(System.Type)">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.TableName">
+            <summary>
+            The table associated with the entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.SchemaName">
+            <summary>
+            The schema associated with the entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.IsFrozen">
+            <summary>
+            If the entity mapping was already registered, this flag will return true. You can have multiple mappings which can be obtained by cloning this instance.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.Dialect">
+            <summary>
+            Current Sql dialect in use for the current entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.EntityType">
+            <summary>
+            Entity type.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.PropertyMappings">
+            <summary>
+            Gets the property mapping asscoiated with the entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.ChildParentRelationships">
+            <summary>
+            Gets all the child-parent relationships.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMapping.ParentChildRelationships">
+            <summary>
+            Gets all the parent-child relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.FreezeMapping">
+            <summary>
+            Freezes changes to the property mappings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.ValidateState">
+            <summary>
+            Throws an exception if entity mappings cannot be changed.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.RemoveProperties(System.Collections.Generic.IEnumerable{System.String},System.Boolean)">
+            <summary>
+            Removes a set of property mappings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.RemoveProperty(System.String)">
+            <summary>
+            Removes a property mapping.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.SetPropertyInternal(System.String)">
+            <summary>
+            Prepares a new property mapping. 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.SetPropertyInternal(System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Registers a property mapping. 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping.SetPropertyInternal(Dapper.FastCrud.Mappings.PropertyMapping)">
+            <summary>
+            Registers a property mapping.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.EntityMapping`1">
+            <summary>
+            Holds information about table mapped properties for a particular entity type.
+            Multiple instances of such mappings can be active for a single entity type.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.#ctor">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.SetTableName(System.String)">
+            <summary>
+            Sets the database table associated with your entity.
+            </summary>
+            <param name="tableName">Table name</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.SetSchemaName(System.String)">
+            <summary>
+            Sets the database schema associated with your entity.
+            </summary>
+            <param name="schemaName">Shema name</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.SetDialect(Dapper.FastCrud.SqlDialect)">
+            <summary>
+            You can override the default dialect used for the schema.
+            However, if plan on using the same dialect for all your db operations, it's best to use <see cref="P:Dapper.FastCrud.OrmConfiguration.DefaultDialect"/> instead.
+            </summary>
+            <param name="dialect">Sql dialect</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.SetProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Registers a regular property.
+            </summary>
+            <param name="property">Name of the property (e.g. user => user.LastName ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.SetProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}},System.Action{Dapper.FastCrud.Mappings.PropertyMapping})">
+            <summary>
+            Sets the mapping options for a property.
+            </summary>
+            <param name="property">Name of the property (e.g. user => user.LastName ) </param>
+            <param name="propertySetupFct">A callback which will be called for setting up the property mapping.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.GetProperties(Dapper.FastCrud.Mappings.PropertyMappingOptions[])">
+            <summary>
+            Returns all the property mappings, optionally filtered by their options.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.UpdateProperties(System.Action{Dapper.FastCrud.Mappings.PropertyMapping},Dapper.FastCrud.Mappings.PropertyMappingOptions[])">
+            <summary>
+            Gives an option for updating all the property mappings, optionally filtered by their options.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.GetPropertiesExcluding(Dapper.FastCrud.Mappings.PropertyMappingOptions[])">
+            <summary>
+            Returns all the property mappings, filtered by an exclusion filter.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.UpdatePropertiesExcluding(System.Action{Dapper.FastCrud.Mappings.PropertyMapping},Dapper.FastCrud.Mappings.PropertyMappingOptions[])">
+            <summary>
+            Gives an option for updating all the property mappings, filtered by an exclusion filter.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.GetPropertiesExcluding(System.String[])">
+            <summary>
+            Returns all the property mappings, filtered by an exclusion filter.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.UpdatePropertiesExcluding(System.Action{Dapper.FastCrud.Mappings.PropertyMapping},System.String[])">
+            <summary>
+            Returns all the property mappings, filtered by an exclusion filter.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.GetProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Returns property mapping information for a particular property.
+            </summary>
+            <param name="property">Name of the property (e.g. user => user.LastName ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.GetProperty(System.String)">
+            <summary>
+            Returns property mapping information for a particular property.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. nameof(User.Name) ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.RemoveProperty``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Removes the mapping for a property.
+            </summary>
+            <param name="property">Name of the property (e.g. user => user.LastName ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.RemoveProperty(System.String[])">
+            <summary>
+            Removes the mapping for a property.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. nameof(User.Name) ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.RemoveAllPropertiesExcluding(System.String[])">
+            <summary>
+            Removes all the property mappings with the exception of the provided list.
+            </summary>
+            <param name="propertyName">Name of the property (e.g. nameof(User.Name) ) </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMapping`1.Clone">
+            <summary>
+            Clones the current mapping set, allowing for further modifications.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.EntityMappingRelationship">
+            <summary>
+            Gives information about a relationship between two entities.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.EntityMappingRelationship.#ctor(System.Type,Dapper.FastCrud.Mappings.PropertyMapping[],System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMappingRelationship.ReferencingKeyProperties">
+            <summary>
+            The main entity properties through which the relationship is established.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMappingRelationship.ReferencingEntityProperty">
+            <summary>
+            The property representing the entity the relationship reffers to. It can be null.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.EntityMappingRelationship.ReferencedEntityType">
+            <summary>
+            Gets the referenced entity type.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.PropertyMapping">
+            <summary>
+            Reeturns mapping information held for a particular property.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.#ctor(Dapper.FastCrud.Mappings.EntityMapping,System.ComponentModel.PropertyDescriptor)">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.ChildParentRelationship">
+            <summary>
+            Gets or sets a child-parent relationship.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetChildParentRelationship``1(System.String)">
+            <summary>
+            Sets up a foreign key relationship with another entity.
+            </summary>
+            <typeparam name="TRelatedEntityType">Foreign entity type.</typeparam>
+            <param name="referencingEntityPropertyName">The name of the property on the current entity that would hold the referenced entity when instructed to do so in a JOIN statement.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetChildParentRelationship(System.Type,System.String)">
+            <summary>
+            Sets up a foreign key relationship with another entity.
+            </summary>
+            <param name="relatedEntityType">Foreign entity type.</param>
+            <param name="referencingEntityPropertyName">The name of the property on the current entity that would hold the referenced entity when instructed to do so in a JOIN statement.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.RemoveChildParentRelationship">
+            <summary>
+            Removes a parent-child relationship. 
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.EntityMapping">
+            <summary>
+            Gets the entity mapping this property mapping is attached to.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.IsPrimaryKey">
+            <summary>
+            Gets or sets a flag indicating the property is mapped to a primary key.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.IsRefreshedOnInserts">
+            <summary>
+            Gets or sets a flag indicating the property is refreshed after an INSERT.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.IsRefreshedOnUpdates">
+            <summary>
+            Gets or sets a flag indicating the property is refreshed after an UPDATE.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetPrimaryKey(System.Boolean)">
+            <summary>
+            Marks the property as primary key.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetDatabaseGenerated(System.ComponentModel.DataAnnotations.Schema.DatabaseGeneratedOption)">
+            <summary>
+            Indicates that the property is mapped to a database generated field.
+            This does not cover default values generated by the database (please use <see cref="M:Dapper.FastCrud.Mappings.PropertyMapping.ExcludeFromInserts"/> and <see cref="M:Dapper.FastCrud.Mappings.PropertyMapping.RefreshOnInserts(System.Boolean)"/> for this scenario).
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetColumnOrder(System.Int32)">
+            <summary>
+            Sets the column order, normally used for matching foreign keys with the primary composite keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.RefreshOnInserts(System.Boolean)">
+            <summary>
+            Indicates that the property gets refreshed on INSERTs.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.RefreshOnUpdates(System.Boolean)">
+            <summary>
+            Indicates that the property gets refreshed on UPDATEs.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.IsExcludedFromInserts">
+            <summary>
+            Gets or sets a flag that indicates the curent property will be excluded from updates.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.IncludeInInserts">
+            <summary>
+            The property will be included in insert operations.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.ExcludeFromInserts">
+            <summary>
+            The property will be excluded from update operations.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.IsExcludedFromUpdates">
+            <summary>
+            Gets or sets a flag that indicates the curent property will be excluded from updates.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.IncludeInUpdates">
+            <summary>
+            The property will be included in update operations.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.ExcludeFromUpdates">
+            <summary>
+            The property will be excluded from update operations.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.DatabaseColumnName">
+            <summary>
+            Gets or sets the database column name.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.SetDatabaseColumnName(System.String)">
+            <summary>
+            Sets the database column name.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.Descriptor">
+            <summary>
+            Gets the property descriptor of the property attached to the entity type.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.PropertyName">
+            <summary>
+            Gets the property name.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.Options">
+            <summary>
+            Gets or sets the full set of options.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMapping.ColumnOrder">
+            <summary>
+            Gets or sets the column order, normally used for matching foreign keys with the primary composite keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.Remove">
+            <summary>
+            Removes the current property mapping.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.Equals(System.Object)">
+            <summary>
+            Determines whether the specified <see cref="T:System.Object"/> is equal to the current <see cref="T:System.Object"/>.
+            </summary>
+            <returns>
+            true if the specified object  is equal to the current object; otherwise, false.
+            </returns>
+            <param name="obj">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMapping.GetHashCode">
+            <summary>
+            Serves as a hash function for a particular type. 
+            </summary>
+            <returns>
+            A hash code for the current <see cref="T:System.Object"/>.
+            </returns>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.None">
+            <summary>
+            Identifies a regular property. 
+            The property will be used in operations such as <c>Insert</c> and <c>Update</c>.
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.KeyProperty">
+            <summary>
+            Key properties are used to identify the attached record in the database. 
+            You are not restricted in having only one key property, as many databases accept composite keys.
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.ExcludedFromUpdates">
+            <summary>
+            Useful for partial updates, a property marked with this option will be excluded from any <c>Update</c> operations.
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.ExcludedFromInserts">
+            <summary>
+            Useful for partial updates and identity columns, a property marked with this option will be excluded from any <c>Insert</c> operations.
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.RefreshPropertyOnInserts">
+            <summary>
+            The value is not going to be re-read from the database on INSERTs.
+            </summary>
+        </member>
+        <member name="F:Dapper.FastCrud.Mappings.PropertyMappingOptions.RefreshPropertyOnUpdates">
+            <summary>
+            The value is not going to be re-read from the database on UPDATEs.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Mappings.PropertyMappingRelationship">
+            <summary>
+            Holds details about a relationship
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMappingRelationship.#ctor(System.Type)">
+            <summary>
+            Constructor. BLOCKED FOR THE TIME BEING
+            </summary>
+            <param name="referencedEntityType">The entity type referenced in the foreign key relationship.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Mappings.PropertyMappingRelationship.#ctor(System.Type,System.String)">
+            <summary>
+            Constructor. 
+            </summary>
+            <param name="referencingPropertyName">
+            The property of type <paramref name="referencedEntityType"/> 
+             that would hold the foreign entity on SELECTs, when the statement was instructed to.
+            </param>
+            <param name="referencedEntityType">The entity type referenced in the foreign key relationship.</param>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMappingRelationship.ReferencedEntityType">
+            <summary>
+            Gets the referenced entity type.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.Mappings.PropertyMappingRelationship.ReferencingPropertyName">
+            <summary>
+            Gets the referencing property name. It might return null if not provided.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.DatabaseGeneratedDefaultValueAttribute">
+            <summary>
+            Denotes that a column has a default value assigned by the database.
+            Properties marked with this attributes will be ignored on INSERT but refreshed from the database.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlBuilders.RelationshipOrderComparer">
+            <summary>
+            Comparer for the optional order used in relationships. (e.g. 1 2 NULL NULL)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.RelationshipOrderComparer.Compare(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>Compares two objects and returns a value indicating whether one is less than, equal to, or greater than the other.</summary>
+            
+            <returns>
+            A signed integer that indicates the relative values of <paramref name="x" /> and <paramref name="y" />, as shown in the following table.
+            Value Meaning Less than zero<paramref name="x" /> is less than <paramref name="y" />.
+            Zero<paramref name="x" /> equals <paramref name="y" />.
+            Greater than zero<paramref name="x" /> is greater than <paramref name="y" />.
+            </returns>
+            
+            <param name="x">The first object to compare.</param>
+            <param name="y">The second object to compare.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.MsSqlBuilder.ConstructFullInsertStatementInternal">
+            <summary>
+            Constructs a full insert statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.MsSqlBuilder.ConstructFullSingleUpdateStatementInternal">
+            <summary>
+            Constructs an update statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.MySqlBuilder.ConstructFullInsertStatementInternal">
+            <summary>
+            Constructs a full insert statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.PostgreSqlBuilder.ConstructFullInsertStatementInternal">
+            <summary>
+            Constructs a full insert statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.SqLiteBuilder.ConstructFullInsertStatementInternal">
+            <summary>
+            Constructs a full insert statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetTableName(System.String)">
+            <summary>
+            Returns the table name associated with the current entity.
+            </summary>
+            <param name="tableAlias">Optional table alias using AS.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetColumnName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetColumnNameForSelect(System.String,System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            If the column name differs from the name of the property, this method will normalize the name (e.g. will return 'tableAlias.colName AS propName')
+              so that the deserialization performed by Dapper would succeed.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetColumnName(System.String,System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetColumnName(Dapper.FastCrud.Mappings.PropertyMapping,System.String,System.Boolean)">
+            <summary>
+            Resolves a column name
+            </summary>
+            <param name="propMapping">Property mapping</param>
+            <param name="tableAlias">Table alias</param>
+            <param name="performColumnAliasNormalization">If true and the database column name differs from the property name, an AS clause will be added</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructKeysWhereClause(System.String)">
+            <summary>
+            Constructs a condition of form <code>ColumnName=@PropertyName and ...</code> with all the key columns (e.g. <code>Id=@Id and EmployeeId=@EmployeeId</code>)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructKeyColumnEnumeration(System.String)">
+            <summary>
+            Constructs an enumeration of the key values.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructColumnEnumerationForSelect(System.String)">
+            <summary>
+            Constructs an enumeration of all the selectable columns (i.e. all the columns corresponding to entity properties which are not part of a relationship).
+            (e.g. Id, HouseNo, AptNo)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructColumnEnumerationForInsert">
+            <summary>
+            Constructs an enumeration of all the columns available for insert.
+            (e.g. HouseNo, AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructParamEnumerationForInsert">
+            <summary>
+            Constructs an enumeration of all the parameters denoting properties that are bound to columns available for insert.
+            (e.g. @HouseNo, @AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructUpdateClause(System.String)">
+            <summary>
+            Constructs a update clause of form <code>ColumnName=@PropertyName, ...</code> with all the updateable columns (e.g. <code>EmployeeId=@EmployeeId,DeskNo=@DeskNo</code>)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullInsertStatement">
+            <summary>
+            Constructs an insert statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleUpdateStatement">
+            <summary>
+            Constructs an update statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullBatchUpdateStatement(System.FormattableString)">
+            <summary>
+            Constructs a batch select statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleDeleteStatement">
+            <summary>
+            Constructs a delete statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullBatchDeleteStatement(System.FormattableString)">
+            <summary>
+            Constructs a batch delete statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructCountSelectClause">
+            <summary>
+            Constructs the count part of the select statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullCountStatement(System.FormattableString)">
+            <summary>
+            Constructs a full count statement, optionally with a where clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleSelectStatement">
+            <summary>
+            Constructs a select statement for a single entity
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullBatchSelectStatement(System.FormattableString,System.FormattableString,System.Nullable{System.Int64},System.Nullable{System.Int64},System.Object)">
+            <summary>
+            Constructs a batch select statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.Format(System.FormattableString)">
+            <summary>
+            Produces a formatted string from a formattable string.
+            Table and column names will be resolved, and identifier will be properly delimited.
+            </summary>
+            <param name="rawSql">The raw sql to format</param>
+            <returns>Properly formatted SQL statement</returns>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetDelimitedIdentifier(System.String)">
+            <summary>
+            Returns a delimited SQL identifier.
+            </summary>
+            <param name="sqlIdentifier">Delimited or non-delimited SQL identifier</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullJoinSelectStatement(System.String@,System.String@,System.Collections.Generic.IEnumerable{Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction},System.String,System.FormattableString,System.FormattableString,System.Nullable{System.Int64},System.Nullable{System.Int64})">
+            <summary>
+            Constructs a select statement containing joined entities.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.GetTableNameInternal(System.String)">
+            <summary>
+            Returns the table name associated with the current entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructKeysWhereClauseInternal(System.String)">
+            <summary>
+            Constructs a condition of form <code>ColumnName=@PropertyName and ...</code> with all the key columns (e.g. <code>Id=@Id and EmployeeId=@EmployeeId</code>)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructRefreshOnUpdateColumnSelection">
+            <summary>
+            Constructs a column selection of all columns to be refreshed on update of the form <code>@PropertyName1,@PropertyName2...</code>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructRefreshOnInsertColumnSelection">
+            <summary>
+            Constructs a column selection of all columns to be refreshed on insert of the form <code>@PropertyName1,@PropertyName2...</code>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructKeyColumnEnumerationInternal(System.String)">
+            <summary>
+            Constructs an enumeration of the key values.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructColumnEnumerationForSelectInternal(System.String)">
+            <summary>
+            Constructs an enumeration of all the selectable columns (i.e. all the columns corresponding to entity properties which are not part of a relationship).
+            (e.g. Id, HouseNo, AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructColumnEnumerationForInsertInternal">
+            <summary>
+            Constructs an enumeration of all the columns available for insert.
+            (e.g. HouseNo, AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructParamEnumerationForInsertInternal">
+            <summary>
+            Constructs an enumeration of all the parameters denoting properties that are bound to columns available for insert.
+            (e.g. @HouseNo, @AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructUpdateClauseInternal(System.String)">
+            <summary>
+            Constructs a update clause of form <code>ColumnName=@PropertyName, ...</code> with all the updateable columns (e.g. <code>EmployeeId=@EmployeeId,DeskNo=@DeskNo</code>)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullInsertStatementInternal">
+            <summary>
+            Constructs a full insert statement
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleUpdateStatementInternal">
+            <summary>
+            Constructs an update statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullBatchUpdateStatementInternal(System.FormattableString)">
+            <summary>
+            Constructs a batch select statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleDeleteStatementInternal">
+            <summary>
+            Constructs a delete statement for a single entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullBatchDeleteStatementInternal(System.FormattableString)">
+            <summary>
+            Constructs a batch delete statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullCountStatementInternal(System.FormattableString)">
+            <summary>
+            Constructs a full count statement, optionally with a where clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ConstructFullSingleSelectStatementInternal">
+            <summary>
+            Constructs a select statement for a single entity
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ResolveWithCultureInvariantFormatter(System.FormattableString)">
+            <summary>
+            Resolves a formattable string using the invariant culture, ignoring any special identifiers.
+            </summary>
+            <param name="formattableString">Raw formattable string</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder.ResolveWithSqlFormatter(System.FormattableString,System.Boolean)">
+            <summary>
+            Resolves a formattable string using the SQL formatter
+            </summary>
+            <param name="formattableString">Raw formattable string</param>
+            <param name="forceTableColumnResolution">If true, the table is always going to be used as alias for column identifiers</param>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction">
+            <summary>
+            Instructions for the statement sql builder for creating a join statement.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction.#ctor(Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder,Dapper.FastCrud.Configuration.StatementOptions.SqlJoinType,System.FormattableString,System.FormattableString)">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction.SqlBuilder">
+            <summary>
+            Gets or sets the SQL builder.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction.WhereClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction.OrderClause">
+            <summary>
+            Gets or sets a where clause.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlBuilders.StatementSqlBuilderJoinInstruction.JoinType">
+            <summary>
+            Gets or sets the join type.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.ISqlBuilder">
+            <summary>
+            The SQL builder is useful for creating verbatim SQL queries.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.GetDelimitedIdentifier(System.String)">
+            <summary>
+            Returns a delimited SQL identifier.
+            </summary>
+            <param name="sqlIdentifier">Non-delimited SQL identifier</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.GetTableName(System.String)">
+            <summary>
+            Returns the table name associated with the current entity.
+            </summary>
+            <param name="tableAlias">Optional table alias using AS.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.GetColumnName(System.String,System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            Please use <code>nameof(entity.propname)</code> if available, alternatively use the other overload for this method.
+            </summary>
+            <param name="propertyName">Name of the property.</param>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.GetColumnNameForSelect(System.String,System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            If the column name differs from the name of the property, this method will normalize the name (e.g. will return 'tableAlias.colName AS propName')
+              so that the deserialization performed by Dapper would succeed.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.GetColumnName``2(System.Linq.Expressions.Expression{System.Func{``0,``1}},System.String)">
+            <summary>
+            Returns the name of the database column attached to the specified property.
+            Please use <code>nameof(entity.propname)</code> if available, alternatively use the other overload for this method.
+            </summary>
+            <param name="property">Property for which you want to get the column name.</param>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.ConstructKeysWhereClause(System.String)">
+            <summary>
+            Constructs a condition of form <code>ColumnName=@PropertyName and ...</code> with all the key columns (e.g. <code>Id=@Id and EmployeeId=@EmployeeId</code>)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.ConstructColumnEnumerationForSelect(System.String)">
+            <summary>
+            Constructs an enumeration of all the selectable columns (i.e. all the columns corresponding to entity properties which are not part of a relationship).
+            (e.g. Id, HouseNo, AptNo)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.ConstructColumnEnumerationForInsert">
+            <summary>
+            Constructs an enumeration of all the columns available for insert.
+            (e.g. HouseNo, AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.ConstructParamEnumerationForInsert">
+            <summary>
+            Constructs an enumeration of all the parameters denoting properties that are bound to columns available for insert.
+            (e.g. @HouseNo, @AptNo)
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.ConstructUpdateClause(System.String)">
+            <summary>
+            Constructs a update clause of form <code>ColumnName=@PropertyName, ...</code> with all the updateable columns (e.g. <code>EmployeeId=@EmployeeId,DeskNo=@DeskNo</code>)
+            </summary>
+            <param name="tableAlias">Optional table alias.</param>
+        </member>
+        <member name="M:Dapper.FastCrud.ISqlBuilder.Format(System.FormattableString)">
+            <summary>
+            Produces a formatted string from a formattable string.
+            Table and column names will be resolved, and identifier will be properly delimited.
+            </summary>
+            <param name="rawSql">The raw sql to format</param>
+            <returns>Properly formatted SQL statement</returns>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.FiveEntitiesRelationshipSqlStatements`5">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.FiveEntitiesRelationshipSqlStatements`5.#ctor(Dapper.FastCrud.SqlStatements.FourEntitiesRelationshipSqlStatements{`0,`1,`2,`3},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.FiveEntitiesRelationshipSqlStatements`5.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.FourEntitiesRelationshipSqlStatements`4">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.FourEntitiesRelationshipSqlStatements`4.#ctor(Dapper.FastCrud.SqlStatements.ThreeEntitiesRelationshipSqlStatements{`0,`1,`2},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.FourEntitiesRelationshipSqlStatements`4.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.#ctor(Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.SqlBuilder">
+            <summary>
+            Gets the publicly accessible SQL builder.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.SelectById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.SelectByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an async SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.Insert(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.InsertAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.UpdateById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE opration on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.UpdateByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE opration on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BulkUpdate(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BulkUpdateAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.DeleteById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.DeleteByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BulkDelete(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BulkDeleteAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.Count(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.CountAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BatchSelect(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.GenericSqlStatements`1.BatchSelectAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.ISqlStatements.SqlBuilder">
+            <summary>
+            Gets the publicly accessible SQL builder.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.ISqlStatements`1">
+            <summary>
+            SQL statement factory.
+            </summary>
+            <typeparam name="TEntity">Target entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.SelectById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.SelectByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.Insert(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.InsertAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.UpdateById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.UpdateByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BulkUpdate(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BulkUpdateAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.DeleteById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.DeleteByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BulkDelete(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BulkDeleteAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.Count(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.CountAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BatchSelect(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ISqlStatements`1.BatchSelectAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder">
+            <summary>
+            Entity instance builder used in queries involving relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder.#ctor(Dapper.FastCrud.Mappings.EntityMapping[])">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder.RegisterResultSetRowInstance``1(``0)">
+            <summary>
+            Registers a new entity instance for a row in the result set.
+            Signal the end of the row in the result set with a call to <see cref="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder.EndResultSetRow"/>.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder.EndResultSetRow">
+            <summary>
+            Ends a result row which has the effect of applying the necessary bindings.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceBuilder.EntityInstanceContainer.#ctor(Dapper.FastCrud.Mappings.EntityMapping)">
+            <summary>Initializes a new instance of the <see cref="T:System.Object" /> class.</summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity`1">
+            <summary>
+            Typed entity identity used by the entity builder. 
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity`1.TypedInstance">
+            <summary>
+            Gets the instance attached to the current identity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity">
+            <summary>
+            Entity identity used by the entity builder.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.#ctor(Dapper.FastCrud.Mappings.EntityMapping,System.Object)">
+            <summary>
+            Default constructor.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.EntityMapping">
+            <summary>
+            Gets the entity mapping of the instance attached to this identity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.IsDuplicate">
+            <summary>
+            Gets or sets a flag indicating that the instance attached to this identity is a duplicate and should be ignored.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.UniqueInstance">
+            <summary>
+            Gets or sets the unique instance different than the current instance in case <see cref="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.IsDuplicate"/> is set to true.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.Instance">
+            <summary>
+            Gets the untyped instance attached to the current identity.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.SetDuplicate(System.Object)">
+            <summary>
+            Sets a unique instance in cse the current instance attached to the identity is a duplicate.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.Equals(System.Object)">
+            <summary>Determines whether the specified object is equal to the current object.</summary>
+            <returns>true if the specified object  is equal to the current object; otherwise, false.</returns>
+            <param name="other">The object to compare with the current object. </param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipEntityInstanceIdentity.GetHashCode">
+            <summary>Serves as the default hash function. </summary>
+            <returns>A hash code for the current object.</returns>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+            <typeparam name="TEntity">Target entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.#ctor(Dapper.FastCrud.SqlStatements.RelationshipSqlStatements{`0},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Constructor that takes as arguments the statements for an existing relationship plus a newly joined entity sql builder.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.#ctor(Dapper.FastCrud.SqlStatements.ISqlStatements{`0},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Constructor that takes as arguments the sql statements for the main entity plus a newly joined entity sql builder.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="P:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.SqlBuilder">
+            <summary>
+            Gets the publicly accessible SQL builder.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.SelectById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.SelectByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a SELECT operation on a single entity, using its keys
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.Count(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.CountAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a COUNT on a range of items.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BatchSelect(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BatchSelectAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a common SELECT 
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.Insert(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.InsertAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an INSERT operation
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.UpdateById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.UpdateByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on an entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BulkUpdate(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BulkUpdateAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs an UPDATE operation on multiple entities identified by an optional WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.DeleteById(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.DeleteByIdAsync(System.Data.IDbConnection,`0,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation on a single entity identified by its keys.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BulkDelete(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.RelationshipSqlStatements`1.BulkDeleteAsync(System.Data.IDbConnection,Dapper.FastCrud.Configuration.StatementOptions.Aggregated.AggregatedSqlStatementOptions{`0})">
+            <summary>
+            Performs a DELETE operation using a WHERE clause.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.SevenEntitiesRelationshipSqlStatements`7">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.SevenEntitiesRelationshipSqlStatements`7.#ctor(Dapper.FastCrud.SqlStatements.SixEntitiesRelationshipSqlStatements{`0,`1,`2,`3,`4,`5},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.SevenEntitiesRelationshipSqlStatements`7.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.SixEntitiesRelationshipSqlStatements`6">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.SixEntitiesRelationshipSqlStatements`6.#ctor(Dapper.FastCrud.SqlStatements.FiveEntitiesRelationshipSqlStatements{`0,`1,`2,`3,`4},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.SixEntitiesRelationshipSqlStatements`6.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.ThreeEntitiesRelationshipSqlStatements`3">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ThreeEntitiesRelationshipSqlStatements`3.#ctor(Dapper.FastCrud.SqlStatements.TwoEntitiesRelationshipSqlStatements{`0,`1},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.ThreeEntitiesRelationshipSqlStatements`3.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.SqlStatements.TwoEntitiesRelationshipSqlStatements`2">
+            <summary>
+            SQL statement factory targeting relationships.
+            </summary>
+            <typeparam name="TMainEntity">Main entity type</typeparam>
+            <typeparam name="TFirstJoinedEntity">Joined entity type</typeparam>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.TwoEntitiesRelationshipSqlStatements`2.#ctor(Dapper.FastCrud.SqlStatements.ISqlStatements{`0},Dapper.FastCrud.SqlBuilders.GenericStatementSqlBuilder)">
+            <summary>
+            Default constructor
+            </summary>
+            <param name="mainEntitySqlStatements">Main entity SQL statement builder</param>
+            <param name="joinedEntitySqlStatements">Joined entity SQL statement builder</param>
+        </member>
+        <member name="M:Dapper.FastCrud.SqlStatements.TwoEntitiesRelationshipSqlStatements`2.CombineWith``1(Dapper.FastCrud.SqlStatements.ISqlStatements{``0})">
+            <summary>
+            Combines the current instance with a joined entity.
+            </summary>
+        </member>
+        <member name="T:Dapper.FastCrud.Validations.Requires">
+            <summary>
+            Common runtime checks that throw ArgumentExceptions upon failure.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotDefault``1(``0,System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is the default.
+            </summary>
+            <typeparam name="T">The type of the parameter.</typeparam>
+            <param name="value">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <returns>The value of the parameter.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="value"/> is <c>default</c></exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotNull``1(``0,System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is null.
+            </summary>
+            <typeparam name="T">The type of the parameter.</typeparam>
+            <param name="value">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <returns>The value of the parameter.</returns>
+            <exception cref="T:System.ArgumentNullException">Thrown if <paramref name="value"/> is <c>null</c></exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotNullOrEmpty(System.String,System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is null or empty.
+            </summary>
+            <param name="value">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is <c>null</c> or empty.</exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotNullOrWhiteSpace(System.String,System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is null, empty, or whitespace.
+            </summary>
+            <param name="value">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <exception cref="T:System.ArgumentException">Thrown if <paramref name="value"/> is <c>null</c> or empty.</exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotNullOrEmpty(System.Collections.IEnumerable,System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is null,
+            has no elements or has an element with a null value.
+            </summary>
+            <param name="values">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the tested condition is false.</exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.NotNullOrEmptyOrNullElements``1(System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            Throws an exception if the specified parameter's value is null,
+            has no elements or has an element with a null value.
+            </summary>
+            <typeparam name="T">The type of the elements in the sequence.</typeparam>
+            <param name="values">The value of the argument.</param>
+            <param name="parameterName">The name of the parameter to include in any thrown exception.</param>
+            <exception cref="T:System.ArgumentException">Thrown if the tested condition is false.</exception>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.Range(System.Boolean,System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if a condition does not evaluate to true.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.Argument(System.Boolean,System.String,System.String)">
+            <summary>
+            Throws an ArgumentException if a condition does not evaluate to true.
+            </summary>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.ValidState(System.Boolean,System.String)">
+            <summary>
+            Validates some expression describing the acceptable condition for an argument evaluates to true.
+            </summary>
+            <param name="condition">The expression that must evaluate to true to avoid an <see cref="T:System.InvalidOperationException"/>.</param>
+            <param name="message">The message to include with the exception.</param>
+            <param name="messageArgs">Message parameetrs</param>
+        </member>
+        <member name="M:Dapper.FastCrud.Validations.Requires.FailRange(System.String,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentOutOfRangeException"/> if a condition does not evaluate to true.
+            </summary>
+            <returns>Nothing.  This method always throws.</returns>
+        </member>
+    </members>
+</doc>
