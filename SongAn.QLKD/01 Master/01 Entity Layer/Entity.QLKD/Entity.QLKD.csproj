@@ -54,10 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\ChiNhanh.cs" />
-    <Compile Include="Entity\ChucVu.cs" />
-    <Compile Include="Entity\NhanVien.cs" />
-    <Compile Include="Entity\PhongBan.cs" />
+    <Compile Include="Entity\KDNhomKinhDoanh.cs" />
+    <Compile Include="Entity\KDNhanVienChiTiet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
