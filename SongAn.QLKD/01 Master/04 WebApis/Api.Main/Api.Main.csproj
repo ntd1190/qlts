@@ -96,6 +96,7 @@
     <Compile Include="Models\PhanQuyen\GetListChucNangByVaiTroIdAction.cs" />
     <Compile Include="Models\PhanQuyen\GetQuyenTacVuByMaChucNangAndMaVaiTroAction.cs" />
     <Compile Include="Models\QuyenTacVu\UpdateQuyenTacVuAction.cs" />
+    <Compile Include="Models\VaiTro\GetListcbxVaiTroByIdAction.cs" />
     <Compile Include="Models\VaiTro\GetListVaiTroAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

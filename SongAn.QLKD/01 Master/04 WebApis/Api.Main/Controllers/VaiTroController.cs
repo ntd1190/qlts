@@ -2,6 +2,8 @@
 using SongAn.QLKD.Data.Repository;
 using SongAn.QLKD.Data.Repository.QLKD_MAIN;
 using SongAn.QLKD.Entity.QLKD_MAIN.Entity;
+using SongAn.QLKD.Util.Common.Api;
+using SongAn.QLKD.Util.Common.Dto;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -13,7 +15,7 @@ using System.Web.Http;
 
 namespace SongAn.QLKD.Api.Main.Controllers
 {
-    public class VaiTroController : ApiController
+    public class VaiTroController : BaseApiController
     {
         string _connectionString = ConfigurationManager.ConnectionStrings["dbMainConnection"].ConnectionString;
 
@@ -166,6 +168,13 @@ namespace SongAn.QLKD.Api.Main.Controllers
                 );
 
             return Ok(objResult);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxVaiTroById([FromBody]GetListcbxVaiTroByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
         }
     }
 }
