@@ -76,7 +76,6 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Mvc.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.FastCrud.dll
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Biz.QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLNS.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Razor.dll
@@ -107,7 +106,6 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Mvc.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.FastCrud.xml
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Biz.QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLNS.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Razor.xml
