@@ -5,33 +5,36 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state({
-            name: 'nguoiDungList',
-            url: '/nguoidung/list',
+            name: 'NhanVienList',
+            url: '/NhanVien/list',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
-            controller: nguoiDungListCtrl
+            controller: NhanVienListCtrl
         });
     });
 
-    function nguoiDungListCtrl($stateParams, SETTING, $scope, NguoiDungService, utility, $q, $window) {
+    function NhanVienListCtrl($stateParams, SETTING, $scope, NhanVienService, utility, $q, $window) {
         var userInfo, _tableState;
-        var NguoiDungId = 0;
+        var NhanVienId = 0;
 
         var vm = this;
 
         vm.status = {};
-        vm.status.openTuyChonCotPopup = false;
         vm.data = {};
-        vm.data.listNguoiDung = [];
-        vm.data.objNguoiDung = {
+        vm.data.listNhanVien = [];
+        vm.data.objNhanVien = {
             MaTrangThai: 'CV_BD',
             VaiTroId: 1,
             NhanVienId: 6
         };
         vm.data.listCot = [
-            { MaCot: 'MaNguoiDung', TenCot: 'Mã', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'Ma', TenCot: 'Mã', HienThiYN: true, DoRong: 0 },
             { MaCot: 'HoTen', TenCot: 'Họ tên', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'Email', TenCot: 'Email', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'NgaySinh', TenCot: 'Ngày sinh', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenPhongBan', TenCot: 'Phòng ban', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'NgayTuyenDung', TenCot: 'Ngày tuyển', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenChucVu', TenCot: 'Chức vụ', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'DienThoai', TenCot: 'Điện thoại', HienThiYN: true, DoRong: 0 },
         ];
 
         /* INIT FUNCTION */
@@ -47,7 +50,7 @@
         };
 
         vm.getTemplate = function () {
-            return SETTING.HOME_URL + 'nguoidung/showView?viewName=list';
+            return SETTING.HOME_URL + 'NhanVien/showView?viewName=list';
         }
 
         /*** EVENT FUNCTION ***/
@@ -56,7 +59,7 @@
             F2: function (name, code) {
                 console.log('F2');
                 if (checkQuyenUI('N')) {
-                    $('#NguoiDungEditPopup').collapse('show');
+                    $('#NhanVienEditPopup').collapse('show');
                 }
             },
             F3: function (name, code) {
@@ -74,13 +77,13 @@
         };
 
         function initEventListener() {
-            $('#NguoiDungEditPopup').on('hidden.bs.collapse', function () {
+            $('#NhanVienEditPopup').on('hidden.bs.collapse', function () {
                 vm.status.isOpenPopup = false;
-                NguoiDungId = 0;
+                NhanVienId = 0;
             });
-            $('#NguoiDungEditPopup').on('shown.bs.collapse', function () {
-                $("#txtMaNguoiDung").focus();
-                vm.status.isEdit = NguoiDungId != 0;
+            $('#NhanVienEditPopup').on('shown.bs.collapse', function () {
+                $("#txtMaNhanVien").focus();
+                vm.status.isEdit = NhanVienId != 0;
                 vm.status.isOpenPopup = true;
             });
         }
@@ -92,7 +95,7 @@
         vm.action.deleteSelected = deleteSelected;
 
         vm.action.checkQuyenTacVuEdit = function (quyen) {
-            if (NguoiDungId == 0) { // trường hợp thêm mới
+            if (NhanVienId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }
             } else { // trường hợp update
                 if (quyen == 'N') { return false; }
@@ -104,25 +107,25 @@
         };
 
         vm.action.autoCheckAll = function () {
-            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listNguoiDung);
+            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listNhanVien);
         };
-        vm.action.xemNguoiDung = function (id) {
-            NguoiDungId = id || 0;
-            if (NguoiDungId == 0) {
-                delete vm.data.objNguoiDung;
-                vm.data.objNguoiDung = {
+        vm.action.xemNhanVien = function (id) {
+            NhanVienId = id || 0;
+            if (NhanVienId == 0) {
+                delete vm.data.objNhanVien;
+                vm.data.objNhanVien = {
                     MaTrangThai: 'CV_BD',
                     VaiTroId: 1,
                     NhanVienId: 6
                 };
             } else {
-                getById(NguoiDungId);
+                getById(NhanVienId);
             }
 
-            $('#NguoiDungEditPopup').collapse('show');
+            $('#NhanVienEditPopup').collapse('show');
         }
         vm.action.checkAll = function () {
-            vm.status.isSelectedAll = utility.checkAll(vm.data.listNguoiDung, !vm.status.isSelectedAll);
+            vm.status.isSelectedAll = utility.checkAll(vm.data.listNhanVien, !vm.status.isSelectedAll);
         };
 
         vm.action.checkCot = function (cot) {
@@ -142,18 +145,18 @@
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
-                if (fromId == 'txtMaNguoiDung') {
-                    vm.status.isInValidMaNguoiDung = utility.checkInValid(vm.data.objNguoiDung.MaNguoiDung, 'isEmpty');
-                    if (!vm.status.isInValidMaNguoiDung) {
+                if (fromId == 'txtMaNhanVien') {
+                    vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
+                    if (!vm.status.isInValidMaNhanVien) {
                         $window.document.getElementById(ToId).focus();
                     }
-                } else if (fromId == 'txtTenNguoiDung') {
-                    vm.status.isInValidTenNguoiDung = utility.checkInValid(vm.data.objNguoiDung.HoTen, 'isEmpty');
-                    if (!vm.status.isInValidTenNguoiDung) {
+                } else if (fromId == 'txtTenNhanVien') {
+                    vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
+                    if (!vm.status.isInValidTenNhanVien) {
                         $window.document.getElementById(ToId).focus();
                     }
                 } else if (fromId == 'txtEmail') {
-                    vm.status.isInValidEmail = utility.checkInValid(vm.data.objNguoiDung.Email, 'isEmpty');
+                    vm.status.isInValidEmail = utility.checkInValid(vm.data.objNhanVien.Email, 'isEmpty');
                     if (!vm.status.isInValidEmail) {
                         $window.document.getElementById(ToId).focus();
                     }
@@ -197,15 +200,15 @@
             var draw = tableState.draw;
             var start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
             var number = tableState.pagination.number || 10;  // Number of entries showed per page.
-            var sortName = tableState.sort.predicate || 'A.NguoiDungId';
+            var sortName = tableState.sort.predicate || 'A.NhanVienId';
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
             var fields = "";
-            NguoiDungService.getPage(draw, start, number, searchString, sortName, sortDir, fields, vm.data.UserLoginId)
+            NhanVienService.getPage(draw, start, number, searchString, sortName, sortDir, fields, userInfo.UserId, userInfo.NhanVienId)
                 .then(function (success) {
                     console.log(success);
                     if (success.data.data) {
-                        vm.data.listNguoiDung = success.data.data;
+                        vm.data.listNhanVien = success.data.data;
                         tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / number);
                     }
                     vm.data.isLoading = false;
@@ -223,30 +226,30 @@
         function deleteSelected(id) {
             vm.data.isLoading = true;
             var msg = "";
-            var nguoidungSelected = new Array();
+            var NhanVienSelected = new Array();
             var ids = "";
             if (id != '' && id != null) {
                 ids = id;
                 msg = 'Bạn có muốn xóa không?';
             }
             else {
-                for (var i = 0; i < vm.data.listNguoiDung.length; i++) {
-                    var nguoidung = vm.data.listNguoiDung[i];
-                    if (nguoidung.isSelected) {
-                        nguoidungSelected.push(nguoidung.NguoiDungId);
+                for (var i = 0; i < vm.data.listNhanVien.length; i++) {
+                    var NhanVien = vm.data.listNhanVien[i];
+                    if (NhanVien.isSelected) {
+                        NhanVienSelected.push(NhanVien.NhanVienId);
                     }
                 }
-                ids = nguoidungSelected.join(',');
+                ids = NhanVienSelected.join(',');
                 msg = 'Bạn có muốn xóa các mục đã chọn không?';
             }
             if (ids != "") {
                 if (!confirm(msg)) { return; }
-                NguoiDungService.removeList(ids).then(function (success) {
+                NhanVienService.removeList(ids).then(function (success) {
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
                     alert('Xóa thành công!');
-                    $('#popupThongTinNguoiDung').collapse('hide');
+                    $('#popupThongTinNhanVien').collapse('hide');
                 }, function (error) {
                     vm.data.isLoading = false;
                     alert('Khen thưởng không thể xóa!')
@@ -260,43 +263,37 @@
         function insert() {
             var deferred = $q.defer();
 
-            vm.status.isInValidMaNguoiDung = utility.checkInValid(vm.data.objNguoiDung.MaNguoiDung, 'isEmpty');
-            if (vm.status.isInValidMaNguoiDung) {
-                $window.document.getElementById('txtMaNguoiDung').focus();
+            vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
+            if (vm.status.isInValidMaNhanVien) {
+                $window.document.getElementById('txtMaNhanVien').focus();
                 return;
             }
-            vm.status.isInValidTenNguoiDung = utility.checkInValid(vm.data.objNguoiDung.HoTen, 'isEmpty');
-            if (vm.status.isInValidTenNguoiDung) {
-                $window.document.getElementById('txtTenNguoiDung').focus();
+            vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
+            if (vm.status.isInValidTenNhanVien) {
+                $window.document.getElementById('txtTenNhanVien').focus();
                 return;
             }
-
-            //vm.status.isInValidVaiTro = utility.checkInValid(vm.data.listVaiTro.length > 0 ? vm.data.listVaiTro[0].VaiTroId : '', 'isEmpty');
-            //if (vm.status.isInValidVaiTro) {
-            //    $window.document.getElementById('popVaiTro').focus();
-            //    return;
-            //}
-            vm.status.isInValidEmail = utility.checkInValid(vm.data.objNguoiDung.Email, 'Email');
+            vm.status.isInValidEmail = utility.checkInValid(vm.data.objNhanVien.Email, 'Email');
             if (vm.status.isInValidEmail) {
                 $window.document.getElementById('txtEmail').focus();
                 return;
             }
-            vm.status.isInValidPassword = utility.checkInValid(vm.data.objNguoiDung.PasswordHash, 'isEmpty');
+            vm.status.isInValidPassword = utility.checkInValid(vm.data.objNhanVien.PasswordHash, 'isEmpty');
             if (vm.status.isInValidPassword) {
                 $window.document.getElementById('txtPassword').focus();
                 return;
             }
 
-            vm.data.objNguoiDung.NguoiTao = userInfo.NhanVienId;
+            vm.data.objNhanVien.NguoiTao = userInfo.NhanVienId;
 
-            NguoiDungService.insert(vm.data.objNguoiDung).then(function (success) {
-                console.log('NguoiDungService.insert', success);
+            NhanVienService.insert(vm.data.objNhanVien).then(function (success) {
+                console.log('NhanVienService.insert', success);
                 if (success.data.data) {
-                    NguoiDungId = success.data.data.NguoiDungId;
+                    NhanVienId = success.data.data.NhanVienId;
                 }
                 utility.AlertSuccess('Thêm thành công');
 
-                $('#NguoiDungEditPopup').collapse('hide');
+                $('#NhanVienEditPopup').collapse('hide');
                 _tableState.pagination.start = 0;
                 getPage();
 
@@ -314,28 +311,22 @@
         function update() {
             var deferred = $q.defer();
 
-            vm.status.isInValidMaNguoiDung = utility.checkInValid(vm.data.objNguoiDung.MaNguoiDung, 'isEmpty');
-            if (vm.status.isInValidMaNguoiDung) {
-                $window.document.getElementById('txtMaNguoiDung').focus();
+            vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
+            if (vm.status.isInValidMaNhanVien) {
+                $window.document.getElementById('txtMaNhanVien').focus();
                 return;
             }
-            vm.status.isInValidTenNguoiDung = utility.checkInValid(vm.data.objNguoiDung.HoTen, 'isEmpty');
-            if (vm.status.isInValidTenNguoiDung) {
-                $window.document.getElementById('txtTenNguoiDung').focus();
+            vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
+            if (vm.status.isInValidTenNhanVien) {
+                $window.document.getElementById('txtTenNhanVien').focus();
                 return;
             }
 
-            //vm.status.isInValidVaiTro = utility.checkInValid(vm.data.listVaiTro.length > 0 ? vm.data.listVaiTro[0].VaiTroId : '', 'isEmpty');
-            //if (vm.status.isInValidVaiTro) {
-            //    $window.document.getElementById('popVaiTro').focus();
-            //    return;
-            //}
-
-            NguoiDungService.update(vm.data.objNguoiDung).then(function (success) {
-                console.log('NguoiDungService.update', success)
+            NhanVienService.update(vm.data.objNhanVien).then(function (success) {
+                console.log('NhanVienService.update', success)
                 utility.AlertSuccess('Cập nhật thành công');
 
-                $('#NguoiDungEditPopup').collapse('hide');
+                $('#NhanVienEditPopup').collapse('hide');
                 _tableState.pagination.start = 0;
                 getPage();
 
@@ -351,12 +342,12 @@
         function getById(id) {
             var deferred = $q.defer();
 
-            NguoiDungService.getById(id).then(function (success) {
-                console.log(`NguoiDungService.getById.${id}`, success);
-                vm.data.objNguoiDung = success.data.data[0];
+            NhanVienService.getById(id).then(function (success) {
+                console.log(`NhanVienService.getById.${id}`, success);
+                vm.data.objNhanVien = success.data.data[0];
                 return deferred.resolve(success);
             }, function (error) {
-                console.log(`NguoiDungService.getById.${id}`, error);
+                console.log(`NhanVienService.getById.${id}`, error);
             });
             return deferred.promise;
         }

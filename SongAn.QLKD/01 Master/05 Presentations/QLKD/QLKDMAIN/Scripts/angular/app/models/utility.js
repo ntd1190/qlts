@@ -12,11 +12,65 @@
             clone: cloneObject,
             getQueryString: getParameterByName,
             setQueryString: updateQueryStringParameter,
-            checkInValid:checkInValid,
+            checkInValid: checkInValid,
             joinStr: joinStr,
             convertDateFormat: convertDateFormat,
             initTableState: initTableState,
         };
+
+        /* tự đông check / uncheck checkAll */
+        service.autoCheckAll = function (list) {
+            if (!list || list.length == 0) {
+                return false;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                if (list[i].isSelected) {
+                } else {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+        /* checkAll / uncheckAll */
+        service.checkAll = function (list, isSelected) {
+            if (!list || list.length == 0) {
+                return false;
+            }
+
+            for (var i = 0; i < list.length; i++) {
+                list[i].isSelected = isSelected;
+            }
+            return isSelected;
+        }
+
+        service.AlertSuccess = function (message) {
+            //var dom = '<div class="top-alert"><div class="alert alert-success alert-dismissible fade in " role="alert"><i class="glyphicon glyphicon-ok"></i> ' + message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div></div>';
+            //var jdom = $(dom);
+            //jdom.hide();
+            //$("body").append(jdom);
+            //jdom.fadeIn();
+            //setTimeout(function () {
+            //    jdom.fadeOut(function () {
+            //        jdom.remove();
+            //    });
+            //}, 2000);
+            alert(message);
+        }
+        service.AlertError = function (message) {
+            //var dom = '<div class="top-alert"><div class="alert alert-warning alert-dismissible fade in " role="alert"><i class="glyphicon glyphicon-question-sign"></i> ' + message + '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span></button></div></div>';
+            //var jdom = $(dom);
+            //jdom.hide();
+            //$("body").append(jdom);
+            //jdom.fadeIn();
+            //setTimeout(function () {
+            //    jdom.fadeOut(function () {
+            //        jdom.remove();
+            //    });
+            //}, 2000);
+            alert(message);
+        }
 
         return service;
 
@@ -55,7 +109,7 @@
                         return true;
                     break;
                 case 'Email':
-                    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/; 
+                    var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
                     if (value == 'undefined' || value == null || value == '' || pattern.test(value) == false)
                         return true;
                     break;
