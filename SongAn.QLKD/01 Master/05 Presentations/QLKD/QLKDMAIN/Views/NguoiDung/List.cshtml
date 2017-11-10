@@ -84,13 +84,7 @@
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidVaiTro}">
                         <label for="" class="control-label col-sm-3">Vai trò</label>
                         <div class="col-sm-9">
-                            <div class="form-control auto-height">
-                                <a href="javascript:void(0);" data-toggle="collapse" id="popVaiTro" data-target="#VaiTroListPopupEdit"><i class="fa fa-fw fa-search"></i></a>
-                                <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListVaiTro()"><i class="fa fa-fw fa-remove"></i></a>
-                                <a href="javascript:void(0);" data-toggle="collapse">
-                                    <span class="" style="margin-right: 5px;" ng-bind="kh.TenVaiTro+','" ng-repeat="kh in ctrl.data.listVaiTro"></span>
-                                </a>
-                            </div>
+                            <cbo-vai-tro id="cbxVaiTro" data-value="ctrl.data.objNguoiDung.VaiTroId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/vaitro/showcombobox?viewname=cbovaitro"></cbo-vai-tro>
                         </div>
                     </div>
                     <div class="row form-group form-group-sm">

@@ -228,6 +228,7 @@
     <Content Include="Scripts\angular\TuyChonFormCot\service\TuyChonCotService.js" />
     <Content Include="Scripts\angular\VaiTroList\controller\VaiTroEditCtrl.js" />
     <Content Include="Scripts\angular\VaiTroList\controller\VaiTroListCtrl.js" />
+    <Content Include="Scripts\angular\VaiTroList\directive\cboVaiTro.js" />
     <Content Include="Scripts\angular\VaiTroList\service\VaiTroService.js" />
     <Content Include="lib\angular\angular-animate.min.js.map" />
     <Content Include="lib\angular\angular-aria.min.js.map" />
@@ -299,6 +300,7 @@
     <Content Include="Views\NguoiDung\List.cshtml" />
     <Content Include="Views\NguoiDung\TuyChonCotList.cshtml" />
     <Content Include="Views\NhanVien\cboNhanVienByPhongBan.cshtml" />
+    <Content Include="Views\VaiTro\cboVaiTro.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

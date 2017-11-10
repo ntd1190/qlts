@@ -14,6 +14,7 @@
             GetList: 'GetListVaiTro',
             GetById: 'GetVaiTroById',
             GetListBySearchString: 'GetListVaiTroBySearchString',
+            GetComboboxById: 'GetListcbxVaiTroById',
             getList: 'getList',
             getListCount: 'getListCount',
             getListProjection: 'getListProjection',
@@ -26,7 +27,8 @@
             getAll: getAll,
             findAll: findAll,
             getById: getById,
-            remove: remove
+            remove: remove,
+            GetComboboxById: GetComboboxById,
         }
 
         return service;
@@ -101,6 +103,25 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param(obj)
+            }
+
+            return $http(req);
+        }
+
+        function GetComboboxById(UserId, NhanVienId, Search, VaiTroId, FunctionCode) {
+            var url = api.url + api.GetComboboxById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    Search: Search,
+                    UserId: UserId,
+                    NhanVienId: NhanVienId,
+                    VaiTroId: VaiTroId,
+                    FunctionCode: FunctionCode
+                })
             }
 
             return $http(req);

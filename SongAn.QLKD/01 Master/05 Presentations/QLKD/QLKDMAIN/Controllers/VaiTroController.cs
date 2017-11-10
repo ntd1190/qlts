@@ -36,5 +36,15 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
             ViewBag.userInfo = userLogin;
             return PartialView(viewName);
         }
+
+        [AllowAnonymous]
+        public ActionResult showCombobox(string viewName, string type)
+        {
+            ViewBag.userInfo = LoadUserInfo("CN0005");
+
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            return PartialView(viewName);
+        }
     }
 }

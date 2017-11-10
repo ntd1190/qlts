@@ -73,4 +73,5 @@
 /// <reference path="angular/tuychonformcot/service/tuychoncotservice.js" />
 /// <reference path="angular/VaiTroList/controller/VaiTroEditCtrl.js" />
 /// <reference path="angular/VaiTroList/controller/VaiTroListCtrl.js" />
+/// <reference path="angular/vaitrolist/directive/cbovaitro.js" />
 /// <reference path="angular/VaiTroList/service/VaiTroService.js" />
