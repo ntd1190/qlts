@@ -1,0 +1,93 @@
+﻿@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @(ViewBag.userInfo)})">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title">
+                    <span>Người dùng</span>
+                </div>
+            </div>
+            <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
+                <form class="form-horizontal">
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Mã người dùng</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtMaNguoiDung" ng-model="ctrl.data.objNguoiDung.MaNguoiDung" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Họ tên</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtTenNguoiDung" ng-model="ctrl.data.objNguoiDung.HoTen" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label for="" class="control-label col-sm-3">Vai trò</label>
+                        <div class="col-sm-9">
+                            <div class="form-control auto-height">
+                                <a href="javascript:void(0);" data-toggle="collapse" id="popVaiTro" data-target="#VaiTroListPopupEdit"><i class="fa fa-fw fa-search"></i></a>
+                                <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListVaiTro()"><i class="fa fa-fw fa-remove"></i></a>
+                                <a href="javascript:void(0);" data-toggle="collapse">
+                                    <span class="" style="margin-right: 5px;" ng-bind="kh.TenVaiTro+','" ng-repeat="kh in ctrl.data.listVaiTro"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Nhân viên</label>
+                        <div class="col-sm-9">
+                            <div class="form-control auto-height">
+                                <a href="javascript:void(0);" id="popNhanVien" data-toggle="collapse" data-target="#NhanVienListPopupEdit"><i class="fa fa-fw fa-search"></i></a>
+                                <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListNhanVien()"><i class="fa fa-fw fa-remove"></i></a>
+                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#NhanVienListPopupEdit">
+                                    <span class="" style="margin-right: 5px;" ng-bind="nv.Ho+' '+nv.Ten+','" ng-repeat="nv in ctrl.data.listNhanVien"></span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Email</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtEmail" ng-model="ctrl.data.objNguoiDung.Email" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Password</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtPassword" ng-model="ctrl.data.objNguoiDung.PasswordHash" />
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Điện thoại</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtDienThoai" ng-model="ctrl.data.objNguoiDung.DienThoai" />
+                        </div>
+                    </div>
+
+
+                </form>
+            </div>
+            <div class="panel-footer">
+                <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                    <button type="button" class="btn btn-sm btn-primary" id="btnluu" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                    <button type="button" id="btnXoaId" class="btn btn-sm btn-default" ng-click="ctrlList.action.deleteSelected(ctrl.data.objNguoiDung.NguoiDungId)">Xóa</button>&nbsp;&nbsp;&nbsp;
+                </span>
+                <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" href="~/#!/nguoidung/list">Quay lại</a>&nbsp;&nbsp;&nbsp;
+            </div>
+
+        </div>
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

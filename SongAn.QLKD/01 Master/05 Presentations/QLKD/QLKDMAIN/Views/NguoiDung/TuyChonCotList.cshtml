@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="panel panel-primary ui-draggable collapse fade" id="{{ctrl.ctrlId}}" @*ng-controller="TuyChonCotListCtrl as ctrl" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,controllerId:'TuyChonCotPopup',MaForm:'FL0027'})"*@>
+        <div class="panel-heading ui-draggable-handle">
+            <div class="panel-title">
+                <span>Tùy chọn cột</span>
+                <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#{{ctrl.ctrlId}}"><i class="fa fa-remove"></i></a>
+            </div>
+        </div>
+        <div class="table-responsive" style="width: 400px; height: auto;" ng-if="ctrl.data.showList">
+            <table class="table table-bordered table-condensed table-hover table-striped" st-table="ctrl.data.listCot">
+                <thead>
+                    <tr>
+                        <th style="width: 65px;">Hiện/ẩn</th>
+                        <th>Tên cột</th>
+                        <th>Độ rộng</th>
+                    </tr>
+                </thead>
+                <tbody style="height:100px;">
+                    <tr ng-repeat="cot in ctrl.data.listCot" ng-class="(cot.isSelected==true)?'info':''" ng-init="cot.isSelected=cot.HienThiYN">
+                        <td st-select-row="cot" st-select-mode="multiple" class="text-center"><i class="fa fa-fw text-primary" ng-class="(cot.isSelected==true)?'fa-check-square-o':'fa-square-o'"></i></td>
+                        <td><span ng-bind="cot.TenCot"></span></td>
+                        <td><span ng-bind="cot.DoRong"></span></td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="100" class="text-center">
+                            <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                        </td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="panel-footer">
+            <a class="btn btn-sm btn-primary" ng-click="ctrl.action.apDung()">Áp dụng</a>
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#{{ctrl.ctrlId}}">Đóng</a>
+        </div>
+    </div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

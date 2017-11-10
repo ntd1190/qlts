@@ -1,10 +1,12 @@
 ﻿using Newtonsoft.Json;
+using SongAn.QLKD.UI.QLKDMAIN;
 using SongAn.QLKD.Util.Common.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Optimization;
 using System.Web.Routing;
 using System.Web.Security;
 
@@ -15,6 +17,7 @@ namespace QLKDMAIN
         protected void Application_Start()
         {
             AreaRegistration.RegisterAllAreas();
+            BundleConfig.RegisterBundles(BundleTable.Bundles);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
 
