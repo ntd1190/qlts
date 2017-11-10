@@ -45,18 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChucVu\GetChucVuByIdBiz.cs" />
-    <Compile Include="ChucVu\GetListChucVuByCriteriaBiz.cs" />
-    <Compile Include="ChucVu\InsertChucVuBiz.cs" />
-    <Compile Include="ChucVu\UpdateChucVuBiz.cs" />
-    <Compile Include="ChucVu\UpdateXoaListChucVuBiz.cs" />
-    <Compile Include="NhanVien\GetListNhanVienByCriteriaBiz.cs" />
-    <Compile Include="NhanVien\GetListNhanVienByCriteriaListBiz.cs" />
-    <Compile Include="NhanVien\GetThongTinNhanVienByIdBiz.cs" />
-    <Compile Include="NhanVien\GetThongTinNhanVienByMaBiz.cs" />
-    <Compile Include="NhanVien\InsertThongTinNhanVienBiz.cs" />
-    <Compile Include="NhanVien\UpdateThongTinNhanVienBiz.cs" />
-    <Compile Include="PhongBan\GetListPhongBanByCriteriaBiz.cs" />
+    <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdBiz.cs" />
+    <Compile Include="NhanVien\GetListNhanVienByCriteraBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -86,7 +76,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="ChucVu\Dto\" />
     <Folder Include="NhanVien\Dto\" />
   </ItemGroup>
   <ItemGroup>
