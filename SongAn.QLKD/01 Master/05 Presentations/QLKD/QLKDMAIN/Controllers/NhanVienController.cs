@@ -4,46 +4,32 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
+using System.Threading.Tasks;
 
 namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
 {
-    [CustomAuthorize(FunctionCodes = "CN0001")]
     public class NhanVienController : BaseController
     {
         // GET: NhanVien
+        [CustomAuthorize(FunctionCodes = "CN0024")]
+        public ActionResult showView(string viewName, string type)
+        {
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            string userLogin = LoadUserInfo("CN0024");
+            ViewBag.userInfo = userLogin;
+            return PartialView(viewName);
+        }
+
         [AllowAnonymous]
-        public ActionResult Index()
+        public ActionResult showCombobox(string viewName, string type)
         {
-            return RedirectToAction("list");
-        }
+            ViewBag.userInfo = LoadUserInfo("CN0001");
 
-        public ActionResult List()
-        {
-            string userLogin = LoadUserInfo("CN0001");
-            ViewBag.userInfo = userLogin;
-            return View();
-        }
-
-        public ActionResult Create()
-        {
-            string userLogin = LoadUserInfo("CN0001");
-            ViewBag.userInfo = userLogin;
-            return View("Edit");
-        }
-
-        public ActionResult Edit(int? id)
-        {
-            if (id == null || id < 1)
-            {
-                return RedirectToAction("List");
-            }
-
-            ViewBag.id = id;
-
-            string userLogin = LoadUserInfo("CN0001");
-            ViewBag.userInfo = userLogin;
-
-            return View();
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            return PartialView(viewName);
         }
     }
 }

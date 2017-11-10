@@ -26,5 +26,15 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
             string __VIEW_NAME = "List";
             return View(__VIEW_NAME);
         }
+
+        [CustomAuthorize(FunctionCodes = "CN0005")]
+        public ActionResult showView(string viewName, string type)
+        {
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            string userLogin = LoadUserInfo("CN0005");
+            ViewBag.userInfo = userLogin;
+            return PartialView(viewName);
+        }
     }
 }
