@@ -108,7 +108,7 @@
             var NhanVienId = userInfo.NhanVienId || 0;
             var search = vm.inputSearch.SearchString || '';
             var VaiTroId = vm.inputSearch.VaiTroId || 0;
-            var FunctionCode = '' || '';
+            var FunctionCode = $scope.functionCode || '';
 
             return $q(function (resolve, reject) {
                 service.GetComboboxById(UserId, NhanVienId, search, VaiTroId, FunctionCode)
