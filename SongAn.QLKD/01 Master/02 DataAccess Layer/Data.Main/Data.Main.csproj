@@ -72,6 +72,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CaiHinhFormCot\GetListCauHinhFormCotByCriteriaDac.cs" />
+    <Compile Include="NguoiDung\GetListcbxNguoiDungByIdDac.cs" />
     <Compile Include="NguoiDung\GetListNguoiDungByIdDac.cs" />
     <Compile Include="NguoiDung\GetListNguoiDungByProjectionDac.cs" />
     <Compile Include="PhanQuyen\Dto\QuyenTacVuDto.cs" />

@@ -89,6 +89,7 @@
     <Compile Include="Models\ChucNang\InsertChucNangAction.cs" />
     <Compile Include="Models\ChucNang\UpdateChucNangAction.cs" />
     <Compile Include="Models\NguoiDung\DeleteListNguoiDungAction.cs" />
+    <Compile Include="Models\NguoiDung\GetListcbxNguoiDungByIdAction.cs" />
     <Compile Include="Models\NguoiDung\GetNguoiDungByIdAction.cs" />
     <Compile Include="Models\NguoiDung\GetListNguoiDungByProjectionAction.cs" />
     <Compile Include="Models\NguoiDung\InsertNguoiDungAction.cs" />

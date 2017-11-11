@@ -4,6 +4,7 @@
 3. Description : Test Controller
 4. History     : 2017.08.05(Nguyen Ngoc Tan) - Tao moi
 *****************************************************************************/
+using SongAn.QLKD.Api.Main.Models.NguoiDung;
 using SongAn.QLKD.Api.QLKD.Models.NguoiDung;
 using SongAn.QLKD.Util.Common.Api;
 using SongAn.QLKD.Util.Common.Dto;
@@ -50,6 +51,13 @@ namespace SongAn.QLKD.Api.Main.Controllers
 
         [HttpPost]
         public async Task<IHttpActionResult> DeleteListNguoiDung([FromBody]DeleteListNguoiDungAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxNguoiDungById([FromBody]GetListcbxNguoiDungByIdAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
