@@ -66,7 +66,7 @@
                             for (var k = 0; k < qtacvu.length; k++) {
                                 if (chucnang[j] == qtacvu[k]) check = "checked";
                             }
-                            dschucnang += "<label class='radio-inline'><input  type='checkbox' " + check + " ng-click='ctrl.action.UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[j] + "' />" + (chucnang[j] == "V" ? "Xem" : chucnang[j] == "N" ? "Mới" : chucnang[j] == "D" ? "Xóa" : chucnang[j] == "M" ? "Sửa" : chucnang[j] == "A" ? "Duyệt" : chucnang[j] == "L" ? "Sổ cái" : chucnang[j]) + "</label>"
+                            dschucnang += "<label class='radio-inline'><input  type='checkbox' " + check + " onclick='UpdateQuyen($(this),&#39;" + item.DSQuyen + "&#39;,&#39;" + item.ChucNangId + "&#39;," + vm.data.VaiTroId + ")' value='" + chucnang[j] + "' />" + (chucnang[j] == "V" ? "Xem" : chucnang[j] == "N" ? "Mới" : chucnang[j] == "D" ? "Xóa" : chucnang[j] == "M" ? "Sửa" : chucnang[j] == "A" ? "Duyệt" : chucnang[j] == "L" ? "Sổ cái" : chucnang[j]) + "</label>"
                         }
                         tbody += "<td data-Quyen='" + item.DSQuyenTacVu + "' >" + dschucnang + "</td>";
                         tbody += "</tr>";
@@ -133,3 +133,47 @@
 
     }
 })();
+
+
+function UpdateQuyen(check, DSQuyen, ChucNangId, VaiTroId) {
+    var dsQuyenTacVu = "";
+    var chucNang = "";
+    var DSQuyenTacVu = $(check).parent().parent().data('quyen');
+    addloadding($('body'));
+    var quyen = "";
+    if ((dsQuyenTacVu == "" && DSQuyenTacVu) || (chucNang != ChucNangId && DSQuyenTacVu)) dsQuyenTacVu = DSQuyenTacVu;
+    var arrDSQuyen = DSQuyen.split(",");
+    dsQuyenTacVu = $(check).is(":checked") ? dsQuyenTacVu + "," + $(check).val() : dsQuyenTacVu.replace($(check).val(), "");
+    var arrDSQuyenTacVu = dsQuyenTacVu.split(",");
+    for (var j = 0; j < arrDSQuyen.length; j++)
+        for (var k = 0; k < arrDSQuyenTacVu.length; k++) {
+            if (arrDSQuyenTacVu[k] == arrDSQuyen[j])
+                quyen = quyen + arrDSQuyen[j] + ",";
+        }
+    $(check).parent().parent().data('quyen', quyen);
+    dsQuyenTacVu = quyen;
+    chucNang = ChucNangId;
+    $.ajax({
+        type: "POST",
+        url: window.API_BASE + 'api.QLNS/QuyenTacVu/UpdateQuyenTacVu',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+        data: $.param({
+            VaiTroId: VaiTroId,
+            ChucNangId: ChucNangId,
+            DSQuyenTacVu: quyen.substring(0, quyen.length - 1),
+        }), error: function (msg) {
+            console.log(msg)
+        },
+        success: function (msg) {
+            if (msg.data.ChucNangId > 0) removeloadding($('body'));
+        }
+    });
+}
+
+function addloadding(obj) {
+    $(obj).append('<div id="bgloadding"><div class="windows8"><div class="wBall" id="wBall_1"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_2"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_3"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_4"><div class="wInnerBall"></div></div><div class="wBall" id="wBall_5"><div class="wInnerBall"></div></div></div></div>');
+}
+
+function removeloadding(obj) {
+    $('#bgloadding').remove();
+}
