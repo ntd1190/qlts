@@ -14,6 +14,7 @@
             GetPage: 'GetListNguoiDungByProjection',
             GetById: 'GetNguoiDungById',
             GetListBySearchString: 'GetListNguoiDungBySearchString',
+            GetComboboxById: 'GetListcbxNguoiDungById',
             getList: 'getList',
             getListCount: 'getListCount',
             getListProjection: 'getListProjection',
@@ -28,6 +29,7 @@
             insert: insert,
             update: update,
             removeList: removeList,
+            GetComboboxById: GetComboboxById,
         };
 
         return service;
@@ -111,6 +113,25 @@
             var req = {
                 url: url,
                 method: 'GET'
+            }
+
+            return $http(req);
+        }
+
+        function GetComboboxById(UserId, NhanVienId, Search, NguoiDungId, FunctionCode) {
+            var url = api.url + api.GetComboboxById;
+
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    Search: Search,
+                    UserId: UserId,
+                    NhanVienId: NhanVienId,
+                    NguoiDungId: NguoiDungId,
+                    FunctionCode: FunctionCode
+                })
             }
 
             return $http(req);
