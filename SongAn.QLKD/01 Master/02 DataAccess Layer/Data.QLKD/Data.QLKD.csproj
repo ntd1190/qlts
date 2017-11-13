@@ -53,9 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KhachHang\DeleteKhachHangByIdDac.cs" />
+    <Compile Include="KhachHang\GetListKhachHangByCriteriaDac.cs" />
+    <Compile Include="KhachHang\GetListKhachHangByIdDac.cs" />
+    <Compile Include="KhachHang\InsertKhachHangDac.cs" />
+    <Compile Include="KhachHang\UpdateKhachHangByIdDac.cs" />
     <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdDac.cs" />
     <Compile Include="NhanVien\GetListNhanVienByProjectionDac.cs" />
+    <Compile Include="NhomKhachHang\GetListcbxNhomKhachHangByIdDac.cs" />
+    <Compile Include="PhuongXa\GetListcbxPhuongXaByIdDac.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QuanHuyen\GetListcbxQuanHuyenByIdDac.cs" />
+    <Compile Include="Tinh\GetListcbxTinhByIdDac.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\00 Utilities\Util.Common\Util.Common.csproj">

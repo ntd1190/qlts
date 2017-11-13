@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entity\KDKhachHang.cs" />
     <Compile Include="Entity\KDNhomKinhDoanh.cs" />
     <Compile Include="Entity\KDNhanVienChiTiet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,33 +1,27 @@
-﻿/*****************************************************************************
-1. Create Date  : 2017.08.05
-2. Creator      : Nguyen Ngoc Tan
-3. Function     : Phân Quyền
-4. Description  : call sp to get danh sach quyen tac vu bang vaitroid
-5. History      : 2017.08.05(Nguyen Ngoc Tan) - Tao moi
-*****************************************************************************/
-using Dapper;
+﻿using Dapper;
 using Dapper.FastCrud;
-using SongAn.QLKD.Data.Main.PhanQuyen.Dto;
 using SongAn.QLKD.Util.Common.Dto;
+using SongAn.QLKD.Util.Common.Repository;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Threading.Tasks;
 
-namespace SongAn.QLKD.Data.Main.PhanQuyen
+namespace SongAn.QLKD.Data.QLKD.KhachHang
 {
-    public class GetListChucNangByVaiTroIdDac : Util.Common.Repository.BaseRepositoryAsync
+    public class DeleteKhachHangByIdDac: BaseRepositoryAsync
     {
         #region public properties
 
-        /// <summary>
-        /// Vai Trò Id
-        /// </summary>
-        public int VaiTroId { get; set; }
-        public string Loai { get; set; }
+
+        public int KhachHangId { get; set; }
+
         #endregion
 
         #region private variable
-        private ContextDto _context;
+
+        ContextDto _context;
+
         #endregion
 
         #region constructor
@@ -35,14 +29,14 @@ namespace SongAn.QLKD.Data.Main.PhanQuyen
         /// Ham khoi tao, chi nhan vao bien moi truong va goi lop base
         /// </summary>
         /// <param name="context"></param>
-        public GetListChucNangByVaiTroIdDac(ContextDto context) : base(context.dbMainConnection)
+        public DeleteKhachHangByIdDac(ContextDto context) : base(context.dbQLKDConnection)
         {
             OrmConfiguration.DefaultDialect = SqlDialect.MsSql;
 
             _context = context;
         }
-
         #endregion
+
         #region init & validate
         /// <summary>
         /// Ham khoi tao gia tri mac dinh cho cac bien
@@ -77,10 +71,10 @@ namespace SongAn.QLKD.Data.Main.PhanQuyen
             return await WithConnection(async c =>
             {
                 var p = new DynamicParameters();
-                p.Add("VAITROID", VaiTroId, DbType.String);
-                p.Add("LOAI", Loai, DbType.String);
+                p.Add("KhachHangId", KhachHangId, DbType.Int32);
+
                 var objResult = await c.QueryAsync<dynamic>(
-                    sql: "sp_KD_PhanQuyen_GetListChucNang",
+                    sql: "sp_KD_KhachHang_DeleteKhachHangById",
                     param: p,
                     commandType: CommandType.StoredProcedure);
 
@@ -89,6 +83,5 @@ namespace SongAn.QLKD.Data.Main.PhanQuyen
         }
 
         #endregion
-
     }
 }
