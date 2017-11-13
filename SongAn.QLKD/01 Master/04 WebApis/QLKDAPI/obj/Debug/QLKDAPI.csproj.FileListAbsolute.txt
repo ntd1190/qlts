@@ -114,3 +114,5 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.D
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\QLKDAPI.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\SongAn.QLKD.Api.QLKDAPI.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\SongAn.QLKD.Api.QLKDAPI.pdb
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.pdb

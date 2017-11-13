@@ -63,9 +63,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
+    <Compile Include="Controllers\NhomKhachHangController.cs" />
+    <Compile Include="Controllers\PhuongXaController.cs" />
+    <Compile Include="Controllers\QuanHuyenController.cs" />
+    <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\KhachHang\DeleteKhachHangByIdAction.cs" />
+    <Compile Include="Models\KhachHang\GetListKhachHangByIdAction.cs" />
+    <Compile Include="Models\KhachHang\GetListKhachHangByProjectionAction.cs" />
+    <Compile Include="Models\KhachHang\InsertKhachHangAction.cs" />
+    <Compile Include="Models\KhachHang\UpdateKhachHangByIdAction.cs" />
     <Compile Include="Models\NhanVien\GetListcbxNhanVienByPhongBanIdAction.cs" />
     <Compile Include="Models\NhanVien\GetListNhanVienByProjectionAction.cs" />
+    <Compile Include="Models\NhomKhachHang\GetListcbxNhomKhachHangByIdAction.cs" />
+    <Compile Include="Models\PhuongXa\GetListcbxPhuongXaByIdAction.cs" />
+    <Compile Include="Models\QuanHuyen\GetListcbxQuanHuyenByIdAction.cs" />
+    <Compile Include="Models\Tinh\GetListcbxTinhByIdAction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
