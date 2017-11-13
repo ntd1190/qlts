@@ -3,33 +3,24 @@
 
     angular
         .module('app')
-        .factory('NguoiDungService', NguoiDungService);
+        .factory('KhachHangService', KhachHangService);
 
-    function NguoiDungService($http, API_BASE) { 
+    function KhachHangService($http, API_BASE) {
         var api = {
-            url: API_BASE + 'api.Main/NguoiDung/',
-            insert: 'InsertNguoiDung',
-            update: 'UpdateNguoiDung',
-            GetList: 'GetListNguoiDung',
-            GetPage: 'GetListNguoiDungByProjection',
-            GetById: 'GetNguoiDungById',
-            GetListBySearchString: 'GetListNguoiDungBySearchString',
-            getList: 'getList',
-            getListCount: 'getListCount',
-            getListProjection: 'getListProjection',
-            remove: 'DeleteNguoiDung',
-            removeList: 'DeleteListNguoiDung',
-            GetComboboxById: 'GetListcbxNguoiDungById',
+            url: API_BASE + 'Api.QLTS/KhachHang/',
+            insert: 'InsertKhachHang',
+            update: 'UpdateKhachHangById',
+            GetPage: 'GetListKhachHangByProjection',
+            GetById: 'GetKhachHangById',
+            removeList: 'DeleteListKhachHang'
         }
 
         var service = {
-            getList: getList,
             getPage: getPage,
             getById: getById,
             insert: insert,
             update: update,
             removeList: removeList,
-            GetComboboxById: GetComboboxById,
         };
 
         return service;
@@ -49,7 +40,7 @@
             return $http(req);
         }
 
-        function getPage(draw, start, length, searchString, sortName, sortDir, fields,LoginId) {
+        function getPage(draw, start, length, searchString, sortName, sortDir, UserId, NhanVienId) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -63,8 +54,8 @@
                     search: searchString,
                     sortName: sortName,
                     sortDir: sortDir,
-                    fields: fields,
-                    LoginId: LoginId
+                    UserId: UserId,
+                    NhanVienId: NhanVienId,
                 })
             }
 
@@ -75,23 +66,28 @@
             if (!obj) {
                 return null;
             };
+
             var url = api.url + api.insert;
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    KhachHang: obj.KhachHang,
+                })
             }
             return $http(req);
         }
-
+       
         function update(obj) {
             var url = api.url + api.update;
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param(obj)
+                data: $.param({
+                    KhachHang: obj.KhachHang
+                })
             }
             return $http(req);
         }
@@ -102,39 +98,9 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({ NguoiDungId: id })
+                data: $.param({ KhachHangid: id })
             }
             return $http(req);
         };
-
-        function getList() {
-            var url = api.url + api.GetListBySearchString;
-
-            var req = {
-                url: url,
-                method: 'GET'
-            }
-
-            return $http(req);
-        }
-
-        function GetComboboxById(UserId, NhanVienId, Search, NguoiDungId, FunctionCode) {
-            var url = api.url + api.GetComboboxById;
-
-            var req = {
-                url: url,
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({
-                    Search: Search,
-                    UserId: UserId,
-                    NhanVienId: NhanVienId,
-                    NguoiDungId: NguoiDungId,
-                    FunctionCode: FunctionCode
-                })
-            }
-
-            return $http(req);
-        }
     }
 })();

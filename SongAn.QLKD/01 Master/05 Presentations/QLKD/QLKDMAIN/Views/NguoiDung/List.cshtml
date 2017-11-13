@@ -8,8 +8,8 @@
     <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="ctrl.keys">
         <div class="panel panel-default">
             <div class="panel-body">
+                <a class="btn btn-warning pull-right" href="javascript:void(0)" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
                 <h3 class="text-center no-margin">Danh sách người dùng</h3>
-                <a ng-click="ctrl.status.openTuyChonCotPopup = !ctrl.status.openTuyChonCotPopup">Tùy chọn cột</a>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listNguoiDung" st-pipe="ctrl.action.getPage">
@@ -90,8 +90,7 @@
                     <div class="row form-group form-group-sm">
                         <label class="control-label col-sm-3">Nhân viên</label>
                         <div class="col-sm-9">
-                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="ctrl.data.objNguoiDung.NhanVienId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"
-                            ></cbo-nhan-vien-by-phong-ban>
+                            <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-value="ctrl.data.objNguoiDung.NhanVienId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
                         </div>
                     </div>
                     <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidEmail}">
@@ -127,7 +126,9 @@
 
         </div>
 
-        <tuy-chon-cot-list maform="FL001" config="{ctrlId:'TuyChonCotPopup'}" isopen="ctrl.status.openTuyChonCotPopup"
+        <tuy-chon-cot-list maform="FL0009"
+                           config="{ctrlId:'TuyChonCotPopup'}"
+                           on-confirm="ctrl.action.getListCot(data)"
                            template-url="~/nguoidung/showcombobox?viewname=TuyChonCotList"></tuy-chon-cot-list>
     </div>
     <div ui-view></div>

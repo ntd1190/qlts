@@ -208,13 +208,22 @@
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungListCtrl.js" />
+    <Content Include="Scripts\angular\NguoiDung\directive\cboNguoiDung.js" />
     <Content Include="Scripts\angular\NguoiDung\service\NguoiDungService.js" />
     <Content Include="Scripts\angular\NhanVien\controller\NhanVienListCtrl.js" />
     <Content Include="Scripts\angular\NhanVien\directive\cboNhanVienByPhongBan.js" />
     <Content Include="Scripts\angular\NhanVien\service\NhanVienService.js" />
+    <Content Include="Scripts\angular\NhomKhachHang\directive\cboNhomKhachHang.js" />
+    <Content Include="Scripts\angular\NhomKhachHang\service\NhomKhachHangService.js" />
     <Content Include="Scripts\angular\PhanQuyen\controller\PhanQuyenListCtrl.js" />
     <Content Include="Scripts\angular\PhanQuyen\service\PhanQuyenService.js" />
+    <Content Include="Scripts\angular\PhuongXa\directive\cboPhuongXa.js" />
+    <Content Include="Scripts\angular\PhuongXa\service\PhuongXaService.js" />
+    <Content Include="Scripts\angular\QuanHuyen\directive\cboQuanHuyen.js" />
+    <Content Include="Scripts\angular\QuanHuyen\service\QuanHuyenService.js" />
     <Content Include="Scripts\angular\shared\directive\keyboard.directive.js" />
     <Content Include="Scripts\angular\shared\directive\number-format.js" />
     <Content Include="Scripts\angular\shared\service\xlsx.full.min.js" />
@@ -223,6 +232,8 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\Tinh\directive\cboTinh.js" />
+    <Content Include="Scripts\angular\Tinh\service\TinhService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\directive\TuyChonCotList.directive.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\controller\TuyChonCotListCtrl.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\service\TuyChonCotService.js" />
@@ -266,11 +277,16 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\NhomKhachHangController.cs" />
     <Compile Include="Controllers\PhanQuyenController.cs" />
+    <Compile Include="Controllers\PhuongXaController.cs" />
+    <Compile Include="Controllers\QuanHuyenController.cs" />
+    <Compile Include="Controllers\TinhController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -301,6 +317,12 @@
     <Content Include="Views\NguoiDung\TuyChonCotList.cshtml" />
     <Content Include="Views\NhanVien\cboNhanVienByPhongBan.cshtml" />
     <Content Include="Views\VaiTro\cboVaiTro.cshtml" />
+    <Content Include="Views\NguoiDung\cboNguoiDung.cshtml" />
+    <Content Include="Views\NhomKhachHang\cboNhomKhachHang.cshtml" />
+    <Content Include="Views\Tinh\cboTinh.cshtml" />
+    <Content Include="Views\QuanHuyen\cboQuanHuyen.cshtml" />
+    <Content Include="Views\PhuongXa\cboPhuongXa.cshtml" />
+    <Content Include="Views\KhachHang\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -310,7 +332,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Upload\DuLieu\" />
     <Folder Include="Models\" />
+    <Folder Include="Scripts\angular\KhachHang\directive\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />
   </ItemGroup>
   <ItemGroup>

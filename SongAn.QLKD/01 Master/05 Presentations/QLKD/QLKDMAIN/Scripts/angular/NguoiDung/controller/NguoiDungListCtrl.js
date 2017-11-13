@@ -91,6 +91,11 @@
         vm.action.checkQuyenTacVu = checkQuyenUI;
         vm.action.deleteSelected = deleteSelected;
 
+        vm.action.getListCot = function (data) {
+            console.log('vm.action.getListCot.data', data);
+            vm.data.listCot = data;
+        }
+
         vm.action.checkQuyenTacVuEdit = function (quyen) {
             if (NguoiDungId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }

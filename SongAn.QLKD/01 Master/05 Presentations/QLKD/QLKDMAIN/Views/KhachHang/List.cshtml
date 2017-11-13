@@ -1,0 +1,90 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="ctrl.keys">
+        <div class="row" style="min-height:300px;">
+            <div class="col-sm-12">
+                <h3>Thông tin khách hàng</h3>
+                <hr />
+                <div class="col-xs-2">
+                    <ul class="nav nav-pills nav-stacked">
+                        <li>
+                            <div>
+                                <img src="http://placehold.it/380x500" alt="" class="img-rounded img-responsive" style="height:190px;width:150px" />
+                            </div>
+                        </li>
+                        <li class="active"><a href="#!/khachhang/list#home" data-toggle="tab">Thông tin chung</a></li>
+                        <li><a href="#!/khachhang/list#profile" data-toggle="tab">Chi tiết</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-9">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Thong tin chung -->
+                        <div class="tab-pane active" id="home">
+                            <form>
+                                <div class="col-md-12">
+                                    <div class="form-group form-group-sm col-sm-4">
+                                        <label class="control-label">Mã khách hàng:</label>
+                                        <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-4">
+                                        <label class="control-label">Mã khách hàng:</label>
+                                        <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-4">
+                                        <label class="control-label">Mã khách hàng:</label>
+                                        <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                    </div>
+                                </div>
+                                @*<div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="row form-group form-group-sm">
+                                                <label class="control-label">Mã khách hàng:</label>
+                                                <div class="col-sm-6">
+                                                    <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                                    </div>
+                                                </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row form-group form-group-sm">
+                                                <label class="control-label">Mã khách hàng:</label>
+                                                <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <div class="row form-group form-group-sm">
+                                                <label class="control-label">Mã khách hàng:</label>
+                                                <input type="text" class="form-control" id="usr" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressGhiTang(ctrl.data.phieuGhiTang.SoChungTu,'txtSoChungTu','txtNgayChungTu',$event)">
+                                            </div>
+                                        </div>
+                                    </div>*@
+                            </form>
+                        </div>
+                        <!-- Chi tiet -->
+                        <div class="tab-pane" id="profile">
+                            abc
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
