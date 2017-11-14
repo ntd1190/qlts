@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
+    <Compile Include="DiaBan\DeleteDiaBanBiz.cs" />
+    <Compile Include="DiaBan\GetByIdBiz.cs" />
+    <Compile Include="DiaBan\GetListByCriteriaBiz.cs" />
+    <Compile Include="DiaBan\InsertDiaBanBiz.cs" />
+    <Compile Include="DiaBan\UpdateDiaBanBiz.cs" />
     <Compile Include="LoaiHopDong\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="LoaiHopDong\DeleteLoaiHopDongBiz.cs" />
     <Compile Include="LoaiHopDong\GetByIdBiz.cs" />
@@ -54,18 +60,6 @@
     <Compile Include="NhanVien\GetListNhanVienChitietByCriteraBiz.cs" />
     <Compile Include="NhomKinhDoanh\GetListcbxNhomKinhDoanhByCriteriaBiz.cs" />
     <Compile Include="NhomKinhDoanh\GetListNhomKinhDoanhByCriteriaBiz.cs" />
-    <Compile Include="ThuatNgu\cbxGetListByCriteriaBiz.cs" />
-    <Compile Include="ThuatNgu\DeleteThuatNguBiz.cs" />
-    <Compile Include="ThuatNgu\GetByIdBiz.cs" />
-    <Compile Include="ThuatNgu\GetListByCriteriaBiz.cs" />
-    <Compile Include="ThuatNgu\InsertThuatNguBiz.cs" />
-    <Compile Include="ThuatNgu\UpdateThuatNguBiz.cs" />
-    <Compile Include="DiaBan\UpdateDiaBanBiz.cs" />
-    <Compile Include="DiaBan\InsertDiaBanBiz.cs" />
-    <Compile Include="DiaBan\GetByIdBiz.cs" />
-    <Compile Include="DiaBan\GetListByCriteriaBiz.cs" />
-    <Compile Include="DiaBan\DeleteDiaBanBiz.cs" />
-    <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="KhachHang\DeleteKhachHangByIdBiz.cs" />
     <Compile Include="KhachHang\GetListKhachHangByCriteriaBiz.cs" />
     <Compile Include="KhachHang\GetListKhachHangByIdBiz.cs" />
@@ -77,6 +71,12 @@
     <Compile Include="PhuongXa\GetListcbxPhuongXaByIdBiz.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanHuyen\GetListcbxQuanHuyenByIdBiz.cs" />
+    <Compile Include="ThuatNgu\cbxGetListByCriteriaBiz.cs" />
+    <Compile Include="ThuatNgu\DeleteThuatNguBiz.cs" />
+    <Compile Include="ThuatNgu\GetByIdBiz.cs" />
+    <Compile Include="ThuatNgu\GetListByCriteriaBiz.cs" />
+    <Compile Include="ThuatNgu\InsertThuatNguBiz.cs" />
+    <Compile Include="ThuatNgu\UpdateThuatNguBiz.cs" />
     <Compile Include="Tinh\GetListcbxTinhByIdBiz.cs" />
   </ItemGroup>
   <ItemGroup>

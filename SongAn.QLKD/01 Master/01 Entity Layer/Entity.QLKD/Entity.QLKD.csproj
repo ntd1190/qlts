@@ -54,12 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entity\KDLoaiHopDong.cs" />
-    <Compile Include="Entity\KDThuatNgu.cs" />
     <Compile Include="Entity\KDDiaBan.cs" />
+    <Compile Include="Entity\KDLoaiHopDong.cs" />
     <Compile Include="Entity\KDKhachHang.cs" />
     <Compile Include="Entity\KDNhomKinhDoanh.cs" />
     <Compile Include="Entity\KDNhanVienChiTiet.cs" />
+    <Compile Include="Entity\KDThuatNgu.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
