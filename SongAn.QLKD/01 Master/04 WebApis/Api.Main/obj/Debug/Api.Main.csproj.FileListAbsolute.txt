@@ -94,3 +94,5 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\roslyn\vbc.exe
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\roslyn\vbc.rsp
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\roslyn\VBCSCompiler.exe
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\roslyn\VBCSCompiler.exe.config
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb

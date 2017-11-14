@@ -35,6 +35,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
                 var total = 0;
                 biz.UserId = UserId;
                 biz.NhanVienId = NhanVienId;
+                biz.SearchString = search;
                 biz.Skip = _start;
                 biz.Take = _length;
                 IEnumerable<dynamic> listNhanVien = await biz.Execute();

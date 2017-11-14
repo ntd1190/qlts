@@ -33,3 +33,5 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\Biz.Main.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\SongAn.QLKD.Biz.Main.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\SongAn.QLKD.Biz.Main.pdb
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb

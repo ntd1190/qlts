@@ -34,7 +34,7 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
         }
 
         [HttpPost]
-        public async Task<IHttpActionResult> UpdateKhachHang([FromBody]UpdateKhachHangByIdAction action)
+        public async Task<IHttpActionResult> UpdateKhachHangById([FromBody]UpdateKhachHangByIdAction action)
         {
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
