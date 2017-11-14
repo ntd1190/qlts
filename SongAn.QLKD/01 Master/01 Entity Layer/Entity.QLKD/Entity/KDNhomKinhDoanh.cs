@@ -20,13 +20,13 @@ namespace SongAn.QLKD.Entity.QLKD.Entity
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int NhomKinhDoanhId { get; set; }
-        public virtual string NhomKinhDoanhMaNhomKinhDoanhId { get; set; }
+        public virtual string MaNhomKinhDoanh { get; set; }
         public virtual string TenNhomKinhDoanh { get; set; }
-        public virtual string QuanLy { get; set; }
-        public virtual string SoluongNhanVien { get; set; }
+        public virtual int QuanLy { get; set; }
+        public virtual int SoLuongNhanVien { get; set; }
         public virtual int NguoiTao { get; set; }
-        public virtual string NgayTao { get; set; }
-        public virtual string CtrVersion { get; set; }
+        public virtual DateTime NgayTao { get; set; }
+        public virtual int CtrVersion { get; set; }
 
     }
 }

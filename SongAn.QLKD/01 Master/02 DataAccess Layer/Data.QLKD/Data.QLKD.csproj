@@ -53,6 +53,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LoaiHopDong\cbxGetListByCriteriaDac.cs" />
+    <Compile Include="LoaiHopDong\DeleteLoaiHopDongDac.cs" />
+    <Compile Include="LoaiHopDong\GetByIdDac.cs" />
+    <Compile Include="LoaiHopDong\GetListByCriteriaDac.cs" />
+    <Compile Include="LoaiHopDong\InsertLoaiHopDongDac.cs" />
+    <Compile Include="LoaiHopDong\UpdateLoaiHopDongDac.cs" />
+    <Compile Include="NhanVien\GetListNhanVienChiTietByProjectionDac.cs" />
+    <Compile Include="NhomKinhDoanh\GetListcbxNhomKinhDoanhByCriteriaProjectionDac.cs" />
+    <Compile Include="NhomKinhDoanh\GetListNhomKinhDoanhByCriteriaProjectionDac.cs" />
+    <Compile Include="ThuatNgu\cbxGetListByCriteriaDac.cs" />
+    <Compile Include="ThuatNgu\DeleteThuatNguDac.cs" />
+    <Compile Include="ThuatNgu\GetByIdDac.cs" />
+    <Compile Include="ThuatNgu\GetListByCriteriaDac.cs" />
+    <Compile Include="ThuatNgu\InsertThuatNguDac.cs" />
+    <Compile Include="ThuatNgu\UpdateThuatNguDac.cs" />
+    <Compile Include="DiaBan\cbxGetListByCriteriaDac.cs" />
+    <Compile Include="DiaBan\GetByIdDac.cs" />
+    <Compile Include="DiaBan\InsertDiaBanDac.cs" />
+    <Compile Include="DiaBan\UpdateDiaBanDac.cs" />
+    <Compile Include="DiaBan\DeleteDiaBanDac.cs" />
+    <Compile Include="DiaBan\GetListByCriteriaDac.cs" />
     <Compile Include="KhachHang\DeleteKhachHangByIdDac.cs" />
     <Compile Include="KhachHang\GetListKhachHangByCriteriaDac.cs" />
     <Compile Include="KhachHang\GetListKhachHangByIdDac.cs" />
@@ -85,8 +106,32 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="DiaBan\Dto\" />
+    <Folder Include="LoaiHopDong\Dto\" />
     <Folder Include="NhanVien\Dto\" />
     <Folder Include="NhanVien\Procedures\" />
+    <Folder Include="NhomKinhDoanh\Procedures\" />
+    <Folder Include="ThuatNgu\Dto\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_cbxGetListByCriteria.sql" />
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_Delete.sql" />
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_GetById.sql" />
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_GetListByCriteria.sql" />
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_Insert.sql" />
+    <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_Update.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_cbxGetListByCriteria.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_Delete.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_GetById.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_GetListByCriteria.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_Insert.sql" />
+    <Content Include="ThuatNgu\Procedures\sp_KD_ThuatNgu_Update.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_cbxGetListByCriteria.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_GetListByCriteria.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_GetById.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Update.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Delete.sql" />
+    <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Insert.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
