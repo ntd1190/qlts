@@ -17,7 +17,8 @@
         })
         .run(run)
         .config(config)
-        .config(function ($urlRouterProvider, $stateProvider) {
+        .config(function ($urlRouterProvider, $stateProvider, $urlMatcherFactoryProvider) {
+            $urlMatcherFactoryProvider.caseInsensitive(true);
             $urlRouterProvider.otherwise('/');
             $stateProvider.state({
                 name: 'Home',

@@ -208,6 +208,19 @@
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\LoaiHopDong\controller\LoaiHopDongListCtrl.js" />
+    <Content Include="Scripts\angular\LoaiHopDong\directive\cboLoaiHopDong.js" />
+    <Content Include="Scripts\angular\LoaiHopDong\service\LoaiHopDongService.js" />
+    <Content Include="Scripts\angular\NhomKinhDoanh\controller\NhomKinhDoanhListCtrl.js" />
+    <Content Include="Scripts\angular\NhomKinhDoanh\directive\cboNhomKinhDoanh.js" />
+    <Content Include="Scripts\angular\NhomKinhDoanh\service\NhomKinhDoanhService.js" />
+    <Content Include="Scripts\angular\ThuatNgu\controller\ThuatNguListCtrl.js" />
+    <Content Include="Scripts\angular\ThuatNgu\directive\cboThuatNgu.js" />
+    <Content Include="Scripts\angular\ThuatNgu\service\ThuatNguService.js" />
+    <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
+    <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
+    <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungListCtrl.js" />
@@ -277,6 +290,10 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\LoaiHopDongController.cs" />
+    <Compile Include="Controllers\NhomKinhDoanhController.cs" />
+    <Compile Include="Controllers\ThuatNguController.cs" />
+    <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -322,7 +339,16 @@
     <Content Include="Views\Tinh\cboTinh.cshtml" />
     <Content Include="Views\QuanHuyen\cboQuanHuyen.cshtml" />
     <Content Include="Views\PhuongXa\cboPhuongXa.cshtml" />
+    <Content Include="Views\DiaBan\List.cshtml" />
+    <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
+    <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
+    <Content Include="Views\ThuatNgu\List.cshtml" />
+    <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
+    <Content Include="Views\LoaiHopDong\List.cshtml" />
+    <Content Include="Views\NhomKinhDoanh\cboNhomKinhDoanh.cshtml" />
+    <Content Include="Views\NhomKinhDoanh\List.cshtml" />
     <Content Include="Views\KhachHang\List.cshtml" />
+    <Content Include="Views\KhachHang\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

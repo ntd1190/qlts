@@ -1,0 +1,208 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="row" style="min-height:300px;">
+            <div class="col-sm-12">
+                <h3>Thông tin khách hàng</h3>
+                <hr />
+                <div class="col-xs-2">
+                    <ul class="nav nav-pills nav-stacked" style="background-color:#f7f7f7; height:400px">
+                        <li>
+                            <div>
+                                <img src="https://greencapinvestment.com/wp-content/uploads/2017/02/customer-support-300x225.jpg" alt="" class="img-rounded img-responsive" style="height:190px;width:150px" />
+                                <label for="file-upload" class="custom-file-upload" style="margin-top: 4px;
+                                                                                            display: inline-block;
+                                                                                            padding: 2px 12px;
+                                                                                            cursor: pointer;
+                                                                                            font-size: 12px;
+                                                                                            color: #fff;
+                                                                                            background-color: #337AB7;
+                                                                                            width: 150px;
+                                                                                            text-align: center;">
+                                    <i class="fa fa-cloud-upload"></i> Upload
+                                </label>
+                                <input id="file-upload" type="file" class="form-control" file-bind="ctrl.data.file" accept="image/*"
+                                       style="display:none" />
+                            </div>
+                        </li>
+                        <li class="active"><a href="#!/khachhang/edit/{{ctrl.data.KhachHangId}}#home" data-toggle="tab" style="border-radius:0px;padding:5px 15px">Thông tin chung</a></li>
+                        <li><a href="#!/khachhang/edit/{{ctrl.data.KhachHangId}}#profile" data-toggle="tab" style="border-radius:0px;padding:5px 15px">Chi tiết</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-10">
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <!-- Thong tin chung -->
+                        <div class="tab-pane active" id="home">
+                            <form>
+                                <div style="font-size:13px">
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.MaKhachHang)?'has-error':''">
+                                        <label class="control-label">Mã khách hàng:</label>
+                                        <input type="text" class="form-control" id="txtMaKhachHang" ng-model="ctrl.data.objKhachHang.MaKhachHang" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.MaKhachHang,'txtMaKhachHang','txtTenKhachHang',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.TenKhachHang)?'has-error':''">
+                                        <label class="control-label">Tên khách hàng:</label>
+                                        <input type="text" class="form-control" id="txtTenKhachHang" ng-model="ctrl.data.objKhachHang.TenKhachHang" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.TenKhachHang,'txtTenKhachHang','cbxNhomKhachHang',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.NhomKhachHangId)?'has-error':''">
+                                        <label class="control-label">Nhóm khách hàng:</label>
+                                        <cbo-nhom-khach-hang id="cbxNhomKhachHang" data-function-code="KD0002" data-value="ctrl.data.objKhachHang.NhomKhachHangId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhomkhachhang/showcombobox?viewname=cbonhomkhachhang"
+                                                             @*on-selected="ctrl.action.resetNhomKhachHangId(data)"*@></cbo-nhom-khach-hang>
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.GioiTinh)?'has-error':''">
+                                        <label class="control-label">Giới tính:</label>
+                                        <select class="form-control" id="cbxGioiTinh" data-placeholder="Chọn" ng-model="ctrl.data.objKhachHang.GioiTinh">
+                                            <option value="1">Nam</option>
+                                            <option value="2">Nữ</option>
+                                            <option value="3">Khác</option>
+                                        </select>
+                                    </div>
+
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.NgaySinh)?'has-error':''">
+                                        <label class="control-label">Ngày sinh:</label>
+                                        <input type="text" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" id="txtNgaySinh" ng-model="ctrl.data.objKhachHang.NgaySinh" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.NgaySinh,'txtNgaySinh','txtDienThoai',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Điện thoại:</label>
+                                        <input type="text" class="form-control" id="txtDienThoai" ng-model="ctrl.data.objKhachHang.DienThoai" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.DienThoai,'txtDienThoai','txtFaceBook',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Facebook:</label>
+                                        <input type="text" class="form-control" id="txtFaceBook" ng-model="ctrl.data.objKhachHang.FaceBook" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.FaceBook,'txtFaceBook','txtEmail',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Email:</label>
+                                        <input type="text" class="form-control" id="txtEmail" ng-model="ctrl.data.objKhachHang.Email" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.Email,'txtEmail','cbxTinhThanhPho',$event)">
+                                    </div>
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.TinhThanhPhoId)?'has-error':''">
+                                        <label class="control-label">Tỉnh thành:</label>
+                                        <cbo-tinh id="cbxTinhThanhPho" data-function-code="KD0002" data-value="ctrl.data.objKhachHang.TinhThanhPhoId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/tinh/showcombobox?viewname=cbotinh"
+                                                  on-selected="ctrl.action.resetTinhThanhPho(data)"></cbo-tinh>
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.QuanHuyenId)?'has-error':''">
+                                        <label class="control-label">Quận huyện:</label>
+                                        <cbo-quan-huyen id="cbxQuanHuyen" data-function-code="KD0002" data-value="ctrl.data.objKhachHang.QuanHuyenId" data-tinhid="ctrl.data.objKhachHang.TinhThanhPhoId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/quanhuyen/showcombobox?viewname=cboquanhuyen"
+                                                  on-selected="ctrl.action.resetQuanHuyen(data)"></cbo-quan-huyen>
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3" ng-class="(ctrl.validate.PhuongXaId)?'has-error':''">
+                                        <label class="control-label">Phường xã:</label>
+                                        <cbo-phuong-xa id="cbxPhuongXa" data-function-code="KD0002" data-value="ctrl.data.objKhachHang.PhuongXaId" data-quanhuyenid="ctrl.data.objKhachHang.QuanHuyenId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/phuongxa/showcombobox?viewname=cbophuongxa"
+                                                  on-selected="ctrl.action.resetPhuongXa(data)"></cbo-phuong-xa>
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Số nhà:</label>
+                                        <input type="text" class="form-control" id="txtSoNha" ng-model="ctrl.data.objKhachHang.SoNha" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.SoNha,'txtSoNha','txtNgheNghiep',$event)">
+                                    </div>
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Nghề nghiệp:</label>
+                                        <input type="text" class="form-control" id="txtNgheNghiep" ng-model="ctrl.data.objKhachHang.NgheNghiep" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.NgheNghiep,'txtNgheNghiep','txtCoQuan',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Cơ quan:</label>
+                                        <input type="text" class="form-control" id="txtCoQuan" ng-model="ctrl.data.objKhachHang.CoQuan" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.CoQuan,'txtCoQuan','txtMaSoThue',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Mã số thuế:</label>
+                                        <input type="text" class="form-control" id="txtMaSoThue" ng-model="ctrl.data.objKhachHang.MaSoThue" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.MaSoThue,'txtMaSoThue','txtEmailCoQuan',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Email cơ quan:</label>
+                                        <input type="text" class="form-control" id="txtEmailCoQuan" ng-model="ctrl.data.objKhachHang.EmailCoQuan" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.EmailCoQuan,'txtEmailCoQuan','txtFax',$event)">
+                                    </div>
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Fax:</label>
+                                        <input type="text" class="form-control" id="txtFax" ng-model="ctrl.data.objKhachHang.Fax" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.Fax,'txtFax','txtDiaChiCoQuan',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Địa chỉ cơ quan:</label>
+                                        <input type="text" class="form-control" id="txtDiaChiCoQuan" ng-model="ctrl.data.objKhachHang.DiaChiCoQuan" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.DiaChiCoQuan,'txtDiaChiCoQuan','txtNgayThanhLap',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Ngày thành lập:</label>
+                                        <input type="text" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" id="txtNgayThanhLap" ng-model="ctrl.data.objKhachHang.NgayThanhLap" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.NgayThanhLap,'txtNgayThanhLap','txtTheoDoi',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-3">
+                                        <label class="control-label">Theo dõi:</label>
+                                        <input type="text" class="form-control" id="txtTheoDoi" ng-model="ctrl.data.objKhachHang.TheoDoi" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.TheoDoi,'txtTheoDoi','txtKhac',$event)">
+                                    </div>
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Khác:</label>
+                                        <input type="text" class="form-control" id="txtKhac" ng-model="ctrl.data.objKhachHang.Khac" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.Khac,'txtKhac','txtNguoiPhuTrach',$event)">
+                                        @*<textarea rows="2" type="text" class="form-control" id="txtNoiDung" ng-model="ctrl.data.objKhachHang.NoiDung"></textarea>*@
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- Chi tiet -->
+                        <div class="tab-pane" id="profile">
+                            <form>
+                                <div style="font-size:13px">
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Người phụ trách:</label>
+                                        <input type="text" class="form-control" id="txtNguoiPhuTrach" ng-model="ctrl.data.objKhachHang.NguoiPhuTrach" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.NguoiPhuTrach,'txtNguoiPhuTrach','txtCachLamViec',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Cách làm việc:</label>
+                                        <input type="text" class="form-control" id="txtCachLamViec" ng-model="ctrl.data.objKhachHang.CachLamViec" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.CachLamViec,'txtCachLamViec','txtTinhCach',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Tính cách:</label>
+                                        <input type="text" class="form-control" id="txtTinhCach" ng-model="ctrl.data.objKhachHang.TinhCach" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.TinhCach,'txtTinhCach','txtSoThich',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Sở thích:</label>
+                                        <input type="text" class="form-control" id="txtSoThich" ng-model="ctrl.data.objKhachHang.SoThich" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.SoThich,'txtSoThich','txtNgayChungTu',$event)">
+                                    </div>
+                                    <!---->
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Thói quen:</label>
+                                        <input type="text" class="form-control" id="txtThoiQuen" ng-model="ctrl.data.objKhachHang.ThoiQuen" ng-keypress="ctrl.action.keyPressKhachHang(ctrl.data.objKhachHang.ThoiQuen,'txtThoiQuen','txtGhiChu',$event)">
+                                    </div>
+                                    <div class="form-group form-group-sm col-sm-12">
+                                        <label class="control-label">Ghi chú:</label>
+                                        <input type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objKhachHang.GhiChu">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="col-sm-12">
+                <div class="col-xs-2">
+                </div>
+                <div class="col-xs-10">
+                    <hr />
+                    <div class="">
+                        <button type="button" class="btn btn-sm btn-primary" ng-if="ctrl.data.showButtonSave" id="btnluu" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</button>&nbsp;&nbsp;&nbsp;
+                        <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoa" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa</button>&nbsp;&nbsp;&nbsp;
+                        <button type="button" class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</button>&nbsp;&nbsp;&nbsp;
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="clearfix"></div>
+
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

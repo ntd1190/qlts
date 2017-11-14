@@ -54,6 +54,7 @@
 
 
         $scope.$watch('value', function (newValue, oldValue) {
+
             if (newValue == oldValue && vm.data.NhomKhachHang) {
                 if (typeof vm.data.NhomKhachHang.NhomKhachHangId !== 'undefined')
                     return;

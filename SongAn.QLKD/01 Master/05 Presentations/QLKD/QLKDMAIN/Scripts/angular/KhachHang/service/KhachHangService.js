@@ -12,7 +12,7 @@
             update: 'UpdateKhachHangById',
             GetPage: 'GetListKhachHangByProjection',
             GetById: 'GetKhachHangById',
-            removeList: 'DeleteListKhachHang'
+            removeList: 'DeleteKhachHangById'
         }
 
         var service = {
@@ -73,7 +73,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    KhachHang: obj.KhachHang,
+                    khachHang: obj.KhachHang,
+                    userId: obj.UserId,
                 })
             }
             return $http(req);
@@ -86,7 +87,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    KhachHang: obj.KhachHang
+                    khachHang: obj.KhachHang,
+                    userId: obj.UserId,
                 })
             }
             return $http(req);
