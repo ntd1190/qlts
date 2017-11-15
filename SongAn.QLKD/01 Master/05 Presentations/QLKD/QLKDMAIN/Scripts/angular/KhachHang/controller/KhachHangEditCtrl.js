@@ -13,15 +13,15 @@
         });
     });
 
-    function khachHangEditCtrl($stateParams, SETTING, $scope, KhachHangService, utility, $q, $window, $timeout) {
+    function khachHangEditCtrl($stateParams, SETTING, $scope, KhachHangService, utility, $q, $window, $timeout, Upload) {
         var userInfo, _tableState;
         var KhachHangId = 0;
 
         var vm = this;
 
-        vm.status = {};        
+        vm.status = {};
         vm.data = {};
-        vm.data.objKhachHang = { };
+        vm.data.objKhachHang = {};
         vm.data.KhachHangId = 0;
         vm.data.linkUrl = '';
         vm.data.listQuyenTacVu = [];
@@ -67,7 +67,7 @@
                     vm.data.objKhachHang.NgayThanhLap = moment().format('DD/MM/YYYY');
                     vm.data.objKhachHang.GioiTinh = $("#cbxGioiTinh option:first").val();
                 }
-            }            
+            }
 
             $("#txtMaKhachHang").focus();
         };
@@ -112,31 +112,30 @@
             vm.data.objKhachHang.NhomKhachHangId = data.NhomKhachHangId;
         }
         vm.action.resetTinhThanhPho = function (data) {
-            vm.data.objKhachHang.TinhThanhPhoId = data.TinhThanhPhoId;
             vm.data.objKhachHang.QuanHuyenId = 0;
             vm.data.objKhachHang.PhuongXaId = 0;
         }
         vm.action.resetQuanHuyen = function (data) {
-            vm.data.objKhachHang.QuanHuyenId = data.QuanHuyenId;
-            vm.data.objKhachHang.PhuongXaId = 0;
+            if (data.isSelected) {
+                vm.data.objKhachHang.PhuongXaId = 0;
+            }
         }
         vm.action.resetPhuongXa = function (data) {
-            vm.data.objKhachHang.PhuongXaId = data.PhuongXaId;
         }
 
-        vm.action.save = function(data) {
+        vm.action.save = function (data) {
             var obj = InvalidateDataKhachHang();
 
             if (obj == null)
                 return;
 
-            //if (vm.data.file && vm.data.file.length > 0) {
-            //    if (!vm.data.objKhachHang.FileDinhKem) {
-            //        vm.data.objKhachHang.FileDinhKem = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.file[0].name);
-            //    } else {
-            //        vm.data.objKhachHang.FileDinhKem = vm.data.objKhachHang.FileDinhKem.split('.')[0] + '.' + utility.getFileExt(vm.data.file[0].name);
-            //    }
-            //}
+            if (vm.data.file && vm.data.file.length > 0) {
+                if (!vm.data.objKhachHang.HinhAnh) {
+                    vm.data.objKhachHang.HinhAnh = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.file[0].name);
+                } else {
+                    vm.data.objKhachHang.HinhAnh = vm.data.objKhachHang.HinhAnh.split('.')[0] + '.' + utility.getFileExt(vm.data.file[0].name);
+                }
+            }
 
             if (vm.data.objKhachHang.KhachHangId > 0) {
                 edit();
@@ -148,7 +147,7 @@
 
         function add() {
 
-            vm.status.isLoading = true;            
+            vm.status.isLoading = true;
             vm.data.objKhachHang.NguoiTao = vm.data.userInfo.NhanVienId;
             var KhachHang = utility.clone(vm.data.objKhachHang);
             var data = {};
@@ -159,17 +158,19 @@
                 if (success.data.data) {
                     KhachHangId = success.data.data[0].KhachHangIdI;
                     //utility.AlertSuccess('Thêm thành công!');
-                    alert('Thêm thành công!');
-                    //upload().then(function () {
 
-                    //}, function () {
-                    //    utility.AlertSuccess('Không thể upload file.');
-                    //});
+                    alert('Thêm thành công!');
+                    upload().then(function () {
+
+                    }, function () {
+                        utility.AlertSuccess('Không thể upload file.');
+                    });
+
                     $timeout(function () {
                         window.location = vm.data.linkUrl + '#!/khachhang/edit/' + KhachHangId;
                     }, 2000);
                 }
-                vm.status.isLoading = false;                
+                vm.status.isLoading = false;
             }, function (error) {
                 if (error.data.error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
@@ -179,7 +180,7 @@
         }
 
         function edit() {
-            
+
             vm.status.isLoading = true;
             vm.data.objKhachHang.NguoiTao = vm.data.userInfo.NhanVienId;
             var KhachHang = utility.clone(vm.data.objKhachHang);
@@ -190,13 +191,12 @@
             KhachHangService.update(data).then(function (success) {
                 if (success.data.data) {
                     vm.data.objKhachHang = success.data.data[0];
-                    //utility.AlertSuccess('Cập nhật thành công!');
-                    alert('Cập nhật thành công!');
-                    //upload().then(function () {
+                    utility.AlertSuccess('Cập nhật thành công!');
+                    upload().then(function () {
 
-                    //}, function () {
-                    //    utility.AlertSuccess('Không thể upload file.');
-                    //});
+                    }, function () {
+                        utility.AlertSuccess('Không thể upload file.');
+                    });
 
                 }
 
@@ -204,7 +204,7 @@
                 vm.status.isLoading = false;
                 alert(error.data.error.code + " : " + error.data.error.message);
             });
-            vm.status.isLoading = false;            
+            vm.status.isLoading = false;
 
         }
 
@@ -229,16 +229,14 @@
                     if (success.data.data > 0) {
                         if (KhachHangListSelected.length > parseInt(success.data.data)) {
                             var sl = KhachHangListSelected.length - parseInt(success.data.data);
-                            //utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
-                            alert(sl + ' phiếu được xóa thành công.');
+                            utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
+                           
                         }
                         else {
-                            //utility.AlertError('Không thể xóa!');
-                            alert('Không thể xóa!');
+                            utility.AlertError('Không thể xóa!');
                         }
                     } else {
-                        //utility.AlertSuccess('Xóa thành công!');
-                        alert('Xóa thành công!');
+                        utility.AlertSuccess('Xóa thành công!');
                     }
 
                     $timeout(function () {
@@ -249,10 +247,23 @@
                 });
 
             } else {
-                //utility.AlertError('Không tìm thấy phiếu để xóa!');
-                alert('Không tìm thấy phiếu để xóa!');
+                utility.AlertError('Không tìm thấy phiếu để xóa!');
             }
 
+        }
+
+        vm.action.refresh = function () {
+            if (KhachHangId.length > 0) {
+                if (parseInt(KhachHangId) == 0) {
+                    delete vm.data.objKhachHang;
+                    vm.data.objKhachHang = {};
+                    vm.data.objKhachHang.NgaySinh = moment().format('DD/MM/YYYY');
+                    vm.data.objKhachHang.NgayThanhLap = moment().format('DD/MM/YYYY');
+                    vm.data.objKhachHang.GioiTinh = $("#cbxGioiTinh option:first").val();
+
+                    $("#txtMaKhachHang").focus();
+                }
+            }
         }
 
         vm.action.keyPressKhachHang = function (value, fromId, ToId, event) {
@@ -314,7 +325,7 @@
         /* BIZ FUNCTION */
 
         function InvalidateDataKhachHang() {
-            
+
             var obj = vm.data.objKhachHang;
 
             vm.validate.MaKhachHang = utility.checkInValid(obj.MaKhachHang, 'isEmpty');
@@ -374,26 +385,55 @@
             vm.validate.PhuongXaId = false;
         }
 
+        $scope.changeImage = function (ele) {
+            
+            var photofile = ele.files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $scope.$apply(function () {
+                    //vm.data.objKhachHang.HinhAnh = e.target.result;
+                    vm.data.objKhachHang.HinhAnh = "";
+                });
+            };
+            reader.readAsDataURL(photofile);
+        }
+
+        // upload hình
+        function upload() {
+            return new Promise(function (resolve, reject) {
+                vm.status.isUploading = true;
+                console.log(vm.data.file);
+                if (!vm.data.file || vm.data.file.length === 0) { resolve(); }
+
+                Upload.filesUpload(vm.data.file, vm.data.objKhachHang.HinhAnh, 'KhachHang/').then(function success(result) {
+                    vm.status.isUploading = false;
+                    console.log(result);
+                    vm.data.objKhachHang.HinhAnh = result.data.data + '?t=' + moment().format('hhMMss');
+                    $('input[type="file"]').val('');
+                    resolve();
+                }, function error(result) {
+                    vm.status.isUploading = false;
+                    console.log(result);
+                    reject('Upload.filesUpload');
+                });
+            });
+        };
+
         /* API FUNCTION */
         function getKhachHangById(id) {
 
             KhachHangService.getById(id)
                 .then(function success(result) {
-                    
+
                     delete vm.data.objKhachHang;
 
                     if (result.data && result.data.data && result.data.data.length) {
                         vm.data.objKhachHang = result.data.data[0];
                     }
+                    
                 }, function error(result) {
                     console.log(result);
                 });
         }
-
-
-
-
-
-
     }
 })();

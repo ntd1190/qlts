@@ -112,6 +112,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="lib\angular-smart-table\smart-table.min.js" />
     <Content Include="lib\angular-storage\ngStorage.min.js" />
@@ -211,12 +212,24 @@
     <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
     <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
     <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
+    <Content Include="Scripts\angular\DuLieu\controller\DuLieuListCtrl.js" />
+    <Content Include="Scripts\angular\DuLieu\directive\cboDuLieu.js" />
+    <Content Include="Scripts\angular\DuLieu\service\DuLieuService.js" />
     <Content Include="Scripts\angular\LoaiHopDong\controller\LoaiHopDongListCtrl.js" />
     <Content Include="Scripts\angular\LoaiHopDong\directive\cboLoaiHopDong.js" />
     <Content Include="Scripts\angular\LoaiHopDong\service\LoaiHopDongService.js" />
+    <Content Include="Scripts\angular\NhomKhachHang\controller\NhomKhachHangListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\controller\NhomKinhDoanhListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\directive\cboNhomKinhDoanh.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\service\NhomKinhDoanhService.js" />
+    <Content Include="Scripts\angular\shared\directive\file-bind.directive.js" />
+    <Content Include="Scripts\angular\shared\service\upload.service.js" />
+    <Content Include="Scripts\angular\ThuatNgu\controller\ThuatNguListCtrl.js" />
+    <Content Include="Scripts\angular\ThuatNgu\directive\cboThuatNgu.js" />
+    <Content Include="Scripts\angular\ThuatNgu\service\ThuatNguService.js" />
+    <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
+    <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
+    <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
     <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
@@ -281,9 +294,16 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff" />
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\_references.js" />
     <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
     <Content Include="Views\DiaBan\List.cshtml" />
+    <Content Include="Views\DuLieu\cboDuLieu.cshtml" />
+    <Content Include="Views\DuLieu\List.cshtml" />
     <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
     <Content Include="Views\LoaiHopDong\List.cshtml" />
     <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
@@ -297,6 +317,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
+    <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
@@ -310,6 +331,8 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Controllers\TuyChonCotController.cs" />
+    <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -337,7 +360,6 @@
     <Content Include="Views\NhanVien\List.cshtml" />
     <Content Include="Views\NguoiDung\Edit.cshtml" />
     <Content Include="Views\NguoiDung\List.cshtml" />
-    <Content Include="Views\NguoiDung\TuyChonCotList.cshtml" />
     <Content Include="Views\NhanVien\cboNhanVienByPhongBan.cshtml" />
     <Content Include="Views\VaiTro\cboVaiTro.cshtml" />
     <Content Include="Views\NguoiDung\cboNguoiDung.cshtml" />
@@ -347,8 +369,12 @@
     <Content Include="Views\PhuongXa\cboPhuongXa.cshtml" />
     <Content Include="Views\NhomKinhDoanh\cboNhomKinhDoanh.cshtml" />
     <Content Include="Views\NhomKinhDoanh\List.cshtml" />
+    <Content Include="Views\DuLieu\cboDuLieu.cshtml" />
+    <Content Include="Views\DuLieu\List.cshtml" />
+    <Content Include="Views\TuyChonCot\TuyChonCotList.cshtml" />
     <Content Include="Views\KhachHang\List.cshtml" />
     <Content Include="Views\KhachHang\Edit.cshtml" />
+    <Content Include="Views\NhomKhachHang\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

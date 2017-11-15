@@ -54,10 +54,12 @@
 
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (newValue == oldValue && vm.data.Tinh) {
-                if (typeof vm.data.Tinh.TinhThanhPhoId !== 'undefined')
-                    return;
-            }
+            //if (newValue == oldValue && vm.data.Tinh) {
+            //    if (typeof vm.data.Tinh.TinhThanhPhoId !== 'undefined')
+            //        return;
+            //}
+            newValue = newValue || 0;
+
             if (!newValue) {
                 vm.data.Tinh = {};
                 return;
@@ -66,13 +68,14 @@
             vm.inputSearch.TinhThanhPhoId = newValue;
 
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length == 1) {
+                if (newValue > 0 && success.data.data && success.data.data.length == 1) {
                     vm.data.Tinh = success.data.data[0];
                 } else {
                     delete vm.data.Tinh;
                     vm.data.Tinh = {};
                 }
                 console.log('_________________________________lấy duoc Tinh');
+                vm.data.Tinh.isSelected = false;
                 $scope.onSelected({ data: vm.data.Tinh });
             });
         });
@@ -89,6 +92,7 @@
         vm.action = {};
 
         vm.action.onSelected = function () {
+            vm.data.Tinh.isSelected = true;
             $scope.onSelected({ data: vm.data.Tinh });
             $scope.value = vm.data.Tinh.TinhThanhPhoId;
         };

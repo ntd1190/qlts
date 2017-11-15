@@ -54,44 +54,46 @@
             }
         }
 
-        $scope.$watch('quanhuyenid', function (newValue, oldValue) {
-            console.log('_________________________________ VO watch quan/huyen cua phuong/xa');
-            console.log('quan/huyen id: ' + newValue);
-            if (newValue == oldValue) {
-                if (!vm.data.PhuongXa) {
-                    console.log('_________________________________reset phuong/xa');
-                    vm.data.PhuongXa = {};
-                }
-                return;
-            }
+        //$scope.$watch('quanhuyenid', function (newValue, oldValue) {
+        //    console.log('_________________________________ VO watch quan/huyen cua phuong/xa');
+        //    console.log('quan/huyen id: ' + newValue);
+        //    if (newValue == oldValue) {
+        //        if (!vm.data.PhuongXa) {
+        //            console.log('_________________________________reset phuong/xa');
+        //            vm.data.PhuongXa = {};
+        //        }
+        //        return;
+        //    }
 
-            if (!newValue) {
-                console.log('_________________________________reset phuong.xa');
-                vm.data.PhuongXa = {};
-                return;
-            }
-            vm.inputSearch = {};
-            vm.inputSearch.TinhId = newValue;
-            vm.inputSearch.PhuongXaId = 0;
+        //    if (!newValue) {
+        //        console.log('_________________________________reset phuong.xa');
+        //        vm.data.PhuongXa = {};
+        //        return;
+        //    }
+        //    vm.inputSearch = {};
+        //    vm.inputSearch.TinhId = newValue;
+        //    vm.inputSearch.PhuongXaId = 0;
 
-            getPage().then(function (success) {
-                console.log('_________________________________reset phuong.xa');
-                if (success.data.data && success.data.data.length > 0) {
-                    vm.data.PhuongXa = {};
-                } else {
-                    delete vm.data.PhuongXa;
-                    vm.data.PhuongXa = {};
-                }
-            });
-        });
+        //    getPage().then(function (success) {
+        //        console.log('_________________________________reset phuong.xa');
+        //        if (success.data.data && success.data.data.length > 0) {
+        //            vm.data.PhuongXa = {};
+        //        } else {
+        //            delete vm.data.PhuongXa;
+        //            vm.data.PhuongXa = {};
+        //        }
+        //    });
+        //});
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (newValue == oldValue && vm.data.PhuongXa) {
-                if (typeof vm.data.PhuongXa.PhuongXaId !== 'undefined')
-                    return;
-            }
+            //if (newValue == oldValue && vm.data.PhuongXa) {
+            //    if (typeof vm.data.PhuongXa.PhuongXaId !== 'undefined')
+            //        return;
+            //}
+            newValue = newValue || 0;
             if (!newValue) {
                 vm.data.PhuongXa = {};
+                onWatch();
                 return;
             }
             vm.inputSearch = {};
@@ -99,14 +101,16 @@
             vm.inputSearch.QuanHuyenId = $scope.quanhuyenid;
 
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length == 1) {
+                console.log(success, vm.inputSearch.PhuongXaId, '_________________________________vo PhuongXa');
+                if (newValue && success.data.data && success.data.data.length == 1) {
                     vm.data.PhuongXa = success.data.data[0];
+                    console.log(vm.data.PhuongXa, vm.data.PhuongXa.PhuongXaId, 'vm.data.PhuongXa_________________________________vo PhuongXa');
                 } else {
                     delete vm.data.PhuongXa;
                     vm.data.PhuongXa = {};
                 }
                 console.log('_________________________________lấy duoc PhuongXa');
-                $scope.onSelected({ data: vm.data.PhuongXa });
+                onWatch();
             });
         });
 
@@ -120,8 +124,14 @@
         /*** ACTION FUNCTION ***/
 
         vm.action = {};
+        function onWatch() {
+            vm.data.PhuongXa.isSelected = false;
+            $scope.onSelected({ data: vm.data.PhuongXa });
+            $scope.value = vm.data.PhuongXa.PhuongXaId;
+        };
 
         vm.action.onSelected = function () {
+            vm.data.PhuongXa.isSelected = true;
             $scope.onSelected({ data: vm.data.PhuongXa });
             $scope.value = vm.data.PhuongXa.PhuongXaId;
         };

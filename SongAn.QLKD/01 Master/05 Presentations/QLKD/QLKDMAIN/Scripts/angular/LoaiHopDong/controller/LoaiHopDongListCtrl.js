@@ -174,6 +174,10 @@
             }
         }
         vm.action.deleteList = function () {
+            if (vm.action.checkQuyenTacVu('D') == false) { return; }
+
+            if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
+
             var list = vm.data.listLoaiHopDong.filter(LoaiHopDong=>LoaiHopDong.isSelected == true);
             removeList(list).then(function (success) {
                 vm.action.search();
@@ -184,6 +188,10 @@
         }
 
         vm.action.delete = function () {
+            if (vm.action.checkQuyenTacVuEdit('D') == false) { return; }
+
+            if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
+
             var list = [{ LoaiHopDongId: LoaiHopDongId }];
 
             removeList(list).then(function (success) {

@@ -2,13 +2,13 @@
     'use strict';
     var module = angular.module('app');
 
-    module.directive('cboNhomKinhDoanh', function () {
+    module.directive('cboDuLieu', function () {
         return {
             restrict: 'E',
             scope: {
                 onSelected: '&',
                 config: '<',
-                NhomKinhDoanhId: '=value',
+                DuLieuId: '=dulieuid',
                 disabled: '<',
                 functionCode: '@functioncode',
             },
@@ -20,7 +20,7 @@
         }
     });
 
-    function controller($scope, NhomKinhDoanhService, $q, $timeout) {
+    function controller($scope, DuLieuService, $q, $timeout) {
         var userInfo;
         var vm = this;
 
@@ -41,12 +41,12 @@
             onInitView($scope.config);
         }
 
-        $scope.$watch('NhomKinhDoanhId', function (newValue, oldValue) {
-            if (!newValue) { return; }
+        $scope.$watch('DuLieuId', function (newValue, oldValue) {
+            newValue = newValue || 0;
             vm.inputSearch = {};
-            vm.inputSearch.NhomKinhDoanhId = newValue;
+            vm.inputSearch.DuLieuId = newValue;
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length == 1) {
+                if (newValue && success.data.data && success.data.data.length == 1) {
                     vm.data.objSelected = success.data.data[0];
                     vm.action.onSelected();
                 } else {
@@ -61,12 +61,14 @@
 
         vm.action.onSelected = function () {
             $scope.onSelected({ data: vm.data.objSelected });
-            $scope.NhomKinhDoanhId = vm.data.objSelected.NhomKinhDoanhId;
+            $scope.DuLieuId = vm.data.objSelected.DuLieuId;
         };
         vm.action.search = function ($select) {
             vm.inputSearch = {};
             vm.inputSearch.search = $select.search;
-            getPage();
+            getPage().then(function (success) {
+                vm.data.listDisplay.unshift({ DuLieuId: 0, TenDuLieu: 'chọn dữ liệu' });
+            });
         }
 
         /*** BIZ FUNCTION ***/
@@ -78,13 +80,13 @@
 
             var data = {};
             data.Search = vm.inputSearch.search || '';
-            data.NhomKinhDoanhId = vm.inputSearch.NhomKinhDoanhId || 0;
+            data.DuLieuId = vm.inputSearch.DuLieuId || 0;
 
             data.FunctionCode = $scope.functionCode || '';
             data.NHANVIEN_ID = userInfo.NhanVienId || 0;
             data.USER_ID = userInfo.UserId || 0;
 
-            NhomKinhDoanhService.cbxGetPage(data).then(function (success) {
+            DuLieuService.cbxGetPage(data).then(function (success) {
                 console.log(success);
                 if (success.data.data) {
                     vm.data.listDisplay = success.data.data;

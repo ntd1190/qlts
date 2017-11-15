@@ -54,44 +54,47 @@
             }
         }
 
-        $scope.$watch('tinhid', function (newValue, oldValue) {
-            console.log('_________________________________ VO watch tỉnh thành phố cua quan/huyen');
-            console.log('tinhid: ' + newValue);
-            if (newValue == oldValue) {
-                if (!vm.data.QuanHuyen) {
-                    console.log('_________________________________reset quan/huyen');
-                    vm.data.QuanHuyen = {};
-                }
-                return;
-            }
+        //$scope.$watch('tinhid', function (newValue, oldValue) {
+        //    console.log('_________________________________ VO watch tỉnh thành phố cua quan/huyen');
+        //    console.log('tinhid: ' + newValue);
+        //    //if (newValue == oldValue) {
+        //    //    if (!vm.data.QuanHuyen) {
+        //    //        console.log('_________________________________reset quan/huyen');
+        //    //        vm.data.QuanHuyen = {};
+        //    //    }
+        //    //    return;
+        //    //}
 
-            if (!newValue) {
-                console.log('_________________________________reset quan/huyen');
-                vm.data.QuanHuyen = {};
-                return;
-            }
-            vm.inputSearch = {};
-            vm.inputSearch.TinhId = newValue;
-            vm.inputSearch.QuanHuyenId = 0;
+        //    //if (!newValue) {
+        //    //    console.log('_________________________________reset quan/huyen');
+        //    //    vm.data.QuanHuyen = {};
+        //    //    return;
+        //    //}
+        //    vm.inputSearch = {};
+        //    vm.inputSearch.TinhId = newValue||0;
+        //    vm.inputSearch.QuanHuyenId = 0;
 
-            getPage().then(function (success) {
-                console.log('_________________________________reset quan/huyen');
-                if (success.data.data && success.data.data.length > 0) {
-                    vm.data.QuanHuyen = {};
-                } else {
-                    delete vm.data.QuanHuyen;
-                    vm.data.QuanHuyen = {};
-                }
-            });
-        });
+        //    getPage().then(function (success) {
+        //        console.log(success, vm.inputSearch.TinhId, '_________________________________reset quan/huyen');
+        //        if (success.data.data && success.data.data.length > 0) {
+        //            vm.data.QuanHuyen = {};
+        //        } else {
+        //            delete vm.data.QuanHuyen;
+        //            vm.data.QuanHuyen = {};
+        //        }
+        //    });
+        //});
 
         $scope.$watch('value', function (newValue, oldValue) {
-            if (newValue == oldValue && vm.data.QuanHuyen) {
-                if (typeof vm.data.QuanHuyen.QuanHuyenId !== 'undefined')
-                    return;
-            }
+            //if (newValue == oldValue && vm.data.QuanHuyen) {
+            //    if (typeof vm.data.QuanHuyen.QuanHuyenId !== 'undefined')
+            //        return;
+            //}
+
+            newValue = newValue || 0;
             if (!newValue) {
                 vm.data.QuanHuyen = {};
+                onWatch();
                 return;
             }
             vm.inputSearch = {};
@@ -99,14 +102,15 @@
             vm.inputSearch.TinhId = $scope.tinhid;
 
             getPage().then(function (success) {
-                if (success.data.data && success.data.data.length == 1) {
+                console.log(success, vm.inputSearch.QuanHuyenId, '_________________________________vo quan/huyen');
+                if (newValue > 0 && success.data.data && success.data.data.length == 1) {
                     vm.data.QuanHuyen = success.data.data[0];
                 } else {
                     delete vm.data.QuanHuyen;
                     vm.data.QuanHuyen = {};
                 }
                 console.log('_________________________________lấy duoc QuanHuyen');
-                $scope.onSelected({ data: vm.data.QuanHuyen });
+                onWatch();
             });
         });
 
@@ -121,7 +125,14 @@
 
         vm.action = {};
 
+        function onWatch () {
+            vm.data.QuanHuyen.isSelected = false;
+            $scope.onSelected({ data: vm.data.QuanHuyen });
+            $scope.value = vm.data.QuanHuyen.QuanHuyenId;
+        };
+
         vm.action.onSelected = function () {
+            vm.data.QuanHuyen.isSelected = true;
             $scope.onSelected({ data: vm.data.QuanHuyen });
             $scope.value = vm.data.QuanHuyen.QuanHuyenId;
         };

@@ -47,7 +47,7 @@
                         <tr ng-if="ctrl.data.error.code>0">
                             <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
                         </tr>
-                        <tr ng-repeat="NhanVien in ctrl.data.listNhanVien">
+                        <tr ng-repeat="NhanVien in ctrl.data.listNhanVien" ng-click="ctrl.action.GetChiTiet(NhanVien.NhanVienId)"  id="row_{{NhanVien.NhanVienId}}" ng-class="(NhanVien.isSelected==true)?'info':''">
                             <td class="text-center text-primary" st-select-row="NhanVien" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
                                 <i class="fa fa-fw" ng-class="NhanVien.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                             </td>
@@ -82,71 +82,60 @@
                         </tr>
                     </thead>
                     <tbody>
-                    </tbody>
+                        <tr ng-repeat="ChiTiet in ctrl.data.NhanVienChiTietList">
+                            <td><span ng-bind="ChiTiet.TenNhomKinhDoanh"></span></td>
+                            <td><span ng-bind="ChiTiet.CachLamViec"></span></td>
+                            <td><span ng-bind="ChiTiet.TinhCach"></span></td>
+                            <td><span ng-bind="ChiTiet.SoThich"></span></td>
+                            <td><span ng-bind="ChiTiet.GhiChu"></span></td>
+                     </tr>
+                   </tbody>
                 </table>
             </div>
         </div>
         <div class="panel panel-primary ui-draggable collapse fade" id="NhanVienEditPopup">
             <div class="panel-heading ui-draggable-handle">
                 <div class="panel-title">
-                    <span>Người dùng</span>
+                    <span>Chi tiết nhân viên</span>
                     <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#NhanVienEditPopup"><i class="fa fa-remove"></i></a>
                 </div>
             </div>
             <div style="width: 600px; padding-top: 15px;padding-right: 50px;">
                 <form class="form-horizontal">
-                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidMaNhanVien}">
-                        <label class="control-label col-sm-3">Mã người dùng</label>
+                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidNhomKinhDoanh}">
+                        <label class="control-label col-sm-3">Nhóm kinh doanh</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="txtMaNhanVien" ng-model="ctrl.data.objNhanVien.MaNhanVien" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.MaNhanVien,'txtMaNhanVien','txtTenNhanVien',$event)" />
+                            <cbo-nhom-kinh-doanh id="cbxNhomKinhDoanh" data-function-code="KD0008" data-value="ctrl.data.objNhanVien.NhomKinhDoanhId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhomkinhdoanh/showcombobox?viewname=cbonhomkinhdoanh"></cbo-nhom-kinh-doanh>
                         </div>
                     </div>
-                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidTenNhanVien}">
-                        <label class="control-label col-sm-3">Họ tên</label>
+                    <div class="row form-group form-group-sm" >
+                        <label class="control-label col-sm-3">Cách làm việc</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="txtTenNhanVien" ng-model="ctrl.data.objNhanVien.HoTen" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.HoTen,'txtTenNhanVien','popVaiTro',$event)" />
-                        </div>
-                    </div>
-                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidVaiTro}">
-                        <label for="" class="control-label col-sm-3">Vai trò</label>
-                        <div class="col-sm-9">
-                            <div class="form-control auto-height">
-                                <a href="javascript:void(0);" data-toggle="collapse" id="popVaiTro" data-target="#VaiTroListPopupEdit"><i class="fa fa-fw fa-search"></i></a>
-                                <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListVaiTro()"><i class="fa fa-fw fa-remove"></i></a>
-                                <a href="javascript:void(0);" data-toggle="collapse">
-                                    <span class="" style="margin-right: 5px;" ng-bind="kh.TenVaiTro+','" ng-repeat="kh in ctrl.data.listVaiTro"></span>
-                                </a>
-                            </div>
+                            <input type="text" class="form-control" id="txtCachLamViec" ng-model="ctrl.data.objNhanVien.CachLamViec" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.CachLamViec,'txtCachLamViec','txtTinhCach',$event)" />
                         </div>
                     </div>
                     <div class="row form-group form-group-sm">
-                        <label class="control-label col-sm-3">Nhân viên</label>
+                        <label class="control-label col-sm-3">Tính cách</label>
                         <div class="col-sm-9">
-                            <div class="form-control auto-height">
-                                <a href="javascript:void(0);" id="popNhanVien" data-toggle="collapse" data-target="#NhanVienListPopupEdit"><i class="fa fa-fw fa-search"></i></a>
-                                <a class="pull-right" href="javascript:void(0);" ng-click="ctrl.action.clearListNhanVien()"><i class="fa fa-fw fa-remove"></i></a>
-                                <a href="javascript:void(0);" data-toggle="collapse" data-target="#NhanVienListPopupEdit">
-                                    <span class="" style="margin-right: 5px;" ng-bind="nv.Ho+' '+nv.Ten+','" ng-repeat="nv in ctrl.data.listNhanVien"></span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidEmail}">
-                        <label class="control-label col-sm-3">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" class="form-control" id="txtEmail" ng-model="ctrl.data.objNhanVien.Email" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.Email,'txtEmail','txtPassword',$event)" />
-                        </div>
-                    </div>
-                    <div class="row form-group form-group-sm" ng-class="{'has-error':ctrl.status.isInValidPassword}">
-                        <label class="control-label col-sm-3">Password</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" id="txtPassword" ng-model="ctrl.data.objNhanVien.PasswordHash" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.PasswordHash,'txtPassword','txtDienThoai',$event)" />
+                            <input type="text" class="form-control" id="txtTinhCach" ng-model="ctrl.data.objNhanVien.TinhCach"  ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.TinhCach,'txtTinhCach','txtSoThich',$event)"/>
                         </div>
                     </div>
                     <div class="row form-group form-group-sm">
-                        <label class="control-label col-sm-3">Điện thoại</label>
+                        <label class="control-label col-sm-3">Sở thích</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="txtDienThoai" ng-model="ctrl.data.objNhanVien.DienThoai" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.DienThoai,'txtDienThoai','btnluu',$event)" />
+                            <input type="text" class="form-control" id="txtSoThich" ng-model="ctrl.data.objNhanVien.SoThich"  ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.SoThich,'txtSoThich','txtThoiQuen',$event)"/>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Thói quen</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="txtThoiQuen" ng-model="ctrl.data.objNhanVien.ThoiQuen"  ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.ThoiQuen,'txtThoiQuen','txtGhiChu',$event)"/>
+                        </div>
+                    </div>
+                    <div class="row form-group form-group-sm">
+                        <label class="control-label col-sm-3">Ghi chú</label>
+                        <div class="col-sm-9">
+                            <textarea rows="2" type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objNhanVien.GhiChu" ng-keypress="ctrl.action.keyPress(ctrl.data.objNhanVien.GhiChu,'txtGhiChu','btnluu',$event)"/>
                         </div>
                     </div>
                 </form>

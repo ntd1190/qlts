@@ -22,11 +22,8 @@
         vm.status = {};
         vm.data = {};
         vm.data.listNhanVien = [];
-        vm.data.objNhanVien = {
-            MaTrangThai: 'CV_BD',
-            VaiTroId: 1,
-            NhanVienId: 6
-        };
+        vm.data.NhanVienChiTietList = [];
+        vm.data.objNhanVien = {};
         vm.data.listCot = [
             { MaCot: 'Ma', TenCot: 'Mã', HienThiYN: true, DoRong: 0 },
             { MaCot: 'HoTen', TenCot: 'Họ tên', HienThiYN: true, DoRong: 0 },
@@ -83,7 +80,6 @@
             });
             $('#NhanVienEditPopup').on('shown.bs.collapse', function () {
                 $("#txtMaNhanVien").focus();
-                vm.status.isEdit = NhanVienId != 0;
                 vm.status.isOpenPopup = true;
             });
         }
@@ -105,7 +101,18 @@
         vm.action.getPage = function (tableState) {
             getPage(tableState);
         };
-
+        vm.action.GetChiTiet = function (id) {
+            $('tr').removeClass('info');
+            $('#row_' + id).addClass('info');
+                var deferred = $q.defer();
+                NhanVienService.GetChiTiet(id).then(function (success) {
+                    vm.data.NhanVienChiTietList = success.data.data;
+                    return deferred.resolve(success);
+                }, function (error) {
+                    console.log(`NhanVienService.getById.${id}`, error);
+                });
+                return deferred.promise;
+        };
         vm.action.autoCheckAll = function () {
             vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listNhanVien);
         };
@@ -113,11 +120,7 @@
             NhanVienId = id || 0;
             if (NhanVienId == 0) {
                 delete vm.data.objNhanVien;
-                vm.data.objNhanVien = {
-                    MaTrangThai: 'CV_BD',
-                    VaiTroId: 1,
-                    NhanVienId: 6
-                };
+                vm.data.objNhanVien = {};
             } else {
                 getById(NhanVienId);
             }
@@ -145,24 +148,7 @@
             //check Enter key is press
             if (event.keyCode == '13') {
                 //set condition of has-error
-                if (fromId == 'txtMaNhanVien') {
-                    vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
-                    if (!vm.status.isInValidMaNhanVien) {
-                        $window.document.getElementById(ToId).focus();
-                    }
-                } else if (fromId == 'txtTenNhanVien') {
-                    vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
-                    if (!vm.status.isInValidTenNhanVien) {
-                        $window.document.getElementById(ToId).focus();
-                    }
-                } else if (fromId == 'txtEmail') {
-                    vm.status.isInValidEmail = utility.checkInValid(vm.data.objNhanVien.Email, 'isEmpty');
-                    if (!vm.status.isInValidEmail) {
-                        $window.document.getElementById(ToId).focus();
-                    }
-                } else {
-                    $window.document.getElementById(ToId).focus();
-                }
+                $window.document.getElementById(ToId).focus();
             }
         }
 
@@ -248,11 +234,11 @@
                     vm.data.isLoading = false;
                     _tableState.pagination.start = 0;
                     getPage(_tableState);
-                    alert('Xóa thành công!');
+                    utility.AlertSuccess("Xóa thành công"); 
                     $('#popupThongTinNhanVien').collapse('hide');
                 }, function (error) {
                     vm.data.isLoading = false;
-                    alert('Khen thưởng không thể xóa!')
+                    alert('Không thể xóa!')
                 });
             } else {
                 alert('Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.');
@@ -263,29 +249,12 @@
         function insert() {
             var deferred = $q.defer();
 
-            vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
-            if (vm.status.isInValidMaNhanVien) {
-                $window.document.getElementById('txtMaNhanVien').focus();
+            vm.status.isInValidNhomKinhDoanh = utility.checkInValid(vm.data.objNhanVien.NhomKinhDoanhId, 'isEmpty');
+            if (vm.status.isInValidNhomKinhDoanh) {
+                $window.document.getElementById('cbxNhomKinhDoanh').find('input').focus();
                 return;
             }
-            vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
-            if (vm.status.isInValidTenNhanVien) {
-                $window.document.getElementById('txtTenNhanVien').focus();
-                return;
-            }
-            vm.status.isInValidEmail = utility.checkInValid(vm.data.objNhanVien.Email, 'Email');
-            if (vm.status.isInValidEmail) {
-                $window.document.getElementById('txtEmail').focus();
-                return;
-            }
-            vm.status.isInValidPassword = utility.checkInValid(vm.data.objNhanVien.PasswordHash, 'isEmpty');
-            if (vm.status.isInValidPassword) {
-                $window.document.getElementById('txtPassword').focus();
-                return;
-            }
-
             vm.data.objNhanVien.NguoiTao = userInfo.NhanVienId;
-
             NhanVienService.insert(vm.data.objNhanVien).then(function (success) {
                 console.log('NhanVienService.insert', success);
                 if (success.data.data) {
@@ -311,17 +280,11 @@
         function update() {
             var deferred = $q.defer();
 
-            vm.status.isInValidMaNhanVien = utility.checkInValid(vm.data.objNhanVien.MaNhanVien, 'isEmpty');
-            if (vm.status.isInValidMaNhanVien) {
-                $window.document.getElementById('txtMaNhanVien').focus();
+            vm.status.isInValidNhomKinhDoanh = utility.checkInValid(vm.data.objNhanVien.NhomKinhDoanhId, 'isEmpty');
+            if (vm.status.isInValidNhomKinhDoanh) {
+                $('cbxNhomKinhDoanh').find('input').focus();
                 return;
             }
-            vm.status.isInValidTenNhanVien = utility.checkInValid(vm.data.objNhanVien.HoTen, 'isEmpty');
-            if (vm.status.isInValidTenNhanVien) {
-                $window.document.getElementById('txtTenNhanVien').focus();
-                return;
-            }
-
             NhanVienService.update(vm.data.objNhanVien).then(function (success) {
                 console.log('NhanVienService.update', success)
                 utility.AlertSuccess('Cập nhật thành công');
@@ -344,7 +307,11 @@
 
             NhanVienService.getById(id).then(function (success) {
                 console.log(`NhanVienService.getById.${id}`, success);
-                vm.data.objNhanVien = success.data.data[0];
+                if (success.data.data.length > 0) {
+                    vm.status.isEdit = true;
+                    vm.data.objNhanVien = success.data.data[0];
+                } else vm.status.isEdit = false;
+                vm.data.objNhanVien.NhanVienId = id;
                 return deferred.resolve(success);
             }, function (error) {
                 console.log(`NhanVienService.getById.${id}`, error);

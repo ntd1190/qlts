@@ -17,6 +17,8 @@
         var userInfo, _tableState;
         var KhachHangId = 0;
 
+        $scope.isOpenPopupTimKiem = false;
+
         var vm = this;
 
         vm.status = {};
@@ -73,12 +75,17 @@
             },
             F3: function (name, code) {
                 console.log('F3');
+                if (!$scope.isOpenPopupTimKiem) {
+                    $('#SearchCollapse').collapse('show');
+                    $scope.isOpenPopupTimKiem = true;
+                } else {
+                    $('#SearchCollapse').collapse('hide');
+                    $scope.isOpenPopupTimKiem = false;
+                }
             },
             F8: function (name, code) {
                 console.log('F8');
-                if (vm.status.isOpenPopup && checkQuyenUI('N')) {
-                    
-                }
+                vm.data.action.getPage();
             },
             DELETE: function (name, code) {
                 console.log('DELETE');
@@ -116,6 +123,13 @@
             getPageDetail: getPageDetail,
             deleteSelected: deleteSelected,
         };
+        vm.action.getListCot = function (data) {
+            
+            vm.data.listCot = data;
+        }
+        vm.action.checkCot = function (cot) {
+            return cot.HienThiYN;
+        };
         vm.action.getPage = function (tableState) {
             getPage(tableState);
         };
@@ -138,8 +152,7 @@
                 vm.data.isLoading = false;
                 _tableState.pagination.start = 0;
                 getPage(_tableState);
-                //utility.AlertSuccess('Xóa thành công!');
-                alert('Xóa thành công!');
+                utility.AlertSuccess('Xóa thành công!');
             }, function (error) {
                 vm.data.isLoading = false;
                 alert(error.data.error.code + " : " + error.data.error.message);
@@ -171,8 +184,9 @@
             var sortName = tableState.sort.predicate || 'KhachHangId';
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             var searchString = vm.data.searchString;
+            var searchNhomKhachHangId = vm.data.searchNhomKhachHangId || 0;
             var fields = "";
-            KhachHangService.getPage(draw, start, number, searchString, sortName, sortDir, fields, vm.data.userInfo.UserId, vm.data.userInfo.NhanVienId)
+            KhachHangService.getPage(draw, start, number, searchString,searchNhomKhachHangId, sortName, sortDir, fields, vm.data.userInfo.UserId, vm.data.userInfo.NhanVienId)
                 .then(function (success) {
                     console.log(success);
                     if (success.data.data) {

@@ -40,7 +40,7 @@
             return $http(req);
         }
 
-        function getPage(draw, start, length, searchString, sortName, sortDir, UserId, NhanVienId) {
+        function getPage(draw, start, length, searchString,searchNhomKhachHangId, sortName, sortDir,fields, UserId, NhanVienId) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -52,6 +52,7 @@
                     start: start,
                     length: length,
                     search: searchString,
+                    searchNhomKH:searchNhomKhachHangId,
                     sortName: sortName,
                     sortDir: sortDir,
                     UserId: UserId,

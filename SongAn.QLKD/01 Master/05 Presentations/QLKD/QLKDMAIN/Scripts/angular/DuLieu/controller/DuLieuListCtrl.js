@@ -4,18 +4,17 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state({
-            name: 'diaBanList',
-            url: '/diaban/list',
+            name: 'DuLieuList',
+            url: '/DuLieu/list',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
-            controller: DiaBanListCtrl
+            controller: DuLieuListCtrl
         });
     });
 
-    function DiaBanListCtrl($stateParams, SETTING, $q, utility, DiaBanService) {
+    function DuLieuListCtrl($stateParams, SETTING, $q, utility, DuLieuService, Upload) {
         var userInfo, _tableState;
-
-        var DiaBanId = 0;
+        var DuLieuId = 0;
 
         var vm = this;
 
@@ -28,9 +27,10 @@
         vm.inputSearch = {};
 
         vm.data.listCot = [
-            { MaCot: 'MaDiaBan', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
-            { MaCot: 'TenDiaBan', TenCot: 'Tên', HienThiYN: true, DoRong: 200 },
-            { MaCot: 'DiaChi', TenCot: 'Địa chỉ', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'MaDuLieu', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
+            { MaCot: 'TenDuLieu', TenCot: 'Tên', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'ViTri', TenCot: 'Vị trí', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'FileDinhKem', TenCot: 'File đính kèm', HienThiYN: true, DoRong: 0 },
             { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 100 },
             { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 200 },
         ];
@@ -45,13 +45,13 @@
         }
 
         vm.getTemplate = function () {
-            return SETTING.HOME_URL + 'diaban/showView?viewName=list';
+            return SETTING.HOME_URL + 'DuLieu/showView?viewName=list';
         }
 
         vm.keys = {
             F2: function (name, code) {
                 console.log('F2');
-                if (checkQuyenUI('N')) {
+                if (vm.action.checkQuyenTacVu('N')) {
                     vm.action.edit(0);
                 }
             },
@@ -70,7 +70,6 @@
                 console.log('DELETE');
             },
             ESC: function (name, code) {
-                //alert("ESC");
                 console.log('ESC');
                 var index_highest = 0;
                 var ele_highest;
@@ -98,15 +97,15 @@
         };
 
         function initEventListener() {
-            $(document).ready(function () { // #DiaBanEditPopup
-                $('#DiaBanEditPopup').on('hidden.bs.collapse', function () {
+            $(document).ready(function () { // #DuLieuEditPopup
+                $('#DuLieuEditPopup').on('hidden.bs.collapse', function () {
                     vm.status.isOpenPopup = false;
                     resetPopup();
-                    $("#DiaBanList input[autofocus]").focus();
+                    $("#DuLieuList input[autofocus]").focus();
                 });
-                $('#DiaBanEditPopup').on('shown.bs.collapse', function () {
+                $('#DuLieuEditPopup').on('shown.bs.collapse', function () {
                     vm.status.isOpenPopup = true;
-                    $("#DiaBanEditPopup input[autofocus]").focus();
+                    $("#DuLieuEditPopup input[autofocus]").focus();
                 });
             });
         }
@@ -128,24 +127,25 @@
             });
         }
         vm.action.search = function () {
+            vm.status.isSelectedAll = false;
             _tableState.pagination.start = 0;
             getPage(_tableState);
         }
 
         vm.action.edit = function (id) {
             resetPopup();
-            DiaBanId = id || 0;
-            if (DiaBanId > 0) {
-                getById(DiaBanId);
+            DuLieuId = id || 0;
+            if (DuLieuId > 0) {
+                getById(DuLieuId);
             }
-            $('#DiaBanEditPopup').collapse('show');
+            $('#DuLieuEditPopup').collapse('show');
         }
         vm.action.checkQuyenTacVu = function (quyen) {
             return checkQuyenUI(quyen);
         }
 
         vm.action.checkQuyenTacVuEdit = function (quyen) {
-            if (DiaBanId == 0) { // trường hợp thêm mới
+            if (DuLieuId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }
             } else { // trường hợp update
                 if (quyen == 'N') { return false; }
@@ -156,19 +156,28 @@
         vm.action.save = function () {
             if (vm.action.checkQuyenTacVuEdit('N') == false && vm.action.checkQuyenTacVuEdit('M') == false) { return; }
             if (checkInput() == false) { return; }
-            if (DiaBanId > 0) {
-                update().then(function (success) {
+
+            if (vm.data.DuLieu.file && vm.data.DuLieu.file.length > 0) {
+                if (vm.data.DuLieu.FileDinhKem) {
+                    vm.data.DuLieu.FileDinhKem = vm.data.DuLieu.FileDinhKem.split('.')[0] + '.' + utility.getFileExt(vm.data.DuLieu.file[0].name);
+                } else {
+                    vm.data.DuLieu.FileDinhKem = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.DuLieu.file[0].name);
+                }
+            }
+
+            if (DuLieuId > 0) {
+                $q.all([update(), UploadFile()]).then(function (success) {
                     vm.action.search();
                     utility.AlertSuccess('Cập nhật thành công');
-                    $('#DiaBanEditPopup').collapse('hide');
+                    $('#DuLieuEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
             } else {
-                insert().then(function (success) {
+                $q.all([insert(), UploadFile()]).then(function (success) {
                     vm.action.search();
                     utility.AlertSuccess('Thêm thành công');
-                    $('#DiaBanEditPopup').collapse('hide');
+                    $('#DuLieuEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
@@ -179,7 +188,7 @@
 
             if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
 
-            var list = vm.data.listDiaBan.filter(diaban=>diaban.isSelected == true);
+            var list = vm.data.listDuLieu.filter(DuLieu=>DuLieu.isSelected == true);
             removeList(list).then(function (success) {
                 vm.action.search();
                 utility.AlertSuccess('Xóa thành công');
@@ -193,12 +202,12 @@
 
             if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
 
-            var list = [{ DiaBanId: DiaBanId }];
+            var list = [{ DuLieuId: DuLieuId }];
 
             removeList(list).then(function (success) {
                 vm.action.search();
                 utility.AlertSuccess('Xóa thành công');
-                $('#DiaBanEditPopup').collapse('hide');
+                $('#DuLieuEditPopup').collapse('hide');
             }, function (error) {
                 utility.AlertError(error);
             });
@@ -213,20 +222,18 @@
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
         }
         vm.action.checkAll = function () {
-            vm.status.isSelectedAll = utility.checkAll(vm.data.listDiaBan, !vm.status.isSelectedAll);
+            vm.status.isSelectedAll = utility.checkAll(vm.data.listDuLieu, !vm.status.isSelectedAll);
         };
         vm.action.autoCheckAll = function () {
-            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listDiaBan);
+            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listDuLieu);
         };
-
         vm.action.refresh = function () {
-            vm.action.edit(DiaBanId);
+            vm.action.edit(DuLieuId);
         }
-
         /* BIZ FUNCTION */
         function resetPopup() {
-            DiaBanId = 0;
-            delete vm.data.DiaBan; vm.data.DiaBan = {};
+            DuLieuId = 0;
+            delete vm.data.DuLieu; vm.data.DuLieu = {};
             delete vm.error; vm.error = {};
         }
 
@@ -245,11 +252,11 @@
         function checkInput(inputName) {
             var has_error = false;
             var first_error_name = '';
-            var obj_name = 'DiaBan';
+            var obj_name = 'DuLieu';
             var prop_name = '';
             var error_name = '';
 
-            prop_name = 'MaDiaBan';
+            prop_name = 'MaDuLieu';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -260,7 +267,7 @@
                 }
             }
 
-            prop_name = 'TenDiaBan';
+            prop_name = 'TenDuLieu';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -280,15 +287,33 @@
         }
 
         /* API FUNCTION */
+        function UploadFile() {
+            console.log('UploadFile');
+            var deferred = $q.defer();
+            if (angular.isUndefined(vm.data.DuLieu.file) || vm.data.DuLieu.file.length == 0) {
+                return deferred.resolve('');
+            }
+            Upload.filesUpload(vm.data.DuLieu.file, vm.data.DuLieu.FileDinhKem, 'DuLieu/').then(function (success) {
+                console.log('Upload.filesUpload.success', success);
+                vm.data.DuLieu.FileDinhKem = success.data.data;
+                $('input[type=file]').val('');
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+
+            return deferred.promise;
+        }
 
         function insert() {
             var deferred = $q.defer();
 
-            var data = vm.data.DiaBan || {};
+            var data = vm.data.DuLieu || {};
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
 
-            DiaBanService.insert(data).then(function (success) {
+            DuLieuService.insert(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -305,11 +330,11 @@
         function update() {
             var deferred = $q.defer();
 
-            var data = vm.data.DiaBan || {};
+            var data = vm.data.DuLieu || {};
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
 
-            DiaBanService.update(data).then(function (success) {
+            DuLieuService.update(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -328,11 +353,11 @@
 
             var data = {};
 
-            data.DiaBanIds = list.map(elem => elem.DiaBanId).join("|");
+            data.DuLieuIds = list.map(elem => elem.DuLieuId).join("|");
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
 
-            DiaBanService.delete(data).then(function (success) {
+            DuLieuService.delete(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -351,16 +376,16 @@
             var deferred = $q.defer();
 
             var data = {};
-            data.DiaBanId = id || 0;
+            data.DuLieuId = id || 0;
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
 
-            DiaBanService.getById(data).then(function (success) {
+            DuLieuService.getById(data).then(function (success) {
                 console.log(success);
                 if (success.data.data && success.data.data.length == 1) {
-                    vm.data.DiaBan = success.data.data[0];
+                    vm.data.DuLieu = success.data.data[0];
                 } else {
-                    delete vm.data.DiaBan; vm.data.DiaBan = {};
+                    delete vm.data.DuLieu; vm.data.DuLieu = {};
                 }
                 return deferred.resolve(success);
             }, function (error) {
@@ -393,17 +418,17 @@
             data.draw = tableState.draw;
             data.start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
             data.length = tableState.pagination.number || 10;  // Number of entries showed per page.
-            data.sortName = tableState.sort.predicate || 'DB.DiaBanId';
+            data.sortName = tableState.sort.predicate || 'DL.DuLieuId';
             data.sortDir = tableState.sort.reverse ? 'desc' : 'asc';
             data.search = vm.inputSearch.search || '';
 
-            data.NHANVIEN_ID = userInfo.NhanVienId || 0;
-            data.USER_ID = userInfo.UserId || 0;
+            data.NHANVIEN_ID = userInfo.NhanVienId;
+            data.USER_ID = userInfo.UserId;
 
-            DiaBanService.getPage(data).then(function (success) {
+            DuLieuService.getPage(data).then(function (success) {
                 console.log(success);
                 if (success.data.data && success.data.metaData.draw == _tableState.draw) {
-                    vm.data.listDiaBan = success.data.data;
+                    vm.data.listDuLieu = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);
                 }
                 return deferred.resolve(success);
@@ -418,5 +443,4 @@
             return deferred.promise;
         }
     }
-
 })();

@@ -4,18 +4,18 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state({
-            name: 'diaBanList',
-            url: '/diaban/list',
+            name: 'nhomKhachHangList',
+            url: '/nhomkhachhang/list',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
-            controller: DiaBanListCtrl
+            controller: NhomKhachHangListCtrl
         });
     });
 
-    function DiaBanListCtrl($stateParams, SETTING, $q, utility, DiaBanService) {
+    function NhomKhachHangListCtrl($stateParams, SETTING, $q, utility, NhomKhachHangService) {
         var userInfo, _tableState;
 
-        var DiaBanId = 0;
+        var NhomKhachHangId = 0;
 
         var vm = this;
 
@@ -28,9 +28,8 @@
         vm.inputSearch = {};
 
         vm.data.listCot = [
-            { MaCot: 'MaDiaBan', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
-            { MaCot: 'TenDiaBan', TenCot: 'Tên', HienThiYN: true, DoRong: 200 },
-            { MaCot: 'DiaChi', TenCot: 'Địa chỉ', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'MaNhom', TenCot: 'Mã', HienThiYN: true, DoRong: 90 },
+            { MaCot: 'TenNhom', TenCot: 'Tên', HienThiYN: true, DoRong: 300 },
             { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 100 },
             { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 200 },
         ];
@@ -45,7 +44,7 @@
         }
 
         vm.getTemplate = function () {
-            return SETTING.HOME_URL + 'diaban/showView?viewName=list';
+            return SETTING.HOME_URL + 'nhomkhachhang/showView?viewName=list';
         }
 
         vm.keys = {
@@ -99,14 +98,14 @@
 
         function initEventListener() {
             $(document).ready(function () { // #DiaBanEditPopup
-                $('#DiaBanEditPopup').on('hidden.bs.collapse', function () {
+                $('#NhomKhachHangEditPopup').on('hidden.bs.collapse', function () {
                     vm.status.isOpenPopup = false;
                     resetPopup();
-                    $("#DiaBanList input[autofocus]").focus();
+                    $("#NhomKhachHangList input[autofocus]").focus();
                 });
-                $('#DiaBanEditPopup').on('shown.bs.collapse', function () {
+                $('#NhomKhachHangEditPopup').on('shown.bs.collapse', function () {
                     vm.status.isOpenPopup = true;
-                    $("#DiaBanEditPopup input[autofocus]").focus();
+                    $("#NhomKhachHangEditPopup input[autofocus]").focus();
                 });
             });
         }
@@ -134,18 +133,18 @@
 
         vm.action.edit = function (id) {
             resetPopup();
-            DiaBanId = id || 0;
-            if (DiaBanId > 0) {
-                getById(DiaBanId);
+            NhomKhachHangId = id || 0;
+            if (NhomKhachHangId > 0) {
+                getById(NhomKhachHangId);
             }
-            $('#DiaBanEditPopup').collapse('show');
+            $('#NhomKhachHangEditPopup').collapse('show');
         }
         vm.action.checkQuyenTacVu = function (quyen) {
             return checkQuyenUI(quyen);
         }
 
         vm.action.checkQuyenTacVuEdit = function (quyen) {
-            if (DiaBanId == 0) { // trường hợp thêm mới
+            if (NhomKhachHangId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }
             } else { // trường hợp update
                 if (quyen == 'N') { return false; }
@@ -156,11 +155,12 @@
         vm.action.save = function () {
             if (vm.action.checkQuyenTacVuEdit('N') == false && vm.action.checkQuyenTacVuEdit('M') == false) { return; }
             if (checkInput() == false) { return; }
-            if (DiaBanId > 0) {
+
+            if (NhomKhachHangId > 0) {
                 update().then(function (success) {
                     vm.action.search();
                     utility.AlertSuccess('Cập nhật thành công');
-                    $('#DiaBanEditPopup').collapse('hide');
+                    $('#NhomKhachHangEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
@@ -168,39 +168,35 @@
                 insert().then(function (success) {
                     vm.action.search();
                     utility.AlertSuccess('Thêm thành công');
-                    $('#DiaBanEditPopup').collapse('hide');
+                    $('#NhomKhachHangEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
             }
         }
         vm.action.deleteList = function () {
-            if (vm.action.checkQuyenTacVu('D') == false) { return; }
+            if (!confirm('Bạn có muốn xóa các mục đã chọn không?')) { return; }
 
-            if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
+            vm.data.isLoading = true;
 
-            var list = vm.data.listDiaBan.filter(diaban=>diaban.isSelected == true);
-            removeList(list).then(function (success) {
-                vm.action.search();
-                utility.AlertSuccess('Xóa thành công');
+            var NhomKhachHangSelected = new Array();
+
+            for (var i = 0; i < vm.data.listNhomKhachHang.length; i++) {
+                var NhomKhachHang = vm.data.listNhomKhachHang[i];
+                if (NhomKhachHang.isSelected) {
+                    NhomKhachHangSelected.push(NhomKhachHang.NhomKhachHangId);
+                }
+            }
+            var ids = NhomKhachHangSelected.join(',');
+
+            NhomKhachHangService.removeList(ids).then(function (success) {
+                vm.data.isLoading = false;
+                _tableState.pagination.start = 0;
+                getPage(_tableState);
+                utility.AlertSuccess('Xóa thành công!');
             }, function (error) {
-                utility.AlertError(error);
-            });
-        }
-
-        vm.action.delete = function () {
-            if (vm.action.checkQuyenTacVuEdit('D') == false) { return; }
-
-            if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
-
-            var list = [{ DiaBanId: DiaBanId }];
-
-            removeList(list).then(function (success) {
-                vm.action.search();
-                utility.AlertSuccess('Xóa thành công');
-                $('#DiaBanEditPopup').collapse('hide');
-            }, function (error) {
-                utility.AlertError(error);
+                vm.data.isLoading = false;
+                alert(error.data.error.code + " : " + error.data.error.message);
             });
         }
 
@@ -213,20 +209,20 @@
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
         }
         vm.action.checkAll = function () {
-            vm.status.isSelectedAll = utility.checkAll(vm.data.listDiaBan, !vm.status.isSelectedAll);
+            vm.status.isSelectedAll = utility.checkAll(vm.data.listNhomKhachHang, !vm.status.isSelectedAll);
         };
         vm.action.autoCheckAll = function () {
-            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listDiaBan);
+            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listNhomKhachHang);
         };
 
         vm.action.refresh = function () {
-            vm.action.edit(DiaBanId);
+            vm.action.edit(NhomKhachHangId);
         }
 
         /* BIZ FUNCTION */
         function resetPopup() {
-            DiaBanId = 0;
-            delete vm.data.DiaBan; vm.data.DiaBan = {};
+            NhomKhachHangId = 0;
+            delete vm.data.NhomKhachHang; vm.data.NhomKhachHang = {};
             delete vm.error; vm.error = {};
         }
 
@@ -245,11 +241,11 @@
         function checkInput(inputName) {
             var has_error = false;
             var first_error_name = '';
-            var obj_name = 'DiaBan';
+            var obj_name = 'NhomKhachHang';
             var prop_name = '';
             var error_name = '';
 
-            prop_name = 'MaDiaBan';
+            prop_name = 'MaNhom';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -260,7 +256,7 @@
                 }
             }
 
-            prop_name = 'TenDiaBan';
+            prop_name = 'TenNhom';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -284,11 +280,13 @@
         function insert() {
             var deferred = $q.defer();
 
-            var data = vm.data.DiaBan || {};
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
+            vm.data.NhomKhachHang.NguoiTao = userInfo.NhanVienId;
+            var NhomKhachHang = utility.clone(vm.data.NhomKhachHang);
+            var data = {};
+            data.NhomKhachHang = angular.toJson(NhomKhachHang);
+            data.UserId = userInfo.UserId;
 
-            DiaBanService.insert(data).then(function (success) {
+            NhomKhachHangService.insert(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -305,34 +303,13 @@
         function update() {
             var deferred = $q.defer();
 
-            var data = vm.data.DiaBan || {};
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            DiaBanService.update(data).then(function (success) {
-                console.log(success);
-                return deferred.resolve(success);
-            }, function (error) {
-                console.log(error);
-                if (error.data.error != null) {
-                    return deferred.reject(error.data.error.message);
-                } else {
-                    return deferred.reject(error.data.Message);
-                }
-            });
-            return deferred.promise;
-        }
-
-        function removeList(list) {
-            var deferred = $q.defer();
-
+            vm.data.NhomKhachHang.NguoiTao = userInfo.NhanVienId;
+            var NhomKhachHang = utility.clone(vm.data.NhomKhachHang);
             var data = {};
+            data.NhomKhachHang = angular.toJson(NhomKhachHang);
+            data.UserId = userInfo.UserId;
 
-            data.DiaBanIds = list.map(elem => elem.DiaBanId).join("|");
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            DiaBanService.delete(data).then(function (success) {
+            NhomKhachHangService.update(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -343,24 +320,19 @@
                     return deferred.reject(error.data.Message);
                 }
             });
-
             return deferred.promise;
         }
 
         function getById(id) {
             var deferred = $q.defer();
 
-            var data = {};
-            data.DiaBanId = id || 0;
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            DiaBanService.getById(data).then(function (success) {
+            NhomKhachHangService.getById(id).then(function (success) {
                 console.log(success);
                 if (success.data.data && success.data.data.length == 1) {
-                    vm.data.DiaBan = success.data.data[0];
+                    vm.data.NhomKhachHang = success.data.data[0];
                 } else {
-                    delete vm.data.DiaBan; vm.data.DiaBan = {};
+                    delete vm.data.NhomKhachHang;
+                    vm.data.NhomKhachHang = {};
                 }
                 return deferred.resolve(success);
             }, function (error) {
@@ -389,21 +361,19 @@
 
             tableState.draw = tableState.draw + 1 || 1;
 
-            var data = {};
-            data.draw = tableState.draw;
-            data.start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
-            data.length = tableState.pagination.number || 10;  // Number of entries showed per page.
-            data.sortName = tableState.sort.predicate || 'DB.DiaBanId';
-            data.sortDir = tableState.sort.reverse ? 'desc' : 'asc';
-            data.search = vm.inputSearch.search || '';
+            
+            var draw = tableState.draw;
+            var start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+            var number = tableState.pagination.number || 10;  // Number of entries showed per page.
+            var sortName = tableState.sort.predicate || 'NhomKhachHangId';
+            var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
+            var searchString = vm.inputSearch.search || '';
+            var fields = "";
 
-            data.NHANVIEN_ID = userInfo.NhanVienId || 0;
-            data.USER_ID = userInfo.UserId || 0;
-
-            DiaBanService.getPage(data).then(function (success) {
-                console.log(success);
-                if (success.data.data && success.data.metaData.draw == _tableState.draw) {
-                    vm.data.listDiaBan = success.data.data;
+            NhomKhachHangService.getPage(draw, start, number, searchString, sortName, sortDir, fields, userInfo.UserId, userInfo.NhanVienId).then(function (success) {
+                //console.log(success);
+                if (success.data.data) {
+                    vm.data.listNhomKhachHang = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);
                 }
                 return deferred.resolve(success);
