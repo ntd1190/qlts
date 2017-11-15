@@ -18,5 +18,41 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListNhomKhachHangById([FromBody]GetListNhomKhachHangByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListNhomKhachHangByProjection([FromBody]GetListNhomKhachHangByProjectionAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertNhomKhachHang([FromBody]InsertNhomKhachHangAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateNhomKhachHangById([FromBody]UpdateNhomKhachHangByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> DeleteNhomKhachHangById([FromBody]DeleteNhomKhachHangByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

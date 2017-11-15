@@ -1,55 +1,32 @@
-﻿
-using SongAn.QLKD.Data.Repository.MSSQL_QLKD;
-using SongAn.QLKD.Util.Common.Dto;
-using SongAn.QLKD.Util.Common.Helper;
+﻿using System.Threading.Tasks;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
-using System.Web;
+using SongAn.QLKD.Util.Common.Dto;
+using SongAn.QLKD.Data.Repository.QLKD;
+using SongAn.QLKD.Util.Common.Helper;
 
-namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
+namespace  SongAn.QLKD.Api.QLKD.Models.NhanVien
 {
-    public class UpdateNhanVienAction
+    public class UpdateNhanVienAction : SongAn.QLKD.Entity.QLKD.Entity.KDNhanVienChiTiet
     {
-        #region public
-        public string NhanVienId { get; set; }
-        public string Ma { get; set; }
-        public string Ho { get; set; }
-        public string Ten { get; set; }
-        public string CtrVersion { get; set; }
-        #endregion
-
-        #region private
-
-        private int _nhanVienId;
-        private int _CtrVersion;
-
-        #endregion
-
+        private int _NhanVienId;
         public async Task<dynamic> Execute(ContextDto context)
         {
             try
             {
-                init();
-                validate();
+                dynamic result = new System.Dynamic.ExpandoObject();
 
-                var repo = new NhanVienRepository(context);
-
-                var nhanvien = new Entity.QLKD.Entity.NhanVien();
-                nhanvien.NhanVienId = _nhanVienId;
-                nhanvien.Ma = Ma;
-                nhanvien.Ho = Ho;
-                nhanvien.Ten = Ten;
-                nhanvien.CtrVersion = _CtrVersion;
-                nhanvien = await repo.UpdatePartial(nhanvien,
-                 nameof(Entity.QLKD.Entity.NhanVien.Ma),
-                 nameof(Entity.QLKD.Entity.NhanVien.Ho),
-                 nameof(Entity.QLKD.Entity.NhanVien.Ten)
-                  );
-
-                return returnActionResult(nhanvien, null);
+            var repo = new NhanVienChiTietRepository(context);
+            await repo.UpdatePartial(this,
+                nameof(NhomKinhDoanhId),
+                nameof(CachLamViec),
+                nameof(TinhCach),
+                nameof(SoThich),
+                nameof(ThoiQuen),
+                nameof(GhiChu)
+                 );
+            result.data = this;
+                return returnActionResult(HttpStatusCode.OK, result.data, null);
             }
             catch (FormatException ex)
             {
@@ -60,8 +37,6 @@ namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
                 return returnActionError(HttpStatusCode.InternalServerError, ex.Message);
             }
         }
-
-
         private void validate()
         {
             var _id = Protector.Int(NhanVienId);
@@ -74,8 +49,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
 
         private void init()
         {
-            _nhanVienId = Protector.Int(NhanVienId);
-            _CtrVersion = Protector.Int(CtrVersion);
+            _NhanVienId = Protector.Int(NhanVienId);
         }
 
         private ActionResultDto returnActionError(HttpStatusCode code, string message)
@@ -94,11 +68,11 @@ namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
             return _error;
         }
 
-        private ActionResultDto returnActionResult(object data, object metaData)
+        private ActionResultDto returnActionResult(HttpStatusCode code, object data, object metaData)
         {
             var _result = new ActionResultDto();
 
-            _result.ReturnCode = HttpStatusCode.OK;
+            _result.ReturnCode = code;
             _result.ReturnData = new
             {
                 data = data,
@@ -106,6 +80,5 @@ namespace SongAn.QLKD.Api.QLKD.Models.NhanVien
             };
             return _result;
         }
-
     }
 }

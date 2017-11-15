@@ -29,5 +29,23 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetNhanVienById([FromBody] GetNhanVienByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> UpdateNhanVien([FromBody] UpdateNhanVienAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
+        public async Task<IHttpActionResult> InsertNhanVien([FromBody] InsertNhanVienAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }

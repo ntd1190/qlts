@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DiaBanController.cs" />
+    <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
@@ -73,13 +74,27 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\DuLieu\cbxGetListByCriteriaAction.cs" />
+    <Compile Include="Models\DuLieu\DeleteDuLieuAction.cs" />
+    <Compile Include="Models\DuLieu\GetByIdAction.cs" />
+    <Compile Include="Models\DuLieu\GetListByCriteriaAction.cs" />
+    <Compile Include="Models\DuLieu\InsertDuLieuAction.cs" />
+    <Compile Include="Models\DuLieu\UpdateDuLieuAction.cs" />
     <Compile Include="Models\LoaiHopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\LoaiHopDong\DeleteLoaiHopDongAction.cs" />
     <Compile Include="Models\LoaiHopDong\GetByIdAction.cs" />
     <Compile Include="Models\LoaiHopDong\GetListByCriteriaAction.cs" />
     <Compile Include="Models\LoaiHopDong\InsertLoaiHopDongAction.cs" />
     <Compile Include="Models\LoaiHopDong\UpdateLoaiHopDongAction.cs" />
+    <Compile Include="Models\NhanVien\GetNhanVienByIdAction.cs" />
     <Compile Include="Models\NhanVien\GetListNhanVienChiTietByProjectionAction.cs" />
+    <Compile Include="Models\NhanVien\InsertNhanVienAction.cs" />
+    <Compile Include="Models\NhanVien\UpdateNhanVienAction.cs" />
+    <Compile Include="Models\NhomKhachHang\DeleteNhomKhachHangByIdAction.cs" />
+    <Compile Include="Models\NhomKhachHang\GetListNhomKhachHangByIdAction.cs" />
+    <Compile Include="Models\NhomKhachHang\GetListNhomKhachHangByProjectionAction.cs" />
+    <Compile Include="Models\NhomKhachHang\InsertNhomKhachHangAction.cs" />
+    <Compile Include="Models\NhomKhachHang\UpdateNhomKhachHangByIdAction.cs" />
     <Compile Include="Models\NhomKinhDoanh\DeleteListNhomKinhDoanhAction.cs" />
     <Compile Include="Models\NhomKinhDoanh\GetListcbxNhomKinhDoanhByProjectionAction.cs" />
     <Compile Include="Models\NhomKinhDoanh\GetListNhomKinhDoanhByProjectionAction.cs" />

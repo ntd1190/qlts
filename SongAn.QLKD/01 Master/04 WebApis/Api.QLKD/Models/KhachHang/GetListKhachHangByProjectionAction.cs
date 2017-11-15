@@ -17,6 +17,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.KhachHang
         public string start { get; set; }
         public string length { get; set; }
         public string search { get; set; }
+        public string searchNhomKH { get; set; }
         public string sortName { get; set; }
         public string sortDir { get; set; }
         public string UserId { get; set; }
@@ -40,6 +41,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.KhachHang
                 var orderClause = sortName + " " + sortDir;
                 var total = 0;
                 biz.Search = search;
+                biz.SearchNhomKH = Protector.String(searchNhomKH);
                 biz.OrderClause = orderClause;
                 biz.Skip = _start;
                 biz.Take = _length;
