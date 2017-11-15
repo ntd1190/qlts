@@ -61,6 +61,7 @@
     <Compile Include="QLKD_MAIN\VaiTroRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QLKD_MAIN\NguoiDungAsyncRepository.cs" />
+    <Compile Include="QLKD_QLKD\KDNhanVienChiTietRepository.cs" />
     <Compile Include="QLKD_QLKD\KDNhomKinhDoanhRepository.cs" />
   </ItemGroup>
   <ItemGroup>

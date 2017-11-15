@@ -208,18 +208,15 @@
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
+    <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
+    <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
     <Content Include="Scripts\angular\LoaiHopDong\controller\LoaiHopDongListCtrl.js" />
     <Content Include="Scripts\angular\LoaiHopDong\directive\cboLoaiHopDong.js" />
     <Content Include="Scripts\angular\LoaiHopDong\service\LoaiHopDongService.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\controller\NhomKinhDoanhListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\directive\cboNhomKinhDoanh.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\service\NhomKinhDoanhService.js" />
-    <Content Include="Scripts\angular\ThuatNgu\controller\ThuatNguListCtrl.js" />
-    <Content Include="Scripts\angular\ThuatNgu\directive\cboThuatNgu.js" />
-    <Content Include="Scripts\angular\ThuatNgu\service\ThuatNguService.js" />
-    <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
-    <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
-    <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
     <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
@@ -245,6 +242,9 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
+    <Content Include="Scripts\angular\ThuatNgu\controller\ThuatNguListCtrl.js" />
+    <Content Include="Scripts\angular\ThuatNgu\directive\cboThuatNgu.js" />
+    <Content Include="Scripts\angular\ThuatNgu\service\ThuatNguService.js" />
     <Content Include="Scripts\angular\Tinh\directive\cboTinh.js" />
     <Content Include="Scripts\angular\Tinh\service\TinhService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\directive\TuyChonCotList.directive.js" />
@@ -282,6 +282,12 @@
     <Content Include="lib\font-awesome\fonts\fontawesome-webfont.woff2" />
     <Content Include="lib\font-awesome\fonts\FontAwesome.otf" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
+    <Content Include="Views\DiaBan\List.cshtml" />
+    <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
+    <Content Include="Views\LoaiHopDong\List.cshtml" />
+    <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
+    <Content Include="Views\ThuatNgu\List.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -290,10 +296,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
-    <Compile Include="Controllers\ThuatNguController.cs" />
-    <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
@@ -303,6 +308,7 @@
     <Compile Include="Controllers\PhanQuyenController.cs" />
     <Compile Include="Controllers\PhuongXaController.cs" />
     <Compile Include="Controllers\QuanHuyenController.cs" />
+    <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -339,12 +345,6 @@
     <Content Include="Views\Tinh\cboTinh.cshtml" />
     <Content Include="Views\QuanHuyen\cboQuanHuyen.cshtml" />
     <Content Include="Views\PhuongXa\cboPhuongXa.cshtml" />
-    <Content Include="Views\DiaBan\List.cshtml" />
-    <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
-    <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
-    <Content Include="Views\ThuatNgu\List.cshtml" />
-    <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
-    <Content Include="Views\LoaiHopDong\List.cshtml" />
     <Content Include="Views\NhomKinhDoanh\cboNhomKinhDoanh.cshtml" />
     <Content Include="Views\NhomKinhDoanh\List.cshtml" />
     <Content Include="Views\KhachHang\List.cshtml" />

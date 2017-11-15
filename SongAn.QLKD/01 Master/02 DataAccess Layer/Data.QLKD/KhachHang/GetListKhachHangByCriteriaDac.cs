@@ -17,7 +17,7 @@ namespace SongAn.QLKD.Data.QLKD.KhachHang
         public string NhanVienId { get; set; }
 
         public string Search { get; set; }
-
+        public string SearchNhomKH { get; set; }
 
         public string OrderClause { get; set; }
 
@@ -83,6 +83,7 @@ namespace SongAn.QLKD.Data.QLKD.KhachHang
                 p.Add("UserId", UserId, DbType.String);
                 p.Add("NhanVienId", NhanVienId, DbType.String);
                 p.Add("Search", Search, DbType.String);
+                p.Add("SearchNhomKH", SearchNhomKH, DbType.String);
                 p.Add("OrderClause", OrderClause, DbType.String);
                 p.Add("Skip", Skip, DbType.Int16);
                 p.Add("Take", Take, DbType.Int16);

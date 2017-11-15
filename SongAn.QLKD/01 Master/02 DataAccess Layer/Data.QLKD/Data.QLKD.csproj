@@ -53,12 +53,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DuLieu\cbxGetListByCriteriaDac.cs" />
+    <Compile Include="DuLieu\DeleteDuLieuDac.cs" />
+    <Compile Include="DuLieu\GetByIdDac.cs" />
+    <Compile Include="DuLieu\GetListByCriteriaDac.cs" />
+    <Compile Include="DuLieu\InsertDuLieuDac.cs" />
+    <Compile Include="DuLieu\UpdateDuLieuDac.cs" />
     <Compile Include="LoaiHopDong\cbxGetListByCriteriaDac.cs" />
     <Compile Include="LoaiHopDong\DeleteLoaiHopDongDac.cs" />
     <Compile Include="LoaiHopDong\GetByIdDac.cs" />
     <Compile Include="LoaiHopDong\GetListByCriteriaDac.cs" />
     <Compile Include="LoaiHopDong\InsertLoaiHopDongDac.cs" />
     <Compile Include="LoaiHopDong\UpdateLoaiHopDongDac.cs" />
+    <Compile Include="NhanVien\GetNhanVienByIdDac.cs" />
     <Compile Include="NhanVien\GetListNhanVienChiTietByProjectionDac.cs" />
     <Compile Include="DiaBan\cbxGetListByCriteriaDac.cs" />
     <Compile Include="DiaBan\GetByIdDac.cs" />
@@ -73,7 +80,12 @@
     <Compile Include="KhachHang\UpdateKhachHangByIdDac.cs" />
     <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdDac.cs" />
     <Compile Include="NhanVien\GetListNhanVienByProjectionDac.cs" />
+    <Compile Include="NhomKhachHang\DeleteNhomKhachHangByIdDac.cs" />
     <Compile Include="NhomKhachHang\GetListcbxNhomKhachHangByIdDac.cs" />
+    <Compile Include="NhomKhachHang\GetListNhomKhachHangByCriteriaDac.cs" />
+    <Compile Include="NhomKhachHang\GetListNhomKhachHangByIdDac.cs" />
+    <Compile Include="NhomKhachHang\InsertNhomKhachHangDac.cs" />
+    <Compile Include="NhomKhachHang\UpdateNhomKhachHangByIdDac.cs" />
     <Compile Include="NhomKinhDoanh\GetListcbxNhomKinhDoanhByCriteriaProjectionDac.cs" />
     <Compile Include="NhomKinhDoanh\GetListNhomKinhDoanhByCriteriaProjectionDac.cs" />
     <Compile Include="PhuongXa\GetListcbxPhuongXaByIdDac.cs" />
@@ -107,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DiaBan\Dto\" />
+    <Folder Include="DuLieu\Dto\" />
     <Folder Include="LoaiHopDong\Dto\" />
     <Folder Include="NhanVien\Dto\" />
     <Folder Include="NhanVien\Procedures\" />
@@ -120,6 +133,12 @@
     <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Update.sql" />
     <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Delete.sql" />
     <Content Include="DiaBan\Procedures\sp_KD_DiaBan_Insert.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_cbxGetListByCriteria.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_Delete.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_GetById.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_GetListByCriteria.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_Insert.sql" />
+    <Content Include="DuLieu\Procedures\sp_KD_DuLieu_Update.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_cbxGetListByCriteria.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_Delete.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_GetById.sql" />

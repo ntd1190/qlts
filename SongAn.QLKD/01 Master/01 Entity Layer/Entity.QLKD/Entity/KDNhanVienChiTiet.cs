@@ -18,7 +18,6 @@ namespace SongAn.QLKD.Entity.QLKD.Entity
     public partial class KDNhanVienChiTiet
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public virtual int NhanVienId { get; set; }
         public virtual int NhomKinhDoanhId { get; set; }
         public virtual string CachLamViec { get; set; }
