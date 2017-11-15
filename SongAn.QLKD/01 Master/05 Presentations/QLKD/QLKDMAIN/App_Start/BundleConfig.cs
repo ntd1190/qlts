@@ -37,7 +37,6 @@ namespace SongAn.QLKD.UI.QLKDMAIN
 
             bundles.Add(new StyleBundle("~/bundles/css").Include(
                         "~/lib/bootstrap/css/bootstrap.css",
-                        "~/lib/font-awesome/css/font-awesome.min.css",
                         "~/lib/timepicki/jquery.datetimepicker.min.css",
                         "~/lib/sb-admin/css/sb-admin-2.min.css",
                         "~/lib/Select/Select.css"

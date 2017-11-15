@@ -356,7 +356,7 @@
 /********************************************************************/
 /*** CUSTOM ALERT ***/
 .alert {
-    padding: 5px;
+    padding: 15px;
     margin: 10px 0;
 }
 
@@ -387,4 +387,51 @@
 
 .text-red {
     color: red;
+}
+/*format */
+
+.select-page {
+    width: 50px;
+    text-align: center;
+}
+
+.pagination li a input {
+    padding: 0;
+    margin: -5px 0;
+}
+
+.top-alert {
+    position: fixed;
+    top: 50px;
+    width: 100%;
+    z-index: 100000;
+    left: 0;
+    padding: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+    .top-alert .alert {
+        width: auto !important;
+        height: 100%;
+        display: inline;
+        position: relative;
+        margin: 0;
+    }
+
+        .top-alert .alert .close {
+            position: absolute;
+            top: 11px;
+            right: 10px;
+            color: inherit;
+            margin: -13px -7px;
+        }
+
+/* fix autocomplete trong table */
+.table-responsive .table .dropdown-menu {
+    position: relative !important;
+}
+
+#side-menu .title {
+    padding-left: 5px;
 }
