@@ -56,6 +56,8 @@
   <ItemGroup>
     <Compile Include="Entity\KDDiaBan.cs" />
     <Compile Include="Entity\KDDuLieu.cs" />
+    <Compile Include="Entity\KDKeHoach.cs" />
+    <Compile Include="Entity\KDKeHoachChiTiet.cs" />
     <Compile Include="Entity\KDLoaiHopDong.cs" />
     <Compile Include="Entity\KDKhachHang.cs" />
     <Compile Include="Entity\KDNhomKhachHang.cs" />

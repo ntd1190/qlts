@@ -59,6 +59,15 @@
     <Compile Include="DuLieu\GetListByCriteriaDac.cs" />
     <Compile Include="DuLieu\InsertDuLieuDac.cs" />
     <Compile Include="DuLieu\UpdateDuLieuDac.cs" />
+    <Compile Include="HangHoa\GetListcbxHangHoaByIdDac.cs" />
+    <Compile Include="KeHoach\DeleteKeHoachByIdDac.cs" />
+    <Compile Include="KeHoach\GetListKeHoachByCriteriaDac.cs" />
+    <Compile Include="KeHoach\GetListKeHoachByIdDac.cs" />
+    <Compile Include="KeHoach\GetListKeHoachChiTietByKeHoachIdDac.cs" />
+    <Compile Include="KeHoach\InsertKeHoachDac.cs" />
+    <Compile Include="KeHoach\UpdateKeHoachByIdDac.cs" />
+    <Compile Include="KhachHang\GetListcbxKhachHangByIdDac.cs" />
+    <Compile Include="LoaiHangHoa\GetListcbxLoaiHangHoaByIdDac.cs" />
     <Compile Include="LoaiHopDong\cbxGetListByCriteriaDac.cs" />
     <Compile Include="LoaiHopDong\DeleteLoaiHopDongDac.cs" />
     <Compile Include="LoaiHopDong\GetByIdDac.cs" />
