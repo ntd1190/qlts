@@ -123,15 +123,7 @@
             var obj = InvalidateDataKeHoach();
 
             if (obj == null)
-                return;
-
-            if (vm.data.file && vm.data.file.length > 0) {
-                if (!vm.data.phieuKeHoach.HinhAnh) {
-                    vm.data.phieuKeHoach.HinhAnh = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.file[0].name);
-                } else {
-                    vm.data.phieuKeHoach.HinhAnh = vm.data.phieuKeHoach.HinhAnh.split('.')[0] + '.' + utility.getFileExt(vm.data.file[0].name);
-                }
-            }
+                return;           
 
             if (vm.data.phieuKeHoach.KeHoachId > 0) {
                 edit();
