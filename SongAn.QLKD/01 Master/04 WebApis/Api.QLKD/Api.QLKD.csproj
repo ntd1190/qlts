@@ -65,6 +65,9 @@
   <ItemGroup>
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
+    <Compile Include="Controllers\HangHoaController.cs" />
+    <Compile Include="Controllers\KeHoachController.cs" />
+    <Compile Include="Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
@@ -74,12 +77,21 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\KeHoach\DeleteKeHoachByIdAction.cs" />
+    <Compile Include="Models\KeHoach\GetListKeHoachByIdAction.cs" />
+    <Compile Include="Models\KeHoach\GetListKeHoachByProjectionAction.cs" />
+    <Compile Include="Models\KeHoach\GetListKeHoachChiTietByKeHoachIdAction.cs" />
+    <Compile Include="Models\KeHoach\InsertKeHoachAction.cs" />
+    <Compile Include="Models\KeHoach\UpdateKeHoachByIdAction.cs" />
     <Compile Include="Models\DuLieu\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\DuLieu\DeleteDuLieuAction.cs" />
     <Compile Include="Models\DuLieu\GetByIdAction.cs" />
     <Compile Include="Models\DuLieu\GetListByCriteriaAction.cs" />
     <Compile Include="Models\DuLieu\InsertDuLieuAction.cs" />
     <Compile Include="Models\DuLieu\UpdateDuLieuAction.cs" />
+    <Compile Include="Models\HangHoa\GetListcbxHangHoaByIdAction.cs" />
+    <Compile Include="Models\KhachHang\GetListcbxKhachHangByIdAction.cs" />
+    <Compile Include="Models\LoaiHangHoa\GetListcbxLoaiHangHoaByIdAction.cs" />
     <Compile Include="Models\LoaiHopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\LoaiHopDong\DeleteLoaiHopDongAction.cs" />
     <Compile Include="Models\LoaiHopDong\GetByIdAction.cs" />
