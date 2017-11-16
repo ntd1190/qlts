@@ -1,0 +1,134 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title clearfix">
+                    <span><i class="fa fa-fw fa-star-o"></i>Kế hoạch</span>
+                    <div class="btn-group btn-group-sm pull-right">
+                        <form class="form-inline ng-pristine ng-valid">
+                                <div class="form-group form-group-sm">
+                                    <div class="input-group input-group-sm">
+                                        <input class="form-control ng-pristine ng-valid ng-empty ng-touched" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus="">
+                                        <span class="input-group-btn">
+                                            <button class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+
+                                        </span>
+                                    </div>
+                                </div>
+                            </form>                       
+                    </div>
+                </div>
+            </div>
+
+            <!---->
+            @*<div class="panel-body">
+                    <h3 class="text-center no-margin">Danh sách kế hoạch</h3>
+                </div>*@
+            <div class="panel-heading">
+                <span ng-if="ctrl.data.showButtonNew">
+                    <a class="btn btn-sm btn-primary" href="#!/kehoach/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="table-container panel-body">
+                <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listKeHoach" st-pipe="ctrl.action.getPage">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                                <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                            </th>
+                            <th class="text-center"
+                                style="width:{{cot.DoRong}}px;"
+                                st-sort="{{cot.MaCot}}"
+                                ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                                <span ng-bind="cot.TenCot"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.data.error.code>0">
+                            <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
+                        </tr>
+                        <tr ng-repeat="KeHoach in ctrl.data.listKeHoach" ng-click="ctrl.action.getPageDetail(KeHoach.KeHoachId)" id="row_{{KeHoach.KeHoachId}}">
+                            <td class="text-center text-primary" st-select-row="KeHoach" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                                <i class="fa fa-fw" ng-class="KeHoach.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                            </td>
+                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <a ng-switch-when="SoPhieu" ng-switch-when-separator="," href="#!/KeHoach/edit/{{KeHoach.KeHoachId}}" ng-bind="KeHoach[cot.MaCot]"></a>
+                                <span ng-switch-when="NgayTao">{{ KeHoach.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                                <span ng-switch-default ng-bind="KeHoach[cot.MaCot]"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="100" class="text-center hidden-print">
+                                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+            <div class="panel-heading">
+                <span>Thông tin chi tiết</span>
+            </div>
+            <div class="table-responsive  panel-body">
+                <table st-table="ctrl.data.KeHoachChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="min-width: 200px;vertical-align:middle">Hàng hóa</th>
+                            <th class="text-center" style="min-width: 90px;vertical-align:middle">ĐVT</th>
+                            <th class="text-center" style="min-width: 90px;vertical-align:middle">Số lượng</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Đơn giá</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Thành tiền</th>
+                            <th class="text-center" style="min-width: 150px;vertical-align:middle">Loại hàng hóa</th>
+                            <th class="text-center" style="min-width: 110px;vertical-align:middle">Ngày cập nhật</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày dự kiến</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Trạng thái</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="KeHoachChitiet in ctrl.data.KeHoachChiTietListDisplay" ng-class="(KeHoachChitiet.isSelected==true)?'info':''">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td><span ng-bind="KeHoachChitiet.TenHangHoa"></span></td>
+                            <td><span ng-bind="KeHoachChitiet.DonViTinh"></span></td>
+                            <td class="text-right"><span ng-bind="KeHoachChitiet.SoLuong|number"></span></td>
+                            <td class="text-right"><span ng-bind="KeHoachChitiet.DonGia|number"></span></td>
+                            <td class="text-right"><span ng-bind="(+KeHoachChitiet.SoLuong*KeHoachChitiet.DonGia)|number"></span></td>
+                            <td><span ng-bind="KeHoachChitiet.TenLoai"></span></td>
+                            <td><span>{{KeHoachChitiet.NgayTao | date : 'dd/MM/yyyy'}}</span></td>
+                            <td><span>{{KeHoachChitiet.NgayDuKien | date : 'dd/MM/yyyy'}}</span></td>
+                            <td><span ng-bind="KeHoachChitiet.TenTrangThai"></span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr></tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

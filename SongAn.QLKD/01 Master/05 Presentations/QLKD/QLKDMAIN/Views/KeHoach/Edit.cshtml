@@ -1,0 +1,186 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} kế hoạch</span>
+            </div>
+
+            <!---->
+
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
+                                <label class="control-label col-sm-3">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuKeHoach.SoPhieu" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuKeHoach.SoPhieu,'txtSoPhieu','cbxKhachHang',$event)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.KhachHangId?'has-error':''">
+                                <label class="control-label col-sm-3">Khách hàng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                                <div class="col-sm-7">
+                                    <cbo-khach-hang id="cbxKhachHang" data-function-code="KD0009" data-value="ctrl.data.phieuKeHoach.KhachHangId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/khachhang/showcombobox?viewname=cbokhachhang"></cbo-khach-hang>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.KyKeHoach?'has-error':''">
+                                <label class="control-label col-sm-3">Kế hoạch theo<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                                <div class="col-sm-7">
+                                    <select class="form-control" id="cbxKyKeHoach" style="padding:0px 10px" data-placeholder="" ng-model="ctrl.data.phieuKeHoach.KyKeHoach">
+                                        <option value="CANAM">Cả năm</option>
+                                        <option value="QUY1">Quý I</option>
+                                        <option value="QUY2">Quý II</option>
+                                        <option value="QUY3">Quý III</option>
+                                        <option value="QUY4">Quý IV</option>
+                                        <option value="THANG1">Tháng 1</option>
+                                        <option value="THANG2">Tháng 2</option>
+                                        <option value="THANG3">Tháng 3</option>
+                                        <option value="THANG4">Tháng 4</option>
+                                        <option value="THANG5">Tháng 5</option>
+                                        <option value="THANG6">Tháng 6</option>
+                                        <option value="THANG7">Tháng 7</option>
+                                        <option value="THANG8">Tháng 8</option>
+                                        <option value="THANG9">Tháng 9</option>
+                                        <option value="THANG10">Tháng 10</option>
+                                        <option value="THANG11">Tháng 11</option>
+                                        <option value="THANG12">Tháng 12</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.Nam?'has-error':''">
+                                <label class="control-label col-sm-3">Năm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                                <div class="col-sm-7">
+                                    <input type="number" min="1990" id="txtNam" class="form-control text-center" ng-model="ctrl.data.phieuKeHoach.Nam"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-heading">
+                <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" @*ng-if="ctrl.data.showButtonNew"*@>
+                    <i class="fa fa-plus"></i>
+                    Thêm chi tiết (F2)
+                </button>
+            </div>
+
+            <div class="panel-body table-responsive" style="max-height:300px;min-height:300px">
+                <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px;border: 1px solid #ddd;">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
+                            <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
+                            <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã HH<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 250px; vertical-align:middle">Hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>                            
+                            <th class="text-center" style="min-width: 220px; vertical-align:middle">Loại hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 150px; vertical-align:middle">Đơn giá <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 120px; vertical-align:middle">Thành tiền  </th>
+                            <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày cập nhật <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày dự kiến <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="KeHoachChiTiet in ctrl.data.listChiTiet" ng-class="KeHoachChiTiet.isError ? 'danger':''">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-xs btn-danger"
+                                   ng-click="ctrl.data.listChiTiet.splice($index,1)" ng-if="ctrl.data.showButtonXoa">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--ma hang hoa-->
+                                <input type="text" id="txtMaHangHoa{{$index}}" class="form-control text-left" ng-model="KeHoachChiTiet.MaHangHoa" ng-keydown="ctrl.action.keyPress(KeHoachChiTiet.MaHangHoa,'txtMaHangHoa'+$index,'cbxLoaiHangHoa'+$index,$index,$event)" />
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--hang hoa-->
+                                <cbo-hang-hoa id="cbxHangHoa{{$index}}" data-function-code="KD0009" data-value="KeHoachChiTiet.HangHoaId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hanghoa/showcombobox?viewname=cbohanghoa"></cbo-hang-hoa>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--dvtinh-->
+                                <span id="txtDonViTinh{{$index}}" class="form-control text-left " ng-bind="KeHoachChiTiet.DonViTinh" />                            </td>
+                            <td class="form-group form-group-sm">
+                                <!-- loai hang hoa-->
+                                <cbo-loai-hang-hoa id="cbxLoaiHangHoa{{$index}}" data-function-code="KD0009" data-value="KeHoachChiTiet.LoaiHangHoa" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaihanghoa/showcombobox?viewname=cboloaihanghoa"></cbo-loai-hang-hoa>
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong-->
+                                <input type="text" id="txtSoLuong{{$index}}" class="form-control text-right" ng-model="KeHoachChiTiet.SoLuong" number-format ng-keypress="ctrl.action.keyPress(KeHoachChiTiet.SoLuong,'txtSoLuong'+$index,'txtDonGia'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--don gia-->
+                                <input type="text" id="txtDonGia{{$index}}" class="form-control text-right" ng-model="KeHoachChiTiet.DonGia" number-format ng-keypress="ctrl.action.keyPress(KeHoachChiTiet.DonGia,'txtDonGia'+$index,'txtNgayTao'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--thanhtien-->
+                                <span id="txtThanhTien{{$index}}" class="form-control text-right" ng-bind="(+KeHoachChiTiet.SoLuong*KeHoachChiTiet.DonGia)|number:'':'':2"></span>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--ngay cap nhat-->
+                                <input type="text" id="txtNgayTao{{$index}}" class="form-control datetimepicker date" ng-model="KeHoachChiTiet.NgayTao" ng-keypress="ctrl.action.keyPress(KeHoachChiTiet.NgayTao,'txtNgayTao'+$index,'txtNgayDuKien'+$index,$index,$event)" />
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--ngay du kien-->
+                                <input type="text" id="txtNgayDuKien{{$index}}" class="form-control datetimepicker date" ng-model="KeHoachChiTiet.NgayDuKien" ng-keypress="ctrl.action.keyPress(KeHoachChiTiet.NgayDuKien,'txtNgayDuKien'+$index,'cbxTrangThai'+$index,$index,$event)" />
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--trang thai-->
+                                <select class="form-control" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="KeHoachChiTiet.PhuongThucId">
+                                    <option value="0">Mới tạo</option>
+                                    <option value="1">Đang báo giá</option>
+                                    <option value="2">Đang làm hợp đồng</option>
+                                    <option value="3">Hoàn thành</option>
+                                </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-footer">
+                <span ng-if="ctrl.data.showButtonSave">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.data.showButtonXoa">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.removePhieuDeNghi()"><i class="fa fa-trash-o"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+        <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

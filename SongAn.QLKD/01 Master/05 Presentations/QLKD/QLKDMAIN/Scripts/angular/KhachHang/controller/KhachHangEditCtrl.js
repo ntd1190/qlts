@@ -66,6 +66,7 @@
                     vm.data.objKhachHang.NgaySinh = moment().format('DD/MM/YYYY');
                     vm.data.objKhachHang.NgayThanhLap = moment().format('DD/MM/YYYY');
                     vm.data.objKhachHang.GioiTinh = $("#cbxGioiTinh option:first").val();
+                    vm.data.objKhachHang.HinhAnh = "avatar.jpg";
                 }
             }
 
@@ -157,9 +158,7 @@
             KhachHangService.insert(data).then(function (success) {
                 if (success.data.data) {
                     KhachHangId = success.data.data[0].KhachHangIdI;
-                    //utility.AlertSuccess('Thêm thành công!');
-
-                    alert('Thêm thành công!');
+                    utility.AlertSuccess('Thêm thành công!');
                     upload().then(function () {
 
                     }, function () {

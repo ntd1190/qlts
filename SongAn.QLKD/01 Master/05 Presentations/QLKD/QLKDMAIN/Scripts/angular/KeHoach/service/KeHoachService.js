@@ -3,48 +3,29 @@
 
     angular
         .module('app')
-        .factory('KhachHangService', KhachHangService);
+        .factory('KeHoachService', KeHoachService);
 
-    function KhachHangService($http, API_BASE) {
+    function KeHoachService($http, API_BASE) {
         var api = {
-            url: API_BASE + 'Api.QLTS/KhachHang/',
-            insert: 'InsertKhachHang',
-            update: 'UpdateKhachHangById',
-            GetPage: 'GetListKhachHangByProjection',
-            GetById: 'GetKhachHangById',
-            removeList: 'DeleteKhachHangById',
-            GetComboboxById: 'GetListcbxKhachHangById',
+            url: API_BASE + 'Api.QLTS/KeHoach/',
+            insert: 'InsertKeHoach',
+            update: 'UpdateKeHoachById',
+            GetPage: 'GetListKeHoachByProjection',
+            GetPageDetail: 'GetListKeHoachChiTietByKeHoachId',
+            GetById: 'GetKeHoachById',
+            removeList: 'DeleteKeHoachById',
         }
 
         var service = {
             getPage: getPage,
+            getPageDetail:getPageDetail,
             getById: getById,
             insert: insert,
             update: update,
             removeList: removeList,
-            GetComboboxById: GetComboboxById
         };
 
         return service;
-
-        function GetComboboxById(UserId, NhanVienId, Search, KhachHangId, FunctionCode) {
-            var url = api.url + api.GetComboboxById;
-
-            var req = {
-                url: url,
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({
-                    Search: Search,
-                    UserId: UserId,
-                    KhachHangId: KhachHangId,
-                    NhanVienId: NhanVienId,
-                    FunctionCode: FunctionCode
-                })
-            }
-
-            return $http(req);
-        }
 
         function removeList(ids) {
             var url = api.url + api.removeList;
@@ -61,7 +42,7 @@
             return $http(req);
         }
 
-        function getPage(draw, start, length, searchString,searchNhomKhachHangId, sortName, sortDir,fields, UserId, NhanVienId) {
+        function getPage(draw, start, length, searchString, sortName, sortDir, fields, UserId, NhanVienId) {
             var url = api.url + api.GetPage;
 
             var req = {
@@ -73,7 +54,6 @@
                     start: start,
                     length: length,
                     search: searchString,
-                    searchNhomKH:searchNhomKhachHangId,
                     sortName: sortName,
                     sortDir: sortDir,
                     UserId: UserId,
@@ -83,6 +63,7 @@
 
             return $http(req);
         }
+
 
         function insert(obj) {
             if (!obj) {
@@ -95,13 +76,15 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    khachHang: obj.KhachHang,
-                    userId: obj.UserId,
+
+                    phieuKeHoach: data.phieuKeHoach,
+                    listChiTiet: data.listChiTiet,
+                    userId: data.userId
                 })
             }
             return $http(req);
         }
-       
+
         function update(obj) {
             var url = api.url + api.update;
             var req = {
@@ -109,8 +92,10 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    khachHang: obj.KhachHang,
-                    userId: obj.UserId,
+                    keHoachId: obj.keHoachId,
+                    phieuKeHoach: obj.phieuKeHoach,
+                    listChiTiet: obj.listChiTiet,
+                    userId: obj.userId
                 })
             }
             return $http(req);
@@ -122,9 +107,22 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({ KhachHangid: id })
+                data: $.param({ KeHoachid: id })
             }
             return $http(req);
         };
+
+        function getPageDetail(id) {
+            var url = api.url + api.getPageDetail;
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({ KeHoachid: id })
+            }
+            return $http(req);
+        };
+
+        
     }
 })();

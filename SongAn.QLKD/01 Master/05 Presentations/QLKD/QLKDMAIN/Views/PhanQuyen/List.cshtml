@@ -19,6 +19,9 @@
                     <div class="col-sm-5">
                         <cbo-vai-tro id="cbxVaiTro" data-function-code="CN0018" data-value="ctrl.data.VaiTroId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/vaitro/showcombobox?viewname=cbovaitro"
                                      on-selected="ctrl.action.getListChucNangByVaiTroId(data)"></cbo-vai-tro>
+                        <cbo-hang-hoa id="cbxVaiTro1" data-function-code="CN0018" data-value="ctrl.data.HangHoaId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hanghoa/showcombobox?viewname=cbohanghoa"
+                                     ></cbo-hang-hoa>
+                        <cbo-loai-hang-hoa id="cbxVaiTro11" data-function-code="CN0018" data-value="ctrl.data.LoaiHangHoaId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/loaihanghoa/showcombobox?viewname=cboloaihanghoa"></cbo-loai-hang-hoa>
                     </div>
                 </div>
             </div>
