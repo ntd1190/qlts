@@ -21,6 +21,6 @@ D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\bin\Debug\System.We
 D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\bin\Debug\System.Web.WebPages.xml
 D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\bin\Debug\System.Web.WebPages.Razor.xml
+D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\obj\Debug\Util.Common.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\obj\Debug\SongAn.QLKD.Util.Common.dll
 D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\obj\Debug\SongAn.QLKD.Util.Common.pdb
-D:\WebProject\SongAn.QLKD\01 Master\00 Utilities\Util.Common\obj\Debug\Util.Common.csprojResolveAssemblyReference.cache

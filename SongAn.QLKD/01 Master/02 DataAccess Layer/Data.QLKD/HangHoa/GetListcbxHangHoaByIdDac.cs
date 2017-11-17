@@ -20,6 +20,7 @@ namespace SongAn.QLKD.Data.QLKD.HangHoa
         public string FunctionCode { get; set; }
         public string Search { get; set; }
         public int HangHoaId { get; set; }
+        public string MaHangHoa { get; set; }
 
 
 
@@ -83,6 +84,7 @@ namespace SongAn.QLKD.Data.QLKD.HangHoa
                 p.Add("FunctionCode", FunctionCode, DbType.String);
                 p.Add("Search", Search, DbType.String);
                 p.Add("HangHoaId", HangHoaId, DbType.Int32);
+                p.Add("MaHangHoa", MaHangHoa, DbType.String);
 
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_KD_HangHoa_cbxHangHoaById",

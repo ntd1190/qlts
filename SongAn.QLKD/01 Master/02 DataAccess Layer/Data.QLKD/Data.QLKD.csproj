@@ -60,6 +60,12 @@
     <Compile Include="DuLieu\InsertDuLieuDac.cs" />
     <Compile Include="DuLieu\UpdateDuLieuDac.cs" />
     <Compile Include="HangHoa\GetListcbxHangHoaByIdDac.cs" />
+    <Compile Include="HopDong\cbxGetListByCriteriaDac.cs" />
+    <Compile Include="HopDong\DeleteHopDongDac.cs" />
+    <Compile Include="HopDong\GetByIdDac.cs" />
+    <Compile Include="HopDong\GetListByCriteriaDac.cs" />
+    <Compile Include="HopDong\InsertHopDongDac.cs" />
+    <Compile Include="HopDong\UpdateHopDongDac.cs" />
     <Compile Include="KeHoach\DeleteKeHoachByIdDac.cs" />
     <Compile Include="KeHoach\GetListKeHoachByCriteriaDac.cs" />
     <Compile Include="KeHoach\GetListKeHoachByIdDac.cs" />
@@ -129,6 +135,7 @@
   <ItemGroup>
     <Folder Include="DiaBan\Dto\" />
     <Folder Include="DuLieu\Dto\" />
+    <Folder Include="HopDong\Dto\" />
     <Folder Include="LoaiHopDong\Dto\" />
     <Folder Include="NhanVien\Dto\" />
     <Folder Include="NhanVien\Procedures\" />
@@ -148,6 +155,12 @@
     <Content Include="DuLieu\Procedures\sp_KD_DuLieu_GetListByCriteria.sql" />
     <Content Include="DuLieu\Procedures\sp_KD_DuLieu_Insert.sql" />
     <Content Include="DuLieu\Procedures\sp_KD_DuLieu_Update.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_cbxGetListByCriteria.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_Delete.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_GetById.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_GetListByCriteria.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_Insert.sql" />
+    <Content Include="HopDong\Procedures\sp_KD_HopDong_Update.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_cbxGetListByCriteria.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_Delete.sql" />
     <Content Include="LoaiHopDong\Procedures\sp_KD_LoaiHopDong_GetById.sql" />

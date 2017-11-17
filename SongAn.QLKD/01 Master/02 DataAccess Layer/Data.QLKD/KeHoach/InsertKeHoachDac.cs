@@ -84,7 +84,7 @@ namespace SongAn.QLKD.Data.QLKD.KeHoach
                 p.Add("@MyTableType_KeHoachChiTiet", MyTable_KeHoachChiTiet.AsTableValuedParameter());
 
                 var objResult = await c.QueryAsync<dynamic>(
-                        sql: "sp_KeHoach_InsertKeHoach",
+                        sql: "sp_KD_KeHoach_InsertKeHoach",
                         param: p,
                         commandType: CommandType.StoredProcedure);
 

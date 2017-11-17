@@ -72,7 +72,7 @@ namespace SongAn.QLKD.Data.QLKD.KeHoach
             {
                 var p = new DynamicParameters();
 
-                p.Add("KhachHangId", KeHoachId, DbType.String);
+                p.Add("KeHoachId", KeHoachId, DbType.String);
                 var objResult = await c.QueryAsync<dynamic>(
                     sql: "sp_KD_KeHoachChiTiet_GetKeHoachChiTietByKeHoachId",
                     param: p,
