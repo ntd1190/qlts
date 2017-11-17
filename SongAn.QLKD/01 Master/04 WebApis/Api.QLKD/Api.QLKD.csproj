@@ -66,6 +66,7 @@
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
+    <Compile Include="Controllers\KDHopDongController.cs" />
     <Compile Include="Controllers\KeHoachController.cs" />
     <Compile Include="Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
@@ -77,6 +78,12 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\HopDong\cbxGetListByCriteriaAction.cs" />
+    <Compile Include="Models\HopDong\DeleteHopDongAction.cs" />
+    <Compile Include="Models\HopDong\GetByIdAction.cs" />
+    <Compile Include="Models\HopDong\GetListByCriteriaAction.cs" />
+    <Compile Include="Models\HopDong\InsertHopDongAction.cs" />
+    <Compile Include="Models\HopDong\UpdateHopDongAction.cs" />
     <Compile Include="Models\KeHoach\DeleteKeHoachByIdAction.cs" />
     <Compile Include="Models\KeHoach\GetListKeHoachByIdAction.cs" />
     <Compile Include="Models\KeHoach\GetListKeHoachByProjectionAction.cs" />

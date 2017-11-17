@@ -11,6 +11,7 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.WebPages.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\Dapper.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\Dapper.FastCrud.dll
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.Razor.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.WebPages.Razor.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\Microsoft.Web.Infrastructure.dll
@@ -26,6 +27,7 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.WebPages.xml
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\Dapper.xml
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\Dapper.FastCrud.xml
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.Razor.xml
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Web.WebPages.Razor.xml
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.Net.Http.Formatting.xml
@@ -33,5 +35,3 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\System.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\Biz.Main.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\SongAn.QLKD.Biz.Main.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\obj\Debug\SongAn.QLKD.Biz.Main.pdb
-D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
-D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.Main\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb

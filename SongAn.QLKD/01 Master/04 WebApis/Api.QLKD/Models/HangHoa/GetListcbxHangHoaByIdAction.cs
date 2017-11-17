@@ -15,6 +15,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.HangHoa
         public string UserId { get; set; }
         public string NhanVienId { get; set; }
         public string HangHoaId { get; set; }
+        public string MaHangHoa { get; set; }
         public string FunctionCode { get; set; }
         public async Task<ActionResultDto> Execute(ContextDto context)
         {
@@ -26,6 +27,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.HangHoa
                 biz.FunctionCode = FunctionCode;
                 biz.NhanVienId = Protector.String(NhanVienId);
                 biz.HangHoaId = Protector.Int(HangHoaId);
+                biz.MaHangHoa = Protector.String(MaHangHoa);
                 biz.UserId = Protector.String(UserId);
 
                 IEnumerable<dynamic> listHangHoa = await biz.Execute();

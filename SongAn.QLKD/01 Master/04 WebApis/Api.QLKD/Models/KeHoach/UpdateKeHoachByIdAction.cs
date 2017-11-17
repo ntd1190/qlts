@@ -79,6 +79,13 @@ namespace SongAn.QLKD.Api.QLKD.Models.KeHoach
             //////////////////////////////////////////////////////////////////////////
 
             var __phieuKiemKeChiTiet = JsonConvert.DeserializeObject<dynamic>(listChiTiet);
+            foreach (var item in __phieuKiemKeChiTiet)
+            {
+                item.NgayDuKien = DateTime.ParseExact(item.NgayDuKien.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+                item.NgayTao = DateTime.ParseExact(item.NgayTao.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+
+            }
+
             listChiTiet = JsonConvert.SerializeObject(__phieuKiemKeChiTiet);
             _listChiTiet = JsonConvert.DeserializeObject<List<Entity.QLKD.Entity.KDKeHoachChiTiet>>(listChiTiet);
             MyTable_KeHoachChiTiet = new DataTable();
