@@ -109,6 +109,9 @@
         vm.action = {
             deleteSelected: deleteSelected,
         };
+        vm.action.goBack = function () {
+            window.history.back();
+        };
         vm.action.resetNhomKhachHangId = function (data) {
             vm.data.objKhachHang.NhomKhachHangId = data.NhomKhachHangId;
         }

@@ -84,11 +84,11 @@
                     <thead class="bg-default text-primary">
                         <tr>
                             <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
-                            <th class="text-center" style="min-width: 200px;vertical-align:middle">Hàng hóa</th>
-                            <th class="text-center" style="min-width: 90px;vertical-align:middle">ĐVT</th>
+                            <th class="text-center" style="min-width: 250px;vertical-align:middle">Hàng hóa</th>
+                            <th class="text-center" style="min-width: 70px;vertical-align:middle">ĐVT</th>
                             <th class="text-center" style="min-width: 90px;vertical-align:middle">Số lượng</th>
                             <th class="text-center" style="min-width: 100px;vertical-align:middle">Đơn giá</th>
-                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Thành tiền</th>
+                            <th class="text-center" style="min-width: 110px;vertical-align:middle">Thành tiền</th>
                             <th class="text-center" style="min-width: 150px;vertical-align:middle">Loại hàng hóa</th>
                             <th class="text-center" style="min-width: 110px;vertical-align:middle">Ngày cập nhật</th>
                             <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày dự kiến</th>
@@ -110,13 +110,17 @@
                             <td class="text-right"><span ng-bind="KeHoachChitiet.DonGia|number"></span></td>
                             <td class="text-right"><span ng-bind="(+KeHoachChitiet.SoLuong*KeHoachChitiet.DonGia)|number"></span></td>
                             <td><span ng-bind="KeHoachChitiet.TenLoai"></span></td>
-                            <td><span>{{KeHoachChitiet.NgayTao | date : 'dd/MM/yyyy'}}</span></td>
-                            <td><span>{{KeHoachChitiet.NgayDuKien | date : 'dd/MM/yyyy'}}</span></td>
+                            <td class="text-center"><span>{{KeHoachChitiet.NgayTao | date : 'dd/MM/yyyy'}}</span></td>
+                            <td class="text-center"><span>{{KeHoachChitiet.NgayDuKien | date : 'dd/MM/yyyy'}}</span></td>
                             <td><span ng-bind="KeHoachChitiet.TenTrangThai"></span></td>
                         </tr>
                     </tbody>
                     <tfoot>
-                        <tr></tr>
+                        <tr>
+                            <td colspan="100">
+                                <p class="text-danger">Tổng số : {{ctrl.data.TongSo}}</p>
+                            </td>
+                        </tr>
                     </tfoot>
                 </table>
             </div>

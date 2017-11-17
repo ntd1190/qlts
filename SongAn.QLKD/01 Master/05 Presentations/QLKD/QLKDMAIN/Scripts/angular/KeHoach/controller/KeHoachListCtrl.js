@@ -27,16 +27,17 @@
         vm.data.listKeHoach = [];
         vm.data.KeHoachChiTietListDisplay = [];
         vm.data.objKeHoach = {};
+        vm.data.TongSo = 0;
         vm.data.listQuyenTacVu = [];
         vm.data.userInfo = {};
         vm.data.linkUrl = '';
         vm.data.listCot = [
-            { MaCot: 'SoPhieu', TenCot: 'Số phiếu', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'KyKeHoach', TenCot: 'Kế hoạch theo', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'Nam', TenCot: 'Năm', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'SoPhieu', TenCot: 'Số phiếu', HienThiYN: true, DoRong: 110 },
+            { MaCot: 'TenKyKeHoach', TenCot: 'Kế hoạch theo', HienThiYN: true, DoRong: 120 },
+            { MaCot: 'Nam', TenCot: 'Năm', HienThiYN: true, DoRong: 60 },
             { MaCot: 'TenKhachHang', TenCot: 'Khách hàng', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 150 },
+            { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 100 },
         ];
 
         /* INIT FUNCTION */
@@ -202,10 +203,11 @@
             $('tr').removeClass('info');
             $('#row_' + KeHoachId).addClass('info');
             if (KeHoachId && KeHoachId > 0) {
-                KeHoachService.getById(KeHoachId).then(function (success) {
+                KeHoachService.getPageDetail(KeHoachId).then(function (success) {
                     if (success.data.data) {
                         $('#bgloadding').remove();
                         vm.data.KeHoachChiTietListDisplay = success.data.data;
+                        vm.data.TongSo = success.data.data.length;
                     }
                     vm.data.isLoading = false;
                 }, function (error) {

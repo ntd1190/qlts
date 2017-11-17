@@ -77,9 +77,9 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
 
-                    phieuKeHoach: data.phieuKeHoach,
-                    listChiTiet: data.listChiTiet,
-                    userId: data.userId
+                    phieuKeHoach: obj.phieuKeHoach,
+                    listChiTiet: obj.listChiTiet,
+                    userId: obj.userId
                 })
             }
             return $http(req);
@@ -113,7 +113,7 @@
         };
 
         function getPageDetail(id) {
-            var url = api.url + api.getPageDetail;
+            var url = api.url + api.GetPageDetail;
             var req = {
                 url: url,
                 method: 'POST',

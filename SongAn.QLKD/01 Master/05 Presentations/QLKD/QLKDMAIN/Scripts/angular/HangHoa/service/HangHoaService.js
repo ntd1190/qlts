@@ -17,7 +17,7 @@
 
         return service;
 
-        function GetComboboxById(UserId, NhanVienId, Search, HangHoaId, FunctionCode) {
+        function GetComboboxById(UserId, NhanVienId, Search, HangHoaId, MaHangHoa, FunctionCode) {
             var url = api.url + api.GetComboboxById;
 
             var req = {
@@ -28,6 +28,7 @@
                     Search: Search,
                     UserId: UserId,
                     HangHoaId: HangHoaId,
+                    MaHangHoa:MaHangHoa,
                     NhanVienId: NhanVienId,
                     FunctionCode: FunctionCode
                 })

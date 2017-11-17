@@ -1,0 +1,23 @@
+﻿@*
+    <cbo-hop-dong hopdongid="ctrl.data.diaBanId"
+                 functioncode="functioncode"
+                 config="{userInfo:@(ViewBag.userInfo)}"
+                 on-selected="ctrl.action.getHopDong(data)"
+                 disabled="false"
+                 template-url="~/hopdong/showcombobox?viewname=cboHopDong"></cbo-hop-dong>
+*@
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <ui-select ng-model="ctrl.data.objSelected" data-ng-disabled="disabled" on-select="ctrl.action.onSelected()" theme="bootstrap" id="{{ctrl.NameId}}">
+        <ui-select-match placeholder="{{$select.selected.TenHopDong || 'Chọn hợp đồng'}}">{{$select.selected.TenHopDong}}</ui-select-match>
+        <ui-select-choices repeat="item in ctrl.data.listDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
+            <span ng-bind-html="item.TenHopDong"></span>
+        </ui-select-choices>
+    </ui-select>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

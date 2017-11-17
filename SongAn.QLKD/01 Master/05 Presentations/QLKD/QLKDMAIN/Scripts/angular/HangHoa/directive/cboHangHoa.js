@@ -10,6 +10,7 @@
                 input: '<',
                 config: '<',
                 value: '=',
+                maHangHoa: '=',
                 disabled: '<',
                 functionCode: '@',
             },
@@ -36,6 +37,7 @@
         vm.inputSearch = {};
         vm.inputSearch.SearchString = '';
         vm.inputSearch.HangHoaId = 0;
+        vm.inputSearch.MaHangHoa = '';
 
         /*** INIT FUNCTION ***/
 
@@ -78,6 +80,22 @@
             });
         });
 
+        $scope.$watch('maHangHoa', function (newValue, oldValue) {
+            if (!newValue) { return; }
+            delete vm.inputSearch;
+            vm.inputSearch = {};
+            vm.inputSearch.MaHangHoa = newValue;
+            getPage().then(function (success) {
+                if (success.data.data && success.data.data.length > 0) {
+                    vm.data.HangHoa = success.data.data[0];
+                } else {
+                    delete vm.data.HangHoa;
+                    vm.data.HangHoa = {};
+                }
+                $scope.onSelected({ data: vm.data.HangHoa });
+            });
+        });
+
         activate()
         function activate() {
             onInitView($scope.config);
@@ -109,10 +127,11 @@
             var NhanVienId = userInfo.NhanVienId || 0;
             var search = vm.inputSearch.SearchString || '';
             var HangHoaId = vm.inputSearch.HangHoaId || 0;
+            var MaHangHoa = vm.inputSearch.MaHangHoa || '';
             var FunctionCode = $scope.functionCode || '';
 
             return $q(function (resolve, reject) {
-                service.GetComboboxById(UserId, NhanVienId, search, HangHoaId, FunctionCode)
+                service.GetComboboxById(UserId, NhanVienId, search, HangHoaId, MaHangHoa, FunctionCode)
                     .then(function (success) {
 
                         vm.status.isLoading = false;

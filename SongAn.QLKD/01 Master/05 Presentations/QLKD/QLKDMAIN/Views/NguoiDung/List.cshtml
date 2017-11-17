@@ -7,47 +7,60 @@
 {
     <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo})" keyboard="ctrl.keys">
         <div class="panel panel-default">
-            <div class="panel-body">
-                <a class="btn btn-warning pull-right" href="javascript:void(0)" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
-                <h3 class="text-center no-margin">Danh sách người dùng</h3>
+            <div class="panel-heading clearfix">
+                <span class="panel-title">Người dùng</span>
+                <form class="form-inline pull-right" autocomplete="on">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" ng-model="ctrl.inputSearch.search" autofocus />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" href="javascript:void(0)" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                            <a class="btn btn-sm btn-warning" href="javascript:void(0)" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
+                        </span>
+                    </div>
+                </form>
             </div>
-            <div class="table-responsive">
-                <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listNguoiDung" st-pipe="ctrl.action.getPage">
-                    <thead class="bg-default text-primary">
-                        <tr>
-                            <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
-                                <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
-                            </th>
-                            <th class="text-center"
-                                style="width:{{cot.DoRong}}px;"
-                                st-sort="{{cot.MaCot}}"
-                                ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
-                                <span ng-bind="cot.TenCot"></span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr ng-if="ctrl.data.error.code>0">
-                            <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
-                        </tr>
-                        <tr ng-repeat="nguoidung in ctrl.data.listNguoiDung">
-                            <td class="text-center text-primary" st-select-row="nguoidung" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
-                                <i class="fa fa-fw" ng-class="nguoidung.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
-                            </td>
-                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                                <a ng-switch-when="MaNguoiDung,HoTen" ng-switch-when-separator="," href="javascript:void(0)" ng-click="ctrl.action.xemNguoiDung(nguoidung.NguoiDungId)" ng-bind="nguoidung[cot.MaCot]"></a>
-                                <span ng-switch-default ng-bind="nguoidung[cot.MaCot]"></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <td colspan="100" class="text-center hidden-print">
-                                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
-                            </td>
-                        </tr>
-                    </tfoot>
-                </table>
+            <div class="panel-body">
+                <h3 class="text-center no-padding">Danh sách người dùng</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listNguoiDung" st-pipe="ctrl.action.getPage">
+                        <thead class="bg-default text-primary">
+                            <tr>
+                                <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                                    <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </th>
+                                <th class="text-center"
+                                    style="width:{{cot.DoRong}}px;"
+                                    st-sort="{{cot.MaCot}}"
+                                    ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                                    <span ng-bind="cot.TenCot"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="ctrl.data.error.code>0">
+                                <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
+                            </tr>
+                            <tr ng-repeat="nguoidung in ctrl.data.listNguoiDung">
+                                <td class="text-center text-primary" st-select-row="nguoidung" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                                    <i class="fa fa-fw" ng-class="nguoidung.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </td>
+                                <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                    <a ng-switch-when="MaNguoiDung,HoTen" ng-switch-when-separator="," href="javascript:void(0)" ng-click="ctrl.action.xemNguoiDung(nguoidung.NguoiDungId)" ng-bind="nguoidung[cot.MaCot]"></a>
+                                    <span ng-switch-default ng-bind="nguoidung[cot.MaCot]"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="100" class="text-center hidden-print">
+                                    <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
             </div>
             <div class="panel-footer hidden-print">
                 <span ng-if="ctrl.action.checkQuyenTacVu('N')">

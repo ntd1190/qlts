@@ -65,7 +65,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.Nam?'has-error':''">
                                 <label class="control-label col-sm-3">Năm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
                                 <div class="col-sm-7">
-                                    <input type="number" min="1990" id="txtNam" class="form-control text-center" ng-model="ctrl.data.phieuKeHoach.Nam"/>
+                                    <input type="number" min="1990" id="txtNam" class="form-control text-center" ng-model="ctrl.data.phieuKeHoach.Nam" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuKeHoach.Nam,'txtNam','txtMaHangHoa0',$event)"/>
                                 </div>
                             </div>
                         </div>
@@ -74,7 +74,7 @@
             </div>
 
             <div class="panel-heading">
-                <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" @*ng-if="ctrl.data.showButtonNew"*@>
+                <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
                     <i class="fa fa-plus"></i>
                     Thêm chi tiết (F2)
                 </button>
@@ -89,13 +89,13 @@
                             <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã HH<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 250px; vertical-align:middle">Hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>                            
-                            <th class="text-center" style="min-width: 220px; vertical-align:middle">Loại hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
+                            <th class="text-center" style="min-width: 200px; vertical-align:middle">Loại hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 150px; vertical-align:middle">Đơn giá <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 120px; vertical-align:middle">Thành tiền  </th>
                             <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày cập nhật <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
                             <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày dự kiến <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></th>
-                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Trạng thái</th>
+                            <th class="text-center" style="min-width: 140px; vertical-align:middle">Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -118,7 +118,8 @@
                             </td>
                             <td class="form-group form-group-sm">
                                 <!--hang hoa-->
-                                <cbo-hang-hoa id="cbxHangHoa{{$index}}" data-function-code="KD0009" data-value="KeHoachChiTiet.HangHoaId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hanghoa/showcombobox?viewname=cbohanghoa"></cbo-hang-hoa>
+                                <cbo-hang-hoa id="cbxHangHoa{{$index}}" data-function-code="KD0009" data-value="KeHoachChiTiet.HangHoaId" ma-hang-hoa="KeHoachChiTiet.TempMaHangHoa" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hanghoa/showcombobox?viewname=cbohanghoa"
+                                              on-selected="ctrl.action.getDataHangHoa(data, {$index})"></cbo-hang-hoa>
                             </td>
                             <td class="form-group form-group-sm">
                                 <!--dvtinh-->
@@ -149,7 +150,7 @@
                             </td>
                             <td class="form-group form-group-sm">
                                 <!--trang thai-->
-                                <select class="form-control" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="KeHoachChiTiet.PhuongThucId">
+                                <select class="form-control" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="KeHoachChiTiet.TrangThai">
                                     <option value="0">Mới tạo</option>
                                     <option value="1">Đang báo giá</option>
                                     <option value="2">Đang làm hợp đồng</option>
@@ -166,7 +167,7 @@
                     <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
                 </span>
                 <span ng-if="ctrl.data.showButtonXoa">
-                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.removePhieuDeNghi()"><i class="fa fa-trash-o"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
                 </span>
                 <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

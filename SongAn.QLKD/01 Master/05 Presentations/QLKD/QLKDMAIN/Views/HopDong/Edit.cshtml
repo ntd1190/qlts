@@ -1,0 +1,199 @@
+﻿
+@{
+    ViewBag.Title = "Hợp đồng";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo),linkUrl:'@(Url.Content("~/"))',functionCode:'KD0010'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <h3 class="text-center no-margin">Thông tin hợp đồng</h3>
+            </div>
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_SoHopDong?'has-error':''">
+                                <label class="control-label col-sm-4">Số hợp đồng<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.SoHopDong" autofocus
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_SoHopDong" data-next="HopDong_TenHopDong" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_TenHopDong?'has-error':''">
+                                <label class="control-label col-sm-4">Tên hợp đồng<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.TenHopDong"
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_TenHopDong" data-next="HopDong_NgayHopDong" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_NgayHopDong?'has-error':''">
+                                <label class="control-label col-sm-4">Ngày hợp đồng<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control datetimepicker date" type="text" ng-model="ctrl.data.HopDong.NgayHopDong"
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_NgayHopDong" data-next="HopDong_LoaiHopDongId" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_LoaiHopDongId?'has-error':''">
+                                <label class="control-label col-sm-4">Loại hợp đồng</label>
+                                <div class="col-sm-8">
+                                    <cbo-loai-hop-dong ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_LoaiHopDongId" data-next="HopDong_NhanVienId"
+                                                       loaihopdongid="ctrl.data.HopDong.LoaiHopDongId"
+                                                       functioncode="{{ctrl.functionCode}}"
+                                                       config="{userInfo:@(ViewBag.userInfo)}"
+                                                       disabled="false"
+                                                       template-url="~/loaihopdong/showcombobox?viewname=cboLoaiHopDong"></cbo-loai-hop-dong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_NhanVienId?'has-error':''">
+                                <label class="control-label col-sm-4">Nhân viên KD<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <cbo-nhan-vien-by-phong-ban ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_NhanVienId" data-next="HopDong_KhachHangId"
+                                                                value="ctrl.data.HopDong.NhanVienId"
+                                                                functioncode="{{ctrl.functionCode}}"
+                                                                config="{userInfo:@(ViewBag.userInfo)}"
+                                                                disabled="false"
+                                                                template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_KhachHangId?'has-error':''">
+                                <label class="control-label col-sm-4">Khách hàng<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <cbo-khach-hang ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_KhachHangId" data-next="HopDong_NgayHopDong"
+                                                    value="ctrl.data.HopDong.KhachHangId"
+                                                    functioncode="{{ctrl.functionCode}}"
+                                                    config="{userInfo:@(ViewBag.userInfo)}"
+                                                    disabled="false"
+                                                    template-url="~/khachhang/showcombobox?viewname=cbokhachhang"></cbo-khach-hang>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_NgayThanhLy?'has-error':''">
+                                <label class="control-label col-sm-4">Ngày thanh lý</label>
+                                <div class="col-sm-8">
+                                    <input class="form-control datetimepicker date" type="text" ng-model="ctrl.data.HopDong.NgayThanhLy"
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_NgayThanhLy" data-next="HopDong_SoTien" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_SoTien?'has-error':''">
+                                <label class="control-label col-sm-4">Số tiền<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.SoTien" number-format
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_SoTien" data-next="HopDong_SoHoaDon" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_SoHoaDon?'has-error':''">
+                                <label class="control-label col-sm-4">Số hóa đơn<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.SoHoaDon"
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_SoHoaDon" data-next="HopDong_NgayHoaDon" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_NgayHoaDon?'has-error':''">
+                                <label class="control-label col-sm-4">Ngày hóa đơn<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control datetimepicker date" type="text" ng-model="ctrl.data.HopDong.NgayHoaDon"
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_NgayHoaDon" data-next="HopDong_ThanhToan" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_ThanhToan?'has-error':''">
+                                <label class="control-label col-sm-4">Thanh toán<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.ThanhToan" number-format
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_ThanhToan" data-next="HopDong_TyLe" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_TyLe?'has-error':''">
+                                <label class="control-label col-sm-4">Tỷ lệ (%)<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <input class="form-control" type="text" ng-model="ctrl.data.HopDong.TyLe" number-format
+                                           ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_TyLe" data-next="HopDong_Chi" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_Chi?'has-error':''">
+                                <label class="control-label col-sm-4">Hoa hồng<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="ctrl.data.HopDong.Chi" value="Y"
+                                               ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_Chi" data-next="HopDong_DuLieuId" />
+                                        đã chi
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" ng-model="ctrl.data.HopDong.Chi" value="N"
+                                               ng-keydown="ctrl.action.keyPress($event)" />
+                                        chưa chi
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDong_DuLieuId?'has-error':''">
+                                <label class="control-label col-sm-4">Dữ liệu<span class="text-danger">&nbsp;*</span></label>
+                                <div class="col-sm-8">
+                                    <cbo-du-lieu ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_DuLieuId" data-next="HopDong_DuLieuId"
+                                                 dulieuid="ctrl.data.HopDong.DuLieuId"
+                                                 functioncode="{{ctrl.functionCode}}"
+                                                 config="{userInfo:@(ViewBag.userInfo)}"
+                                                 disabled="false"
+                                                 template-url="~/dulieu/showcombobox?viewname=cboDuLieu"></cbo-du-lieu>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-footer">
+                <span ng-if="ctrl.action.checkQuyenTacVu('N')||ctrl.action.checkQuyenTacVu('M')">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.delete()"><i class="fa fa-fw fa-trash-o"></i>Xóa</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <a class="btn btn-sm btn-default" href="~/#!/hopdong/list"><i class="fa fa-fw fa-trash-o"></i>Quay lại</a>&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

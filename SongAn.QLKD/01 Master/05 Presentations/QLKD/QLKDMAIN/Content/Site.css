@@ -21,6 +21,9 @@
 .form-horizontal .checkbox-inline {
     padding-top: 5px;
 }
+.form-horizontal.no-margin .form-group {
+    margin: 0;
+}
 
 /********************************************************************/
 /*** PANEL DEFAULT ***/

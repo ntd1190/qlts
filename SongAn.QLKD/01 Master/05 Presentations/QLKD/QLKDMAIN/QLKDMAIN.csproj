@@ -112,8 +112,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Site.css" />
-    <Content Include="Content\Upload\KhachHang\20171116093603816.jpg" />
-    <Content Include="Content\Upload\KhachHang\avatar.jpg" />
     <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="Global.asax" />
     <Content Include="lib\angular-smart-table\smart-table.min.js" />
@@ -211,18 +209,22 @@
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
-    <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
-    <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
-    <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
     <Content Include="Scripts\angular\DuLieu\controller\DuLieuListCtrl.js" />
     <Content Include="Scripts\angular\DuLieu\directive\cboDuLieu.js" />
     <Content Include="Scripts\angular\DuLieu\service\DuLieuService.js" />
     <Content Include="Scripts\angular\HangHoa\directive\cboHangHoa.js" />
     <Content Include="Scripts\angular\HangHoa\service\HangHoaService.js" />
+    <Content Include="Scripts\angular\HopDong\controller\HopDongEditCtrl.js" />
+    <Content Include="Scripts\angular\HopDong\controller\HopDongListCtrl.js" />
+    <Content Include="Scripts\angular\HopDong\directive\cboHopDong.js" />
+    <Content Include="Scripts\angular\HopDong\service\HopDongService.js" />
     <Content Include="Scripts\angular\KeHoach\controller\KeHoachEditCtrl.js" />
     <Content Include="Scripts\angular\KeHoach\controller\KeHoachListCtrl.js" />
     <Content Include="Scripts\angular\KeHoach\service\KeHoachService.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
+    <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
     <Content Include="Scripts\angular\KhachHang\directive\cboKhachHang.js" />
+    <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
     <Content Include="Scripts\angular\LoaiHangHoa\directive\cboLoaiHangHoa.js" />
     <Content Include="Scripts\angular\LoaiHangHoa\service\LoaiHangHoaService.js" />
     <Content Include="Scripts\angular\LoaiHopDong\controller\LoaiHopDongListCtrl.js" />
@@ -240,9 +242,6 @@
     <Content Include="Scripts\angular\DiaBan\controller\DiaBanListCtrl.js" />
     <Content Include="Scripts\angular\DiaBan\directive\cboDiaBan.js" />
     <Content Include="Scripts\angular\DiaBan\service\DiaBanService.js" />
-    <Content Include="Scripts\angular\KhachHang\controller\KhachHangEditCtrl.js" />
-    <Content Include="Scripts\angular\KhachHang\controller\KhachHangListCtrl.js" />
-    <Content Include="Scripts\angular\KhachHang\service\KhachHangService.js" />
     <Content Include="Scripts\angular\NguoiDung\controller\NguoiDungListCtrl.js" />
     <Content Include="Scripts\angular\NguoiDung\directive\cboNguoiDung.js" />
     <Content Include="Scripts\angular\NguoiDung\service\NguoiDungService.js" />
@@ -265,9 +264,6 @@
     <Content Include="Scripts\angular\shared\service\ExcelExport.js" />
     <Content Include="Scripts\angular\shared\smart-table\directive\page-select.directive.js" />
     <Content Include="Scripts\angular\shared\smart-table\template\pagination.custom.html" />
-    <Content Include="Scripts\angular\ThuatNgu\controller\ThuatNguListCtrl.js" />
-    <Content Include="Scripts\angular\ThuatNgu\directive\cboThuatNgu.js" />
-    <Content Include="Scripts\angular\ThuatNgu\service\ThuatNguService.js" />
     <Content Include="Scripts\angular\Tinh\directive\cboTinh.js" />
     <Content Include="Scripts\angular\Tinh\service\TinhService.js" />
     <Content Include="Scripts\angular\TuyChonFormCot\directive\TuyChonCotList.directive.js" />
@@ -310,14 +306,9 @@
     <Content Include="fonts\fontawesome-webfont.woff2" />
     <Content Include="fonts\FontAwesome.otf" />
     <None Include="Scripts\_references.js" />
-    <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
-    <Content Include="Views\DiaBan\List.cshtml" />
-    <Content Include="Views\DuLieu\cboDuLieu.cshtml" />
-    <Content Include="Views\DuLieu\List.cshtml" />
-    <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
-    <Content Include="Views\LoaiHopDong\List.cshtml" />
-    <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
-    <Content Include="Views\ThuatNgu\List.cshtml" />
+    <Content Include="Views\HopDong\cboHopDong.cshtml" />
+    <Content Include="Views\HopDong\Edit.cshtml" />
+    <Content Include="Views\HopDong\List.cshtml" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -326,14 +317,17 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
+    <Compile Include="Controllers\HopDongController.cs" />
+    <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\KeHoachController.cs" />
     <Compile Include="Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
+    <Compile Include="Controllers\TuyChonCotController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
-    <Compile Include="Controllers\KhachHangController.cs" />
+    <Compile Include="Controllers\ThuatNguController.cs" />
+    <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
     <Compile Include="Controllers\NguoiDungController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -342,9 +336,7 @@
     <Compile Include="Controllers\PhanQuyenController.cs" />
     <Compile Include="Controllers\PhuongXaController.cs" />
     <Compile Include="Controllers\QuanHuyenController.cs" />
-    <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
-    <Compile Include="Controllers\TuyChonCotController.cs" />
     <Compile Include="Controllers\UploadController.cs" />
     <Compile Include="Controllers\VaiTroController.cs" />
     <Compile Include="Global.asax.cs">
@@ -380,17 +372,23 @@
     <Content Include="Views\Tinh\cboTinh.cshtml" />
     <Content Include="Views\QuanHuyen\cboQuanHuyen.cshtml" />
     <Content Include="Views\PhuongXa\cboPhuongXa.cshtml" />
+    <Content Include="Views\DiaBan\List.cshtml" />
+    <Content Include="Views\DiaBan\cboDiaBan.cshtml" />
+    <Content Include="Views\ThuatNgu\cboThuatNgu.cshtml" />
+    <Content Include="Views\ThuatNgu\List.cshtml" />
+    <Content Include="Views\LoaiHopDong\cboLoaiHopDong.cshtml" />
+    <Content Include="Views\LoaiHopDong\List.cshtml" />
     <Content Include="Views\NhomKinhDoanh\cboNhomKinhDoanh.cshtml" />
     <Content Include="Views\NhomKinhDoanh\List.cshtml" />
     <Content Include="Views\DuLieu\cboDuLieu.cshtml" />
     <Content Include="Views\DuLieu\List.cshtml" />
     <Content Include="Views\TuyChonCot\TuyChonCotList.cshtml" />
-    <Content Include="Views\KhachHang\List.cshtml" />
-    <Content Include="Views\KhachHang\Edit.cshtml" />
-    <Content Include="Views\NhomKhachHang\List.cshtml" />
     <Content Include="Views\KhachHang\cboKhachHang.cshtml" />
-    <Content Include="Views\HangHoa\cboHangHoa.cshtml" />
+    <Content Include="Views\KhachHang\Edit.cshtml" />
+    <Content Include="Views\KhachHang\List.cshtml" />
     <Content Include="Views\LoaiHangHoa\cboLoaiHangHoa.cshtml" />
+    <Content Include="Views\NhomKhachHang\List.cshtml" />
+    <Content Include="Views\HangHoa\cboHangHoa.cshtml" />
     <Content Include="Views\KeHoach\List.cshtml" />
     <Content Include="Views\KeHoach\Edit.cshtml" />
     <None Include="Web.Debug.config">
@@ -403,6 +401,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\Upload\DuLieu\" />
+    <Folder Include="Content\Upload\KhachHang\" />
     <Folder Include="Models\" />
     <Folder Include="Scripts\angular\KeHoach\directive\" />
     <Folder Include="Scripts\angular\shared\smart-table\service\" />

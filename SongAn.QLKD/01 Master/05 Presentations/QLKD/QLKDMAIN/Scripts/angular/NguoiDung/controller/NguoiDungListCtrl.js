@@ -21,6 +21,7 @@
 
         vm.status = {};
         vm.status.openTuyChonCotPopup = false;
+        vm.inputSearch = {};
         vm.data = {};
         vm.data.listNguoiDung = [];
         vm.data.objNguoiDung = {
@@ -33,7 +34,6 @@
             { MaCot: 'HoTen', TenCot: 'Họ tên', HienThiYN: true, DoRong: 0 },
             { MaCot: 'Email', TenCot: 'Email', HienThiYN: true, DoRong: 0 },
         ];
-
         /* INIT FUNCTION */
 
         vm.onInitView = function (config) {
@@ -107,6 +107,10 @@
         vm.action.getPage = function (tableState) {
             getPage(tableState);
         };
+        vm.action.search = function () {
+            _tableState.pagination.start = 0;
+            getPage(_tableState);
+        }
 
         vm.action.autoCheckAll = function () {
             vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listNguoiDung);
@@ -204,7 +208,7 @@
             var number = tableState.pagination.number || 10;  // Number of entries showed per page.
             var sortName = tableState.sort.predicate || 'A.NguoiDungId';
             var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
-            var searchString = vm.data.searchString;
+            var searchString = vm.inputSearch.search;
             var fields = "";
             NguoiDungService.getPage(draw, start, number, searchString, sortName, sortDir, fields, vm.data.UserLoginId)
                 .then(function (success) {
