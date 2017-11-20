@@ -261,9 +261,15 @@
                     vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
                     if (vm.error.SoPhieu) {
                         $("#" + fromId).focus();
-                    } else $("#" + ToId + " input").focus();
+                    } else $("#" + ToId ).focus();
                 }
-                else if (fromId == 'txtNam') {
+                else if (fromId == 'txtTenDonHang') {
+                    vm.error.TenDonHang = utility.checkInValid(obj.TenDonHang, 'isEmpty');
+                    if (vm.error.TenDonHang) {
+                        $("#" + fromId).focus();
+                    } else $("#" + ToId ).focus();
+                }
+                else if (fromId == 'txtGhiChu') {
                     if (vm.data.listChiTiet.length > 0) {
                         $("#txtMaHangHoa0").focus();
                     }
@@ -282,7 +288,7 @@
                     vm.data.listChiTiet[index].TempMaHangHoa = value;
                     $timeout(function () {
                         if (vm.data.listChiTiet[index].HangHoaId > 0) {
-                            $("#" + ToId + " input").focus();
+                            $("#" + ToId).focus();
                         }
                     }, 100);
                 }
@@ -308,19 +314,17 @@
             chitiet.DonHangChiTietId = 0;
             chitiet.DonHangId = 0;
             chitiet.HangHoaId = 0;
-            chitiet.LoaiHangHoa = 0;
             chitiet.SoLuong = 0;
             chitiet.DonGia = 0;
-            chitiet.NgayDuKien = moment().format('DD/MM/YYYY');
-            chitiet.NgayTao = moment().format('DD/MM/YYYY');
-            chitiet.TrangThai = "0";
+            chitiet.NgayYeuCau = moment().format('DD/MM/YYYY');
+            chitiet.NgayNhanHang = moment().format('DD/MM/YYYY');
             vm.data.listChiTiet.push(chitiet);
 
             $timeout(function () {
-                jQuery("#txtNgayDuKien" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                jQuery("#txtNgayYeuCau" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                     mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                 })
-                jQuery("#txtNgayTao" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                jQuery("#txtNgayNhanHang" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                     mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                 })
 

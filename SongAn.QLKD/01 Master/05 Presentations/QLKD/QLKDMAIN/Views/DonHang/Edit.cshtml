@@ -21,7 +21,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.SoPhieu?'has-error':''">
                                 <label class="control-label col-sm-4">Số phiếu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.SoPhieu" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.SoPhieu,'txtSoPhieu','txtTenDonHang',$event)" />
+                                    <input type="text" id="txtSoPhieu" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.SoPhieu" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.SoPhieu,'txtSoPhieu','txtTenDonHang',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.TenDonHang?'has-error':''">
                                 <label class="control-label col-sm-2">Tên đơn hàng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
                                 <div class="col-sm-10">
-                                    <input type="text" id="txtTenDonHang" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.TenDonHang" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.TenDonHang,'txtTenDonHang','cbxKhachHang',$event)" />
+                                    <input type="text" id="txtTenDonHang" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.TenDonHang" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.TenDonHang,'txtTenDonHang','cbxKhachHang',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -55,7 +55,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.LyDo?'has-error':''">
                                 <label class="control-label col-sm-4">Lý do</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtLyDo" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.LyDo" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.LyDo,'txtLyDo','cbxNhanVien',$event)" />
+                                    <input type="text" id="txtLyDo" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.LyDo" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.LyDo,'txtLyDo','cbxNhanVien',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -73,7 +73,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanNhan?'has-error':''">
                                 <label class="control-label col-sm-4">Bộ phận nhận </label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtBoPhanNhan" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.BoPhanNhan" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.BoPhanNhan,'txtBoPhanNhan','txtNguoiNhan',$event)" />
+                                    <input type="text" id="txtBoPhanNhan" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.BoPhanNhan" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.BoPhanNhan,'txtBoPhanNhan','txtNguoiNhan',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -81,7 +81,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NguoiNhan?'has-error':''">
                                 <label class="control-label col-sm-4">Người nhận</label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtNguoiNhan" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.NguoiNhan" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.NguoiNhan,'txtNguoiNhan','txtNgayLap',$event)" />
+                                    <input type="text" id="txtNguoiNhan" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.NguoiNhan" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.NguoiNhan,'txtNguoiNhan','txtNgayLap',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -91,7 +91,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
                                 <label class="control-label col-sm-4">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDonHang.NgayLap" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.NgayLap,'txtNgayLap','txtNgayDuyet',$event)" />
+                                    <input type="text" id="txtNgayLap" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDonHang.NgayLap" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.NgayLap,'txtNgayLap','txtNgayDuyet',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -99,7 +99,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayDuyet?'has-error':''">
                                 <label class="control-label col-sm-4">Ngày duyệt <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
                                 <div class="col-sm-8">
-                                    <input type="text" id="txtNgayDuyet" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDonHang.NgayDuyet" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.NgayDuyet,'txtNgayDuyet','cbxTrangThai',$event)" />
+                                    <input type="text" id="txtNgayDuyet" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDonHang.NgayDuyet" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.NgayDuyet,'txtNgayDuyet','cbxTrangThai',$event)" />
                                 </div>
                             </div>
                         </div>
@@ -121,7 +121,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.GhiChu?'has-error':''">
                                 <label class="control-label col-sm-1" style="width:11%">Ghi chú </label>
                                 <div class="col-sm-11" style="width:89%">
-                                    <input type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objKhachHang.GhiChu" ng-keypress="ctrl.action.keyPressKeHoach(ctrl.data.phieuDonHang.GhiChu,'txtGhiChu','',$event)" >
+                                    <input type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objKhachHang.GhiChu" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.GhiChu,'txtGhiChu','',$event)" >
                                 </div>
                             </div>
                         </div>
