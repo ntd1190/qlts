@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
+    <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
+    <Compile Include="DonHang\GetListDonHangByIdDac.cs" />
+    <Compile Include="DonHang\GetListDonHangChiTietByDonHangIdDac.cs" />
+    <Compile Include="DonHang\InsertDonHangDac.cs" />
+    <Compile Include="DonHang\UpdateDonHangByIdDac.cs" />
     <Compile Include="DuLieu\cbxGetListByCriteriaDac.cs" />
     <Compile Include="DuLieu\DeleteDuLieuDac.cs" />
     <Compile Include="DuLieu\GetByIdDac.cs" />
