@@ -51,6 +51,12 @@
     <Compile Include="DiaBan\GetListByCriteriaBiz.cs" />
     <Compile Include="DiaBan\InsertDiaBanBiz.cs" />
     <Compile Include="DiaBan\UpdateDiaBanBiz.cs" />
+    <Compile Include="DonHang\DeleteDonHangByIdBiz.cs" />
+    <Compile Include="DonHang\GetListDonHangByCriteriaBiz.cs" />
+    <Compile Include="DonHang\GetListDonHangByIdBiz.cs" />
+    <Compile Include="DonHang\GetListDonHangChiTietByDonHangIdBiz.cs" />
+    <Compile Include="DonHang\InsertDonHangBiz.cs" />
+    <Compile Include="DonHang\UpdateDonHangByIdBiz.cs" />
     <Compile Include="DuLieu\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="DuLieu\DeleteDuLieuBiz.cs" />
     <Compile Include="DuLieu\GetByIdBiz.cs" />

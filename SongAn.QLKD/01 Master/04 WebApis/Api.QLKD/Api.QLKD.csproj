@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\DiaBanController.cs" />
+    <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\KDHopDongController.cs" />
@@ -78,6 +79,12 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\DonHang\DeleteDonHangByIdAction.cs" />
+    <Compile Include="Models\DonHang\GetListDonHangByIdAction.cs" />
+    <Compile Include="Models\DonHang\GetListDonHangByProjectionAction.cs" />
+    <Compile Include="Models\DonHang\GetListDonHangChiTietByDonHangIdAction.cs" />
+    <Compile Include="Models\DonHang\InsertDonHangAction.cs" />
+    <Compile Include="Models\DonHang\UpdateDonHangByIdAction.cs" />
     <Compile Include="Models\HopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\DeleteHopDongAction.cs" />
     <Compile Include="Models\HopDong\GetByIdAction.cs" />
