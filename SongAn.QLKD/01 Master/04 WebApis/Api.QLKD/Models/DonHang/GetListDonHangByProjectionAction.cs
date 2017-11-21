@@ -43,7 +43,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.DonHang
                 var orderClause = sortName + " " + sortDir;
                 var total = 0;
                 biz.Search = search;
-                biz.KhachHangId = search;
+                biz.KhachHangId = khachHangId;
                 biz.TuNgay = DateTime.ParseExact(tuNgay, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
                 biz.DenNgay = DateTime.ParseExact(denNgay, "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
                 biz.OrderClause = orderClause;

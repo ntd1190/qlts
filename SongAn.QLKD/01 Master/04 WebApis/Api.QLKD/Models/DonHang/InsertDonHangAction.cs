@@ -47,7 +47,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.DonHang
                 bizHeader.NguoiNhan = Protector.String(_phieuDonHang.NguoiNhan);
                 bizHeader.GhiChu = Protector.String(_phieuDonHang.GhiChu);
                 bizHeader.TrangThai = Protector.Int(_phieuDonHang.TrangThai);
-                bizHeader.NgayDuyet = Protector.DateTime(_phieuDonHang.NgayDuyet);
+                bizHeader.NgayDuyet = _phieuDonHang.NgayDuyet;
                 bizHeader.NguoiTao = Protector.Int(_phieuDonHang.NguoiTao);
                 bizHeader.UserId = _UserId;
                 bizHeader.MyTable_DonHangChiTiet = MyTable_DonHangChiTiet;
@@ -73,7 +73,14 @@ namespace SongAn.QLKD.Api.QLKD.Models.DonHang
         {
             var __phieuDonHang = JsonConvert.DeserializeObject<dynamic>(phieuDonHang);
             __phieuDonHang.NgayLap = DateTime.ParseExact(__phieuDonHang.NgayLap.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
-            __phieuDonHang.NgayDuyet = DateTime.ParseExact(__phieuDonHang.NgayDuyet.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            if (__phieuDonHang.NgayDuyet == "" || __phieuDonHang.NgayDuyet == null)
+            {
+                __phieuDonHang.NgayDuyet = null;
+            }
+            else
+            {
+                __phieuDonHang.NgayDuyet = DateTime.ParseExact(__phieuDonHang.NgayDuyet.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            }
             phieuDonHang = JsonConvert.SerializeObject(__phieuDonHang);
             _phieuDonHang = JsonConvert.DeserializeObject<Entity.QLKD.Entity.KDDonHang>(phieuDonHang);
 
