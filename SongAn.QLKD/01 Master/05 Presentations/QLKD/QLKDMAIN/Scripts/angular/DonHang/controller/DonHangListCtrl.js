@@ -34,7 +34,7 @@
         vm.data.userInfo = {};
         vm.data.linkUrl = '';
         vm.data.listCot = [
-            { MaCot: 'SoPhieu', TenCot: 'Số phiếu', HienThiYN: true, DoRong: 110 },
+            { MaCot: 'SoPhieu', TenCot: 'Số phiếu', HienThiYN: true, DoRong: 90 },
         ];
 
         /* INIT FUNCTION */
@@ -79,11 +79,19 @@
             },
             F3: function (name, code) {
                 console.log('F3');
-
+                if (!$scope.isOpenPopupTimKiem) {
+                    $('#SearchCollapse').collapse('show');
+                    $scope.isOpenPopupTimKiem = true;
+                    $('#txtsearch').focus();
+                } else {
+                    $('#SearchCollapse').collapse('hide');
+                    $scope.isOpenPopupTimKiem = false;
+                }
             },
             F8: function (name, code) {
                 console.log('F8');
-
+                _tableState.pagination.start = 0;
+                getPage(_tableState);
             },
             DELETE: function (name, code) {
                 console.log('DELETE');

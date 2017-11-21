@@ -31,9 +31,12 @@
 
         vm.error = {
             SoPhieu: false,
-            KhachHangId: false,
-            KyDonHang: false,
-            Nam: false,
+            TenDonHang: false,
+            NgayLap: false,
+            NgayDuyet: false,
+            HopDongId: false,
+            NhanVienId: false,
+            KhachHangId: false
         }
 
         /* INIT FUNCTION */
@@ -64,6 +67,7 @@
                 else if (parseInt(DonHangId) === 0) {
                     vm.data.phieuDonHang.TrangThai = $("#cbxTrangThai option:first").val();
                     vm.data.phieuDonHang.NgayLap = moment().format('DD/MM/YYYY');
+                    vm.data.phieuDonHang.NgayDuyet = "";
                     CreateListChiTiet();
                 }
             }
@@ -135,6 +139,7 @@
                 return;
 
             if (vm.data.phieuDonHang.DonHangId > 0) {
+                resetValidate();
                 edit();
             } else {
                 resetValidate();
@@ -261,13 +266,16 @@
                     vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
                     if (vm.error.SoPhieu) {
                         $("#" + fromId).focus();
-                    } else $("#" + ToId ).focus();
+                    } else $("#" + ToId).focus();
                 }
                 else if (fromId == 'txtTenDonHang') {
                     vm.error.TenDonHang = utility.checkInValid(obj.TenDonHang, 'isEmpty');
                     if (vm.error.TenDonHang) {
                         $("#" + fromId).focus();
-                    } else $("#" + ToId ).focus();
+                    } else $("#" + ToId + " input").focus();
+                }
+                else if (fromId == 'txtLyDo') {
+                    $("#" + ToId + " input").focus();
                 }
                 else if (fromId == 'txtGhiChu') {
                     if (vm.data.listChiTiet.length > 0) {
@@ -280,8 +288,17 @@
 
         vm.action.keyPress = function (value, fromId, ToId, index, event) {
             if (event.keyCode == '13') {
-                if (fromId == ('txtNgayDuKien' + index)) {
-                    $("#" + ToId).focus();
+                if (fromId == ('txtNgayNhanHang' + index)) {
+                    if (vm.data.listChiTiet.length == index + 1) {
+                        CreateListChiTiet();
+                        var fc = function () {
+                            $("#txtMaHangHoa" + (parseInt(index) + 1).toString()).focus();
+                        }
+                        $timeout(fc, 6);
+                    }
+                    else {
+                        $("#txtMaHangHoa" + (parseInt(index) + 1).toString()).focus();
+                    }
                 }
                 else if (fromId == ('txtMaHangHoa' + index)) {
 
@@ -307,6 +324,7 @@
             vm.data.listChiTiet[index.$index].HangHoaId = data.HangHoaId;
             vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
+            vm.data.listChiTiet[index.$index].DonGia = data.GiaBan;
         }
 
         function CreateListChiTiet() {
@@ -371,25 +389,48 @@
                 $("#txtSoPhieu").focus();
                 return null;
             }
-
+            vm.error.TenDonHang = utility.checkInValid(obj.TenDonHang, 'isEmpty');
+            if (vm.error.TenDonHang) {
+                $("#txtTenDonHang").focus();
+                return null;
+            }
+            
             vm.error.KhachHangId = utility.checkInValid(obj.KhachHangId, 'isEmpty');
             if (vm.error.KhachHangId) {
                 $("#cbxKhachHang input").focus();
                 return null;
             }
 
-            vm.error.KyDonHang = utility.checkInValid(obj.KyDonHang, 'isEmpty');
-            if (vm.error.KyDonHang) {
-                $("#cbxKyDonHang").focus();
+            vm.error.HopDongId = utility.checkInValid(obj.HopDongId, 'isEmpty');
+            if (vm.error.HopDongId) {
+                $("#cbxHopDong").focus();
                 return null;
             }
 
-            vm.error.Nam = utility.checkInValid(obj.Nam, 'isEmpty');
-            if (vm.error.Nam) {
-                $("#txttxtNam").focus();
+            vm.error.NhanVienId = utility.checkInValid(obj.NhanVienId, 'isEmpty');
+            if (vm.error.NhanVienId) {
+                $("#cbxNhanVien").focus();
                 return null;
             }
 
+            vm.error.NgayLap = utility.checkInValid(obj.NgayLap, 'isEmpty');
+            if (vm.error.NgayLap) {
+                $("#txtNgayLap").focus();
+                return null;
+            }
+            // check trang thai hoan tat - co ngay duyet
+            vm.error.NgayDuyet = utility.checkInValid(obj.NgayDuyet, 'isEmpty');
+            if (obj.TrangThai.toString() === "1") {
+                if (vm.error.NgayDuyet) {
+                    $("#txtNgayDuyet").focus();
+                    utility.AlertError('Bạn chưa chọn NGÀY DUYỆT để hoàn tất đơn hàng!');
+                    return null;
+                }
+            }
+            else
+            {
+                vm.error.NgayDuyet = false;
+            }
 
             return 1;
         }
@@ -401,13 +442,9 @@
                 utility.AlertError('Bạn chưa nhập thông tin chi tiết!');
                 return true;
             }
+            
             for (var index = 0; index < vm.data.listChiTiet.length; index++) {
                 if (utility.checkInValid(vm.data.listChiTiet[index].HangHoaId, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    return hasError;
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].LoaiHangHoa, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
@@ -428,21 +465,6 @@
                         return hasError;
                     }
                 }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NgayTao, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    return hasError;
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].NgayDuKien, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    return hasError;
-                }
-                else if (utility.checkInValid(vm.data.listChiTiet[index].TrangThai, 'isEmpty')) {
-                    hasError = true;
-                    vm.data.listChiTiet[index].isError = true;
-                    return hasError;
-                }
                 else {
                     hasError = false;
                     vm.data.listChiTiet[index].isError = false;
@@ -453,10 +475,14 @@
         }
 
         function resetValidate() {
+
             vm.error.SoPhieu = false;
+            vm.error.TenDonHang = false;
+            vm.error.NgayLap = false;
+            vm.error.NgayDuyet = false;
+            vm.error.HopDongId = false;
+            vm.error.NhanVienId = false;
             vm.error.KhachHangId = false;
-            vm.error.KyDonHang = false;
-            vm.error.Nam = false;
         }
 
 

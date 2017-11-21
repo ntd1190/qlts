@@ -47,7 +47,7 @@
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.HopDongId?'has-error':''">
                                 <label class="control-label col-sm-4">Hợp đồng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
                                 <div class="col-sm-8">
-                                    <cbo-hop-dong id="cbxHopDong" data-function-code="KD0011" data-value="ctrl.data.phieuDonHang.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showcombobox?viewname=cbohopdong"></cbo-hop-dong>
+                                    <cbo-hop-dong id="cbxHopDong" data-function-code="KD0011" data-hopdongid="ctrl.data.phieuDonHang.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showcombobox?viewname=cbohopdong"></cbo-hop-dong>
                                 </div>
                             </div>
                         </div>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="col-sm-4">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayDuyet?'has-error':''">
-                                <label class="control-label col-sm-4">Ngày duyệt <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
+                                <label class="control-label col-sm-4">Ngày duyệt</label>
                                 <div class="col-sm-8">
                                     <input type="text" id="txtNgayDuyet" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDonHang.NgayDuyet" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.NgayDuyet,'txtNgayDuyet','cbxTrangThai',$event)" />
                                 </div>
@@ -143,14 +143,14 @@
                             <tr>
                                 <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
                                 <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
-                                <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã HH<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
-                                <th class="text-center" style="min-width: 250px; vertical-align:middle">Hàng hóa<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                                <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã HH <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                                <th class="text-center" style="min-width: 250px; vertical-align:middle">Hàng hóa <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
                                 <th class="text-center" style="min-width: 70px; vertical-align:middle">ĐVT</th>
-                                <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                                <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
                                 <th class="text-center" style="min-width: 150px; vertical-align:middle">Đơn giá <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
                                 <th class="text-center" style="min-width: 120px; vertical-align:middle">Thành tiền  </th>
-                                <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày cập nhật <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
-                                <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày dự kiến <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                                <th class="text-center" style="min-width: 120px; vertical-align:middle">Ngày yêu cầu <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                                <th class="text-center" style="min-width: 130px; vertical-align:middle">Ngày nhận hàng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
                             </tr>
                         </thead>
                         <tbody>

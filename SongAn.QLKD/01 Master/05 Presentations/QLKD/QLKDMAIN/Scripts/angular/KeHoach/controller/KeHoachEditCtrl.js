@@ -302,6 +302,7 @@
             vm.data.listChiTiet[index.$index].HangHoaId = data.HangHoaId;
             vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
+            vm.data.listChiTiet[index.$index].DonGia = data.GiaBan;
         }
 
         function CreateListChiTiet() {

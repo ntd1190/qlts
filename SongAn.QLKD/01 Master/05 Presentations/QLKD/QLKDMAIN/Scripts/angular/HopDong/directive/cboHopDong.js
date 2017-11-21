@@ -8,7 +8,7 @@
             scope: {
                 onSelected: '&',
                 config: '<',
-                HopDongId: '=diabanid',
+                HopDongId: '=hopdongid',
                 disabled: '<',
                 functionCode: '@functioncode',
             },
@@ -67,7 +67,7 @@
             vm.inputSearch = {};
             vm.inputSearch.search = $select.search;
             getPage().then(function (success) {
-                vm.data.listDisplay.unshift({ HopDongId: 0, TenHopDong: 'Chọn địa bàn' });
+                //vm.data.listDisplay.unshift({ HopDongId: 0, TenHopDong: 'Chọn hợp đồng' });
             });
         }
 

@@ -37,7 +37,7 @@
                         <div class="row form-group form-group-sm">
                             <label class="control-label col-sm-2">Tìm kiếm nhanh</label>
                             <div class="col-sm-9">
-                                <input class="form-control ng-pristine ng-valid ng-empty ng-touched" id="txtsearch" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus="">
+                                <input class="form-control ng-pristine ng-valid ng-empty ng-touched" id="txtsearch" placeholder="Tên đơn hàng, số phiếu" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus="">
                             </div>
                         </div>
 
@@ -80,8 +80,10 @@
                                 <i class="fa fa-fw" ng-class="DonHang.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                             </td>
                             <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                                <a ng-switch-when="MaDonHang,TenDonHang" ng-switch-when-separator="," href="#!/DonHang/edit/{{DonHang.DonHangId}}" ng-bind="DonHang[cot.MaCot]"></a>
-                                <span ng-switch-when="NgaySinh">{{ DonHang.NgaySinh | date : 'dd/MM/yyyy'}}</span>
+                                <a ng-switch-when="SoPhieu,TenDonHang" ng-switch-when-separator="," href="#!/DonHang/edit/{{DonHang.DonHangId}}" ng-bind="DonHang[cot.MaCot]"></a>
+                                <a ng-switch-when="SoHopDong" href="#!/hopdong/edit/{{DonHang.HopDongId}}" ng-bind="DonHang[cot.MaCot]"></a>
+                                <span ng-switch-when="NgayLap,NgayDuyet,NgayTao" ng-switch-when-separator="," ng-bind="DonHang[cot.MaCot]| date : 'dd/MM/yyyy'" style="display:block;text-align:center"></span>
+                                <span ng-switch-when="Duyet" ng-bind="DonHang[cot.MaCot]" style="display:block;text-align:center"></span>
                                 <span ng-switch-default ng-bind="DonHang[cot.MaCot]"></span>
                             </td>
                         </tr>
@@ -103,9 +105,9 @@
                 <table st-table="ctrl.data.DonHangChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
                     <thead class="bg-default text-primary">
                         <tr>
-                            <th class="text-center" style="min-width: 50px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="min-width: 40px;vertical-align:middle">STT</th>
                             <th class="text-center" style="min-width: 250px;vertical-align:middle">Hàng hóa</th>
-                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Số lượng</th>
+                            <th class="text-center" style="min-width: 80px;vertical-align:middle">Số lượng</th>
                             <th class="text-center" style="min-width: 100px;vertical-align:middle">Đơn giá</th>
                             <th class="text-center" style="min-width: 110px;vertical-align:middle">Thành tiền</th>
                             <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày yêu cầu</th>
