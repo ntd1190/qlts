@@ -133,6 +133,10 @@
         vm.action.getPage = function (tableState) {
             getPage(tableState);
         };
+        vm.action.reset = function () {
+            
+            vm.data.searchString = '';
+        };
         function deleteSelected() {
             if (!confirm('Bạn có muốn xóa các mục đã chọn không?')) { return; }
 

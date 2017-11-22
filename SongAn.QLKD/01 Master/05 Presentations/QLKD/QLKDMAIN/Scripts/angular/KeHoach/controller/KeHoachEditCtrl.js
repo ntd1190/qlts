@@ -317,16 +317,6 @@
             chitiet.NgayTao = moment().format('DD/MM/YYYY');
             chitiet.TrangThai = "0";
             vm.data.listChiTiet.push(chitiet);
-
-            $timeout(function () {
-                jQuery("#txtNgayDuKien" + (vm.data.listChiTiet.length - 1)).datetimepicker({
-                    mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
-                })
-                jQuery("#txtNgayTao" + (vm.data.listChiTiet.length - 1)).datetimepicker({
-                    mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
-                })
-
-            }, 100);
         }
 
         function setEnableButton() {

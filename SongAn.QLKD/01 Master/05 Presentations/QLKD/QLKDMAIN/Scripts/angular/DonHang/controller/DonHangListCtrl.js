@@ -139,6 +139,12 @@
         vm.action.getPage = function (tableState) {
             getPage(tableState);
         };
+        vm.action.reset = function () {
+            vm.data.startDate = moment().format("01/01/YYYY");
+            vm.data.endDate = moment().daysInMonth() + moment().format("/MM/YYYY");
+            vm.data.searchString = '';
+        };
+
         function deleteSelected() {
             if (!confirm('Bạn có muốn xóa các mục đã chọn không?')) { return; }
 
