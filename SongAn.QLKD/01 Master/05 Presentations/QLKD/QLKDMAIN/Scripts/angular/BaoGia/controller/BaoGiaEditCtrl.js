@@ -5,25 +5,25 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state({
-            name: 'donHangEdit',
-            url: '/donhang/edit/{id}',
+            name: 'baoGiaEdit',
+            url: '/baogia/edit/{id}',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
-            controller: donHangEditCtrl
+            controller: baoGiaEditCtrl
         });
     });
 
-    function donHangEditCtrl($stateParams, SETTING, $scope, DonHangService, utility, $q, $window, $timeout, Upload) {
+    function baoGiaEditCtrl($stateParams, SETTING, $scope, BaoGiaService, utility, $q, $window, $timeout, Upload) {
         var userInfo, _tableState;
-        var DonHangId = 0;
+        var BaoGiaId = 0;
 
         var vm = this;
 
         vm.status = {};
         vm.data = {};
-        vm.data.phieuDonHang = {};
+        vm.data.phieuBaoGia = {};
         vm.data.listChiTiet = [];
-        vm.data.DonHangId = 0;
+        vm.data.BaoGiaId = 0;
         vm.data.linkUrl = '';
         vm.data.listQuyenTacVu = [];
         vm.data.userInfo = {};
@@ -31,10 +31,8 @@
 
         vm.error = {
             SoPhieu: false,
-            TenDonHang: false,
-            NgayLap: false,
-            NgayDuyet: false,
-            HopDongId: false,
+            TenBaoGia: false,
+            NgayBaoGia: false,
             NhanVienId: false,
             KhachHangId: false
         }
@@ -48,8 +46,8 @@
             vm.data.listQuyenTacVu = config.userInfo.DsQuyenTacVu.split(',');
             vm.data.userInfo = config.userInfo || {};
 
-            DonHangId = $stateParams.id;
-            vm.data.DonHangId = $stateParams.id;
+            BaoGiaId = $stateParams.id;
+            vm.data.BaoGiaId = $stateParams.id;
             vm.status.isOpenPopup = false;
 
             if (config && config.linkUrl) {
@@ -59,15 +57,15 @@
             initEventListener();
             setEnableButton();
 
-            if (DonHangId.length > 0) {
-                if (parseInt(DonHangId) > 0) {
-                    getDonHangById(DonHangId);
+            if (BaoGiaId.length > 0) {
+                if (parseInt(BaoGiaId) > 0) {
+                    getBaoGiaById(BaoGiaId);
                     vm.data.Tilte = 'Điều chỉnh';
                 }
-                else if (parseInt(DonHangId) === 0) {
-                    vm.data.phieuDonHang.TrangThai = $("#cbxTrangThai option:first").val();
-                    vm.data.phieuDonHang.NgayLap = moment().format('DD/MM/YYYY');
-                    vm.data.phieuDonHang.NgayDuyet = "";
+                else if (parseInt(BaoGiaId) === 0) {
+                    vm.data.phieuBaoGia.TrangThai = $("#cbxTrangThai option:first").val();
+                    vm.data.phieuBaoGia.DaNhan = $("#cbxDaNhan option:first").val();
+                    vm.data.phieuBaoGia.NgayBaoGia = moment().format('DD/MM/YYYY');
                     CreateListChiTiet();
                 }
             }
@@ -76,7 +74,7 @@
         };
 
         vm.getTemplate = function () {
-            return SETTING.HOME_URL + 'DonHang/showView?viewName=edit';
+            return SETTING.HOME_URL + 'BaoGia/showView?viewName=edit';
         }
 
         /*** EVENT FUNCTION ***/
@@ -130,15 +128,15 @@
         };
 
         vm.action.save = function () {
-            var obj = InvalidateDataDonHang();
+            var obj = InvalidateDataBaoGia();
 
             if (obj == null)
                 return;
 
-            if (InvalidateDataPhieuDonHangChiTiet())
+            if (InvalidateDataPhieuBaoGiaChiTiet())
                 return;
 
-            if (vm.data.phieuDonHang.DonHangId > 0) {
+            if (vm.data.phieuBaoGia.BaoGiaId > 0) {
                 resetValidate();
                 edit();
             } else {
@@ -150,20 +148,20 @@
         function add() {
 
             vm.status.isLoading = true;
-            vm.data.phieuDonHang.NguoiTao = vm.data.userInfo.NhanVienId;
-            var DonHang = utility.clone(vm.data.phieuDonHang);
+            vm.data.phieuBaoGia.NguoiTao = vm.data.userInfo.NhanVienId;
+            var BaoGia = utility.clone(vm.data.phieuBaoGia);
             var data = {};
-            data.phieuDonHang = angular.toJson(DonHang);
+            data.phieuBaoGia = angular.toJson(BaoGia);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.userId = vm.data.userInfo.UserId;
 
-            DonHangService.insert(data).then(function (success) {
+            BaoGiaService.insert(data).then(function (success) {
                 if (success.data.data) {
-                    DonHangId = success.data.data[0].DonHangIdI;
+                    BaoGiaId = success.data.data[0].BaoGiaIdI;
                     utility.AlertSuccess('Thêm thành công!');
 
                     $timeout(function () {
-                        window.location = vm.data.linkUrl + '#!/DonHang/edit/' + DonHangId;
+                        window.location = vm.data.linkUrl + '#!/BaoGia/edit/' + BaoGiaId;
                     }, 2000);
                 }
                 vm.status.isLoading = false;
@@ -178,15 +176,15 @@
         function edit() {
 
             vm.status.isLoading = true;
-            vm.data.phieuDonHang.NguoiTao = vm.data.userInfo.NhanVienId;
-            var DonHang = utility.clone(vm.data.phieuDonHang);
+            vm.data.phieuBaoGia.NguoiTao = vm.data.userInfo.NhanVienId;
+            var BaoGia = utility.clone(vm.data.phieuBaoGia);
             var data = {};
-            data.donHangId = DonHangId;
-            data.phieuDonHang = angular.toJson(DonHang);
+            data.baoGiaId = BaoGiaId;
+            data.phieuBaoGia = angular.toJson(BaoGia);
             data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.userId = vm.data.userInfo.UserId;
 
-            DonHangService.update(data).then(function (success) {
+            BaoGiaService.update(data).then(function (success) {
                 if (success.data.data) {
 
                     utility.AlertSuccess('Cập nhật thành công!');
@@ -202,7 +200,7 @@
         }
 
         function deleteSelected() {
-            if (DonHangId <= 0) {
+            if (BaoGiaId <= 0) {
                 alert("Phiếu này không tồn tại trong hệ thống!");
                 return;
             }
@@ -211,17 +209,17 @@
                 return;
             }
 
-            var DonHangListSelected = new Array();
+            var BaoGiaListSelected = new Array();
 
-            DonHangListSelected.push(DonHangId);
+            BaoGiaListSelected.push(BaoGiaId);
 
-            var ids = DonHangListSelected.join(',');
+            var ids = BaoGiaListSelected.join(',');
             if (ids.length > 0) {
-                DonHangService.removeList(ids).then(function (success) {
+                BaoGiaService.removeList(ids).then(function (success) {
 
                     if (success.data.data > 0) {
-                        if (DonHangListSelected.length > parseInt(success.data.data)) {
-                            var sl = DonHangListSelected.length - parseInt(success.data.data);
+                        if (BaoGiaListSelected.length > parseInt(success.data.data)) {
+                            var sl = BaoGiaListSelected.length - parseInt(success.data.data);
                             utility.AlertSuccess(sl + ' phiếu được xóa thành công.');
 
                         }
@@ -233,7 +231,7 @@
                     }
 
                     $timeout(function () {
-                        window.location.href = vm.data.linkUrl + '#!/DonHang/list';
+                        window.location.href = vm.data.linkUrl + '#!/BaoGia/list';
                     }, 600);
                 }, function (error) {
                     alert(error.data.error.code + " : " + error.data.error.message);
@@ -246,21 +244,16 @@
         }
 
         vm.action.refresh = function () {
-            //if (DonHangId.length > 0) {
-            //    if (parseInt(DonHangId) == 0) {
-            //        delete vm.data.phieuDonHang;
-            //        vm.data.phieuDonHang = {};
-            //        vm.data.phieuDonHang.TrangThai = $("#cbxTrangThai option:first").val();
-            //        vm.data.phieuDonHang.NgayLap = moment().format('DD/MM/YYYY');;
-
-            //        $("#txtMaDonHang").focus();
+            //if (BaoGiaId.length > 0) {
+            //    if (parseInt(BaoGiaId) == 0) {
+            //        
             //    }
             //}
         }
 
-        vm.action.keyPressDonHang = function (value, fromId, ToId, event) {
+        vm.action.keyPressBaoGia = function (value, fromId, ToId, event) {
 
-            var obj = vm.data.phieuDonHang;
+            var obj = vm.data.phieuBaoGia;
             if (event.keyCode == '13') {
                 if (fromId == 'txtSoPhieu') {
                     vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
@@ -268,27 +261,26 @@
                         $("#" + fromId).focus();
                     } else $("#" + ToId).focus();
                 }
-                else if (fromId == 'txtTenDonHang') {
-                    vm.error.TenDonHang = utility.checkInValid(obj.TenDonHang, 'isEmpty');
-                    if (vm.error.TenDonHang) {
+                else if (fromId == 'txtTenBaoGia') {
+                    vm.error.TenBaoGia = utility.checkInValid(obj.TenBaoGia, 'isEmpty');
+                    if (vm.error.TenBaoGia) {
+                        $("#" + fromId).focus();
+                    } else $("#" + ToId).focus();
+                }
+                else if (fromId == 'txtNgayBaoGia') {
+                    vm.error.NgayBaoGia = utility.checkInValid(obj.NgayBaoGia, 'isEmpty');
+                    if (vm.error.NgayBaoGia) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId + " input").focus();
                 }
-                else if (fromId == 'txtLyDo') {
-                    $("#" + ToId + " input").focus();
-                }
-                else if (fromId == 'txtGhiChu') {
-                    if (vm.data.listChiTiet.length > 0) {
-                        $("#txtMaHangHoa0").focus();
-                    }
-                }
+                
                 else $("#" + ToId).focus();
             }
         }
 
         vm.action.keyPress = function (value, fromId, ToId, index, event) {
             if (event.keyCode == '13') {
-                if (fromId == ('txtNgayNhanHang' + index)) {
+                if (fromId == ('txtNgayNhan' + index)) {
                     if (vm.data.listChiTiet.length == index + 1) {
                         CreateListChiTiet();
                         var fc = function () {
@@ -322,27 +314,27 @@
         vm.action.getDataHangHoa = function (data, index) {
 
             vm.data.listChiTiet[index.$index].HangHoaId = data.HangHoaId;
-            vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;;
+            vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
             vm.data.listChiTiet[index.$index].DonGia = data.GiaBan;
         }
 
         function CreateListChiTiet() {
             var chitiet = {};
-            chitiet.DonHangChiTietId = 0;
-            chitiet.DonHangId = 0;
+            chitiet.BaoGiaChiTietId = 0;
+            chitiet.BaoGiaId = 0;
             chitiet.HangHoaId = 0;
             chitiet.SoLuong = 0;
             chitiet.DonGia = 0;
-            chitiet.NgayYeuCau = moment().format('DD/MM/YYYY');
-            chitiet.NgayNhanHang = moment().format('DD/MM/YYYY');
+            chitiet.NgayBao = moment().format('DD/MM/YYYY');
+            chitiet.NgayNhan = moment().format('DD/MM/YYYY');
             vm.data.listChiTiet.push(chitiet);
 
             $timeout(function () {
-                jQuery("#txtNgayYeuCau" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                jQuery("#txtNgayBao" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                     mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                 })
-                jQuery("#txtNgayNhanHang" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                jQuery("#txtNgayNhan" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                     mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                 })
 
@@ -368,7 +360,7 @@
 
                 // Co quyen Sua
                 if (vm.data.listQuyenTacVu.indexOf("M") > 0) {
-                    //vm.data.showButtonSave = DonHangId > 0 ? true : vm.data.showButtonSave;
+                    //vm.data.showButtonSave = BaoGiaId > 0 ? true : vm.data.showButtonSave;
                     vm.data.showButtonSave = true;
                 }
 
@@ -380,30 +372,24 @@
         }
         /* BIZ FUNCTION */
 
-        function InvalidateDataDonHang() {
+        function InvalidateDataBaoGia() {
 
-            var obj = vm.data.phieuDonHang;
+            var obj = vm.data.phieuBaoGia;
 
             vm.error.SoPhieu = utility.checkInValid(obj.SoPhieu, 'isEmpty');
             if (vm.error.SoPhieu) {
                 $("#txtSoPhieu").focus();
                 return null;
             }
-            vm.error.TenDonHang = utility.checkInValid(obj.TenDonHang, 'isEmpty');
-            if (vm.error.TenDonHang) {
-                $("#txtTenDonHang").focus();
-                return null;
-            }
-            
-            vm.error.KhachHangId = utility.checkInValid(obj.KhachHangId, 'isEmpty');
-            if (vm.error.KhachHangId) {
-                $("#cbxKhachHang input").focus();
+            vm.error.TenBaoGia = utility.checkInValid(obj.TenBaoGia, 'isEmpty');
+            if (vm.error.TenBaoGia) {
+                $("#txtTenBaoGia").focus();
                 return null;
             }
 
-            vm.error.HopDongId = utility.checkInValid(obj.HopDongId, 'isEmpty');
-            if (vm.error.HopDongId) {
-                $("#cbxHopDong").focus();
+            vm.error.NgayBaoGia = utility.checkInValid(obj.NgayBaoGia, 'isEmpty');
+            if (vm.error.NgayBaoGia) {
+                $("#txtNgayBaoGia").focus();
                 return null;
             }
 
@@ -413,36 +399,23 @@
                 return null;
             }
 
-            vm.error.NgayLap = utility.checkInValid(obj.NgayLap, 'isEmpty');
-            if (vm.error.NgayLap) {
-                $("#txtNgayLap").focus();
+            vm.error.KhachHangId = utility.checkInValid(obj.KhachHangId, 'isEmpty');
+            if (vm.error.KhachHangId) {
+                $("#cbxKhachHang input").focus();
                 return null;
-            }
-            // check trang thai hoan tat - co ngay duyet
-            vm.error.NgayDuyet = utility.checkInValid(obj.NgayDuyet, 'isEmpty');
-            if (obj.TrangThai.toString() === "1") {
-                if (vm.error.NgayDuyet) {
-                    $("#txtNgayDuyet").focus();
-                    utility.AlertError('Bạn chưa chọn NGÀY DUYỆT để hoàn tất đơn hàng!');
-                    return null;
-                }
-            }
-            else
-            {
-                vm.error.NgayDuyet = false;
             }
 
             return 1;
         }
 
-        function InvalidateDataPhieuDonHangChiTiet() {
+        function InvalidateDataPhieuBaoGiaChiTiet() {
             var hasError = false;
 
             if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0) {
                 utility.AlertError('Bạn chưa nhập thông tin chi tiết!');
                 return true;
             }
-            
+
             for (var index = 0; index < vm.data.listChiTiet.length; index++) {
                 if (utility.checkInValid(vm.data.listChiTiet[index].HangHoaId, 'isEmpty')) {
                     hasError = true;
@@ -477,26 +450,24 @@
         function resetValidate() {
 
             vm.error.SoPhieu = false;
-            vm.error.TenDonHang = false;
-            vm.error.NgayLap = false;
-            vm.error.NgayDuyet = false;
-            vm.error.HopDongId = false;
+            vm.error.TenBaoGia = false;
+            vm.error.NgayBaoGia = false;
             vm.error.NhanVienId = false;
             vm.error.KhachHangId = false;
         }
 
 
         /* API FUNCTION */
-        function getDonHangById(id) {
+        function getBaoGiaById(id) {
 
-            DonHangService.getById(id)
+            BaoGiaService.getById(id)
                 .then(function success(result) {
 
-                    delete vm.data.phieuDonHang;
+                    delete vm.data.phieuBaoGia;
 
                     if (result.data && result.data.data && result.data.data.length) {
-                        vm.data.phieuDonHang = result.data.data[0];
-                        getDonHangChiTietById(vm.data.phieuDonHang.DonHangId);
+                        vm.data.phieuBaoGia = result.data.data[0];
+                        getBaoGiaChiTietById(vm.data.phieuBaoGia.BaoGiaId);
                     }
 
                 }, function error(result) {
@@ -504,9 +475,9 @@
                 });
         }
 
-        function getDonHangChiTietById(id) {
+        function getBaoGiaChiTietById(id) {
 
-            DonHangService.getPageDetail(id)
+            BaoGiaService.getPageDetail(id)
                 .then(function success(result) {
                     vm.data.listChiTiet = [];
 
@@ -515,10 +486,10 @@
                         vm.data.listChiTiet = result.data.data;
 
                         $timeout(function () {
-                            jQuery("#txtNgayYeuCau" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                            jQuery("#txtNgayBao" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                                 mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                             })
-                            jQuery("#txtNgayNhanHang" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                            jQuery("#txtNgayNhan" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                                 mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                             })
                         }, 100);

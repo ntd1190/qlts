@@ -1,0 +1,155 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title clearfix">
+                    <span><i class="fa fa-fw fa-star-o"></i>Báo giá</span>
+                    <div class="btn-group btn-group-sm pull-right">
+                        <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
+                        <a class="btn btn-warning" data-toggle="collapse" data-target="#TuyChonCotPopup"><i class="fa fa-fw fa-cog"></i> Tùy chọn</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse fade" id="SearchCollapse">
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-2">Ngày</label>
+                            <div class="form-inline col-sm-9">
+                                <input type="text" id="tungay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.startDate" /> ~
+                                <input type="text" id="denngay" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.endDate" />
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-2">Khách hàng</label>
+                            <div class="col-sm-9">
+                                <cbo-khach-hang id="cbxBaoGia" data-function-code="KD0011" data-value="ctrl.data.searchKhachHangId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/KhachHang/showcombobox?viewname=cboKhachHang"></cbo-khach-hang>
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-2">Tìm kiếm nhanh</label>
+                            <div class="col-sm-9">
+                                <input class="form-control ng-pristine ng-valid ng-empty ng-touched" id="txtsearch" placeholder="Tên đơn hàng, số phiếu" ng-model="ctrl.data.searchString" ng-keypress="$event.keyCode===13?ctrl.action.getPage():0" autofocus="">
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <!---->
+
+            <div class="panel-heading">
+                <span ng-if="ctrl.data.showButtonNew">
+                    <a class="btn btn-sm btn-primary" href="#!/BaoGia/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+            <div class="table-container panel-body">
+                <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listBaoGia" st-pipe="ctrl.action.getPage">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                                <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                            </th>
+                            <th class="text-center"
+                                style="width:{{cot.DoRong}}px;"
+                                st-sort="{{cot.MaCot}}"
+                                ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                                <span ng-bind="cot.TenCot"></span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.data.error.code>0">
+                            <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
+                        </tr>
+                        <tr ng-repeat="BaoGia in ctrl.data.listBaoGia" ng-click="ctrl.action.getPageDetail(BaoGia.BaoGiaId)" id="row_{{BaoGia.BaoGiaId}}">
+                            <td class="text-center text-primary" st-select-row="BaoGia" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                                <i class="fa fa-fw" ng-class="BaoGia.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                            </td>
+                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <a ng-switch-when="SoPhieu,TenBaoGia" ng-switch-when-separator="," href="#!/BaoGia/edit/{{BaoGia.BaoGiaId}}" ng-bind="BaoGia[cot.MaCot]"></a>
+                                <a ng-switch-when="MaKhachHang" href="#!/khachhang/edit/{{BaoGia.KhachHangId}}" ng-bind="BaoGia[cot.MaCot]"></a>
+                                <a ng-switch-when="MaNhanVienKD" href="#!/nhanvien/list" ng-bind="BaoGia[cot.MaCot]"></a>
+                                <span ng-switch-when="NgayBaoGia,NgayTao" ng-switch-when-separator="," ng-bind="BaoGia[cot.MaCot]| date : 'dd/MM/yyyy'" style="display:block;text-align:center"></span>
+                                <span ng-switch-when="TenDaNhan" ng-bind="BaoGia[cot.MaCot]" style="display:block;text-align:center"></span>
+                                <span ng-switch-default ng-bind="BaoGia[cot.MaCot]"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td colspan="100" class="text-center hidden-print">
+                                <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+
+            <div class="panel-heading">
+                <span>Thông tin chi tiết</span>
+            </div>
+            <div class="table-container  panel-body">
+                <table st-table="ctrl.data.BaoGiaChiTietListDisplay" style="border: 1px solid #ddd;" class="table table-bordered table-condensed table-responsive table-hover ">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 40px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="min-width: 250px;vertical-align:middle">Hàng hóa</th>
+                            <th class="text-center" style="min-width: 80px;vertical-align:middle">Số lượng</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Đơn giá</th>
+                            <th class="text-center" style="min-width: 110px;vertical-align:middle">Thành tiền</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày báo</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày nhận</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="BaoGiaChitiet in ctrl.data.BaoGiaChiTietListDisplay" ng-class="(BaoGiaChitiet.isSelected==true)?'info':''">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td><span ng-bind="BaoGiaChitiet.TenHangHoa"></span></td>
+                            <td class="text-right"><span ng-bind="BaoGiaChitiet.SoLuong|number"></span></td>
+                            <td class="text-right"><span ng-bind="BaoGiaChitiet.DonGia|number"></span></td>
+                            <td class="text-right"><span ng-bind="(+BaoGiaChitiet.SoLuong*BaoGiaChitiet.DonGia)|number"></span></td>
+                            <td class="text-center"><span>{{BaoGiaChitiet.NgayBao | date : 'dd/MM/yyyy'}}</span></td>
+                            <td class="text-center"><span>{{BaoGiaChitiet.NgayNhan | date : 'dd/MM/yyyy'}}</span></td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr></tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <tuy-chon-cot-list maform="FD0003"
+                           config="{ctrlId:'TuyChonCotPopup'}"
+                           on-confirm="ctrl.action.getListCot(data)"
+                           template-url="~/tuychoncot/showcombobox?viewname=TuyChonCotList"></tuy-chon-cot-list>
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
