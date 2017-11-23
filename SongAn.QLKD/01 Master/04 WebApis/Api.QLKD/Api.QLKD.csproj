@@ -63,6 +63,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaoGiaController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
@@ -79,6 +80,12 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\BaoGia\DeleteBaoGiaByIdAction.cs" />
+    <Compile Include="Models\BaoGia\GetListBaoGiaByIdAction.cs" />
+    <Compile Include="Models\BaoGia\GetListBaoGiaByProjectionAction.cs" />
+    <Compile Include="Models\BaoGia\GetListBaoGiaChiTietByBaoGiaIdAction.cs" />
+    <Compile Include="Models\BaoGia\InsertBaoGiaAction.cs" />
+    <Compile Include="Models\BaoGia\UpdateBaoGiaByIdAction.cs" />
     <Compile Include="Models\DonHang\DeleteDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByProjectionAction.cs" />
