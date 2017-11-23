@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoGia\DeleteBaoGiaByIdBiz.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaByCriteriaBiz.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaByIdBiz.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaChiTietByBaoGiaIdBiz.cs" />
+    <Compile Include="BaoGia\InsertBaoGiaBiz.cs" />
+    <Compile Include="BaoGia\UpdateBaoGiaByIdBiz.cs" />
     <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="DiaBan\DeleteDiaBanBiz.cs" />
     <Compile Include="DiaBan\GetByIdBiz.cs" />

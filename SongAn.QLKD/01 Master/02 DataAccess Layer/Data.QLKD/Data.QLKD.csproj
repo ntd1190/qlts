@@ -53,6 +53,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoGia\DeleteBaoGiaByIdDac.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaByCriteriaDac.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaByIdDac.cs" />
+    <Compile Include="BaoGia\GetListBaoGiaChiTietByBaoGiaIdDac.cs" />
+    <Compile Include="BaoGia\InsertBaoGiaDac.cs" />
+    <Compile Include="BaoGia\UpdateBaoGiaByIdDac.cs" />
     <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
     <Compile Include="DonHang\GetListDonHangByIdDac.cs" />
