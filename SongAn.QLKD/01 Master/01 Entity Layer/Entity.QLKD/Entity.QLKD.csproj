@@ -60,6 +60,7 @@
     <Compile Include="Entity\KDDonHang.cs" />
     <Compile Include="Entity\KDDonHangChiTiet.cs" />
     <Compile Include="Entity\KDDuLieu.cs" />
+    <Compile Include="Entity\KDHopDongChiTiet.cs" />
     <Compile Include="Entity\KDHopDong.cs" />
     <Compile Include="Entity\KDKeHoach.cs" />
     <Compile Include="Entity\KDKeHoachChiTiet.cs" />

@@ -71,9 +71,12 @@
     <Compile Include="DuLieu\UpdateDuLieuBiz.cs" />
     <Compile Include="HangHoa\GetListcbxHangHoaByIdBiz.cs" />
     <Compile Include="HopDong\cbxGetListByCriteriaBiz.cs" />
+    <Compile Include="HopDong\DeleteHopDongChiTietBiz.cs" />
     <Compile Include="HopDong\DeleteHopDongBiz.cs" />
     <Compile Include="HopDong\GetByIdBiz.cs" />
+    <Compile Include="HopDong\GetListChiTietByCriteriaBiz.cs" />
     <Compile Include="HopDong\GetListByCriteriaBiz.cs" />
+    <Compile Include="HopDong\InsertHopDongChiTietBiz.cs" />
     <Compile Include="HopDong\InsertHopDongBiz.cs" />
     <Compile Include="HopDong\UpdateHopDongBiz.cs" />
     <Compile Include="KeHoach\DeleteKeHoachByIdBiz.cs" />

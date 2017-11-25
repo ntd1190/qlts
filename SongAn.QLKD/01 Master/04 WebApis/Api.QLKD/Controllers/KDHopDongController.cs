@@ -35,6 +35,12 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
             return Content(result.ReturnCode, result.ReturnData);
         }
         [HttpPost]
+        public async Task<IHttpActionResult> GetListChiTietByCriteria([FromBody] GetListChiTietByCriteriaAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+        [HttpPost]
         public async Task<IHttpActionResult> cbxGetListByCriteria([FromBody] cbxGetListByCriteriaAction action)
         {
             ActionResultDto result = await action.Execute(context);

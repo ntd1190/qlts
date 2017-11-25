@@ -95,6 +95,7 @@
     <Compile Include="Models\HopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\DeleteHopDongAction.cs" />
     <Compile Include="Models\HopDong\GetByIdAction.cs" />
+    <Compile Include="Models\HopDong\GetListChiTietByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\GetListByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\InsertHopDongAction.cs" />
     <Compile Include="Models\HopDong\UpdateHopDongAction.cs" />
