@@ -82,17 +82,15 @@
         vm.keys = {
             F2: function (name, code) {
                 console.log('F2');
-                if (checkQuyenUI('N')) {
-
-                }
+                
             },
             F3: function (name, code) {
                 console.log('F3');
             },
             F8: function (name, code) {
                 console.log('F8');
-                if (vm.status.isOpenPopup && checkQuyenUI('N')) {
-
+                if (vm.data.listQuyenTacVu.indexOf("N") > 0 || vm.data.listQuyenTacVu.indexOf("M") > 0) {
+                    vm.action.save();
                 }
             },
             DELETE: function (name, code) {

@@ -18,14 +18,14 @@
         var HopDongId = 0;
 
         var vm = this;
-
+      
         vm.status = {
             isOpenPopup: false
         };
 
         vm.error = {};
         vm.data = {};
-
+        vm.data.listChiTiet = [];
         /* INIT / EVENT FUNCTION */
 
         vm.onInitView = function (config) {
@@ -72,11 +72,19 @@
         /* ACTION FUNCTION */
 
         vm.action = {};
+        vm.action.add = function () {
+            CreateListChiTiet();
+            var fc = function () {
+                $("#txtMaHangHoa" + (vm.data.listChiTiet.length - 1).toString()).focus();
+            }
+            $timeout(fc, 6);
+        };
 
         function loadData() {
             HopDongId = HopDongId || 0;
             if (HopDongId < 1) {
-                delete vm.data.HopDong; vm.data.HopDong = {};
+                delete vm.data.HopDong; vm.data.HopDong = { NgayHopDong: moment().format('DD/MM/YYYY'),NgayHoaDon: moment().format('DD/MM/YYYY'), Chi: 'N', };
+                CreateListChiTiet();
                 return;
             }
             getById(HopDongId).then(function (success) {
@@ -84,7 +92,13 @@
                 utility.AlertError(error);
             });
         }
+        vm.action.getDataHangHoa = function (data, index) {
 
+            vm.data.listChiTiet[index.$index].HangHoaId = data.HangHoaId;
+            vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;;
+            vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
+            vm.data.listChiTiet[index.$index].DonGia = data.GiaBan;
+        }
         vm.action.checkQuyenTacVu = function (quyen) {
             if (HopDongId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }
@@ -98,6 +112,8 @@
             console.log('vm.action.save', vm.data.HopDong);
             if (vm.action.checkQuyenTacVu('N') == false && vm.action.checkQuyenTacVu('M') == false) { return; }
             if (checkInput() == false) { return; }
+            if (InvalidateDataChiTiet())
+                return;
             if (HopDongId > 0) {
                 update().then(function (success) {
                     utility.AlertSuccess('Cập nhật thành công');
@@ -152,7 +168,28 @@
         vm.action.refresh = function () {
             loadData();
         }
-
+        vm.keys = {
+            F2: function (name, code) {
+                console.log('F2');
+                if (checkQuyenUI("N") > 0) {
+                    vm.action.add();
+                }
+            },
+            F8: function (name, code) {
+                console.log('F8');
+                if (checkQuyenUI("M") > 0 || checkQuyenUI("L") > 0) {
+                    vm.action.save();
+                }
+            },
+            DELETE: function (name, code) {
+                console.log('DELETE');
+                var fc = function () {
+                    vm.data.listChiTiet.splice(vm.data.listChiTiet.length - 1, 1);
+                    $("#txtMaHangHoa" + (vm.data.listChiTiet.length - 1).toString()).focus();
+                }
+                $timeout(fc, 6);
+            }
+        };
         /* BIZ FUNCTION */
 
         function checkQuyenUI(quyen) {
@@ -333,11 +370,13 @@
 
         function insert() {
             var deferred = $q.defer();
-
-            var data = prepareHopDong(angular.copy(vm.data.HopDong || {}));
+            debugger;
+            var HopDong = prepareHopDong(angular.copy(vm.data.HopDong || {}));
+            var data = {};
+            data.listHopDong = angular.toJson(HopDong);
+            data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
-
             HopDongService.insert(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
@@ -354,12 +393,12 @@
 
         function update() {
             var deferred = $q.defer();
-
-            var data = prepareHopDong(angular.copy(vm.data.HopDong || {}));
-
+            var HopDong = prepareHopDong(angular.copy(vm.data.HopDong || {}));
+            var data = {};
+            data.listHopDong = angular.toJson(HopDong);
+            data.listChiTiet = angular.toJson(vm.data.listChiTiet);
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;
-
             HopDongService.update(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
@@ -410,6 +449,7 @@
                 console.log(success);
                 if (success.data.data && success.data.data.length == 1) {
                     vm.data.HopDong = success.data.data[0];
+                    getHopDongChiTietById(vm.data.HopDong.HopDongId);
                 } else {
                     delete vm.data.HopDong; vm.data.HopDong = {};
                 }
@@ -423,6 +463,88 @@
                 }
             });
             return deferred.promise;
+        }
+        //Chi Tiet
+        function CreateListChiTiet() {
+            var chitiet = {};
+            chitiet.HopDongChiTietId = 0;
+            chitiet.HopDongId = 0;
+            chitiet.HangHoaId = 0;
+            chitiet.LoaiHangHoa = 0;
+            chitiet.SoLuong = 0;
+            chitiet.DonGia = 0;
+            chitiet.DaTrienKhai = 0;
+            chitiet.NguoiGiao = "";
+            chitiet.NguoiNhan = "";
+            chitiet.NgayThucHien = moment().format('DD/MM/YYYY');
+            chitiet.NgayKetThuc = moment().format('DD/MM/YYYY');
+            chitiet.GhiChu = "";
+            vm.data.listChiTiet.push(chitiet);
+        }
+        function getHopDongChiTietById(id) {
+
+            HopDongService.getPageDetail(id)
+                .then(function success(result) {
+                    vm.data.listChiTiet = [];
+
+                    if (result.data && result.data.data && result.data.data.length) {
+
+                        vm.data.listChiTiet = result.data.data;
+
+                        $timeout(function () {
+                            jQuery("#txtNgayThucHien" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                                mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
+                            })
+                            jQuery("#txtNgayKetThuc" + (vm.data.listChiTiet.length - 1)).datetimepicker({
+                                mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
+                            })
+                        }, 100);
+                    }
+                }, function error(result) {
+                    console.log(result);
+                });
+        }
+        function InvalidateDataChiTiet() {
+            var hasError = false;
+
+            if (!vm.data.listChiTiet || vm.data.listChiTiet.length == 0) {
+                utility.AlertError('Bạn chưa nhập thông tin chi tiết!');
+                return true;
+            }
+            for (var index = 0; index < vm.data.listChiTiet.length; index++) {
+                if (utility.checkInValid(vm.data.listChiTiet[index].HangHoaId, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    return hasError;
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].LoaiHangHoa, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    return hasError;
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].SoLuong, 'isEmpty')) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Số lượng phải > 0 !');
+                    return hasError;
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].DonGia, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].DonGia.toString() == '0') {
+
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else {
+                    hasError = false;
+                    vm.data.listChiTiet[index].isError = false;
+                }
+            }
+
+            return hasError;
         }
     }
 

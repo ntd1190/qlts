@@ -5,7 +5,7 @@
     module.config(function ($stateProvider) {
         $stateProvider.state({
             name: 'HopDongList',
-            url: '/HopDong/List',
+            url: '/HopDong/list',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
             controller: HopDongListCtrl
@@ -26,10 +26,10 @@
         vm.error = {};
         vm.data = {};
         vm.inputSearch = {};
-
+        vm.data.listChiTiet = [];
         vm.data.listCot = [
-            { MaCot: 'SoHopDong', TenCot: 'Số HĐ', HienThiYN: true, DoRong: 75 },
-            { MaCot: 'TenHopDong', TenCot: 'Tên HĐ', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'SoHopDong', TenCot: 'Số HĐ', HienThiYN: true, DoRong: 100 },
+            { MaCot: 'TenHopDong', TenCot: 'Tên HĐ', HienThiYN: true, DoRong: 250 },
             { MaCot: 'NgayHopDong', TenCot: 'Ngày HĐ', HienThiYN: true, DoRong: 200 },
             { MaCot: 'NgayThanhLy', TenCot: 'Ngày TL', HienThiYN: true, DoRong: 200 },
             { MaCot: 'SoTien', TenCot: 'Số tiền', HienThiYN: true, DoRong: 200 },
@@ -109,7 +109,21 @@
             _tableState.pagination.start = 0;
             getPage(_tableState);
         }
+        vm.action.getPageDetail = function (id) {
+            $('tr').removeClass('info');
+            $('#row_' + id).addClass('info');
+            HopDongService.getPageDetail(id)
+                .then(function success(result) {
+                    vm.data.listChiTiet = [];
 
+                    if (result.data && result.data.data && result.data.data.length) {
+
+                        vm.data.listChiTiet = result.data.data;
+                    }
+                }, function error(result) {
+                    console.log(result);
+                });
+        }
         vm.action.edit = function (id) {
             window.location = `${linkUrl}#!/hopdong/edit/${id}`;
         }

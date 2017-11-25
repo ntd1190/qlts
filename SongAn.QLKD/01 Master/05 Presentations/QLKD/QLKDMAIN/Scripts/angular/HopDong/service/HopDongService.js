@@ -10,7 +10,7 @@
         api.insert = 'InsertHopDong';
         api.delete = 'DeleteHopDong';
         api.update = 'UpdateHopDong';
-
+        api.getPageDetail = 'GetListChiTietByCriteria';
         api.getById = 'GetById';
         api.getPage = 'GetListByCriteria';
         api.cbxGetPage = 'cbxGetListByCriteria';
@@ -59,8 +59,14 @@
             var req = {
                 url: url,
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                data: data
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    phieuHopDong: data.listHopDong,
+                    listChiTiet: data.listChiTiet,
+                    NHANVIEN_ID: data.NHANVIEN_ID,
+                    USER_ID: data.USER_ID
+                })
+               
             }
 
             return $http(req);
@@ -83,13 +89,27 @@
             var req = {
                 url: url,
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json; charset=UTF-8' },
-                data: data
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({
+                    phieuHopDong: data.listHopDong,
+                    listChiTiet: data.listChiTiet,
+                    NHANVIEN_ID: data.NHANVIEN_ID,
+                    USER_ID: data.USER_ID
+                })
             }
 
             return $http(req);
         };
-
+        service.getPageDetail = function(id) {
+            var url = api.url + api.getPageDetail;
+            var req = {
+                url: url,
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+                data: $.param({ HopDongId: id })
+            }
+            return $http(req);
+        };
         return service;
     });
 })();

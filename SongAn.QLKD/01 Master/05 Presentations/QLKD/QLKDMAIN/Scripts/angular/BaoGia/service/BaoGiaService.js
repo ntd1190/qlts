@@ -95,7 +95,7 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    BaoGiaId: obj.BaoGiaId,
+                    BaoGiaId: obj.baoGiaId,
                     phieuBaoGia: obj.phieuBaoGia,
                     listChiTiet: obj.listChiTiet,
                     userId: obj.userId
