@@ -1,0 +1,161 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} chỉ tiêu</span>
+            </div>
+
+            <!---->
+
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.Nam?'has-error':''">
+                                <label class="control-label col-sm-3">Năm<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">&nbsp;*</span></label>
+                                <div class="col-sm-5">
+                                    <input type="number" min="1990" id="txtNam" class="form-control text-center" ng-model="ctrl.data.phieuChiTieu.Nam" ng-keypress="ctrl.action.keyPressChiTieu(ctrl.data.phieuChiTieu.Nam,'txtNam','cbxNhanVien0',$event)" />
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-heading">
+                <button class="btn btn-sm btn-primary" ng-click="ctrl.action.add()" ng-if="ctrl.data.showButtonNew">
+                    <i class="fa fa-plus"></i>
+                    Thêm chi tiết (F2)
+                </button>
+            </div>
+
+            <div class="panel-body table-responsive" style="max-height:300px;min-height:300px">
+                <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px;border: 1px solid #ddd;">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
+                            <th class="text-center" style="min-width: 50px; vertical-align:middle">Xóa</th>
+                            <th class="text-center" style="min-width: 200px; vertical-align:middle">Nhân viên</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 1</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 2</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 3</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 4</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 5</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 6</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 7</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 8</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 9</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 10</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 11</th>
+                            <th class="text-center" style="min-width: 100px; vertical-align:middle">Tháng 12</th>
+                            <th class="text-center" style="min-width: 130px; vertical-align:middle">Ngày cập nhật <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.status.isLoading">
+                            <td colspan="100" class="text-center">
+                                <i class="fa fa-fw fa-spin fa-spinner"></i>
+                            </td>
+                        </tr>
+                        <tr ng-repeat="ChiTieuChiTiet in ctrl.data.listChiTiet" ng-class="ChiTieuChiTiet.isError ? 'danger':''">
+                            <td class="text-center">{{$index + 1}}</td>
+                            <td class="text-center">
+                                <a class="btn btn-xs btn-danger"
+                                   ng-click="ctrl.data.listChiTiet.splice($index,1)" ng-if="ctrl.data.showButtonXoa">
+                                    <i class="fa fa-remove"></i>
+                                </a>
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--nhan vien-->
+                                <cbo-nhan-vien-by-phong-ban id="cbxNhanVien{{$index}}" data-function-code="KD0013" data-value="ChiTieuChiTiet.NhanVienId" phongbanid="53" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                            </td>
+                           
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong1-->
+                                <input type="text" id="txtThang1{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang1" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.Thang1,'txtThang1'+$index,'txtThang2'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong2-->
+                                <input type="text" id="txtThang2{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang2" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.Thang2,'txtThang2'+$index,'txtThang3'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong3-->
+                                <input type="text" id="txtThang3{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang3" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang3'+$index,'txtThang4'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong4-->
+                                <input type="text" id="txtThang4{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang4" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang4'+$index,'txtThang5'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong5-->
+                                <input type="text" id="txtThang5{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang5" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang5'+$index,'txtThang6'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong6-->
+                                <input type="text" id="txtThang6{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang6" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang6'+$index,'txtThang7'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong7-->
+                                <input type="text" id="txtThang7{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang7" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang7'+$index,'txtThang8'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong8-->
+                                <input type="text" id="txtThang8{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang8" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang8'+$index,'txtThang9'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong9-->
+                                <input type="text" id="txtThang9{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang9" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang9'+$index,'txtThang10'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong10-->
+                                <input type="text" id="txtThang10{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang10" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang10'+$index,'txtThang11'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong11-->
+                                <input type="text" id="txtThang11{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang11" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang11'+$index,'txtThang12'+$index,$index,$event)" />
+                            </td>
+                            <td class="text-right form-group form-group-sm">
+                                <!--soluong12-->
+                                <input type="text" id="txtThang12{{$index}}" class="form-control text-right" ng-model="ChiTieuChiTiet.Thang12" number-format ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.SoLuong,'txtThang12'+$index,'txtNgayCapNhat'+$index,$index,$event)" />
+                            </td>
+                            <td class="form-group form-group-sm">
+                                <!--ngay cap nhat-->
+                                <input type="text" id="txtNgayCapNhat{{$index}}" class="form-control datetimepicker date" ng-model="ChiTieuChiTiet.NgayCapNhat" ng-keypress="ctrl.action.keyPress(ChiTieuChiTiet.NgayCapNhat,'txtNgayCapNhat'+$index,'cbxNhanVien'+$index,$index,$event)" />
+                            </td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="panel-footer">
+                <span ng-if="ctrl.data.showButtonSave">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.data.showButtonXoa">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }

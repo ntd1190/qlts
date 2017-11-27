@@ -212,6 +212,9 @@
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaEditCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaListCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\service\BaoGiaService.js" />
+    <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuEditCtrl.js" />
+    <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuListCtrl.js" />
+    <Content Include="Scripts\angular\ChiTieu\service\ChiTieuService.js" />
     <Content Include="Scripts\angular\DonHang\controller\DonHangEditCtrl.js" />
     <Content Include="Scripts\angular\DonHang\controller\DonHangListCtrl.js" />
     <Content Include="Scripts\angular\DonHang\service\DonHangService.js" />
@@ -324,6 +327,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
+    <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
@@ -403,6 +407,8 @@
     <Content Include="Views\DonHang\Edit.cshtml" />
     <Content Include="Views\BaoGia\List.cshtml" />
     <Content Include="Views\BaoGia\Edit.cshtml" />
+    <Content Include="Views\ChiTieu\List.cshtml" />
+    <Content Include="Views\ChiTieu\Edit.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
