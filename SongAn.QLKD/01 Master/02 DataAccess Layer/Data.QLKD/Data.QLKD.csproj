@@ -59,6 +59,12 @@
     <Compile Include="BaoGia\GetListBaoGiaChiTietByBaoGiaIdDac.cs" />
     <Compile Include="BaoGia\InsertBaoGiaDac.cs" />
     <Compile Include="BaoGia\UpdateBaoGiaByIdDac.cs" />
+    <Compile Include="ChiTieu\DeleteChiTieuByIdDac.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuByCriteriaDac.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuByIdDac.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuChiTietByChiTieuIdDac.cs" />
+    <Compile Include="ChiTieu\InsertChiTieuDac.cs" />
+    <Compile Include="ChiTieu\UpdateChiTieuByIdDac.cs" />
     <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
     <Compile Include="DonHang\GetListDonHangByIdDac.cs" />

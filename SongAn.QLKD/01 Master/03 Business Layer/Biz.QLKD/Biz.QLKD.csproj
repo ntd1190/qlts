@@ -51,6 +51,12 @@
     <Compile Include="BaoGia\GetListBaoGiaChiTietByBaoGiaIdBiz.cs" />
     <Compile Include="BaoGia\InsertBaoGiaBiz.cs" />
     <Compile Include="BaoGia\UpdateBaoGiaByIdBiz.cs" />
+    <Compile Include="ChiTieu\DeleteChiTieuByIdBiz.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuByCriteriaBiz.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuByIdBiz.cs" />
+    <Compile Include="ChiTieu\GetListChiTieuChiTietByChiTieuIdBiz.cs" />
+    <Compile Include="ChiTieu\InsertChiTieuBiz.cs" />
+    <Compile Include="ChiTieu\UpdateChiTieuByIdBiz.cs" />
     <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="DiaBan\DeleteDiaBanBiz.cs" />
     <Compile Include="DiaBan\GetByIdBiz.cs" />
