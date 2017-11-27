@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\BaoGiaController.cs" />
+    <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
@@ -86,6 +87,12 @@
     <Compile Include="Models\BaoGia\GetListBaoGiaChiTietByBaoGiaIdAction.cs" />
     <Compile Include="Models\BaoGia\InsertBaoGiaAction.cs" />
     <Compile Include="Models\BaoGia\UpdateBaoGiaByIdAction.cs" />
+    <Compile Include="Models\ChiTieu\DeleteChiTieuByIdAction.cs" />
+    <Compile Include="Models\ChiTieu\GetListChiTieuByIdAction.cs" />
+    <Compile Include="Models\ChiTieu\GetListChiTieuByProjectionAction.cs" />
+    <Compile Include="Models\ChiTieu\GetListChiTieuChiTietByChiTietIdAction.cs" />
+    <Compile Include="Models\ChiTieu\InsertChiTieuAction.cs" />
+    <Compile Include="Models\ChiTieu\UpdateChiTieuByIdAction.cs" />
     <Compile Include="Models\DonHang\DeleteDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByProjectionAction.cs" />
