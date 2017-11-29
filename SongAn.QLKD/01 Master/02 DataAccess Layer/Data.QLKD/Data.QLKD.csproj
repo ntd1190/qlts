@@ -7,8 +7,8 @@
     <ProjectGuid>{36B1F8EE-22F7-4A45-9114-D71DED146490}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SongAn.QLKD.Data.QLNS</RootNamespace>
-    <AssemblyName>SongAn.QLKD.Data.QLNS</AssemblyName>
+    <RootNamespace>SongAn.QLKD.Data.QLKD</RootNamespace>
+    <AssemblyName>SongAn.QLKD.Data.QLKD</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -65,6 +65,8 @@
     <Compile Include="ChiTieu\GetListChiTieuChiTietByChiTieuIdDac.cs" />
     <Compile Include="ChiTieu\InsertChiTieuDac.cs" />
     <Compile Include="ChiTieu\UpdateChiTieuByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportBaoGiaByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportDonHangByIdDac.cs" />
     <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
     <Compile Include="DonHang\GetListDonHangByIdDac.cs" />

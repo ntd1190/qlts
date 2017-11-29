@@ -1,6 +1,3 @@
-D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLNS.dll.config
-D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLNS.dll
-D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLNS.pdb
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\Dapper.dll
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\Dapper.FastCrud.dll
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
@@ -29,5 +26,8 @@ D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\Syst
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\System.Net.Http.Formatting.xml
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\System.Web.WebPages.Deployment.xml
 D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\obj\Debug\Data.QLKD.csprojResolveAssemblyReference.cache
-D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\obj\Debug\SongAn.QLKD.Data.QLNS.dll
-D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\obj\Debug\SongAn.QLKD.Data.QLNS.pdb
+D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.dll.config
+D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.pdb
+D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\obj\Debug\SongAn.QLKD.Data.QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\02 DataAccess Layer\Data.QLKD\obj\Debug\SongAn.QLKD.Data.QLKD.pdb
