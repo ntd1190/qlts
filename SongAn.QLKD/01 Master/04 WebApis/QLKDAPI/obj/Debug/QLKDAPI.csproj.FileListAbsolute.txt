@@ -78,7 +78,6 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.FastCrud.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Biz.QLKD.dll
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLNS.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Razor.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.Razor.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Microsoft.Web.Infrastructure.dll
@@ -109,10 +108,11 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\Dapper.FastCrud.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Entity.MSSQL_QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Biz.QLKD.pdb
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLNS.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.Razor.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.Razor.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\System.Web.WebPages.Deployment.xml
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\QLKDAPI.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\SongAn.QLKD.Api.QLKDAPI.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\obj\Debug\SongAn.QLKD.Api.QLKDAPI.pdb
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\QLKDAPI\bin\SongAn.QLKD.Data.QLKD.pdb

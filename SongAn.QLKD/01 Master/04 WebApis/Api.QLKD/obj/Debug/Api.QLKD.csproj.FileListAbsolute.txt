@@ -3,7 +3,6 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Ap
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Api.QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\Newtonsoft.Json.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Biz.QLKD.dll
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.QLNS.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.Repository.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Entity.QLKD_MAIN.dll
@@ -20,7 +19,6 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\System.Web.Web
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Util.Common.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Entity.QLKD_MAIN.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb
-D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.QLNS.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.Repository.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Biz.QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\Newtonsoft.Json.xml
@@ -35,3 +33,5 @@ D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\System.Web.Web
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\obj\Debug\Api.QLKD.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\obj\Debug\SongAn.QLKD.Api.QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\obj\Debug\SongAn.QLKD.Api.QLKD.pdb
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.dll
+D:\WebProject\SongAn.QLKD\01 Master\04 WebApis\Api.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.pdb
