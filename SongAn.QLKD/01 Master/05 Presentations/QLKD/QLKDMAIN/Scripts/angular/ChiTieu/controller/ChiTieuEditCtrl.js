@@ -371,7 +371,6 @@
                 
                 else if (utility.checkInValid(vm.data.listChiTiet[index].Thang1, 'isEmpty')) {
                     if (vm.data.listChiTiet[index].Thang1.toString() == '0') {
-
                     }
                     else {
                         hasError = true;
@@ -379,6 +378,106 @@
                         return hasError;
                     }
                 }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang2, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang2.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang3, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang3.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang4, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang4.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang5, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang5.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang6, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang6.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang7, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang7.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang8, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang8.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang9, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang9.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang10, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang10.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang11, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang11.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+                else if (utility.checkInValid(vm.data.listChiTiet[index].Thang12, 'isEmpty')) {
+                    if (vm.data.listChiTiet[index].Thang12.toString() == '0') {
+                    }
+                    else {
+                        hasError = true;
+                        vm.data.listChiTiet[index].isError = true;
+                        return hasError;
+                    }
+                }
+
                 else {
                     hasError = false;
                     vm.data.listChiTiet[index].isError = false;

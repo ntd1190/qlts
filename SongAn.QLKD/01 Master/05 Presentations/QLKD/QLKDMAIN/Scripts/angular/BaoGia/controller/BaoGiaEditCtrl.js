@@ -114,7 +114,10 @@
         vm.action = {
             deleteSelected: deleteSelected,
         };
-
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLKDMAIN/CrystalReport/ReportPage.aspx?name=rptBaoGiaById&data=' + vm.data.phieuBaoGia.BaoGiaId);
+            $('#reportmodal').modal('show');
+        };
         vm.action.goBack = function () {
             window.history.back();
         };

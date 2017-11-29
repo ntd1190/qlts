@@ -116,7 +116,10 @@
         vm.action = {
             deleteSelected: deleteSelected,
         };
-
+        vm.action.In = function () {
+            $('#reportmodal').find('iframe').attr('src', '../../../QLKDMAIN/CrystalReport/ReportPage.aspx?name=rptDonHangById&data=' + vm.data.phieuDonHang.DonHangId);
+            $('#reportmodal').modal('show');
+        };
         vm.action.goBack = function () {
             window.history.back();
         };

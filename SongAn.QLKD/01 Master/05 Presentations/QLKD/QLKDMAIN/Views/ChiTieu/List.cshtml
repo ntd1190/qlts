@@ -59,7 +59,7 @@
                             </td>
                             <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
                                 <a ng-switch-when="Nam" ng-switch-when-separator="," href="#!/ChiTieu/edit/{{ChiTieu.ChiTieuId}}" ng-bind="ChiTieu[cot.MaCot]"></a>
-                                <span ng-switch-when="NgayTao">{{ ChiTieu.NgayTao | date : 'dd/MM/yyyy'}}</span>
+                                <span style="display:block; text-align:center" ng-switch-when="NgayTao">{{ ChiTieu.NgayTao | date : 'dd/MM/yyyy'}}</span>
                                 <span ng-switch-default ng-bind="ChiTieu[cot.MaCot]"></span>
                             </td>
                         </tr>
