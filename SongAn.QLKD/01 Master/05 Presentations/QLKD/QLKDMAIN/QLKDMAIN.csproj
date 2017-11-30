@@ -222,6 +222,8 @@
     <Content Include="Scripts\angular\app\models\PhongBanService.js" />
     <Content Include="Scripts\angular\app\models\utility.js" />
     <Content Include="Scripts\angular\app\models\VaiTroService.js" />
+    <Content Include="Scripts\angular\BaoCaoDoanhThu\controller\BaoCaoDoanhThuList.js" />
+    <Content Include="Scripts\angular\BaoCaoDoanhThu\service\BaoCaoDoanhThuService.js" />
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaEditCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaListCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\service\BaoGiaService.js" />
@@ -231,6 +233,8 @@
     <Content Include="Scripts\angular\DonHang\controller\DonHangEditCtrl.js" />
     <Content Include="Scripts\angular\DonHang\controller\DonHangListCtrl.js" />
     <Content Include="Scripts\angular\DonHang\service\DonHangService.js" />
+    <Content Include="Scripts\angular\FileHopDong\controller\FileHopDongListCtrl.js" />
+    <Content Include="Scripts\angular\FileHopDong\service\FileHopDongService.js" />
     <Content Include="Scripts\angular\DuLieu\controller\DuLieuListCtrl.js" />
     <Content Include="Scripts\angular\DuLieu\directive\cboDuLieu.js" />
     <Content Include="Scripts\angular\DuLieu\service\DuLieuService.js" />
@@ -339,9 +343,11 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
+    <Compile Include="Controllers\FileHopDongController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\HopDongController.cs" />
@@ -377,6 +383,12 @@
     </Compile>
     <Compile Include="CrystalReport\ReportPage.aspx.designer.cs">
       <DependentUpon>ReportPage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptBaoCaoDoanhThu.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptBaoCaoDoanhThu.rpt</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptBaoGiaById.cs">
       <AutoGen>True</AutoGen>
@@ -446,8 +458,10 @@
     <Content Include="Views\DonHang\Edit.cshtml" />
     <Content Include="Views\BaoGia\List.cshtml" />
     <Content Include="Views\BaoGia\Edit.cshtml" />
-    <Content Include="Views\ChiTieu\List.cshtml" />
+    <Content Include="Views\FileHopDong\List.cshtml" />
     <Content Include="Views\ChiTieu\Edit.cshtml" />
+    <Content Include="Views\ChiTieu\List.cshtml" />
+    <Content Include="Views\BaoCaoDoanhThu\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -494,6 +508,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="CrystalReport\Report\rptBaoCaoDoanhThu.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptBaoCaoDoanhThu.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptBaoGiaById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBaoGiaById.cs</LastGenOutput>

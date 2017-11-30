@@ -8,6 +8,9 @@ using CrystalDecisions.Web;
 using CrystalDecisions.Shared;
 using SongAn.QLKD.Biz.QLKD.CrystalReport;
 using SongAn.QLKD.Util.Common.Helper;
+using System.Globalization;
+using System.Web.UI;
+using System.Web.UI.WebControls;
 
 namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
 {
@@ -43,6 +46,38 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                     biz.BaoGiaId = search;
                     ds = biz.ExecuteBiz();
                 }
+                else if (reportname == "rptBaoCaoDoanhThu.rpt")
+                {
+                 //   new SqlParameter("@UserId", SqlDbType.VarChar) { Value = UserId },
+                 //new SqlParameter("@NhanVienId", SqlDbType.VarChar) { Value = NhanVienId },
+                 //new SqlParameter("@Search", SqlDbType.VarChar) { Value = Search },
+                 //new SqlParameter("@SearchLoaiHopDongId", SqlDbType.VarChar) { Value = SearchLoaiHopDongId },
+                 //new SqlParameter("@TuNgay", SqlDbType.DateTime) { Value = TuNgay },
+                 //new SqlParameter("@DenNgay", SqlDbType.DateTime) { Value = DenNgay },
+                 //new SqlParameter("@OrderClause", SqlDbType.VarChar) { Value = OrderClause },
+                 //new SqlParameter("@Skip", SqlDbType.VarChar) { Value = Skip },
+                 //new SqlParameter("@Take", SqlDbType.Int) { Value = 10000 }
+                    ReportBaoCaoDoanhThuByCriteriaBiz biz = new ReportBaoCaoDoanhThuByCriteriaBiz(context);
+
+                    biz.OrderClause = "NgayHopDong asc";
+                    biz.Skip = 0;
+                    biz.Take = 10000;
+                    
+
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            biz.Search = search.Split('|')[0];
+                            biz.SearchLoaiHopDongId = search.Split('|')[1];
+                            biz.TuNgay = DateTime.ParseExact(search.Split('|')[2], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.DenNgay = DateTime.ParseExact(search.Split('|')[3], "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR"));
+                            biz.UserId = search.Split('|')[4];
+                            biz.NhanVienId = search.Split('|')[5];
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
 
                 //CrystalReportViewer1.SeparatePages = true;
 
@@ -51,11 +86,8 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                 {
                     Response.Write("<script>alert('Không có dữ liệu !');</script>");
                 }
-                //if (reportname == "abc.rpt")
-                //{
-                //    ds.Tables[1].TableName = "Tables1";
-                //}
-                //ds.WriteXmlSchema(@"D:\rptBaoGiaById.xml");
+
+                //ds.WriteXmlSchema(@"D:\rptBaoCaoDoanhThu.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);
@@ -65,11 +97,29 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
 
                 if (exportexcel == "1")
                 {
-                    Response.Buffer = false;
-                    Response.ClearContent();
-                    Response.ClearHeaders();
-                    reportdocument.ExportToHttpResponse(ExportFormatType.Excel, Response, true, reportname.Replace(".rpt", "").Replace("rpt", ""));
-                    Response.End();
+                    DataTable tb = new DataTable();
+                    if (reportname == "rptBaoCaoDoanhThu.rpt")
+                    {
+                        tb = ds.Tables[0];
+
+                        tb.Columns.Remove("MAXCNT");
+                        tb.Columns.Remove("NhanVienId");
+                        tb.Columns.Remove("NgayHopDong");
+                        tb.Columns.Remove("TuNgay");
+                        tb.Columns.Remove("DeNgay");
+
+                        tb.Columns["MaNhanVien"].ColumnName = "Mã NV";
+                        tb.Columns["SoTien"].ColumnName = "Trị giá hợp đồng";
+                        ExportToExcel(tb, "BaoCaoDoanhThu", "BẢNG DOANH THU");
+                    }
+                    else
+                    {
+                        Response.Buffer = false;
+                        Response.ClearContent();
+                        Response.ClearHeaders();
+                        reportdocument.ExportToHttpResponse(ExportFormatType.Excel, Response, true, reportname.Replace(".rpt", "").Replace("rpt", ""));
+                        Response.End();
+                    }
                 }
             }
             else
@@ -95,6 +145,31 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                 if (reportQueue.Count > 30) ((ReportDocument)reportQueue.Dequeue()).Dispose();
                 return CreateReport(reportClass);
             }
+        }
+
+        public void ExportToExcel(DataTable tb, string _name, string _title)
+        {
+            GridView GridView1 = new GridView();
+
+            Response.Clear();
+            string filename = String.Format(_name + "_{0}_{1}_{2}.xls", DateTime.Today.Day.ToString(), DateTime.Today.Month.ToString(), DateTime.Today.Year.ToString());
+            Response.AddHeader("content-disposition", "attachment;filename=" + filename);
+            Response.Charset = "";
+            Response.ContentType = "application/vnd.xls";
+            Response.ContentEncoding = System.Text.Encoding.Unicode;
+            Response.BinaryWrite(System.Text.Encoding.Unicode.GetPreamble());
+            System.IO.StringWriter stringWrite = new System.IO.StringWriter();
+            System.Web.UI.HtmlTextWriter htmlWrite = new HtmlTextWriter(stringWrite);
+            htmlWrite.Write("<table><tr><td colspan='6'>" + _title +"</td></tr>");
+            GridView1.AllowPaging = false;
+            GridView1.PageSize = 10000;
+            GridView1.DataSource = tb;
+            GridView1.DataBind();
+            GridView1.RenderControl(htmlWrite);
+            string style = @"<style> TD { mso-number-format:\@; } </style>";
+            Response.Write(style);
+            Response.Write(stringWrite.ToString());
+            Response.End();
         }
     }
 }

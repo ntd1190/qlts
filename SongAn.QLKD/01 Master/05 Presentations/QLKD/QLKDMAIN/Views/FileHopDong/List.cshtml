@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "File hợp đồng";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo)})" keyboard="ctrl.keys">
+        <div class="panel panel-default" id="FileHopDongList">
+            <div class="panel-heading clearfix">
+                <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>@(ViewBag.Title)</span>
+                <form class="form-inline pull-right" autocomplete="on">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" ng-model="ctrl.inputSearch.search" autofocus />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" href="javascript:void(0)" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-body">
+                <h3 class="text-center no-margin">Danh sách file hợp đồng</h3>
+            </div>
+            <div class="table-responsive  panel-body">
+                <div class="table table-bordered table-condensed table-responsive table-hover" st-table="ctrl.data.listFileHopDong" st-pipe="ctrl.action.getPage">
+                    <table class="table table-bordered table-condensed table-hover table-striped" style="min-width:800px;">
+                        <thead class="text-primary">
+                            <tr>
+                                <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                                    <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </th>
+                                <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN">
+                                    <span ng-bind="cot.TenCot"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="ctrl.status.isLoading">
+                                <td colspan="100" class="text-center">
+                                    <i class="fa fa-fw fa-spinner fa-spin"></i>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="row in ctrl.data.listFileHopDong">
+                                <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                                    <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </td>
+                                <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN" ng-switch="cot.MaCot">
+                                    <a href="javascript:void(0)" ng-click="ctrl.action.edit(row.ID)"
+                                       ng-switch-when="SoHopDong,TenHopDong" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></a>
+                                    <div class="text-center" ng-switch-when="FileCung" ng-switch-when-separator="," ng-if="row.FileCung">
+                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileCung}}">Xem</a>
+                                    </div>
+                                    <div class="text-center" ng-switch-when="FileMem" ng-switch-when-separator="," ng-if="row.FileMem">
+                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileMem}}">Xem</a>
+                                    </div>
+                                    <div class="text-center" ng-switch-when="NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
+                                    <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="100" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.edit(0)"><i class="fa fa-fw fa-plus"></i>Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.deleteList()"><i class="fa fa-fw fa-trash-o"></i>Xóa chọn</a>&nbsp;&nbsp;&nbsp;
+                </span>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+
+    <div class="panel panel-primary ui-draggable collapse fade" id="FileHopDongEditPopup">
+        <div class="panel-heading ui-draggable-handle clearfix">
+            <span class="panel-title">File hợp đồng</span>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#FileHopDongEditPopup"><i class="fa fa-fw fa-remove"></i></a>
+        </div>
+        <div class="panel-body" style="width: 600px;height:500px">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.FileHopDong_HopDongId?'has-error':''">
+                    <label class="control-label col-sm-3">Hợp đồng</label>
+                    <div class="col-sm-9">
+                        <cbo-hop-dong id="cbxHopDong" data-function-code="KD0014" data-hopdongid="ctrl.data.FileHopDong.HopDongId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/hopdong/showcombobox?viewname=cbohopdong"></cbo-hop-dong>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" >
+                    <label class="control-label col-sm-3">Đã làm</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="cbxDaLam" style="padding:0px 10px" data-placeholder="" ng-model="ctrl.data.FileHopDong.DaLam">
+                            <option value="0">Chưa làm</option>
+                            <option value="1">Đã làm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" >
+                    <label class="control-label col-sm-3">Người làm</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.FileHopDong.NguoiLam"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="FileHopDong_NguoiLam" data-next="FileHopDong_DaChuyen" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Đã chuyển</label>
+                    <div class="col-sm-9">
+                        <select class="form-control" id="cbxDaChuyen" data-name="FileHopDong_DaChuyen"  style="padding:0px 10px" data-placeholder="" ng-model="ctrl.data.FileHopDong.DaChuyen">
+                            <option value="0">Chưa làm</option>
+                            <option value="1">Đã làm</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Người chuyển</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.FileHopDong.NguoiChuyen"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="FileHopDong_NguoiChuyen" data-next="FileHopDong_NguoiChuyen" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ngày chuyển</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtNgayChuyen" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-keydown="ctrl.action.keyPress($event)" ng-model="ctrl.data.FileHopDong.NgayChuyen"  data-name="FileHopDong_NgayChuyen" data-next="FileHopDong_NguoiNhan" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Người nhận</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.FileHopDong.NguoiNhan"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="FileHopDong_NguoiNhan" data-next="FileHopDong_NguoiNhan" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ngày nhận</label>
+                    <div class="col-sm-9">
+                        <input type="text" id="txtNgayNhan" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-keydown="ctrl.action.keyPress($event)" ng-model="ctrl.data.FileHopDong.NgayNhan" data-name="FileHopDong_NgayNhan" data-next="FileHopDong_FileMem" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">File cứng</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" file-bind="ctrl.data.FileHopDong.fileC" accept="*" data-name="FileHopDong_FileCung" data-next="FileHopDong_GhiChu" />
+                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileCung}}" ng-if="ctrl.data.FileHopDong.FileCung">Xem</a>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">File mềm</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" file-bind="ctrl.data.FileHopDong.fileM" accept="*" data-name="FileHopDong_FileMem" data-next="FileHopDong_GhiChu" />
+                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileMem}}" ng-if="ctrl.data.FileHopDong.FileMem">Xem</a>
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm">
+                    <label class="control-label col-sm-3">Ghi chú</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.FileHopDong.GhiChu"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="FileHopDong_GhiChu"  />
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVuEdit('N')||ctrl.action.checkQuyenTacVuEdit('M')">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#FileHopDongEditPopup">Đóng</a>&nbsp;&nbsp;&nbsp;
+        </div>
+    </div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
