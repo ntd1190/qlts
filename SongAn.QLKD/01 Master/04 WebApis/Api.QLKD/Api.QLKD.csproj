@@ -63,11 +63,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
+    <Compile Include="Controllers\FileHopDongController.cs" />
     <Compile Include="Controllers\HangHoaController.cs" />
     <Compile Include="Controllers\KDHopDongController.cs" />
     <Compile Include="Controllers\KeHoachController.cs" />
@@ -81,6 +83,7 @@
     <Compile Include="Controllers\QuanHuyenController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
     <Compile Include="Controllers\TinhController.cs" />
+    <Compile Include="Models\BaoCaoDoanhThu\GetListBaoCaoDoanhThuByProjectionAction.cs" />
     <Compile Include="Models\BaoGia\DeleteBaoGiaByIdAction.cs" />
     <Compile Include="Models\BaoGia\GetListBaoGiaByIdAction.cs" />
     <Compile Include="Models\BaoGia\GetListBaoGiaByProjectionAction.cs" />
@@ -99,6 +102,11 @@
     <Compile Include="Models\DonHang\GetListDonHangChiTietByDonHangIdAction.cs" />
     <Compile Include="Models\DonHang\InsertDonHangAction.cs" />
     <Compile Include="Models\DonHang\UpdateDonHangByIdAction.cs" />
+    <Compile Include="Models\FileHopDong\DeleteFileHopDongAction.cs" />
+    <Compile Include="Models\FileHopDong\GetByIdAction.cs" />
+    <Compile Include="Models\FileHopDong\GetListByCriteriaAction.cs" />
+    <Compile Include="Models\FileHopDong\InsertFileHopDongAction.cs" />
+    <Compile Include="Models\FileHopDong\UpdateFileHopDongAction.cs" />
     <Compile Include="Models\HopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\DeleteHopDongAction.cs" />
     <Compile Include="Models\HopDong\GetByIdAction.cs" />
