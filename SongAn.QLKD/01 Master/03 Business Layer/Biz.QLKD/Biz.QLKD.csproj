@@ -55,6 +55,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoCaoDoanhThu\GetListBaoCaoDoanhThuByCriteriaBiz.cs" />
     <Compile Include="BaoGia\DeleteBaoGiaByIdBiz.cs" />
     <Compile Include="BaoGia\GetListBaoGiaByCriteriaBiz.cs" />
     <Compile Include="BaoGia\GetListBaoGiaByIdBiz.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="ChiTieu\GetListChiTieuChiTietByChiTieuIdBiz.cs" />
     <Compile Include="ChiTieu\InsertChiTieuBiz.cs" />
     <Compile Include="ChiTieu\UpdateChiTieuByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportBaoCaoDoanhThuByCriteriaBiz.cs" />
     <Compile Include="CrystalReport\ReportBaoGiaByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportDonHangByIdBiz.cs" />
     <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
@@ -81,6 +83,11 @@
     <Compile Include="DonHang\GetListDonHangChiTietByDonHangIdBiz.cs" />
     <Compile Include="DonHang\InsertDonHangBiz.cs" />
     <Compile Include="DonHang\UpdateDonHangByIdBiz.cs" />
+    <Compile Include="FileHopDong\DeleteFileHopDongBiz.cs" />
+    <Compile Include="FileHopDong\GetByIdBiz.cs" />
+    <Compile Include="FileHopDong\GetListByCriteriaBiz.cs" />
+    <Compile Include="FileHopDong\InsertFileHopDongBiz.cs" />
+    <Compile Include="FileHopDong\UpdateFileHopDongBiz.cs" />
     <Compile Include="DuLieu\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="DuLieu\DeleteDuLieuBiz.cs" />
     <Compile Include="DuLieu\GetByIdBiz.cs" />
