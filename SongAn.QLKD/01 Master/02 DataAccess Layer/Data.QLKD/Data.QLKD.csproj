@@ -68,7 +68,9 @@
     <Compile Include="ChiTieu\UpdateChiTieuByIdDac.cs" />
     <Compile Include="CrystalReport\ReportBaoCaoDoanhThuByCriteriaDac.cs" />
     <Compile Include="CrystalReport\ReportBaoGiaByIdDac.cs" />
+    <Compile Include="CrystalReport\ReportDanhGiaDoanhThuByCriteriaDac.cs" />
     <Compile Include="CrystalReport\ReportDonHangByIdDac.cs" />
+    <Compile Include="DanhGiaDoanhThu\GetListDanhGiaDoanhThuByCriteriaDac.cs" />
     <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
     <Compile Include="DonHang\GetListDonHangByIdDac.cs" />

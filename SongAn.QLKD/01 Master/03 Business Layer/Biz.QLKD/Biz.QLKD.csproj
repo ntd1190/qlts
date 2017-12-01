@@ -70,7 +70,9 @@
     <Compile Include="ChiTieu\UpdateChiTieuByIdBiz.cs" />
     <Compile Include="CrystalReport\ReportBaoCaoDoanhThuByCriteriaBiz.cs" />
     <Compile Include="CrystalReport\ReportBaoGiaByIdBiz.cs" />
+    <Compile Include="CrystalReport\ReportDanhGiaDoanhThuByCriteriaBiz.cs" />
     <Compile Include="CrystalReport\ReportDonHangByIdBiz.cs" />
+    <Compile Include="DanhGiaDoanhThu\GetListDanhGiaDoanhThuByCriteriaBiz.cs" />
     <Compile Include="DiaBan\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="DiaBan\DeleteDiaBanBiz.cs" />
     <Compile Include="DiaBan\GetByIdBiz.cs" />

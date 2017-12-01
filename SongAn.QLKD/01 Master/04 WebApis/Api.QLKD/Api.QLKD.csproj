@@ -66,6 +66,7 @@
     <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
+    <Compile Include="Controllers\DanhGiaDoanhThuController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Models\ChiTieu\GetListChiTieuChiTietByChiTietIdAction.cs" />
     <Compile Include="Models\ChiTieu\InsertChiTieuAction.cs" />
     <Compile Include="Models\ChiTieu\UpdateChiTieuByIdAction.cs" />
+    <Compile Include="Models\DanhGiaDoanhThu\GetListDanhGiaDoanhThuByProjectionAction.cs" />
     <Compile Include="Models\DonHang\DeleteDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByProjectionAction.cs" />

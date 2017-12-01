@@ -55,13 +55,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.BaoCaoDoanhThu
                 biz.NhanVienId = NhanVienId;
 
                 IEnumerable<dynamic> listBCDoanhThu = await biz.Execute();
-                if (listBCDoanhThu.Count() > 0)
-                {
-                    var obj = listBCDoanhThu.FirstOrDefault();
-
-                    total = Protector.Int(obj.MAXCNT);
-                }
-
+                
                 dynamic _metaData = new System.Dynamic.ExpandoObject();
                 _metaData.draw = _draw;
                 _metaData.total = total;
