@@ -230,6 +230,8 @@
     <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuEditCtrl.js" />
     <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuListCtrl.js" />
     <Content Include="Scripts\angular\ChiTieu\service\ChiTieuService.js" />
+    <Content Include="Scripts\angular\DanhGiaDoanhThu\controller\DanhGiaDoanhThuList.js" />
+    <Content Include="Scripts\angular\DanhGiaDoanhThu\service\DanhGiaDoanhThuService.js" />
     <Content Include="Scripts\angular\DonHang\controller\DonHangEditCtrl.js" />
     <Content Include="Scripts\angular\DonHang\controller\DonHangListCtrl.js" />
     <Content Include="Scripts\angular\DonHang\service\DonHangService.js" />
@@ -346,6 +348,7 @@
     <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
+    <Compile Include="Controllers\DanhGiaDoanhThuController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\FileHopDongController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
@@ -394,6 +397,12 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>rptBaoGiaById.rpt</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CrystalReport\Report\rptDanhGiaDoanhThu.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>rptDanhGiaDoanhThu.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="CrystalReport\Report\rptDonHangById.cs">
@@ -462,6 +471,7 @@
     <Content Include="Views\ChiTieu\Edit.cshtml" />
     <Content Include="Views\ChiTieu\List.cshtml" />
     <Content Include="Views\BaoCaoDoanhThu\List.cshtml" />
+    <Content Include="Views\DanhGiaDoanhThu\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -515,6 +525,10 @@
     <EmbeddedResource Include="CrystalReport\Report\rptBaoGiaById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>rptBaoGiaById.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CrystalReport\Report\rptDanhGiaDoanhThu.rpt">
+      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
+      <LastGenOutput>rptDanhGiaDoanhThu.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="CrystalReport\Report\rptDonHangById.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

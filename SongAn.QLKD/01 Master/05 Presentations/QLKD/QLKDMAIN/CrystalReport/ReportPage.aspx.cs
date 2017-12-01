@@ -48,15 +48,6 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                 }
                 else if (reportname == "rptBaoCaoDoanhThu.rpt")
                 {
-                 //   new SqlParameter("@UserId", SqlDbType.VarChar) { Value = UserId },
-                 //new SqlParameter("@NhanVienId", SqlDbType.VarChar) { Value = NhanVienId },
-                 //new SqlParameter("@Search", SqlDbType.VarChar) { Value = Search },
-                 //new SqlParameter("@SearchLoaiHopDongId", SqlDbType.VarChar) { Value = SearchLoaiHopDongId },
-                 //new SqlParameter("@TuNgay", SqlDbType.DateTime) { Value = TuNgay },
-                 //new SqlParameter("@DenNgay", SqlDbType.DateTime) { Value = DenNgay },
-                 //new SqlParameter("@OrderClause", SqlDbType.VarChar) { Value = OrderClause },
-                 //new SqlParameter("@Skip", SqlDbType.VarChar) { Value = Skip },
-                 //new SqlParameter("@Take", SqlDbType.Int) { Value = 10000 }
                     ReportBaoCaoDoanhThuByCriteriaBiz biz = new ReportBaoCaoDoanhThuByCriteriaBiz(context);
 
                     biz.OrderClause = "NgayHopDong asc";
@@ -78,6 +69,21 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                         }
                     }
                 }
+                else if (reportname == "rptDanhGiaDoanhThu.rpt")
+                {
+                    ReportDanhGiaDoanhThuByCriteriaBiz biz = new ReportDanhGiaDoanhThuByCriteriaBiz(context);
+                    if (search != null && search != "")
+                    {
+                        if (search.Split('|').Length > 1)
+                        {
+                            biz.Nam = Protector.Int(search.Split('|')[0]);
+                            biz.NhanVienKDId = Protector.Int(search.Split('|')[1]);
+                            biz.UserId = search.Split('|')[2];
+                            biz.NhanVienId = search.Split('|')[3];
+                            ds = biz.ExecuteDac();
+                        }
+                    }
+                }
 
                 //CrystalReportViewer1.SeparatePages = true;
 
@@ -87,7 +93,7 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                     Response.Write("<script>alert('Không có dữ liệu !');</script>");
                 }
 
-                //ds.WriteXmlSchema(@"D:\rptBaoCaoDoanhThu.xml");
+                ds.WriteXmlSchema(@"D:\rptDanhGiaDoanhThu.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

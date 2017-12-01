@@ -1,0 +1,198 @@
+﻿
+@{
+    ViewBag.Title = "List";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo,linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="panel-title clearfix">
+                    <span><i class="fa fa-fw fa-star-o"></i>Đánh giá doanh thu</span>
+                    <div class="btn-group btn-group-sm pull-right">
+                        <a class="btn btn-primary" data-toggle="collapse" data-target="#SearchCollapse"><i class="fa fa-fw fa-search"></i> Tìm kiếm (F3)</a>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="collapse fade" id="SearchCollapse">
+                <div class="panel-body">
+                    <form class="form-horizontal">
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-2">Chọn Năm</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" id="nam" ng-model="ctrl.data.Nam">
+                                    <option value="2015">2015</option>
+                                    <option value="2016">2016</option>
+                                    <option value="2017">2017</option>
+                                    <option value="2018">2018</option>
+                                    <option value="2019">2019</option>
+                                    <option value="2020">2020</option>
+                                    <option value="2021">2021</option>
+                                    <option value="2022">2022</option>
+                                    <option value="2023">2023</option>
+                                    <option value="2024">2024</option>
+                                    <option value="2025">2025</option>
+                                    <option value="2026">2026</option>
+                                    <option value="2027">2027</option>
+                                    <option value="2028">2028</option>
+                                    <option value="2029">2029</option>
+                                    <option value="2030">2030</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row form-group form-group-sm">
+                            <label class="control-label col-sm-2">Nhân viên</label>
+                            <div class="col-sm-9">
+                                <cbo-nhan-vien-by-phong-ban id="cbxNhanVien" data-value="ctrl.data.NhanVienKDId" data-function-code="KD0015" data-phongbanid="53" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showcombobox?viewname=cboNhanVienByPhongBan"></cbo-nhan-vien-by-phong-ban>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="panel-footer">
+                    <a class="btn btn-sm btn-primary" ng-click="ctrl.action.getPage()">Tìm kiếm (F8)</a>&nbsp;&nbsp;&nbsp;
+                    <a class="btn btn-sm btn-default" ng-click="ctrl.action.reset()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+                </div>
+            </div>
+            <!---->
+
+            <div class="panel-heading">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In danh sách</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i class="fa fa-file-excel-o"></i> Xuất Excel</a>
+            </div>
+            <div class="table-responsive panel-body" style="min-height:350px;max-height:350px;">
+                <table class="table table-bordered table-condensed table-responsive table-hover" style="border: 1px solid #ddd;" st-table="ctrl.data.listDanhGiaDoanhThu" st-pipe="ctrl.action.getPage">
+                    <thead class="bg-default text-primary">
+                        <tr>
+                            <th class="text-center" rowspan="3" style="width: 40px;vertical-align:middle">STT</th>
+                            <th class="text-center" rowspan="3" style="min-width: 80px;vertical-align:middle">Mã NV</th>
+                            <th class="text-center" rowspan="3" style="min-width: 150px;vertical-align:middle">Tên NV</th>
+                            <th class="text-center" colspan="24">CHỈ TIÊU DOANH THU NĂM <span ng-bind="ctrl.data.Nam"/></th>
+                           
+                        </tr>
+                        <tr>
+                            <th class="text-center" colspan="2">THÁNG 1</th>
+                            <th class="text-center" colspan="2">THÁNG 2</th>
+                            <th class="text-center" colspan="2">THÁNG 3</th>
+                            <th class="text-center" colspan="2">THÁNG 4</th>
+                            <th class="text-center" colspan="2">THÁNG 5</th>
+                            <th class="text-center" colspan="2">THÁNG 6</th>
+                            <th class="text-center" colspan="2">THÁNG 7</th>
+                            <th class="text-center" colspan="2">THÁNG 8</th>
+                            <th class="text-center" colspan="2">THÁNG 9</th>
+                            <th class="text-center" colspan="2">THÁNG 10</th>
+                            <th class="text-center" colspan="2">THÁNG 11</th>
+                            <th class="text-center" colspan="2">THÁNG 12</th>
+
+                        </tr>
+                        <tr>
+                            @*<th class="text-center" style="width: 40px;vertical-align:middle">STT</th>
+                            <th class="text-center" style="min-width: 80px;vertical-align:middle">Mã NV</th>
+                            <th class="text-center" style="min-width: 150px;vertical-align:middle">Tên NV</th>*@
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">DT</th>
+                            <th class="text-center" style="min-width: 100px;vertical-align:middle">%</th>
+                            @*<th class="text-center"
+                                style="width:{{cot.DoRong}}px;"
+                                st-sort="{{cot.MaCot}}"
+                                ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot">
+                                <span ng-bind="cot.TenCot"></span>
+                            </th>*@
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-if="ctrl.data.error.code>0">
+                            <td colspan="100" class="text-center danger" ng-bind="ctrl.data.error.message"></td>
+                        </tr>
+                        <tr ng-repeat="DanhGiaDoanhThu in ctrl.data.listDanhGiaDoanhThu">
+                            <td class="text-center">{{$index + 1}}</td>
+
+                            <td class="text-right" ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <span ng-switch-when="STT" ng-bind="DanhGiaDoanhThu[cot.MaCot]" style="display:block;text-align:center"></span>
+                                <span ng-switch-when="MaNhanVien" ng-bind="DanhGiaDoanhThu[cot.MaCot]" style="display:block;text-align:left"></span>
+                                <span ng-switch-when="TenNhanVien" ng-bind="DanhGiaDoanhThu[cot.MaCot]" style="display:block;text-align:left"></span>
+                                <span ng-switch-default ng-bind="DanhGiaDoanhThu[cot.MaCot]|number"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td class="text-right" colspan="3" style="color: red;font-weight: bold;text-align: center;">TỔNG</td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu01')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu01')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu01')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu02')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu02')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu02')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu03')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu03')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu03')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu04')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu04')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu04')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu05')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu05')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu05')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu06')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu06')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu06')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu07')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu07')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu07')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu08')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu08')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu08')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu09')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu09')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu09')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu10')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu10')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu10')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu11')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu11')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu11')*100)|number"></td>
+                            <td class="text-right" ng-bind="(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu12')|number"></td>
+                            <td class="text-right" ng-bind="(+(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'DoanhThu12')/(ctrl.data.listDanhGiaDoanhThu|sumOfValue:'ChiTieu12')*100)|number"></td>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+
+        <div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myLargeModalLabel">Đánh giá doanh thu</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="" width="100%" height="1000px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
