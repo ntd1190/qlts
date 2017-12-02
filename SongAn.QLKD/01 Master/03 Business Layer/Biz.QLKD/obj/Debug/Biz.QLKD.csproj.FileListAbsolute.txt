@@ -6,6 +6,7 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\Crystal
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\CrystalDecisions.Shared.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\CrystalDecisions.Web.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.Main.dll
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.Repository.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Entity.QLKD_MAIN.dll
@@ -39,6 +40,7 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Entity.QLKD_MAIN.pdb
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Entity.MSSQL_QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.Main.pdb
+D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.pdb
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.Repository.pdb
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\System.Web.Mvc.xml
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\System.Web.Http.xml
@@ -53,5 +55,3 @@ D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\System.
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\obj\Debug\Biz.QLKD.csprojResolveAssemblyReference.cache
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\obj\Debug\SongAn.QLKD.Biz.QLKD.dll
 D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\obj\Debug\SongAn.QLKD.Biz.QLKD.pdb
-D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.dll
-D:\WebProject\SongAn.QLKD\01 Master\03 Business Layer\Biz.QLKD\bin\Debug\SongAn.QLKD.Data.QLKD.pdb
