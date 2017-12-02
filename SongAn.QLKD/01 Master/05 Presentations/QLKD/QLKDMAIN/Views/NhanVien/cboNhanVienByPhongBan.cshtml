@@ -4,7 +4,7 @@
     <ui-select ng-model="ctrl.data.NhanVien" data-ng-disabled="disabled" on-select="ctrl.action.onSelected()" theme="bootstrap" id="{{ctrl.NameId}}">
         <ui-select-match placeholder="{{$select.selected.TenNhanVien || 'Chọn cán bộ'}}">{{$select.selected.TenNhanVien}}</ui-select-match>
         <ui-select-choices repeat="item in ctrl.data.NhanVienListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
-            <span ng-bind-html="item.MaNhanVien" class="text-danger"></span> : <span ng-bind-html="item.TenNhanVien"></span>
+            <span ng-bind-html="item.MaNhanVien" class="text-danger"></span> <span ng-if="item.MaNhanVien">:</span> <span ng-bind-html="item.TenNhanVien"></span>
         </ui-select-choices>
     </ui-select>
 

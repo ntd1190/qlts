@@ -16,12 +16,12 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
         {
             return View();
         }
-        [CustomAuthorize(FunctionCodes = "KD0015")]
+        [CustomAuthorize(FunctionCodes = "KD0016")]
         public ActionResult showView(string viewName, string type)
         {
             type = string.IsNullOrEmpty(type) ? "Html" : type;
             ViewData[type] = true;
-            string userLogin = LoadUserInfo("KD0015");
+            string userLogin = LoadUserInfo("KD0016");
             ViewBag.userInfo = userLogin;
             return PartialView(viewName);
         }

@@ -5,7 +5,7 @@
         <ui-select-match placeholder="{{$select.selected.TenHangHoa || 'Chọn hàng hóa'}}">{{$select.selected.TenHangHoa}}</ui-select-match>
         <ui-select-choices repeat="item in ctrl.data.HangHoaListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
             <div style="border-bottom: #ccc 1px solid;">
-                <b><span class="text-danger" ng-bind-html="item.MaHangHoa | highlight: $select.search"></span></b>: <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenHangHoa | highlight: $select.search"></span></strong></b>
+                <b><span class="text-danger" ng-bind-html="item.MaHangHoa | highlight: $select.search"></span></b> <span ng-if="item.MaHangHoa">:</span> <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenHangHoa | highlight: $select.search"></span></strong></b>
                 <br />
                 <b>- Giá mua:</b> <span ng-bind-html="item.GiaMua|number:'':'':4"></span> đ
                 <br />

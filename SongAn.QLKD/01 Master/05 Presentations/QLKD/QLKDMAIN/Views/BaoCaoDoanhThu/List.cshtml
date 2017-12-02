@@ -51,10 +51,6 @@
             <!---->
 
             <div class="panel-heading">
-                <span ng-if="ctrl.data.showButtonNew">
-                    <a class="btn btn-sm btn-primary" href="#!/BaoCaoDoanhThu/edit/0"><i class="fa fa-plus"></i> Mới (F2)</a>&nbsp;&nbsp;&nbsp;
-                </span>
-                <button class="btn btn-sm btn-danger" ng-if="ctrl.data.showButtonXoaChon" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa chọn</button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <a class="btn btn-sm btn-primary" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In danh sách</a>&nbsp;&nbsp;&nbsp;                
                 <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.XuatExcel()"><i class="fa fa-file-excel-o"></i> Xuất Excel</a>
             </div>
@@ -78,10 +74,9 @@
                         <tr ng-repeat="BaoCaoDoanhThu in ctrl.data.listBaoCaoDoanhThu">
                             <td class="text-center">{{$index + 1}}</td>
                             
-                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
-                                <a ng-switch-when="SoHopDong" href="#!/hopdong/edit/{{BaoCaoDoanhThu.HopDongId}}" ng-bind="BaoCaoDoanhThu[cot.MaCot]"></a>
-                                <span ng-switch-when="NgayLap,NgayDuyet,NgayTao" ng-switch-when-separator="," ng-bind="BaoCaoDoanhThu[cot.MaCot]| date : 'dd/MM/yyyy'" style="display:block;text-align:center"></span>
-                                <span ng-switch-when="Duyet" ng-bind="BaoCaoDoanhThu[cot.MaCot]" style="display:block;text-align:center"></span>
+                            <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">                                
+                                <span ng-switch-when="SoTien" ng-bind="BaoCaoDoanhThu[cot.MaCot]|number" style="display:block;text-align:right"></span>
+                                <span ng-switch-when="ThoiGian" ng-bind="BaoCaoDoanhThu[cot.MaCot]" style="display:block;text-align:center"></span>
                                 <span ng-switch-default ng-bind="BaoCaoDoanhThu[cot.MaCot]"></span>
                             </td>
                         </tr>

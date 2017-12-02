@@ -57,21 +57,24 @@
                             <li>
                                 <a href="~/#!/dulieu/list">Dữ liệu</a>
                             </li>
-                    
+
                             <li>
                                 <a href="~/#!/nhomkhachhang/list">Nhóm khách hàng</a>
                             </li>
                             <li>
                                 <a href="~/#!/khachhang/list">Khách hàng</a>
                             </li>
-                            
-                      </ul>
+
+                        </ul>
                     </li>
                     <li>
                         <a href="javascript:void(0);"><i class="fa fa-pencil-square-o"></i> <span>Kế hoạch</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
                                 <a href="~/#!/kehoach/list">Kế hoạch kinh doanh</a>
+                            </li>
+                            <li>
+                                <a href="~/#!/chitieu/list">Chỉ tiêu doanh thu</a>
                             </li>
                         </ul>
                     </li>
@@ -105,9 +108,9 @@
                         <a href="javascript:void(0);"><i class="fa fa-user-secret"></i> <span>Quản trị hệ thống</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
-                                <a  href="~/#!/nguoidung/list">Danh sách người dùng</a>
+                                <a href="~/#!/nguoidung/list">Danh sách người dùng</a>
                             </li>
-                           
+
                             <li>
                                 <a href="~/#!/vaitro/list">Danh sách vai trò</a>
                             </li>
@@ -169,10 +172,10 @@
         }
 
             #side-menu a:hover, #side-menu a:focus {
-                background-color: #0d6aad;
+                background-color: rgb(35, 82, 124);
             }
 
-        #side-menu ul.nav.nav-second-level > li  {
+        #side-menu ul.nav.nav-second-level > li {
             background-color: #1974B3;
         }
 
@@ -186,17 +189,26 @@
             padding-top: 40px;
             padding-bottom: 40px;
         }
+        .focus{
+              background-color: rgb(35, 82, 124) !important;
+        }
     </style>
     <script src="~/lib/jquery/jquery-3.1.1.js"></script>
     <script>
+        $('#side-menu li ul li').click(function (e) {
+            $('#side-menu').find('li').removeClass('focus');
+            $(this).addClass('focus');
+        });
+
         activemenu();
         function activemenu() {
+            $('#side-menu').find('li').removeClass('focus');
             var url = window.location.toString().toLowerCase();
             $("#side-menu a").each(function () {
                 var href = $(this).attr("href").toLowerCase();
                 if (url.indexOf(href) > -1) {
                     $(this).parent().parent().parent().addClass("active");
-                    $(this).parent().css('background-color', '#0d6aad');
+                    $(this).parent().addClass('focus');
 
                 }
             });

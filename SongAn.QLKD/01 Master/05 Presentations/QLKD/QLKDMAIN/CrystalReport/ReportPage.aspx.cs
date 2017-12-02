@@ -115,6 +115,11 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                         tb.Columns.Remove("DeNgay");
 
                         tb.Columns["MaNhanVien"].ColumnName = "Mã NV";
+                        tb.Columns["TenNhanVien"].ColumnName = "Tên NV";
+                        tb.Columns["SoHopDong"].ColumnName = "Số hợp đồng";
+                        tb.Columns["TenLoaiHopDong"].ColumnName = "Loại hợp đồng";
+                        tb.Columns["ThoiGian"].ColumnName = "Thời gian";
+                        tb.Columns["GhiChu"].ColumnName = "Ghi chú";
                         tb.Columns["SoTien"].ColumnName = "Trị giá hợp đồng";
                         ExportToExcel(tb, "BaoCaoDoanhThu", "BẢNG DOANH THU");
                     }
