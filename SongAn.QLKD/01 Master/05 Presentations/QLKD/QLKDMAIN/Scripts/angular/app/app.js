@@ -3,10 +3,7 @@
 
     angular
         .module('app', [
-         // Angular modules 
-         'ui.router',
-         // Custom modules 
-         // 3rd Party Modules
+        'ui.router',
         'smart-table', 'angular.filter',
         'ngSanitize', 'ui.select'
         ])
