@@ -85,7 +85,7 @@
             },
             F8: function (name, code) {
                 console.log('F8');
-                vm.data.action.getPage();
+                vm.action.getPage();
             },
             DELETE: function (name, code) {
                 console.log('DELETE');
