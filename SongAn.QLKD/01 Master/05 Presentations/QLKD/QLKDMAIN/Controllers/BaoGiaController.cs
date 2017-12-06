@@ -22,7 +22,7 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
         {
             type = string.IsNullOrEmpty(type) ? "Html" : type;
             ViewData[type] = true;
-            string userLogin = LoadUserInfo("KD0011");
+            string userLogin = LoadUserInfo("KD0012");
             ViewBag.userInfo = userLogin;
             return PartialView(viewName);
         }
