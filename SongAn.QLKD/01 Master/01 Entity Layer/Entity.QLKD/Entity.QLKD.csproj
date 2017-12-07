@@ -59,6 +59,8 @@
     <Compile Include="Entity\KDChiTieu.cs" />
     <Compile Include="Entity\KDChiTieuChiTiet.cs" />
     <Compile Include="Entity\KDDiaBan.cs" />
+    <Compile Include="Entity\KDDieuPhoi.cs" />
+    <Compile Include="Entity\KDDieuPhoiChiTiet.cs" />
     <Compile Include="Entity\KDDonHang.cs" />
     <Compile Include="Entity\KDDonHangChiTiet.cs" />
     <Compile Include="Entity\KDDuLieu.cs" />

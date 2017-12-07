@@ -71,7 +71,14 @@
     <Compile Include="CrystalReport\ReportDanhGiaDoanhThuByCriteriaDac.cs" />
     <Compile Include="CrystalReport\ReportDonHangByIdDac.cs" />
     <Compile Include="DanhGiaDoanhThu\GetListDanhGiaDoanhThuByCriteriaDac.cs" />
+    <Compile Include="DieuPhoi\DeleteDieuPhoiByIdDac.cs" />
+    <Compile Include="DieuPhoi\GetListDieuPhoiByCriteriaDac.cs" />
+    <Compile Include="DieuPhoi\GetListDieuPhoiByIdDac.cs" />
+    <Compile Include="DieuPhoi\GetListDieuPhoiChiTietByDieuPhoiIdDac.cs" />
+    <Compile Include="DieuPhoi\InsertDieuPhoiDac.cs" />
+    <Compile Include="DieuPhoi\UpdateDieuPhoiByIdDac.cs" />
     <Compile Include="DonHang\DeleteDonHangByIdDac.cs" />
+    <Compile Include="DonHang\GetListcbxDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangByCriteriaDac.cs" />
     <Compile Include="DonHang\GetListDonHangByIdDac.cs" />
     <Compile Include="DonHang\GetListDonHangChiTietByDonHangIdDac.cs" />
