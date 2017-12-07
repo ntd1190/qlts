@@ -9,31 +9,21 @@ using System.Threading.Tasks;
 
 namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
 {
-    public class DonHangController : BaseController
+    public class DieuPhoiController : BaseController
     {
-        // GET: DonHang
+        // GET: DieuPhoi
         public ActionResult Index()
         {
             return View();
         }
 
-        [CustomAuthorize(FunctionCodes = "KD0011")]
+        [CustomAuthorize(FunctionCodes = "KD0017")]
         public ActionResult showView(string viewName, string type)
         {
             type = string.IsNullOrEmpty(type) ? "Html" : type;
             ViewData[type] = true;
-            string userLogin = LoadUserInfo("KD0011");
+            string userLogin = LoadUserInfo("KD0017");
             ViewBag.userInfo = userLogin;
-            return PartialView(viewName);
-        }
-
-        [AllowAnonymous]
-        public ActionResult showCombobox(string viewName, string type)
-        {
-            ViewBag.userInfo = LoadUserInfo("KD0011");
-
-            type = string.IsNullOrEmpty(type) ? "Html" : type;
-            ViewData[type] = true;
             return PartialView(viewName);
         }
     }

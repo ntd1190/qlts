@@ -3,18 +3,18 @@
 
     angular
         .module('app')
-        .factory('DonHangService', DonHangService);
+        .factory('DieuPhoiService', DieuPhoiService);
 
-    function DonHangService($http, API_BASE) {
+    function DieuPhoiService($http, API_BASE) {
         var api = {
-            url: API_BASE + 'Api.QLTS/DonHang/',
-            insert: 'InsertDonHang',
-            update: 'UpdateDonHangById',
-            GetPage: 'GetListDonHangByProjection',
-            GetPageDetail: 'GetListDonHangChiTietByDonHangId',
-            GetById: 'GetDonHangById',
-            removeList: 'DeleteDonHangById',
-            GetComboboxById: 'GetListcbxDonHangById',
+            url: API_BASE + 'Api.QLTS/DieuPhoi/',
+            insert: 'InsertDieuPhoi',
+            update: 'UpdateDieuPhoiById',
+            GetPage: 'GetListDieuPhoiByProjection',
+            GetPageDetail: 'GetListDieuPhoiChiTietByDieuPhoiId',
+            GetById: 'GetDieuPhoiById',
+            removeList: 'DeleteDieuPhoiById',
+           
         }
 
         var service = {
@@ -24,7 +24,7 @@
             insert: insert,
             update: update,
             removeList: removeList,
-            GetComboboxById: GetComboboxById
+            
         };
 
         return service;
@@ -82,7 +82,7 @@
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
 
-                    phieuDonHang: obj.phieuDonHang,
+                    phieuDieuPhoi: obj.phieuDieuPhoi,
                     listChiTiet: obj.listChiTiet,
                     userId: obj.userId
                 })
@@ -97,8 +97,8 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
                 data: $.param({
-                    donHangId: obj.donHangId,
-                    phieuDonHang: obj.phieuDonHang,
+                    dieuPhoiId: obj.dieuPhoiId,
+                    phieuDieuPhoi: obj.phieuDieuPhoi,
                     listChiTiet: obj.listChiTiet,
                     userId: obj.userId
                 })
@@ -112,41 +112,22 @@
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({ DonHangid: id })
+                data: $.param({ DieuPhoiid: id })
             }
             return $http(req);
         };
 
-        function getPageDetail(id) {
+        function getPageDetail(id, donhangid) {
             var url = api.url + api.GetPageDetail;
             var req = {
                 url: url,
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({ DonHangid: id })
+                data: $.param({ DieuPhoiId: id, DonHangId: donhangid })
             }
             return $http(req);
         };
 
-        function GetComboboxById(UserId, NhanVienId, Search, DonHangId, SoPhieu, FunctionCode) {
-            var url = api.url + api.GetComboboxById;
-
-            var req = {
-                url: url,
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
-                data: $.param({
-                    Search: Search,
-                    UserId: UserId,
-                    DonHangId: DonHangId,
-                    SoPhieu: SoPhieu,
-                    NhanVienId: NhanVienId,
-                    FunctionCode: FunctionCode
-                })
-            }
-
-            return $http(req);
-        }
 
 
     }

@@ -1,0 +1,183 @@
+﻿
+@{
+    ViewBag.Title = "Edit";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo: @ViewBag.userInfo, linkUrl:'@(Url.Content("~/"))'})" keyboard="ctrl.keys">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>{{ctrl.data.Tilte}} phiếu điều phối</span>
+            </div>
+
+            <!---->
+
+            <div class="panel-body">
+                <form class="form-horizontal">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.DonHangId?'has-error':''">
+                                <label class="control-label col-sm-2">Đơn hàng <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
+                                <div class="col-sm-9">
+                                    <cbo-don-hang id="cbxDonHang" data-function-code="KD0017" data-value="ctrl.data.phieuDieuPhoi.DonHangId" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/donhang/showcombobox?viewname=cbodonhang"
+                                                  on-selected="ctrl.action.getDataDonHang(data)"></cbo-don-hang>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.NhanVienDieuPhoi?'has-error':''">
+                                <label class="control-label col-sm-4">Nhân viên điều phối <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
+                                <div class="col-sm-7">
+                                    <cbo-nhan-vien-by-phong-ban id="cbxNhanVien" data-function-code="KD0017" data-value="ctrl.data.phieuDieuPhoi.NhanVienDieuPhoi" data-phongbanid="53" data-config="{userInfo:@(ViewBag.userInfo)}" template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-5">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayDieuPhoi?'has-error':''">
+                                <label class="control-label col-sm-4">Ngày điều phối <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="txtNgayDieuPhoi" class="form-control datetimepicker date" placeholder="dd/mm/yyyy" ng-model="ctrl.data.phieuDieuPhoi.NgayDieuPhoi" ng-keypress="ctrl.action.keyPressDieuPhoi(ctrl.data.phieuDieuPhoi.NgayDieuPhoi,'txtNgayDieuPhoi','cbxDaChuyen0',$event)" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <div class="panel-heading">
+                Thông tin chi tiết
+            </div>
+
+            <div class="panel-body table-responsive" style="max-height:300px;min-height:300px">
+                    <table st-table="ctrl.data.listChiTiet" class="table table-bordered table-condensed table-hover ng-isolate-scope table-striped" style="min-width:1000px;border: 1px solid #ddd;">
+                        <thead class="bg-default text-primary">
+                            <tr>
+                                <th class="text-center" style="min-width: 50px; vertical-align:middle">#</th>
+                                <th class="text-center" style="min-width: 90px; vertical-align:middle">Mã HH</th>
+                                <th class="text-center" style="min-width: 250px; vertical-align:middle">Hàng hóa</th>
+                                <th class="text-center" style="min-width: 100px; vertical-align:middle">Số lượng</th>
+                                <th class="text-center" style="min-width: 120px; vertical-align:middle">Đơn giá</th>
+                                <th class="text-center" style="min-width: 150px; vertical-align:middle">Thành tiền</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">NVKD</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">Khách hàng</th>
+                                <th class="text-center" style="min-width: 130px;vertical-align:middle">Đã chuyển</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">Người chuyển</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">Địa chỉ gửi</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">Địa chỉ nhận</th>
+                                <th class="text-center" style="min-width: 150px;vertical-align:middle">Người nhận</th>
+                                <th class="text-center" style="min-width: 120px;vertical-align:middle">Trạng thái</th>
+                                <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày nhận</th>
+                                @*<span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span>*@
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="ctrl.status.isLoading">
+                                <td colspan="100" class="text-center">
+                                    <i class="fa fa-fw fa-spin fa-spinner"></i>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="DieuPhoiChiTiet in ctrl.data.listChiTiet" ng-class="DieuPhoiChiTiet.isError ? 'danger':''">
+                                <td class="text-center">{{$index + 1}}</td>
+                                <td class="text-right form-group form-group-sm">
+                                    <!--ma hang hoa-->
+                                    <span id="txtMaHangHoa{{$index}}" class="form-control text-left " ng-bind="DieuPhoiChiTiet.MaHangHoa" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <!--hang hoa-->
+                                    <span id="txtTenHangHoa{{$index}}" class="form-control text-left " ng-bind="DieuPhoiChiTiet.TenHangHoa" />
+                                </td>
+                               
+                                <td class="text-right form-group form-group-sm">
+                                    <!--soluong-->
+                                    <span id="txtSoLuong{{$index}}" class="form-control text-right " ng-bind="DieuPhoiChiTiet.SoLuong|number" />
+                                </td>
+                                <td class="text-right form-group form-group-sm">
+                                    <!--don gia-->
+                                    <span id="txtDonGia{{$index}}" class="form-control text-right " ng-bind="DieuPhoiChiTiet.DonGia|number" />
+                                </td>
+                                <td class="text-right form-group form-group-sm">
+                                    <!--thanhtien-->
+                                    <span id="txtThanhTien{{$index}}" class="form-control text-right" ng-bind="DieuPhoiChiTiet.ThanhTien|number"></span>
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <!--NVKD-->
+                                    <span id="txtTenNhanVienKD{{$index}}" class="form-control text-left " ng-bind="DieuPhoiChiTiet.TenNhanVienKD" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <!--ten khach hang-->
+                                    <span id="txtTenKhachHang{{$index}}" class="form-control text-left " ng-bind="DieuPhoiChiTiet.TenKhachHang" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <select class="form-control" id="cbxDaChuyen{{$index}}" style="padding:0px 10px" data-placeholder="" ng-model="DieuPhoiChiTiet.DaChuyen">
+                                        <option value="0">Chưa chuyển</option>
+                                        <option value="1">Đã chuyển</option>
+                                    </select>
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <input type="text" id="txtNguoiChuyen{{$index}}" class="form-control" placeholder="" ng-model="DieuPhoiChiTiet.NguoiChuyen" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.NguoiChuyen,'txtNguoiChuyen'+$index,'txtDiaChiGui'+$index,$index,$event)" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <input type="text" id="txtDiaChiGui{{$index}}" class="form-control" placeholder="" ng-model="DieuPhoiChiTiet.DiaChiGui" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.DiaChiGui,'txtDiaChiGui'+$index,'txtDiaChiNhan'+$index,$index,$event)" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <input type="text" id="txtDiaChiNhan{{$index}}" class="form-control" placeholder="" ng-model="DieuPhoiChiTiet.DiaChiNhan" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.DiaChiNhan,'txtDiaChiNhan'+$index,'txtNguoiNhan'+$index,$index,$event)" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <input type="text" id="txtNguoiNhan{{$index}}" class="form-control" placeholder="" ng-model="DieuPhoiChiTiet.NguoiNhan" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.NguoiNhan,'txtNguoiNhan'+$index,'cbxTrangThai'+$index,$index,$event)" />
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <select class="form-control" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="DieuPhoiChiTiet.TrangThai">
+                                        <option value="0">Chưa nhận</option>
+                                        <option value="1">Đã nhận</option>
+                                    </select>
+                                </td>
+                                <td class="form-group form-group-sm">
+                                    <!--ngay nhan-->
+                                    <input type="text" id="txtNgayNhan{{$index}}" class="form-control datetimepicker date" ng-model="DieuPhoiChiTiet.NgayNhan" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.NgayNhan,'txtNgayNhan'+$index,'cbxDaChuyen'+$index,$index,$event)" />
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            <div class="panel-footer">
+                <span ng-if="ctrl.data.showButtonSave">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.save()"><i class="fa fa-save"></i> Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.data.showButtonXoa">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.deleteSelected()"><i class="fa fa-trash-o"></i> Xóa</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <a class="btn btn-sm btn-default" href="javascript:void(0)" ng-click="ctrl.action.In()"><i class="fa fa-print"></i> In</a>&nbsp;&nbsp;&nbsp;
+                <a class="btn btn-sm btn-default" ng-click="ctrl.action.goBack()"><i class="fa fa-arrow-left"></i> Quay lại</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            </div>
+        </div>
+
+        <div class="clearfix"></div>
+
+        <div class="modal fade bs-example-modal-full" id="reportmodal" style="z-index:2000" data-backdrop="static" data-keyboard="false">
+            <div class="modal-dialog modal-full" style="margin: 0px; width:90%">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myLargeModalLabel">Điều phối</h4>
+                    </div>
+                    <div class="modal-body">
+                        <iframe src="" width="100%" height="1000px"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true)
+{
+}
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
