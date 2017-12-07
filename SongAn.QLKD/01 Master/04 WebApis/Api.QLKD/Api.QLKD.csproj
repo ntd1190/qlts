@@ -68,6 +68,7 @@
     <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DanhGiaDoanhThuController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
+    <Compile Include="Controllers\DieuPhoiController.cs" />
     <Compile Include="Controllers\DonHangController.cs" />
     <Compile Include="Controllers\DuLieuController.cs" />
     <Compile Include="Controllers\FileHopDongController.cs" />
@@ -98,7 +99,14 @@
     <Compile Include="Models\ChiTieu\InsertChiTieuAction.cs" />
     <Compile Include="Models\ChiTieu\UpdateChiTieuByIdAction.cs" />
     <Compile Include="Models\DanhGiaDoanhThu\GetListDanhGiaDoanhThuByProjectionAction.cs" />
+    <Compile Include="Models\DieuPhoi\DeleteDieuPhoiByIdAction.cs" />
+    <Compile Include="Models\DieuPhoi\GetListDieuPhoiByIdAction.cs" />
+    <Compile Include="Models\DieuPhoi\GetListDieuPhoiByProjectionAction.cs" />
+    <Compile Include="Models\DieuPhoi\GetListDieuPhoiChiTietByDieuPhoiIdAction.cs" />
+    <Compile Include="Models\DieuPhoi\InsertDieuPhoiAction.cs" />
+    <Compile Include="Models\DieuPhoi\UpdateDieuPhoiByIdAction.cs" />
     <Compile Include="Models\DonHang\DeleteDonHangByIdAction.cs" />
+    <Compile Include="Models\DonHang\GetListcbxDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByIdAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangByProjectionAction.cs" />
     <Compile Include="Models\DonHang\GetListDonHangChiTietByDonHangIdAction.cs" />

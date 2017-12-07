@@ -53,5 +53,13 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
             ActionResultDto result = await action.Execute(context);
             return Content(result.ReturnCode, result.ReturnData);
         }
+
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListcbxDonHangById([FromBody]GetListcbxDonHangByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
     }
 }
