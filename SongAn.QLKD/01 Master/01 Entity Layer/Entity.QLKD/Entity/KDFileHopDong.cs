@@ -21,9 +21,9 @@ namespace SongAn.QLKD.Entity.QLKD.Entity
         public virtual string NguoiLam { get; set; }
         public virtual string DaChuyen { get; set; }
         public virtual string NguoiChuyen { get; set; }
-        public virtual DateTime? NgayChuyen { get; set; }
+        public virtual string NgayChuyen { get; set; }
         public virtual string NguoiNhan { get; set; }
-        public virtual DateTime? NgayNhan { get; set; }
+        public virtual string NgayNhan { get; set; }
         public virtual string FileMem { get; set; }
         public virtual string FileCung { get; set; }
         public virtual string GhiChu { get; set; }
