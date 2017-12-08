@@ -53,7 +53,7 @@
                 <table class="table table-bordered table-condensed  table-hover " st-table="ctrl.data.listDieuPhoi" st-pipe="ctrl.action.getPage">
                     <thead class="bg-default text-primary">
                         <tr>
-                            <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                            <th class="text-center" style="width:25px;" ng-click="ctrl.action.checkAll()">
                                 <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
                             </th>
                             <th class="text-center"
@@ -73,6 +73,7 @@
                                 <i class="fa fa-fw" ng-class="DieuPhoi.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
                             </td>
                             <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
+                                <a ng-switch-when="DieuPhoiId" href="#!/dieuphoi/edit/{{DieuPhoi.DieuPhoiId}}" ng-bind="DieuPhoi[cot.MaCot]" style="display:block;text-align:center"></a>
                                 <a ng-switch-when="SoDonHang" href="#!/dieuphoi/edit/{{DieuPhoi.DieuPhoiId}}" ng-bind="DieuPhoi[cot.MaCot]"></a>
                                 <span ng-switch-when="NgayDieuPhoi,NgayTao" ng-switch-when-separator="," ng-bind="DieuPhoi[cot.MaCot]| date : 'dd/MM/yyyy'" style="display:block;text-align:center"></span>
                                 <span ng-switch-default ng-bind="DieuPhoi[cot.MaCot]"></span>
@@ -110,7 +111,7 @@
                             <th class="text-center" style="min-width: 150px;vertical-align:middle">Địa chỉ nhận</th>
                             <th class="text-center" style="min-width: 150px;vertical-align:middle">Người nhận</th>
                             <th class="text-center" style="min-width: 100px;vertical-align:middle">Ngày nhận</th>
-                            <th class="text-center" style="min-width: 100px;vertical-align:middle">Trạng thái</th>
+                            <th class="text-center" style="min-width: 84px;vertical-align:middle">Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>

@@ -42,7 +42,10 @@
         }
 
         $scope.$watch('NhomKinhDoanhId', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            if (!newValue) {
+                delete vm.data.objSelected; vm.data.objSelected = {};
+                return;
+            }
             vm.inputSearch = {};
             vm.inputSearch.NhomKinhDoanhId = newValue;
             getPage().then(function (success) {

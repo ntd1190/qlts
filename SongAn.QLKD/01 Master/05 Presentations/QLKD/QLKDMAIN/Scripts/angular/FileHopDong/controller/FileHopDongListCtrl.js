@@ -146,6 +146,9 @@
             if (FileHopDongId > 0) {
                 getById(FileHopDongId);
             }
+            else {
+                resetPopup();
+            }
             $('#FileHopDongEditPopup').collapse('show');
         }
         vm.action.checkQuyenTacVu = function (quyen) {
@@ -169,14 +172,14 @@
                 if (vm.data.FileHopDong.FileCung) {
                     vm.data.FileHopDong.FileCung = vm.data.FileHopDong.FileCung.split('.')[0] + '.' + utility.getFileExt(vm.data.FileHopDong.fileC[0].name);
                 } else {
-                    vm.data.FileHopDong.FileCung = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.FileHopDong.fileC[0].name);
+                    vm.data.FileHopDong.FileCung = 'FC' + moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.FileHopDong.fileC[0].name);
                 }
             }
             if (vm.data.FileHopDong.fileM && vm.data.FileHopDong.fileM.length > 0) {
                 if (vm.data.FileHopDong.FileMem) {
                     vm.data.FileHopDong.FileMem = vm.data.FileHopDong.FileMem.split('.')[0] + '.' + utility.getFileExt(vm.data.FileHopDong.fileM[0].name);
                 } else {
-                    vm.data.FileHopDong.FileMem = moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.FileHopDong.fileM[0].name);
+                    vm.data.FileHopDong.FileMem = 'FM' + moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.FileHopDong.fileM[0].name);
                 }
             }
             if (FileHopDongId > 0) {
@@ -346,7 +349,7 @@
 
         function update() {
             var deferred = $q.defer();
-
+            debugger
             var data = vm.data.FileHopDong || {};
             data.NHANVIEN_ID = userInfo.NhanVienId;
             data.USER_ID = userInfo.UserId;

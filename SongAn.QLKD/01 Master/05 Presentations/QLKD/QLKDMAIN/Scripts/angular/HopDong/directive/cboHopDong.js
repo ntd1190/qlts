@@ -42,7 +42,11 @@
         }
 
         $scope.$watch('HopDongId', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            debugger
+            if (!newValue) {
+                delete vm.data.objSelected; vm.data.objSelected = {};
+                return;
+            }
             vm.inputSearch = {};
             vm.inputSearch.HopDongId = newValue;
             getPage().then(function (success) {
@@ -67,7 +71,7 @@
             vm.inputSearch = {};
             vm.inputSearch.search = $select.search;
             getPage().then(function (success) {
-                //vm.data.listDisplay.unshift({ HopDongId: 0, TenHopDong: 'Chọn hợp đồng' });
+                vm.data.listDisplay.unshift({ HopDongId: 0, TenHopDong: 'Chọn hợp đồng' });
             });
         }
 

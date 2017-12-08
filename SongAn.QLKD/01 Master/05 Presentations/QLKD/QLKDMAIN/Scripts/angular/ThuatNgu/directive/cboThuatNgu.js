@@ -42,7 +42,10 @@
         }
 
         $scope.$watch('ThuatNguId', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            if (!newValue) {
+                delete vm.data.objSelected; vm.data.objSelected = {};
+                return;
+            }
             vm.inputSearch = {};
             vm.inputSearch.ThuatNguId = newValue;
             getPage().then(function (success) {

@@ -67,7 +67,7 @@
             vm.inputSearch = {};
             vm.inputSearch.search = $select.search;
             getPage().then(function (success) {
-                vm.data.listDisplay.unshift({ DuLieuId: 0, TenDuLieu: 'chọn dữ liệu' });
+                vm.data.listDisplay.unshift({ DuLieuId: 0, TenDuLieu: 'Chọn dữ liệu' });
             });
         }
 

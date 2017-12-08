@@ -64,8 +64,9 @@
                     vm.data.phieuDieuPhoi.NgayDieuPhoi = moment().format('DD/MM/YYYY');
                 }
             }
-
-            $("#cbxDonHang").find("input").focus();
+            $timeout(function () {
+                $("#cbxDonHang input").focus();
+            }, 100);
         };
 
         vm.getTemplate = function () {
@@ -92,11 +93,7 @@
             },
             DELETE: function (name, code) {
                 console.log('DELETE');
-                var fc = function () {
-                    vm.data.listChiTiet.splice(vm.data.listChiTiet.length - 1, 1);
-                    $("#txtMaHangHoa" + (vm.data.listChiTiet.length - 1).toString()).focus();
-                }
-                $timeout(fc, 6);
+                
             }
         };
 

@@ -54,6 +54,8 @@
                                         <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileMem}}">Xem</a>
                                     </div>
                                     <div class="text-center" ng-switch-when="NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
+                                    <div class="text-center" ng-switch-when="DaLam" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
+                                    <div class="text-center" ng-switch-when="DaChuyen" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
                                     <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                                 </td>
                             </tr>

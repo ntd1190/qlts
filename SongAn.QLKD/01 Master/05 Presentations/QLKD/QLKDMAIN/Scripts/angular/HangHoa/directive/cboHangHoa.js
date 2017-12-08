@@ -81,7 +81,11 @@
         });
 
         $scope.$watch('maHangHoa', function (newValue, oldValue) {
-            if (!newValue) { return; }
+            if (!newValue) {
+                delete vm.data.HangHoa;
+                vm.data.HangHoa = {};
+                return;
+            }
             delete vm.inputSearch;
             vm.inputSearch = {};
             vm.inputSearch.MaHangHoa = newValue;

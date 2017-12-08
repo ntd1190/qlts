@@ -54,42 +54,9 @@
             }
         }
 
-        //$scope.$watch('quanhuyenid', function (newValue, oldValue) {
-        //    console.log('_________________________________ VO watch quan/huyen cua phuong/xa');
-        //    console.log('quan/huyen id: ' + newValue);
-        //    if (newValue == oldValue) {
-        //        if (!vm.data.PhuongXa) {
-        //            console.log('_________________________________reset phuong/xa');
-        //            vm.data.PhuongXa = {};
-        //        }
-        //        return;
-        //    }
 
-        //    if (!newValue) {
-        //        console.log('_________________________________reset phuong.xa');
-        //        vm.data.PhuongXa = {};
-        //        return;
-        //    }
-        //    vm.inputSearch = {};
-        //    vm.inputSearch.TinhId = newValue;
-        //    vm.inputSearch.PhuongXaId = 0;
-
-        //    getPage().then(function (success) {
-        //        console.log('_________________________________reset phuong.xa');
-        //        if (success.data.data && success.data.data.length > 0) {
-        //            vm.data.PhuongXa = {};
-        //        } else {
-        //            delete vm.data.PhuongXa;
-        //            vm.data.PhuongXa = {};
-        //        }
-        //    });
-        //});
 
         $scope.$watch('value', function (newValue, oldValue) {
-            //if (newValue == oldValue && vm.data.PhuongXa) {
-            //    if (typeof vm.data.PhuongXa.PhuongXaId !== 'undefined')
-            //        return;
-            //}
             newValue = newValue || 0;
             if (!newValue) {
                 vm.data.PhuongXa = {};

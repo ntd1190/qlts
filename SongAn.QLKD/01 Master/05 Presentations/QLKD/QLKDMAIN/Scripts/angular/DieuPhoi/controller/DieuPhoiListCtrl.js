@@ -34,6 +34,7 @@
         vm.data.userInfo = {};
         vm.data.linkUrl = '';
         vm.data.listCot = [
+            { MaCot: 'DieuPhoiId', TenCot: 'ID', HienThiYN: true, DoRong: 25 },
             { MaCot: 'SoDonHang', TenCot: 'Đơn hàng', HienThiYN: true, DoRong: 90 },
             { MaCot: 'NgayDieuPhoi', TenCot: 'Ngày điều phối', HienThiYN: true, DoRong: 90 },
             { MaCot: 'TenNhanVienDieuPhoi', TenCot: 'Người điều phối', HienThiYN: true, DoRong: 150 },
