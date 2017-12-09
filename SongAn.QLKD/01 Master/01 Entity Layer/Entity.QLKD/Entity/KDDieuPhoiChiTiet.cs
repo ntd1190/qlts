@@ -20,7 +20,7 @@ namespace SongAn.QLKD.Entity.QLKD.Entity
         public virtual string DiaChiGui { get; set; }
         public virtual string DiaChiNhan { get; set; }
         public virtual string NguoiNhan { get; set; }
-        public virtual DateTime NgayNhan { get; set; }
+        public virtual DateTime? NgayNhan { get; set; }
         public virtual int TrangThai { get; set; }
     }
 }
