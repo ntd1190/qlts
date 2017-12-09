@@ -63,8 +63,9 @@ namespace SongAn.QLKD.Api.QLKD.Models.DieuPhoi
         private void init()
         {
             var __phieuDieuPhoi = JsonConvert.DeserializeObject<dynamic>(phieuDieuPhoi);
+
             __phieuDieuPhoi.NgayDieuPhoi = DateTime.ParseExact(__phieuDieuPhoi.NgayDieuPhoi.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
-            
+
             phieuDieuPhoi = JsonConvert.SerializeObject(__phieuDieuPhoi);
             _phieuDieuPhoi = JsonConvert.DeserializeObject<Entity.QLKD.Entity.KDDieuPhoi>(phieuDieuPhoi);
 
@@ -74,8 +75,14 @@ namespace SongAn.QLKD.Api.QLKD.Models.DieuPhoi
 
             foreach (var item in __phieuDieuPhoiChiTiet)
             {
-                item.NgayNhan = DateTime.ParseExact(item.NgayNhan.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
-
+                if (item.NgayNhan == "" || item.NgayNhan == null)
+                {
+                    item.NgayNhan = null;
+                }
+                else
+                {
+                    item.NgayNhan = DateTime.ParseExact(item.NgayNhan.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+                }
             }
 
             listChiTiet = JsonConvert.SerializeObject(__phieuDieuPhoiChiTiet);
@@ -103,7 +110,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.DieuPhoi
                                                 Protector.String(item.DiaChiGui),
                                                 Protector.String(item.DiaChiNhan),
                                                 Protector.String(item.NguoiNhan),
-                                                Protector.DateTime(item.NgayNhan),
+                                                item.NgayNhan,
                                                 Protector.Int(item.TrangThai));
             }
 

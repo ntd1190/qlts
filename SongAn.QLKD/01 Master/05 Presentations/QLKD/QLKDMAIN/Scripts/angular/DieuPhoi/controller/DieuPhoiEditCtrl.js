@@ -114,6 +114,16 @@
             window.history.back();
         };
 
+        vm.action.getvalTrangThaiDieuPhoi = function (index) {
+            if (vm.data.listChiTiet[index].TrangThai.toString() === "0"){
+                vm.data.listChiTiet[index].NgayNhan = "";
+            }
+            else
+            {
+                vm.data.listChiTiet[index].NgayNhan =  moment().format('DD/MM/YYYY');
+            }
+        }
+
         vm.action.getDataDonHang = function (data) {
             //vm.data.phieuDieuPhoi.DonHangId = data.DonHangId;
             if (DieuPhoiId > 0)
@@ -409,3 +419,7 @@
         }
     }
 })();
+
+function getvalTrangThaiDieuPhoi(sel) {
+    alert(sel.value);
+}

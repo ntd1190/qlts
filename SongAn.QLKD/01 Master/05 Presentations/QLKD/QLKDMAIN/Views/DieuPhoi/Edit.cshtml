@@ -130,7 +130,7 @@
                                     <input type="text" id="txtNguoiNhan{{$index}}" class="form-control" placeholder="" ng-model="DieuPhoiChiTiet.NguoiNhan" ng-keypress="ctrl.action.keyPress(DieuPhoiChiTiet.NguoiNhan,'txtNguoiNhan'+$index,'cbxTrangThai'+$index,$index,$event)" />
                                 </td>
                                 <td class="form-group form-group-sm">
-                                    <select class="form-control" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="DieuPhoiChiTiet.TrangThai">
+                                    <select class="form-control" ng-change="ctrl.action.getvalTrangThaiDieuPhoi({{$index}});" id="cbxTrangThai{{$index}}" style="padding:0px 10px" data-placeholder="Trạng thái" ng-model="DieuPhoiChiTiet.TrangThai">
                                         <option value="0">Chưa nhận</option>
                                         <option value="1">Đã nhận</option>
                                     </select>
