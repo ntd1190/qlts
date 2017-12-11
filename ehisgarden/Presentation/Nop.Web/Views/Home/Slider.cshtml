@@ -1,0 +1,92 @@
+﻿@using Nop.Web.Models.Banner
+@model   List<BannerPostModel>
+<section class="main-slider hidden-xs hidden-sm">
+
+    <div class="row no-gutter">
+        <div class="col-md-8" style="overflow: hidden">
+            <div id="slider-sync1" class="owl-carousel">
+
+                @foreach (var item in Model.Where(t => t.Left))
+                {
+                    <div class="item">
+                        <a href="@item.link">
+                            <figure data-feedback="fb:likes, fb:comments">
+                                <img src="@item.PictureThumbnailUrl" class="img-responsive" alt="@item.link">
+                            </figure>
+                        </a>
+                    </div>
+                }
+
+            </div>
+            <div id="slider-sync2" class="owl-carousel">
+
+                @foreach (var item in Model.Where(t => t.Left))
+                {
+                    <div class="item">
+                        <div>
+                            <h3>
+                                @item.description
+                            </h3>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <div class="col-md-4">
+           
+            <div class="sp-show">
+
+
+                    <div id="banner-f-1" class="banner-f-carousel owl-carousel owl-theme">
+                        @foreach (var item in Model.Where(t => t.Top))
+                        {
+                            <div class="item">
+                                <a href="@item.link">
+                                    <figure data-feedback="fb:likes, fb:comments">
+                                        <img src="@item.PictureThumbnailUrl" class="img-responsive" alt="@item.link">
+                                    </figure>
+                                </a>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div class="sp-show">
+                    @*<div id="banner-f-2" class="banner-f-carousel owl-carousel owl-theme">
+                        @foreach (var item in Model.Where(t => t.Bottom))
+                        {
+                            <div class="item">
+                                <a href="@item.link">
+                                    <figure data-feedback="fb:likes, fb:comments">
+                                        <img src="@item.PictureThumbnailUrl" class="img-responsive" alt="@item.link">
+                                    </figure>
+                                </a>
+                            </div>
+                        }
+
+                    </div>*@
+                    <iframe id="ehis" width="100%" height="225" src="http://www.youtube.com/embed/GFisL3Mb5hM?autoplay=0&controls=0&rel=0&hd=1&showinfo=0" frameborder="0" allowfullscreen></iframe>
+                </div>
+
+
+        </div>
+    </div>
+
+</section>
+@*<style>
+        .videoWrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 */
+            padding-top: 25px;
+            height: 0;
+        }
+
+            .videoWrapper iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+            }
+    </style>*@

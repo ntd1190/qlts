@@ -1,0 +1,252 @@
+﻿@model IEnumerable<Nop.Web.Models.BaoHanh.ViewBaoHanh.Baohanhmodel>
+@{
+    ViewBag.Title = "Kiểm tra bảo hành ehisgarden";
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+<script src="~/Content/DataTables/datatables.min.js"></script>
+<link href="~/Content/DataTables/datatables.min.css" rel="stylesheet" />
+<ul class="filter">
+    <div class="row">
+        <li>
+            <span itemscope="">
+                <a href="/" title="Trang chủ">Trang chủ</a>
+            </span>
+            <span class="delimiter">/</span>
+            <span itemscope="">
+                <a href="/guarantee" title="kiểm tra bảo hành">Kiểm tra bảo hành</a>
+            </span>
+            <span class="delimiter">/</span>
+        </li>
+        <li>
+            <h1>
+                Kết quả bảo hành
+            </h1>
+        </li>
+    </div>
+
+</ul>
+<div class="container">
+    @if (Model.Count() < 0)
+    {
+        <div class="row">
+            <h4 class="wa">Không có sản phầm nào được tìm thấy</h4>
+
+        </div>
+    }
+    else
+    {
+        <div class="row">
+            <h2 class="wa">Thông tin bảo hành sản phẩm của bạn</h2>
+        </div>
+        <div class="row">
+            <table id="example" class="table table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Tên hàng hóa</th>
+                        <th>Hãng sản xuất</th>
+                        <th>Ngày mua hàng</th>
+                        <th>Ngày hết hạn bảo hành</th>
+                        <th>Thời gian bảo hành còn lại</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.TENHANGHOA</td>
+                            <td>@item.TENHANGSANXUAT</td>
+                            <td>
+                                @if (item.NGAYXUAT.HasValue)
+                                {
+                                    @item.NGAYXUAT.Value.ToString("dd/MM/yyyy");
+                                }
+                            </td>
+                            <td>
+                                @if (item.NGAYHETHANBAOHANH.HasValue)
+                                {
+                                    @item.NGAYHETHANBAOHANH.Value.ToString("dd/MM/yyyy");
+                                }
+                            </td>
+                            <td>@item.THOIGIANBAOHANHCONLAI</td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        <div class="row">
+            <h3 style="text-align:center;font-size:17px;">Trung tâm bảo hành ehisgarden</h3>
+            <div class="time col-md-5 col-md-offset-1">
+                <p><i class="fa fa-location-arrow" aria-hidden="true"></i> Cơ sở 1: <span> 340/38 Quang Trung - Phường 10 Q.Gò Vấp - TP. HCM</span></p>
+                <p><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: <span>(028-3) 99 69 769</span></p>
+                <p><i class="fa fa-clock-o" aria-hidden="true"></i> Giờ làm việc:</p>
+                <p>Thứ 2- Thứ 6 : 8h:00 - 17h:00 </p>
+                <p>Thứ 7 : 8h:00- 12h:00 </p>
+            </div>
+            <div class="time col-md-5">
+                <p><i class="fa fa-location-arrow" aria-hidden="true"></i> Cơ sở 2: <span> 483 Võ Nguyên Giáp, p Him Lam, tp Điện Biên Phủ,Điện Biên</span></p>
+                <p><i class="fa fa-phone" aria-hidden="true"></i> Số điện thoại: <span>(021-5) 38 11 230</span></p>
+                <p><i class="fa fa-clock-o" aria-hidden="true"></i> Giờ làm việc:</p>
+                <p>Thứ 2- Thứ 7 : 7:00 - 18:00 </p>
+            </div>
+        </div>
+    }
+</div>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable();
+    });
+</script>
+<style>
+    .time p{
+        color:#37c0f4;
+
+    }
+    /* Post Table */
+    .post-table table {
+        width: 100%;
+    }
+
+        .post-table table td, .post-table table caption {
+            font-weight: bold;
+            background: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .post-table table th {
+            background: #e74c3c;
+            color: #fff;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 0;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .post-table table.tr-caption-container {
+            border: 1px solid rgba(0,0,0,0.14);
+            margin: 0;
+        }
+
+    .post-table th {
+        font-weight: 700;
+    }
+
+    .post-table table caption {
+        border: none;
+        font-style: italic;
+    }
+
+    .post-table td, .post-table th {
+        vertical-align: top;
+        text-align: left;
+        font-size: 13px;
+        padding: 3px 5px;
+        border: 1px solid #97b28e;
+    }
+
+    .post-table th {
+    }
+
+        .post-table th:hover {
+            color: #fff;
+        }
+
+    .post-table td a {
+        color: #444;
+    }
+
+        .post-table td a:hover {
+            color: #cf4d35;
+        }
+
+    .post-table table.tr-caption-container td {
+        border: 0;
+        padding: 8px;
+        background: #fff;
+        line-height: 17px;
+        overflow: hidden;
+        text-align: center;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-weight: 700;
+        color: #000;
+    }
+
+    .post-table table.tr-caption-container, .post-table table.tr-caption-container img, .post-table img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .post-table li {
+        list-style-type: square;
+    }
+
+    .post-table td.tr-caption {
+        color: #666;
+        font-size: 80%;
+        padding: 0px 8px 8px !important;
+    }
+
+    .sr {
+        visibility: hidden;
+        width: 0;
+        height: 0;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    html {
+        -webkit-font-smoothing: antialiased;
+    }
+
+    ::selection {
+        background: #effdca;
+        text-shadow: none;
+    }
+
+    .wa {
+        text-align: center;
+        font-size:17px;
+    }
+     .filter {
+        display: block;
+        height: auto;
+        background: #f5f5f5;
+        border-right: 1px solid #f5f5f5;
+        width: 100%;
+    }
+
+        .filter li {
+            display: inline-block;
+            height: 40px;
+            width: auto;
+            vertical-align: top;
+            font-size: 12px;
+            position: relative;
+            white-space: nowrap;
+            line-height: 40px;
+        }
+
+            .filter li a {
+                color: #288ad6;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .filter li h1 {
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 5px;
+            }
+
+            .filter li a:hover {
+                color: #e81c24;
+            }
+</style>

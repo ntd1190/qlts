@@ -1,0 +1,113 @@
+﻿@model FooterModel
+@using Nop.Core
+@using Nop.Core.Domain.Tax
+@using Nop.Core.Infrastructure
+@using Nop.Web.Models.Common;
+<div class="footer">
+
+    <div class="footer-upper">
+        <div class="footer-block information">
+            <div class="title">
+                <strong>Chăm Sóc Khách Hàng</strong>
+            </div>
+            <ul class="list">
+
+                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
+                {
+                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })"><img src="@topic.PictureThumbnailUrl" /> @topic.Name</a></li>
+                }
+
+            </ul>
+        </div>
+        <div class="footer-block customer-service">
+            <div class="title">
+                <strong>Thanh Toán</strong>
+            </div>
+            <ul class="list">
+                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn2).ToList())
+                {
+                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })"><img src="@topic.PictureThumbnailUrl" /> @topic.Name</a></li>
+                }
+            </ul>
+        </div>
+        <div class="footer-block my-account">
+            <div class="title">
+                <strong>Hướng Dẫn</strong>
+            </div>
+            <ul class="list">
+                @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn3).ToList())
+                {
+                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })"><img src="@topic.PictureThumbnailUrl" /> @topic.Name</a></li>
+                }
+                <li><a href="/guarantee"><img src="~/Content/Images/kiemtra.png" />  Kiểm tra bảo hành</a></li>
+                <li><a href="/customer/login"><img src="~/Content/Images/account.png" />  Tài Khoản</a></li>
+            </ul>
+        </div>
+        <div class="footer-block follow-us">
+            <div class="social">
+                <div class="title">
+                    <strong>@T("Footer.FollowUs")</strong>
+                </div>
+                @Html.Action("Social", "Common")
+            </div>
+
+            <div class="newsletter">
+                <span style="color:white"><i class="fa fa-phone" aria-hidden="true"></i> Hot Line:(08-3) 99 69 769</span><br />
+                <span style="color:white"><i class="fa fa-envelope-o" aria-hidden="true"></i> Email:support@ehisgarden.vn</span>
+            </div>
+            <div>
+                <a href="http://online.gov.vn/HomePage/CustomWebsiteDisplay.aspx?DocId=34410" target="_blank"><img src="~/Content/Images/20150827110756-dathongbao.png" width="80%" /></a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-lower">
+
+        <div class="col-md-12">
+            <span class="footer-disclaimer" style="font-size:10px;">  © 2017. CTy TNHH SXTM & DV Song Ân Chi Nhánh Điện Biên :483 Võ Nguyên Giáp-P.Him Lam-TP.Điện Biên Phủ-Tỉnh Điện Biên.Người đại diện: Phạm Duy Khanh .Số ĐKKD 0309565527-001 cấp ngày 24/03/2017 bởi phòng DKKD tỉnh Điện Biên.</span> <br />
+
+        </div>
+        @Html.Action("StoreThemeSelector", "Common")
+    </div>
+    <a style="color:white;font-size:10px;">Powered by Nopcommerce</a>
+    @Html.Widget("footer")
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.footer-block .title').click(function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 769) {
+                $(this).siblings('.list').slideToggle('slow');
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.block .title').click(function () {
+            var e = window, a = 'inner';
+            if (!('innerWidth' in window)) {
+                a = 'client';
+                e = document.documentElement || document.body;
+            }
+            var result = { width: e[a + 'Width'], height: e[a + 'Height'] };
+            if (result.width < 1001) {
+                $(this).siblings('.listbox').slideToggle('slow');
+            }
+        });
+    });
+</script>
+<style>
+    .follow-us {
+        padding: 25px;
+        background-color: rgba(0,0,0,.1);
+        margin-top: -25px;
+    }
+    
+</style>

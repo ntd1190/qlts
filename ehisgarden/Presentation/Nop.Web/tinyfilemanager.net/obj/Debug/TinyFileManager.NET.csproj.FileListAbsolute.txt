@@ -1,0 +1,12 @@
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.dll.config
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.dll
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.pdb
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.NET.csprojResolveAssemblyReference.cache
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.dll
+C:\Users\USER\Downloads\New folder\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.pdb
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.dll.config
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.dll
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\bin\TinyFileManager.pdb
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.NET.csprojResolveAssemblyReference.cache
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.dll
+D:\Work\TinyFileManager.NET-master\TinyFileManager.NET\obj\Debug\TinyFileManager.pdb

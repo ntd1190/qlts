@@ -1,0 +1,437 @@
+﻿@model ProductDetailsModel
+@using Nop.Core.Domain.Seo;
+@using Nop.Core.Infrastructure;
+@using Nop.Web.Models.Catalog;
+<script src="~/Scripts/jquery.ajax-cross-origin.min.js"></script>
+@{
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+
+    //title
+    Html.AddTitleParts(!String.IsNullOrEmpty(Model.MetaTitle) ? Model.MetaTitle : Model.Name);
+    //meta
+    Html.AddMetaDescriptionParts(Model.MetaDescription);
+    Html.AddMetaKeywordParts(Model.MetaKeywords);
+    //page class
+    Html.AppendPageCssClassParts("html-product-details-page");
+
+    var seoSettings = EngineContext.Current.Resolve<SeoSettings>();
+
+    //canonical URL
+    if (seoSettings.CanonicalUrlsEnabled)
+    {
+        var productUrl = Url.RouteUrl("Product", new { SeName = Model.SeName }, this.Request.Url.Scheme);
+        Html.AddCanonicalUrlParts(productUrl);
+    }
+
+    //open graph META tags
+    if (seoSettings.OpenGraphMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"og:type\" content=\"product\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"og:site_name\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+    }
+
+    //Twitter META tags
+    if (seoSettings.TwitterMetaTags)
+    {
+        Html.AddHeadCustomParts("<meta property=\"twitter:card\" content=\"summary\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:site\" content=\"" + Html.Encode(Model.CurrentStoreName) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:title\" content=\"" + Html.Encode(Model.Name) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:description\" content=\"" + Html.Encode(Nop.Core.Html.HtmlHelper.StripTags(Model.MetaDescription)) + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:image\" content=\"" + Model.DefaultPictureModel.ImageUrl + "\" />");
+        Html.AddHeadCustomParts("<meta property=\"twitter:url\" content=\"" + Request.Url.AbsoluteUri + "\" />");
+    }
+}
+<!--product breadcrumb-->
+@section Breadcrumb
+{
+    @Html.Partial("_ProductBreadcrumb", Model.Breadcrumb)
+}
+@Html.Widget("productdetails_after_breadcrumb", Model.Id)
+<div class="page product-details-page">
+    <div class="page-body">
+        @Html.Widget("productdetails_top", Model.Id)
+        <div id="here">
+
+        </div>
+        @using (Html.BeginRouteForm("Product", new { SeName = Model.SeName }, FormMethod.Post, new { id = "product-details-form" }))
+        {
+            <div itemscope itemtype="http://schema.org/Product" data-productid="@Model.Id">
+                <div class="product-essential">
+                    @Html.Widget("productdetails_before_pictures", Model.Id)
+                    <!--product pictures-->
+                    @Html.Partial("_ProductDetailsPictures", Model)
+                    @Html.Widget("productdetails_after_pictures", Model.Id)
+                    <div class="overview">
+                        @Html.Partial("_Discontinued", Model)
+                        <div class="product-name">
+                            <h1 itemprop="name">
+                                @Model.Name
+                            </h1>
+                        </div>
+                        @if (!String.IsNullOrEmpty(Model.ShortDescription))
+                        {
+                            <div class="short-description">
+                               <div class="col-md-6">
+                                   @Html.Raw(Model.ShortDescription)
+                               </div>
+                                <div class="col-md-6">
+                                    @Html.Raw(Model.Guarantee)
+                                </div>
+                            </div>
+                            <div style="clear:both"></div>
+                        }
+                        @Html.Widget("productdetails_overview_top", Model.Id)
+                        <!--product reviews-->
+                        @Html.Partial("_ProductReviewOverview", Model.ProductReviewOverview)
+                        <!--manufacturers-->
+                        @Html.Partial("_ProductManufacturers", Model.ProductManufacturers)
+                        <!--availability-->
+                        @Html.Partial("_Availability", Model)
+                        <!--SKU, MAN, GTIN, vendor-->
+                        @*@Html.Partial("_SKU_Man_GTIN_Ven", Model)*@
+                        <!--delivery-->
+                        @Html.Partial("_DeliveryInfo", Model)
+                        <!--sample download-->
+                        @Html.Partial("_DownloadSample", Model)
+                        <!--attributes-->
+                        @{
+                            var dataDictAttributes = new ViewDataDictionary();
+                            dataDictAttributes.TemplateInfo.HtmlFieldPrefix = string.Format("attributes_{0}", Model.Id);
+                            @Html.Partial("_ProductAttributes", Model.ProductAttributes, dataDictAttributes)
+                        }
+                        <!--gift card-->
+                        @{
+                            var dataDictGiftCard = new ViewDataDictionary();
+                            dataDictGiftCard.TemplateInfo.HtmlFieldPrefix = string.Format("giftcard_{0}", Model.Id);
+                            @Html.Partial("_GiftCardInfo", Model.GiftCard, dataDictGiftCard)
+                        }
+                        <!--rental info-->
+                        @{
+                            var dataDictRental = new ViewDataDictionary();
+                            dataDictRental.TemplateInfo.HtmlFieldPrefix = string.Format("rental_{0}", Model.Id);
+                            @Html.Partial("_RentalInfo", Model, dataDictRental)
+                        }
+                        <!--price & add to cart-->
+                        @{
+                            var dataDictPrice = new ViewDataDictionary();
+                            dataDictPrice.TemplateInfo.HtmlFieldPrefix = string.Format("price_{0}", Model.Id);
+                            @Html.Partial("_ProductPrice", Model.ProductPrice, dataDictPrice)
+
+                            @Html.Partial("_ProductTierPrices", Model.TierPrices)
+
+                            var dataDictAddToCart = new ViewDataDictionary();
+                            dataDictAddToCart.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", Model.Id);
+                            @Html.Partial("_AddToCart", Model.AddToCart, dataDictAddToCart)
+                        }
+                        <!--wishlist, compare, email a friend-->
+                        <div class="overview-buttons">
+                            @Html.Widget("productdetails_inside_overview_buttons_before", Model.Id)
+                            @{
+                                var dataDictAddToWishlist = new ViewDataDictionary();
+                                dataDictAddToWishlist.TemplateInfo.HtmlFieldPrefix = string.Format("addtocart_{0}", Model.Id);
+                                @Html.Partial("_AddToWishlist", Model.AddToCart, dataDictAddToWishlist)
+                            }
+                            @Html.Partial("_CompareProductsButton", Model)
+                            @Html.Partial("_ProductEmailAFriendButton", Model)
+                            @Html.Widget("productdetails_inside_overview_buttons_after", Model.Id)
+                        </div>
+                        @Html.Partial("_ShareButton", Model)
+                        @Html.Widget("productdetails_overview_bottom", Model.Id)
+
+                    </div>
+                    @*<div>
+
+
+
+                        </div>*@
+
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <!-- Nav tabs -->
+                                <div class="card">
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li role="presentation"  class="active"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-sort-numeric-desc"></i>  <span>Thông Số Kỹ Thuật</span></a></li>
+                                        <li role="presentation"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info"></i>  <span>Thông Tin Chung</span></a></li>
+                                      
+
+                                    </ul>
+
+                                    <!-- Tab panes -->
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane active" id="profile">
+                                          
+                                            @if (!String.IsNullOrEmpty(Model.DigitalDescription))
+                                            {
+
+                                                <div class="commonb">
+                                                    @Html.Raw(Model.DigitalDescription)
+                                                </div>
+                                            }
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane " id="home">
+                                          
+                                            @if (!String.IsNullOrEmpty(Model.FullDescription))
+                                            {
+                                                <div class="commona">
+                                                    @Html.Raw(Model.FullDescription)
+                                                </div>
+                                            }
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                @Html.Widget("productdetails_before_collateral", Model.Id)
+                <div class="product-collateral">
+                    @Html.Partial("_ProductSpecifications", Model.ProductSpecifications)
+                    @Html.Partial("_ProductTags", Model.ProductTags)
+                </div>
+                @*@Html.Action("ProductsAlsoPurchased", "Product", new { productId = Model.Id })*@
+
+                <div class="fb-comments" data-href="@HttpContext.Current.Request.Url.AbsoluteUri" data-width="100%" data-numposts="5"></div>
+                @Html.Action("RelatedProducts", "Product", new { productId = Model.Id })
+                <div class="section-title clearfix">
+
+                    <a href="/dien-thoai-smartphones" title="Phần Cứng">
+                        <h2>
+                            Sản Phẩm Tương Ứng So Với Cửa Hàng Khác<i class="ehis-phone"></i>
+                        </h2>
+                    </a>
+                </div>
+                <div class="shop clearfix shop-masonry">
+                    <div class="masonry-sizer"></div>
+                    <div id="append">
+
+                    </div>
+                </div>
+            </div>
+                                }
+        @Html.Widget("productdetails_bottom", Model.Id)
+
+    </div>
+</div>
+<style>
+    #tskt table tbody tr:nth-child(even) {
+        background-color: #d2e3ec;
+    }
+    .nav-tabs li.active > a{
+            background-color: #37c0f4!important;
+    font-weight: bold!important;
+    color: white!important;
+    }
+     .nav-tabs li a:hover{
+            background-color: #37c0f4;
+    font-weight: bold;
+    color: white;
+    }
+</style>
+<script>
+
+    $(document).ready(function () {
+        setTimeout(afterTwoSecondsb, 500);
+        var q = "@Model.Name";
+        var url = 'http://www.thegioididong.com/tim-kiem?key=' + q + "/";
+        var url2 = 'https://fptshop.com.vn/tim-kiem/' + q + ''
+        @*$.ajax({
+            type: "get",
+            url: '@Url.Action("getlink", "Home")',
+            contentType: "application/json; charset=utf-8",
+            data: { link: url },
+            dataType: "json",
+            success: function (data) {
+                var append = "";
+                $(data).find('ul.listsearch > li').each(function (index) {
+                    if (index < 6) {
+                        var img = $(this).find('img').attr("src");
+                        var name = $(this).find('h3').html();
+                        var price = $(this).find('strong').text();
+                        append += '<div class="masonry-item">';
+                        append += '<div class="product">';
+                        append += '<div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product">';
+                        append += '<a href="' + url + '" class="product-link"></a>';
+                        append += ' <h3 class="name" Modelprop="name">' + name + '</h3>';
+                        append += '<div class="overlay-price"><span style="color: #232323; font-weight: normal;"></span></div>';
+                        append += ' <div Modelprop="description">';
+                        append += '<p>' + name + '</p>';
+                        append += '</div>';
+                        append += '</div>';
+                        append += '<div class="product-image">';
+                        append += '<a href="' + url + '">';
+                        append += '<figure data-feedback="fb:likes, fb:comments">';
+                        append += '<img class="lazy" Modelprop="image" data-original="' + img + '" src="' + img + '">';
+                        append += '</figure>';
+                        append += '</a>';
+                        append += '</div>';
+                        append += '<div class="product-name">';
+                        append += '<h6>Thế Giới Di Động</h3>';
+                        append += '<div class="name">' + name + '</div>';
+                        append += '<div class="price" Modelprop="offers" Modelscope Modeltype="http://schema.org/Offer">';
+                        append += '<meta Modelprop="priceCurrency" content="VND" />';
+                        if (price == null || price.length < 1) {
+                            append += '<div class="price-1"><span style="color: #232323; font-weight: normal;"></span>Chưa cập nhật</div>';
+                        }
+                        else {
+                            append += '<div class="price-1"><span style="color: #232323; font-weight: normal;"></span>' + price + '</div>';
+
+                        }
+                        append += '</div>';
+                        append += '</div>';
+                        append += '<div class="product-sale ">';
+                        append += '<div class="clearfix">';
+                        append += ' </div>';
+                        append += '</div>';
+                        append += '</div>';
+                        append += '</div>';
+                    }
+
+                });
+                $('#append').append(append);
+
+            },
+
+        });*@
+        $.ajax({
+            type: "get",
+            url: '@Url.Action("getlink", "Home")',
+            contentType: "application/json; charset=utf-8",
+            data: { link: url2 },
+            dataType: "json",
+            success: function (data) {
+
+                var append = "";
+                $(data).find('.p-item').each(function (index) {
+                    if (index < 6) {
+                        var img = $(this).find('.p-image>span>a>img').attr("src");
+                        var name = $(this).find('h3').html();
+                        var price = $(this).find('.p-current-price').text();
+                        append += '<div class="masonry-item">';
+                        append += '<div class="product">';
+                        append += '<div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product">';
+                        append += '<a href="' + url2 + '" class="product-link"></a>';
+                        append += ' <h3 class="name" Modelprop="name">' + name + '</h3>';
+                        append += '<div class="overlay-price"><span style="color: #232323; font-weight: normal;"></span></div>';
+                        append += ' <div Modelprop="description">';
+                        append += '<p>' + name + '</p>';
+                        append += '</div>';
+                        append += '</div>';
+                        append += '<div class="product-image">';
+                        append += '<a href="' + url2 + '">';
+                        append += '<figure data-feedback="fb:likes, fb:comments">';
+                        append += '<img class="lazy" Modelprop="image" data-original="' + img + '" src="' + img + '">';
+                        append += '</figure>';
+                        append += '</a>';
+                        append += '</div>';
+                        append += '<div class="product-name">';
+                        append += '<h6>FPT Shop</h3>';
+                        append += '<div class="name">' + name + '</div>';
+                        append += '<div class="price" Modelprop="offers" Modelscope Modeltype="http://schema.org/Offer">';
+                        append += '<meta Modelprop="priceCurrency" content="VND" />';
+                        if (price == null || price.length < 1) {
+                            append += '<div class="price-1"><span style="color: #232323; font-weight: normal;"></span>Ngừng kinh doanh</div>';
+                        }
+                        else {
+                            append += '<div class="price-1"><span style="color: #232323; font-weight: normal;"></span>' + price + '</div>';
+
+                        }
+
+                        append += '</div>';
+                        append += '</div>';
+                        append += '<div class="product-sale ">';
+                        append += '<div class="clearfix">';
+                        append += ' </div>';
+                        append += '</div>';
+                        append += '</div>';
+                        append += '</div>';
+                    }
+
+                });
+                $('#append').append(append);
+
+            },
+
+        });
+    })
+    $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+        //$('.showhide').hide();
+        var target = $(e.target).attr("href") // activated tab
+        if (target == "#home") {
+            setTimeout(afterTwoSecondsa, 500);
+        }
+        else {
+            setTimeout(afterTwoSecondsb, 500);
+        }
+        
+    });
+    //$('#home').click(function () {
+    //  //  setTimeout(afterTwoSeconds, 2000); 
+    //})
+    function afterTwoSecondsa() {
+        $('.showhideb').hide();
+        var maxheight = 700;
+        var showText = "Xem Thêm";
+        var hideText = "Thu Gọn";
+
+        $('.commona').each(function () {
+            var text = $(this);
+            if (text.height() >= maxheight) {
+                text.css({ 'overflow': 'hidden', 'height': maxheight + 'px' });
+
+                var link = $('<button class="btn btn-primary showhidea">' + showText + '</button>');
+                var linkDiv = $('<div style="text-align:center"></div>');
+                linkDiv.append(link);
+                $(this).after(linkDiv);
+
+                link.click(function (event) {
+                    event.preventDefault();
+                    if (text.height() > maxheight) {
+                        $(this).html(showText);
+                        text.css('height', maxheight + 'px');
+                    } else {
+                        $(this).html(hideText);
+                        text.css('height', 'auto');
+                    }
+                });
+            }
+        });
+    }
+    function afterTwoSecondsb() {
+        $('.showhidea').hide();
+        var maxheight = 700;
+        var showText = "Xem Thêm";
+        var hideText = "Thu Gọn";
+
+        $('.commonb').each(function () {
+            var text = $(this);
+            var h=text.height()
+            if (h >= maxheight) {
+                text.css({ 'overflow': 'hidden', 'height': maxheight + 'px' });
+
+                var link = $('<button class="btn btn-primary showhideb">' + showText + '</button>');
+                var linkDiv = $('<div style="text-align:center"></div>');
+                linkDiv.append(link);
+                $(this).after(linkDiv);
+
+                link.click(function (event) {
+                    event.preventDefault();
+                    if (text.height() > maxheight) {
+                        $(this).html(showText);
+                        text.css('height', maxheight + 'px');
+                    } else {
+                        $(this).html(hideText);
+                        text.css('height', 'auto');
+                    }
+                });
+            }
+        });
+    }
+</script>
