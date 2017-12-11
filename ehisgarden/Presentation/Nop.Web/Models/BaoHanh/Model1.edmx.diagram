@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="07f5d181f1604ef1ab85faf0e3669a79" Name="Diagram1" >
+        <EntityTypeShape EntityType="MSSQL_QLDN_QLNS_DEMOModel.KhoHangHoa" Width="1.5" PointX="3" PointY="1.125" />
+        <EntityTypeShape EntityType="MSSQL_QLDN_QLNS_DEMOModel.KhoHangSanXuat" Width="1.5" PointX="0.75" PointY="2.625" />
+        <EntityTypeShape EntityType="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuSery" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuXuat" Width="1.5" PointX="3" PointY="11.75" />
+        <EntityTypeShape EntityType="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuXuatChiTiet" Width="1.5" PointX="5.25" PointY="2.5" />
+        <AssociationConnector Association="MSSQL_QLDN_QLNS_DEMOModel.FK_KhoHangHoa_KhoHangSanXuat" />
+        <AssociationConnector Association="MSSQL_QLDN_QLNS_DEMOModel.FK_KhoPhieuXuatChiTiet_KhoHangHoa" />
+        <AssociationConnector Association="MSSQL_QLDN_QLNS_DEMOModel.FK_KhoPhieuXuatChiTiet_KhoPhieuXuat" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
