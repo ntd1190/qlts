@@ -1,0 +1,132 @@
+﻿@model HomePageNewsItemsModel
+@using Nop.Web.Models.News;
+@if (Model.NewsItems.Count > 0)
+{
+
+    <div class="col-md-4">
+        @*<section class="news">
+                <div class="dropdown">
+                    <button id="dtintuc" type="button" data-toggle="dropdown" aria-haspopup="true"
+                            aria-expanded="false">
+                        Tin tức
+                    </button>
+                </div>
+                <ul class="news-content clearlist">
+                    <div class="scroll news-scroll">
+                        @foreach (var item in Model.NewsItems)
+                        {
+                            <li class="clearfix">
+                                <div itemscope itemtype="http://schema.org/NewsArticle">
+                                    <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="absolute-all" title="@item.Title"></a>
+                                    <p itemprop="headline">@item.Title</p>
+                                </div>
+                            </li>
+
+                        }
+                    </div>
+                    <li class="news-more">
+                        <a href="/news" title="Xem th&#234;m tin tức">Xem th&#234;m tin tức &raquo;</a>
+                    </li>
+                </ul>
+
+            </section>*@
+        <section class="news">
+            <div class="dropdown">
+                <button id="dtintuc" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <i class="fa fa-newspaper-o"></i> Tin tức
+                    <span class="caret"></span>
+                </button>
+                @*<ul class="dropdown-menu" aria-labelledby="dtintuc">
+                        <li><a href="/tin-tuc?today_news=Y" title="Tin mới">Tin mới</a></li>
+                        <li><a href="/tin-tuc?catett_id=1" title="Tin Khuyến Mãi">Tin Khuyến Mãi</a></li>
+                        <li><a href="/tin-tuc?catett_id=3" title="Tin Viễn Thông A">Tin Viễn Thông A</a></li>
+                        <li><a href="/tin-tuc?catett_id=4" title="Tin săn thưởng">Tin săn thưởng</a></li>
+                        <li><a href="/tin-tuc?catett_id=6" title="Sắp ra mắt">Sắp ra mắt</a></li>
+                        <li><a href="/tin-tuc?catett_id=7" title=" Review - đập hộp"> Review - đập hộp</a></li>
+                        <li><a href="/tin-tuc?catett_id=8" title="Tư vấn">Tư vấn</a></li>
+                        <li><a href="/tin-tuc?catett_id=9" title=" Kinh nghiệm"> Kinh nghiệm</a></li>
+                        <li><a href="/tin-tuc?catett_id=10" title="Tin trả góp">Tin trả góp</a></li>
+                        <li><a href="/tin-tuc?catett_id=11" title="Công nghệ &amp; Đời sống">Công nghệ &amp; Đời sống</a></li>
+                    </ul>*@
+            </div>
+            <ul class="news-content clearlist">
+                @foreach (var item in Model.NewsItems)
+                {
+                    if (Model.NewsItems.First() == item)
+                    {
+                        <li class="news-main clearfix">
+                            <div itemscope="" itemtype="http://schema.org/NewsArticle">
+                                <meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
+                                <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="absolute-all" title="@item.SeName"></a>
+                                <div itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+                                    <figure data-feedback="fb:likes, fb:comments">
+                                        <img src="@item.DefaultPictureModel.ImageUrl" height="182" class="img-responsive center-block" alt="@item.SeName">
+                                    </figure>
+                                </div>
+                                <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization" style="display: none;">
+                                    <div itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+                                        <figure data-feedback="fb:likes, fb:comments">
+                                            <img src="@item.DefaultPictureModel.ImageUrl" alt="@item.SeName">
+                                        </figure>
+                                    </div>
+                                    <meta itemprop="name" content="Google">
+                                </div>
+                                <p itemprop="headline">@item.Title</p>
+                            </div>
+                        </li>
+                    }
+                    
+                }
+
+
+                <div class="scroll news-scroll">
+                    @foreach (var item in Model.NewsItems)
+                    {
+                        if (Model.NewsItems.First() != item)
+                        {
+                            <li class="clearfix">
+
+                                <div itemscope="" itemtype="http://schema.org/NewsArticle">
+                                    <meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
+                                    <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="absolute-all" title="@item.Title"></a>
+                                    <div class="news-img" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+                                        <figure data-feedback="fb:likes, fb:comments">
+                                            <img src="@item.DefaultPictureModel.ImageUrl" class="img-responsive" alt="@item.SeName">
+                                        </figure>
+                                    </div>
+                                    <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization" style="display: none;">
+                                        <div itemprop="logo" itemscope="" itemtype="https://schema.org/ImageObject">
+                                            <figure data-feedback="fb:likes, fb:comments">
+                                                <img src="@item.DefaultPictureModel.ImageUrl" alt="@item.SeName">
+                                            </figure>
+
+                                        </div>
+                                        <meta itemprop="name" content="Google">
+                                    </div>
+                                    <p itemprop="headline">@item.Title</p>
+                                  
+                                </div>
+                            </li>
+                        }
+                    }
+                    
+
+                </div>
+                <li class="news-more">
+                    <a href="/news" title="Xem thêm tin tức">Xem thêm tin tức »</a>
+                </li>
+            </ul>
+
+        </section>
+
+    </div>
+
+}
+<style>
+    /*.news-content{
+        height:575px;
+    }
+    .news-scroll{
+        height:100%;
+    }*/
+</style>

@@ -1,0 +1,73 @@
+﻿@using Nop.Web.Models.Catalog;
+@model IEnumerable<ProductOverviewModel>
+<div class="shop clearfix shop-masonry">
+    <div class="masonry-sizer"></div>
+
+
+    @foreach (var item in Model)
+    {
+        <div class="masonry-item">
+
+            <div class="product">
+
+                <span class="indicator-product-status top-left-qs100">top-left-qs100</span>
+
+
+                <div class="product-overlay animate" itemscope itemtype="http://schema.org/Product" title="@item.Name">
+                    <a href="#" class="product-link" title="@item.Name"></a>
+                    <h3 class="name" itemprop="name">@item.Name</h3>
+                    <div class="overlay-price">@item.ProductPrice.Price</div>
+
+                    <div itemprop="description">
+                        <p>
+                            @item.ShortDescription
+                        </p>
+                    </div>
+                    <div class="product-config">
+                        <a href="#" title="Mua ngay" class="btn-cart">
+                            <i class="ehis-cart"></i><span>Mua ngay</span>
+                        </a>
+                        @*<ul class="btn-group-compare list-inline">
+                                <li><a href=""><i class="ehis-heart"></i></a></li>
+                                <li><a href="/samsung-galaxy-s7-edge-blue-coral.html#sosanh"><i class="ehis-compare"></i></a></li>
+                            </ul>*@
+                    </div>
+                </div>
+                <div class="product-image">
+                    <a href="/samsung-galaxy-s7-edge-blue-coral.html" title="@item.Name">
+                        <figure data-feedback="fb:likes, fb:comments">
+                            <img class="lazy" itemprop="image" data-original="@item.DefaultPictureModel.ImageUrl">
+                        </figure>
+                    </a>
+                </div>
+                <div class="product-name">
+                    <div class="name">
+                        @item.Name
+                    </div>
+                    <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+                        <meta itemprop="priceCurrency" content="VND" />
+                        <div class="price-1" itemprop="price">
+                            @item.ProductPrice.Price
+                        </div>
+                        <div class="price-2">@item.ProductPrice.OldPrice</div>
+
+                    </div>
+                </div>
+                <div class="product-sale ">
+                        <div class="clearfix">
+                            <div class="product-sale-text">
+                                <span>Vòng Quay: </span>
+                                <span>700,000đ-2,000,000đ</span>
+                            </div>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    }
+
+
+
+</div>
+
+

@@ -1,0 +1,202 @@
+﻿@using Nop.Web.Models.Catalog
+@model TopMenuModel
+
+<header>
+
+    <div class="wrap-main">
+
+        <a class="logo" title="Về trang chủ" href="/">
+            <img src="~/Content/logo.png" />
+
+            @*<img src="~/Content/logo.png" />*@
+        </a>
+        @using (Html.BeginRouteForm("ProductSearch", FormMethod.Get, new { id = "search-site", @*@class = "hidden-xs"*@ }))
+        {
+
+
+
+            <input class="topinput" id="search-keyword" name="q" type="search" placeholder="Bạn tìm gì..." autocomplete="off" onkeyup="SuggestSearch(event,this, 0);" maxlength="50">
+            <button class="btntop" type="submit"><i class="fa fa-search"></i></button>
+
+
+        }
+
+        <nav class="hidden-sm hidden-xs">
+
+            @foreach (var item in Model.Categories)
+            {
+                <object class="tablet">
+                    <a href="/@item.SeName">
+                        <i style="font-size:25px;" class="@item.Description"></i><br />@item.Name
+                    </a>
+
+                    <ul>
+                        @foreach (var item1 in item.SubCategories)
+                        {
+                            <li style="cursor:pointer" onclick="location.href ='/@item1.SeName';">@item1.Name</li>
+                        }
+                    </ul>
+                </object>
+
+
+            }
+            <a href="/cart" class="tablet" title="Giỏ hàng">
+                <i style="font-size:25px;" class="fa fa-shopping-cart"></i><br />Giỏ Hàng
+            </a>
+            @*<a href="/Laptop" id="cate2" class="tablet" title="Laptop">
+                    <i style="font-size:25px;" class="fa fa-laptop"></i><br />Laptop
+                </a>
+                <a href="/Server" class="tablet" title="Server">
+                    <i style="font-size:25px;" class="fa fa-television"></i><br />Server
+                </a>
+
+                <a href="/May-In" class="tablet" title="Máy In">
+                    <i style="font-size:25px;" class="fa fa-print"></i><br />Máy In
+                </a>
+                <a href="/Luu-Dien" class="tablet" title="Lưu Điện">
+                    <i style="font-size:25px;" class="fa fa-battery-three-quarters"></i><br />Lưu Điện
+                </a>
+                <a href="/Thiet-Bi-Mang" class="tablet" title="Thiết Bị Mạng">
+                    <i style="font-size:25px;" class="fa fa-bolt"></i><br />Mạng
+                </a>
+
+                <a href="/Khac" class="tablet" title="Thiết Bị Khác">
+                    <i style="font-size:25px;" class="fa fa-pencil-square-o"></i><br />Thiết Bị Khác
+                </a>
+                <a href="/Phan-Mem" class="tablet" title="Phần Mềm">
+                    <i style="font-size:25px;" class="fa fa-etsy"></i><br />Phần Mềm
+                </a>
+
+                <a href="/cart" class="tablet" title="Giỏ hàng">
+                    <i style="font-size:25px;" class="fa fa-shopping-cart"></i><br />Giỏ Hàng
+                </a>*@
+
+            @*<a href="/Home/BaoHanh" class="tablet" title="Tra Cứu">
+                    <i style="font-size:25px;" class="fa fa-id-card"></i><br />Bảo Hành
+                </a>*@
+        </nav>
+
+
+    </div>
+    <div class="clr"></div>
+</header>
+
+<section class="hidden-lg hidden-md">
+    @*<div class="row">
+            @using (Html.BeginRouteForm("ProductSearch", FormMethod.Get, new { id = "search-site", @class = "hidden-sm" }))
+            {
+                <input class="topinput" id="search-keyword" name="q" type="search" placeholder="Bạn tìm gì..." autocomplete="off" onkeyup="SuggestSearch(event,this, 0);" maxlength="50">
+                <button class="btntop" type="submit"><i class="fa fa-search"></i></button>
+            }
+        </div>*@
+    <div class="navhome">
+
+        @foreach (var item in Model.Categories)
+        {
+            <a href="/@item.SeName" class="tablet" title="@item.SeName">
+                <p>@item.Name</p>
+            </a>
+        }
+
+        <a href="/cart" class="tablet" title="Giỏ hàng">
+            <p>Giỏ Hàng</p>
+        </a>
+
+    </div>
+</section>
+<style>
+    nav > object {
+        display: table-cell;
+        width: 75px;
+        color: #fff;
+        font-size: 11px;
+        text-align: center;
+        text-transform: uppercase;
+        position: relative;
+    }
+
+    object:hover > ul {
+        display: block;
+    }
+
+    object > ul {
+        position: absolute;
+        background-color: #37c0f4;
+        padding: 8px;
+        display: none;
+        text-align: left;
+        width: 150px;
+    }
+
+        object > ul li {
+            padding: 11px;
+            color: white;
+        }
+
+            object > ul li:hover {
+                background-color: white;
+                color: #e21c24;
+                display: block;
+            }
+.navhome a {
+        float: left;
+        width: 23%;
+        height: 42px;
+        margin: 0 0 1.1% 1.1%;
+        background: #37c0f4;
+        border: 1px solid #37c0f4;
+        border-radius: 3px;
+        -webkit-border-radius: 3px;
+        -moz-border-radius: 3px;
+        background: #e5e5e5;
+        background: -webkit-gradient(linear,0% 0%,0% 100%,from(#e5e5e5),to(#fff));
+        background: -webkit-linear-gradient(top,#fff,#e5e5e5);
+        background: -moz-linear-gradient(top,#fff,#e5e5e5);
+        background: -ms-linear-gradient(top,#fff,#e5e5e5);
+        background: -o-linear-gradient(top,#fff,#e5e5e5);
+    }
+
+    .navhome {
+        display: block;
+        overflow: hidden;
+        padding: 1.3% 0 .3%;
+        margin: auto;
+        background: #e5e5e5;
+        /* background: -webkit-gradient(radial,center center,0,center center,460,from(#e9c003),to(#e6a300)); */
+        /* background: -webkit-radial-gradient(circle,#e9c003,#e6a300); */
+        background: -moz-radial-gradient(circle,#e9c003,#e6a300);
+        background: -ms-radial-gradient(circle,#e9c003,#e6a300);
+    }
+
+        .navhome a p {
+            display: block;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 14px 0;
+            color: #e21c24;
+            text-align: center;
+            line-height: 1.3em;
+        }
+</style>
+<script>
+    //$(function () {
+    //    var current_page_URL = location.href;
+    //    $("nav a").each(function () {
+    //        if ($(this).attr("href") !== "#") {
+    //            var target_URL = $(this).prop("href");
+    //            console.log(target_URL)
+    //            console.log(current_page_URL)
+    //            if (target_URL == current_page_URL) {
+    //                $('nav a').removeClass('active');
+    //                $(this).addClass('active');
+    //                return false;
+    //            }
+    //            if ($(this).attr("id") == "1") {
+    //                $('nav a').removeClass('active');
+    //                $(this).addClass('active');
+    //                return false;
+    //            }
+    //        }
+    //    });
+    //});
+</script>

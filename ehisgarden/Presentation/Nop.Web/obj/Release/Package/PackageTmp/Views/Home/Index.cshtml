@@ -1,0 +1,97 @@
+﻿
+@model Nop.Web.Models.Common.AddressModel
+@Html.Action("Slider", "Home")
+<div id="main-content">
+    <section class="intro products">
+        <div class="container" style="width:100%;">
+            @*@Html.Widget("home_page_top")*@
+            <div class="row">
+                <div class="col-md-8">
+                    <div id="products-feature">
+                        @*<ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#sanPhamBanChay" aria-controls="home" role="tab"
+                                       data-toggle="tab" title="Sản phẩm bán chạy">
+                                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Sản phẩm bán chạy
+                                    </a>
+                                </li>
+                            </ul>*@
+                        <div class="section-title clearfix" style="border-top: 2px solid #e81c24;">
+                            <a href="/">
+                                <h2 style="background:#e81c24">
+                                    Sản phẩm bán chạy<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                                </h2>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active fade in" id="sanPhamBanChay">
+                                <div class="product-carousel shop clearfix">
+                                    @Html.Action("HomepageBestSellers", "Home")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="products-feature">
+                        @*<ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#sanPhamMoi" aria-controls="home" role="tab"
+                                       data-toggle="tab" title="Sản phẩm nổi bật">
+                                        <img src="~/Content/Images/new.png" /> Sản phẩm mới
+                                    </a>
+                                </li>
+
+                            </ul>*@
+                        <div class="section-title clearfix" style="border-top: 2px solid #e81c24;">
+                            <a href="/">
+                                <h2 style="background:#e81c24">
+                                    Sản phẩm mới <img src="~/Content/Images/new.png" style="right: 0;
+    position: absolute;
+    top: 0;" />
+                                </h2>
+                            </a>
+                        </div>
+                        <div class="tab-content">
+                            <div role="tabpanel" class="tab-pane active fade in" id="sanPhamMoi">
+                                <div class="product-carousel shop clearfix">
+                                    @Html.Action("HomepageProduct", "Home")
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @{ Html.RenderPartial("_NewsHome", Model.news); }
+            </div>
+        </div>
+    </section>
+    <section class="products">
+        <div class="container" style="width:100%;">
+            <div class="section-title clearfix">
+
+                <a href="/" title="Sản phẩm nổi bật">
+                    <h2>
+                        Sản Phẩm Nổi Bật <i class="fa fa-laptop" aria-hidden="true" style="color:#37c0f4"></i>
+                    </h2>
+                </a>
+            </div>
+            @{ Html.RenderPartial("_ProductByCategory", Model.procate1); }
+        </div>
+    </section>
+    <section class="products">
+        <div class="container" style="width:100%;">
+            <div class="section-title clearfix">
+                <a href="/">
+                    <h2>
+                        Phần Mềm Ehis<i class="fa fa-etsy" style="color:#37c0f4"></i>
+                    </h2>
+                </a>
+            </div>
+            @{ Html.RenderPartial("_ProductByCategory", Model.procate2); }
+        </div>
+    </section>
+    <style>
+        .disabledbutton {
+            pointer-events: none;
+            opacity: 0.4;
+        }
+    </style>
+</div>

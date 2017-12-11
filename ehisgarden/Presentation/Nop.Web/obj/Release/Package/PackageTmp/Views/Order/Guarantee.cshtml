@@ -1,0 +1,78 @@
+﻿
+@{
+    ViewBag.Title = "Guarantee";
+    Layout = "~/Views/Shared/_ColumnsOne.cshtml";
+}
+<ul class="filter">
+    <div class="row">
+        <li>
+            <span itemscope="">
+                <a href="/" title="Trang chủ">Trang chủ</a>
+            </span>
+            <span class="delimiter">/</span>
+        </li>
+        <li>
+            <h1>
+                Kiểm tra bảo hành
+            </h1>
+        </li>
+    </div>
+
+</ul>
+<div class="container" style="margin:100px 0px 100px 0px;">
+    <div class="row" style="text-align:center">
+        <h2 style="font-weight:normal"> Tra cứu thông tin bảo hành</h2>
+    </div>
+    <div class="row" style="text-align:center;">
+        @using (Html.BeginForm("CustomerList", "Order", FormMethod.Post,
+                                 new { enctype = "multipart/form-data" }))
+        {
+            @Html.ValidationSummary(true)
+            <div style="width:50%;margin:0 auto">
+                <input type="text" style="text-align:center;padding:25px;font-size:15px;" placeholder="Nhập số series sản phẩm" required="required" class="form-control" name="phone" />
+                <br />
+                <button type="submit" style="padding:10px 40px 10px 40px;font-size:20px;" class="btn btn-primary">Kiểm tra</button>
+
+            </div>
+        }
+    </div>
+
+</div>
+
+
+<style>
+    .filter {
+        display: block;
+        height: auto;
+        background: #f5f5f5;
+        border-right: 1px solid #f5f5f5;
+        width: 100%;
+    }
+
+        .filter li {
+            display: inline-block;
+            height: 40px;
+            width: auto;
+            vertical-align: top;
+            font-size: 12px;
+            position: relative;
+            white-space: nowrap;
+            line-height: 40px;
+        }
+
+            .filter li a {
+                color: #288ad6;
+                font-size: 12px;
+                font-weight: bold;
+            }
+
+            .filter li h1 {
+                font-size: 12px;
+                font-weight: bold;
+                line-height: 5px;
+            }
+
+            .filter li a:hover {
+                color: #e81c24;
+            }
+</style>
