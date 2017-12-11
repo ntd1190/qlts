@@ -1,0 +1,101 @@
+﻿@using Nop.Admin.Models.Banner
+@model BannerPostModel
+
+@Html.ValidationSummary(false)
+@Html.HiddenFor(model => model.Id)
+
+
+<div class="content">
+    <div class="form-horizontal">
+        
+        <div id="category-edit" class="nav-tabs-custom">
+            <ul class="nav nav-tabs">
+                @Html.RenderBootstrapTabHeader("tab-info", @T("Admin.Catalog.Categories.Info"), true)
+            </ul>
+            <div class="tab-content">
+                @Html.RenderBootstrapTabContent("tab-info", @TabInfo(), true)
+            </div>
+        </div>
+    </div>
+</div>
+
+@{
+    //custom tabs
+    var eventMessage = new AdminTabStripCreated(this.Html, "category-edit");
+    EngineContext.Current.Resolve<IEventPublisher>().Publish(eventMessage);
+    foreach (var eventBlock in eventMessage.BlocksToRender)
+    {
+        @eventBlock
+    }
+}
+
+
+@helper TabInfo()
+{
+   
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.Link)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.NopEditorFor(model => model.Link)
+                        @Html.ValidationMessageFor(model => model.Link)
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.Description)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.NopTextAreaFor(model => model.Description)
+                        @Html.ValidationMessageFor(model => model.Description)
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.PictureId)
+                    </div>
+                    <div class="col-md-9">
+                        @Html.NopEditorFor(model => model.PictureId)
+                        @Html.ValidationMessageFor(model => model.PictureId)
+                    </div>
+               
+                </div>
+                <div class="form-group" @(Model.Left ? Html.Raw("style=\"display:none\"") : null)>
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.Left)
+                    </div>
+
+                    <div class="col-md-9">
+                        @Html.NopEditorFor(model => model.Left)
+                    </div>
+                </div>
+                <div class="form-group" @(Model.Bottom ? Html.Raw("style=\"display:none\"") : null)>
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.Bottom)
+                    </div>
+                   
+                    <div class="col-md-9">
+                        @Html.NopEditorFor(model => model.Bottom)
+                    </div>
+                </div>
+                <div class="form-group" @(Model.Top ? Html.Raw("style=\"display:none\"") : null)>
+                    <div class="col-md-3">
+                        @Html.NopLabelFor(model => model.Top)
+                    </div>
+
+                    <div class="col-md-9">
+                        @Html.NopEditorFor(model => model.Top)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+
