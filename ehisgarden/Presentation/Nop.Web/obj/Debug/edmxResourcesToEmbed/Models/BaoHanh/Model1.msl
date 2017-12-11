@@ -1,0 +1,134 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MSSQL_QLDN_QLNS_DEMOModelStoreContainer" CdmEntityContainer="MSSQL_QLDN_QLNS_DEMOEntities">
+    <FunctionImportMapping FunctionImportName="sp_KhoPhieuBaoHanh_GetThongTinBySeries" FunctionName="MSSQL_QLDN_QLNS_DEMOModel.Store.sp_KhoPhieuBaoHanh_GetThongTinBySeries">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.sp_KhoPhieuBaoHanh_GetThongTinBySeries_Result">
+          <ScalarProperty Name="MAXCNT" ColumnName="MAXCNT" />
+          <ScalarProperty Name="TenKhachHang" ColumnName="TenKhachHang" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+          <ScalarProperty Name="NgayXuat" ColumnName="NgayXuat" />
+          <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
+          <ScalarProperty Name="TenHangSanXuat" ColumnName="TenHangSanXuat" />
+          <ScalarProperty Name="Series" ColumnName="Series" />
+          <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+          <ScalarProperty Name="ThoiGianBaoHanh1" ColumnName="ThoiGianBaoHanh1" />
+          <ScalarProperty Name="NgayHetHanBaoHanh" ColumnName="NgayHetHanBaoHanh" />
+          <ScalarProperty Name="ThoiGianBaoHanhConLai" ColumnName="ThoiGianBaoHanhConLai" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="KhoHangHoas">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhoHangHoa">
+        <MappingFragment StoreEntitySet="KhoHangHoa">
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="NuocSanXuatId" ColumnName="NuocSanXuatId" />
+          <ScalarProperty Name="HangSanXuatId" ColumnName="HangSanXuatId" />
+          <ScalarProperty Name="NhaCungCapId" ColumnName="NhaCungCapId" />
+          <ScalarProperty Name="LoaiHangHoaId" ColumnName="LoaiHangHoaId" />
+          <ScalarProperty Name="NhomHangHoaId" ColumnName="NhomHangHoaId" />
+          <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+          <ScalarProperty Name="CauHinh" ColumnName="CauHinh" />
+          <ScalarProperty Name="ThueBan" ColumnName="ThueBan" />
+          <ScalarProperty Name="ThueMua" ColumnName="ThueMua" />
+          <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+          <ScalarProperty Name="GiaBan" ColumnName="GiaBan" />
+          <ScalarProperty Name="GiaMua" ColumnName="GiaMua" />
+          <ScalarProperty Name="DonViTinh" ColumnName="DonViTinh" />
+          <ScalarProperty Name="TuKhoa" ColumnName="TuKhoa" />
+          <ScalarProperty Name="TenHangHoa" ColumnName="TenHangHoa" />
+          <ScalarProperty Name="MaHangHoa" ColumnName="MaHangHoa" />
+          <ScalarProperty Name="HangHoaId" ColumnName="HangHoaId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoHangSanXuats">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhoHangSanXuat">
+        <MappingFragment StoreEntitySet="KhoHangSanXuat">
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="TenHangSanXuat" ColumnName="TenHangSanXuat" />
+          <ScalarProperty Name="MaHangSanXuat" ColumnName="MaHangSanXuat" />
+          <ScalarProperty Name="HangSanXuatId" ColumnName="HangSanXuatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoPhieuSeries">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuSery">
+        <MappingFragment StoreEntitySet="KhoPhieuSeries">
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="GhiChu" ColumnName="GhiChu" />
+          <ScalarProperty Name="HangHoaId" ColumnName="HangHoaId" />
+          <ScalarProperty Name="MaHangHoa" ColumnName="MaHangHoa" />
+          <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+          <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+          <ScalarProperty Name="Series" ColumnName="Series" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoPhieuXuats">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuXuat">
+        <MappingFragment StoreEntitySet="KhoPhieuXuat">
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="ChietKhau" ColumnName="ChietKhau" />
+          <ScalarProperty Name="TienThue" ColumnName="TienThue" />
+          <ScalarProperty Name="ThueVAT" ColumnName="ThueVAT" />
+          <ScalarProperty Name="ChiPhi" ColumnName="ChiPhi" />
+          <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+          <ScalarProperty Name="Hinh" ColumnName="Hinh" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="NguoiGiaoHang" ColumnName="NguoiGiaoHang" />
+          <ScalarProperty Name="ThuKho" ColumnName="ThuKho" />
+          <ScalarProperty Name="NgayXuat" ColumnName="NgayXuat" />
+          <ScalarProperty Name="NgayThanhToan" ColumnName="NgayThanhToan" />
+          <ScalarProperty Name="KhoXuat" ColumnName="KhoXuat" />
+          <ScalarProperty Name="TaiKhoanGiaVon" ColumnName="TaiKhoanGiaVon" />
+          <ScalarProperty Name="TaiKhoanKho" ColumnName="TaiKhoanKho" />
+          <ScalarProperty Name="TaiKhoanNo" ColumnName="TaiKhoanNo" />
+          <ScalarProperty Name="TaiKhoanCo" ColumnName="TaiKhoanCo" />
+          <ScalarProperty Name="NoiDung" ColumnName="NoiDung" />
+          <ScalarProperty Name="NgayChungTu" ColumnName="NgayChungTu" />
+          <ScalarProperty Name="Seri" ColumnName="Seri" />
+          <ScalarProperty Name="SoHoaDon" ColumnName="SoHoaDon" />
+          <ScalarProperty Name="SoDienThoai" ColumnName="SoDienThoai" />
+          <ScalarProperty Name="NguoiNhanHang" ColumnName="NguoiNhanHang" />
+          <ScalarProperty Name="SoPhieu" ColumnName="SoPhieu" />
+          <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+          <ScalarProperty Name="LoaiPhieu" ColumnName="LoaiPhieu" />
+          <ScalarProperty Name="PhieuXuatId" ColumnName="PhieuXuatId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhoPhieuXuatChiTiets">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhoPhieuXuatChiTiet">
+        <MappingFragment StoreEntitySet="KhoPhieuXuatChiTiet">
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="ThoiGianBaoHanh" ColumnName="ThoiGianBaoHanh" />
+          <ScalarProperty Name="DonGia" ColumnName="DonGia" />
+          <ScalarProperty Name="SoLuong" ColumnName="SoLuong" />
+          <ScalarProperty Name="LoHang" ColumnName="LoHang" />
+          <ScalarProperty Name="GiaNhap" ColumnName="GiaNhap" />
+          <ScalarProperty Name="HangHoaId" ColumnName="HangHoaId" />
+          <ScalarProperty Name="PhieuXuatId" ColumnName="PhieuXuatId" />
+          <ScalarProperty Name="PhieuXuatChiTietId" ColumnName="PhieuXuatChiTietId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
