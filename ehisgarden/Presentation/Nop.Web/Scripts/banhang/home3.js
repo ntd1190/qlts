@@ -1640,10 +1640,12 @@ jQuery.easing.jswing = jQuery.easing.swing, jQuery.extend(jQuery.easing, {
             updatePosition: function() {
                 this.jumpTo(this.currentItem), !1 !== this.options.autoPlay && this.checkAp()
             },
-            appendItemsSizes: function() {
+            appendItemsSizes: function () {
+                
                 var i = this,
                     s = 0,
                     e = i.itemsAmount - i.options.items;
+                console.log(i.$owlItems);
                 i.$owlItems.each(function(o) {
                     var n = t(this);
                     n.css({
@@ -7372,7 +7374,7 @@ function initPageSliders() {
             autoPlay: !1,
             stopOnHover: !0,
             slideSpeed: 1e3,
-            items: 4,
+            items: 2,
             itemsDesktop: [1199, 3],
             itemsDesktopSmall: [991, 4],
             itemsTablet: [767, 2],
