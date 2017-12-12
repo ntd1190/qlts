@@ -9,6 +9,12 @@
 
 <div>
     <div class="product">
+        <div class="triangle_dis">
+            <span>-10%</span>
+        </div>
+        @*<span class="triangle_dis">
+                -0%
+            </span>*@
         @*@if (Model.MarkAsNew)
             {
                 <span class="indicator-product-status top-left-upcoming"></span>
@@ -45,7 +51,13 @@
                     </figure>
                 </a>
             </div>
-            <div style="float: left;width: 60%;margin-left: 10px;background: #F1F1F1;line-height:18px;border: 1px solid #e3e3e3; padding:5px;overflow: hidden;max-height:150px">
+            <div style="float: left;width: 60%;margin-left: 10px;
+                                                    background: #F1F1F1;
+                                                    background: -webkit-linear-gradient(left, #E7E8E9 , white); 
+                                                    background: -o-linear-gradient(right, #E7E8E9, white); 
+                                                    background: -moz-linear-gradient(right, #E7E8E9, white); 
+                                                    background: linear-gradient(to right, #E7E8E9 , white); 
+                                                line-height:18px;border: 1px solid #e3e3e3; padding:5px;overflow: hidden;max-height:150px">
                 <div Modelprop="description" style="color:#535083 !important;">
                     @Html.Raw(Model.ShortDescription)
                 </div>
@@ -97,7 +109,7 @@
     }
 
     .name-01 {
-        padding: 6px;
+        padding: 10px;
         margin-left: 20%;
     }
 
@@ -131,5 +143,27 @@
         border-right: 50px solid #00AEEF;
         border-top: 50px solid transparent;
         border-bottom: 50px solid transparent;
+    }
+
+    .triangle_dis {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        z-index: 200;
+        /*----------------*/
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 55px 55px 0 0;
+        border-color: #ff0000 transparent transparent transparent;
+    }
+
+    .triangle_dis span {
+        display: block;
+        position: relative;
+        top: -45px;
+        color: white;
+        font-weight: bold;
+        padding: 0px 2px;
     }
 </style>
