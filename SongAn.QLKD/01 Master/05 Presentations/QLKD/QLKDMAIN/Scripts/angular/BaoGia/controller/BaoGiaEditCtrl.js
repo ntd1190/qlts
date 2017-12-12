@@ -441,6 +441,12 @@
                         return hasError;
                     }
                 }
+                else if (!CompareDate(vm.data.listChiTiet[index].NgayBao, vm.data.listChiTiet[index].NgayNhan)) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Ngày nhận không hợp lệ!');
+                    return hasError;
+                }
                 else {
                     hasError = false;
                     vm.data.listChiTiet[index].isError = false;
@@ -448,6 +454,21 @@
             }
 
             return hasError;
+        }
+
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
+
+            if (dateOne > dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         function resetValidate() {

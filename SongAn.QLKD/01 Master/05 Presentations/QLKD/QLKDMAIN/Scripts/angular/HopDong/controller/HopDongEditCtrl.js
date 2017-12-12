@@ -112,6 +112,15 @@
             console.log('vm.action.save', vm.data.HopDong);
             if (vm.action.checkQuyenTacVu('N') == false && vm.action.checkQuyenTacVu('M') == false) { return; }
             if (checkInput() == false) { return; }
+            ///check ngay hoa don + thanh ly theo yeu cau Yen
+            if (!CompareDate(vm.data.HopDong.NgayHopDong, vm.data.HopDong.NgayThanhLy)) {
+                utility.AlertError('Ngày thanh lý không hợp lệ!');
+                return;
+            }
+            if (!CompareDate(vm.data.HopDong.NgayHopDong, vm.data.HopDong.NgayHoaDon)) {
+                utility.AlertError('Ngày hóa đơn không hợp lệ!');
+                return;
+            }
             if (InvalidateDataChiTiet())
                 return;
             if (HopDongId > 0) {
@@ -203,7 +212,20 @@
 
             return listQuyenTacVu.indexOf(quyen) >= 0;
         }
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
 
+            if (dateOne > dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
+        }
         function checkInput(inputName) {
             var has_error = false;
             var first_error_name = '';
@@ -537,6 +559,12 @@
                         vm.data.listChiTiet[index].isError = true;
                         return hasError;
                     }
+                }
+                else if (!CompareDate(vm.data.listChiTiet[index].NgayThucHien, vm.data.listChiTiet[index].NgayKetThuc)) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Ngày kết thúc không hợp lệ!');
+                    return hasError;
                 }
                 else {
                     hasError = false;

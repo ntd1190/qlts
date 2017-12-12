@@ -429,6 +429,11 @@
                     utility.AlertError('Bạn chưa chọn NGÀY DUYỆT để hoàn tất đơn hàng!');
                     return null;
                 }
+                if (!CompareDate(obj.NgayLap, obj.NgayDuyet)){
+                    $("#txtNgayDuyet").focus();
+                    utility.AlertError('Ngày duyệt không hợp lệ!');
+                    return null;
+                }
             }
             else
             {
@@ -460,13 +465,19 @@
                 }
                 else if (utility.checkInValid(vm.data.listChiTiet[index].DonGia, 'isEmpty')) {
                     if (vm.data.listChiTiet[index].DonGia.toString() == '0') {
-
+                        
                     }
                     else {
                         hasError = true;
                         vm.data.listChiTiet[index].isError = true;
                         return hasError;
                     }
+                }
+                else if (!CompareDate(vm.data.listChiTiet[index].NgayYeuCau, vm.data.listChiTiet[index].NgayNhanHang)) {
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    utility.AlertError('Ngày nhận hàng không hợp lệ!');
+                    return hasError;
                 }
                 else {
                     hasError = false;
@@ -475,6 +486,21 @@
             }
 
             return hasError;
+        }
+
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
+
+            if (dateOne > dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
         }
 
         function resetValidate() {

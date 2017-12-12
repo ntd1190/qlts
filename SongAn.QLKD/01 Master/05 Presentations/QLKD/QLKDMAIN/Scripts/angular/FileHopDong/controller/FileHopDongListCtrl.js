@@ -167,7 +167,10 @@
         vm.action.save = function () {
             if (vm.action.checkQuyenTacVuEdit('N') == false && vm.action.checkQuyenTacVuEdit('M') == false) { return; }
             if (checkInput() == false) { return; }
-
+            if (!CompareDate(vm.data.FileHopDong.NgayChuyen, vm.data.FileHopDong.NgayNhan)) {
+                utility.AlertError('Ngày nhận hàng không hợp lệ!');
+                return;
+            }
             if (vm.data.FileHopDong.fileC && vm.data.FileHopDong.fileC.length > 0) {
                 if (vm.data.FileHopDong.FileCung) {
                     vm.data.FileHopDong.FileCung = vm.data.FileHopDong.FileCung.split('.')[0] + '.' + utility.getFileExt(vm.data.FileHopDong.fileC[0].name);
@@ -248,6 +251,20 @@
             vm.action.edit(FileHopDongId);
         }
         /* BIZ FUNCTION */
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
+
+            if (dateOne > dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
+        }
         function resetPopup() {
             FileHopDongId = 0;
             delete vm.data.FileHopDong; vm.data.FileHopDong = {};

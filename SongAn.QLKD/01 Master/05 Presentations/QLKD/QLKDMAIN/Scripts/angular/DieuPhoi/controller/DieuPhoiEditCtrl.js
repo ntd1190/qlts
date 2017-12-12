@@ -117,10 +117,12 @@
         vm.action.getvalTrangThaiDieuPhoi = function (index) {
             if (vm.data.listChiTiet[index].TrangThai.toString() === "0"){
                 vm.data.listChiTiet[index].NgayNhan = "";
+                $("#txtNgayNhan" + index).prop('disabled', true);
             }
             else
             {
-                vm.data.listChiTiet[index].NgayNhan =  moment().format('DD/MM/YYYY');
+                vm.data.listChiTiet[index].NgayNhan = moment().format('DD/MM/YYYY');
+                $("#txtNgayNhan" + index).prop('disabled', false);
             }
         }
 
@@ -404,13 +406,20 @@
 
                     if (result.data && result.data.data && result.data.data.length) {
 
-                        vm.data.listChiTiet = result.data.data;
+                        vm.data.listChiTiet = result.data.data;                        
 
                         $timeout(function () {
+
+                            for (var index = 0; index < vm.data.listChiTiet.length; index++) {
+                                if (vm.data.listChiTiet[index].TrangThai.toString() === "0") {
+                                    vm.data.listChiTiet[index].NgayNhan = "";
+                                    $("#txtNgayNhan" + index).prop('disabled', true);
+                                }
+                            }
+
                             jQuery("#txtNgayNhan" + (vm.data.listChiTiet.length - 1)).datetimepicker({
                                 mask: '39/19/9999', format: 'd/m/Y', timepicker: false, scrollInput: false, startDate: '+1971/05/01'
                             })
-
                         }, 100);
                     }
                 }, function error(result) {

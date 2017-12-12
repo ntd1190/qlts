@@ -4,9 +4,7 @@
     <ui-select ng-model="ctrl.data.DonHang" data-ng-disabled="disabled" on-select="ctrl.action.onSelected()" theme="bootstrap" id="{{ctrl.NameId}}">
         <ui-select-match placeholder="{{$select.selected.TenDonHang || 'Chọn hàng hóa'}}">{{$select.selected.TenDonHang}}</ui-select-match>
         <ui-select-choices repeat="item in ctrl.data.DonHangListDisplay | filter: $select.search" refresh="ctrl.action.search($select)" refresh-delay="200" position="down">
-            <div>
-                <b><span class="text-danger" ng-bind-html="item.SoPhieu | highlight: $select.search"></span></b> <span ng-if="item.SoPhieu">:</span> <b style="color:#000"><strong class="tt-highlight"><span ng-bind-html="item.TenDonHang | highlight: $select.search"></span></strong></b>
-            </div>
+            <span ng-bind-html="item.SoPhieu" class="text-danger"></span> <span ng-if="item.SoPhieu">:</span> <span ng-bind-html="item.TenDonHang"></span>
         </ui-select-choices>
     </ui-select>
 
