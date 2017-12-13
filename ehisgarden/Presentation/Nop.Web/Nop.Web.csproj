@@ -2662,6 +2662,7 @@
     <Content Include="Themes\DefaultClean\Content\images\prev.png" />
     <Content Include="Themes\DefaultClean\Content\images\rating1.png" />
     <Content Include="Themes\DefaultClean\Content\images\rating2.png" />
+    <Content Include="Themes\DefaultClean\Content\images\red_phone.png" />
     <Content Include="Themes\DefaultClean\Content\images\remove.png" />
     <Content Include="Themes\DefaultClean\Content\images\remove_.png" />
     <Content Include="Themes\DefaultClean\Content\images\reply.png" />
