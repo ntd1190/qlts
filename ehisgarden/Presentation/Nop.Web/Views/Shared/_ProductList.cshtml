@@ -12,15 +12,16 @@
         <div class="triangle_dis">
             <span>-10%</span>
         </div>
-
         @*@if (Model.MarkAsNew)
             {
                 <span class="indicator-product-status top-left-upcoming"></span>
             }*@
         @if (Model.ProductPrice.PriceDiscount != null)
         {
-            <span class="indicator-product-status top-left-hot">@Model.ProductPrice.PriceDiscount</span>
-
+            @*<span class="indicator-product-status top-left-hot"></span>*@
+            <div class="triangle_dis">
+                <span>-@Model.ProductPrice.PriceDiscount</span>
+            </div>
         }
         @*<div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product" title="@Model.Name">
                 <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" class="product-link" title="@Model.Name"></a>
