@@ -7385,6 +7385,46 @@ function initPageSliders() {
             pagination: !1,
             navigationText: ["<div class=''><i class='fa fa-arrow-left'></i></div>", "<div class=''><i class='fa fa-arrow-right'></i></div>"]
         });
+        var ll = o("#slider-sync1"),
+            cc = o("#slider-sync2");
+        ll.owlCarousel({
+            autoPlay: 15000,
+            singleItem: !0,
+            navigation: !1,
+            pagination: !1,
+            afterAction: a,
+            lazyLoad: !0,
+            stopOnHover: !0
+        }), cc.owlCarousel({
+            items: 5,
+            itemsDesktop: [1199, 5],
+            itemsDesktopSmall: [1100, 4],
+            itemsTablet: [991, 5],
+            itemsMobile: [479, 3],
+            pagination: !1,
+            afterInit: function (o) {
+                o.find(".owl-item").eq(0).addClass("synced")
+            }
+        }), cc.on("click", ".owl-item", function (a) {
+            //$('#ehis').contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*');
+            a.preventDefault();
+            var t = o(this).data("owlItem");
+            ll.trigger("owl.goTo", t)
+        }), o(".product-carousel-1").owlCarousel({
+            autoPlay: !1,
+            stopOnHover: !0,
+            slideSpeed: 1e3,
+            items: 3,
+            itemsDesktop: [1199, 3],
+            itemsDesktopSmall: [991, 4],
+            itemsTablet: [767, 2],
+            itemsTabletSmall: [480, 2],
+            itemsMobile: [320, 1],
+            navigation: !0,
+            scrollPerPage: !0,
+            pagination: !1,
+            navigationText: ["<div class=''><i class='fa fa-arrow-left'></i></div>", "<div class=''><i class='fa fa-arrow-right'></i></div>"]
+        });
         var r = o("#dac-diem-carousel");
         r.owlCarousel({
             singleItem: !0,

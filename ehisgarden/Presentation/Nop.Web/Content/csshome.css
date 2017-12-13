@@ -2,7 +2,6 @@
 
 @font-face {
     font-family: ehis-icon;
-    
     font-weight: 400;
     font-style: normal;
 }
@@ -116,11 +115,11 @@
 }
 
 .fa-arrow-left {
-   font-size:12px;
+    font-size: 12px;
 }
 
 .fa-arrow-right {
-    font-size:12px;
+    font-size: 12px;
 }
 
 .ehis-arrow-up:before {
@@ -7224,24 +7223,28 @@ h1, h2, h3, h4, h5, h6 {
 
 .shop .masonry-item {
     float: left;
-    width: 16%;
+    /*width: 16%;*/
+    width: 32%;
 }
 
 @media (max-width:1199px) {
     .shop .masonry-item {
-        width: 25%;
+        /*width: 25%;*/
+        width: 50%;
     }
 }
 
 @media (max-width:991px) {
     .shop .masonry-item {
-        width: 25%;
+        /*width: 25%;*/
+        width: 50%;
     }
 }
 
 @media (max-width:767px) {
     .shop .masonry-item {
-        width: 50%;
+        /*width: 50%;*/
+        width: 100%;
     }
 }
 
@@ -7252,24 +7255,28 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .shop .masonry-sizer {
-    width: 16.666666%;
+    /*width: 16.666666%;*/
+    width: 33.333332%;
 }
 
 @media (max-width:1199px) {
     .shop .masonry-sizer {
-        width: 25%;
+        /*width: 25%;*/
+        width: 50%;
     }
 }
 
 @media (max-width:991px) {
     .shop .masonry-sizer {
-        width: 25%;
+        /*width: 25%;*/
+        width: 50%;
     }
 }
 
 @media (max-width:767px) {
     .shop .masonry-sizer {
-        width: 50%;
+        /*width: 50%;*/
+        width: 100%;
     }
 }
 
@@ -8010,6 +8017,54 @@ input[type=checkbox], input[type=radio] {
 .product-carousel {
     display: none;
 }
+/*sanphammoi*/
+.product-carousel-1.shop {
+    border: 1px solid #e2e3e4;
+}
+
+    .product-carousel-1.shop > div .product:first-child {
+        border-bottom: 1px solid #e2e3e4;
+    }
+
+    .product-carousel-1.shop .owl-item:first-child .product {
+        border-left: none !important;
+    }
+
+    .product-carousel-1.shop .product {
+        border: none;
+        border-left: 1px solid #e2e3e4;
+        margin-right: 0;
+        margin-top: 0;
+    }
+
+    .product-carousel-1.shop .owl-buttons > div {
+        font-size: 20px;
+        cursor: pointer;
+        padding: 0 5px;
+        position: absolute;
+        top: -30px;
+    }
+
+        .product-carousel-1.shop .owl-buttons > div:hover {
+            color: #e21c24;
+        }
+
+        .product-carousel-1.shop .owl-buttons > div i {
+            font-weight: 700;
+        }
+
+    .product-carousel-1.shop .owl-buttons .owl-prev {
+        right: 20px;
+    }
+
+    .product-carousel-1.shop .owl-buttons .owl-next {
+        right: 0;
+    }
+
+.product-carousel-1 {
+    display: none;
+}
+/*end*/
 
 .main-carouse {
     overflow: hidden;
@@ -14618,14 +14673,14 @@ body:not(.device-touch) #gotoTop {
             .shop .product-name .price .price-1 {
                 color: #e81c24;
                 font-weight: 600;
-                text-align:left;
+                text-align: left;
             }
 
             .shop .product-name .price .price-2 {
                 text-align: left;
                 color: #96989b;
                 text-decoration: line-through;
-                 font-weight: 600;
+                font-weight: 600;
             }
 
         .shop .product-name .price-online {
@@ -14683,7 +14738,7 @@ body:not(.device-touch) #gotoTop {
         .shop .product-sale .product-sale-text {
             float: left;
             color: #e81c24;
-            font-weight:700;
+            font-weight: 700;
         }
 
             .shop .product-sale .product-sale-text span:first-child {
@@ -14927,7 +14982,7 @@ body:not(.device-touch) #gotoTop {
     }
 
     .indicator-product-status.top-left-upcoming {
-         background: url('../Content/Images/hot.png') no-repeat;
+        background: url('../Content/Images/hot.png') no-repeat;
         width: 45px;
         height: 43px;
         right: 2px;
@@ -15048,12 +15103,12 @@ body:not(.device-touch) #gotoTop {
     .indicator-product-status.top-left-hot {
         background: url(../Content/Images/sale.png) no-repeat;
         width: 70px;
-    height: 27px;
-    right: -10px;
-    top: 20%;
-    display: block;
-    text-align: center;
-    color: white;
+        height: 27px;
+        right: -10px;
+        top: 20%;
+        display: block;
+        text-align: center;
+        color: white;
     }
 
     .indicator-product-status1.right-bottom-doc-quyen {
@@ -18359,16 +18414,17 @@ html {
 
 @media print,screen and (min-width:40em) {
     #search-site {
-    float: left;
-    height: 35px;
-    margin: 10px 10px 0 -110px;
-    background: #fff;
-    position: relative;
-    border-radius: 4px;
-    -webkit-border-radius: 4px !important;
-    -moz-border-radius: 4px !important;
-    border: 1px solid #37c0f4;
-}
+        float: left;
+        height: 35px;
+        margin: 10px 10px 0 -110px;
+        background: #fff;
+        position: relative;
+        border-radius: 4px;
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border: 1px solid #37c0f4;
+    }
+
     .medium-order-1 {
         -webkit-order: 1;
         -ms-flex-order: 1;
@@ -18413,17 +18469,18 @@ html {
 }
 
 @media print,screen and (min-width:64em) {
-       #search-site {
-    float: left;
-    height: 35px;
-    margin: 10px 10px 0 -110px;
-    background: #fff;
-    position: relative;
-    border-radius: 4px;
-    -webkit-border-radius: 4px !important;
-    -moz-border-radius: 4px !important;
-    border: 1px solid #37c0f4;
-}
+    #search-site {
+        float: left;
+        height: 35px;
+        margin: 10px 10px 0 -110px;
+        background: #fff;
+        position: relative;
+        border-radius: 4px;
+        -webkit-border-radius: 4px !important;
+        -moz-border-radius: 4px !important;
+        border: 1px solid #37c0f4;
+    }
+
     .large-order-1 {
         -webkit-order: 1;
         -ms-flex-order: 1;
@@ -18466,7 +18523,7 @@ html {
         order: 6;
     }
 }
-   
+
 header {
     position: fixed;
     top: 0;
@@ -18556,7 +18613,7 @@ nav {
         width: 75px;
         color: #fff;
         /*padding:9px 0px 9px;*/
-        padding-top:6px;
+        padding-top: 6px;
         font-size: 11px;
         text-align: center;
         text-transform: uppercase;
@@ -18782,11 +18839,13 @@ nav {
                 border-right: none;
             }
 }
-@media only screen and (max-width: 1175px) and (min-width: 991px){
- nav{
-     display:initial;
- }
- nav a{
-         padding: 4px 0px 4px;
- }
+
+@media only screen and (max-width: 1175px) and (min-width: 991px) {
+    nav {
+        display: initial;
+    }
+
+        nav a {
+            padding: 4px 0px 4px;
+        }
 }

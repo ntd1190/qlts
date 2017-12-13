@@ -8,9 +8,7 @@
     {
         <div class="masonry-item">
             <div class="product" style="height:250px">
-                <div class="triangle_dis">
-                    <span>-10%</span>
-                </div>
+              
                 @*@if (item.MarkAsNew)
                     {
                         <span class="indicator-product-status top-left-upcoming"></span>
@@ -62,15 +60,34 @@
                         <meta itemprop="priceCurrency" content="VND" />
                         @if (item.ProductPrice.PriceDiscount != null)
                         {
-                            <div class="arrowLine">@item.ProductPrice.OldPrice</div>
+                            <div class="arrowLine" style="width:120px">@item.ProductPrice.OldPrice</div>
                             <div class="price-2 triangle_left"></div>
                         }
                         else
                         {
-                            <div class="arrowLine">@item.ProductPrice.Price</div>
+                            <div class="arrowLine" style="width:120px">@item.ProductPrice.Price</div>
                             <div class="price-1 triangle_left"></div>
                         }
+                        <div style="float: left; margin: 5px 10px;">
+                            <img src="~/Themes/DefaultClean/Content/images/red_phone.png" style="
+    float: left;
+    margin-top: -10px;"/>
+                            <span style="width: 100%;
+
+    background: -moz-linear-gradient(right, #E7E8E9, white);
+    background: linear-gradient(to right, #E7E8E9, white);
+
+    padding: 5px 20px 5px 25px;
+    overflow: hidden;
+
+    font-size: 14px;
+    font-weight: bold;
+    margin-left: 10px;
+    color: #4940ca !important;
+    letter-spacing: 1;">098 667 43 55</span>
+                        </div>
                     </div>
+                   
                 </div>
                 @*@if (item.ProductPrice.PriceDiscount != null)
                     {

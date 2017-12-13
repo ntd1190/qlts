@@ -25,13 +25,17 @@
                         </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active fade in" id="sanPhamBanChay">
-                                <div class="product-carousel shop clearfix">@*product-carousel*@
+                                <div class="product-carousel shop clearfix">
+                                    @*product-carousel*@
                                     @Html.Action("HomepageBestSellers", "Home")
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="products-feature">
+                    <!--san pham moi o day-->
+                </div>
+                <div class="col-md-12">
+                    <div id="products-feature" style="width:99.9%">
                         @*<ul class="nav nav-tabs" role="tablist">
                                 <li role="presentation" class="active">
                                     <a href="#sanPhamMoi" aria-controls="home" role="tab"
@@ -44,15 +48,13 @@
                         <div class="section-title clearfix" style="border-top: 2px solid #e81c24;">
                             <a href="/">
                                 <h2 style="background:#e81c24">
-                                    Sản phẩm mới <img src="~/Content/Images/new.png" style="right: 0;
-    position: absolute;
-    top: 0;" />
+                                    Sản phẩm mới <img src="~/Content/Images/new.png" style="right: 0;position: absolute;top: 0;" />
                                 </h2>
                             </a>
                         </div>
                         <div class="tab-content">
                             <div role="tabpanel" class="tab-pane active fade in" id="sanPhamMoi">
-                                <div class="product-carousel shop clearfix">
+                                <div class="product-carousel-1 shop clearfix">
                                     @Html.Action("HomepageProduct", "Home")
                                 </div>
                             </div>
@@ -63,6 +65,7 @@
             </div>
         </div>
     </section>
+
     <section class="products">
         <div class="container" style="width:100%;">
             <div class="section-title clearfix">
@@ -85,7 +88,7 @@
                     </h2>
                 </a>
             </div>
-            @{ Html.RenderPartial("_ProductByCategory", Model.procate2); }
+            @{ Html.RenderPartial("_ProductByCategoryEhis", Model.procate2); }
         </div>
     </section>
     <style>

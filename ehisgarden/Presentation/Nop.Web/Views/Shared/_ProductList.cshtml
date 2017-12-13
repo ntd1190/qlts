@@ -8,13 +8,11 @@
 
 
 <div>
-    <div class="product">
+    <div class="product" style="height:36%">
         <div class="triangle_dis">
             <span>-10%</span>
         </div>
-        @*<span class="triangle_dis">
-                -0%
-            </span>*@
+
         @*@if (Model.MarkAsNew)
             {
                 <span class="indicator-product-status top-left-upcoming"></span>
@@ -40,7 +38,9 @@
             </div>*@
         <div class="product-name-01">
             <div class="name-01">
-                @Model.Name
+                <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.Name">
+                    @Model.Name
+                </a>
             </div>
         </div>
         <div style="height:160px">
@@ -51,13 +51,7 @@
                     </figure>
                 </a>
             </div>
-            <div style="float: left;width: 60%;margin-left: 10px;
-                                                    background: #F1F1F1;
-                                                    background: -webkit-linear-gradient(left, #E7E8E9 , white); 
-                                                    background: -o-linear-gradient(right, #E7E8E9, white); 
-                                                    background: -moz-linear-gradient(right, #E7E8E9, white); 
-                                                    background: linear-gradient(to right, #E7E8E9 , white); 
-                                                line-height:18px;border: 1px solid #e3e3e3; padding:5px;overflow: hidden;max-height:150px">
+            <div class="product-short-description">
                 <div Modelprop="description" style="color:#535083 !important;">
                     @Html.Raw(Model.ShortDescription)
                 </div>
@@ -69,7 +63,8 @@
                 <meta Modelprop="priceCurrency" content="VND" />
                 @if (Model.ProductPrice.PriceDiscount != null)
                 {
-                    <div class="price-2 triangle_left">@Model.ProductPrice.OldPrice</div>
+                    <div class="arrowLine">@Model.ProductPrice.OldPrice</div>
+                    <div class="price-2 triangle_left"></div>
                 }
                 else
                 {
@@ -158,12 +153,28 @@
         border-color: #ff0000 transparent transparent transparent;
     }
 
-    .triangle_dis span {
-        display: block;
-        position: relative;
-        top: -45px;
-        color: white;
-        font-weight: bold;
-        padding: 0px 2px;
+        .triangle_dis span {
+            display: block;
+            position: relative;
+            top: -45px;
+            color: white;
+            font-weight: bold;
+            padding: 0px 2px;
+        }
+
+    .product-short-description {
+        float: left;
+        width: 60%;
+        margin-left: 10px;
+        background: #F1F1F1;
+        background: -webkit-linear-gradient(left, #E7E8E9, white);
+        background: -o-linear-gradient(right, #E7E8E9, white);
+        background: -moz-linear-gradient(right, #E7E8E9, white);
+        background: linear-gradient(to right, #E7E8E9, white);
+        line-height: 18px;
+        border: 1px solid #e3e3e3;
+        padding: 5px;
+        overflow: hidden;
+        max-height: 150px;
     }
 </style>

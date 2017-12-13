@@ -2907,6 +2907,7 @@
     <Content Include="Views\Order\Details1.cshtml" />
     <Content Include="Views\Order\CustomerList.cshtml" />
     <Content Include="Views\Order\Guarantee.cshtml" />
+    <Content Include="Views\Shared\_ProductByCategoryEhis.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\fancybox\" />
