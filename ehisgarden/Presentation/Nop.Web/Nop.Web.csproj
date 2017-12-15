@@ -2650,6 +2650,8 @@
     <Content Include="Themes\DefaultClean\Content\images\edit_.png" />
     <Content Include="Themes\DefaultClean\Content\images\email-button.png" />
     <Content Include="Themes\DefaultClean\Content\images\first.png" />
+    <Content Include="Themes\DefaultClean\Content\images\giftcard.png" />
+    <Content Include="Themes\DefaultClean\Content\images\gift_red.png" />
     <Content Include="Themes\DefaultClean\Content\images\ie_warning.jpg" />
     <Content Include="Themes\DefaultClean\Content\images\last.png" />
     <Content Include="Themes\DefaultClean\Content\images\loading.gif" />
@@ -2909,6 +2911,7 @@
     <Content Include="Views\Order\CustomerList.cshtml" />
     <Content Include="Views\Order\Guarantee.cshtml" />
     <Content Include="Views\Shared\_ProductByCategoryEhis.cshtml" />
+    <Content Include="Views\Home\HomepageBestSellersSecond.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Content\fancybox\" />

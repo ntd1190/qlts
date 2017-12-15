@@ -71,8 +71,14 @@
                 {
                     <div class="arrowLine">@Model.ProductPrice.Price</div>
                     <div class="price-1 triangle_left"></div>
-
                 }
+                <div style="float: left; margin: 5px 10px;">
+                    <img src="~/Themes/DefaultClean/Content/images/gift_red.png" style="float:left; margin-top:-8px;width:32px" />
+                    <div class="voucher-quotes-ehis">
+                        <span> Voucher 100.000 đ</span>
+                        <img src="~/Themes/DefaultClean/Content/images/giftcard.png" style="float:left; margin-top:-4px;width:32px" />
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -177,5 +183,16 @@
         padding: 5px;
         overflow: hidden;
         max-height: 150px;
+    }
+    .voucher-quotes-ehis {
+        /*width: 100%;*/
+        background: -moz-linear-gradient(right, #E7E8E9, white);
+        background: linear-gradient(to right, #E7E8E9, white);
+        padding: 5px 5px 5px 1px;
+        overflow: hidden;
+        margin-left: 1px;
+        margin-top: -7px;
+        color: black !important;
+        font-size: 11px;
     }
 </style>

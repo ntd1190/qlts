@@ -47,7 +47,7 @@
                         </span>
                         <span class="delimiter">@breadcrumbDelimiter</span>
                     </li>
-                  
+
                 }
                 else
                 {
@@ -73,7 +73,7 @@
             @Html.Partial("_CatalogSelectors", Model.PagingFilteringContext, new ViewDataDictionary())
         }
     </div>
- 
+
 </ul>
 <div>
 
@@ -84,16 +84,25 @@
 
         <section class="products">
             <div class="container">
-                <div class="shop clearfix shop-masonry" id="cateProductContent">
-                    <div class="masonry-sizer"></div>
-                    @foreach (var item in Model.Products)
-                    {
-                        <div class="masonry-item">
-                            @Html.Partial("_ProductList", item)
-                        </div>
 
-                    }
-                </div>
+                @if (Model.SeName.Equals("phần-mềm"))
+                {
+                    Html.RenderPartial("_ProductByCategoryEhis", Model.Products);
+                }
+                else
+                {
+                    <div class="shop clearfix shop-masonry" id="cateProductContent">
+                        <div class="masonry-sizer"></div>
+                        @foreach (var item in Model.Products)
+                        {
+                            <div class="masonry-item">
+                                @Html.Partial("_ProductList", item)
+                            </div>
+
+                        }
+                    </div>
+                }
+
             </div>
         </section>
 
@@ -146,12 +155,14 @@
                 font-size: 12px;
                 font-weight: bold;
             }
-             .filter li h1 {
+
+            .filter li h1 {
                 font-size: 12px;
                 font-weight: bold;
-                line-height:5px;
+                line-height: 5px;
             }
-                .filter li a:hover {
-                    color: #e81c24;
-                }
+
+            .filter li a:hover {
+                color: #e81c24;
+            }
 </style>
