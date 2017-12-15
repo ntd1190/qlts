@@ -55,6 +55,7 @@
                                     </div>
                                     <div class="text-center" ng-switch-when="NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
                                     <div class="text-center" ng-switch-when="DaLam" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
+                                    <div class="text-right" ng-switch-when="SoTien" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|number"></div>
                                     <div class="text-center" ng-switch-when="DaChuyen" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
                                     <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
                                 </td>

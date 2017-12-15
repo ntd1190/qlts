@@ -97,7 +97,7 @@
             vm.data.listChiTiet[index.$index].HangHoaId = data.HangHoaId;
             vm.data.listChiTiet[index.$index].MaHangHoa = data.MaHangHoa || vm.data.listChiTiet[index.$index].MaHangHoa;;
             vm.data.listChiTiet[index.$index].DonViTinh = data.DonViTinh;
-            vm.data.listChiTiet[index.$index].DonGia = data.GiaBan;
+            vm.data.listChiTiet[index.$index].DonGia = vm.data.listChiTiet[index.$index].DonGia != 0 ? vm.data.listChiTiet[index.$index].DonGia : data.GiaBan;
         }
         vm.action.checkQuyenTacVu = function (quyen) {
             if (HopDongId == 0) { // trường hợp thêm mới
@@ -199,6 +199,13 @@
                 $timeout(fc, 6);
             }
         };
+        vm.action.calAmount = function(){
+            var _sum = 0;
+            for (var index = 0; index < vm.data.listChiTiet.length; index++) {
+                _sum = _sum + (parseFloat(vm.data.listChiTiet[index].SoLuong) * parseFloat(vm.data.listChiTiet[index].DonGia));
+            }
+            vm.data.HopDong.SoTien = _sum;
+        }
         /* BIZ FUNCTION */
 
         function checkQuyenUI(quyen) {

@@ -1,5 +1,11 @@
-window.location.href = '/QLKDMAIN/#!/NhanVien/list';
+loadinghrefdefault();
 build();
+function loadinghrefdefault()
+{
+    var url = window.location.toString().toLowerCase().split('/');
+    if (url.length<6)
+    window.location.href = '/QLKDMAIN/#!/NhanVien/list';
+}
 function build() {
     var $overlay = document.getElementsByClassName('overlay')[0];
     var counter = 0;
