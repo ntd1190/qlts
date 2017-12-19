@@ -535,6 +535,15 @@
                                 @Html.ValidationMessageFor(model => model.Locales[item].ShortDescription)
                             </div>
                         </div>
+                         <div class="form-group">
+                             <div class="col-md-3">
+                                 @Html.NopLabelFor(model => model.Processor)
+                             </div>
+                             <div class="col-md-9">
+                                 @Html.EditorFor(x => x.Processor)
+                                 @Html.ValidationMessageFor(model => model.Processor)
+                             </div>
+                         </div>
                         <div class="form-group">
                             <div class="col-md-3">
                                 @Html.NopLabelFor(model => model.Locales[item].FullDescription)
@@ -565,6 +574,15 @@
                                 @Html.ValidationMessageFor(model => model.ShortDescription)
                             </div>
                         </div>
+                                  <div class="form-group">
+                                      <div class="col-md-3">
+                                          @Html.NopLabelFor(model => model.Processor)
+                                      </div>
+                                      <div class="col-md-9">
+                                          @Html.EditorFor(x => x.Processor)
+                                          @Html.ValidationMessageFor(model => model.Processor)
+                                      </div>
+                                  </div>
                         <div class="form-group">
                             <div class="col-md-3">
                                 @Html.NopLabelFor(model => model.Guarantee)

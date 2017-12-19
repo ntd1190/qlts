@@ -424,7 +424,7 @@ namespace Nop.Core.Domain.Catalog
         /// if this property is set to false, then we do not need to load tier prices navigation property
         /// </remarks>
         /// </summary>
-        public bool HasTierPrices { get; set; }
+        public bool HasTierPrices { get; set; } 
         /// <summary>
         /// Gets or sets a value indicating whether this product has discounts applied
         /// <remarks>The same as if we run this.AppliedDiscounts.Count > 0
@@ -483,8 +483,11 @@ namespace Nop.Core.Domain.Catalog
         /// Gets or sets the date and time of product update
         /// </summary>
         public DateTime UpdatedOnUtc { get; set; }
-
-
+        public string Processor { get; set; }
+        public string RAM { get; set; }
+        public string Graphicss { get; set; }
+        public string Display { get; set; }
+        public decimal GiftVoucher { get; set; }
 
 
 

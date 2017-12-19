@@ -573,7 +573,11 @@ namespace Nop.Admin.Controllers
             model.PrimaryStoreCurrencyCode = _currencyService.GetCurrencyById(_currencySettings.PrimaryStoreCurrencyId).CurrencyCode;
             model.BaseWeightIn = _measureService.GetMeasureWeightById(_measureSettings.BaseWeightId).Name;
             model.BaseDimensionIn = _measureService.GetMeasureDimensionById(_measureSettings.BaseDimensionId).Name;
-            
+            model.Processor = product.Processor;
+            model.RAM = product.RAM;
+            model.Graphicss = product.Graphicss;
+            model.Display = product.Display;
+            model.GiftVoucher = product.GiftVoucher;
             //little performance hack here
             //there's no need to load attributes when creating a new product
             //anyway they're not used (you need to save a product before you map them)

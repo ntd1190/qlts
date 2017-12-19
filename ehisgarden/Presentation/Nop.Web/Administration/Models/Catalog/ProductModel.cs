@@ -100,7 +100,28 @@ namespace Nop.Admin.Models.Catalog
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.AdminComment")]
         [AllowHtml]
         public string AdminComment { get; set; }
-
+        /// <summary>
+        /// ////////////////////////////// them 5 cot///////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
+        /// Processor,RAM,Graphics,Display,GiftVoucher
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Processor")]
+        [AllowHtml]
+        public string Processor { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.RAM")]
+        [AllowHtml]
+        public string RAM { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Graphicss")]
+        [AllowHtml]
+        public string Graphicss { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Display")]
+        [AllowHtml]
+        public string Display { get; set; }
+        [NopResourceDisplayName("Admin.Catalog.Products.Fields.GiftVoucher")]
+        [AllowHtml]
+        public decimal GiftVoucher { get; set; }
+        /// <summary>
+        /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        /// </summary>
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.ShowOnHomePage")]
         public bool ShowOnHomePage { get; set; }
 
