@@ -104,7 +104,7 @@ namespace Nop.Admin.Models.Catalog
         /// ////////////////////////////// them 5 cot///////////////////////////////////////////////////////////////////////////////////////////////////////
         /// </summary>
         /// Processor,RAM,Graphics,Display,GiftVoucher
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Processor")]
+        [NopResourceDisplayName("Cấu hình")]
         [AllowHtml]
         public string Processor { get; set; }
         [NopResourceDisplayName("Admin.Catalog.Products.Fields.RAM")]
