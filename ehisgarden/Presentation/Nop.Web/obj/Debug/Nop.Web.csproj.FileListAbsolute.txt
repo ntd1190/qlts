@@ -471,3 +471,4 @@ D:\WebProject\ehisgarden\Presentation\Nop.Web\obj\Debug\Nop.Web.csproj.App.confi
 D:\WebProject\ehisgarden\Presentation\Nop.Web\obj\Debug\Nop.Web.csprojResolveAssemblyReference.cache
 D:\WebProject\ehisgarden\Presentation\Nop.Web\obj\Debug\Nop.Web.dll
 D:\WebProject\ehisgarden\Presentation\Nop.Web\obj\Debug\Nop.Web.pdb
+D:\WebProject\ehisgarden\Presentation\Nop.Web\bin\EPPlus.xml

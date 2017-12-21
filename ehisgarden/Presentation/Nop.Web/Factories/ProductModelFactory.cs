@@ -1145,6 +1145,13 @@ namespace Nop.Web.Factories
                     SeName = product.GetSeName(),
                     Sku = product.Sku,
                     ProductType = product.ProductType,
+                    Processor = product.Processor,
+                    RAM = product.RAM,
+                    Graphicss = product.Graphicss,
+                    Display = product.Display,
+                    GiftVoucher = _priceFormatter.FormatPrice(product.GiftVoucher),
+                    PromotionDoc = product.PromotionDoc,
+                    PromotionMedia = product.PromotionMedia,
                     MarkAsNew = product.MarkAsNew &&
                         (!product.MarkAsNewStartDateTimeUtc.HasValue || product.MarkAsNewStartDateTimeUtc.Value < DateTime.UtcNow) &&
                         (!product.MarkAsNewEndDateTimeUtc.HasValue || product.MarkAsNewEndDateTimeUtc.Value > DateTime.UtcNow)

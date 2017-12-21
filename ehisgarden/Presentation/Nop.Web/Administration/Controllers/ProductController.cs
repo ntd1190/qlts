@@ -578,6 +578,8 @@ namespace Nop.Admin.Controllers
             model.Graphicss = product.Graphicss;
             model.Display = product.Display;
             model.GiftVoucher = product.GiftVoucher;
+            model.PromotionDoc = product.PromotionDoc;
+            model.PromotionMedia = product.PromotionMedia;
             //little performance hack here
             //there's no need to load attributes when creating a new product
             //anyway they're not used (you need to save a product before you map them)

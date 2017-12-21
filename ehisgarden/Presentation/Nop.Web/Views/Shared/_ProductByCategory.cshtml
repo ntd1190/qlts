@@ -7,7 +7,7 @@
     @foreach (var item in Model)
     {
         <div class="masonry-item">
-            <div class="product" style="height:350px">
+            <div class="product" style="height:430px">
 
                 @*@if (item.MarkAsNew)
                     {
@@ -47,59 +47,84 @@
                     <div class="product-image">
                         <a href="@Url.RouteUrl("Product", new { SeName = item.SeName })" title="@item.Name">
                             <figure data-feedback="fb:likes, fb:comments">
-                                <img class="lazy" itemprop="image" data-original="@item.DefaultPictureModel.ImageUrl" style="width:150px !important">
+                                <img class="lazy" itemprop="image" data-original="@item.DefaultPictureModel.ImageUrl" style="width:200px !important; max-height:180px !important">
                             </figure>
                         </a>
                     </div>
-                    <div style="width: 80%;
-                              
-                                background: #F1F1F1;
-                                background: -webkit-linear-gradient(left, #E7E8E9, white);
-                                background: -o-linear-gradient(right, #E7E8E9, white);
-                                background: -moz-linear-gradient(right, #E7E8E9, white);
-                                background: linear-gradient(to right, #E7E8E9, white);
-                                line-height: 18px;
-                                /*border: 1px solid #e3e3e3;*/
-                                padding: 5px;
-                                overflow: hidden;
-                                margin:auto;max-height:120px">
+                    <div class="product-short-description-v1">
                         <div Modelprop="description" style="color:#535083 !important;">
                             @*@Html.Raw(item.ShortDescription)*@
                             <table class="tg">
                                 <tr>
-                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2">cấu hình mạnh mẽ core i7</td>
-                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2">Sức chứa lớn 8g</td>
-                                    <td class="tg-baqh">Tốc độ siêu mượt DDR5</td>
+                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.Processor)
+                                        </div>
+                                    </td>
+                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.RAM)
+                                        </div>
+                                    </td>
+                                    <td class="tg-baqh">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.Graphicss)
+                                        </div>
+                                    </td>
                                 </tr>
                                 <tr>
-                                    <td class="tg-baqh" colspan="3">man hinh song dong 4k full hd</td>
+                                    <td class="tg-baqh" colspan="3">
+                                        @Html.Raw(item.Display)
+                                        <div>
+                                            <img src="/Themes/DefaultClean/Content/images/diamond24.png" style="height:90%;">
+                                        </div>
+                                    </td>
                                 </tr>
                             </table>
                         </div>
                     </div>
                 </div>
-                <div class="product-name-02" style="position:absolute;margin-top:8px">
+                <div class="product-name-02" style="position:absolute;margin-top:10px">
                     <div class="price" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
                         <meta itemprop="priceCurrency" content="VND" />
-                            @if (item.ProductPrice.PriceDiscount != null)
-                            {
-                                <div class="arrowLine">@item.ProductPrice.OldPrice</div>
-                                <div class="price-2 triangle_left"></div>
-                            }
-                            else
-                            {
-                                <div class="arrowLine">@item.ProductPrice.Price</div>
-                                <div class="price-1 triangle_left"></div>
-                            }
-                        <div style="float: left; margin: 5px 6px;">
+                        <div class="arrowLine">@item.ProductPrice.Price</div>
+                        <div class="price-1 triangle_left"></div>
+                        @if (item.GiftVoucher != null && !item.GiftVoucher.Equals("0"))
+                        {
+                            <div style="float: left; margin: 5px 6px; margin-bottom:-2px !important">
+                                @if (item.ProductPrice.PriceDiscount != null)
+                                {
+                                    <div class="old-price-1">
+                                        @item.ProductPrice.OldPrice
+                                    </div>
+                                }
                                 <img src="~/Themes/DefaultClean/Content/images/gift_red.png" style="float:left; margin-top:-8px;width:32px" />
                                 <div class="voucher-quotes-ehis">
-                                    <span> Voucher 100.000 đ</span>
+                                    <span> Voucher @item.GiftVoucher đ</span>
                                     <img src="~/Themes/DefaultClean/Content/images/giftcard.png" style="float:left; margin-top:-4px;width:32px" />
                                 </div>
                             </div>
+                        }
                     </div>
+                    @*@if (item.ProductPrice.PriceDiscount != null)
+                        {
+                            <div class="old-price-1">
+                                Giá cũ: @item.ProductPrice.OldPrice
+                            </div>
+                        }*@
                 </div>
+                @if (item.PromotionDoc != null && !item.PromotionDoc.Equals(""))
+                {
+                    <div class="promotion">
+                        @*<p style="color:#333;position:relative;top:0">Khuyến mãi:</p>*@
+                        <div class="promotion-media">
+                            @Html.Raw(item.PromotionMedia)
+                        </div>
+                        <div class="promotion-doc">
+                            @Html.Raw(item.PromotionDoc)
+                        </div>
+                    </div>
+                }
                 @*@if (item.ProductPrice.PriceDiscount != null)
                     {
                         <div class="product-sale ">
@@ -116,36 +141,5 @@
     }
 </div>
 <style>
-    .tg {
-        /*border-collapse: collapse;
-        border-spacing: 0;*/
-    }
 
-        .tg td {
-            font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
-            font-size: 13px;            
-            padding: 5px 5px;
-            /*border-style: solid;*/
-            /*border-width: 1px;*/
-            overflow: hidden;
-            word-break: normal;
-            width:33%;
-            color:#535083;
-        }
-
-        .tg th {
-            /*font-family: Arial, sans-serif;*/
-            font-size: 14px;
-            font-weight: normal;
-            padding: 5px 5px;
-            /*border-style: solid;*/
-            /*border-width: 1px;*/
-            overflow: hidden;
-            word-break: normal;
-        }
-
-        .tg .tg-baqh {
-            text-align: center;
-            vertical-align: top;
-        }
 </style>

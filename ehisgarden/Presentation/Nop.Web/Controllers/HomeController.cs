@@ -103,9 +103,9 @@ namespace Nop.Web.Controllers
             AddressModel home = new AddressModel();
             home.news = _newsModelFactory.PrepareHomePageNewsItemsModel();
             var pr = _productService.GetAllProductsDisplayedOnHomePage();
-            var cate1 = pr.Where(t => t.MarkAsHot).Take(8).ToList();
+            var cate1 = pr.Where(t => t.MarkAsHot).Take(6).ToList();
             var cate2 = pr.Where(t => t.ProductCategories.Where(a => a.CategoryId == 6).Select(a => a.CategoryId).Contains(6)).Take(12).ToList();
-            home.procate1 = _productModelFactory.PrepareProductOverviewModels(cate1, true, true, productThumbPictureSize).Take(8).ToList();
+            home.procate1 = _productModelFactory.PrepareProductOverviewModels(cate1, true, true, productThumbPictureSize).Take(6).ToList();
             home.procate2 = _productModelFactory.PrepareProductOverviewModels(cate2, true, true, productThumbPictureSize).Take(12).ToList();
             return View(home);
         }

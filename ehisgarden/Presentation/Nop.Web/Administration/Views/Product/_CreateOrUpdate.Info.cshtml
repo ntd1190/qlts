@@ -535,15 +535,15 @@
                                 @Html.ValidationMessageFor(model => model.Locales[item].ShortDescription)
                             </div>
                         </div>
-                         <div class="form-group">
-                             <div class="col-md-3">
-                                 @Html.NopLabelFor(model => model.Processor)
-                             </div>
-                             <div class="col-md-9">
-                                 @Html.NopTextAreaFor(x => x.Processor)
-                                 @Html.ValidationMessageFor(model => model.Processor)
-                             </div>
-                         </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.Processor)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopTextAreaFor(x => x.Processor)
+                                @Html.ValidationMessageFor(model => model.Processor)
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-3">
                                 @Html.NopLabelFor(model => model.Locales[item].FullDescription)
@@ -574,15 +574,51 @@
                                 @Html.ValidationMessageFor(model => model.ShortDescription)
                             </div>
                         </div>
-                                  <div class="form-group">
-                                      <div class="col-md-3">
-                                          @Html.NopLabelFor(model => model.Processor)
-                                      </div>
-                                      <div class="col-md-9">
-                                          @Html.NopEditorFor(x => x.Processor)
-                                          @Html.ValidationMessageFor(model => model.Processor)
-                                      </div>
-                                  </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.Processor)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopEditorFor(x => x.Processor)
+                                @Html.ValidationMessageFor(model => model.Processor)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.RAM)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopEditorFor(x => x.RAM)
+                                @Html.ValidationMessageFor(model => model.RAM)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.Graphicss)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopEditorFor(x => x.Graphicss)
+                                @Html.ValidationMessageFor(model => model.Graphicss)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.Display)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopEditorFor(x => x.Display)
+                                @Html.ValidationMessageFor(model => model.Display)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.GiftVoucher)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.NopEditorFor(x => x.GiftVoucher)
+                                @Html.ValidationMessageFor(model => model.GiftVoucher)
+                            </div>
+                        </div>
                         <div class="form-group">
                             <div class="col-md-3">
                                 @Html.NopLabelFor(model => model.Guarantee)
@@ -608,6 +644,24 @@
                             <div class="col-md-9">
                                 @Html.EditorFor(x => x.DigitalDescription, "RichEditor")
                                 @Html.ValidationMessageFor(model => model.DigitalDescription)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.PromotionMedia)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(x => x.PromotionMedia, "RichEditor")
+                                @Html.ValidationMessageFor(model => model.PromotionMedia)
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-3">
+                                @Html.NopLabelFor(model => model.PromotionDoc)
+                            </div>
+                            <div class="col-md-9">
+                                @Html.EditorFor(x => x.PromotionDoc, "RichEditor")
+                                @Html.ValidationMessageFor(model => model.PromotionDoc)
                             </div>
                         </div>
                     </div>

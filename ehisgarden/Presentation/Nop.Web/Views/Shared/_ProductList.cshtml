@@ -8,7 +8,7 @@
 
 
 <div>
-    <div class="product" style="height:250px">
+    <div class="product" style="height:430px">
         @*36%*@
         @*<div class="triangle_dis">
                 <span>-10%</span>
@@ -27,19 +27,19 @@
 
         <!-- begin tro chuot -->
         @*<div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product" title="@Model.Name">
-            <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" class="product-link" title="@Model.Name"></a>
-            <h3 class="name" Modelprop="name">@Model.Name - abc - @Model.SeName</h3>
-            <div class="overlay-price"><span style="color: #232323; font-weight: normal;">Giá :</span> @Model.ProductPrice.Price</div>
-            <div Modelprop="description" style="color:#96989b !important;">
-                @Html.Raw(Model.ShortDescription)
-            </div>
-            <div class="product-config">
-                <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="Xem Hàng" class="btn-cart">
-                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Xem Hàng</span>
-                </a>
+                <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" class="product-link" title="@Model.Name"></a>
+                <h3 class="name" Modelprop="name">@Model.Name - abc - @Model.SeName</h3>
+                <div class="overlay-price"><span style="color: #232323; font-weight: normal;">Giá :</span> @Model.ProductPrice.Price</div>
+                <div Modelprop="description" style="color:#96989b !important;">
+                    @Html.Raw(Model.ShortDescription)
+                </div>
+                <div class="product-config">
+                    <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="Xem Hàng" class="btn-cart">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Xem Hàng</span>
+                    </a>
 
-            </div>
-        </div>*@
+                </div>
+            </div>*@
         <!-- end tro chuot -->
 
         <div class="product-name-01">
@@ -49,44 +49,89 @@
                 </a>
             </div>
         </div>
-        <div style="height:160px">
-            <div class="product-image" style="float:left;width:35%">
+        <div>
+            <div class="product-image" style="">
                 <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="@Model.Name">
                     <figure data-feedback="fb:likes, fb:comments">
-                        <img class="lazy" Modelprop="image" data-original="@Model.DefaultPictureModel.ImageUrl">
+                        <img class="lazy" Modelprop="image" data-original="@Model.DefaultPictureModel.ImageUrl" style="width:200px !important; max-height:180px !important">
                     </figure>
                 </a>
             </div>
-            <div class="product-short-description">
+            <div class="product-short-description-v1">
                 <div Modelprop="description" style="color:#535083 !important;">
-                    @Html.Raw(Model.ShortDescription)
+                    @*@Html.Raw(item.ShortDescription)*@
+                    <table class="tg">
+                        <tr>
+                            <td class="tg-baqh" style="border-right:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2">
+                                <div class="table-cell-inner">
+                                    @Html.Raw(Model.Processor)
+                                </div>
+                            </td>
+                            <td class="tg-baqh" style="border-right:1px solid #d2d2d2">
+                                <div class="table-cell-inner">
+                                    @Html.Raw(Model.RAM)
+                                </div>
+                            </td>
+                            <td class="tg-baqh">
+                                <div class="table-cell-inner">
+                                    @Html.Raw(Model.Graphicss)
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="tg-baqh" colspan="3">
+                                @Html.Raw(Model.Display)
+                                <div>
+                                    <img src="/Themes/DefaultClean/Content/images/diamond24.png" style="height:90%;">
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
 
-        <div class="product-name-02" style="position:absolute">
+        <div class="product-name-02" style="position:absolute;margin-top:10px">
             <div class="price arrow" Modelprop="offers" Modelscope Modeltype="http://schema.org/Offer">
                 <meta Modelprop="priceCurrency" content="VND" />
-                @if (Model.ProductPrice.PriceDiscount != null)
-            {
-                    <div class="arrowLine">@Model.ProductPrice.OldPrice</div>
-                    <div class="price-2 triangle_left"></div>
-                }
-                else
+                <div class="arrowLine">@Model.ProductPrice.Price</div>
+                <div class="price-1 triangle_left"></div>
+                @if (Model.GiftVoucher != null && !Model.GiftVoucher.Equals("0"))
                 {
-                    <div class="arrowLine">@Model.ProductPrice.Price</div>
-                    <div class="price-1 triangle_left"></div>
-                }
-                <div style="float: left; margin: 5px 10px;">
-                    <img src="~/Themes/DefaultClean/Content/images/gift_red.png" style="float:left; margin-top:-8px;width:32px" />
-                    <div class="voucher-quotes-ehis">
-                        <span> Voucher 100.000 đ</span>
-                        <img src="~/Themes/DefaultClean/Content/images/giftcard.png" style="float:left; margin-top:-4px;width:32px" />
+                    <div style="float: left; margin: 5px 6px; margin-bottom:-2px !important">
+                        @if (Model.ProductPrice.PriceDiscount != null)
+                        {
+                            <div class="old-price-1">
+                                @Model.ProductPrice.OldPrice
+                            </div>
+                        }
+                        <img src="~/Themes/DefaultClean/Content/images/gift_red.png" style="float:left; margin-top:-8px;width:32px" />
+                        <div class="voucher-quotes-ehis">
+                            <span> Voucher @Model.GiftVoucher đ</span>
+                            <img src="~/Themes/DefaultClean/Content/images/giftcard.png" style="float:left; margin-top:-4px;width:32px" />
+                        </div>
                     </div>
+                }
+            </div>
+            @*@if (Model.ProductPrice.PriceDiscount != null)
+                {
+                    <div class="old-price-1">
+                        Giá cũ: @Model.ProductPrice.OldPrice
+                    </div>
+                }*@
+        </div>
+        @if (Model.PromotionDoc != null && !Model.PromotionDoc.Equals(""))
+        {
+            <div class="promotion">
+                @*<p style="color:#333;position:relative;top:0">Khuyến mãi:</p>*@
+                <div class="promotion-media">
+                    @Html.Raw(Model.PromotionMedia)
+                </div>
+                <div class="promotion-doc">
+                    @Html.Raw(Model.PromotionDoc)
                 </div>
             </div>
-        </div>
-
+        }
         @*<div class="product-sale ">
                 <div class="clearfix">
                     @if (Model.ProductPrice.PriceDiscount != null)
@@ -156,7 +201,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        z-index: 200;
+        z-index: 4 !important;
         /*----------------*/
         width: 0;
         height: 0;
@@ -189,7 +234,22 @@
         overflow: hidden;
         max-height: 150px;
     }
-    
+
+    .product-short-description-v1 {
+        width: 90%;
+        background: #F1F1F1;
+        background: -webkit-linear-gradient(left, #E7E8E9, white);
+        background: -o-linear-gradient(right, #E7E8E9, white);
+        background: -moz-linear-gradient(right, #E7E8E9, white);
+        background: linear-gradient(to right, #E7E8E9, white);
+        line-height: 18px;
+        border: 1px solid #e3e3e3;
+        padding: 5px;
+        overflow: hidden;
+        margin: auto;
+        max-height: 120px";
+    }
+
     .voucher-quotes-ehis {
         /*width: 100%;*/
         background: -moz-linear-gradient(right, #E7E8E9, white);
@@ -200,5 +260,73 @@
         margin-top: -7px;
         color: black !important;
         font-size: 11px;
+    }
+
+    .tg {
+        /*border-collapse: collapse;
+        border-spacing: 0;*/
+    }
+
+    .old-price-1 {
+        font-size: 12px;
+        color: #666;
+        text-decoration: line-through;
+        vertical-align: middle;
+        float: left;
+    }
+
+    .tg td {
+        font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-size: 13px;
+        padding: 5px 5px;
+        /*border-style: solid;*/
+        /*border-width: 1px;*/
+        overflow: hidden;
+        word-break: normal;
+        width: 33%;
+        color: #535083;
+    }
+
+    .tg th {
+        /*font-family: Arial, sans-serif;*/
+        font-size: 14px;
+        font-weight: normal;
+        padding: 5px 5px;
+        /*border-style: solid;*/
+        /*border-width: 1px;*/
+        overflow: hidden;
+        word-break: normal;
+    }
+
+    .tg .tg-baqh {
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .table-cell-inner {
+        /*height: 50px;*/
+        max-height: 79px;
+        overflow: hidden;
+        font-size:12px;
+    }
+
+    .promotion {
+        position: absolute;
+        margin: 40px 5px;
+    }
+    .promotion-media{
+        float:left;
+    }
+    .promotion-doc{
+        float:left;
+        margin-top:7px;
+    }
+    .promotion-media img {
+        height: 40px;
+        width: auto;
+    }
+
+    .promotion-doc p {
+        line-height: 0.6;
     }
 </style>

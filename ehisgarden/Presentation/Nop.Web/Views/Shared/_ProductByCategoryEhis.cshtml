@@ -20,7 +20,8 @@
                         <span>-@item.ProductPrice.PriceDiscount</span>
                     </div>
                 }
-                @*<div class="product-overlay animate" itemscope itemtype="http://schema.org/Product" title="@item.Name">
+                <!-- begin tro chuot -->
+                <div class="product-overlay animate" itemscope itemtype="http://schema.org/Product" title="@item.Name">
                         <a href="@Url.RouteUrl("Product", new { SeName = item.SeName })" class="product-link" title="@item.Name"></a>
                         <h3 class="name" itemprop="name">@item.Name</h3>
                         <div class="overlay-price"><span style="color: #232323; font-weight: normal;">Giá :</span> @item.ProductPrice.Price</div>
@@ -33,7 +34,8 @@
                             </a>
 
                         </div>
-                    </div>*@
+                    </div>
+                <!-- end tro chuot -->
                 <div class="product-name-01">
                     <div class="name-01">
                         <a href="@Url.RouteUrl("Product", new { SeName = item.SeName })" title="@item.Name">
@@ -51,7 +53,40 @@
                     </div>
                     <div class="product-short-description">
                         <div Modelprop="description" style="color:#535083 !important;">
-                            @Html.Raw(item.ShortDescription)
+                            @*@Html.Raw(item.ShortDescription)*@
+                            <table class="tg">
+                                <tr>
+                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2;border-bottom:1px solid #d2d2d2">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.Processor)
+                                        </div>
+                                    </td>
+                                    <td class="tg-baqh" style="border-right:1px solid #d2d2d2">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.RAM)
+                                        </div>
+                                    </td>
+                                    <td class="tg-baqh">
+                                        <div class="table-cell-inner">
+                                            @Html.Raw(item.Graphicss)
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="tg-baqh" colspan="3">
+
+                                        @if (item.Display != null && !item.Display.Equals(""))
+                                        {
+                                            @Html.Raw(item.Display)
+                                        }
+                                        else
+                                        {
+                                            <img src="~/Themes/DefaultClean/Content/images/diamond24.png" />
+                                        }
+
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -104,6 +139,7 @@
         color: #4940ca !important;
         letter-spacing: 1;
     }
+
     .product-name-01 {
         font-weight: bold;
         color: black;
@@ -151,7 +187,7 @@
         position: absolute;
         top: 0px;
         left: 0px;
-        z-index: 200;
+        z-index: 4 !important;
         /*----------------*/
         width: 0;
         height: 0;
@@ -184,6 +220,7 @@
         overflow: hidden;
         max-height: 150px;
     }
+
     .voucher-quotes-ehis {
         /*width: 100%;*/
         background: -moz-linear-gradient(right, #E7E8E9, white);
@@ -194,5 +231,51 @@
         margin-top: -7px;
         color: black !important;
         font-size: 11px;
+    }
+    .tg {
+        /*border-collapse: collapse;
+        border-spacing: 0;*/
+    }
+
+    .old-price-1 {
+        font-size: 12px;
+        color: #666;
+        text-decoration: line-through;
+        vertical-align: middle;
+    }
+
+    .tg td {
+        font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+        font-size: 13px;
+        padding: 5px 5px;
+        /*border-style: solid;*/
+        /*border-width: 1px;*/
+        overflow: hidden;
+        word-break: normal;
+        width: 33%;
+        color: #535083;
+    }
+
+    .tg th {
+        /*font-family: Arial, sans-serif;*/
+        font-size: 14px;
+        font-weight: normal;
+        padding: 5px 5px;
+        /*border-style: solid;*/
+        /*border-width: 1px;*/
+        overflow: hidden;
+        word-break: normal;
+    }
+
+    .tg .tg-baqh {
+        text-align: center;
+        vertical-align: top;
+    }
+
+    .table-cell-inner {
+        /*height: 50px;*/
+        max-height: 79px;
+        overflow: hidden;
+        font-size:12px;
     }
 </style>

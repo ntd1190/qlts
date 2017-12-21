@@ -26,7 +26,13 @@ namespace Nop.Web.Models.Catalog
         public ProductType ProductType { get; set; }
 
         public bool MarkAsNew { get; set; }
-
+        public string Processor { get; set; }
+        public string RAM { get; set; }
+        public string Graphicss { get; set; }
+        public string Display { get; set; }
+        public string GiftVoucher { get; set; }
+        public string PromotionDoc { get; set; }
+        public string PromotionMedia { get; set; }
         //price
         public ProductPriceModel ProductPrice { get; set; }
         //picture

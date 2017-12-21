@@ -7224,8 +7224,8 @@ h1, h2, h3, h4, h5, h6 {
 .shop .masonry-item {
     float: left;
     /*width: 16%;*/
-    /*width: 32%;*/
-    width: 24%;
+    width: 32%;
+    /*width: 24%;*/
 }
 
 @media (max-width:1199px) {
@@ -7257,8 +7257,8 @@ h1, h2, h3, h4, h5, h6 {
 
 .shop .masonry-sizer {
     /*width: 16.666666%;*/
-    /*width: 33.333332%;*/
-    width:24.999999%;
+    width: 33.333332%;
+    /*width:24.999999%;*/
 }
 
 @media (max-width:1199px) {
@@ -14639,7 +14639,7 @@ body:not(.device-touch) #gotoTop {
         width: 100%;
         overflow: hidden;
         padding: 7px;
-        height: 150px;
+        height: 190px; /*150*//*170*/
     }
 
         .shop .product-image img {

@@ -104,21 +104,27 @@ namespace Nop.Admin.Models.Catalog
         /// ////////////////////////////// them 5 cot///////////////////////////////////////////////////////////////////////////////////////////////////////
         /// </summary>
         /// Processor,RAM,Graphics,Display,GiftVoucher
-        [NopResourceDisplayName("Cấu hình")]
+        [NopResourceDisplayName("Mô tả 1")]
         [AllowHtml]
         public string Processor { get; set; }
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.RAM")]
+        [NopResourceDisplayName("Mô tả 2")]
         [AllowHtml]
         public string RAM { get; set; }
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Graphicss")]
+        [NopResourceDisplayName("Mô tả 3")]
         [AllowHtml]
         public string Graphicss { get; set; }
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.Display")]
+        [NopResourceDisplayName("Mô tả 4")]
         [AllowHtml]
         public string Display { get; set; }
-        [NopResourceDisplayName("Admin.Catalog.Products.Fields.GiftVoucher")]
+        [NopResourceDisplayName("GiftVoucher")]
         [AllowHtml]
         public decimal GiftVoucher { get; set; }
+        [NopResourceDisplayName("Khuyến mãi (doc)")]
+        [AllowHtml]
+        public string PromotionDoc { get; set; }
+        [NopResourceDisplayName("Khuyến mãi (image)")]
+        [AllowHtml]
+        public string PromotionMedia { get; set; }
         /// <summary>
         /// /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         /// </summary>

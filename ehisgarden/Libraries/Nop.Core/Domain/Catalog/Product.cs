@@ -488,8 +488,8 @@ namespace Nop.Core.Domain.Catalog
         public string Graphicss { get; set; }
         public string Display { get; set; }
         public decimal GiftVoucher { get; set; }
-
-
+        public string PromotionDoc { get; set; }
+        public string PromotionMedia { get; set; }
 
 
         /// <summary>
