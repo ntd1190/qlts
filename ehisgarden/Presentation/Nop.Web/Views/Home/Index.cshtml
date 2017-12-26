@@ -33,6 +33,7 @@
                     </div>
                     <!--san pham moi o day-->
                 </div>
+                @{ Html.RenderPartial("_NewsHome", Model.news); }
                 <div class="col-md-12">
                     <div id="products-feature" style="width:99.9%">
                         @*<ul class="nav nav-tabs" role="tablist">
@@ -59,8 +60,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
-                @{ Html.RenderPartial("_NewsHome", Model.news); }
+                </div>                
             </div>
         </div>
     </section>

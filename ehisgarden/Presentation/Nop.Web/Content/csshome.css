@@ -13113,19 +13113,21 @@ body:not(.device-touch) #gotoTop {
     }
 
         .news-content > div > li .news-img {
-            width: 80px;
+            /*width: 80px;*/
+            width: 100px;
             float: left;
             max-height: 46px;
             overflow: hidden;
         }
 
         .news-content > div > li p {
-            margin-left: 90px;
+            /*margin-left: 90px;*/
+            margin-left:5px;
             padding-right: 10px;
         }
 
         .news-content > div > li:hover p {
-            color: #e21c24;
+            color: #e21c24 !important;
         }
 
         .news-content > div > li:first-child {
@@ -13151,10 +13153,10 @@ body:not(.device-touch) #gotoTop {
 
         .news-content li.news-main {
             border-bottom: 0;
-            padding-bottom: 33px;
+            /*padding-bottom: 33px;*/
             position: relative;
             margin-bottom: 10px;
-            height: 195px;
+            /*height: 195px;*/
             overflow: hidden;
         }
 
@@ -13170,16 +13172,18 @@ body:not(.device-touch) #gotoTop {
     margin-bottom: 0;
     width: 100%;
     margin-left: 0;
-    padding: 4px 12px;
+    /*padding: 4px 12px;*/
+    padding: 4px 5px;
     color: #e21c24;
-    background: #e2e3e4;
+    /*background: #e2e3e4;*/
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
 }
 
 .news-content li.news-main:hover p {
-    background: #e21c24;
-    color: #fff;
+    /*background: #e21c24;*/
+    /*color: #fff;*/
+    color:#e21c24 !important;
 }
 
 @media (max-width:991px) {
@@ -13212,7 +13216,8 @@ body:not(.device-touch) #gotoTop {
 }
 
 .news-scroll {
-    height: 284px;
+    /*height: 284px;*/
+    height:352px;
 }
 
     .news-scroll.scroll .ps-scrollbar-y-rail {

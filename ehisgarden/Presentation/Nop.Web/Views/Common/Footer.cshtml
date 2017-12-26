@@ -14,7 +14,11 @@
 
                 @foreach (var topic in Model.Topics.Where(x => x.IncludeInFooterColumn1).ToList())
                 {
-                    <li><a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })"><img src="@topic.PictureThumbnailUrl" /> @topic.Name</a></li>
+                    <li>
+                        <a href="@Url.RouteUrl("Topic", new { SeName = topic.SeName })">
+                            <img src="@topic.PictureThumbnailUrl"style="display:none" /> @topic.Name
+                        </a>
+                    </li>
                 }
 
             </ul>
@@ -109,5 +113,4 @@
         background-color: rgba(0,0,0,.1);
         margin-top: -25px;
     }
-    
 </style>

@@ -26,20 +26,20 @@
         }
 
         <!-- begin tro chuot -->
-        @*<div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product" title="@Model.Name">
-                <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" class="product-link" title="@Model.Name"></a>
-                <h3 class="name" Modelprop="name">@Model.Name - abc - @Model.SeName</h3>
-                <div class="overlay-price"><span style="color: #232323; font-weight: normal;">Giá :</span> @Model.ProductPrice.Price</div>
-                <div Modelprop="description" style="color:#96989b !important;">
-                    @Html.Raw(Model.ShortDescription)
-                </div>
-                <div class="product-config">
-                    <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="Xem Hàng" class="btn-cart">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Xem Hàng</span>
-                    </a>
+        <div class="product-overlay animate" Modelscope Modeltype="http://schema.org/Product" title="@Model.Name">
+            <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" class="product-link" title="@Model.Name"></a>
+            <h3 class="name" Modelprop="name">@Model.Name</h3>
+            <div class="overlay-price"><span style="color: #232323; font-weight: normal;">Giá :</span> @Model.ProductPrice.Price</div>
+            <div Modelprop="description" style="color:#96989b !important;">
+                @Html.Raw(Model.ShortDescription)
+            </div>
+            <div class="product-config">
+                <a href="@Url.RouteUrl("Product", new { SeName = Model.SeName })" title="Xem Hàng" class="btn-cart">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i> <span>Xem Hàng</span>
+                </a>
 
-                </div>
-            </div>*@
+            </div>
+        </div>
         <!-- end tro chuot -->
 
         <div class="product-name-01">
@@ -307,20 +307,23 @@
         /*height: 50px;*/
         max-height: 79px;
         overflow: hidden;
-        font-size:12px;
+        font-size: 12px;
     }
 
     .promotion {
         position: absolute;
         margin: 40px 5px;
     }
-    .promotion-media{
-        float:left;
+
+    .promotion-media {
+        float: left;
     }
-    .promotion-doc{
-        float:left;
-        margin-top:7px;
+
+    .promotion-doc {
+        float: left;
+        margin-top: 7px;
     }
+
     .promotion-media img {
         height: 40px;
         width: auto;

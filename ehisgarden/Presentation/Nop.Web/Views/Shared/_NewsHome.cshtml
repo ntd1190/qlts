@@ -3,7 +3,7 @@
 @if (Model.NewsItems.Count > 0)
 {
 
-    <div class="col-md-4">
+    <div class="col-md-4" style="height:469px;">
         @*<section class="news">
                 <div class="dropdown">
                     <button id="dtintuc" type="button" data-toggle="dropdown" aria-haspopup="true"
@@ -55,12 +55,12 @@
                     if (Model.NewsItems.First() == item)
                     {
                         <li class="news-main clearfix">
-                            <div itemscope="" itemtype="http://schema.org/NewsArticle">
+                            <div class="newhv" itemscope="" itemtype="http://schema.org/NewsArticle">
                                 <meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
                                 <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="absolute-all" title="@item.SeName"></a>
-                                <div itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+                                <div itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject" style="float:right;">
                                     <figure data-feedback="fb:likes, fb:comments">
-                                        <img src="@item.DefaultPictureModel.ImageUrl" height="182" class="img-responsive center-block" alt="@item.SeName">
+                                        <img src="@item.DefaultPictureModel.ImageUrl" height="70" width="100" class="img-responsive center-block" alt="@item.SeName">
                                     </figure>
                                 </div>
                                 <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization" style="display: none;">
@@ -71,11 +71,11 @@
                                     </div>
                                     <meta itemprop="name" content="Google">
                                 </div>
-                                <p itemprop="headline">@item.Title</p>
+                                <p itemprop="headline" class="new-headline">@item.Title</p>
                             </div>
                         </li>
                     }
-                    
+
                 }
 
 
@@ -86,12 +86,12 @@
                         {
                             <li class="clearfix">
 
-                                <div itemscope="" itemtype="http://schema.org/NewsArticle">
+                                <div class="newhv" itemscope="" itemtype="http://schema.org/NewsArticle">
                                     <meta itemscope="" itemprop="mainEntityOfPage" itemtype="https://schema.org/WebPage" itemid="https://google.com/article">
                                     <a href="@Url.RouteUrl("NewsItem", new { SeName = item.SeName })" class="absolute-all" title="@item.Title"></a>
-                                    <div class="news-img" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject">
+                                    <div class="news-img" itemprop="image" itemscope="" itemtype="https://schema.org/ImageObject" style="float:right;">
                                         <figure data-feedback="fb:likes, fb:comments">
-                                            <img src="@item.DefaultPictureModel.ImageUrl" class="img-responsive" alt="@item.SeName">
+                                            <img src="@item.DefaultPictureModel.ImageUrl" height="70" width="100" class="img-responsive" alt="@item.SeName">
                                         </figure>
                                     </div>
                                     <div itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization" style="display: none;">
@@ -103,13 +103,13 @@
                                         </div>
                                         <meta itemprop="name" content="Google">
                                     </div>
-                                    <p itemprop="headline">@item.Title</p>
-                                  
+                                    <p itemprop="headline" class="new-headline">@item.Title</p>
+
                                 </div>
                             </li>
                         }
                     }
-                    
+
 
                 </div>
                 <li class="news-more">
@@ -129,4 +129,15 @@
     .news-scroll{
         height:100%;
     }*/
+    .new-headline {
+        display: block;
+        overflow: hidden;
+        height: 36px;
+        line-height: 1.3em;
+        font-size: 14px;
+        color: #333 !important;
+        margin-bottom: 5px !important;
+        width: auto !important;
+        position: inherit !important;
+    }
 </style>
