@@ -70,6 +70,14 @@
                             </div>
                         </div>
                         <div class="col-sm-4">
+                            <div class="row form-group form-group-sm" ng-class="ctrl.error.DiaChiNhan?'has-error':''">
+                                <label class="control-label col-sm-4">Địa chỉ nhận </label>
+                                <div class="col-sm-8">
+                                    <input type="text" id="txtDiaChiNhan" class="form-control" placeholder="" ng-model="ctrl.data.phieuDonHang.DiaChiNhan" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.DiaChiNhan,'txtDiaChiNhan','txtBoPhanNhan',$event)" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.BoPhanNhan?'has-error':''">
                                 <label class="control-label col-sm-4">Bộ phận nhận </label>
                                 <div class="col-sm-8">
@@ -77,6 +85,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-4">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NguoiNhan?'has-error':''">
                                 <label class="control-label col-sm-4">Người nhận</label>
@@ -85,8 +95,6 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
                         <div class="col-sm-4">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.NgayLap?'has-error':''">
                                 <label class="control-label col-sm-4">Ngày lập <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
@@ -103,6 +111,8 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+                    <div class="row">
                         <div class="col-sm-4">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.TrangThai?'has-error':''">
                                 <label class="control-label col-sm-4">Trạng thái <span class="text-danger" data-toggle="tooltip" title="Bắt buộc nhập !">*</span></label>
@@ -115,12 +125,10 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-12">
+                        <div class="col-sm-8">
                             <div class="row form-group form-group-sm" ng-class="ctrl.error.GhiChu?'has-error':''">
-                                <label class="control-label col-sm-1" style="width:11%">Ghi chú </label>
-                                <div class="col-sm-11" style="width:89%">
+                                <label class="control-label col-sm-2">Ghi chú </label>
+                                <div class="col-sm-10">
                                     <input type="text" class="form-control" id="txtGhiChu" ng-model="ctrl.data.objKhachHang.GhiChu" ng-keypress="ctrl.action.keyPressDonHang(ctrl.data.phieuDonHang.GhiChu,'txtGhiChu','',$event)" >
                                 </div>
                             </div>

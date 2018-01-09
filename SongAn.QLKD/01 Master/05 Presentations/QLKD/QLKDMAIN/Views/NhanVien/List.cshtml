@@ -53,6 +53,7 @@
                             </td>
                             <td ng-repeat="cot in ctrl.data.listCot|filter:ctrl.action.checkCot" ng-switch="cot.MaCot">
                                 <a ng-switch-when="Ma,HoTen" ng-switch-when-separator="," href="javascript:void(0)" ng-click="ctrl.action.xemNhanVien(NhanVien.NhanVienId)" ng-bind="NhanVien[cot.MaCot]"></a>
+                                <a ng-switch-when="Detail" ng-switch-when-separator="," href="#!/nhanvien/edit/{{NhanVien.NhanVienId}}" style="display:block;text-align:center">Xem</a>
                                 <span ng-switch-default ng-bind="NhanVien[cot.MaCot]"></span>
                             </td>
                         </tr>

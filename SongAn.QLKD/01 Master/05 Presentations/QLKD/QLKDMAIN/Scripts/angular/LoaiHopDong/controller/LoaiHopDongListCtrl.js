@@ -29,7 +29,7 @@
         vm.data.listCot = [
             { MaCot: 'MaLoaiHopDong', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
             { MaCot: 'TenLoaiHopDong', TenCot: 'Tên', HienThiYN: true, DoRong: 200 },
-            { MaCot: 'GhiChu', TenCot: 'Địa chỉ', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'GhiChu', TenCot: 'Ghi chú', HienThiYN: true, DoRong: 0 },
             { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 100 },
             { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 200 },
         ];
@@ -179,6 +179,11 @@
             if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
 
             var list = vm.data.listLoaiHopDong.filter(LoaiHopDong=>LoaiHopDong.isSelected == true);
+            if (list.length == 0)
+            {
+                utility.AlertError("Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.");
+                return;
+            }
             removeList(list).then(function (success) {
                 vm.action.search();
                 utility.AlertSuccess('Xóa thành công');

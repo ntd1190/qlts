@@ -17,7 +17,7 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
 
         public ActionResult AccessDenied()
         {
-            return View();
+            return PartialView();
         }
     }
 }

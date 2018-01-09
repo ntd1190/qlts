@@ -427,6 +427,12 @@
                     vm.data.listChiTiet[index].isError = true;
                     return hasError;
                 }
+                else if (CompareDate(vm.data.listChiTiet[index].NgayDuKien, vm.data.listChiTiet[index].NgayTao)) {
+                    utility.AlertError('Ngày dự kiến không hợp lệ!');
+                    hasError = true;
+                    vm.data.listChiTiet[index].isError = true;
+                    return hasError;
+                }
                 else if (utility.checkInValid(vm.data.listChiTiet[index].TrangThai, 'isEmpty')) {
                     hasError = true;
                     vm.data.listChiTiet[index].isError = true;
@@ -447,7 +453,20 @@
             vm.error.KyKehoach = false;
             vm.error.Nam = false;
         }
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
 
+            if (dateOne >= dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
+        }
         
         /* API FUNCTION */
         function getKeHoachById(id) {

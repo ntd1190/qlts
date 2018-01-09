@@ -25,7 +25,7 @@
 
         vm.error = {};
         vm.data = {};
-        vm.inputSearch = {};
+        vm.data.searchString = "";
 
         vm.data.listCot = [
             { MaCot: 'MaNhomKinhDoanh', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
@@ -177,6 +177,10 @@
         }
         vm.action.deleteList = function () {
             var list = vm.data.listNhomKinhDoanh.filter(NhomKinhDoanh=>NhomKinhDoanh.isSelected == true);
+            if (list.length == 0) {
+                utility.AlertError("Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.");
+                return;
+            }
             removeList(list).then(function (success) {
                 vm.action.search();
                 utility.AlertSuccess('Xóa thành công');
@@ -401,7 +405,7 @@
             data.length = tableState.pagination.number || 10;  // Number of entries showed per page.
             data.sortName = tableState.sort.predicate || 'DB.NhomKinhDoanhId';
             data.sortDir = tableState.sort.reverse ? 'desc' : 'asc';
-            data.search = vm.inputSearch.search || '';
+            data.search = vm.data.searchString || '';
             data.NhanVienId = userInfo.NhanVienId;
             data.UserId = userInfo.UserId;
 

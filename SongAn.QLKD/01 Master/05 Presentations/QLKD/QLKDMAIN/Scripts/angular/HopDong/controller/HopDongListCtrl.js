@@ -143,6 +143,10 @@
             if (confirm('Bạn có muốn xóa thông tin ?') == false) { return; }
 
             var list = vm.data.listHopDong.filter(HopDong=>HopDong.isSelected == true);
+            if (list.length == 0) {
+                utility.AlertError("Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.");
+                return;
+            }
             removeList(list).then(function (success) {
                 vm.action.search();
                 utility.AlertSuccess('Xóa thành công');

@@ -32,10 +32,6 @@
             TenKhachHang: false,
             NhomKhachHangId: false,
             GioiTinh: false,
-            NgaySinh: false,
-            TinhThanhPhoId: false,
-            QuanHuyenId: false,
-            PhuongXaId: false
         }
 
         /* INIT FUNCTION */
@@ -63,8 +59,6 @@
                     getKhachHangById(KhachHangId);
                 }
                 else if (parseInt(KhachHangId) === 0) {
-                    vm.data.objKhachHang.NgaySinh = moment().format('DD/MM/YYYY');
-                    vm.data.objKhachHang.NgayThanhLap = moment().format('DD/MM/YYYY');
                     vm.data.objKhachHang.GioiTinh = $("#cbxGioiTinh option:first").val();
                     vm.data.objKhachHang.HinhAnh = "avatar.jpg";
                 }
@@ -257,8 +251,6 @@
                 if (parseInt(KhachHangId) == 0) {
                     delete vm.data.objKhachHang;
                     vm.data.objKhachHang = {};
-                    vm.data.objKhachHang.NgaySinh = moment().format('DD/MM/YYYY');
-                    vm.data.objKhachHang.NgayThanhLap = moment().format('DD/MM/YYYY');
                     vm.data.objKhachHang.GioiTinh = $("#cbxGioiTinh option:first").val();
 
                     $("#txtMaKhachHang").focus();
@@ -281,12 +273,6 @@
                     if (vm.validate.TenKhachHang) {
                         $("#" + fromId).focus();
                     } else $("#" + ToId).find('input').focus();
-                }
-                else if (fromId == 'txtNgaySinh') {
-                    vm.validate.NgaySinh = utility.checkInValid(obj.NgaySinh, 'isEmpty');
-                    if (vm.validate.NgaySinh) {
-                        $("#" + fromId).focus();
-                    } else $("#" + ToId).focus();
                 }
                 else if (fromId == 'txtEmail') {
                     $("#" + ToId + " input").focus();
@@ -349,26 +335,7 @@
                 $("#cbxGioiTinh input").focus();
                 return null;
             }
-            vm.validate.NgaySinh = utility.checkInValid(obj.NgaySinh, 'isEmpty');
-            if (vm.validate.NgaySinh) {
-                $("#txtNgaySinh").focus();
-                return null;
-            }
-            vm.validate.TinhThanhPhoId = utility.checkInValid(obj.TinhThanhPhoId, 'isEmpty');
-            if (vm.validate.TinhThanhPhoId) {
-                $("#cbxTinhThanhPho input").focus();
-                return null;
-            }
-            vm.validate.QuanHuyenId = utility.checkInValid(obj.QuanHuyenId, 'isEmpty');
-            if (vm.validate.QuanHuyenId) {
-                $("#cbxQuanHuyen input").focus();
-                return null;
-            }
-            vm.validate.PhuongXaId = utility.checkInValid(obj.PhuongXaId, 'isEmpty');
-            if (vm.validate.PhuongXaId) {
-                $("#cbxPhuongXa input").focus();
-                return null;
-            }
+           
 
 
             return 1;
@@ -379,10 +346,7 @@
             vm.validate.TenKhachHang = false;
             vm.validate.NhomKhachHangId = false;
             vm.validate.GioiTinh = false;
-            vm.validate.NgaySinh = false;
-            vm.validate.TinhThanhPhoId = false;
-            vm.validate.QuanHuyenId = false;
-            vm.validate.PhuongXaId = false;
+            
         }
 
         $scope.changeImage = function (ele) {

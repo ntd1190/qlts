@@ -48,7 +48,7 @@
                                     <a href="javascript:void(0)" ng-click="ctrl.action.edit(row.ID)"
                                        ng-switch-when="MaDuLieu,TenDuLieu" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></a>
                                     <div class="text-center" ng-switch-when="FileDinhKem" ng-switch-when-separator="," ng-if="row.FileDinhKem">
-                                        <a href="@(Url.Content("~/content/upload/dulieu/")){{row.FileDinhKem}}">Xem</a>
+                                        <a href="@(Url.Content("~/content/upload/dulieu/")){{row.FileDinhKem}}" target="_blank">Xem</a>
                                     </div>
                                     <div class="text-center" ng-switch-when="NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
                                     <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
@@ -109,7 +109,7 @@
                     <label class="control-label col-sm-3">File đính kèm</label>
                     <div class="col-sm-9">
                         <input type="file" class="form-control" file-bind="ctrl.data.DuLieu.file" accept="*" />
-                        <a href="@(Url.Content("~/content/upload/dulieu/")){{ctrl.data.DuLieu.FileDinhKem}}" ng-if="ctrl.data.DuLieu.FileDinhKem">Xem</a>
+                        <a href="@(Url.Content("~/content/upload/dulieu/")){{ctrl.data.DuLieu.FileDinhKem}}" target="_blank" ng-if="ctrl.data.DuLieu.FileDinhKem">Xem</a>
                     </div>
                 </div>
             </form>

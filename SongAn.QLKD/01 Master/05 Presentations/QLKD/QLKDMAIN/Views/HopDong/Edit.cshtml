@@ -157,9 +157,9 @@
                                     <label class="radio-inline">
                                         <input type="radio" ng-model="ctrl.data.HopDong.Chi" value="Y"
                                                ng-keydown="ctrl.action.keyPress($event)" data-name="HopDong_Chi" data-next="HopDong_DuLieuId" />
-                                        Đã chi
+                                        Đã chi : <span  class="text-danger" ng-bind="(ctrl.data.HopDong.TienHoaHong?ctrl.data.HopDong.TienHoaHong:0)|number:'':'':2"></span>
                                     </label>
-                                   
+                                    
                                 </div>
                             </div>
                         </div>

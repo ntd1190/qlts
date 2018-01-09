@@ -32,6 +32,7 @@
             { MaCot: 'NgayTuyenDung', TenCot: 'Ngày tuyển', HienThiYN: true, DoRong: 0 },
             { MaCot: 'TenChucVu', TenCot: 'Chức vụ', HienThiYN: true, DoRong: 0 },
             { MaCot: 'DienThoai', TenCot: 'Điện thoại', HienThiYN: true, DoRong: 0 },
+            { MaCot: 'Detail', TenCot: 'Chi tiết', HienThiYN: true, DoRong: 0 },
         ];
 
         /* INIT FUNCTION */

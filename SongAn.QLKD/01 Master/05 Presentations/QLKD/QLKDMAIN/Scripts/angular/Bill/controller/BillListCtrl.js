@@ -4,18 +4,18 @@
 
     module.config(function ($stateProvider) {
         $stateProvider.state({
-            name: 'thuatNguList',
-            url: '/ThuatNgu/list',
+            name: 'billList',
+            url: '/bill/list',
             template: '<div ng-include="ctrl.getTemplate()"></div>',
             controllerAs: 'ctrl',
-            controller: ThuatNguListCtrl
+            controller: BillListCtrl
         });
     });
 
-    function ThuatNguListCtrl($stateParams, SETTING, $q, utility, ThuatNguService) {
+    function BillListCtrl($stateParams, SETTING, $q, utility, BillService, Upload) {
         var userInfo, _tableState;
 
-        var ThuatNguId = 0;
+        var BillId = 0;
 
         var vm = this;
 
@@ -28,12 +28,16 @@
         vm.inputSearch = {};
 
         vm.data.listCot = [
-            { MaCot: 'MaThuatNgu', TenCot: 'Mã', HienThiYN: true, DoRong: 75 },
-            { MaCot: 'ThuatNgu', TenCot: 'Tên', HienThiYN: true, DoRong: 200 },
-            { MaCot: 'ViDu', TenCot: 'Ví dụ', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'DienGiai', TenCot: 'Diễn giải', HienThiYN: true, DoRong: 0 },
-            { MaCot: 'NgayTao', TenCot: 'Ngày tạo', HienThiYN: true, DoRong: 100 },
-            { MaCot: 'TenNguoiTao', TenCot: 'Người tạo', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'SoBill', TenCot: 'Số bill', HienThiYN: true, DoRong: 90 },
+            { MaCot: 'NoiDung', TenCot: 'Nội dung', HienThiYN: true, DoRong: 300 },
+            { MaCot: 'TenNguoiGui', TenCot: 'Người gửi', HienThiYN: true, DoRong: 100 },
+            { MaCot: 'NguoiNhan', TenCot: 'Người nhận', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'SDT', TenCot: 'SĐT', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'DiaChiNhan', TenCot: 'Địa chỉ nhận', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'NgayGui', TenCot: 'Ngày gửi', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'NguoiNhanThucTe', TenCot: 'Người nhận thực tế', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'NgayNhanThucTe', TenCot: 'Ngày nhận thực tế', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'HinhAnh', TenCot: 'Hình ảnh bill', HienThiYN: true, DoRong: 200 },
         ];
 
         /* INIT / EVENT FUNCTION */
@@ -46,7 +50,7 @@
         }
 
         vm.getTemplate = function () {
-            return SETTING.HOME_URL + 'ThuatNgu/showView?viewName=list';
+            return SETTING.HOME_URL + 'Bill/showView?viewName=list';
         }
 
         vm.keys = {
@@ -99,15 +103,15 @@
         };
 
         function initEventListener() {
-            $(document).ready(function () { // #ThuatNguEditPopup
-                $('#ThuatNguEditPopup').on('hidden.bs.collapse', function () {
+            $(document).ready(function () { // #DiaBanEditPopup
+                $('#BillEditPopup').on('hidden.bs.collapse', function () {
                     vm.status.isOpenPopup = false;
                     resetPopup();
-                    $("#ThuatNguList input[autofocus]").focus();
+                    $("#BillList input[autofocus]").focus();
                 });
-                $('#ThuatNguEditPopup').on('shown.bs.collapse', function () {
+                $('#BillEditPopup').on('shown.bs.collapse', function () {
                     vm.status.isOpenPopup = true;
-                    $("#ThuatNguEditPopup input[autofocus]").focus();
+                    $("#BillEditPopup input[autofocus]").focus();
                 });
             });
         }
@@ -129,24 +133,28 @@
             });
         }
         vm.action.search = function () {
-            vm.status.isSelectedAll = false;
             _tableState.pagination.start = 0;
             getPage(_tableState);
         }
+
         vm.action.edit = function (id) {
             resetPopup();
-            ThuatNguId = id || 0;
-            if (ThuatNguId > 0) {
-                getById(ThuatNguId);
+            BillId = id || 0;
+            if (BillId > 0) {
+                getById(BillId);
             }
-            $('#ThuatNguEditPopup').collapse('show');
+            else {
+                vm.data.Bill.NgayGui = moment().format('DD/MM/YYYY');
+                vm.data.Bill.NgayNhanThucTe = moment().format('DD/MM/YYYY');
+            }
+            $('#BillEditPopup').collapse('show');
         }
         vm.action.checkQuyenTacVu = function (quyen) {
             return checkQuyenUI(quyen);
         }
 
         vm.action.checkQuyenTacVuEdit = function (quyen) {
-            if (ThuatNguId == 0) { // trường hợp thêm mới
+            if (BillId == 0) { // trường hợp thêm mới
                 if (quyen != 'N') { return false; }
             } else { // trường hợp update
                 if (quyen == 'N') { return false; }
@@ -157,47 +165,65 @@
         vm.action.save = function () {
             if (vm.action.checkQuyenTacVuEdit('N') == false && vm.action.checkQuyenTacVuEdit('M') == false) { return; }
             if (checkInput() == false) { return; }
-            if (ThuatNguId > 0) {
-                update().then(function (success) {
+            if (!CompareDate(vm.data.Bill.NgayGui, vm.data.Bill.NgayNhanThucTe)) {
+                utility.AlertError('Ngày nhận hàng không hợp lệ!');
+                return;
+            }
+
+            if (vm.data.Bill.file && vm.data.Bill.file.length > 0) {
+                if (vm.data.Bill.HinhAnh) {
+                    vm.data.Bill.HinhAnh = vm.data.Bill.HinhAnh.split('.')[0] + '.' + utility.getFileExt(vm.data.Bill.file[0].name);
+                } else {
+                    vm.data.Bill.HinhAnh = 'FC' + moment().format('YYYYMMDDhhmmssSSS') + '.' + utility.getFileExt(vm.data.Bill.file[0].name);
+                }
+            }
+
+            if (BillId > 0) {
+                $q.all([update(), UploadFile()]).then(function (success) {
+                    
                     vm.action.search();
                     utility.AlertSuccess('Cập nhật thành công');
-                    $('#ThuatNguEditPopup').collapse('hide');
+                    $('#BillEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
             } else {
-                insert().then(function (success) {
+                $q.all([insert(), UploadFile()]).then(function (success) {
+                    
                     vm.action.search();
                     utility.AlertSuccess('Thêm thành công');
-                    $('#ThuatNguEditPopup').collapse('hide');
+                    $('#BillEditPopup').collapse('hide');
                 }, function (error) {
                     utility.AlertError(error);
                 });
             }
         }
         vm.action.deleteList = function () {
-            var list = vm.data.listThuatNgu.filter(ThuatNgu=>ThuatNgu.isSelected == true);
-            if (list.length == 0) {
+            if (!confirm('Bạn có muốn xóa các mục đã chọn không?')) { return; }
+
+            vm.data.isLoading = true;
+
+            var BillSelected = new Array();
+
+            for (var i = 0; i < vm.data.listBill.length; i++) {
+                var Bill = vm.data.listBill[i];
+                if (Bill.isSelected) {
+                    BillSelected.push(Bill.BillId);
+                }
+            }
+            var ids = BillSelected.join(',');
+            if (ids.length == 0) {
                 utility.AlertError("Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.");
                 return;
             }
-            removeList(list).then(function (success) {
-                vm.action.search();
-                utility.AlertSuccess('Xóa thành công');
+            BillService.removeList(ids).then(function (success) {
+                vm.data.isLoading = false;
+                _tableState.pagination.start = 0;
+                getPage(_tableState);
+                utility.AlertSuccess('Xóa thành công!');
             }, function (error) {
-                utility.AlertError(error);
-            });
-        }
-
-        vm.action.delete = function () {
-            var list = [{ ThuatNguId: ThuatNguId }];
-
-            removeList(list).then(function (success) {
-                vm.action.search();
-                utility.AlertSuccess('Xóa thành công');
-                $('#ThuatNguEditPopup').collapse('hide');
-            }, function (error) {
-                utility.AlertError(error);
+                vm.data.isLoading = false;
+                alert(error.data.error.code + " : " + error.data.error.message);
             });
         }
 
@@ -210,18 +236,35 @@
             $('[data-name="' + $(event.target).data('next') + '"]').focus();
         }
         vm.action.checkAll = function () {
-            vm.status.isSelectedAll = utility.checkAll(vm.data.listThuatNgu, !vm.status.isSelectedAll);
+            vm.status.isSelectedAll = utility.checkAll(vm.data.listBill, !vm.status.isSelectedAll);
         };
         vm.action.autoCheckAll = function () {
-            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listThuatNgu);
+            vm.status.isSelectedAll = utility.autoCheckAll(vm.data.listBill);
         };
+
         vm.action.refresh = function () {
-            vm.action.edit(ThuatNguId);
+            vm.action.edit(BillId);
         }
-            /* BIZ FUNCTION */
+
+        /* BIZ FUNCTION */
+        function CompareDate(dateOne, dateTwo) {
+            if (dateOne === "" || dateTwo === "")
+                return false;
+            var strOne = dateOne.split("/");
+            var strTwo = dateTwo.split("/");
+            dateOne = new Date(strOne[2], strOne[1], strOne[0]);
+            dateTwo = new Date(strTwo[2], strTwo[1], strTwo[0]);
+
+            if (dateOne > dateTwo) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
         function resetPopup() {
-            ThuatNguId = 0;
-            delete vm.data.ThuatNgu; vm.data.ThuatNgu = {};
+            BillId = 0;
+            delete vm.data.Bill; vm.data.Bill = {};
             delete vm.error; vm.error = {};
         }
 
@@ -240,11 +283,11 @@
         function checkInput(inputName) {
             var has_error = false;
             var first_error_name = '';
-            var obj_name = 'ThuatNgu';
+            var obj_name = 'Bill';
             var prop_name = '';
             var error_name = '';
 
-            prop_name = 'MaThuatNgu';
+            prop_name = 'SoBill';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -255,7 +298,18 @@
                 }
             }
 
-            prop_name = 'ThuatNgu';
+            prop_name = 'NoiDung';
+            error_name = obj_name + '_' + prop_name;
+            if (!inputName || inputName == (error_name)) {
+                vm.error[error_name] = '';
+                if (!vm.data[obj_name][prop_name]) {
+                    first_error_name = has_error ? first_error_name : error_name;
+                    vm.error[error_name] = '.';
+                    has_error = true;
+                }
+            }
+
+            prop_name = 'NguoiGui';
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
@@ -275,15 +329,36 @@
         }
 
         /* API FUNCTION */
+        function UploadFile() {
+            console.log('UploadFile');
+            var deferred = $q.defer();
+
+
+            if (angular.isUndefined(vm.data.Bill.file) || vm.data.Bill.file.length == 0) {
+                return deferred.resolve('');
+            }
+            Upload.filesUpload(vm.data.Bill.file, vm.data.Bill.HinhAnh, 'Bill/').then(function (success) {
+                console.log('Upload.filesUpload.success', success);
+                vm.data.Bill.HinhAnh = success.data.data;
+                $('input[type=file]').val('');
+                return deferred.resolve(success);
+            }, function (error) {
+                console.log(error);
+                return deferred.reject(error);
+            });
+            return deferred.promise;
+        }
 
         function insert() {
             var deferred = $q.defer();
 
-            var data = vm.data.ThuatNgu || {};
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
+            vm.data.Bill.NguoiTao = userInfo.NhanVienId;
+            var Bill = utility.clone(vm.data.Bill);
+            var data = {};
+            data.Bill = angular.toJson(Bill);
+            data.UserId = userInfo.UserId;
 
-            ThuatNguService.insert(data).then(function (success) {
+            BillService.insert(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -300,34 +375,14 @@
         function update() {
             var deferred = $q.defer();
 
-            var data = vm.data.ThuatNgu || {};
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            ThuatNguService.update(data).then(function (success) {
-                console.log(success);
-                return deferred.resolve(success);
-            }, function (error) {
-                console.log(error);
-                if (error.data.error != null) {
-                    return deferred.reject(error.data.error.message);
-                } else {
-                    return deferred.reject(error.data.Message);
-                }
-            });
-            return deferred.promise;
-        }
-
-        function removeList(list) {
-            var deferred = $q.defer();
-
+            vm.data.Bill.NguoiTao = userInfo.NhanVienId;
+            var Bill = utility.clone(vm.data.Bill);
             var data = {};
+            data.BillId = BillId;
+            data.Bill = angular.toJson(Bill);
+            data.UserId = userInfo.UserId;
 
-            data.ThuatNguIds = list.map(elem => elem.ThuatNguId).join("|");
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            ThuatNguService.delete(data).then(function (success) {
+            BillService.update(data).then(function (success) {
                 console.log(success);
                 return deferred.resolve(success);
             }, function (error) {
@@ -338,24 +393,19 @@
                     return deferred.reject(error.data.Message);
                 }
             });
-
             return deferred.promise;
         }
 
         function getById(id) {
             var deferred = $q.defer();
 
-            var data = {};
-            data.ThuatNguId = id || 0;
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
-
-            ThuatNguService.getById(data).then(function (success) {
+            BillService.getById(id).then(function (success) {
                 console.log(success);
                 if (success.data.data && success.data.data.length == 1) {
-                    vm.data.ThuatNgu = success.data.data[0];
+                    vm.data.Bill = success.data.data[0];
                 } else {
-                    delete vm.data.ThuatNgu; vm.data.ThuatNgu = {};
+                    delete vm.data.Bill;
+                    vm.data.Bill = {};
                 }
                 return deferred.resolve(success);
             }, function (error) {
@@ -384,21 +434,19 @@
 
             tableState.draw = tableState.draw + 1 || 1;
 
-            var data = {};
-            data.draw = tableState.draw;
-            data.start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
-            data.length = tableState.pagination.number || 10;  // Number of entries showed per page.
-            data.sortName = tableState.sort.predicate || 'DB.ThuatNguId';
-            data.sortDir = tableState.sort.reverse ? 'desc' : 'asc';
-            data.search = vm.inputSearch.search || '';
 
-            data.NHANVIEN_ID = userInfo.NhanVienId;
-            data.USER_ID = userInfo.UserId;
+            var draw = tableState.draw;
+            var start = tableState.pagination.start || 0;     // This is NOT the page number, but the index of item in the list that you want to use to display the table.
+            var number = tableState.pagination.number || 10;  // Number of entries showed per page.
+            var sortName = tableState.sort.predicate || 'BillId';
+            var sortDir = tableState.sort.reverse ? 'desc' : 'asc';
+            var searchString = vm.inputSearch.search || '';
+            var fields = "";
 
-            ThuatNguService.getPage(data).then(function (success) {
-                console.log(success);
-                if (success.data.data && success.data.metaData.draw == _tableState.draw) {
-                    vm.data.listThuatNgu = success.data.data;
+            BillService.getPage(draw, start, number, searchString, sortName, sortDir, fields, userInfo.UserId, userInfo.NhanVienId).then(function (success) {
+                //console.log(success);
+                if (success.data.data) {
+                    vm.data.listBill = success.data.data;
                     tableState.pagination.numberOfPages = Math.ceil(success.data.metaData.total / tableState.pagination.number);
                 }
                 return deferred.resolve(success);

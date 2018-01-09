@@ -48,10 +48,10 @@
                                     <a href="javascript:void(0)" ng-click="ctrl.action.edit(row.ID)"
                                        ng-switch-when="SoHopDong,TenHopDong" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></a>
                                     <div class="text-center" ng-switch-when="FileCung" ng-switch-when-separator="," ng-if="row.FileCung">
-                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileCung}}">Xem</a>
+                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileCung}}" target="_blank">Xem</a>
                                     </div>
                                     <div class="text-center" ng-switch-when="FileMem" ng-switch-when-separator="," ng-if="row.FileMem">
-                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileMem}}">Xem</a>
+                                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{row.FileMem}}" target="_blank">Xem</a>
                                     </div>
                                     <div class="text-center" ng-switch-when="NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
                                     <div class="text-center" ng-switch-when="DaLam" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></div>
@@ -151,14 +151,14 @@
                     <label class="control-label col-sm-3">File cứng</label>
                     <div class="col-sm-9">
                         <input type="file" class="form-control" file-bind="ctrl.data.FileHopDong.fileC" accept="*" data-name="FileHopDong_FileCung" data-next="FileHopDong_GhiChu" />
-                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileCung}}" ng-if="ctrl.data.FileHopDong.FileCung">Xem</a>
+                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileCung}}" target="_blank" ng-if="ctrl.data.FileHopDong.FileCung">Xem</a>
                     </div>
                 </div>
                 <div class="row form-group form-group-sm">
                     <label class="control-label col-sm-3">File mềm</label>
                     <div class="col-sm-9">
                         <input type="file" class="form-control" file-bind="ctrl.data.FileHopDong.fileM" accept="*" data-name="FileHopDong_FileMem" data-next="FileHopDong_GhiChu" />
-                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileMem}}" ng-if="ctrl.data.FileHopDong.FileMem">Xem</a>
+                        <a href="@(Url.Content("~/content/upload/FileHopDong/")){{ctrl.data.FileHopDong.FileMem}}" target="_blank" ng-if="ctrl.data.FileHopDong.FileMem">Xem</a>
                     </div>
                 </div>
                 <div class="row form-group form-group-sm">

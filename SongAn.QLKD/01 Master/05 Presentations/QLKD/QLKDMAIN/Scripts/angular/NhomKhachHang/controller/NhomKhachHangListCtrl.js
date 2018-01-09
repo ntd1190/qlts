@@ -188,7 +188,10 @@
                 }
             }
             var ids = NhomKhachHangSelected.join(',');
-
+            if (ids.length == 0) {
+                utility.AlertError("Vui lòng đánh dấu chọn vào ô trước khi tiếp tục.");
+                return;
+            }
             NhomKhachHangService.removeList(ids).then(function (success) {
                 vm.data.isLoading = false;
                 _tableState.pagination.start = 0;

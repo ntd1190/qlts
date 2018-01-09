@@ -266,6 +266,8 @@
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaEditCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\controller\BaoGiaListCtrl.js" />
     <Content Include="Scripts\angular\BaoGia\service\BaoGiaService.js" />
+    <Content Include="Scripts\angular\Bill\controller\BillListCtrl.js" />
+    <Content Include="Scripts\angular\Bill\service\BillService.js" />
     <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuEditCtrl.js" />
     <Content Include="Scripts\angular\ChiTieu\controller\ChiTieuListCtrl.js" />
     <Content Include="Scripts\angular\ChiTieu\service\ChiTieuService.js" />
@@ -301,6 +303,8 @@
     <Content Include="Scripts\angular\LoaiHopDong\controller\LoaiHopDongListCtrl.js" />
     <Content Include="Scripts\angular\LoaiHopDong\directive\cboLoaiHopDong.js" />
     <Content Include="Scripts\angular\LoaiHopDong\service\LoaiHopDongService.js" />
+    <Content Include="Scripts\angular\NhanVien\controller\ThongTinNhanVienEditCtrl.js" />
+    <Content Include="Scripts\angular\NhanVien\service\NhanVienEditService.js" />
     <Content Include="Scripts\angular\NhomKhachHang\controller\NhomKhachHangListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\controller\NhomKinhDoanhListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\directive\cboNhomKinhDoanh.js" />
@@ -391,6 +395,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DanhGiaDoanhThuController.cs" />
     <Compile Include="Controllers\DieuPhoiController.cs" />
@@ -520,6 +525,8 @@
     <Content Include="Views\DieuPhoi\List.cshtml" />
     <Content Include="Views\DieuPhoi\Edit.cshtml" />
     <Content Include="Views\DonHang\cboDonHang.cshtml" />
+    <Content Include="Views\NhanVien\Edit.cshtml" />
+    <Content Include="Views\Bill\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

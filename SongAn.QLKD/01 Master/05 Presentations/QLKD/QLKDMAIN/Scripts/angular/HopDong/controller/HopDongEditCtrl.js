@@ -332,7 +332,7 @@
             error_name = obj_name + '_' + prop_name;
             if (!inputName || inputName == (error_name)) {
                 vm.error[error_name] = '';
-                if (vm.data[obj_name][prop_name] < 0 || !vm.data[obj_name][prop_name]) {
+                if (vm.data[obj_name][prop_name] < 0) {
                     first_error_name = has_error ? first_error_name : error_name;
                     vm.error[error_name] = '.';
                     has_error = true;
@@ -478,6 +478,7 @@
                 console.log(success);
                 if (success.data.data && success.data.data.length == 1) {
                     vm.data.HopDong = success.data.data[0];
+                    vm.data.HopDong.TienHoaHong = (vm.data.HopDong.SoTien * vm.data.HopDong.TyLe) / 100;
                     getHopDongChiTietById(vm.data.HopDong.HopDongId);
                 } else {
                     delete vm.data.HopDong; vm.data.HopDong = {};

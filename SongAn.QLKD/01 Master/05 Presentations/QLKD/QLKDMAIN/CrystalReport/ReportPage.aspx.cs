@@ -93,7 +93,7 @@ namespace SongAn.QLKD.UI.QLKDMAIN.CrystalReport
                     Response.Write("<script>alert('Không có dữ liệu !');</script>");
                 }
 
-                //ds.WriteXmlSchema(@"D:\rptDanhGiaDoanhThu.xml");
+                //ds.WriteXmlSchema(@"D:\rptDonHangById.xml");
                 string filepath = Server.MapPath("~/CrystalReport/Report/" + reportname);
                 reportdocument.Load(filepath);
                 reportdocument.SetDataSource(ds);

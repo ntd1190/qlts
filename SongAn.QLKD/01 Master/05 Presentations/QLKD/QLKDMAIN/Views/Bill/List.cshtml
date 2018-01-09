@@ -1,0 +1,175 @@
+﻿
+@{
+    ViewBag.Title = "Bill gửi hàng";
+    ViewBag.userInfo = ViewBag.userInfo ?? "{}";
+}
+@if (ViewBag.Html != null && (bool)ViewBag.Html == true)
+{
+    <div class="container-fluid" ng-init="ctrl.onInitView({userInfo:@(ViewBag.userInfo)})" keyboard="ctrl.keys">
+        <div class="panel panel-default" id="BillList">
+            <div class="panel-heading clearfix">
+                <span class="panel-title"><i class="fa fa-fw fa-star-o"></i>@(ViewBag.Title)</span>
+                <form class="form-inline pull-right" autocomplete="on">
+                    <div class="input-group input-group-sm">
+                        <input type="text" class="form-control" ng-model="ctrl.inputSearch.search" autofocus />
+                        <span class="input-group-btn">
+                            <button type="submit" class="btn btn-primary" href="javascript:void(0)" ng-click="ctrl.action.search()"><i class="fa fa-fw fa-search"></i>Tìm kiếm (F3)</button>
+                        </span>
+                    </div>
+                </form>
+            </div>
+            <div class="panel-body">
+                <h3 class="text-center no-margin">Danh sách bill gửi hàng</h3>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive" st-table="ctrl.data.listBill" st-pipe="ctrl.action.getPage">
+                    <table class="table table-bordered table-condensed table-hover table-striped" style="min-width:800px;">
+                        <thead class="text-primary">
+                            <tr>
+                                <th class="text-center" style="width:35px;" ng-click="ctrl.action.checkAll()">
+                                    <i class="fa fa-fw" ng-class="ctrl.status.isSelectedAll ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </th>
+                                <th class="text-center" st-sort="{{cot.MaCot}}" style="width:{{cot.DoRong}}px;" ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN">
+                                    <span ng-bind="cot.TenCot"></span>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-if="ctrl.status.isLoading">
+                                <td colspan="100" class="text-center">
+                                    <i class="fa fa-fw fa-spinner fa-spin"></i>
+                                </td>
+                            </tr>
+                            <tr ng-repeat="row in ctrl.data.listBill">
+                                <td class="text-center text-primary" st-select-row="row" st-select-mode="multiple" ng-click="ctrl.action.autoCheckAll()">
+                                    <i class="fa fa-fw" ng-class="row.isSelected ? 'fa-check-square-o':'fa-square-o'"></i>
+                                </td>
+                                <td ng-repeat="cot in ctrl.data.listCot|filter:cot.HienThiYN" ng-switch="cot.MaCot">
+                                    <a href="javascript:void(0)" ng-click="ctrl.action.edit(row.BillId)"
+                                       ng-switch-when="SoBill" ng-switch-when-separator="," ng-bind="row[cot.MaCot]"></a>
+                                    <div class="text-center" ng-switch-when="NgayGui,NgayNhanThucTe,NgayTao" ng-switch-when-separator="," ng-bind="row[cot.MaCot]|date:'dd/MM/yyyy'"></div>
+                                    <div class="text-center" ng-switch-when="HinhAnh" ng-switch-when-separator="," ng-if="row.HinhAnh">
+                                        <a href="@(Url.Content("~/content/upload/Bill/")){{row.HinhAnh}}" target="_blank">Xem</a>
+                                    </div>
+                                    <span ng-switch-default ng-bind="row[cot.MaCot]"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="100" class="text-center">
+                                    <div st-pagination="" st-items-by-page="10" st-template="~/Scripts/angular/shared/smart-table/template/pagination.custom.html"></div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+
+            <div class="panel-footer">
+                <span ng-if="ctrl.action.checkQuyenTacVu('N')">
+                    <a class="btn btn-sm btn-primary" href="javascript:void(0)" ng-click="ctrl.action.edit(0)"><i class="fa fa-fw fa-plus"></i>Mới (F2)</a>&nbsp;&nbsp;&nbsp;
+                </span>
+                <span ng-if="ctrl.action.checkQuyenTacVu('D')">
+                    <a class="btn btn-sm btn-danger" href="javascript:void(0)" ng-click="ctrl.action.deleteList()"><i class="fa fa-fw fa-trash-o"></i>Xóa chọn</a>&nbsp;&nbsp;&nbsp;
+                </span>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+
+    <div class="panel panel-primary ui-draggable collapse fade" id="BillEditPopup">
+        <div class="panel-heading ui-draggable-handle clearfix">
+            <span class="panel-title">Bill gửi hàng</span>
+            <a class="btn btn-xs btn-primary pull-right" data-toggle="collapse" data-target="#BillEditPopup"><i class="fa fa-fw fa-remove"></i></a>
+        </div>
+        <div class="panel-body" style="width: 600px;height:480px">
+            <form class="form-horizontal">
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_SoBill?'has-error':''">
+                    <label class="control-label col-sm-3">Số bill</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.SoBill" autofocus
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_SoBill" data-next="Bill_NoiDung" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NoiDung?'has-error':''">
+                    <label class="control-label col-sm-3">Nội dung</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.NoiDung"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_NoiDung" data-next="Bill_NguoiGui" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NguoiGui?'has-error':''">
+                    <label class="control-label col-sm-3">Người gửi</label>
+                    <div class="col-sm-9">
+                        <cbo-nhan-vien-by-phong-ban id="cbxNhanVien" data-function-code="KD0018" data-value="ctrl.data.Bill.NguoiGui" phongbanid="53" data-config="{userInfo:@(ViewBag.userInfo)}" data-name="Bill_NguoiGui" template-url="~/nhanvien/showcombobox?viewname=cbonhanvienbyphongban"></cbo-nhan-vien-by-phong-ban>
+                       
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NguoiNhan?'has-error':''">
+                    <label class="control-label col-sm-3">Người nhận</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.NguoiNhan"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_NguoiNhan" data-next="Bill_SDT" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_SDT?'has-error':''">
+                    <label class="control-label col-sm-3">SĐT</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.SDT"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_SDT" data-next="Bill_DiaChiNhan" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_DiaChiNhan?'has-error':''">
+                    <label class="control-label col-sm-3">Địa chỉ nhận</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.DiaChiNhan"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_DiaChiNhan" data-next="Bill_NgayGui" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NgayGui?'has-error':''">
+                    <label class="control-label col-sm-3">Ngày gửi</label>
+                    <div class="col-sm-9">
+                        <input type="text" class="form-control datetimepicker date" placeholder="dd/mm/yyyy"  ng-model="ctrl.data.Bill.NgayGui"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_NgayGui" data-next="Bill_NguoiNhanThucTe" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NguoiNhanThucTe?'has-error':''">
+                    <label class="control-label col-sm-3">Người nhận thực tế</label>
+                    <div class="col-sm-9">
+                        <input class="form-control" type="text" ng-model="ctrl.data.Bill.NguoiNhanThucTe"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_NguoiNhanThucTe" data-next="Bill_NgayNhanThucTe" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_NgayNhanThucTe?'has-error':''">
+                    <label class="control-label col-sm-3">Ngày nhận thực tế</label>
+                    <div class="col-sm-9">
+                        <input class="form-control datetimepicker date" placeholder="dd/mm/yyyy"  type="text" ng-model="ctrl.data.Bill.NgayNhanThucTe"
+                               ng-keydown="ctrl.action.keyPress($event)" data-name="Bill_NgayNhanThucTe" data-next="Bill_File1" />
+                    </div>
+                </div>
+                <div class="row form-group form-group-sm" ng-class="ctrl.error.Bill_DiaChiNhan?'has-error':''">
+                    <label class="control-label col-sm-3">Hình ảnh</label>
+                    <div class="col-sm-9">
+                        <input type="file" class="form-control" file-bind="ctrl.data.Bill.file" accept="image/*" data-name="Bill_File" />
+                        <a href="@(Url.Content("~/content/upload/Bill/")){{ctrl.data.Bill.HinhAnh}}" target="_blank" ng-if="ctrl.data.Bill.HinhAnh">Xem</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="panel-footer">
+            <span ng-if="ctrl.action.checkQuyenTacVuEdit('N')||ctrl.action.checkQuyenTacVuEdit('M')">
+                <a class="btn btn-sm btn-primary" ng-click="ctrl.action.save()"><i class="fa fa-fw fa-save"></i>Lưu (F8)</a>&nbsp;&nbsp;&nbsp;
+            </span>
+            <a class="btn btn-sm btn-default" ng-click="ctrl.action.refresh()">Thiết lập lại</a>&nbsp;&nbsp;&nbsp;
+            <a class="btn btn-sm btn-default" data-toggle="collapse" data-target="#BillEditPopup">Đóng</a>&nbsp;&nbsp;&nbsp;
+        </div>
+
+    </div>
+
+    <div ui-view></div>
+}
+else if (ViewBag.ImportStyles != null && (bool)ViewBag.ImportStyles == true) { }
+else if (ViewBag.SetupStyles != null && (bool)ViewBag.SetupStyles == true) { }
+else if (ViewBag.ImportScripts != null && (bool)ViewBag.ImportScripts == true) { }
+else if (ViewBag.SetupScripts != null && (bool)ViewBag.SetupScripts == true) { }
+else if (ViewBag.ImportAngular != null && (bool)ViewBag.ImportAngular == true) { }
