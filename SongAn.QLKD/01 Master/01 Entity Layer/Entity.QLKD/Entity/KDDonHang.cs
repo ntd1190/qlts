@@ -18,6 +18,7 @@ namespace SongAn.QLKD.Entity.QLKD.Entity
         public virtual string LyDo { get; set; }
         public virtual int HopDongId { get; set; }
         public virtual int NhanVienId { get; set; }
+        public virtual string DiaChiNhan { get; set; }
         public virtual string BoPhanNhan { get; set; }
         public virtual string NguoiNhan { get; set; }
         public virtual string GhiChu { get; set; }

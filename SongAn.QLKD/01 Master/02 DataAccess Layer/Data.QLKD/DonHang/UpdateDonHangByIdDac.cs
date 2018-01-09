@@ -21,6 +21,7 @@ namespace SongAn.QLKD.Data.QLKD.DonHang
         public string LyDo { get; set; }
         public int HopDongId { get; set; }
         public int NhanVienId { get; set; }
+        public string DiaChiNhan { get; set; }
         public string BoPhanNhan { get; set; }
         public string NguoiNhan { get; set; }
         public string GhiChu { get; set; }
@@ -92,6 +93,7 @@ namespace SongAn.QLKD.Data.QLKD.DonHang
                 p.Add("LyDo", LyDo, DbType.String);
                 p.Add("HopDongId", HopDongId, DbType.Int32);
                 p.Add("NhanVienId", NhanVienId, DbType.Int32);
+                p.Add("DiaChiNhan", DiaChiNhan, DbType.String);
                 p.Add("BoPhanNhan", BoPhanNhan, DbType.String);
                 p.Add("NguoiNhan", NguoiNhan, DbType.String);
                 p.Add("GhiChu", GhiChu, DbType.String);

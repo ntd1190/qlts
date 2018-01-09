@@ -65,6 +65,7 @@
   <ItemGroup>
     <Compile Include="Controllers\BaoCaoDoanhThuController.cs" />
     <Compile Include="Controllers\BaoGiaController.cs" />
+    <Compile Include="Controllers\BillController.cs" />
     <Compile Include="Controllers\ChiTieuController.cs" />
     <Compile Include="Controllers\DanhGiaDoanhThuController.cs" />
     <Compile Include="Controllers\DiaBanController.cs" />
@@ -92,6 +93,11 @@
     <Compile Include="Models\BaoGia\GetListBaoGiaChiTietByBaoGiaIdAction.cs" />
     <Compile Include="Models\BaoGia\InsertBaoGiaAction.cs" />
     <Compile Include="Models\BaoGia\UpdateBaoGiaByIdAction.cs" />
+    <Compile Include="Models\Bill\DeleteBillByIdAction.cs" />
+    <Compile Include="Models\Bill\GetListBillByIdAction.cs" />
+    <Compile Include="Models\Bill\GetListBillByProjectionAction.cs" />
+    <Compile Include="Models\Bill\InsertBillAction.cs" />
+    <Compile Include="Models\Bill\UpdateBillByIdAction.cs" />
     <Compile Include="Models\ChiTieu\DeleteChiTieuByIdAction.cs" />
     <Compile Include="Models\ChiTieu\GetListChiTieuByIdAction.cs" />
     <Compile Include="Models\ChiTieu\GetListChiTieuByProjectionAction.cs" />

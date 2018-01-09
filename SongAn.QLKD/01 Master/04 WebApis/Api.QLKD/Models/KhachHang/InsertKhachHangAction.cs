@@ -39,9 +39,9 @@ namespace SongAn.QLKD.Api.QLKD.Models.KhachHang
                 bizKhachHang.GioiTinh = Protector.Int(_khachHang.GioiTinh);
                 bizKhachHang.HinhAnh = Protector.String(_khachHang.HinhAnh);
                 bizKhachHang.SoNha = Protector.String(_khachHang.SoNha);
-                bizKhachHang.TinhThanhPhoId = Protector.Int(_khachHang.TinhThanhPhoId);
-                bizKhachHang.QuanHuyenId = Protector.Int(_khachHang.QuanHuyenId);
-                bizKhachHang.PhuongXaId = Protector.Int(_khachHang.PhuongXaId);
+                bizKhachHang.TinhThanhPhoId = _khachHang.TinhThanhPhoId;
+                bizKhachHang.QuanHuyenId =_khachHang.QuanHuyenId;
+                bizKhachHang.PhuongXaId = _khachHang.PhuongXaId;
                 bizKhachHang.DienThoai = Protector.String(_khachHang.DienThoai);
                 bizKhachHang.FaceBook = Protector.String(_khachHang.FaceBook);
                 bizKhachHang.Email = Protector.String(_khachHang.Email);
@@ -51,7 +51,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.KhachHang
                 bizKhachHang.EmailCoQuan = Protector.String(_khachHang.EmailCoQuan);
                 bizKhachHang.Fax = Protector.String(_khachHang.Fax);
                 bizKhachHang.DiaChiCoQuan = Protector.String(_khachHang.DiaChiCoQuan);
-                bizKhachHang.NgayThanhLap = Protector.DateTime(_khachHang.NgayThanhLap);
+                bizKhachHang.NgayThanhLap = _khachHang.NgayThanhLap;
                 bizKhachHang.TheoDoi = Protector.String(_khachHang.TheoDoi);
                 bizKhachHang.Khac = Protector.String(_khachHang.Khac);
                 bizKhachHang.NguoiPhuTrach = Protector.String(_khachHang.NguoiPhuTrach);
@@ -82,8 +82,8 @@ namespace SongAn.QLKD.Api.QLKD.Models.KhachHang
         private void init()
         {
             var __khachHang = JsonConvert.DeserializeObject<dynamic>(khachHang);
-            __khachHang.NgaySinh = DateTime.ParseExact(__khachHang.NgaySinh.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
-            __khachHang.NgayThanhLap = DateTime.ParseExact(__khachHang.NgayThanhLap.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd");
+            __khachHang.NgaySinh = !String.IsNullOrEmpty(__khachHang.NgaySinh) ? DateTime.ParseExact(__khachHang.NgaySinh.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd"): __khachHang.NgaySinh;
+            __khachHang.NgayThanhLap = !String.IsNullOrEmpty(__khachHang.NgayThanhLap) ? DateTime.ParseExact(__khachHang.NgayThanhLap.ToString(), "dd/MM/yyyy", CultureInfo.GetCultureInfo("fr-FR")).ToString("yyyy-MM-dd") : __khachHang.NgayThanhLap;
             khachHang = JsonConvert.SerializeObject(__khachHang);
             _khachHang = JsonConvert.DeserializeObject<Entity.QLKD.Entity.KDKhachHang>(khachHang);
         }

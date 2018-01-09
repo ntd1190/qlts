@@ -62,6 +62,11 @@
     <Compile Include="BaoGia\GetListBaoGiaChiTietByBaoGiaIdBiz.cs" />
     <Compile Include="BaoGia\InsertBaoGiaBiz.cs" />
     <Compile Include="BaoGia\UpdateBaoGiaByIdBiz.cs" />
+    <Compile Include="Bill\DeleteBillByIdBiz.cs" />
+    <Compile Include="Bill\GetListBillByCriteriaBiz.cs" />
+    <Compile Include="Bill\GetListBillByIdBiz.cs" />
+    <Compile Include="Bill\InsertBillBiz.cs" />
+    <Compile Include="Bill\UpdateBillbyIdBiz.cs" />
     <Compile Include="ChiTieu\DeleteChiTieuByIdBiz.cs" />
     <Compile Include="ChiTieu\GetListChiTieuByCriteriaBiz.cs" />
     <Compile Include="ChiTieu\GetListChiTieuByIdBiz.cs" />

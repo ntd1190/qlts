@@ -43,6 +43,7 @@ namespace SongAn.QLKD.Api.QLKD.Models.DonHang
                 bizHeader.LyDo = Protector.String(_phieuDonHang.LyDo);
                 bizHeader.HopDongId = Protector.Int(_phieuDonHang.HopDongId);
                 bizHeader.NhanVienId = Protector.Int(_phieuDonHang.NhanVienId);
+                bizHeader.DiaChiNhan = Protector.String(_phieuDonHang.DiaChiNhan);
                 bizHeader.BoPhanNhan = Protector.String(_phieuDonHang.BoPhanNhan);
                 bizHeader.NguoiNhan = Protector.String(_phieuDonHang.NguoiNhan);
                 bizHeader.GhiChu = Protector.String(_phieuDonHang.GhiChu);

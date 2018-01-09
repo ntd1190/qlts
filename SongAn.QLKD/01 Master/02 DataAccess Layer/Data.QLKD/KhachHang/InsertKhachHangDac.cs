@@ -16,13 +16,13 @@ namespace SongAn.QLKD.Data.QLKD.KhachHang
         public string MaKhachHang { get; set; }
         public int NhomKhachHangId { get; set; }
         public string TenKhachHang { get; set; }
-        public DateTime NgaySinh { get; set; }
+        public DateTime? NgaySinh { get; set; }
         public int GioiTinh { get; set; }
         public string HinhAnh { get; set; }
         public string SoNha { get; set; }
-        public int TinhThanhPhoId { get; set; }
-        public int QuanHuyenId { get; set; }
-        public int PhuongXaId { get; set; }
+        public int? TinhThanhPhoId { get; set; }
+        public int? QuanHuyenId { get; set; }
+        public int? PhuongXaId { get; set; }
         public string DienThoai { get; set; }
         public string FaceBook { get; set; }
         public string Email { get; set; }
@@ -32,7 +32,7 @@ namespace SongAn.QLKD.Data.QLKD.KhachHang
         public string EmailCoQuan { get; set; }
         public string Fax { get; set; }
         public string DiaChiCoQuan { get; set; }
-        public DateTime NgayThanhLap { get; set; }
+        public DateTime? NgayThanhLap { get; set; }
         public string TheoDoi { get; set; }
         public string Khac { get; set; }
         public string NguoiPhuTrach { get; set; }
