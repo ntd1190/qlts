@@ -78,6 +78,7 @@
     <Compile Include="Controllers\KeHoachController.cs" />
     <Compile Include="Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
+    <Compile Include="Controllers\NhomHangHoaController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
     <Compile Include="Controllers\KhachHangController.cs" />
     <Compile Include="Controllers\NhanVienController.cs" />
@@ -123,6 +124,8 @@
     <Compile Include="Models\FileHopDong\GetListByCriteriaAction.cs" />
     <Compile Include="Models\FileHopDong\InsertFileHopDongAction.cs" />
     <Compile Include="Models\FileHopDong\UpdateFileHopDongAction.cs" />
+    <Compile Include="Models\HangHoa\GetHangHoaByIdAction.cs" />
+    <Compile Include="Models\HangHoa\GetListHangHoaByProjectionAction.cs" />
     <Compile Include="Models\HopDong\cbxGetListByCriteriaAction.cs" />
     <Compile Include="Models\HopDong\DeleteHopDongAction.cs" />
     <Compile Include="Models\HopDong\GetByIdAction.cs" />
@@ -155,6 +158,7 @@
     <Compile Include="Models\NhanVien\GetListNhanVienChiTietByProjectionAction.cs" />
     <Compile Include="Models\NhanVien\InsertNhanVienAction.cs" />
     <Compile Include="Models\NhanVien\UpdateNhanVienAction.cs" />
+    <Compile Include="Models\NhomHangHoa\GetListcbxNhomHangHoaByIdAction.cs" />
     <Compile Include="Models\NhomKhachHang\DeleteNhomKhachHangByIdAction.cs" />
     <Compile Include="Models\NhomKhachHang\GetListNhomKhachHangByIdAction.cs" />
     <Compile Include="Models\NhomKhachHang\GetListNhomKhachHangByProjectionAction.cs" />

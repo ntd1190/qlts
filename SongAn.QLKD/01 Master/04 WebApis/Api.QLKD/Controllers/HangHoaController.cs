@@ -11,6 +11,19 @@ namespace SongAn.QLKD.Api.QLKD.Controllers
         public HangHoaController() : base()
         {
         }
+        [HttpPost]
+        public async Task<IHttpActionResult> GetHangHoaById([FromBody]GetHangHoaByIdAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
+
+        [HttpPost]
+        public async Task<IHttpActionResult> GetListHangHoaByProjection([FromBody]GetListHangHoaByProjectionAction action)
+        {
+            ActionResultDto result = await action.Execute(context);
+            return Content(result.ReturnCode, result.ReturnData);
+        }
 
         [HttpPost]
         public async Task<IHttpActionResult> GetListcbxHangHoaById([FromBody]GetListcbxHangHoaByIdAction action)

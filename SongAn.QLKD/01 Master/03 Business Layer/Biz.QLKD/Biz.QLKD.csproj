@@ -109,6 +109,8 @@
     <Compile Include="DuLieu\InsertDuLieuBiz.cs" />
     <Compile Include="DuLieu\UpdateDuLieuBiz.cs" />
     <Compile Include="HangHoa\GetListcbxHangHoaByIdBiz.cs" />
+    <Compile Include="HangHoa\GetListHangHoaByCriteriaBiz.cs" />
+    <Compile Include="HangHoa\GetListHangHoaByIdBiz.cs" />
     <Compile Include="HopDong\cbxGetListByCriteriaBiz.cs" />
     <Compile Include="HopDong\DeleteHopDongChiTietBiz.cs" />
     <Compile Include="HopDong\DeleteHopDongBiz.cs" />
@@ -134,6 +136,7 @@
     <Compile Include="LoaiHopDong\UpdateLoaiHopDongBiz.cs" />
     <Compile Include="NhanVien\GetNhanVienByIdBiz.cs" />
     <Compile Include="NhanVien\GetListNhanVienChitietByCriteraBiz.cs" />
+    <Compile Include="NhomHangHoa\GetListcbxNhomHangHoaByIdBiz.cs" />
     <Compile Include="NhomKhachHang\DeleteNhomKhachHangByIdBiz.cs" />
     <Compile Include="NhomKhachHang\GetListNhomKhachHangByCriteriaBiz.cs" />
     <Compile Include="NhomKhachHang\GetListNhomKhachHangByIdBiz.cs" />

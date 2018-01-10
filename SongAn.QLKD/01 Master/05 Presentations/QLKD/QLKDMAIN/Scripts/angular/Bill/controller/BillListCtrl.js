@@ -32,7 +32,7 @@
             { MaCot: 'NoiDung', TenCot: 'Nội dung', HienThiYN: true, DoRong: 300 },
             { MaCot: 'TenNguoiGui', TenCot: 'Người gửi', HienThiYN: true, DoRong: 100 },
             { MaCot: 'NguoiNhan', TenCot: 'Người nhận', HienThiYN: true, DoRong: 200 },
-            { MaCot: 'SDT', TenCot: 'SĐT', HienThiYN: true, DoRong: 200 },
+            { MaCot: 'SDT', TenCot: 'Số điện thoại', HienThiYN: true, DoRong: 200 },
             { MaCot: 'DiaChiNhan', TenCot: 'Địa chỉ nhận', HienThiYN: true, DoRong: 200 },
             { MaCot: 'NgayGui', TenCot: 'Ngày gửi', HienThiYN: true, DoRong: 200 },
             { MaCot: 'NguoiNhanThucTe', TenCot: 'Người nhận thực tế', HienThiYN: true, DoRong: 200 },

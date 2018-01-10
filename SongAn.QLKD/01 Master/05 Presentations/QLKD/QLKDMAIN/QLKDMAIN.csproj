@@ -285,6 +285,7 @@
     <Content Include="Scripts\angular\DuLieu\controller\DuLieuListCtrl.js" />
     <Content Include="Scripts\angular\DuLieu\directive\cboDuLieu.js" />
     <Content Include="Scripts\angular\DuLieu\service\DuLieuService.js" />
+    <Content Include="Scripts\angular\HangHoa\controller\HangHoaListCtrl.js" />
     <Content Include="Scripts\angular\HangHoa\directive\cboHangHoa.js" />
     <Content Include="Scripts\angular\HangHoa\service\HangHoaService.js" />
     <Content Include="Scripts\angular\HopDong\controller\HopDongEditCtrl.js" />
@@ -305,6 +306,8 @@
     <Content Include="Scripts\angular\LoaiHopDong\service\LoaiHopDongService.js" />
     <Content Include="Scripts\angular\NhanVien\controller\ThongTinNhanVienEditCtrl.js" />
     <Content Include="Scripts\angular\NhanVien\service\NhanVienEditService.js" />
+    <Content Include="Scripts\angular\NhomHangHoa\directive\cboNhomHangHoa.js" />
+    <Content Include="Scripts\angular\NhomHangHoa\service\NhomHangHoaService.js" />
     <Content Include="Scripts\angular\NhomKhachHang\controller\NhomKhachHangListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\controller\NhomKinhDoanhListCtrl.js" />
     <Content Include="Scripts\angular\NhomKinhDoanh\directive\cboNhomKinhDoanh.js" />
@@ -408,6 +411,7 @@
     <Compile Include="Controllers\KeHoachController.cs" />
     <Compile Include="Controllers\LoaiHangHoaController.cs" />
     <Compile Include="Controllers\LoaiHopDongController.cs" />
+    <Compile Include="Controllers\NhomHangHoaController.cs" />
     <Compile Include="Controllers\TuyChonCotController.cs" />
     <Compile Include="Controllers\NhomKinhDoanhController.cs" />
     <Compile Include="Controllers\ThuatNguController.cs" />
@@ -527,6 +531,8 @@
     <Content Include="Views\DonHang\cboDonHang.cshtml" />
     <Content Include="Views\NhanVien\Edit.cshtml" />
     <Content Include="Views\Bill\List.cshtml" />
+    <Content Include="Views\NhomHangHoa\cboNhomHangHoa.cshtml" />
+    <Content Include="Views\HangHoa\List.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -17,6 +17,16 @@ namespace SongAn.QLKD.UI.QLKDMAIN.Controllers
             return View();
         }
 
+        [CustomAuthorize(FunctionCodes = "KD0019")]
+        public ActionResult showView(string viewName, string type)
+        {
+            type = string.IsNullOrEmpty(type) ? "Html" : type;
+            ViewData[type] = true;
+            string userLogin = LoadUserInfo("KD0019");
+            ViewBag.userInfo = userLogin;
+            return PartialView(viewName);
+        }
+
         [AllowAnonymous]
         public ActionResult showCombobox(string viewName, string type)
         {

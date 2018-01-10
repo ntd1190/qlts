@@ -101,6 +101,8 @@
     <Compile Include="DuLieu\InsertDuLieuDac.cs" />
     <Compile Include="DuLieu\UpdateDuLieuDac.cs" />
     <Compile Include="HangHoa\GetListcbxHangHoaByIdDac.cs" />
+    <Compile Include="HangHoa\GetListHangHoaByIdDac.cs" />
+    <Compile Include="HangHoa\GetListHangHoaByProjectionDac.cs" />
     <Compile Include="HopDong\cbxGetListByCriteriaDac.cs" />
     <Compile Include="HopDong\DeleteHopDongChiTietDac.cs" />
     <Compile Include="HopDong\DeleteHopDongDac.cs" />
@@ -139,6 +141,7 @@
     <Compile Include="KhachHang\UpdateKhachHangByIdDac.cs" />
     <Compile Include="NhanVien\GetListcbxNhanVienByPhongBanIdDac.cs" />
     <Compile Include="NhanVien\GetListNhanVienByProjectionDac.cs" />
+    <Compile Include="NhomHangHoa\GetListcbxNhomHangHoaByIdDac.cs" />
     <Compile Include="NhomKhachHang\DeleteNhomKhachHangByIdDac.cs" />
     <Compile Include="NhomKhachHang\GetListcbxNhomKhachHangByIdDac.cs" />
     <Compile Include="NhomKhachHang\GetListNhomKhachHangByCriteriaDac.cs" />
@@ -183,6 +186,7 @@
     <Folder Include="HopDong\Dto\" />
     <Folder Include="LoaiHopDong\Dto\" />
     <Folder Include="NhanVien\Dto\" />
+    <Folder Include="NhomHangHoa\Procedures\" />
     <Folder Include="ThuatNgu\Dto\" />
   </ItemGroup>
   <ItemGroup>
