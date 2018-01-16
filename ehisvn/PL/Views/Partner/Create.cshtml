@@ -1,0 +1,180 @@
+﻿@model VTSolution.Models.Partner
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật đối tác";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới đối tác";
+    }
+
+}
+
+@section featured{
+    @using (Html.BeginForm("Create", "Partner"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_link">Hình(150 x 170)</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <button id="btninput_link">Chọn Hình</button>
+                                </div>
+                                <div class="row image">
+                                    @if (Model.ImagePath != null)
+                                    {
+                                        <div class="thaihoa">
+                                            <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.ImagePath' style="width: 150px;height: 100px;" />
+                                            <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Họ Tên TV</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_Name, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Chức Danh TV</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_Posintion, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Nhận xét TV</label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="Vi_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Vi_Content)</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Họ Tên TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_Name, new { id = "NameTA", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Chức Danh TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_Position, new { id = "TitleTA", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Nhận xét TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                <textarea name="Eng_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Eng_Content)</textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Hiện Trang Chủ</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.CheckBoxFor(model => model.IsShowHome, new { id = "Title"})
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/Partner/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+<script>
+    $('#btninput_link').on('click', function () {
+
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+
+    $('#btninput_link1').on('click', function () {
+
+        $('.image2 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image2 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce3', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+
+<style>
+    .image img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+
+
+

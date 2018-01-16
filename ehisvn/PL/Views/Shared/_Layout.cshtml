@@ -1,0 +1,867 @@
+﻿@{
+
+    var about = Helper.GetData();
+    var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+    var logo = Helper.GetLogo();
+    var file = Helper.getfile();
+    var product = Helper.GetProduct();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta content="vi-VN" itemprop="inLanguage" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="url" content="@ViewBag.Url">
+    <meta name="distribution" content="Global" />
+    <meta name="author" content=@about.MetaAuthor />
+    <meta property="og:locale" content="vi-VN" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@about.HomePageDiscription" />
+    <meta property="og:url" content="@ViewBag.Url" />
+    <meta name="copyright" content=@about.MetaCopyRight />
+    <meta name="abstract" content=@about.MetaAbstract />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        img.wp-smiley, img.emoji {
+            display: inline !important;
+            border: none !important;
+            box-shadow: none !important;
+            height: 1em !important;
+            width: 1em !important;
+            margin: 0 .07em !important;
+            vertical-align: -0.1em !important;
+            background: none !important;
+            padding: 0 !important;
+        }
+    </style>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/setting.css" rel="stylesheet" />
+    <style id='rs-plugin-settings-inline-css' type='text/css'>
+        .tp-caption a {
+            color: #ff7302;
+            text-shadow: none;
+            -webkit-transition: all 0.2s ease-out;
+            -moz-transition: all 0.2s ease-out;
+            -o-transition: all 0.2s ease-out;
+            -ms-transition: all 0.2s ease-out;
+        }
+
+            .tp-caption a:hover {
+                color: #ffa902;
+            }
+    </style>
+
+
+    <link rel='stylesheet' id='fontAwesome-css' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css?ver=4.5' type='text/css' media='all' />
+    <link href="~/plugin/css/style.css" rel="stylesheet" />
+    <link href="~/plugin/css/ultimate.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/plugin/css/stylemin.css" rel="stylesheet" />
+    <link href="~/plugin/css/bootstrap/css/owl.carousel.css" rel="stylesheet" />
+    <link href="~/plugin/css/bootstrap/css/owl.theme.default.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/plugin/js/jquery.themepunch.tools.min.js"></script>
+    <script src="~/plugin/js/jquery.themepunch.revolution.min.js"></script>
+    <script src="~/plugin/js/ultimate.min.js"></script>
+    <script src="~/plugin/js/owl.carousel.min.js"></script>
+    <script src="~/plugin/scrollreveal.min.js"></script>
+    <noscript>
+        <style type="text/css">
+            .wpb_animate_when_almost_visible {
+                opacity: 1;
+            }
+        </style>
+    </noscript>
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-91825044-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.8&appId=932616100213018";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+
+</head>
+<body oncontextmenu="return false;">
+    <input type="hidden" id="user_level" value="0" />
+    <header id="header">
+        <div class="container">
+            <div id="header-left">
+                <a href="@Url.Action("Index","Home")" id="logo">@about.Slogan</a>
+            </div><div id="header-right">
+                <div id="topnav">
+                    <ul id="menu-top-desktop" class="topmenu">
+                        <li id="menu-item-6254" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6254">
+                            <a href="@Url.Action("Index","Home")" data-ps2id-api="true">@Resource.Trangchu</a>
+                        </li>
+                        <li id="menu-item-6255" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_submenu menu-item-6255">
+                            <a href="@Url.Action("Introduce","Home",new {id=1 })" data-ps2id-api="true">@Resource.Gioithieu</a>
+                        </li>
+                        <li id="menu-item-6403" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_submenu menu-item-6403">
+                            <a href="@Url.Action("Diffrent","Home")" data-ps2id-api="true">@Resource.KhacBiet</a>
+                        </li>
+                        <li id="menu-item-6256" value="" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6256">
+                            <a href="@Url.Action("Products","Home")" data-ps2id-api="true">@Resource.Sanpham</a>
+                            <ul class="sub-menu">
+                                @foreach (var item in product.ToList())
+                                {
+                                    <li class="menu-item menu-item-type-post_type menu-item-object-page menu-item-7144"><a href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan = Util.GenerateUrl(item.Vi_Title.Trim())})">@item.Vi_Title</a></li>
+                                }
+                            </ul>
+                        </li>
+                        <li id="menu-item-6452" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6452">
+                            <a href="@Url.Action("Customers","ViewProduct")" data-ps2id-api="true">@Resource.KhachHang</a>
+                        </li>
+                        <li id="menu-item-6453" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6452">
+                            <a href="@Url.Action("News","Home")" data-ps2id-api="true">@Resource.TinTuc</a>
+                        </li>
+                        <li id="menu-item-6258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6258">
+                            <a href="@Url.Action("Contact","Home")" title="Liên hệ nhanh với Sao Kim" data-ps2id-api="true">@Resource.Lienhe</a>
+                        </li>
+                    </ul>
+                </div>
+            </div><div class="clearfix"></div>
+            <div id="header-top">
+                <div class="dropdown hotline-dropdown">
+                    <div class="social">
+                        <div class="social-link">
+                            @*<a href="/Dieu-Khoan-Su-Dung" target="_blank" title="xem dieu khoan" rel="nofollow" style="background-color: #428bca;color: white;margin-right: 10px;padding: 8px 2px 8px 2px;" >
+                               Điều khoản sử dụng
+                            </a>*@
+                            <a href="@about.Linkedin" target="_blank" title="Follow us on Linkedin" rel="nofollow" class="linkedin">
+                                <i class="fa fa-linkedin"></i>
+                            </a>
+                            <a href="@about.Instagram" target="_blank" title="Follow us on Instagram" rel="nofollow" class="pinterest">
+                                <i class="fa fa-instagram"></i>
+                            </a>
+                            <a href="@about.Twitter" target="_blank" title="Follow us on Twitter" rel="nofollow" class="twitter">
+                                <i class="fa fa-twitter"></i>
+                            </a>
+                            <a href="@about.Facebook" target="_blank" title="Follow us on Facebook" rel="nofollow" class="facebook">
+                                <i class="fa fa-facebook"></i>
+                            </a>
+                            <a href="@about.Google" target="_blank" title="Follow us on Google +1" rel="nofollow" class="google">
+                                <i class="fa fa-google-plus"></i>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                @if (currentCulture.Name == "en-US")
+                {
+                    <div class="language">
+                        <a href="@Url.Action("ChangeLanguage", "Home", new { lang = "vi-VN" })">VI</a> |
+                        <a class="current" href="@Url.Action("ChangeLanguage", "Home", new { lang = "en-US"})">EN</a>
+                    </div>
+                }
+                else
+                {
+                    <div class="language">
+                        <a class="current" href="@Url.Action("ChangeLanguage", "Home", new { lang = "vi-VN"})">VI</a> |
+                        <a href="@Url.Action("ChangeLanguage", "Home", new { lang = "en-US" })">EN</a>
+                    </div>
+                }
+            </div>
+            <a href="javascript:void(0);" id="mobile-menu" class="dongvao">
+                <i class="fa fa-bars"></i>
+            </a>
+        </div>
+    </header>
+    <div id="wrapper">
+        @RenderBody()
+        <footer id="footer">
+
+            <div id="footerbg"></div><div id="footer-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <a id="footer-logo" href="@Url.Action("Index","Home")">@about.Slogan</a>
+                        </div><div class="col-sm-9">
+                            <h2>
+                                @about.Vi_Company
+                            </h2><div class="row">
+                                <div class="col-sm-6" style="font-size: 13px; font-weight: bold;color: #0082c9;">
+                                    <i class="fa fa-location-arrow" aria-hidden="true"></i> @about.Address<br>
+                                    <i class="fa fa-phone" aria-hidden="true"></i> Tel: @about.Phone<br>
+                                    <i class="fa fa-envelope-o" aria-hidden="true"></i> Email: @about.Email <br>
+                                    <i class="fa fa-wordpress" aria-hidden="true"></i> Website: www.ehis.vn <br>
+                                </div>
+                                <div class="col-sm-4" style="font-size: 13px;font-weight: bold;color: #0082c9;">
+
+
+                                    <i class="fa fa-clock-o" aria-hidden="true"></i> @Resource.GioLam: <br>
+                                    Thứ 2- Thứ 6 : 8 AM - 5 PM <br>
+                                    Thứ 7 : 8 AM - 12 AM <br>
+
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div><div class="clearfix"></div>
+                    </div><p align="center" style="font-size: 13px;font-weight: bold;color: #0082c9;">
+                        <br />@Resource.BanQuyen © @about.Vi_Company
+
+                </div>
+            </div>
+        </footer>
+    </div>
+    <div class="footer-support" id="footer-support">
+        <a href="javascript:void(0);" class="an" onclick="javascript:jQuery('#footer-support').removeClass('hienlen').addClass('andi');">
+            <i class="fa fa-angle-down"></i>
+        </a>
+        <a href="javascript:void(0);" class="hien" onclick="javascript:jQuery('#footer-support').removeClass('andi').addClass('hienlen');">
+            <i class="fa fa-angle-up"></i></i>
+        </a>
+        <div class="container">
+            <div class="care">
+                <div class="footer-support-icon">
+                    <div>
+                        TP.HCM: <a href="@about.HotLine"><span>@about.HotLine</span></a>
+                    </div><div class="hidemob">Email: @about.Email</div>
+                </div>
+                <div class="footer-support-icon idownload">
+                    <div>
+                        <a href="@file.LinkDownload" target="_blank">
+                            <span class="fulltext">@Resource.HoSoNangLuc</span> <span class="shorttext">
+                                <i class="fa fa-download"></i>Tải Profile
+                            </span>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="quick-alo-phone quick-alo-green quick-alo-show" id="quick-alo-phoneIcon" style="right: -25px; top: 40%;">
+        <a href="javascript:void(0);" onclick="javascript:jQuery('#callback').show();" title="Liên hệ nhanh với Song Ân">
+            <div class="quick-alo-ph-circle"></div><div class="quick-alo-ph-circle-fill"></div><div class="quick-alo-ph-img-circle"></div>
+        </a>
+    </div>
+    <div id="callback" class="callback">
+        <div class="callback-form">
+            <a href="javascript:void(0);" class="close" onclick="javascript:jQuery('#callback').hide();">
+                <i class="fa fa-times"></i>
+            </a>
+            <h3>
+                @Resource.HoTro
+                <span style="display:inline-block;float:right;font-weight:700;color:#000;">
+                    <i class="fa fa-whatsapp" style="font-size:18px;color:#000;"></i>
+                    <a href="tel:098 66 743 55" style="color:#000;">@about.Phone</a>
+                </span>
+            </h3>
+
+            <div role="form" class="wpcf7" id="wpcf7-f4733-o1" lang="vi" dir="ltr">
+                <div class="screen-reader-response"></div><form action="/#wpcf7-f4733-o1" method="post" class="wpcf7-form" novalidate="novalidate">
+                    <div style="display: none;">
+                        <input type="hidden" name="_wpcf7" value="4733" />
+                        <input type="hidden" name="_wpcf7_version" value="4.4.1" />
+                        <input type="hidden" name="_wpcf7_locale" value="vi" />
+                        <input type="hidden" name="_wpcf7_unit_tag" value="wpcf7-f4733-o1" />
+                        <input type="hidden" name="_wpnonce" value="99cb70fd5b" />
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="ui-front">
+                                <input class="wpcf7-form-control wpcf7-text" type="hidden" id="khach" placeholder="@Resource.KhachHang">
+                                <input class="form-control" type="text" id="tags" autocomplete="on" placeholder="@Resource.KhachHang">
+                            </p>
+                            <p>
+                                <span class="wpcf7-form-control-wrap quick-your-company">
+                                    <input type="text" name="quick-your-company" value="" size="40" class="form-control" id="quick-your-company" aria-invalid="false" placeholder="@Resource.Nguoilienhe" />
+                                </span>
+                            </p>
+                            <p>
+                                <span class="wpcf7-form-control-wrap quick-your-email">
+                                    <input type="email" name="quick-your-email" value="" size="40" class="form-control" id="quick-your-email" aria-required="true" aria-invalid="false" placeholder="Email" />
+                                </span>
+                            </p>
+                            <p>
+                                <span class="wpcf7-form-control-wrap quick-your-phone">
+                                    <input type="number" name="quick-your-phone" value="" size="40" class="form-control" id="quick-your-phone" aria-required="true" aria-invalid="false" placeholder="@Resource.Dienthoai" />
+                                </span>
+                            </p>
+                            <div class="g-recaptcha" data-sitekey="6Le9DiUUAAAAAIkC-1jIvQqKwYhQw4XD8J8Eweci"></div>
+                            <input type="hidden" name="quick-referer" id="quick-referer" value="#" />
+                            <div class="row" style="margin:10px auto">
+                                <button type="button" style="margin-right:20px;font-size:16px!important" class="btn btn-primary btn-lg" id="load" data-loading-text="<i class='fa fa-spinner fa-spin '></i> Đang xử lý">Gửi Thông Tin</button>
+                                <span style="display:inline-block;color:#000;">
+
+                                    <button style="color:white" class="btn btn-primary" href="#" onclick="javascript:jQuery('#callback1').show();"><i class="fa fa-history" style="font-size:18px;color:#000;"></i> Xem Lịch Sử</button>
+                                </span>
+                                <p class="rpt" style="display:none;margin-top:25px;color: red;">Thank you ! We have received your message.</p>
+                            </div>
+
+                        </div>
+                        <div class="col-md-8">
+                            <p>
+                                <span class="wpcf7-form-control-wrap quick-your-subject">
+                                    <input type="text" name="quick-your-subject" value="" size="40" class="form-control" id="quick-your-subject" aria-required="true" aria-invalid="false" placeholder="@Resource.TieuDe" />
+                                </span>
+                            </p><p>
+                                <span class="wpcf7-form-control-wrap quick-your-message"><textarea name="quick-your-message" cols="40" rows="12" class="form-control" id="quick-your-message" aria-required="true" aria-invalid="false" placeholder="@Resource.Ykien"></textarea></span>
+                            </p>
+
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="wpcf7-response-output wpcf7-display-none"></div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="callback1" class="callback">
+        <div class="callback-form">
+            <a href="javascript:void(0);" class="close" onclick="javascript:jQuery('#callback1').hide();">
+                <i class="fa fa-times"></i>
+            </a>
+            <div class="row">
+                <div class="container">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Lịch Sử Yêu Cầu</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p class="ui-front">
+                                        <input class="wpcf7-form-control wpcf7-text" type="hidden" id="khach1" placeholder="@Resource.KhachHang">
+                                        <input class="form-control" type="text" id="tags1" autocomplete="on" placeholder="Tìm Tên">
+                                    </p>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="từ ngày" id="datepicker" />
+                                    <script>
+                                        jQuery(function () {
+                                            $("#datepicker").datepicker({ dateFormat: 'dd-mm-yy' });
+                                            jQuery("#datepicker").datepicker('setDate', new Date());
+
+                                        });
+                                    </script>
+                                </div>
+                                <div class="col-md-2">
+                                    <input type="text" class="form-control" placeholder="đến ngày" id="datepicker1" />
+                                    <script>
+                                        jQuery(function () {
+                                            $("#datepicker1").datepicker({ dateFormat: 'dd-mm-yy' });
+                                            jQuery("#datepicker1").datepicker('setDate', new Date());
+                                        });
+                                    </script>
+                                </div>
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary" id="viewchitiet">Xem Chi Tiết</button>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="row">
+                                <div class="panel">
+                                    <table id="datatable_sample" class="cell-border" cellspacing="0" width="100%">
+                                        <thead>
+                                            <tr>
+                                                <th class="txtth">Ngày</th>
+                                                <th class="txtth">Tiêu Đề</th>
+                                                <th class="txtth">Mô Tả</th>
+                                                <th class="txtth">Hướng Xử Lý</th>
+                                                <th class="txtth">Người Xử Lý</th>
+                                                <th class="txtth">Tình Trạng</th>
+                                                <th class="txtth">Đánh Giá</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="listdata"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="callback2" class="callback">
+        <div class="callback-form">
+            <a href="javascript:void(0);" class="close" onclick="javascript:jQuery('#callback2').hide();">
+                <i class="fa fa-times"></i>
+            </a>
+            <div class="row">
+                <div class="container">
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Nhập Email Để Đánh Giá </h3>
+                        </div>
+
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <p class="ui-front">
+
+                                        <input class="form-control" type="text" id="emailkh" placeholder="Nhập Email">
+                                    </p>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <button class="btn btn-primary" id="guidanhgia" data-loading-text='<i class=\"fa fa-spinner fa-spin\"></i> Đang xử lý'>Nhận Form Đánh Giá</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a href="#top" id="gotop">
+        <i class="fa fa-angle-up"></i>
+    </a><div id="mobilenav">
+        <div id="cssmenu">
+            <div id="cssmenu" class="menu-top-mobile-container">
+                <ul id="menu-top-mobile" class="">
+                    <li id="menu-item-6254" class="menu-item menu-item-type-custom menu-item-object-custom current-menu-item current_page_item menu-item-home menu-item-6254">
+                        <a href="@Url.Action("Index","Home")" data-ps2id-api="true">@Resource.Trangchu</a>
+                    </li>
+                    <li id="menu-item-6255" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_submenu menu-item-6255">
+                        <a href="@Url.Action("Introduce","Home",new {id=1 })" data-ps2id-api="true">@Resource.Gioithieu</a>
+                    </li>
+                    <li id="menu-item-6403" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_submenu menu-item-6403">
+                        <a href="@Url.Action("Diffrent","Home")" data-ps2id-api="true">@Resource.KhacBiet</a>
+                    </li>
+                    <li id="menu-item-6256" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children has_submenu menu-item-6403">
+                        <a href="@Url.Action("Products","Home")" data-ps2id-api="true">@Resource.Sanpham</a>
+                      
+                    </li>
+                    <li id="menu-item-6452" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6452">
+                        <a href="@Url.Action("Customers","ViewProduct")" data-ps2id-api="true">@Resource.KhachHang</a>
+                    </li>
+                    <li id="menu-item-6453" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6452">
+                        <a href="@Url.Action("News","Home")" data-ps2id-api="true">@Resource.TinTuc</a>
+                    </li>
+                    <li id="menu-item-6258" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-6258">
+                        <a href="@Url.Action("Contact","Home")" title="Liên hệ nhanh với Sao Kim" data-ps2id-api="true">@Resource.Lienhe</a>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div><div id="mobi-overlay"></div>
+    <style>
+        .sub-menu {
+            width: 600px !important;
+        }
+
+        #topnav ul.topmenu ul {
+            left: -200px !important;
+        }
+
+            #topnav ul.topmenu ul li {
+                width: 50% !important;
+                opacity: 2.75 !important;
+            }
+
+                #topnav ul.topmenu ul li a {
+                    background-color: #0082c9 !important;
+                    color: white !important;
+                    border-bottom: 1px solid white !important;
+                }
+
+                    #topnav ul.topmenu ul li a:hover {
+                        background-color: white !important;
+                        color: #0082c9 !important;
+                        border-bottom: 1px solid white !important;
+                    }
+
+        #ui-datepicker-div {
+            z-index: 99999 !important;
+        }
+
+        .link-item {
+            margin-bottom: 10px;
+        }
+
+        .download-link .icon {
+            font-size: 16px;
+            color: #FDB813;
+            margin-right: 10px;
+        }
+
+        .download-link .lock {
+            font-size: 12px;
+        }
+
+        .txtth {
+            text-align: left;
+        }
+
+        .contactdownload {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            width: 550px;
+            height: 400px;
+            max-width: 100%;
+            overflow-y: auto;
+            -webkit-transform: translate(-50%, -50%);
+            -moz-transform: translate(-50%, -50%);
+            -ms-transform: translate(-50%, -50%);
+            -o-transform: translate(-50%, -50%);
+            padding: 15px 15px;
+            border: #ccc solid 1px;
+            z-index: 9999;
+            background-color: #fff;
+        }
+
+            .contactdownload .text {
+                width: 100%;
+                border: #ccc solid 1px;
+                padding: 3px 5px;
+            }
+
+            .contactdownload .closedownload {
+                display: block;
+                text-align: right;
+                font-weight: bold;
+                font-size: 24px;
+            }
+
+        .bgdownload {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 8888;
+            background-color: rgba(0,0,0,.3);
+        }
+
+        .ui-autocomplete {
+            max-height: 200px;
+            overflow-y: auto;
+            /* prevent horizontal scrollbar */
+            overflow-x: hidden;
+            /* add padding to account for vertical scrollbar */
+            padding-right: 20px;
+        }
+    </style>
+
+    <div id="su-footer-links" style="text-align: center;"></div>
+    <div id="su-footer-links" style="text-align: center;"></div>
+    <script src="~/plugin/js/jquery.form.min.js"></script>
+    <script src="~/plugin/js/Script_ver01.js"></script>
+    <script src="~/plugin/js/Page_scroll.js"></script>
+    <script src="~/plugin/js/myapp.min.js"></script>
+    <script src="~/plugin/js/embed.js"></script>
+    <script src="~/plugin/js/viewportchecker.js"></script>
+    <script src="~/Scripts/Boostrap/bootstrap.js"></script>
+</body>
+</html>
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link href="~/Scripts/Boostrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<link href="~/plugin/css/layout-datatables.css" rel="stylesheet" />
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="~/plugin/js/bootstrap.min.js"></script>
+<script type="text/javascript" src='https://www.google.com/recaptcha/api.js'></script>
+<script src="~/plugin/dataTables/js/jquery.dataTables.min.js"></script>
+<script src="~/plugin/app.js"></script>
+<script type="text/javascript" src="http://codeseven.github.com/toastr/toastr.js"></script>
+<link rel="stylesheet" type="text/css" href="http://codeseven.github.com/toastr/toastr.css">
+<script>
+    var plugin_path = 'plugin/';
+    var url = window.location;
+    jQuery('.topmenu li').removeClass('current-menu-item');
+
+    var element = jQuery('.topmenu li a').filter(function () {
+        return this.href == url || (url.href.indexOf(this.href) > -1 && this.href.length > url.origin.length + 1);
+    }).parent().addClass('current-menu-item');
+    if (jQuery('#menu-item-6256').attr('value') != "") {
+        jQuery('#menu-item-6256').addClass('current-menu-item');
+    }
+    jQuery(document).ready(function () {
+
+
+        jQuery('#load').click(function () {
+
+            //setTimeout(function () {
+
+            //}, 2000);
+            var name = jQuery('#khach').val();
+            var email = jQuery('#quick-your-email').val();
+            var phone = jQuery('#quick-your-phone').val();
+            var subject = jQuery('#quick-your-subject').val();
+            var company = jQuery('#quick-your-company').val();
+            var content = jQuery('#quick-your-message').val();
+
+            if (jQuery('#khach').val() == "") {
+                jQuery('#tags').select();
+                jQuery('.rpt').text("Vui lòng chọn 1 khách hàng trong danh sách").fadeIn();
+                return false;
+            }
+            if (email == "") {
+                jQuery('#quick-your-email').select();
+                jQuery('.rpt').text("Vui lòng nhập địa chỉ email").fadeIn();
+                return false;
+            }
+            if (!isValidEmailAddress(email)) {
+                jQuery('#quick-your-email').select();
+                jQuery('.rpt').text("Vui lòng nhập đúng định dạng địa chỉ email").fadeIn();
+                return false;
+            }
+            if (phone == "") {
+                jQuery('#quick-your-phone').select();
+                jQuery('.rpt').text("Vui lòng nhập sdt").fadeIn();
+                return false;
+            }
+            if (subject == "") {
+                jQuery('#quick-your-subject').select();
+                jQuery('.rpt').text("Vui lòng nhập chủ đề").fadeIn();
+                return false;
+            }
+            if (company == "") {
+                jQuery('.rpt').text("Vui lòng nhập người liên hệ").fadeIn();
+                jQuery('#quick-your-company').select();
+                return false;
+            }
+            if (content == "") {
+                jQuery('.rpt').text("Vui lòng nhập nội dung").fadeIn();
+                jQuery('#quick-your-message').select();
+                return false;
+            }
+            var jQuerythis = jQuery(this);
+            jQuerythis.button('loading');
+            var captcharesponse = grecaptcha.getResponse();
+            jQuery.ajax({
+                url: '@Url.Action("SendInfo", "Home")',
+                type: 'Post',
+                contentType: 'application/json',
+                data: JSON.stringify({ name: name, email: email, phone: phone, subject: subject, company: company, content: content, captcharesponse: captcharesponse }),
+                success: function (response) {
+                    jQuery('#tags').val('');
+                    jQuery('#khach').val('');
+                    jQuery('#quick-your-email').val('');
+                    jQuery('#quick-your-phone').val('');
+                    jQuery('#quick-your-company').val('');
+                    jQuery('#quick-your-subject').val('');
+                    jQuery('#quick-your-message').val('');
+                    if (response == "1") {
+                        jQuery('.rpt').text("Gửi yêu cầu hỗ trợ thành công").css("color", "#3276b1").fadeIn();
+                    }
+                    else {
+                        jQuery('.rpt').text(response).fadeIn();
+                    }
+                    grecaptcha.reset();
+                    jQuerythis.button('reset');
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    toastr.warning("có lỗi xảy ra,vui lòng thử lại sau");
+                }
+            });
+        })
+    });
+    jQuery('#viewchitiet').click(function () {
+        jQuery.ajax({
+            url: '@Url.Action("GetItemListById", "Home")',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify({ id: $('#khach1').val(), tungay: $('#datepicker').val(), denngay: $('#datepicker1').val() }),
+            success: function (response) {
+
+                if (response.length == 0) {
+                    jQuery(".listdata").empty();
+                    return false;
+                    gettable();
+
+                }
+
+
+                AppendList(response);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                toastr.warning("có lỗi xảy ra,vui lòng thử lại sau");
+            }
+
+        })
+    })
+    function gettable() {
+        loadScript(plugin_path + "datatables/js/jquery.dataTables.min.js", function () {
+            loadScript(plugin_path + "datatables/dataTables.bootstrap.js", function () {
+                if (jQuery().dataTable) {
+                    var table = jQuery('#datatable_sample');
+                    table.dataTable({
+                        "lengthMenu": [
+                            [10, 20, 30, -1],
+                            [10, 20, 30, "All"] // change per page values here
+                        ],
+                        // set the initial value
+                        "pageLength": 5,
+                        "searching": false,
+                        "pagingType": "bootstrap_full_number",
+                        "language": {
+                            "lengthMenu": "  Hiển thị _MENU_",
+                            "paginate": {
+                                "previous": "Prev",
+                                "next": "Next",
+                                "last": "Last",
+                                "first": "First"
+                            }
+                        }
+                    });
+
+
+
+                    table.on('change', 'tbody tr .checkboxes', function () {
+                        jQuery(this).parents('tr').toggleClass("active");
+                    });
+
+
+                }
+
+            });
+        });
+    }
+    function AppendList(data) {
+        var append = "";
+        $(".listdata").empty();
+        if (data != null) {
+            var i = 1;
+            data.forEach(function (item) {
+
+                append += "<tr class='odd gradeX'>";
+                append += "<td class='txtth'>" + item.ngaydenghi + "</td>";
+                append += "<td class='txtth'>" + item.tieude + "</td>";
+                append += "<td class='txtth'>" + item.mota + "</td>";
+                append += "<td class='txtth'>" + item.huongxuly + "</td>";
+                append += "<td class='txtth'>" + item.nguoixuly + "</td>";
+                append += "<td class='txtth'>" + item.trangthai + "</td>";
+                if (item.matrangthai == "3") {
+                    if (item.Email != null) {
+                        append += "<td class='txtth'><button ma=" + item.IssueId + " email=" + item.Email + " company=\'" + item.NguoiLienHe + "\' class='btn btn-primary xemdg' data-loading-text='<i class=\"fa fa-spinner fa-spin\"></i> Đang xử lý'>Nhận Đánh Giá</button></td>";
+                    }
+                    else {
+                        append += "<td class='txtth'><button class='btn btn-primary nhapemail' ma=" + item.IssueId + " company=\'" + item.NguoiLienHe + "\' >Nhập email</button></td>";
+                    }
+
+                }
+                else {
+                    append += "<td class='txtth'></td>";
+                }
+                append += "</tr>";
+                i = i + 1;
+            });
+            $('#datatable_sample').dataTable().fnDestroy();
+            $(".listdata").html(append);
+            gettable();
+        }
+    }
+    jQuery(function () {
+
+        $("#tags").autocomplete({
+            //source: availableTags
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetItemList", "Home")',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ term: request.term }),
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+
+                $("#tags").val(ui.item.value); // display the selected text
+                $("#khach").val(ui.item.id); // save selected id to hidden input
+                $("#quick-your-email").val(ui.item.email);
+                $("#quick-your-phone").val(ui.item.dienthoai);
+            }
+        });
+        $("#tags1").autocomplete({
+            //source: availableTags
+            source: function (request, response) {
+                $.ajax({
+                    url: '@Url.Action("GetItemList", "Home")',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ term: request.term }),
+                    success: function (data) {
+                        response(data);
+                    }
+                });
+            },
+            select: function (event, ui) {
+
+                $("#tags1").val(ui.item.value); // display the selected text
+                $("#khach1").val(ui.item.id); // save selected id to hidden input
+            }
+        });
+    });
+
+    function AddZero(num) {
+        return (num >= 0 && num < 10) ? "0" + num : num + "";
+    }
+    $(document).on('click', '.nhapemail', function () {
+        jQuery('#callback2').show();
+        jQuery('#guidanhgia').attr('ma', $(this).attr('ma'));
+        jQuery('#guidanhgia').attr('company', $(this).attr('company'));
+    })
+
+    $(document).on('click', '.xemdg', function () {
+        var jQuerythis = jQuery(this);
+        jQuerythis.button('loading');
+        $.ajax({
+            url: '@Url.Action("Guidanhgia", "Home")',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify({ ma: $(this).attr('ma'), email: $(this).attr('email'), company: $(this).attr('company') }),
+            success: function (data) {
+                jQuerythis.button('reset');
+                jQuery("#viewchitiet").trigger("click");
+                toastr.warning(data);
+            }
+        });
+    });
+    $(document).on('click', '#guidanhgia', function () {
+        var jQuerythis = jQuery(this);
+        jQuerythis.button('loading');
+        $.ajax({
+            url: '@Url.Action("Guidanhgia", "Home")',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify({ ma: $(this).attr('ma'), email: $('#emailkh').val(), company: $(this).attr('company') }),
+            success: function (data) {
+                jQuerythis.button('reset');
+                $('#emailkh').val('');
+                jQuery('#callback2').hide();
+                jQuery("#viewchitiet").trigger("click");
+                toastr.warning(data);
+            }
+        });
+    });
+</script>

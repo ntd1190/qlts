@@ -1,0 +1,458 @@
+﻿@model VTSolution.Models.AboutU
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật thông tin";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "AboutUs"))
+    {
+
+        @Html.HiddenFor(model => model.Id)
+        <div class="row box-body">
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Tên cty </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Vi_Company, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Tên Tiếng Anh </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Eng_Company, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Email</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Email, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">HotLine</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.HotLine, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Phone</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Phone, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Fax</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Fax, new { id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Địa Chỉ</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Address, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Địa Chỉ Tiếng Anh</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Eng_Address, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Vĩ độ</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Latitude, new { id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Kinh Độ</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Longtitude, new { id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Nhân Sự</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.SloganStaff, new { rows="6",id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Hoạt Động </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.SloganAlbum, new {rows="6", id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Lý Do </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.SloganReason, new { rows="4",id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Nhân Sự TA</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Eng_SloganStaff, new { rows="4",id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                
+                @*<div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Slogan </label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Slogan, new { id = "Title", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Slogan Tiếng Anh </label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Eng_Slogan, new { id = "Title", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />*@
+
+
+            </div>
+            <div class="col-md-6">
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Email Nhận Thông Tin Từ Web</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.EmailReceive, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Email Nhận Yêu Cầu Hỗ Trợ</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.EmailSent, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Facebook</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Facebook, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Linkedin</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Linkedin, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Instagram</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Instagram, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Twitter</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Twitter, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Youtube</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Twitter, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Google+</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Google, new { id = "Title", required = "required", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Home Title</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.HomePageTitle, new {rows="4", id = "input_Latitude", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Home Description</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.HomePageDiscription, new { rows = "4",id = "input_Latitude", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Home Keywords</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.HomePageKeywords, new { rows = "4", id = "input_Latitude", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Meta Copyright</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.MetaCopyRight, new { rows = "4", id = "input_Latitude", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Meta Abstract</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.MetaAbstract, new { rows = "4", id = "input_Latitude", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+
+                    <div class="col-md-3">
+                        <label for="input_Latitude">Meta Author</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.MetaAuthor, new { rows = "4", id = "input_Latitude", @class = "form-control" })
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Hoạt Động TA </label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Eng_SloganAlbum, new { rows = "6", id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-md-3">
+                        <label for="Title">Slogan Lý Do TA</label>
+                    </div>
+                    <div class="col-md-9">
+                        @Html.TextAreaFor(model => model.Eng_SloganReason, new { rows = "6", id = "Title", @class = "form-control" })
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-md-3">
+                <label for="input_Latitude">Mô Tả Sản Phẩm TV</label>
+            </div>
+            <div class="col-md-9">
+                <textarea name="Vi_Product" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Vi_Product)</textarea>
+            </div>
+
+        </div>
+        <br />
+        <div class="row">
+
+            <div class="col-md-3">
+                <label for="input_Latitude">Mô Tả Sản Phẩm TA</label>
+            </div>
+            <div class="col-md-9">
+                <textarea name="Eng_Product" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Eng_Product)</textarea>
+            </div>
+
+        </div>
+        @*<br />
+        <div class="row">
+
+            <div class="col-md-3">
+                <label for="input_Latitude">Điều khoản sử dụng</label>
+            </div>
+            <div class="col-md-9">
+                <textarea name="Eng_Product" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Eng_Product)</textarea>
+            </div>
+
+        </div>*@
+        <div class="box-footer">
+            <div class="row">
+                <div class="col-md-4">
+                    <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                    <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/AboutUs/Index" data-style="expand-right">Quay lại</a>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<script>
+    $('#btninput_link').on('click', function () {
+
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+
+    $('#btninput_link1').on('click', function () {
+
+        $('.image2 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image2 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce3', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+
+
+<script>
+    $('#btninput_link').on('click', function () {
+
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    $('#btninput_link4').on('click', function () {
+
+        $('.imagedetail4 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.imagedetail4 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=NoTinyMCEDetail4', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+
+    $('#btninput_link1').on('click', function () {
+
+        $('.image2 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image2 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce3', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    $('#btninput_link5').on('click', function () {
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce1', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+    $('#btninput_link3').on('click', function () {
+
+        $('.image3 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image3 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce5', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>

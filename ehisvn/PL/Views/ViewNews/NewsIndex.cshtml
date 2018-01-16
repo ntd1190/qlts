@@ -1,0 +1,70 @@
+﻿@model VTSolution.ViewModel.Customer.NewsIndexModel
+@{
+    ViewBag.Title = Resource.Tintuc;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/JS-Paging/page-maker.js"></script>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+}
+
+<div class="container">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1517px; height: 665px; opacity: 1;">
+        <div class="color-bg">
+            <img src="@Helper.GetBanner().ImagePath" alt="Background - Tin tức và sự kiện" style="width: 1517px; height: 829.083px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND-->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <h2>@Resource.Tintuc</h2>
+
+        <div class="container" style="top:75px;height:600px;overflow:auto;" >
+            @foreach (var item in Model.ListNews)
+            {
+                <div class="news-box" style="float: left;">
+                    <div class="news-img">
+                        <a href="@Url.Action("NewsDetail", "ViewNews", new {title = Util.GenerateUrl(item.Vi_Title.Trim()), id = item.Id})">
+                            <img src="@item.ImagePath" alt="@item.Vi_Title">
+                        </a>
+                    </div>
+                    <div class="news-text-box" style="height:20%!important">
+                        <a href="#">
+                            <h3>@item.Vi_Title</h3>
+                        </a>
+                    </div>
+                    <div style="margin:15px;color:black;">
+                        <a href="@Url.Action("NewsDetail", "ViewNews", new {title = Util.GenerateUrl(item.Vi_Title.Trim()), id = item.Id})">
+                            <p style="text-align: justify;font-style:italic">@item.Vi_Description</p>
+                        </a>
+                    </div>
+                    @*<a class="view-details" href="@Url.Action("NewsDetail", "ViewNews", new {title = Util.GenerateUrl(item.Vi_Title.Trim()), id = item.Id})">
+                            @Resource.Xemchitiet<span></span>
+                        </a>*@
+                </div>
+
+            }
+        </div>
+
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        //how much items per page to show
+        pageMaker(9, '#listnews', '#page_navigation');
+    });
+</script>
+<style>
+    a:hover{
+        text-decoration:none;
+    }
+    a{
+        color:black;
+    }
+</style>

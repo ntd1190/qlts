@@ -1,0 +1,52 @@
+﻿@model  IEnumerable <VTSolution.Models.Project>
+@{
+    ViewBag.Title = Resource.tim;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int i = 1;
+}
+<div class="container" id="search-page">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1366px; height: 599px; opacity: 1;">
+        <div class="color-bg">
+            <img src="@Helper.GetBanner().ImagePath" alt="Background - Kết quả tìm kiếm" style="width: 1366px; height: 746.557px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND-->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <h2>@Resource.tim</h2>
+        <div class="content-page news-full" style="height: 499px; width: 1366px;">
+            <div class="colum-box-news-details" style="height: 499px; width: 1096px; max-width: 1050px; top: 0px; left: 170px;">
+                <div class="news-right" style="height: 0px; top: 50px; display: none;">
+                </div>
+                <div class="colum-box-news">
+                    <div class="scrollE" tabindex="0" style="position: absolute; overflow: hidden; float: none; height: 499px; width: 1050px; left: 0px; top: 0px; outline: none;">
+                        <div class="news-content">
+                            <div class="news-tab" style="opacity: 1;">
+                                <div class="detail-news">
+                                    <div class="news-text">
+                                        <h3>@Resource.tim</h3>
+                                        
+                                       @foreach(var item in Model)
+                                       {
+                                           
+                                        <p>@i).@item.Vi_Title<a href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan=Util.GenerateUrl(@item.Vi_Title.Trim()),id = @item.Id})">@Resource.Xemchitiet</a></p>
+                                           i++;
+                                       }
+                                        <p style="padding-bottom:10px;">&nbsp;</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>

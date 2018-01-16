@@ -1,0 +1,26 @@
+﻿
+/*img*/
+#contact-page #about-tab .row img {
+  width: 100%;
+}
+/*content*/
+#contact-page #about-tab .tab-content {
+  font-size: 15px;
+}
+/*line*/
+#contact-page #about-tab hr {
+  border: 1px solid #CFCDCC;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+/*logan*/
+#contact-page #about-tab .bottom-logan {
+  color: #E72325;
+  text-align: center;
+  width: 100%;
+}
+#contact-page #about-tab .bottom-logan h3 {
+  color: #E72325;
+  text-align: center;
+  width: 100%;
+}

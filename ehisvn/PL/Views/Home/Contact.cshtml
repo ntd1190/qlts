@@ -1,0 +1,107 @@
+﻿
+@model IEnumerable<VTSolution.Models.Address>
+@{
+    ViewBag.Title = "Liên Hệ | Ehis Song Ân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Url = Request.Url.AbsoluteUri;
+
+}
+
+
+<input type="hidden" id="comname" value="@Model.First().Vi_Name" />
+<input type="hidden" id="address" value="@Model.First().Vi_Address" />
+<input type="hidden" id="telephone" value="@Model.First().Phone" />
+<input type="hidden" id="email" value="@Model.First().Email" />
+
+<input type="hidden" id="comname2" value="@Model.Skip(1).Take(1).FirstOrDefault().Vi_Name.ToString()" />
+<input type="hidden" id="address2" value="@Model.Skip(1).Take(1).FirstOrDefault().Vi_Address.ToString()" />
+<input type="hidden" id="telephone2" value="@Model.Skip(1).Take(1).FirstOrDefault().Phone.ToString()" />
+<input type="hidden" id="email2" value="@Model.Skip(1).Take(1).FirstOrDefault().Email.ToString()" />
+
+<script src="//maps.googleapis.com/maps/api/js?key=AIzaSyCqfeKGZOVS1uE0pHInJrnK3Ih59rCt5Wc&sensor=false" type="text/javascript"></script>
+<script type="text/javascript">
+    function initialize() {
+
+        var lat = @Model.First().Latitude;
+        var lng =@Model.First().Longtitude;
+        var map = new google.maps.Map(
+          document.getElementById('map-canvas'), {
+              center: new google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              zoom: 18,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+        var contentString = '<h4>' + document.getElementById('comname').value + '</h4>';
+        contentString += '<p><i class="glyphicon glyphicon-home"></i>' + document.getElementById('address').value + '</p>';
+        contentString += '<p><i class="glyphicon glyphicon-phone"></i>' + document.getElementById('telephone').value + '</p>';
+        contentString += '<p><i class="glyphicon glyphicon-link"></i>' + document.getElementById('email').value + '</p>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+            map: map
+        });
+
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+    }
+    function initialize2() {
+
+        var lat = @Model.Skip(1).Take(1).FirstOrDefault().Latitude;
+        var lng =@Model.Skip(1).Take(1).FirstOrDefault().Longtitude;
+        var map = new google.maps.Map(
+          document.getElementById('map-canvas2'), {
+              center: new google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+              zoom: 18,
+              mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+
+      var contentString = '<h4>' + document.getElementById('comname2').value + '</h4>';
+        contentString += '<p><i class="glyphicon glyphicon-home"></i>' + document.getElementById('address2').value + '</p>';
+        contentString += '<p><i class="glyphicon glyphicon-phone"></i>' + document.getElementById('telephone2').value + '</p>';
+        contentString += '<p><i class="glyphicon glyphicon-link"></i>' + document.getElementById('email2').value + '</p>';
+
+        var infowindow = new google.maps.InfoWindow({
+            content: contentString
+        });
+
+
+        var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(parseFloat(lat), parseFloat(lng)),
+            map: map
+        });
+
+        marker.addListener('click', function () {
+            infowindow.open(map, marker);
+        });
+        infowindow.open(map, marker);
+    }
+    google.maps.event.addDomListener(window, 'load', initialize);
+    google.maps.event.addDomListener(window, 'load', initialize2);
+
+</script>
+<div id="main-home">
+
+
+    <div class="container" style="margin-top:20px">
+        <div class="col-md-6">
+            <div id="map-canvas" class="row" style="width: 100%; margin-left:0px;margin-bottom:20px; height: 500px; position: relative; overflow: hidden; -webkit-transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
+        </div>
+        <div class="col-md-6">
+            <div id="map-canvas2" class="row" style="width: 100%; margin-left:0px;margin-bottom:20px; height: 500px; position: relative; overflow: hidden; -webkit-transform: translateZ(0px); background-color: rgb(229, 227, 223);"></div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+</div>
+
+
+
+
+

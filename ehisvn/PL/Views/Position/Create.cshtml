@@ -1,0 +1,114 @@
+﻿@model VTSolution.Models.Customer
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật ";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới";
+    }
+
+}
+
+@section featured{
+    @using (Html.BeginForm("Create", "Position"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Chọn vùng </label>
+                            </div>
+                            <div class="col-md-9">
+                                @(Html.Kendo().DropDownList()
+                                .Name("GroupId")
+                                .HtmlAttributes(new { style = "width:359px", id = "group" })
+                                .DataTextField("Vi_Name")
+                                .DataValueField("Id")
+                                .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetCategory", "Position");
+                                  });
+                              })
+                                )
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Title">Tọa độ chính của vùng</label>
+                            @Html.CheckBoxFor(model => model.IsMain)
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">LongTitude</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Long, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">LatTitude</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Lat, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/Position/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

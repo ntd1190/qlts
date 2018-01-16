@@ -1,0 +1,16 @@
+﻿@model VTSolution.ViewModel.Customer.NewsIndexModel
+@{
+    ViewBag.Title = Model.Recruitment.Name;
+    ViewBag.TitleSEO = Model.Recruitment.Vi_MetaTitle;
+    ViewBag.Description = Model.Recruitment.Vi_MetaDescription;
+    ViewBag.Keywords = Model.Recruitment.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div id="main-home">
+    <div class="container">
+        <h3>@Model.Recruitment.Name</h3>
+        @Html.Raw(HttpUtility.HtmlDecode(Model.Recruitment.Content))
+    </div>
+</div>

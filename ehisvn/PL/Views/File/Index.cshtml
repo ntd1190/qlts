@@ -1,0 +1,57 @@
+﻿@{
+    ViewBag.Title = "Hồ Sơ Năng Lực";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.FileIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_File").Text("Sửa").Click("Edit_File");
+        }).Width(172);
+    })
+
+                     .Filterable()
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+                          .Read(read => read.Action("File_Read", "File"))
+                         .Update(update => update.Action("File_Update", "File")))
+)
+)
+
+
+
+<script>
+    function menumajorChange() {
+        var value = this.value();
+        grid = $("#grid").data("kendoGrid");
+        if (value) {
+            grid.dataSource.filter({ field: "GroupId", operator: "eq", value: parseInt(value) });
+
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+    function addClick() {
+        window.location.href = "/File/Create/0";
+    }
+
+</script>

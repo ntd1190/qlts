@@ -1,0 +1,137 @@
+﻿@model VTSolution.Models.ThongTinUngVien
+@{
+    ViewBag.Title = "BieuMau";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="~/Scripts/Boostrap/bootstrap.min.js"></script>
+<section id="contact">
+    <div class="section-content">
+        <h1 class="section-header">Đồng hành <span class="content-header wow fadeIn " data-wow-delay="0.2s" data-wow-duration="2s">cùng chúng tôi</span></h1>
+        <h3 style="color:white">Nhập đầy đủ thông tin bên dưới để nhận bài test</h3>
+    </div>
+    <div class="contact-section">
+        <div class="container">
+         @using (Html.BeginForm("BieuMau", "Home", FormMethod.Post,new { enctype = "multipart/form-data" }))
+         {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            <div class="col-md-5 form-line">
+                <div class="form-group">
+                    <label for="exampleInputUsername">Họ tên</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.HoTen, new { id = "hoten",placeholder="Nhập họ tên", required = "required", @class = "form-control", @maxlength = "150" })
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail">Email</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.Email, new {type="email", id = "email", placeholder = "Nhập email", required = "required", @class = "form-control", @maxlength = "150" })
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Điện thoại</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.DienThoai, new { type = "text", pattern = @"\d*", id = "phone", placeholder = "Nhập số điện thoại", required = "required", @class = "form-control", @maxlength = "11" })
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Địa chỉ</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.DiaChi, new { type = "text", id = "diachi", placeholder = "Nhập số địa chỉ", required = "required", @class = "form-control", @maxlength = "150" })
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Tên trường</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.TenTruong, new { type = "text", id = "diachi", placeholder = "Nhập tên trường", required = "required", @class = "form-control", @maxlength = "150" })
+                </div>
+                <div class="form-group">
+                    <label for="telephone">Chuyên ngành</label> <span class="warning">*</span>
+                    @Html.TextBoxFor(model => model.ChuyenNganh, new { type = "text", id = "diachi", placeholder = "Nhập chuyên ngành", required = "required", @class = "form-control", @maxlength = "150" })
+                </div>
+            </div>
+                <div class="col-md-7">
+                    <div class="form-group">
+                        <label for="description">Trình độ học vấn</label> <span class="warning">*</span>
+                        @Html.TextAreaFor(model => model.KyNang, new { id = "kynang",rows="4", placeholder = "Kỹ năng,xếp loại,ngoại ngữ ...", required = "required", @class = "form-control"})
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Sơ lược bản thân</label> <span class="warning">*</span>
+                        @Html.TextAreaFor(model => model.GioiThieu, new { id = "gioithieu", rows = "4", placeholder = "Mục tiêu nghề nghiệp,kinh nghiệm,sở thích...", required = "required", @class = "form-control" })
+
+                    </div>
+                    <div>
+                        <button type="submit" class="btn btn-default submit"><i class="fa fa-paper-plane" aria-hidden="true"></i> Gửi yêu cầu </button>
+                    </div>
+
+                </div>
+         }
+             
+            
+        </div>
+    </div>
+</section>
+<style>
+    /*Contact sectiom*/
+    .content-header {
+        font-family: 'Oleo Script', cursive;
+        color: #fcc500;
+        font-size: 45px;
+    }
+
+    .section-content {
+        text-align: center;
+    }
+
+    #contact {
+        margin-top: 20px;
+        font-family: 'Teko', sans-serif;
+        padding-top: 60px;
+        width: 100%;
+        width: 100vw;
+        height: 700px;
+        background: #0082c9; /* fallback for old browsers */
+        background: -webkit-linear-gradient(to left, #0082c9, #0082c9); /* Chrome 10-25, Safari 5.1-6 */
+        background: linear-gradient(to left, #0082c9, #0082c9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        color: #fff;
+    }
+
+    .contact-section {
+        padding-top: 40px;
+    }
+
+        .contact-section .col-md-6 {
+            width: 50%;
+        }
+
+    .form-line {
+        border-right: 1px solid #B29999;
+    }
+
+    .form-group {
+        margin-top: 10px;
+    }
+
+    label {
+        font-size: 1.3em;
+        line-height: 1em;
+        font-weight: normal;
+    }
+
+    .form-control {
+        font-size: 1.3em;
+        color: #080808;
+    }
+
+    textarea.form-control {
+        height: 150px;
+        /* margin-top: px;*/
+    }
+
+    .submit {
+        font-size: 1.1em;
+        float: right;
+        width: 150px;
+        background-color: white;
+        color: #000000;
+    }
+</style>
+
+<script>
+
+
+
+
+</script>
+
