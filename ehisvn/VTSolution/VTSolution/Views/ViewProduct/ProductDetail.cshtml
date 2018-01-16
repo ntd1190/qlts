@@ -1,0 +1,84 @@
+﻿@model VTSolution.ViewModel.Customer.ProjectIndexModel
+@{
+    if (Model.Project.Vi_MetaTitle == null)
+    {
+        ViewBag.Title = Model.Project.Vi_Title.ToUpper();
+    }
+    else
+    {
+        ViewBag.Title = Model.Project.Vi_MetaTitle.ToUpper();
+    }
+    ViewBag.Description = Model.Project.Vi_MetaDescription;
+    ViewBag.Keywords = Model.Project.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var about = Helper.GetData();
+}
+<div class="container">
+    <div class="row">
+        <div class="col-md-9 col-sm-12 col-xs-12">
+            <h3>@Model.Project.Vi_Title</h3>
+            @Html.Raw(HttpUtility.HtmlDecode(Model.Project.Vi_Content))
+            <div class="row">
+                <div class="fb-comments" data-href="@Request.Url.AbsoluteUri" data-width="100%" data-numposts="5"></div>
+            </div>
+        </div>
+        <div class="col-md-3" id="sidebar-right">
+            <h3 style="text-align:center">@Resource.LienQuan</h3>
+            <div id="sidebar">
+                <div class="testimonial">
+                    <div class="owl-carousel owl-theme owl-responsive-992 owl-loaded" id="testi">
+                       @foreach (var item in Model.Related)
+                       {
+                        <div class="item">
+                            <a href="@Url.Action("ProductDetail", "ViewProduct", new { titleduan = Util.GenerateUrl(item.Vi_Title.Trim()) })">
+                                <div class="item-img"><img src="@item.ImagePath" width="100%" alt=""></div>
+                                <h3>@item.Vi_Title</h3>
+                                <div class="item-desc">
+                                    @item.Vi_Description
+                                </div>
+                            </a>
+                          
+                        </div>
+                       }
+
+                        <div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style="display: none;"></div></div>
+                    </div>
+                    <div class="testi-nav">
+                        <a href="javascript:void(0);" class="prevBtn"><i class="fa fa-angle-left"></i></a>
+                        <a href="javascript:void(0);" class="nextBtn"><i class="fa fa-angle-right"></i></a>
+                        <a href="@Url.Action("Products","Home")" class="more"> Xem thêm <i class="fa fa-long-arrow-right"></i></a>
+                    </div>
+                </div>
+
+
+                <div class="widget">
+                    <h2 class="widget-title">@Resource.DongHanh</h2>
+                    <div class="linkicon">
+                        <a class="hotline" href="tel:+84+@about.Phone"><span class="icon"><i class="fa fa-mobile"></i></span> <span class="txt">Hotline <br> <strong>@about.Phone</strong></span></a>
+                    </div>
+                    <div class="form">
+                        <p><input type="text" id="quick-your-name" class="wpcf7-text" placeholder="@Resource.Hoten"></p>
+                        <p><input type="email" id="quick-your-email" class="wpcf7-text" placeholder="@Resource.Emai"></p>
+                        <p><input type="text" id="quick-your-phone" class="wpcf7-text" placeholder="@Resource.Dienthoai"></p>
+                        <p><input type="text" id="quick-your-company" class="wpcf7-text" placeholder="@Resource.Diachi"></p>
+                        <p> <input type="text" id="quick-your-subject" class="wpcf7-text" placeholder="@Resource.TieuDe"></p>
+                        <p> <textarea name="quick-your-message" id="your-message" cols="30" rows="10" class="wpcf7-textarea" placeholder="@Resource.Ykien"></textarea></p>
+                        <p class="rpt" style="display:none;text-align: center;color: red;">Thank you ! We have received your message.</p>
+                        <button id="load" class="wpcf7-submit">@Resource.Gui <span id="contact-loading"></span></button> <p></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+   
+</div>
+<script>
+    jQuery('#menu-item-menu-item-6453').attr("value", "active")
+    var o = jQuery("#testi"); o.owlCarousel({ responsiveClass: !0, responsive: { 0: { items: 1 }, 992: { items: 1 } }, dots: !1, loop: !0, margin: 0, nav: !1, autoplay:1 }), jQuery(".nextBtn").click(function () { o.trigger("next.owl.carousel") }), jQuery(".prevBtn").click(function () { o.trigger("prev.owl.carousel") })
+</script>
+<style>
+  img{
+      width:100%;
+  }
+</style>

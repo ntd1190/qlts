@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Thông tin chung";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.AboutUsIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+   
+        columns.Bound(p => p.Email).Title("Email").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.HotLine).Title("HotLine").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Fax).Title("Fax").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_AboutUs").Text("Sửa").Click("Edit_AboutUs");
+        }).Width(172);
+    })
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:600px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                              .Read(read => read.Action("AboutUs_Read", "AboutUs"))
+    )
+)

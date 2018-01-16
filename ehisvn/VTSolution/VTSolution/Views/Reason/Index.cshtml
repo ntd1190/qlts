@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Tỉnh Thành";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.DistrictIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+
+        columns.Bound(p => p.Vi_Name).Title("Tên Tiếng Việt").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Eng_Name).Title("Tên Tiếng Anh ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        //  columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Reason").Text("Sửa").Click("Edit_Reason");
+            // command.Edit().Text("Cập Nhật Vị Trí");
+            // command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+      .ToolBar(toolbar =>
+      {
+          toolbar.Template(@<text>
+            <div class="row">
+                <div class="col-md-3">
+                    @(Html.Kendo().Button()
+                                    .Name("btn_Add")
+                                    .Icon("plus")
+                                    .Content("Thêm mới")
+                                            .Events(e => e.Click("addClick"))
+                    )
+                </div>
+            </div>
+        </text>);
+      })
+                   .Filterable()
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => model.Id(p => p.Id))
+                                .Read(read => read.Action("Reason_Read", "Reason"))
+       // .Update(update => update.Action("District_Update", "District"))
+       // .Destroy(update => update.Action("District_Destroy", "District"))
+    )
+)
+<script>
+
+    function addClick() {
+        window.location.href = "/vi/Reason/Create/0";
+    }
+
+</script>

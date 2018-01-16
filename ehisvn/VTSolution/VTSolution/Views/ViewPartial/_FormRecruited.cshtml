@@ -1,0 +1,21 @@
+﻿
+<div class="recruitment-download">
+    <a class="download" href="http://angia.com.vn/pdf/form-thong-tin-ung-vien-2016_vi_1453384547.xls" target="_blank"></a><div id="f1_upload_form"></div>
+
+    <p id="f1_upload_process"><img src="./CHUYÊN VIÊN HÀNH CHÍNH - NHÂN SỰ_files/loadx.gif" alt="loading..."><br></p>
+    <div id="file-upload">
+        <div class="file-upload">
+            <form id="upload" action="@Url.Action("SendFile","Home")" method="post" onsubmit="startUpload();" enctype="multipart/form-data" target="upload_target">
+                <input type="file" id="browser-hide" name="file" @*onchange="getElementById('file-field').value = getElementById('browser-hide').value;"*@>
+                <input type="text" id="file-field">
+                <div class="browser-button"></div>
+            </form>
+        </div>
+        <a class="send" id="send_upload" href="javascript:void(0);">gởi</a>
+    </div>
+</div>
+<script>
+    document.getElementById("myfile").onchange = function () {
+        document.getElementById("file-upload").submit();
+    };
+</script>

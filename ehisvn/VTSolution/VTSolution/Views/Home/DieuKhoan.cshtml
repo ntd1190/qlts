@@ -1,0 +1,13 @@
+﻿
+@{
+    ViewBag.Title = "DieuKhoan";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="main-home">
+    <div class="container">
+        <h3>Điều khoản sử dụng</h3>
+        @Html.Raw(HttpUtility.HtmlDecode(Helper.GetData().Eng_Product))
+    </div>
+</div>
+

@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Album ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.GroupImageIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ImagePath).HeaderHtmlAttributes(new { style = "text-align:center" }).Width(200).Title("Hình ảnh").ClientTemplate("<img style='width:100%;'src='#=ImagePath#' />");
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_GroupImage").Text("Sửa").Click("Edit_GroupImage");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+          .ToolBar(toolbar =>
+                {
+
+
+                    toolbar.Template(@<text>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                @(Html.Kendo().Button()
+                                    .Name("btn_Add")
+                                    .Icon("plus")
+                                    .Content("Thêm mới")
+                                            .Events(e => e.Click("addClick"))
+                                )
+                            </div>
+                            <div class="col-md-4">
+                                @(Html.Kendo().DropDownList()
+                                .Name("Name")
+                                           .HtmlAttributes(new { style = "width:359px" })
+                                                  .OptionLabel("Năm")
+                                                          .DataTextField("DateCreate")
+                                                          .DataValueField("DateCreate")
+                                                 .AutoBind(false)
+                                                 .Events(e => e.Change("menumajorChange"))
+                                                  .Filter(FilterType.Contains)
+                                                           .DataSource(source =>
+                                                      {
+                                                          source.Read(read =>
+                                                          {
+                                                              read.Action("GetCategory", "Album");
+                                                          });
+                                                      })
+                                )
+                            </div>
+
+                        </div>
+                    </text>);
+                })
+              .Editable(editable => editable.Mode(GridEditMode.PopUp))
+              .Filterable()
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("GroupImage_Read", "Album"))
+                                        .Update(update => update.Action("GroupImage_Update", "Album"))
+                                          .Destroy(update => update.Action("GroupImage_Destroy", "Album"))
+    )
+)
+<script>
+    function menumajorChange() {
+        var value = this.value();
+        grid = $("#grid").data("kendoGrid");
+        if (value) {
+            grid.dataSource.filter({ field: "DateCreate", operator: "contains", value: parseInt(value) });
+
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+    function addClick() {
+        window.location.href = "/vi/Album/Create/0";
+    }
+
+</script>
+
+
+

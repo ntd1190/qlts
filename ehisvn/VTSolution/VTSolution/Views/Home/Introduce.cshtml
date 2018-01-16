@@ -1,0 +1,497 @@
+﻿@model VTSolution.ViewModel.Customer.IntroduceIndexModel
+@{
+    var about = Helper.GetData();
+    if (Model.Gioithieu.Vi_MetaTitle == null)
+    {
+        ViewBag.Title = Model.Gioithieu.Vi_Title.ToUpper();
+    }
+    else
+    {
+        ViewBag.Title = Model.Gioithieu.Vi_MetaTitle.ToUpper();
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Description = Model.Gioithieu.Vi_MetaDescription;
+    ViewBag.Keywords = Model.Gioithieu.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+}
+<script src="~/plugin/paging/pagingJS.js"></script>
+<input hidden value="@ViewBag.id" id="introid" />
+<input type='hidden' id='current_page' />
+<input type='hidden' id='show_per_page' />
+<div id="main-home">
+    <div class="container">
+        <div class="whyus">
+            <div class="row">
+                @{Html.RenderAction("Reason", "Home");}
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <!-- Nav tabs -->
+                <div class="card">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><i class="fa fa-info-circle"></i>  <span>@Resource.Gioithieu</span></a></li>
+                        <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><i class="fa fa-user"></i>  <span>@Resource.NhanSu</span></a></li>
+                        <li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><i class="fa fa-picture-o"></i>  <span>@Resource.HoatDong</span></a></li>
+                      
+                        <li role="presentation"><a href="#recruit" aria-controls="recruit" role="tab" data-toggle="tab"><i class="fa fa-reply-all"></i>  <span>@Resource.Tuyendung</span></a></li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                <div class="wpb_column vc_column_container col-md-8">
+                                    @Html.Raw(HttpUtility.HtmlDecode(Model.Gioithieu.Vi_Reason))
+                                </div>
+                            </div>
+                            <div class="wpb_column vc_column_container col-md-4">
+                                <div class="vc_column-inner ">
+                                    @Html.Raw(HttpUtility.HtmlDecode(Model.Gioithieu.Vi_Content))
+                                </div>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="profile">
+                            <div class="container">
+                                <p>@about.SloganStaff</p>
+                                <div class="vc_row wpb_row vc_inner vc_row-fluid">
+                                    <div class="wpb_column vc_column_container col-md-12">
+                                        @foreach (var item in Model.Staff)
+                                        {
+                                            <div class="col-md-2" style="padding:0;margin:0;height:142.47px;">
+                                                <div class="hovereffect2">
+                                                    <img class="img-responsive stimg" src="@item.ImagePath" alt="">
+                                                    <div class="overlay">
+                                                        <h6 style="font-size:9px;">@item.Vi_Name</h6>
+                                                        <p style="font-size:10px;">@item.Vi_Position</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="messages">
+
+                            <div class="row  bhoechie-tab">
+                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 bhoechie-tab-menu">
+                                    <div class="list-group">
+                                        <a href="#" class="list-group-item text-center active">
+                                            <img src="@Model.Banner.FirstOrDefault(t=>t.IsWork).ImagePath" width="100%" alt="We work">
+                                        </a>
+                                        <a href="#" class="list-group-item text-center">
+                                            <img src="@Model.Banner.FirstOrDefault(t=>t.IsLearn).ImagePath" width="100%" alt="We Learn">
+                                        </a>
+                                        <a href="#" class="list-group-item text-center">
+                                            <img src="@Model.Banner.FirstOrDefault(t=>t.IsPlay).ImagePath" width="100%" alt="We Play">
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12 bhoechie-tab" style="height:515px;overflow:auto;">
+                                    <div class="bhoechie-tab-content active">
+                                        <div class="row" id="loop">
+                                            @foreach (var item in Model.Image.Where(t => t.IsWork))
+                                            {
+                                                <div class="col-xs-12 col-sm-6 col-md-6" id="ga-788" style="position: relative;margin-bottom:5px;">
+                                                    <div class="hovereffect">
+                                                        <img class="img-responsive" src="@item.ImagePath" alt="@item.Vi_Name" width="100%">
+                                                        <div class="overlay">
+                                                            <h2></h2>
+                                                            <p>
+                                                                <a class="item" target="_blank" href="@Url.Action("Album1","ViewProduct",new { id=item.Id})" title="@item.Vi_Name">@item.Vi_Name</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            }
+                                        </div>
+                                    </div>
+                                    <!-- flight section -->
+
+                                    <div class="bhoechie-tab-content">
+
+                                        <div class="row">
+                                            @foreach (var item in Model.Image.Where(t => t.IsLearn))
+                                            {  <div class="col-xs-12 col-sm-6 col-md-6" id="ga-788" style="position: relative;">
+                                                <div class="hovereffect">
+                                                    <img class="img-responsive" src="@item.ImagePath" alt="@item.Vi_Name" width="100%">
+                                                    <div class="overlay">
+                                                        <h2></h2>
+                                                        <p>
+                                                            <a class="item" target="_blank" href="@Url.Action("Album1","ViewProduct",new { id=item.Id})" title="@item.Vi_Name">@item.Vi_Name</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            }
+                                        </div>
+                                    </div>
+
+                                    <!-- train section -->
+                                    <div class="bhoechie-tab-content">
+                                        <div class="row">
+                                            @foreach (var item in Model.Image.Where(t => t.IsPlay))
+                                            {
+                                               
+                                                <div class="col-xs-12 col-sm-4 col-md-3" id="ga-788" style="position: relative;padding-left:10px!important;padding-right:0px!important;margin-bottom:10px;">
+                                                    <div class="hovereffect">
+                                                        <img class="img-responsive" src="@item.ImagePath" alt="@item.Vi_Name" width="100%">
+                                                        <div class="overlay">
+                                                            <h2></h2>
+                                                            <p>
+                                                                <a class="item" target="_blank" href="@Url.Action("Album1","ViewProduct",new { id=item.Id})" title="@item.Vi_Name">@item.Vi_Name</a>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                              
+                                            }
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div role="tabpanel" class="tab-pane" id="recruit">
+                            <div class="container">
+                                <h1 class="breadcrumb">@Resource.Tuyendung</h1><div class="row">
+                                    <div class="col-sm-12" id="content">
+                                        @foreach (var item in Model.Recruitment)
+                                        {
+                                            <div class="list-songan">
+                                                <div class="row">
+                                                    <div class="col-sm-4 col-ms-4 img">
+                                                        <img src="@item.Imagepath" />
+                                                    </div>
+                                                    <div class="col-sm-8 col-ms-8 text">
+                                                        <h3><a href="@Url.Action("RecruitmentDetail", "Water" , new {title=Util.GenerateUrl(item.Name.Trim()), id=item.Id})">@item.Name</a></h3>
+                                                        @item.Description
+                                                    </div><div class="clearfix"></div><div class="more"><a href="@Url.Action("RecruitmentDetail", "Water" , new {title=Util.GenerateUrl(item.Name.Trim()), id=item.Id})">@Resource.Xemchitiet</a></div>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div><div class="clearfix"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .stimg {
+        filter: gray; /* IE6-9 */
+        filter: grayscale(1); /* Microsoft Edge and Firefox 35+ */
+        -webkit-filter: grayscale(1); /* Google Chrome, Safari 6+ & Opera 15+ */
+    }
+
+        .stimg:hover {
+             -webkit-filter: grayscale(0);
+             cursor:pointer;
+        }
+
+    .hovereffect {
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+        background: #42b078;
+    }
+
+        .hovereffect .overlay {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            overflow: hidden;
+            top: 0;
+            left: 0;
+            padding: 50px 20px;
+        }
+
+        .hovereffect img {
+            display: block;
+            position: relative;
+            max-width: none;
+            width: calc(100% + 20px);
+            -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+            transition: opacity 0.35s, transform 0.35s;
+            -webkit-transform: translate3d(-10px,0,0);
+            transform: translate3d(-10px,0,0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+        }
+
+        .hovereffect:hover img {
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+
+        }
+
+        .hovereffect h2 {
+            text-transform: uppercase;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            font-size: 14px;
+            overflow: hidden;
+            padding: 0.5em 0;
+            background-color: transparent;
+        }
+
+            .hovereffect h2:after {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: #fff;
+                content: '';
+                -webkit-transition: -webkit-transform 0.35s;
+                transition: transform 0.35s;
+                -webkit-transform: translate3d(-100%,0,0);
+                transform: translate3d(-100%,0,0);
+            }
+
+        .hovereffect:hover h2:after {
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+
+        .hovereffect a, .hovereffect p {
+            color: #FFF;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-transition: opacity 0.35s, -webkit-transform 0.35s;
+            transition: opacity 0.35s, transform 0.35s;
+            -webkit-transform: translate3d(100%,0,0);
+            transform: translate3d(100%,0,0);
+        }
+
+        .hovereffect:hover a, .hovereffect:hover p {
+            opacity: 1;
+            filter: alpha(opacity=100);
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+
+    /*  bhoechie tab */
+    div.bhoechie-tab-container {
+        z-index: 10;
+        background-color: #ffffff;
+        padding: 0 !important;
+        border-radius: 4px;
+        -moz-border-radius: 4px;
+        margin-top: 20px;
+        margin-left: 50px;
+        background-clip: padding-box;
+        opacity: 0.97;
+        filter: alpha(opacity=97);
+    }
+
+    div.bhoechie-tab-menu {
+        padding-right: 0;
+        padding-left: 0;
+        padding-bottom: 0;
+    }
+
+        div.bhoechie-tab-menu div.list-group {
+            margin-bottom: 0;
+        }
+
+            div.bhoechie-tab-menu div.list-group > a {
+                margin-bottom: 0;
+            }
+
+                div.bhoechie-tab-menu div.list-group > a .glyphicon,
+                div.bhoechie-tab-menu div.list-group > a .fa {
+                    color: #5A55A3;
+                }
+
+                div.bhoechie-tab-menu div.list-group > a:first-child {
+                    border-top-right-radius: 0;
+                    -moz-border-top-right-radius: 0;
+                }
+
+                div.bhoechie-tab-menu div.list-group > a.active,
+                div.bhoechie-tab-menu div.list-group > a.active .glyphicon,
+                div.bhoechie-tab-menu div.list-group > a.active .fa {
+                    background-color: #0082c9;
+                    background-image: #0082c9;
+                    color: #ffffff;
+                }
+
+                    div.bhoechie-tab-menu div.list-group > a.active:after {
+                        content: '';
+                        position: absolute;
+                        left: 100%;
+                        top: 50%;
+                        margin-top: -13px;
+                    }
+
+    div.bhoechie-tab-content {
+        background-color: #ffffff;
+    }
+
+    div.bhoechie-tab div.bhoechie-tab-content:not(.active) {
+        display: none;
+    }
+
+
+    /*hver 2*/
+
+    .hovereffect2 {
+        width: 100%;
+        height: 100%;
+        float: left;
+        overflow: hidden;
+        position: relative;
+        text-align: center;
+        cursor: default;
+    }
+
+        .hovereffect2 .overlay {
+            width: 100%;
+            position: absolute;
+            overflow: hidden;
+            left: 0;
+            top: auto;
+            bottom: 0;
+            height: 3.75em;
+            background: #0082c9;
+            color: #3c4a50;
+            -webkit-transition: -webkit-transform 0.35s;
+            transition: transform 0.35s;
+            -webkit-transform: translate3d(0,100%,0);
+            transform: translate3d(0,100%,0);
+        }
+
+        .hovereffect2 img {
+            display: block;
+            position: relative;
+            -webkit-transition: -webkit-transform 0.35s;
+            transition: transform 0.35s;
+        }
+
+        .hovereffect2:hover img {
+            -webkit-transform: translate3d(0,-10%,0);
+            transform: translate3d(0,-10%,0);
+        }
+
+        .hovereffect2 h6, .hovereffect2 p {
+            text-transform: uppercase;
+            color: #fff;
+        }
+
+        .hovereffect2 a.info {
+            display: inline-block;
+            text-decoration: none;
+            padding: 7px 14px;
+            text-transform: uppercase;
+            color: #fff;
+            border: 1px solid #fff;
+            margin: 50px 0 0 0;
+            background-color: transparent;
+        }
+
+            .hovereffect2 a.info:hover {
+                box-shadow: 0 0 5px #fff;
+            }
+
+
+        .hovereffect2 p.icon-links a {
+            float: right;
+            color: #3c4a50;
+            font-size: 1.4em;
+        }
+
+        .hovereffect2:hover p.icon-links a:hover,
+        .hovereffect2:hover p.icon-links a:focus {
+            color: #252d31;
+        }
+
+        .hovereffect2 h2,
+        .hovereffect2 p.icon-links a {
+            -webkit-transition: -webkit-transform 0.35s;
+            transition: transform 0.35s;
+            -webkit-transform: translate3d(0,200%,0);
+            transform: translate3d(0,200%,0);
+        }
+
+            .hovereffect2 p.icon-links a span:before {
+                display: inline-block;
+                padding: 8px 10px;
+                speak: none;
+                -webkit-font-smoothing: antialiased;
+                -moz-osx-font-smoothing: grayscale;
+            }
+
+
+        .hovereffect2:hover .overlay,
+        .hovereffect2:hover h2,
+        .hovereffect2:hover p.icon-links a {
+            -webkit-transform: translate3d(0,0,0);
+            transform: translate3d(0,0,0);
+        }
+
+        .hovereffect2:hover h2 {
+            -webkit-transition-delay: 0.05s;
+            transition-delay: 0.05s;
+        }
+
+        .hovereffect2:hover p.icon-links a:nth-child(3) {
+            -webkit-transition-delay: 0.1s;
+            transition-delay: 0.1s;
+        }
+
+        .hovereffect2:hover p.icon-links a:nth-child(2) {
+            -webkit-transition-delay: 0.15s;
+            transition-delay: 0.15s;
+        }
+
+        .hovereffect2:hover p.icon-links a:first-child {
+            -webkit-transition-delay: 0.2s;
+            transition-delay: 0.2s;
+        }
+</style>
+<script>
+    var $ = jQuery.noConflict();
+    $(document).ready(function () {
+
+        if ($('#introid').val() == "4") {
+            $('#tab a:last').tab('show');
+            $('.nav-tabs a[href="#recruit"]').tab('show')
+        }
+        if ($('#introid').val() == "2") {
+            $('#tab a:third').tab('show');
+            $('.nav-tabs a[href="#settings"]').tab('show')
+        }
+
+        $("div.bhoechie-tab-menu>div.list-group>a").click(function (e) {
+            e.preventDefault();
+            $(this).siblings('a.active').removeClass("active");
+            $(this).addClass("active");
+            var index = $(this).index();
+            $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
+            $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+        });
+    });
+
+</script>

@@ -1,0 +1,10 @@
+﻿@model VTSolution.ViewModel.Customer.HomeIndexModel
+@foreach (var item in Model.ListBanner.Where(t=>t.IsLydo==false))
+{
+    
+    <li data-link="@item.Link">
+        
+            <img src="@item.ImagePath" alt="@item.ImagePath">
+    
+    </li>
+}

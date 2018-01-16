@@ -1,0 +1,22 @@
+﻿@model VTSolution.ViewModel.Customer.HomeIndexModel
+@{
+    ViewBag.Title = "Sự Khác Biệt | Ehis Song Ân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    ViewBag.Url = Request.Url.AbsoluteUri;
+}
+<div id="main-home">
+    <div class="container rs">
+        <div class="whyus">
+            <div class="row">
+                @{Html.RenderAction("Reason", "Home");}
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <img src="@Model.Lydo.ImagePath" width="100%" />
+    </div>
+    <div class="clearfix"></div>
+
+</div>

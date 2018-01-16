@@ -1,0 +1,48 @@
+﻿@model IEnumerable<VTSolution.Models.GroupImage>
+@{
+    ViewBag.Title = Resource.HinhAnh;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+
+    <div class="center" style="opacity: 1;">
+        <h2>@Resource.HinhAnh</h2>
+
+        <div class="container" style="margin-top: 75px; overflow-y: auto; height: 575px; background-color: white;">
+            <div class="row" style="margin:10px;">
+                @foreach (var item in Model)
+                {
+                    <div class="col-md-3">
+                        <div class="row" style="padding:10px;">
+                            <a class="hov" target="_blank" href="@Url.Action("Album1", "ViewProduct", new {id=item.Id })"> <img src="@item.ImagePath" height="250" width="100%" /></a>
+                        </div>
+                        <div class="row" style="font-weight: bold; text-align: center;height:20px;overflow:hidden; margin-top: 10px;color: #0082c9;">
+                            @item.Vi_Name
+                    </div>
+                </div>
+                }
+            </div>
+        </div>
+
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<style>
+    img {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        -webkit-transition: .3s ease-in-out;
+        transition: .3s ease-in-out;
+    }
+
+    .hov:hover img {
+        -webkit-transform: scale(1.1);
+        transform: scale(1.1);
+    }
+
+</style>

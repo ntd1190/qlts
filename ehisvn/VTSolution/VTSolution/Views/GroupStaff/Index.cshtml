@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Nhân Sự Công Ty";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+@(Html.Kendo().Grid<VTSolution.Models.GroupStaff>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Eng_Name).Title("Tên Tiếng Anh").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_GroupStaff").Text("Sửa").Click("Edit_GroupStaff");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+        .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "GroupStaff", new { id = 0 }))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Filterable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                              .Read(read => read.Action("GroupStaff_Read", "GroupStaff"))
+                                   .Destroy(update => update.Action("GroupStaff_Destroy", "GroupStaff"))
+    )
+)
+
+

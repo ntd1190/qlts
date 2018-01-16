@@ -1,0 +1,18 @@
+﻿@{
+    var about = Helper.GetData();
+}
+@model VTSolution.ViewModel.Customer.HomeIndexModel
+<div class="col-sm-5 col-md-5">
+    <div class="whyus-text">
+        <h3>@Resource.ViSao ?</h3><p>@about.SloganReason</p>
+        <p align="right">
+            <a class="more" href="@Url.Action("Diffrent","Home")">@Resource.Xemchitiet &gt;&gt;</a>
+        </p>
+    </div>
+</div>
+<div class="col-sm-7 col-md-7">
+    @*<div class="whyus-img">
+        <img src="@Model.Lydo.ImagePath" class="img-responsive" alt="@Model.Lydo.ImagePath">
+    </div>*@
+    <iframe width="100%" height="380" src="https://www.youtube.com/embed/ygGSK1nI9_I" frameborder="0" allowfullscreen></iframe>
+</div>

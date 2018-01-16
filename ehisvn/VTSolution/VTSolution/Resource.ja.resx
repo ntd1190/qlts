@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="BanQuyen" xml:space="preserve">
+    <value>著作権</value>
+  </data>
+  <data name="Conso" xml:space="preserve">
+    <value>イベント番号</value>
+  </data>
+  <data name="danhsach" xml:space="preserve">
+    <value>リスト</value>
+  </data>
+  <data name="Danhsachkhachhang" xml:space="preserve">
+    <value>顧客一覧</value>
+  </data>
+  <data name="Diachi" xml:space="preserve">
+    <value>住所</value>
+  </data>
+  <data name="Dienthoai" xml:space="preserve">
+    <value>電話番号</value>
+  </data>
+  <data name="Doitac" xml:space="preserve">
+    <value>パートナー</value>
+  </data>
+  <data name="DongHanh" xml:space="preserve">
+    <value>ソングと一緒に</value>
+  </data>
+  <data name="duan" xml:space="preserve">
+    <value>プロジェクト</value>
+  </data>
+  <data name="Emai" xml:space="preserve">
+    <value>メール</value>
+  </data>
+  <data name="Gioithieu" xml:space="preserve">
+    <value>私たちについて</value>
+  </data>
+  <data name="GioLam" xml:space="preserve">
+    <value>営業時間</value>
+  </data>
+  <data name="Gui" xml:space="preserve">
+    <value>提出する</value>
+  </data>
+  <data name="HinhAnh" xml:space="preserve">
+    <value>ピクチャ</value>
+  </data>
+  <data name="HoatDong" xml:space="preserve">
+    <value>写真アクティビティ</value>
+  </data>
+  <data name="HoNoi" xml:space="preserve">
+    <value>彼らは私たちについて語る</value>
+  </data>
+  <data name="HoSoNangLuc" xml:space="preserve">
+    <value>容量プロファイル</value>
+  </data>
+  <data name="Hoten" xml:space="preserve">
+    <value>氏名</value>
+  </data>
+  <data name="HoTro" xml:space="preserve">
+    <value>サポート</value>
+  </data>
+  <data name="KhacBiet" xml:space="preserve">
+    <value>差</value>
+  </data>
+  <data name="KhachHang" xml:space="preserve">
+    <value>顧客</value>
+  </data>
+  <data name="Khuvuc" xml:space="preserve">
+    <value>エリア</value>
+  </data>
+  <data name="Lichsuhinhthanh" xml:space="preserve">
+    <value>歴史と開発</value>
+  </data>
+  <data name="Lienhe" xml:space="preserve">
+    <value>連絡</value>
+  </data>
+  <data name="LienQuan" xml:space="preserve">
+    <value>関連製品</value>
+  </data>
+  <data name="Nguoilienhe" xml:space="preserve">
+    <value>担当者</value>
+  </data>
+  <data name="Nguyentac" xml:space="preserve">
+    <value>動作原理</value>
+  </data>
+  <data name="NhanSu" xml:space="preserve">
+    <value>スタッフ</value>
+  </data>
+  <data name="Sanpham" xml:space="preserve">
+    <value>製品</value>
+  </data>
+  <data name="SPNoiBat" xml:space="preserve">
+    <value>病院管理ソフトウェア</value>
+  </data>
+  <data name="SuMenh" xml:space="preserve">
+    <value>ミッション</value>
+  </data>
+  <data name="Tamnhin" xml:space="preserve">
+    <value>ビジョン</value>
+  </data>
+  <data name="ThongDiep" xml:space="preserve">
+    <value>メッセージ</value>
+  </data>
+  <data name="Thongtinbatbuoc" xml:space="preserve">
+    <value>必要な情報</value>
+  </data>
+  <data name="TieuDe" xml:space="preserve">
+    <value>テーマ</value>
+  </data>
+  <data name="tim" xml:space="preserve">
+    <value>検索結果</value>
+  </data>
+  <data name="Tinhthanh" xml:space="preserve">
+    <value>地方および都市</value>
+  </data>
+  <data name="TinKhac" xml:space="preserve">
+    <value>その他</value>
+  </data>
+  <data name="Tinmoi" xml:space="preserve">
+    <value>新しい</value>
+  </data>
+  <data name="TinTuc" xml:space="preserve">
+    <value>ニュース</value>
+  </data>
+  <data name="Tintucnoibo" xml:space="preserve">
+    <value>内部ニュース</value>
+  </data>
+  <data name="Tintucvideo" xml:space="preserve">
+    <value>ビデオ</value>
+  </data>
+  <data name="Tintucxahoi" xml:space="preserve">
+    <value>ソーシャルニュース</value>
+  </data>
+  <data name="tongquan" xml:space="preserve">
+    <value>概要</value>
+  </data>
+  <data name="Trangchu" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="Truso" xml:space="preserve">
+    <value>本社</value>
+  </data>
+  <data name="Tuyendung" xml:space="preserve">
+    <value>採用</value>
+  </data>
+  <data name="ViSao" xml:space="preserve">
+    <value>なぜ私たちを選</value>
+  </data>
+  <data name="vitri" xml:space="preserve">
+    <value>場所</value>
+  </data>
+  <data name="Xemchitiet" xml:space="preserve">
+    <value>詳細を表示</value>
+  </data>
+  <data name="Xoa" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Ykien" xml:space="preserve">
+    <value>必要なコンテンツ</value>
+  </data>
+</root>
