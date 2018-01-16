@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ea3de0cca9164303a6bf8b5d2e1109e9" Name="Diagram1" ZoomLevel="93">
+        <EntityTypeShape EntityType="angia_ivmModel.AboutU" Width="1.5" PointX="16.75" PointY="18.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Account" Width="1.5" PointX="3" PointY="18.375" />
+        <EntityTypeShape EntityType="angia_ivmModel.Address" Width="1.5" PointX="11.75" PointY="16.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Banner" Width="1.5" PointX="17.75" PointY="8.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Certificate" Width="1.5" PointX="11.75" PointY="5.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Customer" Width="1.5" PointX="17.75" PointY="14.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Digital" Width="1.5" PointX="3" PointY="6.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.District" Width="1.5" PointX="18.75" PointY="18.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Email" Width="1.5" PointX="19.75" PointY="2.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Feature" Width="1.5" PointX="0.75" PointY="6.875" />
+        <EntityTypeShape EntityType="angia_ivmModel.FeatureSon" Width="1.5" PointX="3" PointY="10.375" />
+        <EntityTypeShape EntityType="angia_ivmModel.File" Width="1.5" PointX="5.25" PointY="0.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.Group" Width="1.5" PointX="12.75" PointY="7.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupDistrict" Width="1.5" PointX="5.75" PointY="6.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupFile" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupFileSon" Width="1.5" PointX="3" PointY="3" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupImage" Width="1.5" PointX="12" PointY="25.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupIntroduce" Width="1.5" PointX="5.75" PointY="20.625" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupPartner" Width="1.5" PointX="7.75" PointY="2.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupProduct" Width="1.5" PointX="0.75" PointY="14.625" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupProductSon" Width="1.5" PointX="3" PointY="14.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupRecruitment" Width="1.5" PointX="10.75" PointY="20.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupStaff" Width="1.5" PointX="14.75" PointY="17.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.GroupVideo" Width="1.5" PointX="9.75" PointY="5.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.Image" Width="1.5" PointX="14.25" PointY="26.375" />
+        <EntityTypeShape EntityType="angia_ivmModel.Introduce" Width="1.5" PointX="8" PointY="18.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.Log_Backend" Width="1.5" PointX="19.75" PointY="6.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Menu" Width="1.5" PointX="19.75" PointY="9.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.MenuAdmin" Width="1.5" PointX="19.75" PointY="12.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Music" Width="1.5" PointX="0.75" PointY="22.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.News" Width="1.5" PointX="15" PointY="9" />
+        <EntityTypeShape EntityType="angia_ivmModel.Partner" Width="1.5" PointX="10" PointY="2.375" />
+        <EntityTypeShape EntityType="angia_ivmModel.Position" Width="1.5" PointX="14.75" PointY="3.875" />
+        <EntityTypeShape EntityType="angia_ivmModel.Product" Width="1.5" PointX="5.25" PointY="8.625" />
+        <EntityTypeShape EntityType="angia_ivmModel.ProductFile" Width="1.5" PointX="7.5" PointY="10.875" />
+        <EntityTypeShape EntityType="angia_ivmModel.ProductImage" Width="1.5" PointX="7.5" PointY="13.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.Project" Width="1.5" PointX="9.75" PointY="8.875" />
+        <EntityTypeShape EntityType="angia_ivmModel.ProjectImage" Width="1.5" PointX="12" PointY="23.25" />
+        <EntityTypeShape EntityType="angia_ivmModel.Recruitment" Width="1.5" PointX="2.75" PointY="22.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Role" Width="1.5" PointX="0.75" PointY="18.75" />
+        <EntityTypeShape EntityType="angia_ivmModel.Staff" Width="1.5" PointX="17" PointY="2.5" />
+        <EntityTypeShape EntityType="angia_ivmModel.Status" Width="1.5" PointX="20.75" PointY="16.125" />
+        <EntityTypeShape EntityType="angia_ivmModel.Video" Width="1.5" PointX="12" PointY="10.625" />
+        <EntityTypeShape EntityType="angia_ivmModel.Visitor" Width="1.5" PointX="20.75" PointY="19.125" />
+        <AssociationConnector Association="angia_ivmModel.FK_Account_Role1" />
+        <AssociationConnector Association="angia_ivmModel.FK_Digital_Feature" />
+        <AssociationConnector Association="angia_ivmModel.FK_Digital_Product" />
+        <AssociationConnector Association="angia_ivmModel.FK_FeatureSon_Feature" />
+        <AssociationConnector Association="angia_ivmModel.FK_Product_FeatureSon" />
+        <AssociationConnector Association="angia_ivmModel.FK_File_GroupFileSon" />
+        <AssociationConnector Association="angia_ivmModel.FK_ProductFile_File" />
+        <AssociationConnector Association="angia_ivmModel.FK_News_Group" />
+        <AssociationConnector Association="angia_ivmModel.FK_GroupFileSon_GroupFile" />
+        <AssociationConnector Association="angia_ivmModel.FK_GroupImage_Project" />
+        <AssociationConnector Association="angia_ivmModel.FK_Image_GroupImage1" />
+        <AssociationConnector Association="angia_ivmModel.FK_Introduce_GroupIntroduce" />
+        <AssociationConnector Association="angia_ivmModel.FK_Partner_GroupPartner" />
+        <AssociationConnector Association="angia_ivmModel.FK_GroupProductSon_GroupProduct" />
+        <AssociationConnector Association="angia_ivmModel.FK_Product_GroupProductSon" />
+        <AssociationConnector Association="angia_ivmModel.FK_Staff_GroupStaff" />
+        <AssociationConnector Association="angia_ivmModel.FK_Video_GroupVideo" />
+        <AssociationConnector Association="angia_ivmModel.FK_News_Project" />
+        <AssociationConnector Association="angia_ivmModel.FK_Staff_Position" />
+        <AssociationConnector Association="angia_ivmModel.FK_ProductFile_Product" />
+        <AssociationConnector Association="angia_ivmModel.FK_ProductImage_Product1" />
+        <AssociationConnector Association="angia_ivmModel.FK_ProjectImage_Project" />
+        <AssociationConnector Association="angia_ivmModel.FK_Video_Project" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
