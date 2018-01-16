@@ -1,0 +1,13 @@
+﻿@model IEnumerable<VTSolution.Models.GroupStaff>
+@foreach (var item in Model)
+    {
+        <div class="col-md-2" style="padding:0;margin:0;">
+            <div class="hovereffect2">
+                <img class="img-responsive stimg" src="@item.ImagePath" alt="@item.ImagePath">
+                <div class="overlay">
+                    <h6 style="font-size:9px;">@item.Vi_Name</h6>
+                    <p style="font-size:10px;">@item.Vi_Position</p>
+                </div>
+            </div>
+        </div>
+    }

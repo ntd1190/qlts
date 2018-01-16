@@ -1,0 +1,294 @@
+﻿@model VTSolution.ViewModel.Customer.HomeIndexModel
+@{
+    var about = Helper.GetData();
+    var file = Helper.getfile();
+    ViewBag.Title = about.HomePageTitle;
+    ViewBag.Description = about.HomePageDiscription;
+    ViewBag.Keywords = about.HomePageKeywords;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/animate.css" rel="stylesheet" />
+<div id="main-home">
+    <div class="container-fluid">
+        <div id="rev_slider_1_1_wrapper" class="rev_slider_wrapper fullwidthbanner-container" style="margin:0px auto;background-color:#E9E9E9;padding:0px;margin-top:0px;margin-bottom:0px;max-height:500px;">
+            <div id="rev_slider_1_1" class="rev_slider fullwidthabanner" style="display:none;background-repeat:no-repeat;background-fit:cover;background-position:center center;max-height:500px;height:500px;">
+                <ul>
+                    @{Html.RenderAction("Banner", "Home");}
+                </ul><div class="tp-bannertimer tp-bottom" style="visibility: hidden !important;"></div>
+            </div>
+            <style scoped></style>
+            <script type="text/javascript">
+                var setREVStartSize = function () {
+                    var tpopt = new Object();
+                    tpopt.startwidth = 760;
+                    tpopt.startheight = 500;
+                    tpopt.container = jQuery('#rev_slider_1_1');
+                    tpopt.fullScreen = "off"; tpopt.forceFullWidth = "off";
+                    tpopt.container.closest(".rev_slider_wrapper").css({ height: tpopt.container.height() });
+                    tpopt.width = parseInt(tpopt.container.width(), 0);
+                    tpopt.height = parseInt(tpopt.container.height(), 0);
+                    tpopt.bw = tpopt.width / tpopt.startwidth;
+                    tpopt.bh = tpopt.height / tpopt.startheight;
+                    if (tpopt.bh > tpopt.bw) tpopt.bh = tpopt.bw;
+                    if (tpopt.bh < tpopt.bw) tpopt.bw = tpopt.bh;
+                    if (tpopt.bw < tpopt.bh) tpopt.bh = tpopt.bw;
+                    if (tpopt.bh > 1) { tpopt.bw = 1; tpopt.bh = 1 }
+                    if (tpopt.bw > 1) { tpopt.bw = 1; tpopt.bh = 1 }
+                    tpopt.height = Math.round(tpopt.startheight * (tpopt.width / tpopt.startwidth));
+                    if (tpopt.height > tpopt.startheight && tpopt.autoHeight != "on")
+                        tpopt.height = tpopt.startheight;
+                    if (tpopt.fullScreen == "on") {
+                        tpopt.height = tpopt.bw * tpopt.startheight;
+                        var cow = tpopt.container.parent().width(); var coh = jQuery(window).height();
+                        if (tpopt.fullScreenOffsetContainer != undefined) {
+                            try {
+                                var offcontainers = tpopt.fullScreenOffsetContainer.split(","); jQuery.each(offcontainers, function (e, t) { coh = coh - jQuery(t).outerHeight(true); if (coh < tpopt.minFullScreenHeight) coh = tpopt.minFullScreenHeight })
+                            }
+                            catch (e) { }
+                        } tpopt.container.parent().height(coh); tpopt.container.height(coh);
+                        tpopt.container.closest(".rev_slider_wrapper").height(coh);
+                        tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(coh);
+                        tpopt.container.css({ height: "100%" }); tpopt.height = coh;
+                    } else {
+                        tpopt.container.height(tpopt.height);
+                        tpopt.container.closest(".rev_slider_wrapper").height(tpopt.height);
+                        tpopt.container.closest(".forcefullwidth_wrapper_tp_banner").find(".tp-fullwidth-forcer").height(tpopt.height);
+                    }
+                }; setREVStartSize(); var tpj = jQuery; tpj.noConflict(); var revapi1;
+                tpj(document).ready(function () {
+                    if (tpj('#rev_slider_1_1').revolution == undefined) {
+                        revslider_showDoubleJqueryError('#rev_slider_1_1');
+                    }
+                    else {
+                        revapi1 = tpj('#rev_slider_1_1').show().revolution({
+                            dottedOverlay: "none", delay: 3000, startwidth: 760,
+                            startheight: 380, hideThumbs: 200, thumbWidth: 100,
+                            thumbHeight: 50, thumbAmount: 6, simplifyAll: "off",
+                            navigationType: "bullet", navigationArrows: "none",
+                            navigationStyle: "round", touchenabled: "on", onHoverStop: "on",
+                            nextSlideOnWindowFocus: "off", swipe_threshold: 75, swipe_min_touches: 1,
+                            drag_block_vertical: false, keyboardNavigation: "off", navigationHAlign: "center",
+                            navigationVAlign: "bottom", navigationHOffset: 0, navigationVOffset: 15,
+                            soloArrowLeftHalign: "left", soloArrowLeftValign: "center", soloArrowLeftHOffset: 5,
+                            soloArrowLeftVOffset: 0,
+                            soloArrowRightHalign: "right", soloArrowRightValign: "center", soloArrowRightHOffset: 5,
+                            soloArrowRightVOffset: 0, shadow: 0, fullWidth: "on", fullScreen: "off", spinner: "spinner3",
+                            stopLoop: "off", stopAfterLoops: 0, stopAtSlide: 0, shuffle: "off", autoHeight: "off",
+                            forceFullWidth: "off", hideTimerBar: "on", hideThumbsOnMobile: "off", hideNavDelayOnMobile: 1500,
+                            hideBulletsOnMobile: "off", hideArrowsOnMobile: "off", hideThumbsUnderResolution: 0, hideSliderAtLimit: 0,
+                            hideCaptionAtLimit: 0, hideAllCaptionAtLilmit: 0, startWithSlide: 0
+                        });
+                    }
+                });</script>
+            <style type="text/css">
+                #rev_slider_1_1_wrapper .tp-loader.spinner3 div {
+                    background-color: #FFF !important;
+                }
+            </style>
+            <style type="text/css">
+                .tp-bullets.simplebullets.round .bullet {
+                    width: 14px;
+                    height: 14px;
+                    margin: 0 5px;
+                    background: #fff;
+                    border: 2px solid #fff;
+                    -webkit-border-radius: 50%;
+                    -moz-border-radius: 50%;
+                    border-radius: 50%;
+                    -moz-background-clip: padding;
+                    -webkit-background-clip: padding-box;
+                    background-clip: padding-box;
+                }
+
+                    .tp-bullets.simplebullets.round .bullet:hover,
+                    .tp-bullets.simplebullets.round .bullet.selected,
+                    .tp-bullets.simplebullets.navbar .bullet:hover,
+                    .tp-bullets.simplebullets.navbar .bullet.selected {
+                        background: #0082c9;
+                    }
+            </style>
+        </div>
+    </div>
+    <div class="container spo">
+        <div class="support">
+            <div class="row">
+                <div class="col-sm-3 col-xs-3">
+                    <a href="javascript:void(0);" onclick="javascript:jQuery('#callback').show();" class="btn-quotes">
+                        <span class="ico icobl"><i></i></span>
+                        <span class="txt">@Resource.HoTro</span>
+                    </a>
+                </div><div class="col-sm-3 col-xs-3">
+                    <a href="@file.LinkDownload" class="btn-profile">
+                        <span class="ico icobl"><i></i></span>
+                        <span class="txt">@Resource.HoSoNangLuc</span>
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-3">
+                    <a href="tel:+84+@about.HotLine" class="btn-hotline">
+                        <span class="ico icobl"><i></i></span>
+                        <span class="txt">Hotline<br><strong>@about.HotLine</strong></span>
+                    </a>
+                </div>
+                <div class="col-sm-3 col-xs-3">
+                    <a href="@Url.Action("Introduce","Home",new {id=4})" class="btn-chat">
+                        <span class="ico icobl"><i></i></span>
+                        <span class="txt">@Resource.Tuyendung</span>
+                    </a>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container rs">
+        <div class="whyus">
+            <div class="row">
+                @{Html.RenderAction("Reason", "Home");}
+            </div>
+        </div>
+    </div>
+    <div class="container pr">
+        <h1 class="project-breadcrumb"><span style="font-size:30px;">@Resource.SPNoiBat</span></h1>
+        <div class="project-list" id="project-list">
+            <div class="row" id="loop">
+                @foreach (var item in Model.Product)
+                {
+                <div class="col-xs-6 col-sm-4 col-md-3" id="ga-788" style="position: relative;">
+                    <a class="item" href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan = Util.GenerateUrl(item.Vi_Title.Trim())})" title="item.Vi_Title">
+                        <div class="item-img">
+                            <img src="@item.ImagePath" alt="@item.Vi_Title" width="100%">
+                            <div class="item-bg"></div>
+                            <p style="text-align:center;height:21px;overflow:hidden">@item.Vi_Title</p>
+                            <br />
+                            <h3>@item.Vi_Description</h3>
+                        </div>
+                    </a>
+                </div>
+
+                }
+
+            </div>
+            <p align="right">
+                <a class="more" href="@Url.Action("Products","Home")">@Resource.Xemchitiet &gt;&gt;</a>
+            </p>
+
+            <div class="clearfix hidden-xs hidden-sm"></div>      <div class="clearfix visible-xs hidden-sm"></div>      <div class="clearfix visible-sm"></div>
+        </div>
+    </div>
+    <div class="container ">
+        <div class="vc_row wpb_row vc_row-fluid whyus">
+            <div class="wpb_column vc_column_container col-md-8">
+                <div class="vc_column-inner ">
+                    <div class="whyus-text">
+                        <h2 style="color:#e21c24;" class="vc_custom_heading vc_custom_1482207095051">@Resource.Tinmoi</h2>
+                        <div class="tin-song-an  slick-initialized slick-slider" id="tin">
+                            <div aria-live="polite" class="slick-list draggable" tabindex="0">
+                                <div>
+                                    @foreach (var item in Model.News.Where(t => t.IsHot).Take(2))
+                                    {
+                                    <div class="item slick-slide slick-active ns" data-slick-index="@item.Id" aria-hidden="false" style="width: 360px;">
+                                        <div class="item-img">
+                                            <a href="@Url.Action("NewsDetail", "ViewNews", new {id = item.Id,title = Util.GenerateUrl(item.Vi_Title.Trim())})" title="@item.Vi_Title">
+                                                <img src="@item.ImagePath" alt="@item.Vi_Title" style="height:250px;">
+                                            </a>
+                                        </div><div class="item-info">
+                                            <div class="invert">
+                                                <p style="color:#0082c9">@item.Vi_Title</p>
+                                                <div class="item-date">@item.DateCreate.Value.ToShortDateString()</div>
+                                                <div class="item-desc">
+                                                    @item.Vi_Description
+                                                </div><div class="item-more">
+                                                    <a href="@Url.Action("NewsDetail", "ViewNews", new {id = item.Id,title = Util.GenerateUrl(item.Vi_Title.Trim())})" title="@item.Vi_Title">@Resource.Xemchitiet &gt;&gt; </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    }
+                                </div>
+                            </div><button type="button" data-role="none" class="slick-prev" aria-label="previous" style="display: block;">Previous</button><button type="button" data-role="none" class="slick-next" aria-label="next" style="display: block;">Next</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="wpb_column vc_column_container col-md-4">
+                <div class="vc_column-inner ">
+                    <div class="wpb_wrapper whyus-text">
+                        <h2 style="color:#e21c24;">@Resource.TinKhac</h2><div id="songan-blog-2006817183" class="songan-blog ">
+                            <ul class="list-none ns">
+                                @foreach (var item in Model.News.Where(t => t.IsHot == false).Take(4))
+                                {
+                                <li>
+                                    <a href="@Url.Action("NewsDetail", "ViewNews", new {title = Util.GenerateUrl(item.Vi_Title.Trim()), id = item.Id})" title="@item.Vi_Title" target="_blank">
+                                        @item.Vi_Title
+                                        <span class="post-date">@item.DateCreate.Value.ToShortDateString()</span>
+                                    </a>
+                                </li>
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container ts">
+        <div class="whyus-text">
+            <h3 style="font-weight:bold;">@Resource.HoNoi</h3>
+        </div>
+        <div id="testimonial-807639028" class="testimonial-list">
+            @foreach (var item in Model.Partner.OrderByDescending(t => t.Id).Take(2))
+            {
+                <div class="item">
+                    <div class="item-img">
+                        <img src="@item.ImagePath" alt="@item.Vi_Name">
+                    </div>
+                    <div class="item-quotes">
+                        <div class="ct">
+                            @Html.Raw(HttpUtility.HtmlDecode(item.Vi_Content))
+                        </div>
+                        <div class="quotes-rating">
+                            <span></span><span></span><span></span><span></span><span></span>
+                        </div>
+                        <div class="quotes-author"><strong>@item.Vi_Name</strong></div>
+                        <div class="quotes-company">@item.Vi_Posintion</div>
+                    </div>
+                </div>
+            }
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+
+
+</div>
+<style>
+        .ct{
+            height: 235px;
+             overflow: hidden    ;
+        }
+        .ct:hover{
+            overflow-y:auto;
+        }
+    </style>
+<script>
+
+    var o = jQuery("#testi1");
+    o.owlCarousel({
+        responsiveClass: !0, responsive:
+            {
+                0: { items: 1 }, 992: { items: 1 }
+            },
+        dots: !1,
+        loop: 1,
+        margin: 0,
+        nav: !1,
+        autoplay: 0
+    }), jQuery(".nextBtn").click(function () {
+        o.trigger("next.owl.carousel")
+    }), jQuery(".prevBtn").click(function () {
+        o.trigger("prev.owl.carousel")
+    })
+    window.sr = ScrollReveal().reveal('.spo,.rs,.pr,.ns,.ts');
+</script>

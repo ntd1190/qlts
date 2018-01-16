@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MSSQL_QLDN_QLNS_DEMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Issue">
+    <Key>
+      <PropertyRef Name="IssueId" />
+    </Key>
+    <Property Name="IssueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KhachHangId" Type="int" Nullable="false" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="NguoiLienHe" Type="nvarchar" MaxLength="50" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="20" />
+    <Property Name="DiDong" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
+    <Property Name="MoTa" Type="nvarchar" MaxLength="300" />
+    <Property Name="LoaiIssue" Type="smallint" />
+    <Property Name="NgayDeNghi" Type="datetime" />
+    <Property Name="NguoiXuLy" Type="int" />
+    <Property Name="NguoiTao" Type="int" Nullable="false" />
+    <Property Name="CachXuLy" Type="nvarchar(max)" />
+    <Property Name="HuongXuLy" Type="nvarchar(max)" />
+    <Property Name="DanhGiaId" Type="int" />
+    <Property Name="MaTrangThai" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="XoaYn" Type="char" MaxLength="1" />
+    <Property Name="CtrVersion" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="KhachHangId" />
+    </Key>
+    <Property Name="KhachHangId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ma" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="Ten" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Loai" Type="smallint" Nullable="false" />
+    <Property Name="DienThoai" Type="varchar" MaxLength="20" />
+    <Property Name="DiDong" Type="varchar" MaxLength="20" />
+    <Property Name="Email" Type="varchar" MaxLength="100" />
+    <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+    <Property Name="TinhThanhPhoId" Type="int" />
+    <Property Name="QuanHuyenId" Type="int" />
+    <Property Name="PhuongXaId" Type="int" />
+    <Property Name="NgayTao" Type="datetime" />
+    <Property Name="AnyDesk" Type="nvarchar" MaxLength="50" />
+    <Property Name="NguoiTao" Type="int" />
+    <Property Name="XoaYN" Type="char" MaxLength="1" />
+    <Property Name="CtrVersion" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MSSQL_QLDN_QLNS_DEMOModelStoreContainer">
+    <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

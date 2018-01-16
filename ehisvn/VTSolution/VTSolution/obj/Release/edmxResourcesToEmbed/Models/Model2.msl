@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MSSQL_QLDN_QLNS_DEMOModelStoreContainer" CdmEntityContainer="QLDN_QLNS_DEMOEntities">
+    <EntitySetMapping Name="Issues">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.Issue">
+        <MappingFragment StoreEntitySet="Issue">
+          <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+          <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="NguoiLienHe" ColumnName="NguoiLienHe" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+          <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+          <ScalarProperty Name="LoaiIssue" ColumnName="LoaiIssue" />
+          <ScalarProperty Name="NgayDeNghi" ColumnName="NgayDeNghi" />
+          <ScalarProperty Name="NguoiXuLy" ColumnName="NguoiXuLy" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="CachXuLy" ColumnName="CachXuLy" />
+          <ScalarProperty Name="HuongXuLy" ColumnName="HuongXuLy" />
+          <ScalarProperty Name="DanhGiaId" ColumnName="DanhGiaId" />
+          <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+          <ScalarProperty Name="XoaYn" ColumnName="XoaYn" />
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KhachHangs">
+      <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhachHang">
+        <MappingFragment StoreEntitySet="KhachHang">
+          <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+          <ScalarProperty Name="Ma" ColumnName="Ma" />
+          <ScalarProperty Name="Ten" ColumnName="Ten" />
+          <ScalarProperty Name="Loai" ColumnName="Loai" />
+          <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+          <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+          <ScalarProperty Name="TinhThanhPhoId" ColumnName="TinhThanhPhoId" />
+          <ScalarProperty Name="QuanHuyenId" ColumnName="QuanHuyenId" />
+          <ScalarProperty Name="PhuongXaId" ColumnName="PhuongXaId" />
+          <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+          <ScalarProperty Name="AnyDesk" ColumnName="AnyDesk" />
+          <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+          <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+          <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,26 @@
+﻿  @-webkit-keyframes _gm6986 {
+                0% {
+                    -webkit-transform: translate3d(0px,-500px,0);
+                    -webkit-animation-timing-function: ease-in;
+                }
+
+                50% {
+                    -webkit-transform: translate3d(0px,0px,0);
+                    -webkit-animation-timing-function: ease-out;
+                }
+
+                75% {
+                    -webkit-transform: translate3d(0px,-20px,0);
+                    -webkit-animation-timing-function: ease-in;
+                }
+
+                100% {
+                    -webkit-transform: translate3d(0px,0px,0);
+                    -webkit-animation-timing-function: ease-out;
+                }
+            }
+  .zoom-control a {
+      text-decoration: none;
+      color: white;
+      cursor: pointer
+  }

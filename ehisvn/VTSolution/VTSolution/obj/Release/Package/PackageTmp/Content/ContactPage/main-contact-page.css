@@ -1,0 +1,116 @@
+﻿@import url('tabs-content.css');
+@import url('image-page.css');
+@import url('video-page.css');
+@import url('music-page.css');
+
+/*#region page*/
+   #contact-page .tab-content {
+     margin-top: 10px;
+   } 
+     #contact-page .header {
+       display: none;
+     }
+     @media (min-width:768px){
+            #contact-page .header {
+       display: block;
+     }
+     }
+@media (min-width:992px){
+}
+@media (min-width:1200px){
+}
+/*#endregion page*/
+/*--------------------------------------------------------------*/
+/*.menu-product {
+  width: 100%;
+  font-size: 0;
+}
+
+.menu-index-tb {
+  width: 150px;
+  line-height: 100px;
+  -webkit-transform: skew(7deg);
+  -moz-transform: skew(7deg);
+  -o-transform: skew(7deg);
+  background: #eee linear-gradient(45deg, #E9E9E9, #F3F3F3, #E9E9E9);
+  content: "";
+  text-align: center;
+  display: inline-block;
+  -ms-border-top-right-radius: 5px;
+  border-top-right-radius: 5px;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+  .menu-index-tb .text-menu {
+    margin-top: 10px;
+    vertical-align: middle;
+    text-align: center;
+    font-weight: bold;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+
+
+
+
+.txt-catalog {
+  vertical-align: middle;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  width: 100%;
+}
+
+@media(min-width:720px) {
+  .layout-meunu {
+    background-color: #ffffff;
+    opacity: 0.5;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+    height: 30px;
+  }
+}
+
+.layout-meunu a {
+  padding: 0 !important;
+}
+
+.layout-meunu .col-small:before {
+  content: '';
+  height: 100%;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.layout-meunu .col-small {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.layout-meunu .col-lage {
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.layout-meunu .menu-text {
+  color: #000000;
+  opacity: 0.3;
+  font-size: 13px;
+  text-transform: uppercase;
+  font-weight: 600;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+  .layout-meunu .menu-text:visited, .layout-meunu .menu-text:active, .layout-meunu .menu-text:hover, .layout-meunu .menu-text:focus {
+    color: #000000;
+    opacity: 0.5;
+  }
+
+.layout-background {
+  background-image: url('../Images/Icon/gray-background-3.jpg');
+  height: 1000px;
+  width: 100%;
+}*/

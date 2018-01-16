@@ -1,0 +1,21 @@
+﻿
+<div class="row hidden-md hidden-sm hidden-lg">
+    <div class="col-xs-12" style="background-color:white;margin-top:10px;">
+        <h1 style="font-size:15px;">@Helper.Getnews().Vi_Title</h1>
+        <h2 style="font-size:15px;">@Helper.Getnews().Vi_Description</h2>
+        @Html.Raw(HttpUtility.HtmlDecode(Helper.Getnews().Vi_Content))
+    </div>
+</div>
+<div class="bottom inner" style="opacity: 1; background-color: #0082c9; ">
+    <div class="copyright inner">
+        <p>© 2016 <strong>SONG AN</strong>. ALL RIGHTS RESERVED. DEVELOPED BY SONGAN</p>
+        <p class="hotline-bee" style="color:white">
+            Hotline: @Helper.GetData().HotLine
+        </p>
+    </div>
+</div>
+<style>
+    img {
+        width: 100% !important;
+    }
+</style>

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Phản Hồi ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.EmailIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.DateCreate).Title("Ngày Gửi").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Project).Title("Địa Chỉ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Email).Title("Email").Width(150).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Phone).Title("Điện Thoại").Width(150).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Content).Title("Nội Dung").Width(400).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:600px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+                          .Read(read => read.Action("Email_Read", "Email"))
+                          .Destroy(update => update.Action("Email_Destroy", "Email"))
+    )
+)
+
+
+
+

@@ -1,0 +1,44 @@
+﻿/*media*/
+@import url('../cssJplayer/cus-jplayer.css');
+/*table*/
+ #music-tab .img-media {
+   width: 100%;
+ }
+#music-tab .table caption {
+  font-size: 22px;
+  font-weight: bold;
+  color: #555;
+}
+#music-tab .table tr td {
+  width: 100px;
+  padding:5px 2px;
+  width: 80px;
+}
+#music-tab .table tr td:first-child {
+  padding-left: 0;
+  width: auto;
+  font-size: 15px;  
+  text-transform: uppercase;
+}
+#music-tab .btn-music {
+  background-color: #EA2729; 
+  color: #fff;
+  width: 80px;
+  text-align: center;
+  font-size: 10px;
+  padding: 3px 5px;
+}
+/*register*/
+#music-tab .register {
+  font-size: 15px;
+}
+#music-tab .register span {
+  color: #EE5F47;
+}
+/*lyric*/
+#music-tab h3 {
+  margin-top: 0;
+}
+#music-tab p {
+  font-size: 18px;
+}

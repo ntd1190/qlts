@@ -1,0 +1,23 @@
+﻿.scroll-bee {
+    width: 6px;
+    z-index: 10;
+    cursor: default;
+    position: absolute;
+    top: 50px;
+    left: 1044px;
+    height: 399px;
+    opacity: 0.71842;
+    background: rgba(255, 255, 255, 0);
+}
+
+    .scroll-bee .child {
+        position: relative;
+        top: 0px;
+        float: right;
+        width: 6px;
+        height: 261px;
+        border: 0px solid rgb(64, 122, 164);
+        border-radius: 0px;
+        background-color: rgb(64, 122, 164);
+        background-clip: padding-box;
+    }

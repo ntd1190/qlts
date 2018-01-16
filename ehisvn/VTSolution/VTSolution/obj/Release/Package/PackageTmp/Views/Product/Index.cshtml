@@ -1,0 +1,158 @@
+﻿@*@{
+        ViewBag.Title = "Danh Sách";
+        Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    }
+
+
+
+    @(Html.Kendo().Grid<VTSolution.ViewModel.Manager.ProductIndexModel>()
+        .Name("grid")
+        .Columns(columns =>
+        {
+            columns.Bound(p => p.ImagePath).HeaderHtmlAttributes(new { style = "text-align:center" }).Width(200).Title("Hình ảnh").ClientTemplate("<img style='width:100%;height:200px;'src='#=ImagePath#' />");
+            columns.Bound(p => p.GroupName).Title("Thuộc Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+            columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+            columns.Bound(p => p.Eng_Name).Title("Tên Tiếng Anh").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+            //columns.Command(command =>
+            //{
+            //    command.Custom("Edit_Product").Text("Sửa").Click("Edit_Product");
+            //    command.Destroy().Text("Xóa");
+              columns.Command(command => { command.Edit(); command.Destroy(); }).Width(160);
+            //}).Width(172);
+        })
+        .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "Product", new { id = 0 }))
+            .Editable(editable => editable.Mode(GridEditMode.InCell))
+        .Pageable(pageable => pageable
+        .Refresh(true)
+        .PageSizes(true)
+        .ButtonCount(10))
+        .Sortable()
+        .Scrollable()
+        .Resizable(resize => resize.Columns(true))
+        .HtmlAttributes(new { style = "height:600px;" })
+        .DataSource(dataSource => dataSource
+            .Ajax()
+            .PageSize(20)
+
+            .Model(model => model.Id(p => p.Id))
+
+                              .Read(read => read.Action("Product_Read", "Product"))
+                                              .Destroy(update => update.Action("Product_Destroy", "Product"))
+        )
+    )*@
+
+@{
+    ViewBag.Title = "Danh Sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.OrderbyProduct>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ImagePath).HeaderHtmlAttributes(new { style = "text-align:center" }).Width(200).Title("Hình ảnh").ClientTemplate("<img style='width:100%;height:150px;'src='#=ImagePath#' />");
+        columns.Bound(p => p.GroupName).Title("Thuộc Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Product").Text("Sửa").Click("Edit_Product");
+            command.Edit().Text("Cập Nhật Vị Trí");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+
+    .ToolBar(toolbar =>
+                {
+
+
+                    toolbar.Template(@<text>
+
+                        <div class="row">
+                            <div class="col-md-3">
+                                @(Html.Kendo().Button()
+                                    .Name("btn_Add")
+                                    .Icon("plus")
+                                    .Content("Thêm mới")
+                                            .Events(e => e.Click("addClick"))
+                                )
+                            </div>
+                            <div class="col-md-4">
+                                @(Html.Kendo().DropDownList()
+                                .Name("Name")
+                                           .HtmlAttributes(new { style = "width:359px" })
+                                                  .OptionLabel("Loại Sản Phẩm")
+                                                          .DataTextField("Vi_Name")
+                                                  .DataValueField("Id")
+                                                 .AutoBind(false)
+                                                 .Events(e => e.Change("menumajorChange"))
+                                                  .Filter(FilterType.Contains)
+                                                           .DataSource(source =>
+                                                      {
+                                                          source.Read(read =>
+                                                          {
+                                                              read.Action("GetCategory1", "Product");
+                                                          });
+                                                      })
+                                )
+                            </div>
+
+                        </div>
+                    </text>);
+                })
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable()
+    .Filterable()
+    .Sortable()
+    .Scrollable()
+    .Filterable()
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Events(events => events.Error("error_handler"))
+        .Model(model =>
+            {
+                model.Id(p => p.Id);
+                model.Field(p => p.OrderBy).Editable(true);
+                model.Field(p => p.ImagePath).Editable(false);
+                model.Field(p => p.Vi_Name).Editable(false);
+                model.Field(p => p.GroupName).Editable(false);
+
+            })
+
+        .Read(read => read.Action("Product_Read", "Product"))
+        .Update(update => update.Action("Product_Update", "Product"))
+        .Destroy(update => update.Action("Product_Destroy", "Product"))
+    )
+)
+<script type="text/javascript">
+    function error_handler(e) {
+        if (e.errors) {
+            var message = "Errors:\n";
+            $.each(e.errors, function (key, value) {
+                if ('errors' in value) {
+                    $.each(value.errors, function () {
+                        message += this + "\n";
+                    });
+                }
+            });
+            alert(message);
+        }
+    }
+</script>
+<script>
+    function menumajorChange() {
+        var value = this.value();
+        grid = $("#grid").data("kendoGrid");
+        if (value) {
+            grid.dataSource.filter({ field: "GroupId", operator: "eq", value: parseInt(value) });
+
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+    function addClick() {
+        window.location.href = "/Product/Create/0";
+    }
+
+</script>

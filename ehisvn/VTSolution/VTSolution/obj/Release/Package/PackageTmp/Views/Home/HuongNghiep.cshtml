@@ -1,0 +1,340 @@
+﻿
+@{
+    ViewBag.Title = "HuongNghiep";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div id="baner-event-huongnghiep">
+    <img src="~/Images/banner.png" />
+</div>
+<div class="event-huongnghiep" style="margin-bottom:0px!important">
+    <div class="titlethele">
+        <div class="img"></div>
+    </div>
+</div>
+<div class="event-huongnghiep" style="margin:0 auto !important">
+    <div class="noidungthele">
+        <div class="top"></div>
+        <div class="mid">
+            <div>
+                <p class="dl">Like fanpage facebook.com/EHIS.SONGAN</p>
+            </div>
+            <div>
+                <p class="dl">Share công khai fanpage facebook.com/EHIS.SONGAN</p>
+            </div>
+            <div>
+                <p class="dl">Tham gia thực hiện bài test và gửi về email: anhkiet@ehis.vn</p>
+            </div>
+            <div>
+                <p class="dl">Đến tham dự phỏng vấn ngày hội hướng nghiệp 30/9 tại trường Cao Đẳng Công Nghệ Thủ Đức
+                        từ 8 – 12h để nhận những phần quà từ công ty Song Ân.</p>
+            </div>
+        </div>
+        <div class="bottom"></div>
+    </div>
+</div>
+<div class="event-huongnghiep"  style="margin:0 auto !important">
+    <div class="tree">
+        <div class="tree1"></div>
+        <div class="tree-like treebtn" onclick="checklike()"></div>
+        <div class="tree-share treebtn" onclick="sharefb()"></div>
+        <div class="tree-test treebtn" onclick="baitest()"></div>
+    </div>
+    <div class="tree-icon">
+        <div class="icon icon-like">
+            <div class="fb-page" style="z-index:10000" data-href="https://www.facebook.com/EHIS.SONGAN/" data-width="180" data-height="70"
+                 data-small-header="true" data-adapt-container-width="true" data-hide-cover="true"
+                 data-show-facepile="false">
+                <blockquote cite="https://www.facebook.com/EHIS.SONGAN/"
+                            class="fb-xfbml-parse-ignore">
+                    <a class="fba" href="https://www.facebook.com/EHIS.SONGAN/"></a>
+                </blockquote>
+            </div>
+        </div>
+        <div class="icon icon-share" onclick="sharefb()" style="cursor:pointer"></div>
+        <div class="icon icon-test" onclick="baitest()" style="cursor:pointer"></div>
+    </div>
+    <div class="tree-bg"></div>
+    <div class="clear"></div>
+</div>
+<div class="event-huongnghiep">
+    <div class="lienhe">
+        Thời gian tuyển dụng: từ 25/09/2017 đến ngày 30/09/2017<br />
+        Liên hệ: 0121 753 9669 gặp anh Kiệt hoặc gửi thông tin về email: anhkiet@ehis.vn để biết thêm thông tin chi tiết.
+    </div>
+</div>
+<style>
+    * {
+        margin: 0px;
+        padding: 0px;
+        font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    }
+    .dl{
+        font-weight:bold;
+    }
+    #baner-event-huongnghiep {
+        
+        margin: 0px auto;
+        height: 244px;
+    }
+
+        #baner-event-huongnghiep img {
+            width: 100%;
+        }
+
+    .event-huongnghiep {
+        width: 754px;
+        margin: 140px auto;
+        position: relative;
+    }
+
+        .event-huongnghiep .titlethele {
+            height: 175px;
+            width: 269px;
+            margin: 0px auto;
+            margin-top: -3px;
+            position: relative;
+        }
+
+            .event-huongnghiep .titlethele div.img {
+                height: 156px;
+                width: 269px;
+                background: url(Images/Images.png) no-repeat scroll 0 0 transparent;
+                position: absolute;
+                right: -17px;
+            }
+
+        .event-huongnghiep .noidungthele .top {
+            height: 33px;
+            background: url(Images/Images.png) no-repeat scroll 0px -161px transparent;
+        }
+
+        .event-huongnghiep .noidungthele .bottom {
+            height: 33px;
+            background: url(Images/Images.png) no-repeat scroll 0px -197px transparent;
+        }
+
+        .event-huongnghiep .noidungthele .mid {
+            background: url(Images/content-thele.png) repeat-y scroll 1px 0px transparent;
+            padding-bottom: 10px;
+            padding-top: 15px;
+        }
+
+            .event-huongnghiep .noidungthele .mid > div {
+                margin-left: 62px;
+                margin-right: 62px;
+                padding-left: 20px;
+                background: url(Images/Images.png) no-repeat scroll -297px -9px transparent;
+                line-height: 24px;
+            }
+
+                .event-huongnghiep .noidungthele .mid > div > p {
+                    border-bottom: 1px solid #000;
+                    margin-bottom: 10px;
+                }
+
+        .event-huongnghiep .tree {
+            position: relative;
+            float: left;
+            width: 310px;
+            margin-top: 62px;
+            height: 584px;
+        }
+
+            .event-huongnghiep .tree .tree1 {
+                position: absolute;
+                left: 0px;
+                width: 115px;
+                height: 584px;
+                background: url(Images/Images.png) no-repeat scroll -13px -237px transparent;
+            }
+
+            .event-huongnghiep .tree .treebtn {
+                width: 298px;
+                height: 102px;
+                margin-top: 30px;
+                position: relative;
+                cursor: pointer;
+                -moz-transition: all 0.3s;
+                -webkit-transition: all 0.3s;
+                transition: all 0.3s;
+            }
+
+                .event-huongnghiep .tree .treebtn:hover {
+                    -moz-transform: scale(1.1);
+                    -webkit-transform: scale(1.1);
+                    transform: scale(1.1);
+                }
+
+            .event-huongnghiep .tree .tree-like {
+                margin-top: 58px;
+                background: url(Images/Images.png) no-repeat scroll -168px -295px transparent;
+            }
+
+            .event-huongnghiep .tree .tree-share {
+                background: url(Images/Images.png) no-repeat scroll -168px -429px transparent;
+            }
+
+            .event-huongnghiep .tree .tree-test {
+                background: url(Images/Images.png) no-repeat scroll -168px -569px transparent;
+            }
+
+        .event-huongnghiep .tree-icon {
+            width: 120px;
+            position: relative;
+            float: left;
+            margin-top: 62px;
+        }
+
+            .event-huongnghiep .tree-icon .icon {
+                width: 115px;
+                height: 102px;
+                margin-top: 30px;
+            }
+
+            .event-huongnghiep .tree-icon .icon-like {
+                margin-top: 76px;
+                height: 70px;
+                width: 180px;
+                margin-left: -5px;
+                /*background: url(Images/Images.png) no-repeat scroll -510px -292px transparent;*/
+            }
+
+            .event-huongnghiep .tree-icon .icon-share {
+                background: url(Images/Images.png) no-repeat scroll -499px -424px transparent;
+            }
+
+            .event-huongnghiep .tree-icon .icon-test {
+                background: url(Images/Images.png) no-repeat scroll -510px -550px transparent;
+            }
+
+        .event-huongnghiep .tree-bg {
+            height: 505px;
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            width: 356px;
+            background: url(Images/Images.png) no-repeat scroll -0px -846px transparent;
+        }
+
+        .event-huongnghiep .lienhe {
+            background: url(Images/Images.png) no-repeat scroll -0px -1356px transparent;
+            height: 82px;
+            margin-top: -13px;
+            margin-bottom: 70px;
+            color: #0082c9;
+            padding-left: 155px;
+            padding-top: 20px;
+            line-height: 22px;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+    .clear {
+        clear: both;
+    }
+</style>
+
+<script type="text/javascript" src="http://codeseven.github.com/toastr/toastr.js"></script>
+<link rel="stylesheet" type="text/css" href="http://codeseven.github.com/toastr/toastr.css">
+
+<script>
+    var ishare = false;
+    var islike = false;
+    window.fbAsyncInit = function () {
+        FB.init({ appId: '1470871532988780', status: true, cookie: true, xfbml: true, version: 'v2.10' });
+        FB.Canvas.setSize({ width: 520, height: 1500 });
+        FB.Event.subscribe('edge.create', function (response) {
+            islike = true;
+        });
+
+        FB.Event.subscribe('edge.remove', function (response) {
+            islike = false;
+        });
+        FB.login(function (response) {
+            console.log(response)
+            if (response.status == 'connected') {
+                var user_id = response.authResponse.userID;
+                var token = response.authResponse.accessToken;
+                var page_id = "969943529695122"; 
+                var fql_query = "SELECT uid FROM page_fan WHERE page_id=" + page_id + " and uid=" + user_id;
+
+                FB.api('/me/likes/'+page_id, function (response) {
+                    console.log(response);
+                });
+            } else {
+                // user is not logged in
+            }
+        });
+
+    };
+    (function () {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol +
+        '//connect.facebook.net/en_US/all.js';
+    }());
+
+    
+    function baitest() {
+        if (ishare) {
+            $.ajax({
+                url: '/Redirect',
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.code == 1) {
+
+                        window.location.href = "/Bieu-Mau-Song-An";
+                    }
+                    else
+                    {
+                        window.location.href = "/";
+                    }
+                },
+            });
+        }
+        else {
+            toastr.options = {
+                "debug": false,
+                "positionClass": "toast-top-right",
+                "onclick": null,
+                "fadeIn": 300,
+                "fadeOut": 100,
+                "timeOut": 3000,
+                "extendedTimeOut": 1000
+            }
+            var d = Date();
+            toastr.warning("Bạn chưa chia sẻ trang");
+        }
+    }
+
+    function sharefb() {
+
+        // calling the API ...
+        var obj = {
+            method: 'feed',
+            link: 'https://www.facebook.com/EHIS.SONGAN/posts/1724453017577499',
+            name: 'Ngày Hội Tuyển Dụng',
+            display: "popup",
+            caption: 'share',
+            description: 'chia sẻ'
+        };
+
+        function callback(response) {
+            console.log(response)
+            if (response == undefined) {
+                ishare = false;
+
+            }
+            else {
+                ishare = true;
+            }
+        }
+
+        FB.ui(obj, callback);
+    }
+
+    
+</script>
+
+

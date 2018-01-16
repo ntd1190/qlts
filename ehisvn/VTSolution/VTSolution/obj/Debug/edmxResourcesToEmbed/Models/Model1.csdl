@@ -1,0 +1,1094 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="angia_ivmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="angia_ivmEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="usp_Visitor_Edit" ReturnType="Collection(angia_ivmModel.usp_Visitor_Edit_Result)" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(angia_ivmModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(angia_ivmModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <FunctionImport Name="sp_alterdiagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(angia_ivmModel.sp_helpdiagramdefinition1_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(angia_ivmModel.sp_helpdiagrams1_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram1">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams1" />
+    <EntitySet Name="AboutUs" EntityType="angia_ivmModel.AboutU" />
+    <EntitySet Name="Accounts" EntityType="angia_ivmModel.Account" />
+    <EntitySet Name="Addresses" EntityType="angia_ivmModel.Address" />
+    <EntitySet Name="Banners" EntityType="angia_ivmModel.Banner" />
+    <EntitySet Name="Certificates" EntityType="angia_ivmModel.Certificate" />
+    <EntitySet Name="Customers" EntityType="angia_ivmModel.Customer" />
+    <EntitySet Name="Digitals" EntityType="angia_ivmModel.Digital" />
+    <EntitySet Name="Districts" EntityType="angia_ivmModel.District" />
+    <EntitySet Name="Emails" EntityType="angia_ivmModel.Email" />
+    <EntitySet Name="Features" EntityType="angia_ivmModel.Feature" />
+    <EntitySet Name="FeatureSons" EntityType="angia_ivmModel.FeatureSon" />
+    <EntitySet Name="Files" EntityType="angia_ivmModel.File" />
+    <EntitySet Name="Groups" EntityType="angia_ivmModel.Group" />
+    <EntitySet Name="GroupDistricts" EntityType="angia_ivmModel.GroupDistrict" />
+    <EntitySet Name="GroupFiles" EntityType="angia_ivmModel.GroupFile" />
+    <EntitySet Name="GroupFileSons" EntityType="angia_ivmModel.GroupFileSon" />
+    <EntitySet Name="GroupImages" EntityType="angia_ivmModel.GroupImage" />
+    <EntitySet Name="GroupIntroduces" EntityType="angia_ivmModel.GroupIntroduce" />
+    <EntitySet Name="GroupPartners" EntityType="angia_ivmModel.GroupPartner" />
+    <EntitySet Name="GroupProducts" EntityType="angia_ivmModel.GroupProduct" />
+    <EntitySet Name="GroupProductSons" EntityType="angia_ivmModel.GroupProductSon" />
+    <EntitySet Name="GroupRecruitments" EntityType="angia_ivmModel.GroupRecruitment" />
+    <EntitySet Name="GroupStaffs" EntityType="angia_ivmModel.GroupStaff" />
+    <EntitySet Name="GroupVideos" EntityType="angia_ivmModel.GroupVideo" />
+    <EntitySet Name="Images" EntityType="angia_ivmModel.Image" />
+    <EntitySet Name="Introduces" EntityType="angia_ivmModel.Introduce" />
+    <EntitySet Name="Log_Backend" EntityType="angia_ivmModel.Log_Backend" />
+    <EntitySet Name="Menus" EntityType="angia_ivmModel.Menu" />
+    <EntitySet Name="MenuAdmins" EntityType="angia_ivmModel.MenuAdmin" />
+    <EntitySet Name="Musics" EntityType="angia_ivmModel.Music" />
+    <EntitySet Name="News" EntityType="angia_ivmModel.News" />
+    <EntitySet Name="Partners" EntityType="angia_ivmModel.Partner" />
+    <EntitySet Name="Positions" EntityType="angia_ivmModel.Position" />
+    <EntitySet Name="Products" EntityType="angia_ivmModel.Product" />
+    <EntitySet Name="ProductFiles" EntityType="angia_ivmModel.ProductFile" />
+    <EntitySet Name="ProductImages" EntityType="angia_ivmModel.ProductImage" />
+    <EntitySet Name="Projects" EntityType="angia_ivmModel.Project" />
+    <EntitySet Name="ProjectImages" EntityType="angia_ivmModel.ProjectImage" />
+    <EntitySet Name="Recruitments" EntityType="angia_ivmModel.Recruitment" />
+    <EntitySet Name="Roles" EntityType="angia_ivmModel.Role" />
+    <EntitySet Name="Staffs" EntityType="angia_ivmModel.Staff" />
+    <EntitySet Name="Status" EntityType="angia_ivmModel.Status" />
+    <EntitySet Name="ThongTinUngViens" EntityType="angia_ivmModel.ThongTinUngVien" />
+    <EntitySet Name="Videos" EntityType="angia_ivmModel.Video" />
+    <EntitySet Name="Visitors" EntityType="angia_ivmModel.Visitor" />
+    <AssociationSet Name="FK_Account_Role1" Association="angia_ivmModel.FK_Account_Role1">
+      <End Role="Role" EntitySet="Roles" />
+      <End Role="Account" EntitySet="Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Digital_Feature" Association="angia_ivmModel.FK_Digital_Feature">
+      <End Role="Feature" EntitySet="Features" />
+      <End Role="Digital" EntitySet="Digitals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Digital_Product" Association="angia_ivmModel.FK_Digital_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="Digital" EntitySet="Digitals" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeatureSon_Feature" Association="angia_ivmModel.FK_FeatureSon_Feature">
+      <End Role="Feature" EntitySet="Features" />
+      <End Role="FeatureSon" EntitySet="FeatureSons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductFile_File" Association="angia_ivmModel.FK_ProductFile_File">
+      <End Role="File" EntitySet="Files" />
+      <End Role="ProductFile" EntitySet="ProductFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Group" Association="angia_ivmModel.FK_News_Group">
+      <End Role="Group" EntitySet="Groups" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupFileSon_GroupFile" Association="angia_ivmModel.FK_GroupFileSon_GroupFile">
+      <End Role="GroupFile" EntitySet="GroupFiles" />
+      <End Role="GroupFileSon" EntitySet="GroupFileSons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_GroupImage1" Association="angia_ivmModel.FK_Image_GroupImage1">
+      <End Role="GroupImage" EntitySet="GroupImages" />
+      <End Role="Image" EntitySet="Images" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Introduce_GroupIntroduce" Association="angia_ivmModel.FK_Introduce_GroupIntroduce">
+      <End Role="GroupIntroduce" EntitySet="GroupIntroduces" />
+      <End Role="Introduce" EntitySet="Introduces" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupProductSon_GroupProduct" Association="angia_ivmModel.FK_GroupProductSon_GroupProduct">
+      <End Role="GroupProduct" EntitySet="GroupProducts" />
+      <End Role="GroupProductSon" EntitySet="GroupProductSons" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_GroupVideo" Association="angia_ivmModel.FK_Video_GroupVideo">
+      <End Role="GroupVideo" EntitySet="GroupVideos" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Project" Association="angia_ivmModel.FK_News_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductFile_Product" Association="angia_ivmModel.FK_ProductFile_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductFile" EntitySet="ProductFiles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImage_Product1" Association="angia_ivmModel.FK_ProductImage_Product1">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="ProductImage" EntitySet="ProductImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectImage_Project" Association="angia_ivmModel.FK_ProjectImage_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="ProjectImage" EntitySet="ProjectImages" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Project" Association="angia_ivmModel.FK_Video_Project">
+      <End Role="Project" EntitySet="Projects" />
+      <End Role="Video" EntitySet="Videos" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="usp_Visitor_Edit_Result">
+    <Property Type="Int64" Name="HomNay" Nullable="true" />
+    <Property Type="Int64" Name="HomQua" Nullable="true" />
+    <Property Type="Int64" Name="TuanNay" Nullable="true" />
+    <Property Type="Int64" Name="TuanTruoc" Nullable="true" />
+    <Property Type="Int64" Name="ThangNay" Nullable="true" />
+    <Property Type="Int64" Name="ThangTruoc" Nullable="true" />
+    <Property Type="Int64" Name="TatCa" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagramdefinition1_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams1_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="AboutU">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="HotLine" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Facebook" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Twitter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Google" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmailSent" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EmailReceive" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="EmailPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Websites" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="HomePageTitle" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="HomePageDiscription" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="HomePageKeywords" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="MetaCopyRight" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="MetaAbstract" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="MetaAuthor" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="LinkPopUp" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Linkedin" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Instagram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RoleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Role" Relationship="angia_ivmModel.FK_Account_Role1" FromRole="Account" ToRole="Role" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Longtitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsReason" Type="Boolean" Nullable="false" />
+    <Property Name="Vi_Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="IsDistribution" Type="Boolean" Nullable="false" />
+    <Property Name="IsLogo" Type="Boolean" Nullable="false" />
+    <Property Name="ImagePath2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Link2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Name2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Isbanner" Type="Boolean" Nullable="false" />
+    <Property Name="IsPartner" Type="Boolean" Nullable="false" />
+    <Property Name="IsLearn" Type="Boolean" Nullable="false" />
+    <Property Name="IsWork" Type="Boolean" Nullable="false" />
+    <Property Name="IsPlay" Type="Boolean" Nullable="false" />
+    <Property Name="IsLydo" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Certificate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Long" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Lat" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="IsMain" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="Digital">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IdProduct" Type="Int32" />
+    <Property Name="IdParent" Type="Int32" />
+    <Property Name="Ja_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Feature" Relationship="angia_ivmModel.FK_Digital_Feature" FromRole="Digital" ToRole="Feature" />
+    <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_Digital_Product" FromRole="Digital" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="IsMain" Type="Boolean" Nullable="false" />
+    <Property Name="IsMainGroup" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Email1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Project" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Digitals" Relationship="angia_ivmModel.FK_Digital_Feature" FromRole="Feature" ToRole="Digital" />
+    <NavigationProperty Name="FeatureSons" Relationship="angia_ivmModel.FK_FeatureSon_Feature" FromRole="Feature" ToRole="FeatureSon" />
+  </EntityType>
+  <EntityType Name="FeatureSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="IdParent" Type="Int32" />
+    <Property Name="Ja_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Value" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Feature" Relationship="angia_ivmModel.FK_FeatureSon_Feature" FromRole="FeatureSon" ToRole="Feature" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="LinkDownload" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="Downloaded" Type="Int32" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="Url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="LinkDownload2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Url2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="ProductFiles" Relationship="angia_ivmModel.FK_ProductFile_File" FromRole="File" ToRole="ProductFile" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="Ja_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="News" Relationship="angia_ivmModel.FK_News_Group" FromRole="Group" ToRole="News" />
+  </EntityType>
+  <EntityType Name="GroupDistrict">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GroupFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GroupFileSons" Relationship="angia_ivmModel.FK_GroupFileSon_GroupFile" FromRole="GroupFile" ToRole="GroupFileSon" />
+  </EntityType>
+  <EntityType Name="GroupFileSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GroupFile" Relationship="angia_ivmModel.FK_GroupFileSon_GroupFile" FromRole="GroupFileSon" ToRole="GroupFile" />
+  </EntityType>
+  <EntityType Name="GroupImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="GRID" Type="Int32" />
+    <Property Name="IsWork" Type="Boolean" Nullable="false" />
+    <Property Name="IsLearn" Type="Boolean" Nullable="false" />
+    <Property Name="IsPlay" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Images" Relationship="angia_ivmModel.FK_Image_GroupImage1" FromRole="GroupImage" ToRole="Image" />
+  </EntityType>
+  <EntityType Name="GroupIntroduce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Introduces" Relationship="angia_ivmModel.FK_Introduce_GroupIntroduce" FromRole="GroupIntroduce" ToRole="Introduce" />
+  </EntityType>
+  <EntityType Name="GroupPartner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GroupProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupProductSons" Relationship="angia_ivmModel.FK_GroupProductSon_GroupProduct" FromRole="GroupProduct" ToRole="GroupProductSon" />
+  </EntityType>
+  <EntityType Name="GroupProductSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="ShowProduct" Type="Boolean" Nullable="false" />
+    <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupProduct" Relationship="angia_ivmModel.FK_GroupProductSon_GroupProduct" FromRole="GroupProductSon" ToRole="GroupProduct" />
+  </EntityType>
+  <EntityType Name="GroupRecruitment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GroupStaff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="GroupVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="IsIntroduce" Type="Boolean" Nullable="false" />
+    <Property Name="GroupBy" Type="Int32" />
+    <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Videos" Relationship="angia_ivmModel.FK_Video_GroupVideo" FromRole="GroupVideo" ToRole="Video" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="GroupImage" Relationship="angia_ivmModel.FK_Image_GroupImage1" FromRole="Image" ToRole="GroupImage" />
+  </EntityType>
+  <EntityType Name="Introduce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsHot" Type="Boolean" Nullable="false" />
+    <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="Ja_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupIntroduce" Relationship="angia_ivmModel.FK_Introduce_GroupIntroduce" FromRole="Introduce" ToRole="GroupIntroduce" />
+  </EntityType>
+  <EntityType Name="Log_Backend">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="ErrorLog" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Feature" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MenuAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MenuName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Controller" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="View" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Sequence" Type="Int32" />
+    <Property Name="IsParent" Type="Boolean" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Music">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LinkDownload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="View" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsHot" Type="Boolean" Nullable="false" />
+    <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+    <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsSecurity" Type="Boolean" />
+    <Property Name="IsTechnology" Type="Boolean" />
+    <Property Name="OrderBy" Type="Int32" />
+    <Property Name="ImagePath2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="View" Type="Int32" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="IsNumber" Type="Boolean" />
+    <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="SeVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SeEn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Group" Relationship="angia_ivmModel.FK_News_Group" FromRole="News" ToRole="Group" />
+    <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_News_Project" FromRole="News" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Partner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Link" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Posintion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+    <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="IsProject" Type="Boolean" Nullable="false" />
+    <Property Name="IsDepartment" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Description" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Digitals" Relationship="angia_ivmModel.FK_Digital_Product" FromRole="Product" ToRole="Digital" />
+    <NavigationProperty Name="ProductFiles" Relationship="angia_ivmModel.FK_ProductFile_Product" FromRole="Product" ToRole="ProductFile" />
+    <NavigationProperty Name="ProductImages" Relationship="angia_ivmModel.FK_ProductImage_Product1" FromRole="Product" ToRole="ProductImage" />
+  </EntityType>
+  <EntityType Name="ProductFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FileId" Type="Int32" />
+    <Property Name="ProductId" Type="Int32" />
+    <NavigationProperty Name="File" Relationship="angia_ivmModel.FK_ProductFile_File" FromRole="ProductFile" ToRole="File" />
+    <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_ProductFile_Product" FromRole="ProductFile" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductId" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_ProductImage_Product1" FromRole="ProductImage" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsHot" Type="Boolean" Nullable="false" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="SeVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="SeEn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="News" Relationship="angia_ivmModel.FK_News_Project" FromRole="Project" ToRole="News" />
+    <NavigationProperty Name="ProjectImages" Relationship="angia_ivmModel.FK_ProjectImage_Project" FromRole="Project" ToRole="ProjectImage" />
+    <NavigationProperty Name="Videos" Relationship="angia_ivmModel.FK_Video_Project" FromRole="Project" ToRole="Video" />
+    <Property Name="Ja_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SeJa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ProjectImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdProject" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_ProjectImage_Project" FromRole="ProjectImage" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Recruitment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="DateEnd" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Imagepath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="LinkDownload" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Accounts" Relationship="angia_ivmModel.FK_Account_Role1" FromRole="Role" ToRole="Account" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Yahoo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Vi_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Status1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="ThongTinUngVien">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="HoTen" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+    <Property Name="KyNang" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GioiThieu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Nam" Type="Int32" Nullable="false" />
+    <Property Name="TenTruong" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="ChuyenNganh" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Link" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DateCreate" Type="DateTime" Precision="3" />
+    <Property Name="GroupId" Type="Int32" />
+    <Property Name="IsHot" Type="Boolean" Nullable="false" />
+    <Property Name="Viewed" Type="Int32" />
+    <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OrderBy" Type="Int32" Nullable="false" />
+    <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+    <Property Name="IsIntroduce" Type="Boolean" Nullable="false" />
+    <Property Name="ProjectId" Type="Int32" />
+    <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="GroupVideo" Relationship="angia_ivmModel.FK_Video_GroupVideo" FromRole="Video" ToRole="GroupVideo" />
+    <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_Video_Project" FromRole="Video" ToRole="Project" />
+  </EntityType>
+  <EntityType Name="Visitor">
+    <Key>
+      <PropertyRef Name="VisitorID" />
+    </Key>
+    <Property Name="VisitorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="Visitors" Type="Int32" />
+  </EntityType>
+  <Association Name="FK_Account_Role1">
+    <End Type="angia_ivmModel.Role" Role="Role" Multiplicity="1" />
+    <End Type="angia_ivmModel.Account" Role="Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Digital_Feature">
+    <End Type="angia_ivmModel.Feature" Role="Feature" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.Digital" Role="Digital" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Digital">
+        <PropertyRef Name="IdParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Digital_Product">
+    <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.Digital" Role="Digital" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Digital">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeatureSon_Feature">
+    <End Type="angia_ivmModel.Feature" Role="Feature" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.FeatureSon" Role="FeatureSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeatureSon">
+        <PropertyRef Name="IdParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductFile_File">
+    <End Type="angia_ivmModel.File" Role="File" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.ProductFile" Role="ProductFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductFile">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Group">
+    <End Type="angia_ivmModel.Group" Role="Group" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupFileSon_GroupFile">
+    <End Type="angia_ivmModel.GroupFile" Role="GroupFile" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.GroupFileSon" Role="GroupFileSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupFile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupFileSon">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_GroupImage1">
+    <End Type="angia_ivmModel.GroupImage" Role="GroupImage" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.Image" Role="Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Introduce_GroupIntroduce">
+    <End Type="angia_ivmModel.GroupIntroduce" Role="GroupIntroduce" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.Introduce" Role="Introduce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupIntroduce">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Introduce">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupProductSon_GroupProduct">
+    <End Type="angia_ivmModel.GroupProduct" Role="GroupProduct" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.GroupProductSon" Role="GroupProductSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupProduct">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupProductSon">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_GroupVideo">
+    <End Type="angia_ivmModel.GroupVideo" Role="GroupVideo" Multiplicity="0..1" />
+    <End Type="angia_ivmModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupVideo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Project">
+    <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductFile_Product">
+    <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.ProductFile" Role="ProductFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductFile">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImage_Product1">
+    <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductImage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectImage_Project">
+    <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.ProjectImage" Role="ProjectImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectImage">
+        <PropertyRef Name="IdProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Project">
+    <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="angia_ivmModel.Video" Role="Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

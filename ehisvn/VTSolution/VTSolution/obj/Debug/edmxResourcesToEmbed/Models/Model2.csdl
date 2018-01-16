@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MSSQL_QLDN_QLNS_DEMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Issue">
+    <Key>
+      <PropertyRef Name="IssueId" />
+    </Key>
+    <Property Name="IssueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="KhachHangId" Type="Int32" Nullable="false" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="NguoiLienHe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DiDong" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="MoTa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="LoaiIssue" Type="Int16" />
+    <Property Name="NgayDeNghi" Type="DateTime" Precision="3" />
+    <Property Name="NguoiXuLy" Type="Int32" />
+    <Property Name="NguoiTao" Type="Int32" Nullable="false" />
+    <Property Name="CachXuLy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HuongXuLy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="DanhGiaId" Type="Int32" />
+    <Property Name="MaTrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="XoaYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CtrVersion" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KhachHang">
+    <Key>
+      <PropertyRef Name="KhachHangId" />
+    </Key>
+    <Property Name="KhachHangId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ma" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Loai" Type="Int16" Nullable="false" />
+    <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DiDong" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="TinhThanhPhoId" Type="Int32" />
+    <Property Name="QuanHuyenId" Type="Int32" />
+    <Property Name="PhuongXaId" Type="Int32" />
+    <Property Name="NgayTao" Type="DateTime" Precision="3" />
+    <Property Name="AnyDesk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NguoiTao" Type="Int32" />
+    <Property Name="XoaYN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="CtrVersion" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="QLDN_QLNS_DEMOEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Issues" EntityType="Self.Issue" />
+    <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+  </EntityContainer>
+</Schema>

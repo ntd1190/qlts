@@ -1,0 +1,67 @@
+﻿@model VTSolution.ViewModel.Customer.RecruitmentIndexModel
+@{
+    ViewBag.Title = "Khách Hàng | Ehis Song Ân" ;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var about = Helper.GetData();
+}
+
+<div id="main" class="">
+    <div class="container">
+        <h1 class="breadcrumb">@Resource.KhachHang</h1>
+        <div class="row">
+            <div class="col-sm-9" id="content">
+                <div class="cust-list" id="cust-list">
+                    <img src="@Model.KhacBiet.ImagePath" />
+                </div>
+                <div class="clearfix"></div>
+            </div> <!-- #content -->
+            <div class="col-sm-3" id="sidebar-right">
+                <div id="sidebar">
+                    <div class="testimonial">
+                        <div class="owl-carousel owl-theme owl-responsive-992 owl-loaded" id="testi">
+                           @foreach (var item in Model.Partner)
+                           {
+                            <div class="item">
+                                <div class="item-img"><img src="@item.ImagePath" width="100%" alt=""></div>
+                                <h3>@item.Vi_Name</h3>
+                                <div class="item-pos">@item.Vi_Posintion</div>
+                                <div class="item-desc">
+                                    @Html.Raw(HttpUtility.HtmlDecode(item.Vi_Content))
+                                </div>
+                            </div>
+                           }
+                            @*<div class="owl-controls"><div class="owl-nav"><div class="owl-prev" style="display: none;">prev</div><div class="owl-next" style="display: none;">next</div></div><div class="owl-dots" style="display: none;"></div></div>*@
+                        </div>
+                        <div class="testi-nav">
+                            <a href="javascript:void(0);" class="prevBtn"><i class="fa fa-angle-left"></i></a>
+                            <a href="javascript:void(0);" class="nextBtn"><i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+
+
+                    <div class="widget">
+                        <h2 class="widget-title">@Resource.Lienhe</h2>
+                        <div class="linkicon">
+                            <a class="hotline" href="tel:+84+@about.Phone"><span class="icon"><i class="fa fa-mobile"></i></span> <span class="txt">Hotline <br> <strong>@about.Phone</strong></span></a>
+                        </div>
+                        <div class="form">
+                            <p><input type="text" id="quick-your-name" class="wpcf7-text" placeholder="@Resource.Hoten"></p>
+                            <p><input type="email" id="quick-your-email" class="wpcf7-text" placeholder="@Resource.Emai"></p>
+                            <p><input type="text" id="quick-your-phone" class="wpcf7-text" placeholder="@Resource.Dienthoai"></p>
+                            <p><input type="text" id="quick-your-company" class="wpcf7-text" placeholder="@Resource.Diachi"></p>
+                            <p> <input type="text" id="quick-your-subject" class="wpcf7-text" placeholder="@Resource.TieuDe"></p>
+                            <p> <textarea name="quick-your-message" id="your-message" cols="30" rows="10" class="wpcf7-textarea" placeholder="@Resource.Ykien"></textarea></p>
+                            <p class="rpt" style="display:none;text-align: center;color: red;">Thank you ! We have received your message.</p>
+                             <button id="load" class="wpcf7-submit">@Resource.Gui <span id="contact-loading"></span></button> <p></p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+        </div> <!-- row -->
+    </div> <!-- container -->
+
+</div>
+<script>
+    var o = jQuery("#testi"); o.owlCarousel({ responsiveClass: !0, responsive: { 0: { items: 1 }, 992: { items: 1 } }, dots: !1, loop: !0, margin: 0, nav: !1, autoplay:1 }), jQuery(".nextBtn").click(function () { o.trigger("next.owl.carousel") }), jQuery(".prevBtn").click(function () { o.trigger("prev.owl.carousel") })
+</script>
