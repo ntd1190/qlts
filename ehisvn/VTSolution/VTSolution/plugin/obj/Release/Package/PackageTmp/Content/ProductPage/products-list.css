@@ -1,0 +1,117 @@
+﻿/*products list*/
+#product-page {
+  min-height: 800px;
+}
+#product-page .product-list {
+  margin-top: 30px;
+}
+#product-page .product-item {
+  padding: 20px;
+  height: 350px;
+  border:  2px groove #eee ;
+  margin-bottom: -2px;
+  margin-right: -2px;
+  display: inline-block;
+  color: #444;
+  
+}
+#product-page .product-item:hover {
+    border:  2px solid #444 ;
+    z-index: 1;
+}
+#product-page .product-item .label-product {
+  position: absolute;
+  top: -2px;
+  right: 0;
+
+}
+  #product-page .product-item .label-product img {
+   max-width: 100px;
+  max-height: 100px;
+  margin: 0;
+  position: relative;
+  }
+#product-page .product-item h2 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: bold;
+  line-height: 20px;
+  }
+
+
+#product-page .product-img {
+position: relative;
+height: 220px;
+display: block;
+  
+  }
+#product-page .product-img img {
+  max-width: 100%;
+  max-height: 220px;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  
+  position: absolute;
+  margin:auto;
+  
+  }
+#product-page .product-item h2 {
+   font-size: 16px;
+   line-height: 30px;
+     width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+   -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+
+  }
+#product-page .product-item h2 img {
+  width: 25px;
+  margin: 0;
+  margin-top:-5px;
+  }
+#product-page .product-item .E-detail-btn {
+  padding: 3px 5px;
+    font-size: 14px;
+    font-weight: bold;
+    -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  border:1px solid #999;
+  color: black;
+
+  }
+#product-page .product-item .E-detail-btn:hover {
+    border-color: #fff;
+    background-color: #fF2129;
+    color: #fff;
+  }
+@media (min-width:768px){
+    #product-page .product-item span {
+
+    width: 60%;
+  }
+  #product-page .product-item .E-detail-btn {
+    padding: 3px 20px;
+  }
+}         
+@media (min-width:992px){
+    #product-page .product-item span {
+
+    width: 50%;
+  }
+}
+@media (min-width:1200px){
+  #product-page .product-item span {
+
+    width: 60%;
+  }
+    .product-item {
+     width: 33%;
+}
+}

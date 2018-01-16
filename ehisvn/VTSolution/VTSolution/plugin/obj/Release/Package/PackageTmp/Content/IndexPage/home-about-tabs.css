@@ -1,0 +1,195 @@
+﻿
+#home-about-tabs .background-tab-content {
+  background-color: #e9e9e9;
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+
+/*about*/
+
+/*technews-reason*/
+/*technews*/
+#home-about-tabs .tech-news {
+}
+
+  #home-about-tabs .tech-news h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    line-height: 28px;
+    color: #555;
+  }
+
+#home-about-tabs .cus-line {
+  -webkit-transform: skew(35deg);
+  -moz-transform: skew(35deg);
+  -ms-transform: skew(35deg);
+  -o-transform: skew(35deg);
+  transform: skew(35deg);
+  height: 6px;
+  font-size: 5px;
+  background-color:#B51B1C;
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 20px;
+}
+
+  #home-about-tabs .cus-line > div {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #e9e9e9;
+    margin-left: 5px;
+  }
+
+    #home-about-tabs .cus-line > div:first-child {
+      margin-left: 6px;
+    }
+/*tech news item*/
+#home-about-tabs .tech-news .news-item {
+  background-color: #fff;
+  font-size: 13px;
+  padding: 10px;
+  margin: 5px 10px;
+  height: 300px;
+}
+
+  #home-about-tabs .tech-news .news-item div:first-child {
+    position: relative;
+    height: 160px;
+    border: 1px #eee solid;
+  }
+
+    #home-about-tabs .tech-news .news-item div:first-child img {
+      max-height: 160px;
+      max-width: 100%;
+      margin: auto;
+      top: 0;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      position: absolute;
+    }
+
+  #home-about-tabs .tech-news .news-item h3 {
+    font-size: 15px;
+    line-height: 15px;
+    text-transform: uppercase;
+    margin: 5px 0;
+    font-weight: bold;
+    color:   #B51B1C;
+    padding-left: 18px;
+    text-indent: -18px;
+  }
+
+    #home-about-tabs .tech-news .news-item h3:before {
+      background-image: url('../../Images/logo.png');
+      background-repeat: no-repeat;
+      -webkit-background-size: 18px;
+      background-size: 18px;
+      content: '';
+      display: inline-block;
+      width: 18px;
+      height: 25px;
+      margin-bottom: -10px;
+    }
+
+  #home-about-tabs .tech-news .news-item p {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    -ms-text-overflow: ellipsis;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis;
+  }
+
+  #home-about-tabs .tech-news .news-item div:last-child {
+    color: #999;
+    font-style: italic;
+    line-height: 13px;
+    height: 13px;
+    font-size: 12px;
+  }
+
+#home-about-tabs .news-item .viewmore-bar a {
+  color: #999;
+  font-size: 13px;
+  position: absolute;
+  bottom: 10px;
+  right: 30px;
+}
+
+
+
+#home-about-tabs .tech-news .news-item .icon-viewmore {
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  border: 1px #999 solid;
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  text-align: center;
+  vertical-align: middle;
+  -webkit-transform: rotateZ(48deg) rotateX(-25deg) rotateY(25deg);
+  -moz-transform: rotateZ(48deg) rotateX(-25deg) rotateY(25deg);
+  -ms-transform: rotateZ(48deg) rotateX(-25deg) rotateY(25deg);
+  -o-transform: rotateZ(48deg) rotateX(-25deg) rotateY(25deg);
+  transform: rotateZ(48deg) rotateX(-25deg) rotateY(25deg);
+}
+
+  #home-about-tabs .tech-news .news-item .icon-viewmore i {
+    font-size: 10px;
+    display: block;
+    line-height: 12px;
+  }
+
+/*reason*/
+#home-about-tabs .reason {
+}
+
+  #home-about-tabs .reason h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-left: 15px;
+    margin-bottom: 8px;
+    color: #B51B1C;
+  }
+
+  #home-about-tabs .reason img {
+    max-width: 100%;
+  }
+
+@media (min-width:768px) {
+  #home-about-tabs .tech-news h2 {
+    font-size: 20px;
+  }
+
+  #home-about-tabs .cus-line {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  #home-about-tabs .tech-news .news-item {
+    margin: 0;
+    height: 320px;
+  }
+
+  #home-about-tabs .reason h2 {
+    font-size: 25px;
+  }
+}
+
+@media (min-width:992px) {
+ #home-about-tabs .tech-news .news-item {
+    height: 350px;
+  }  
+}
+
+@media (min-width:1200px) {
+   #home-about-tabs .tech-news .news-item {
+    height: 320px;
+  } 
+}

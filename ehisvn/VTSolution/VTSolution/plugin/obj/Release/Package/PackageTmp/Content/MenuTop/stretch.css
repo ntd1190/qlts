@@ -1,0 +1,22 @@
+﻿@media (min-width:768px){
+  #container {
+    text-align: justify;
+    -ms-text-justify: distribute-all-lines;
+    text-justify: distribute-all-lines;
+    min-width: 50px;
+    max-width: 1200px;
+  }
+
+    #container > li {
+      vertical-align: top;
+      display: inline-block;
+      *display: inline;
+      zoom: 1;
+    }
+
+    #container:after {
+      content: '';
+      width: 100%;
+      display: inline-block;
+    }
+}

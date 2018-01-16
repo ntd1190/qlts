@@ -1,0 +1,77 @@
+﻿@import url('demo-solution.css');
+  #sercurity-solution .header .title div:last-child {
+    font-size: 18px;
+  }
+#sercurity-solution h3{
+    color:black;
+}
+/*diagram*/
+#sercurity-solution .diagram {
+
+}
+#sercurity-solution .diagram img {
+  width: 100%
+}
+
+/*advise*/
+
+#sercurity-solution .advise img {
+  width: 100%;
+}  
+#sercurity-solution .advise span {
+  font-size: 10px;
+}  
+#sercurity-solution .advise div {
+  background-color: #D1212B;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  color: #fff;
+} 
+#sercurity-solution .btn {
+  margin-top: 10px;
+  line-height: 20px;
+  font-size: 12px;
+  
+} 
+ #advise-modal .control-bar input {
+    max-width: 300px;
+    display: inline-block;
+ }
+ #advise-modal .modal-footer a, #advise-modal .modal-footer button {
+    width: 150px;
+    float:right;
+   margin: 0 5px;
+ }
+@media (min-width:768px){
+    #sercurity-solution .header .title div:last-child {
+    font-size: 20px;
+  }
+    /*list-solution*/
+ #sercurity-solution .list-solution {
+   margin: 30px 0;
+  
+ }
+/*solution content*/
+#sercurity-solution .content {
+  border: 1px solid #D1212B;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  padding: 15px;
+} 
+/*content*/  
+#sercurity-solution .content ul  {
+  padding-left: 20px;
+  font-size: 15px;
+}
+#sercurity-solution .btn {
+  margin-top: 20px;
+    line-height: 18px;
+
+} 
+}
+@media (min-width:992px){
+}
+@media (min-width:1200px){
+} 

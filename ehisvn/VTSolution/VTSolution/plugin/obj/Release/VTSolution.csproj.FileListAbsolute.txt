@@ -1,0 +1,258 @@
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\VTSolution.dll.config
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\VTSolution.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\VTSolution.pdb
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\en\VTSolution.resources.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\CKEditor.NET.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\CKFinder.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\EntityFramework.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\SRVTextToImage.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Razor.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\WebGrease.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\EntityFramework.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.Razor.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.Resource.resources
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.Resource.en.resources
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.csproj.GenerateResource.Cache
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\en\VTSolution.resources.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.dll
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.pdb
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Models\CustomRoleProvider.cs
+C:\Users\wawa\Desktop\New folder\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Models\CustomRoleProvider.cs
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\VTSolution.dll.config
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\VTSolution.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\VTSolution.pdb
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\CKEditor.NET.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\CKFinder.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\EntityFramework.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\SRVTextToImage.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Razor.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\WebGrease.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\EntityFramework.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.Razor.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\obj\Release\VTSolution.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\obj\Release\VTSolution.pdb
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\PagedList.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\PagedList.Mvc.dll
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\PagedList.xml
+E:\CTy\Project\WebTronGoi\Angia\VTSolution\VTSolution\bin\PagedList.Mvc.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Models\CustomRoleProvider.cs
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\VTSolution.dll.config
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\VTSolution.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\VTSolution.pdb
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\CKEditor.NET.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\CKFinder.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\EntityFramework.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\PagedList.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\PagedList.Mvc.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\SRVTextToImage.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Razor.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\WebGrease.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\EntityFramework.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\PagedList.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\PagedList.Mvc.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.Razor.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.pdb
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\bin\en\VTSolution.resources.dll
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.Resource.resources
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.Resource.en.resources
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\VTSolution.csproj.GenerateResource.Cache
+D:\Work\Web\AngiaSVN\VTSolution\VTSolution\obj\Release\en\VTSolution.resources.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Models\CustomRoleProvider.cs
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\VTSolution.dll.config
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\VTSolution.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\VTSolution.pdb
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\en\VTSolution.resources.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\CKEditor.NET.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\CKFinder.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\EntityFramework.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\PagedList.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\PagedList.Mvc.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\SRVTextToImage.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Razor.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\WebGrease.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\EntityFramework.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\PagedList.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\PagedList.Mvc.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.Razor.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+E:\WebSongAn\ehis\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.Resource.resources
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.Resource.en.resources
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.csproj.GenerateResource.Cache
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\en\VTSolution.resources.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.dll
+E:\WebSongAn\ehis\VTSolution\VTSolution\obj\Release\VTSolution.pdb
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Models\CustomRoleProvider.cs
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.dll.config
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.pdb
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\en\VTSolution.resources.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\CKEditor.NET.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\CKFinder.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\EntityFramework.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.Mvc.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\SRVTextToImage.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Razor.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\WebGrease.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\EntityFramework.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.Mvc.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Razor.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.Resource.resources
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.Resource.en.resources
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.csproj.GenerateResource.Cache
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\en\VTSolution.resources.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.pdb
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.WebActivator.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\WebActivatorEx.dll
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.xml
+E:\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.WebActivator.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Rotativa\wkhtmltopdf.exe
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.dll.config
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\VTSolution.pdb
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\en\VTSolution.resources.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Antlr3.Runtime.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\CKEditor.NET.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\CKFinder.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\EntityFramework.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Kendo.Mvc.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Microsoft.Web.Infrastructure.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.WebActivator.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Newtonsoft.Json.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.Mvc.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\SRVTextToImage.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Helpers.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Mvc.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Optimization.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Razor.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\WebActivatorEx.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\WebGrease.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\EntityFramework.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\MvcSiteMapProvider.WebActivator.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\PagedList.Mvc.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Helpers.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Mvc.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Optimization.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.Razor.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Deployment.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\System.Web.WebPages.Razor.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Newtonsoft.Json.xml
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\bin\Antlr3.Runtime.pdb
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.csprojResolveAssemblyReference.cache
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.Resource.resources
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.Resource.en.resources
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.csproj.GenerateResource.Cache
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\en\VTSolution.resources.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.dll
+E:\EHISDATA\WebSongAn\ehis - Copy\VTSolution\VTSolution\obj\Release\VTSolution.pdb

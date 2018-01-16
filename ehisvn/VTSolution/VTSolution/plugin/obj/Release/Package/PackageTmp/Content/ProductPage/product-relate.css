@@ -1,0 +1,91 @@
+﻿  #product-relate .header {
+    border-bottom-color: #ccc;
+    margin-bottom: 10px;
+  }
+  #product-relate .header .title div:last-child {
+    font-size: 15px;
+    padding: 0 5px;
+  }
+/*slide*/
+.related-products {
+  position: relative;
+} 
+ .related-products .flex-viewport {
+  margin: 0 30px;
+ }
+.related-products .slides {
+  display: table;
+  height: 150px;
+}
+
+.related-products .slides > li {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  height: 102px;
+  line-height: 100px;
+  position: relative;
+  border: 1px solid #ddd;
+
+}
+.related-products .slides > li  img {
+  max-height: 98px;
+  max-width: 211px;
+}
+.related-products .slides > li > p {
+  position: absolute;
+  z-index: 10;
+  line-height: 20px;
+  text-align: left;
+   padding: 10px 5px;
+}
+.related-products .slides > li > p > a {
+   color: #F15A40;
+}
+.related-products .slides > li > p> span:last-child {
+   font-weight: bold;
+}
+.product-detai .flex-direction-nav {
+  position: relative;
+}
+.related-products .flex-direction-nav .flex-prev,
+.related-products .flex-direction-nav .flex-next {
+  height: 30px;
+  width: 30px;
+  top: 54px;
+  opacity: 1;
+  color: transparent;
+  text-align: center;
+}
+
+.related-products .flex-direction-nav .flex-prev {
+  left: 0;
+}
+
+.related-products .flex-direction-nav .flex-next {
+  right: 0;
+}
+
+  .related-products .flex-direction-nav .flex-prev:before,
+  .related-products .flex-direction-nav .flex-next:before {
+    line-height: 30px;
+    font-size: 14px;
+    color: #ccc;
+  }
+     @media (min-width:768px){
+         #product-relate .header .title div:last-child {
+    font-size: 20px;
+    padding: 0 20px;
+  }
+     }
+  @media (min-width:992px){
+
+  }
+  @media (min-width:1200px){
+     .related-products .slides > li {
+
+  margin: 0 1px!important;
+
+}
+
+  }

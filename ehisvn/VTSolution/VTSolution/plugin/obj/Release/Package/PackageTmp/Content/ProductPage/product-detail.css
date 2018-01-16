@@ -1,0 +1,222 @@
+﻿
+.product-detail .no-gutters > div {
+   padding-left: 0;
+
+ }
+ .product-detail  .no-gutters > div:last-child {
+    padding-right: 0;
+  padding-left: 5px;
+  padding-top:20px;
+ } 
+/*title phone*/
+.product-detail .product-name.phone-screen {
+   margin: 10px 0;
+ }
+/*slide*/
+.product-detail .flex-control-thumbs,
+.product-detail .slides {
+  display: table;
+}
+
+.product-detail .flex-viewport {
+
+  border: 1px solid #ddd;
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+}
+
+.product-detail .flex-control-thumbs > li,
+.product-detail .slides > li {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.product-detail .slides > li {
+  height: 250px;
+  line-height: 250px;
+  position: relative;
+}
+
+  .product-detail .slides > li:after {
+    border: 1px solid #ddd;
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+
+.product-detail .flex-control-thumbs > li {
+  height: 70px;
+  border: 1px solid #ddd;
+  width: 23%;
+  margin: 0 1%;
+  margin-bottom: 5px;
+  line-height: 70px;
+}
+
+  .product-detail .flex-control-thumbs > li > img,
+  .product-detail .slides > li > img {
+    max-width: 100%;
+    width: auto;
+    display: inline-block;
+  }
+
+.product-detail .slides > li > img {
+  max-height: 250px;
+}
+
+.product-detail .flex-control-thumbs > li > img {
+  max-height: 70px;
+
+}
+
+.product-detai .flex-direction-nav {
+  position: relative;
+}
+
+.product-detail .flex-direction-nav .flex-prev,
+.product-detail .flex-direction-nav .flex-next {
+  height: 30px;
+  width: 30px;
+  top: 110px;
+  opacity: 1;
+  color: transparent;
+  text-align: center;
+  border: 1px solid transparent;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: #eee;
+  z-index: 0;
+}
+.product-detail .flex-direction-nav .flex-prev {
+  left: 30px;
+}
+
+.product-detail .flex-direction-nav .flex-next {
+  right: 30px;
+}
+
+  .product-detail .flex-direction-nav .flex-prev:before,
+  .product-detail .flex-direction-nav .flex-next:before {
+    line-height: 30px;
+    font-size: 14px;
+    color: #ccc;
+  }
+/*sale pice*/
+.product-detail .sale-price {
+  width: 100%;
+  background-color: #E5E4E4;
+  color: #D1212B;
+  font-size: 28px;
+  border-left: 5px solid #D1212B;
+  margin-top: 40px;
+  padding: 5px 20px;
+  vertical-align: middle;
+  font-weight: bold;
+}
+
+  .product-detail .sale-price span {
+    color: #222;
+    font-size: 20px;
+    height: 30px;
+  }
+/*price commitment*/
+.product-detail .row > div:first-child > p {
+  font-style: italic;
+  margin: 15px 0;
+}
+/*btn*/
+/*contact btn*/
+.product-detail .btn-escort {
+  height: 50px;
+  font-size: 17px;
+  line-height: 50px;
+  text-align: center;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  padding: 0;
+  width: 100%;
+}
+/*compare btn*/
+.product-detail .btn-e-gray {
+  padding: 0;
+  height: 50px;
+  font-size: 15px;
+  line-height: 50px;
+  text-align: center;
+  -webkit-border-radius: 2px;
+  -moz-border-radius: 2px;
+  border-radius: 2px;
+  width: 100%;
+}
+/*col right*/
+/*product name*/
+.product-detail .detail-pro-form {
+  overflow-y: auto;
+  height: 460px;
+}
+.product-detail .product-name {
+  margin: 0;
+  font-weight: bold;
+  font-size: 28px;
+}
+
+/*product code*/
+.product-detail .product-code {
+  font-size: 20px;
+  margin: 7px 0;
+  border-bottom: 1px #ccc solid;
+  width: 100%;
+}
+.product-detail .product-code span {
+   font-weight: bold;
+}
+/*product info*/
+/*zoom*/
+.zoomWindow {
+  z-index: 99999999!important;
+}
+.zoomContainer {
+  display: none;
+}
+@media (min-width:768px){ 
+  .zoomContainer {
+  display:block;
+}
+}
+
+@media print {
+  .print-screen {
+    width: 100%;
+  }
+  h2.product-name {
+    text-align: center;
+  }
+        .image-print {
+
+          display: block !important;
+          text-align: center;
+          width: 100%;
+        }
+        .image-print img {
+          max-height: 300px;
+        }
+}
+@media (min-width:992px){
+     .product-detail  .no-gutters > div:last-child {
+    padding-right: 0;
+  padding-left: 30px;
+    padding-top:0;
+ } 
+}
+@media (min-width:1200px){ 
+   
+}

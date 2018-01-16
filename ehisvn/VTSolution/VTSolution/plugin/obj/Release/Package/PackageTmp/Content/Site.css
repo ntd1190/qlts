@@ -1,0 +1,254 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
+
+#custom-search-input {
+    margin: 0;
+    padding: 0;
+}
+
+.form-control {
+    border-radius: 20px;
+}
+
+#custom-search-input .search-query {
+    background-color: #f1edec;
+    padding-right: 3px;
+    padding-right: 4px \9;
+    padding-left: 20px;
+    padding-left: 4px \9;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 20px;
+}
+
+.glyphicon {
+    color: #808080;
+}
+
+#custom-search-input button {
+    border: 0;
+    background: none;
+    /** belows styles are working good */
+    padding: 2px 5px;
+    margin-top: 2px;
+    position: relative;
+    left: -28px;
+    /* IE7-8 doesn't have border-radius, so don't indent the padding */
+    margin-bottom: 0;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    color: #D9230F;
+}
+
+.search-query:focus + button {
+    z-index: 3;
+}
+
+@media screen and (max-width: 768px) {
+    .side-collapse-container {
+        width: 100%;
+        position: relative;
+        left: 0;
+        transition: left .4s;
+    }
+
+        .side-collapse-container.out {
+            left: 200px;
+        }
+
+    .side-collapse {
+        width: 200px;
+        overflow: hidden;
+        transition: width .4s;
+    }
+
+        .side-collapse.in {
+            width: 0;
+        }
+}
+
+.navbar-nav li {
+    font-size: 16px;
+    color: white;
+    font-weight: bold;
+    padding-right: 20px;
+}
+
+.carousel {
+    margin-bottom: 60px;
+}
+
+    .carousel .container {
+        position: relative;
+        z-index: 9;
+    }
+
+.carousel-control {
+    height: 80px;
+    margin-top: 0;
+    font-size: 120px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    background-color: transparent;
+    border: 0;
+    z-index: 10;
+}
+
+.carousel .item {
+    height: 500px;
+}
+
+.carousel img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    height: 500px;
+}
+
+.carousel-caption {
+    background-color: transparent;
+    position: static;
+    max-width: 550px;
+    padding: 0 20px;
+    margin: 0 auto;
+    margin-top: 200px;
+    text-align: center;
+}
+
+    .carousel-caption h1,
+    .carousel-caption .lead {
+        margin: 0;
+        line-height: 1.25;
+        color: #fff;
+        text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    }
+
+    .carousel-caption .btn {
+        margin-top: 10px;
+    }
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none !important;
+}
+
+.carousel-control {
+    font-size: 40px;
+    text-shadow: 0 1px 1px rgba(0,0,0,.4);
+    background-color: transparent;
+    border: 0;
+    z-index: 10;
+    top: 50%;
+}
+/* RESPONSIVE CSS
+    -------------------------------------------------- */
+
+@media (max-width: 979px) {
+
+    .carousel .item {
+        height: 500px;
+    }
+
+    .carousel img {
+        width: auto;
+        height: 500px;
+    }
+}
+
+
+@media (max-width: 767px) {
+
+
+    .carousel {
+        margin-left: -20px;
+        margin-right: -20px;
+    }
+
+        .carousel .container {
+        }
+
+        .carousel .item {
+            height: 300px;
+        }
+
+        .carousel img {
+            height: 300px;
+        }
+
+    .carousel-caption {
+        width: 65%;
+        padding: 0 70px;
+        margin-top: 100px;
+    }
+
+        .carousel-caption h1 {
+            font-size: 30px;
+        }
+
+        .carousel-caption .lead,
+        .carousel-caption .btn {
+            font-size: 18px;
+        }
+}
+

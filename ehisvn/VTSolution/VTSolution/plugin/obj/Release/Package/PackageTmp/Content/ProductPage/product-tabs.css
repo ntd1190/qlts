@@ -1,0 +1,168 @@
+﻿#product-tabs {
+  margin-top: 30px;
+}
+  /*tabs*/
+  #product-tabs .nav-tabs li {
+    background-color: #52524F;
+    text-align: center;
+    height: 50px;
+  }
+
+    #product-tabs .nav-tabs li:hover {
+      background-color: #7D7E7E;
+    }
+
+    #product-tabs .nav-tabs li a {
+      border-width: 0;
+      font-size: 15px;
+      line-height: 50px;
+      padding: 0;
+      background-color: transparent;
+      color: #fff;
+    }
+  /*tab content*/
+  #product-tabs .tab-content {
+    overflow-x: auto;
+  }
+
+    #product-tabs .tab-content > div {
+      padding-top: 10px;
+    }
+/*sepecification tab*/
+#specification-tab > div {
+  border-top: 1px #ddd solid;
+}
+
+#specification-tab .form-group {
+  margin: 0;
+  border-bottom: 1px #ddd solid;
+}
+
+  #specification-tab .form-group:last-child {
+    border-bottom-width: 0;
+    line-height: 14px;
+  }
+
+  #specification-tab .form-group label {
+    display: block;
+   border-bottom: 1px #ddd solid;
+    background-color: #F6F7F8;
+  }
+
+  #specification-tab .form-group label,
+  #specification-tab .form-group div {
+    padding: 10px 20px;
+  }
+
+  #specification-tab .form-group label {
+    text-align: left;
+    vertical-align: top;
+  }
+
+
+/*technology tab*/
+#technology-tab {
+  border: 1px #ddd solid;
+  padding: 0 20px;
+  padding-bottom: 50px;
+  border-top-width: 0;
+
+}
+ #technology-tab img {
+   max-width: 100%;
+
+}
+  #technology-tab div {
+    text-align: right;
+  }
+
+  #technology-tab .btn-viewmore {
+    background-color: #FDE7DD;
+    border-color: #F15052;
+    color: #F15052;
+    margin-right: 70px;
+    float: right;
+  }
+
+    #technology-tab .btn-viewmore:hover {
+      background-color: #F15052;
+      color: #fff;
+    }
+/*support tab*/
+#support-tab {
+  padding: 0 20px;
+  border: 1px #ddd solid;
+  padding: 0 20px;
+  border-top-width: 0;
+}
+
+  #support-tab span {
+    font-style: italic;
+    color: #999;
+  }
+
+  #support-tab .control-bar > div > div {
+    padding: 10px 0;
+  }
+
+  #support-tab .control-bar input {
+    width: 200px;
+    display: inline-block;
+  }
+
+  #support-tab .control-bar .btn {
+    float: right;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    width: 46%;
+    margin: 0 2%;
+  }
+/*download tab*/
+#download-tab .table tr td {
+  padding: 10px 10px;
+  line-height: 32px;
+}
+
+  #download-tab .table tr td:last-child {
+    text-align: center;
+  }
+
+#download-tab .btn-escort {
+  width: 1010px;
+}
+
+#download-tab th {
+  font-weight: bold;
+}
+
+@media (min-width:768px) {
+  /*sepecification tab*/
+
+   #specification-tab .form-group:nth-of-type(odd) {
+    background-color: #F6F7F8;
+  }
+       #specification-tab .form-group label {
+         background-color: transparent;
+      border-bottom-width: 0;
+        border-right: 1px #ddd solid;
+  }
+
+    /*support tab*/
+  #support-tab .control-bar .btn {
+    width: 120px;
+  }
+
+    #support-tab .control-bar .btn:last-child {
+      margin-right: 15px;
+    }
+    #download-tab .btn-escort {
+  width: 150px;
+}
+}
+
+@media (min-width:992px) {
+}
+
+@media (min-width:1200px) {
+}

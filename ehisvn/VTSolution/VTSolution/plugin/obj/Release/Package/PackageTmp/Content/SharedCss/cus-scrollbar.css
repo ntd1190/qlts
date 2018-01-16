@@ -1,0 +1,34 @@
+﻿ .videos-list {
+   overflow: auto;
+   position: relative;
+ }
+ .scroll-bar {
+    position: absolute;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    left: 0;
+    right: 0;
+   top: 0;
+    bottom: 0;
+    width: 100%;
+
+}
+/* Let's get this party started */
+ .scroll-bar::-webkit-scrollbar {
+    width: 12px;
+}
+ 
+/* Track */
+ .scroll-bar::-webkit-scrollbar-track {
+    background: rgba(0,0,0,0.1);
+}
+ 
+/* Handle */
+.scroll-bar::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.10);
+
+}
+.scroll-bar::-webkit-scrollbar-thumb:window-inactive {
+  background: rgba(0,0,0,0.1);
+
+}

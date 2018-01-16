@@ -1,0 +1,66 @@
+﻿@import url('page-header.css');
+@import url('cus-scrollbar.css');
+@import url('video-caption.css');
+@import url('sub-tabs.css');
+@import url('pagination-breadcum.css');
+@import url('arrow-tabs.css');
+
+h3 {
+  margin: 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #444;
+}
+/*btn*/
+.btn-escort {
+  background-color: #D1212B;
+  color: #fff;
+}
+
+  .btn-escort:hover {
+    background-color: #e43741;
+    color: #fff;
+  }
+
+.btn-e-gray {
+  background-color: #52524F;
+  color: #fff;
+}
+
+  .btn-e-gray:hover {
+    background-color: #7E7F7F;
+     color: #fff;
+  }
+    .btn-e-brown:hover {
+    background-color: #7E7F7F;
+     color: #fff;
+  }
+      .btn-e-brown {
+    background-color:  #B51B1C;
+     color: #fff;
+  }
+            .btn-e-brown:hover {
+    background-color:  #dd2829;
+     color: #fff;
+  }
+/*gutter*/
+.row.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+}
+/*.row.no-gutters > [class^="col-"],
+.row.no-gutters > [class*=" col-"] {
+  padding-right: 0;
+  padding-left: 0;
+}*/ 
+.escort-link {
+  position: absolute;
+  top:0;
+  bottom:0;
+  left:0;
+  right:0; 
+}
+.dropdown.dd-share ul {
+  min-width: 100px;
+  padding: 5px;
+}

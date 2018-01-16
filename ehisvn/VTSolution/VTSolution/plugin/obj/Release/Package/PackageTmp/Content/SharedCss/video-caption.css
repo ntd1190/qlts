@@ -1,0 +1,26 @@
+﻿  .video-caption > div {
+     border-bottom: 1px solid #bbb;
+  padding: 10px 0;
+  position: relative;
+  }
+.video-caption h3 {
+
+  display: inline;
+}
+.video-caption .dropdown{
+  font-size: 14px;
+
+  display: inline;
+  position: absolute;
+  top: 10px;
+ right: 0;
+}
+.video-caption .dropdown a{
+  color: inherit;
+}
+.video-caption .dropdown i {
+  font-size: 18px;
+}
+.video-caption p {
+  font-size: 14px;
+}

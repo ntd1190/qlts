@@ -1,0 +1,12 @@
+﻿ #certificate-slider {
+   margin-bottom: 30px;
+ }
+ .fancybox-wrap {
+   left: 35%!important;
+ }
+ .fancybox-inner   {
+   width:150%!important;
+   height: 150%!important;
+   max-width: 900px;
+   max-height: 600px;
+ }

@@ -1,0 +1,101 @@
+﻿
+#top-banner .flexslider {
+ margin-bottom: 0;
+}
+#top-banner .slides > li{
+  position: relative;
+}
+#top-banner .slides div.captions {
+  background-color: transparent;
+  padding: 0;
+  opacity: 1;
+  position: absolute;
+  z-index: 30;
+  top: 20%;
+  right: 0;
+  min-width: 150px;
+}
+#top-banner .slides div.captions > div {
+  background-color: #fff;
+  opacity: 1;
+  padding: 15px;
+}
+#top-banner  .banner-title > h3 {
+  display: inline;
+  font-weight: bold;
+}
+  #top-banner .banner-title > img {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: top;
+    margin-right: 20px;
+  }
+#top-banner .banner-list{
+  margin-top: 10px;
+  padding-left:45px;
+  color:#AE4347 ;
+   font-size: 16px;
+   line-height: 20px;
+   vertical-align:top;
+}
+#top-banner .viewmore {
+  position: absolute;
+  background-color: #ED2425;
+  color: white;
+  padding: 5px 10px;
+  font-size: 25px;
+}
+
+#top-banner  .viewmore:hover {
+    cursor: pointer;
+    text-decoration: none;
+      background-color: #ff4e4f;
+
+  }
+  /*page point*/
+#top-banner  ol.flex-control-paging {
+    bottom: 30px;
+  }
+#top-banner ol.flex-control-paging li a {
+    background-color: #fff;
+    border: 2px #ED2425 solid;
+    width: 20px;
+    height: 20px;
+}
+#top-banner ol.flex-control-paging li a.flex-active,ol.flex-control-paging li a:hover {
+    background-color: #ED2425;
+    border-color: #fff;
+}
+#top-banner ul.flex-direction-nav {
+  height: 100%;
+  
+}
+#top-banner ul.flex-direction-nav li {
+  height: 100%;
+  
+}
+#top-banner ul.flex-direction-nav li a {
+  font-size: 0;
+  top: 20px;
+  height: 100%;
+}
+#top-banner .flex-direction-nav a.flex-next:before {
+  content: '';
+}
+#top-banner .flex-direction-nav a.flex-prev:before {
+  content: '';
+}
+#top-banner .flex-direction-nav .flex-next {
+right: 0;
+}
+#top-banner .flex-direction-nav .flex-prev {
+  left: 0;
+}
+
+#top-banner:hover .flex-direction-nav .flex-next {
+right: 0;
+}
+#top-banner:hover .flex-direction-nav .flex-prev {
+  left: 0;
+}

@@ -1,0 +1,67 @@
+﻿ #demo-solution .header {
+    width: 1125px;
+ }
+ #demo-solution .nav-responsive {
+  margin-bottom: 30px;
+}
+#demo-solution .sub-tabs {
+  margin-bottom: 2px;
+  border-color: #999;
+  margin-right: 15px;
+}
+
+/*video-list*/
+#demo-solution .tab-content .title {
+  height: 40px;
+  line-height: 40px;
+  background-color: #525150; 
+  color: #fff;
+  padding: 0 10px;
+  margin-right: 15px;
+}
+#demo-solution .videos-list {
+  height: 300px;
+}
+#demo-solution .scroll-bar {
+  padding: 15px 20px;
+  padding-bottom: 0;
+}
+#demo-solution .video-item {
+   display: block;
+   height: 95px;
+ 
+}
+#demo-solution .video-item img {
+ width: 40%;
+}
+#demo-solution .video-item h6 {
+  text-decoration: none;
+  font-size: 15px;
+  color: #555;
+  font-weight: bold;
+  margin: 0;
+  width: 55%;
+  right: 0;
+  position: absolute;
+  top: 0;
+}
+@media (min-width:768px){
+  #demo-solution .videos-list {
+  height: 175px;
+}
+  #demo-solution .video-item {
+   height: 160px; 
+}
+  #demo-solution .video-item img {
+ width: 100%;
+}
+#demo-solution .video-item h6 {
+  width: auto;
+  margin: 5px 0;
+  position: relative;
+}
+}
+ @media (min-width:992px){
+ }
+ @media (min-width:1200px){
+ }

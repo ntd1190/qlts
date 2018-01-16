@@ -1,0 +1,691 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="angia_ivmModelStoreContainer" CdmEntityContainer="angia_ivmEntities">
+    <FunctionImportMapping FunctionImportName="usp_Visitor_Edit" FunctionName="angia_ivmModel.Store.usp_Visitor_Edit">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="angia_ivmModel.usp_Visitor_Edit_Result">
+          <ScalarProperty Name="HomNay" ColumnName="HomNay" />
+          <ScalarProperty Name="HomQua" ColumnName="HomQua" />
+          <ScalarProperty Name="TuanNay" ColumnName="TuanNay" />
+          <ScalarProperty Name="TuanTruoc" ColumnName="TuanTruoc" />
+          <ScalarProperty Name="ThangNay" ColumnName="ThangNay" />
+          <ScalarProperty Name="ThangTruoc" ColumnName="ThangTruoc" />
+          <ScalarProperty Name="TatCa" ColumnName="TatCa" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="AboutUs">
+      <EntityTypeMapping TypeName="angia_ivmModel.AboutU">
+        <MappingFragment StoreEntitySet="AboutUs">
+          <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+          <ScalarProperty Name="Eng_Company" ColumnName="Eng_Company" />
+          <ScalarProperty Name="ImagePath3" ColumnName="ImagePath3" />
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="LinkPopUp" ColumnName="LinkPopUp" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="MetaAuthor" ColumnName="MetaAuthor" />
+          <ScalarProperty Name="MetaAbstract" ColumnName="MetaAbstract" />
+          <ScalarProperty Name="MetaCopyRight" ColumnName="MetaCopyRight" />
+          <ScalarProperty Name="HomePageKeywords" ColumnName="HomePageKeywords" />
+          <ScalarProperty Name="HomePageDiscription" ColumnName="HomePageDiscription" />
+          <ScalarProperty Name="HomePageTitle" ColumnName="HomePageTitle" />
+          <ScalarProperty Name="Eng_Slogan" ColumnName="Eng_Slogan" />
+          <ScalarProperty Name="Websites" ColumnName="Websites" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="EmailPassword" ColumnName="EmailPassword" />
+          <ScalarProperty Name="EmailReceive" ColumnName="EmailReceive" />
+          <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Google" ColumnName="Google" />
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+          <ScalarProperty Name="HotLine" ColumnName="HotLine" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Vi_Company" ColumnName="Vi_Company" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Accounts">
+      <EntityTypeMapping TypeName="angia_ivmModel.Account">
+        <MappingFragment StoreEntitySet="Account">
+          <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Addresses">
+      <EntityTypeMapping TypeName="angia_ivmModel.Address">
+        <MappingFragment StoreEntitySet="Address">
+          <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+          <ScalarProperty Name="Vi_Address" ColumnName="Vi_Address" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Banners">
+      <EntityTypeMapping TypeName="angia_ivmModel.Banner">
+        <MappingFragment StoreEntitySet="Banner">
+          <ScalarProperty Name="IsPartner" ColumnName="IsPartner" />
+          <ScalarProperty Name="Isbanner" ColumnName="Isbanner" />
+          <ScalarProperty Name="Name2" ColumnName="Name2" />
+          <ScalarProperty Name="Link2" ColumnName="Link2" />
+          <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+          <ScalarProperty Name="IsLogo" ColumnName="IsLogo" />
+          <ScalarProperty Name="IsDistribution" ColumnName="IsDistribution" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Eng_Caption" ColumnName="Eng_Caption" />
+          <ScalarProperty Name="Vi_Caption" ColumnName="Vi_Caption" />
+          <ScalarProperty Name="IsReason" ColumnName="IsReason" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Certificates">
+      <EntityTypeMapping TypeName="angia_ivmModel.Certificate">
+        <MappingFragment StoreEntitySet="Certificate">
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="angia_ivmModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+          <ScalarProperty Name="Lat" ColumnName="Lat" />
+          <ScalarProperty Name="Long" ColumnName="Long" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Digitals">
+      <EntityTypeMapping TypeName="angia_ivmModel.Digital">
+        <MappingFragment StoreEntitySet="Digital">
+          <ScalarProperty Name="Ja_Value" ColumnName="Ja_Value" />
+          <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+          <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+          <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+          <ScalarProperty Name="Eng_Value" ColumnName="Eng_Value" />
+          <ScalarProperty Name="Vi_Value" ColumnName="Vi_Value" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Districts">
+      <EntityTypeMapping TypeName="angia_ivmModel.District">
+        <MappingFragment StoreEntitySet="District">
+          <ScalarProperty Name="IsMainGroup" ColumnName="IsMainGroup" />
+          <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Emails">
+      <EntityTypeMapping TypeName="angia_ivmModel.Email">
+        <MappingFragment StoreEntitySet="Email">
+          <ScalarProperty Name="Project" ColumnName="Project" />
+          <ScalarProperty Name="Company" ColumnName="Company" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="Email1" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Features">
+      <EntityTypeMapping TypeName="angia_ivmModel.Feature">
+        <MappingFragment StoreEntitySet="Feature">
+          <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FeatureSons">
+      <EntityTypeMapping TypeName="angia_ivmModel.FeatureSon">
+        <MappingFragment StoreEntitySet="FeatureSon">
+          <ScalarProperty Name="Ja_Value" ColumnName="Ja_Value" />
+          <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+          <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Eng_Value" ColumnName="Eng_Value" />
+          <ScalarProperty Name="Vi_Value" ColumnName="Vi_Value" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Files">
+      <EntityTypeMapping TypeName="angia_ivmModel.File">
+        <MappingFragment StoreEntitySet="File">
+          <ScalarProperty Name="Url2" ColumnName="Url2" />
+          <ScalarProperty Name="LinkDownload2" ColumnName="LinkDownload2" />
+          <ScalarProperty Name="Url" ColumnName="Url" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Downloaded" ColumnName="Downloaded" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Groups">
+      <EntityTypeMapping TypeName="angia_ivmModel.Group">
+        <MappingFragment StoreEntitySet="Group">
+          <ScalarProperty Name="Ja_GroupName" ColumnName="Ja_GroupName" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Eng_GroupName" ColumnName="Eng_GroupName" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupDistricts">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupDistrict">
+        <MappingFragment StoreEntitySet="GroupDistrict">
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupFiles">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupFile">
+        <MappingFragment StoreEntitySet="GroupFile">
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupFileSons">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupFileSon">
+        <MappingFragment StoreEntitySet="GroupFileSon">
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupImages">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupImage">
+        <MappingFragment StoreEntitySet="GroupImage">
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupIntroduces">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupIntroduce">
+        <MappingFragment StoreEntitySet="GroupIntroduce">
+          <ScalarProperty Name="Ja_GroupName" ColumnName="Ja_GroupName" />
+          <ScalarProperty Name="Eng_GroupName" ColumnName="Eng_GroupName" />
+          <ScalarProperty Name="Vi_GroupName" ColumnName="Vi_GroupName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupPartners">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupPartner">
+        <MappingFragment StoreEntitySet="GroupPartner">
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupProducts">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupProduct">
+        <MappingFragment StoreEntitySet="GroupProduct">
+          <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupProductSons">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupProductSon">
+        <MappingFragment StoreEntitySet="GroupProductSon">
+          <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+          <ScalarProperty Name="ShowProduct" ColumnName="ShowProduct" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupRecruitments">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupRecruitment">
+        <MappingFragment StoreEntitySet="GroupRecruitment">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupStaffs">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupStaff">
+        <MappingFragment StoreEntitySet="GroupStaff">
+          <ScalarProperty Name="IsOutLand" ColumnName="IsOutLand" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="IsInLand" ColumnName="IsInLand" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="GroupVideos">
+      <EntityTypeMapping TypeName="angia_ivmModel.GroupVideo">
+        <MappingFragment StoreEntitySet="GroupVideo">
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="GroupBy" ColumnName="GroupBy" />
+          <ScalarProperty Name="IsIntroduce" ColumnName="IsIntroduce" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Images">
+      <EntityTypeMapping TypeName="angia_ivmModel.Image">
+        <MappingFragment StoreEntitySet="Image">
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Introduces">
+      <EntityTypeMapping TypeName="angia_ivmModel.Introduce">
+        <MappingFragment StoreEntitySet="Introduce">
+          <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+          <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+          <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+          <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+          <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+          <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+          <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+          <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+          <ScalarProperty Name="Ja_Title" ColumnName="Ja_Title" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+          <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+          <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Log_Backend">
+      <EntityTypeMapping TypeName="angia_ivmModel.Log_Backend">
+        <MappingFragment StoreEntitySet="Log_Backend">
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="Feature" ColumnName="Feature" />
+          <ScalarProperty Name="ErrorLog" ColumnName="ErrorLog" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Menus">
+      <EntityTypeMapping TypeName="angia_ivmModel.Menu">
+        <MappingFragment StoreEntitySet="Menu">
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MenuAdmins">
+      <EntityTypeMapping TypeName="angia_ivmModel.MenuAdmin">
+        <MappingFragment StoreEntitySet="MenuAdmin">
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+          <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="Controller" ColumnName="Controller" />
+          <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Musics">
+      <EntityTypeMapping TypeName="angia_ivmModel.Music">
+        <MappingFragment StoreEntitySet="Music">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="News">
+      <EntityTypeMapping TypeName="angia_ivmModel.News">
+        <MappingFragment StoreEntitySet="News">
+          <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+          <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+          <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+          <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+          <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+          <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+          <ScalarProperty Name="Number" ColumnName="Number" />
+          <ScalarProperty Name="IsNumber" ColumnName="IsNumber" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+          <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+          <ScalarProperty Name="Ja_Title" ColumnName="Ja_Title" />
+          <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="IsTechnology" ColumnName="IsTechnology" />
+          <ScalarProperty Name="IsSecurity" ColumnName="IsSecurity" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+          <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+          <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partners">
+      <EntityTypeMapping TypeName="angia_ivmModel.Partner">
+        <MappingFragment StoreEntitySet="Partner">
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Positions">
+      <EntityTypeMapping TypeName="angia_ivmModel.Position">
+        <MappingFragment StoreEntitySet="Position">
+          <ScalarProperty Name="IsDepartment" ColumnName="IsDepartment" />
+          <ScalarProperty Name="IsProject" ColumnName="IsProject" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="angia_ivmModel.Product">
+        <MappingFragment StoreEntitySet="Product">
+          <ScalarProperty Name="View" ColumnName="View" />
+          <ScalarProperty Name="IdFeature" ColumnName="IdFeature" />
+          <ScalarProperty Name="Ja_Price" ColumnName="Ja_Price" />
+          <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+          <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+          <ScalarProperty Name="Ja_Tittle" ColumnName="Ja_Tittle" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Eng_Price" ColumnName="Eng_Price" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Code" ColumnName="Code" />
+          <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductFiles">
+      <EntityTypeMapping TypeName="angia_ivmModel.ProductFile">
+        <MappingFragment StoreEntitySet="ProductFile">
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="FileId" ColumnName="FileId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProductImages">
+      <EntityTypeMapping TypeName="angia_ivmModel.ProductImage">
+        <MappingFragment StoreEntitySet="ProductImage">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Projects">
+      <EntityTypeMapping TypeName="angia_ivmModel.Project">
+        <MappingFragment StoreEntitySet="Project">
+          <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+          <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+          <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+          <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+          <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+          <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+          <ScalarProperty Name="Favorable" ColumnName="Favorable" />
+          <ScalarProperty Name="Pay" ColumnName="Pay" />
+          <ScalarProperty Name="Latetitude" ColumnName="Latetitude" />
+          <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+          <ScalarProperty Name="Websites" ColumnName="Websites" />
+          <ScalarProperty Name="Hotline" ColumnName="Hotline" />
+          <ScalarProperty Name="ImagePath3" ColumnName="ImagePath3" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="IsDiffrent" ColumnName="IsDiffrent" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+          <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+          <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProjectImages">
+      <EntityTypeMapping TypeName="angia_ivmModel.ProjectImage">
+        <MappingFragment StoreEntitySet="ProjectImage">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="IdProject" ColumnName="IdProject" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recruitments">
+      <EntityTypeMapping TypeName="angia_ivmModel.Recruitment">
+        <MappingFragment StoreEntitySet="Recruitment">
+          <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+          <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+          <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+          <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+          <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+          <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+          <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+          <ScalarProperty Name="Imagepath" ColumnName="Imagepath" />
+          <ScalarProperty Name="Content" ColumnName="Content" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="angia_ivmModel.Role">
+        <MappingFragment StoreEntitySet="Role">
+          <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="angia_ivmModel.Staff">
+        <MappingFragment StoreEntitySet="Staff">
+          <ScalarProperty Name="IsDepartment" ColumnName="IsDepartment" />
+          <ScalarProperty Name="IsProject" ColumnName="IsProject" />
+          <ScalarProperty Name="IsOutLand" ColumnName="IsOutLand" />
+          <ScalarProperty Name="IsInland" ColumnName="IsInland" />
+          <ScalarProperty Name="IdPosition" ColumnName="IdPosition" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="IsAdvisory" ColumnName="IsAdvisory" />
+          <ScalarProperty Name="IsSale" ColumnName="IsSale" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="Eng_Position" ColumnName="Eng_Position" />
+          <ScalarProperty Name="Vi_Position" ColumnName="Vi_Position" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Yahoo" ColumnName="Yahoo" />
+          <ScalarProperty Name="Skype" ColumnName="Skype" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Status">
+      <EntityTypeMapping TypeName="angia_ivmModel.Status">
+        <MappingFragment StoreEntitySet="Status">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="Status1" ColumnName="Status" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Videos">
+      <EntityTypeMapping TypeName="angia_ivmModel.Video">
+        <MappingFragment StoreEntitySet="Video">
+          <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+          <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+          <ScalarProperty Name="IsIntroduce" ColumnName="IsIntroduce" />
+          <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+          <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+          <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+          <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+          <ScalarProperty Name="Viewed" ColumnName="Viewed" />
+          <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+          <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+          <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+          <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Visitors">
+      <EntityTypeMapping TypeName="angia_ivmModel.Visitor">
+        <MappingFragment StoreEntitySet="Visitor">
+          <ScalarProperty Name="Visitors" ColumnName="Visitors" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,79 @@
+﻿.product-detail-page {
+  color: #999;
+}
+/*print share bar*/
+.print-share-bar {
+  padding: 5px 0;
+  border-bottom: 1px #ddd solid;
+  line-height: 15px;
+  font-size: 12px;
+  margin-bottom: 15px;
+}
+
+  .print-share-bar a {
+    color: #999;
+    font-size: 13px;
+  }
+
+  .print-share-bar > a {
+    color: #ED6D23;
+  }
+
+    .print-share-bar > a:hover {
+      color: #ff8d4b;
+    }
+
+    .print-share-bar > a > i {
+      color: #fff;
+      height: 13px;
+      width: 13px;
+      font-size: 13px;
+      text-align: center;
+      background-color: #ED6D23;
+      margin-top: -3px;
+    }
+
+    .print-share-bar > a:hover > i {
+      background-color: #ff8d4b;
+    }
+
+  .print-share-bar > div {
+    float: right;
+  }
+
+    .print-share-bar > div > a {
+      display: inline-block;
+      padding: 0 10px;
+      border-right: 1px #999 solid;
+    }
+
+      .print-share-bar > div > a:hover {
+        color: #555;
+      }
+
+      .print-share-bar > div > a i {
+        margin: 0 5px;
+        margin-top: -1px;
+      }
+
+  .print-share-bar .dropdown {
+    display: inline-block ;
+  }
+
+    .print-share-bar .dropdown > a {
+      display: inline-block;
+      padding: 0 10px;
+    }
+
+
+      .print-share-bar .dropdown > a i {
+        margin: 0 5px;
+        margin-top: -1px;
+      }
+
+  .print-share-bar .dropdown-menu {
+    min-width: 150px;
+  }
+     .print-share-bar .dropdown-menu li div{
+       padding: 3px 20px;
+  }

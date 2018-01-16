@@ -1,0 +1,108 @@
+﻿ #download-page  {
+  min-height: 800px;
+}
+   #download-page .header .title {
+    font-size: 15px;
+  }
+/*search bar*/
+#download-page .search-bar {
+  width: 100%;
+}
+#download-page .search-bar > div {
+  float: right;        
+  margin-bottom: 20px;
+}
+#download-page .search-bar input {
+  display:inline-block;
+  width: 250px;
+  height: 37px;
+}
+#download-page .search-bar .btn-escort {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  width: 120px;
+  height: 36px;
+  display: inline-block;
+}
+/*download table*/
+#download-page .download-table caption {
+    height: 40px;
+    line-height: 40px;
+    padding: 0;
+    padding-left: 20px;
+    font-size: 15px;
+    color: #fff;
+    background-color: #2E2D2C;
+}
+#download-page .download-table tbody {
+  margin-left: 20px;
+}
+#download-page .download-table td {
+   border-left:1px solid #ddd;
+}
+ #download-page .download-table td:first-child {
+   border-left-width: 0;
+}
+/*parent row*/
+#download-page .download-table tr.parent,tr.grandparent td {
+  line-height:30px;
+  font-weight: bold;
+  width: 200px;
+  cursor: pointer;
+}
+
+#download-page .download-table tr.parent,tr.grandparent td:last-child {
+  width: 50px;
+}
+#download-page .download-table tr.parent td:first-child {
+  padding-left: 50px;
+  position: relative;
+  width: auto;
+}
+#download-page .download-table tr.grandparent td:first-child {
+  padding-left: 40px;
+  position: relative;
+  width: auto;
+}
+#download-page .download-table tr.parent div {
+   position: absolute;
+   left: 20px;    
+}
+#download-page .download-table tr.grandparent div {
+   position: absolute;
+   left: 10px;    
+}
+#download-page .download-table tr.parent i {
+    font-size: 25px;
+  opacity: 0.8;     
+}
+#download-page .download-table tr.grandparent i {
+  font-size: 25px;
+  opacity: 0.8;     
+}
+/*child row*/
+#download-page .download-table tr.child td {
+  vertical-align: center;
+}
+#download-page .download-table tr.child td:first-child {
+  padding-left: 20px;
+}
+#download-page .download-table tr.parent.child > tr.child {
+  padding-left: 30px; 
+}
+#download-page .download-table tr.child td:first-child img {
+   width: 15px;
+  opacity: 0.7;
+
+}
+@media (min-width:768px){
+  #download-page .header .title {
+    font-size: 20px;
+  }
+
+}
+@media (min-width:992px){
+}
+@media (min-width:1200px){
+}

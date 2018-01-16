@@ -1,0 +1,929 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="angia_ivmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AboutUs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Company" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="150" />
+    <Property Name="HotLine" Type="nvarchar" MaxLength="150" />
+    <Property Name="Slogan" Type="nvarchar" MaxLength="350" />
+    <Property Name="Facebook" Type="nvarchar" MaxLength="150" />
+    <Property Name="Twitter" Type="nvarchar" MaxLength="150" />
+    <Property Name="Google" Type="nvarchar" MaxLength="150" />
+    <Property Name="Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar(max)" />
+    <Property Name="EmailSent" Type="nvarchar" MaxLength="150" />
+    <Property Name="EmailReceive" Type="nvarchar" MaxLength="150" />
+    <Property Name="EmailPassword" Type="nvarchar" MaxLength="150" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="150" />
+    <Property Name="Websites" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Slogan" Type="nvarchar" MaxLength="350" />
+    <Property Name="HomePageTitle" Type="nvarchar" MaxLength="350" />
+    <Property Name="HomePageDiscription" Type="nvarchar" MaxLength="350" />
+    <Property Name="HomePageKeywords" Type="nvarchar" MaxLength="350" />
+    <Property Name="MetaCopyRight" Type="nvarchar" MaxLength="350" />
+    <Property Name="MetaAbstract" Type="nvarchar" MaxLength="350" />
+    <Property Name="MetaAuthor" Type="nvarchar" MaxLength="350" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="LinkPopUp" Type="nvarchar" MaxLength="550" />
+    <Property Name="Longtitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="ImagePath3" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Company" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Address" Type="nvarchar" MaxLength="350" />
+    <Property Name="SloganStaff" Type="nvarchar(max)" />
+    <Property Name="SloganAlbum" Type="nvarchar(max)" />
+    <Property Name="SloganReason" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Account">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="150" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Address">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vi_Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="150" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Longtitude" Type="nvarchar" MaxLength="150" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Banner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="Link" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsReason" Type="bit" Nullable="false" />
+    <Property Name="Vi_Caption" Type="nvarchar(max)" />
+    <Property Name="Eng_Caption" Type="nvarchar(max)" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="IsDistribution" Type="bit" Nullable="false" />
+    <Property Name="IsLogo" Type="bit" Nullable="false" />
+    <Property Name="ImagePath2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Link2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Name2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Isbanner" Type="bit" Nullable="false" />
+    <Property Name="IsPartner" Type="bit" Nullable="false" />
+    <Property Name="IsLearn" Type="bit" Nullable="false" />
+    <Property Name="IsWork" Type="bit" Nullable="false" />
+    <Property Name="IsPlay" Type="bit" Nullable="false" />
+    <Property Name="IsLydo" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Certificate">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="150" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="350" />
+    <Property Name="Long" Type="nvarchar" MaxLength="350" />
+    <Property Name="Lat" Type="nvarchar" MaxLength="350" />
+    <Property Name="IsMain" Type="bit" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+  </EntityType>
+  <EntityType Name="Digital">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Vi_Value" Type="nvarchar(max)" />
+    <Property Name="Eng_Value" Type="nvarchar(max)" />
+    <Property Name="IdProduct" Type="int" />
+    <Property Name="IdParent" Type="int" />
+    <Property Name="Ja_Name" Type="nvarchar" MaxLength="200" />
+    <Property Name="Ja_Value" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="District">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="IsMain" Type="bit" Nullable="false" />
+    <Property Name="IsMainGroup" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Email">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Content" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="DateCreate" Type="nvarchar" MaxLength="150" />
+    <Property Name="Company" Type="nvarchar" MaxLength="250" />
+    <Property Name="Project" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Feature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="Ja_Content" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="FeatureSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Vi_Value" Type="nvarchar(max)" />
+    <Property Name="Eng_Value" Type="nvarchar(max)" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="IdParent" Type="int" />
+    <Property Name="Ja_Name" Type="nvarchar" MaxLength="300" />
+    <Property Name="Ja_Value" Type="nvarchar" MaxLength="300" />
+  </EntityType>
+  <EntityType Name="File">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="LinkDownload" Type="nvarchar" MaxLength="350" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="Downloaded" Type="int" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="FileSize" Type="nvarchar" MaxLength="50" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Url" Type="nvarchar" MaxLength="350" />
+    <Property Name="LinkDownload2" Type="nvarchar" MaxLength="350" />
+    <Property Name="Url2" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="Group">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_GroupName" Type="nvarchar" MaxLength="250" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Ja_GroupName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="GroupDistrict">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="GroupFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupFileSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vi_Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Eng_Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="GRID" Type="int" />
+    <Property Name="IsWork" Type="bit" Nullable="false" />
+    <Property Name="IsLearn" Type="bit" Nullable="false" />
+    <Property Name="IsPlay" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="GroupIntroduce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_GroupName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_GroupName" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ja_GroupName" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="GroupPartner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="350" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="GroupProduct">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="150" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Ja_Name" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="GroupProductSon">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="ShowProduct" Type="bit" Nullable="false" />
+    <Property Name="Ja_Name" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="GroupRecruitment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="GroupStaff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Position" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Position" Type="nvarchar" MaxLength="250" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="GroupVideo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="IsIntroduce" Type="bit" Nullable="false" />
+    <Property Name="GroupBy" Type="int" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Image">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Introduce">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Description" Type="nvarchar(max)" />
+    <Property Name="Eng_Description" Type="nvarchar(max)" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="IsHot" Type="bit" Nullable="false" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Ja_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Ja_Content" Type="nvarchar(max)" />
+    <Property Name="Ja_Description" Type="nvarchar(max)" />
+    <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+    <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+    <Property Name="Vi_Reason" Type="nvarchar(max)" />
+    <Property Name="Eng_Reason" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Log_Backend">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="ErrorLog" Type="nvarchar(max)" />
+    <Property Name="Feature" Type="nvarchar" MaxLength="150" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Menu">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Link" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="MenuAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MenuName" Type="nvarchar" MaxLength="150" />
+    <Property Name="Controller" Type="nvarchar" MaxLength="150" />
+    <Property Name="View" Type="nvarchar" MaxLength="150" />
+    <Property Name="Sequence" Type="int" />
+    <Property Name="IsParent" Type="bit" Nullable="false" />
+    <Property Name="ParentId" Type="int" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Music">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LinkDownload" Type="nvarchar" MaxLength="250" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="View" Type="int" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Description" Type="nvarchar(max)" />
+    <Property Name="Eng_Description" Type="nvarchar(max)" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="IsHot" Type="bit" Nullable="false" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+    <Property Name="IsDisable" Type="bit" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsSecurity" Type="bit" Nullable="false" />
+    <Property Name="IsTechnology" Type="bit" Nullable="false" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="ImagePath2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ja_Title" Type="nvarchar" MaxLength="250" />
+    <Property Name="Ja_Description" Type="nvarchar(max)" />
+    <Property Name="Ja_Content" Type="nvarchar(max)" />
+    <Property Name="View" Type="int" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="IsNumber" Type="bit" Nullable="false" />
+    <Property Name="Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+    <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+  </EntityType>
+  <EntityType Name="Partner">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Link" Type="nvarchar" MaxLength="350" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Posintion" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Position" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Position">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="350" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="350" />
+    <Property Name="IsProject" Type="bit" Nullable="false" />
+    <Property Name="IsDepartment" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vi_Description" Type="nvarchar" MaxLength="550" />
+    <Property Name="Eng_Description" Type="nvarchar" MaxLength="550" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="DateCreate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProductFile">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FileId" Type="int" />
+    <Property Name="ProductId" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ProductId" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Description" Type="nvarchar(max)" />
+    <Property Name="Eng_Description" Type="nvarchar(max)" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="IsHot" Type="bit" Nullable="false" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="DateUpdate" Type="datetime" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+    <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+  </EntityType>
+  <EntityType Name="ProjectImage">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdProject" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+  </EntityType>
+  <EntityType Name="Recruitment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="450" />
+    <Property Name="Address" Type="nvarchar" MaxLength="350" />
+    <Property Name="DateEnd" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="Content" Type="nvarchar(max)" />
+    <Property Name="Imagepath" Type="nvarchar" MaxLength="350" />
+    <Property Name="LinkDownload" Type="nvarchar" MaxLength="350" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="Description" Type="nvarchar" MaxLength="350" />
+    <Property Name="Eng_Description" Type="nvarchar" MaxLength="350" />
+    <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+    <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+    <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+    <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staff">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="150" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="150" />
+    <Property Name="Skype" Type="nvarchar" MaxLength="150" />
+    <Property Name="Yahoo" Type="nvarchar" MaxLength="150" />
+    <Property Name="Eng_Position" Type="nvarchar" MaxLength="150" />
+    <Property Name="Vi_Position" Type="nvarchar" MaxLength="150" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="150" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="450" />
+  </EntityType>
+  <EntityType Name="Video">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Link" Type="nvarchar" MaxLength="150" />
+    <Property Name="DateCreate" Type="datetime" />
+    <Property Name="GroupId" Type="int" />
+    <Property Name="IsHot" Type="bit" Nullable="false" />
+    <Property Name="Viewed" Type="int" />
+    <Property Name="Vi_Content" Type="nvarchar(max)" />
+    <Property Name="Eng_Content" Type="nvarchar(max)" />
+    <Property Name="OrderBy" Type="int" Nullable="false" />
+    <Property Name="IsShowHome" Type="bit" Nullable="false" />
+    <Property Name="IsIntroduce" Type="bit" Nullable="false" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Visitor">
+    <Key>
+      <PropertyRef Name="VisitorID" />
+    </Key>
+    <Property Name="VisitorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="Visitors" Type="int" />
+  </EntityType>
+  <Association Name="FK_Account_Role1">
+    <End Role="Role" Type="Self.Role" Multiplicity="1" />
+    <End Role="Account" Type="Self.Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Account">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Digital_Feature">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+    <End Role="Digital" Type="Self.Digital" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Digital">
+        <PropertyRef Name="IdParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Digital_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Digital" Type="Self.Digital" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Digital">
+        <PropertyRef Name="IdProduct" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FeatureSon_Feature">
+    <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+    <End Role="FeatureSon" Type="Self.FeatureSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Feature">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="FeatureSon">
+        <PropertyRef Name="IdParent" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupFileSon_GroupFile">
+    <End Role="GroupFile" Type="Self.GroupFile" Multiplicity="0..1" />
+    <End Role="GroupFileSon" Type="Self.GroupFileSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupFile">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupFileSon">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GroupProductSon_GroupProduct">
+    <End Role="GroupProduct" Type="Self.GroupProduct" Multiplicity="0..1" />
+    <End Role="GroupProductSon" Type="Self.GroupProductSon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupProduct">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="GroupProductSon">
+        <PropertyRef Name="ParentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Image_GroupImage1">
+    <End Role="GroupImage" Type="Self.GroupImage" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Image" Type="Self.Image" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupImage">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Image">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Introduce_GroupIntroduce">
+    <End Role="GroupIntroduce" Type="Self.GroupIntroduce" Multiplicity="0..1" />
+    <End Role="Introduce" Type="Self.Introduce" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupIntroduce">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Introduce">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Group">
+    <End Role="Group" Type="Self.Group" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Group">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductFile_File">
+    <End Role="File" Type="Self.File" Multiplicity="0..1" />
+    <End Role="ProductFile" Type="Self.ProductFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="File">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductFile">
+        <PropertyRef Name="FileId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductFile_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductFile" Type="Self.ProductFile" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductFile">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductImage_Product1">
+    <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductImage" Type="Self.ProductImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProductImage">
+        <PropertyRef Name="ProductId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectImage_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProjectImage" Type="Self.ProjectImage" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectImage">
+        <PropertyRef Name="IdProject" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_GroupVideo">
+    <End Role="GroupVideo" Type="Self.GroupVideo" Multiplicity="0..1" />
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="GroupVideo">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="GroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Video_Project">
+    <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Video" Type="Self.Video" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Video">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="usp_Visitor_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="angia_ivmModelStoreContainer">
+    <EntitySet Name="AboutUs" EntityType="Self.AboutUs" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Digital" EntityType="Self.Digital" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FeatureSon" EntityType="Self.FeatureSon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupDistrict" EntityType="Self.GroupDistrict" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupFile" EntityType="Self.GroupFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupFileSon" EntityType="Self.GroupFileSon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupImage" EntityType="Self.GroupImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupIntroduce" EntityType="Self.GroupIntroduce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupPartner" EntityType="Self.GroupPartner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupProductSon" EntityType="Self.GroupProductSon" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupRecruitment" EntityType="Self.GroupRecruitment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupStaff" EntityType="Self.GroupStaff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GroupVideo" EntityType="Self.GroupVideo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Introduce" EntityType="Self.Introduce" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Log_Backend" EntityType="Self.Log_Backend" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MenuAdmin" EntityType="Self.MenuAdmin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Music" EntityType="Self.Music" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductFile" EntityType="Self.ProductFile" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProjectImage" EntityType="Self.ProjectImage" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Recruitment" EntityType="Self.Recruitment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Visitor" EntityType="Self.Visitor" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Account_Role1" Association="Self.FK_Account_Role1">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Account" EntitySet="Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Digital_Feature" Association="Self.FK_Digital_Feature">
+      <End Role="Feature" EntitySet="Feature" />
+      <End Role="Digital" EntitySet="Digital" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Digital_Product" Association="Self.FK_Digital_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="Digital" EntitySet="Digital" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FeatureSon_Feature" Association="Self.FK_FeatureSon_Feature">
+      <End Role="Feature" EntitySet="Feature" />
+      <End Role="FeatureSon" EntitySet="FeatureSon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupFileSon_GroupFile" Association="Self.FK_GroupFileSon_GroupFile">
+      <End Role="GroupFile" EntitySet="GroupFile" />
+      <End Role="GroupFileSon" EntitySet="GroupFileSon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GroupProductSon_GroupProduct" Association="Self.FK_GroupProductSon_GroupProduct">
+      <End Role="GroupProduct" EntitySet="GroupProduct" />
+      <End Role="GroupProductSon" EntitySet="GroupProductSon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Image_GroupImage1" Association="Self.FK_Image_GroupImage1">
+      <End Role="GroupImage" EntitySet="GroupImage" />
+      <End Role="Image" EntitySet="Image" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Introduce_GroupIntroduce" Association="Self.FK_Introduce_GroupIntroduce">
+      <End Role="GroupIntroduce" EntitySet="GroupIntroduce" />
+      <End Role="Introduce" EntitySet="Introduce" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Group" Association="Self.FK_News_Group">
+      <End Role="Group" EntitySet="Group" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Project" Association="Self.FK_News_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductFile_File" Association="Self.FK_ProductFile_File">
+      <End Role="File" EntitySet="File" />
+      <End Role="ProductFile" EntitySet="ProductFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductFile_Product" Association="Self.FK_ProductFile_Product">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductFile" EntitySet="ProductFile" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductImage_Product1" Association="Self.FK_ProductImage_Product1">
+      <End Role="Product" EntitySet="Product" />
+      <End Role="ProductImage" EntitySet="ProductImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectImage_Project" Association="Self.FK_ProjectImage_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectImage" EntitySet="ProjectImage" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_GroupVideo" Association="Self.FK_Video_GroupVideo">
+      <End Role="GroupVideo" EntitySet="GroupVideo" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Video_Project" Association="Self.FK_Video_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="Video" EntitySet="Video" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,67 @@
+﻿/*paging*/
+.pagination {
+  float: right;
+}
+
+.pagination > li a {
+      border-width: 0;
+    border: 1px transparent solid;
+    color: #999; 
+    -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+
+
+    
+}
+.pagination>li:first-child > a, 
+.pagination>li:first-child > span {
+      -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.pagination > li.active a {
+   background-color: transparent;
+   font-weight: bold;
+       color: #888; 
+         border: 1px transparent solid;
+}
+.pagination > li.active > a:hover {
+   background-color: transparent;
+   font-weight: bold;
+       color: #888; 
+      border: 1px #888 solid;
+}
+.pagination > li:hover a {
+   background-color: transparent;
+   font-weight: bold;
+       color: #888; 
+       border: 1px #888 solid;
+
+}
+/*breadcum*/
+.cus-breadcumb {
+   border-bottom: 1px solid #ccc;
+   padding: 5px 0;
+   margin-top: 10px;
+}
+.cus-breadcumb a {
+  color: #666;
+  font-weight: bold;
+  text-decoration: none;
+}
+.cus-breadcumb a:hover {
+  color: #333;
+}
+.cus-breadcumb a:after {
+  font-family: "FontAwesome";
+  content: "\f105";
+  padding:0 20px;
+  font-size: 13px;
+  color: #ccc;
+  line-height: 15px
+}
+.cus-breadcumb a:last-child:after {
+  content: '';
+
+}
