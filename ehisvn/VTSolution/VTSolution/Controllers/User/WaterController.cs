@@ -39,16 +39,32 @@ namespace VTSolution.Controllers.User
             using (var db = new angia_ivmEntities())
             {
                 NewsIndexModel news = new NewsIndexModel();
-                news.Recruitment = db.Recruitments.SingleOrDefault(t => t.Id == id);
                 ViewBag.idnews = id;
                 if (language.Name == "en-US")
                 {
+                    news.Recruitment = db.Recruitments.Where(t=>t.Eng_Name != null).SingleOrDefault(t => t.Id == id);
+
                     news.Recruitment.Name = news.Recruitment.Eng_Name ?? news.Recruitment.Name;
                     news.Recruitment.Description = news.Recruitment.Eng_Description ?? news.Recruitment.Description;
                     news.Recruitment.Content = news.Recruitment.Eng_Content ?? news.Recruitment.Content;
                     news.Recruitment.Vi_MetaTitle = news.Recruitment.Eng_MetaTitle ?? news.Recruitment.Vi_MetaTitle;
                     news.Recruitment.Vi_MetaKeyword = news.Recruitment.Eng_MetaKeyword ?? news.Recruitment.Vi_MetaKeyword;
                     news.Recruitment.Vi_MetaDescription = news.Recruitment.Eng_Description ?? news.Recruitment.Vi_MetaDescription;
+                }
+                else if (language.Name == "ja")
+                {
+                    news.Recruitment = db.Recruitments.Where(t => t.Ja_Name != null).SingleOrDefault(t => t.Id == id);
+
+                    news.Recruitment.Name = news.Recruitment.Ja_Name ?? news.Recruitment.Name;
+                    news.Recruitment.Description = news.Recruitment.Ja_Description ?? news.Recruitment.Description;
+                    news.Recruitment.Content = news.Recruitment.Ja_Content ?? news.Recruitment.Content;
+                    news.Recruitment.Vi_MetaTitle = news.Recruitment.Eng_MetaTitle ?? news.Recruitment.Vi_MetaTitle;
+                    news.Recruitment.Vi_MetaKeyword = news.Recruitment.Eng_MetaKeyword ?? news.Recruitment.Vi_MetaKeyword;
+                    news.Recruitment.Vi_MetaDescription = news.Recruitment.Eng_Description ?? news.Recruitment.Vi_MetaDescription;
+                }
+                else
+                {
+                    news.Recruitment = db.Recruitments.SingleOrDefault(t => t.Id == id);
                 }
                 return View(news);
             }

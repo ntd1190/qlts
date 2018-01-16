@@ -24,6 +24,7 @@
                 <li class="active"><a href="#tab1default" data-toggle="tab">Thông Tin Chung</a></li>
                 <li><a href="#tab2default" data-toggle="tab">Tiếng việt</a></li>
                 <li><a href="#tab3default" data-toggle="tab">Tiếng anh</a></li>
+                <li><a href="#tab4default" data-toggle="tab">Tiếng nhật</a></li>
             </ul>
         </div>
         <div class="panel-body">
@@ -363,6 +364,147 @@
                         </div>
 
                     </div>
+                    <br />
+                </div>
+                <div class="tab-pane fade in" id="tab4default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Tiêu Đề Tiếng Nhật</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Ja_Title, new { id = "input_Title_En", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Mô Tả Tiếng Nhật</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Ja_Description, new { id = "Title", @class = "form-control", rows = "6" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Title">Nội Dung Con Số</label>
+                        </div><div class="col-md-10">
+                            <textarea name="Ja_Reason" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Ja_Reason)</textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Title">Nội Dung Tiếng Nhật</label>
+                        </div>
+                        <div class="col-md-10">
+                            @*@Html.TextAreaFor(model => model.Eng_Content, new { id = "Content1", @class = "form-control", rows = "2" })*@
+                            <textarea name="Ja_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Ja_Content)</textarea>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaTitle">SEO Title</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaTitle, new { id = "input_MetaTitle_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaDescription">SEO Description  </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaDescription, new { id = "input_MetaDescription_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metatitlenote_En" style="color: #000">*The length of "SEO Title" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metadesnote_En" style="color: #000">*The length of "SEO Description" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaKeywords">Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaKeyword, new { id = "input_MetaKeywords_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="checktext_En">Check SEO Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextArea("checktext_En", new { @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="editor-label col-md-3">
+                                @Html.Raw("Google Show:")
+                            </div>
+                            <div class="col-md-9">
+                                <a href="#" style="font-size: 18px; color: #1846dc" id="titlepreview_En"></a>
+                                <div style="" id="pageurl_En"></div>
+                                <div style="" id="descriptionpreview_En"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row" id="Article_En">
+                                <div class="col-md-3"></div>
+                                <div id="Articlelable_En" class="col-md-5">
+                                    <h5><b>Article Heading:</b></h5>
+                                </div>
+                                <h5 id="ArticleCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Pagetitle_En">
+                                <div class="col-md-3"></div>
+                                <div id="Pagetitlelable_En" class="col-md-5">
+                                    <h5><b>Page title:</b></h5>
+                                </div>
+                                <h5 id="PagetitleCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Contents_En">
+                                <div class="col-md-3"></div>
+                                <div id="Contentlable_En" class="col-md-5">
+                                    <h5><b>Content:</b></h5>
+                                </div>
+                                <h5 id="ContentCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Metades_En">
+                                <div class="col-md-3"></div>
+                                <div id="Metadeslable_En" class="col-md-5">
+                                    <h5><b>Meta Description:</b></h5>
+                                </div>
+                                <h5 id="MetadesCheck_En"></h5>
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>*@
                     <br />
                 </div>
                 <br />

@@ -77,6 +77,52 @@
                     </div>
                     <br />
                     <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Link TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Link2, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_link">Hình TN(1400 x 700)</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <button id="btninput_link">Chọn Hình</button>
+                                </div>
+                                <div class="row image">
+                                    @if (Model.ImagePath != null)
+                                    {
+                                        <div class="thaihoa">
+                                            <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.ImagePath3' style="width: 150px;height: 100px;" />
+                                            <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.ImagePath3" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Link</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Link3, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
                         <div class="col-md-12">
                             @Html.CheckBoxFor(model => model.IsLydo) <label for="Title">Hình Lý Do Chọn</label>
                             <br />
@@ -94,19 +140,6 @@
                                 <label for="Title">Nhập Số</label>
                                 @Html.TextBoxFor(model => model.Number)
                             </div>*@
-                    </div>
-                    <br />
-                    <br />
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="col-md-3">
-                                <label for="Title">Link TA</label>
-                            </div>
-                            <div class="col-md-9">
-                                @Html.TextAreaFor(model => model.Link2, new { id = "Title", @class = "form-control" })
-                            </div>
-                        </div>
-                        <div class="col-md-6"></div>
                     </div>
                     <br />
                     <div class="box-footer">

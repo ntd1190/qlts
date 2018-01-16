@@ -35,5 +35,9 @@ namespace VTSolution.Models
         public bool IsWork { get; set; }
         public bool IsPlay { get; set; }
         public bool IsLydo { get; set; }
+        public string Ja_Caption { get; set; }
+        public string ImagePath3 { get; set; }
+        public string Link3 { get; set; }
+        public string Name3 { get; set; }
     }
 }

@@ -28,11 +28,11 @@ namespace VTSolution.Controllers.User
                 ViewBag.home = "home";
                 HomeIndexModel home = new HomeIndexModel();
 
-                home.Partner = db.Partners.Where(t => t.IsShowHome).ToList();
-                home.News = db.News.OrderByDescending(t => t.Id).ToList();
-                home.Product = db.Projects.Where(t => t.IsHot).ToList();
                 if (language.Name == "en-US")
                 {
+                    home.Partner = db.Partners.Where(t => t.IsShowHome && t.Eng_Name != null).ToList();
+                    home.News = db.News.Where(t => t.Eng_Title != null).OrderByDescending(t => t.Id).ToList();
+                    home.Product = db.Projects.Where(t => t.IsHot && t.Eng_Title != null).ToList();
 
                     foreach (var item in home.News)
                     {
@@ -48,13 +48,16 @@ namespace VTSolution.Controllers.User
                     }
                     foreach (var item in home.Partner)
                     {
-                        item.Vi_Name = item.Eng_Name?? item.Vi_Name;
+                        item.Vi_Name = item.Eng_Name ?? item.Vi_Name;
                         item.Vi_Posintion = item.Eng_Position ?? item.Vi_Posintion;
                         item.Vi_Content = item.Eng_Content ?? item.Vi_Content;
                     }
                 }
                 else if (language.Name == "ja")
                 {
+                    home.Partner = db.Partners.Where(t => t.IsShowHome && t.Ja_Name != null).ToList();
+                    home.News = db.News.Where(t => t.Ja_Title != null).OrderByDescending(t => t.Id).ToList();
+                    home.Product = db.Projects.Where(t => t.IsHot && t.Ja_Title != null).ToList();
 
                     foreach (var item in home.News)
                     {
@@ -74,6 +77,12 @@ namespace VTSolution.Controllers.User
                         item.Vi_Posintion = item.Ja_Position ?? item.Vi_Posintion;
                         item.Vi_Content = item.Ja_Content ?? item.Vi_Content;
                     }
+                }
+                else
+                {
+                    home.Partner = db.Partners.Where(t => t.IsShowHome).ToList();
+                    home.News = db.News.OrderByDescending(t => t.Id).ToList();
+                    home.Product = db.Projects.Where(t => t.IsHot).ToList();
                 }
 
                 return View(home);
@@ -178,13 +187,15 @@ namespace VTSolution.Controllers.User
                 IntroduceIndexModel home = new IntroduceIndexModel();
                 home.Gioithieu = db.Introduces.FirstOrDefault();
                 home.Partner = db.GroupPartners.OrderByDescending(t => t.Id).ToList();
-                home.News = db.News.OrderByDescending(t => t.Id).ToList();
                 home.Staff = db.GroupStaffs.ToList();
-                home.Recruitment = db.Recruitments.ToList();
                 home.Image = db.GroupImages.ToList();
                 home.Banner = db.Banners.ToList();
+
                 if (language.Name == "en-US")
                 {
+                    home.News = db.News.Where(t => t.Eng_Title != null).OrderByDescending(t => t.Id).ToList();
+                    home.Recruitment = db.Recruitments.Where(t => t.Eng_Name != null).ToList();
+
                     home.Gioithieu.Vi_Title = home.Gioithieu.Eng_Title ?? home.Gioithieu.Vi_Title;
                     home.Gioithieu.Vi_Content = home.Gioithieu.Eng_Content ?? home.Gioithieu.Vi_Content;
                     home.Gioithieu.Vi_Reason = home.Gioithieu.Eng_Reason ?? home.Gioithieu.Vi_Reason;
@@ -201,6 +212,8 @@ namespace VTSolution.Controllers.User
                             item.Name = item.Eng_Name ?? item.Name;
                         }
                     }
+
+
                     if (home.News.Count() > 0)
                     {
                         foreach (var item in home.News)
@@ -241,18 +254,87 @@ namespace VTSolution.Controllers.User
                         }
                     }
                 }
+                else if (language.Name == "ja")
+                {
+                    home.News = db.News.Where(t => t.Ja_Title != null).OrderByDescending(t => t.Id).ToList();
+                    home.Recruitment = db.Recruitments.Where(t => t.Ja_Name != null).ToList();
+
+                    home.Gioithieu.Vi_Title = home.Gioithieu.Ja_Title ?? home.Gioithieu.Vi_Title;
+                    home.Gioithieu.Vi_Content = home.Gioithieu.Ja_Content ?? home.Gioithieu.Vi_Content;
+                    home.Gioithieu.Vi_Reason = home.Gioithieu.Ja_Reason ?? home.Gioithieu.Vi_Reason;
+                    home.Gioithieu.Vi_MetaTitle = home.Gioithieu.Eng_MetaTitle ?? home.Gioithieu.Vi_MetaTitle;
+                    home.Gioithieu.Vi_MetaDescription = home.Gioithieu.Eng_MetaDescription ?? home.Gioithieu.Vi_MetaDescription;
+                    home.Gioithieu.Vi_MetaKeyword = home.Gioithieu.Eng_MetaKeyword ?? home.Gioithieu.Vi_MetaKeyword;
+
+
+
+                    if (home.Partner.Count() > 0)
+                    {
+                        foreach (var item in home.Partner)
+                        {
+                            item.Name = item.Eng_Name ?? item.Name;
+                        }
+                    }
+                    if (home.News.Count() > 0)
+                    {
+                        foreach (var item in home.News)
+                        {
+                            item.Vi_Title = item.Ja_Title ?? item.Vi_Title;
+                            item.Vi_Content = item.Ja_Content ?? item.Vi_Content;
+                            item.Vi_Description = item.Ja_Description ?? item.Vi_Description;
+                            item.Vi_MetaDescription = item.Eng_MetaDescription ?? item.Vi_MetaDescription;
+                            item.Vi_MetaKeyword = item.Eng_MetaKeyword ?? item.Vi_MetaKeyword;
+                        }
+                    }
+                    if (home.Staff.Count() > 0)
+                    {
+                        foreach (var item in home.Staff)
+                        {
+                            item.Vi_Name = item.Eng_Name ?? item.Vi_Name;
+                            item.Vi_Position = item.Eng_Position ?? item.Vi_Position;
+
+                        }
+                    }
+                    if (home.Banner.Count() > 0)
+                    {
+                        foreach (var item in home.Banner)
+                        {
+                            item.ImagePath = item.ImagePath2 ?? item.ImagePath;
+
+                        }
+                    }
+                    //////////////////////////////////////////////////////////////////////////
+
+                    home.Recruitment = db.Recruitments.Where(n => n.Ja_Name != null).ToList();
+                    if (home.Recruitment.Count() > 0)
+                    {
+                        foreach (var item in home.Recruitment)
+                        {
+                            item.Name = item.Ja_Name ?? item.Name;
+                            item.Content = item.Ja_Content ?? item.Content;
+                            item.Description = item.Ja_Description ?? item.Description;
+                            item.Vi_MetaDescription = item.Eng_MetaDescription ?? item.Vi_MetaDescription;
+                            item.Vi_MetaKeyword = item.Eng_MetaKeyword ?? item.Vi_MetaKeyword;
+                        }
+                    }
+                }
+                else
+                {
+                    home.News = db.News.OrderByDescending(t => t.Id).ToList();
+                    home.Recruitment = db.Recruitments.ToList();
+                }
 
                 return View(home);
             }
         }
         public ActionResult News()
         {
-           
+
             var language = System.Threading.Thread.CurrentThread.CurrentCulture;
             using (var db = new angia_ivmEntities())
             {
-                IntroduceIndexModel home = new IntroduceIndexModel();                
-              
+                IntroduceIndexModel home = new IntroduceIndexModel();
+
                 if (language.Name == "en-US")
                 {
                     home.News = db.News.Where(t => t.Eng_Title != null && t.Eng_Description != null).OrderByDescending(t => t.Id).ToList();
@@ -299,9 +381,10 @@ namespace VTSolution.Controllers.User
             using (var db = new angia_ivmEntities())
             {
                 IntroduceIndexModel home = new IntroduceIndexModel();
-                home.SanPhamList = db.Projects.ToList();
+
                 if (language.Name == "en-US")
                 {
+                    home.SanPhamList = db.Projects.Where(t => t.Eng_Title != null).ToList();
 
                     if (home.SanPhamList.Count() > 0)
                     {
@@ -318,6 +401,7 @@ namespace VTSolution.Controllers.User
                 }
                 else if (language.Name == "ja")
                 {
+                    home.SanPhamList = db.Projects.Where(t => t.Ja_Title != null).ToList();
 
                     if (home.SanPhamList.Count() > 0)
                     {
@@ -331,6 +415,10 @@ namespace VTSolution.Controllers.User
                             item.SeVi = item.SeJa ?? item.SeVi;
                         }
                     }
+                }
+                else
+                {
+                    home.SanPhamList = db.Projects.ToList();
                 }
                 return View(home);
             }
@@ -351,6 +439,11 @@ namespace VTSolution.Controllers.User
                         item.Vi_Name = item.Eng_Name ?? item.Vi_Name;
                         item.Vi_Address = item.Eng_Address ?? item.Vi_Address;
                     }
+                    else if (language.Name == "ja")
+                    {
+                        item.Vi_Name = item.Ja_Name ?? item.Vi_Name;
+                        item.Vi_Address = item.Ja_Address ?? item.Vi_Address;
+                    }
                 }
                 return View(model);
             }
@@ -365,6 +458,10 @@ namespace VTSolution.Controllers.User
                 if (language.Name == "en-US")
                 {
                     home.Lydo.ImagePath = home.Lydo.ImagePath2 ?? home.Lydo.ImagePath;
+                }
+                else if (language.Name == "ja")
+                {
+                    home.Lydo.ImagePath = home.Lydo.ImagePath3 ?? home.Lydo.ImagePath;
                 }
                 return View(home);
             }
@@ -386,6 +483,14 @@ namespace VTSolution.Controllers.User
                     {
                         item.ImagePath = item.ImagePath2 ?? item.ImagePath;
                         item.Link = item.Link2;
+                    }
+                }
+                else if(language.Name == "ja")
+                {
+                    foreach (var item in home.ListBanner)
+                    {
+                        item.ImagePath = item.ImagePath3 ?? item.ImagePath;
+                        item.Link = item.Link3;
                     }
                 }
                 return PartialView("~/views/Home/Banner.cshtml", home);

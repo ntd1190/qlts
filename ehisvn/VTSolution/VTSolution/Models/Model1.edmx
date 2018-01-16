@@ -77,8 +77,10 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
           <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="250" />
           <Property Name="Vi_Address" Type="nvarchar" MaxLength="250" />
           <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Address" Type="nvarchar" MaxLength="250" />
           <Property Name="Phone" Type="nvarchar" MaxLength="150" />
           <Property Name="Fax" Type="nvarchar" MaxLength="150" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" />
@@ -98,12 +100,16 @@
           <Property Name="IsReason" Type="bit" Nullable="false" />
           <Property Name="Vi_Caption" Type="nvarchar(max)" />
           <Property Name="Eng_Caption" Type="nvarchar(max)" />
+          <Property Name="Ja_Caption" Type="nvarchar(max)" />
           <Property Name="OrderBy" Type="int" Nullable="false" />
           <Property Name="IsDistribution" Type="bit" Nullable="false" />
           <Property Name="IsLogo" Type="bit" Nullable="false" />
           <Property Name="ImagePath2" Type="nvarchar" MaxLength="250" />
           <Property Name="Link2" Type="nvarchar" MaxLength="250" />
           <Property Name="Name2" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImagePath3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Link3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name3" Type="nvarchar" MaxLength="250" />
           <Property Name="Isbanner" Type="bit" Nullable="false" />
           <Property Name="IsPartner" Type="bit" Nullable="false" />
           <Property Name="IsLearn" Type="bit" Nullable="false" />
@@ -380,6 +386,7 @@
           <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
           <Property Name="Vi_Reason" Type="nvarchar(max)" />
           <Property Name="Eng_Reason" Type="nvarchar(max)" />
+          <Property Name="Ja_Reason" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="Log_Backend">
           <Key>
@@ -572,8 +579,12 @@
           <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
           <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
           <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
           <Property Name="Description" Type="nvarchar" MaxLength="350" />
           <Property Name="Eng_Description" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ja_Description" Type="nvarchar" MaxLength="350" />
           <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
           <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
           <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
@@ -1260,6 +1271,8 @@
           <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Longtitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="Latitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Banner">
           <Key>
@@ -1286,6 +1299,10 @@
           <Property Name="IsWork" Type="Boolean" Nullable="false" />
           <Property Name="IsPlay" Type="Boolean" Nullable="false" />
           <Property Name="IsLydo" Type="Boolean" Nullable="false" />
+          <Property Name="Ja_Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Link3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Certificate">
           <Key>
@@ -1572,6 +1589,7 @@
           <Property Name="Vi_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Eng_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="GroupIntroduce" Relationship="angia_ivmModel.FK_Introduce_GroupIntroduce" FromRole="Introduce" ToRole="GroupIntroduce" />
+          <Property Name="Ja_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Log_Backend">
           <Key>
@@ -1784,6 +1802,10 @@
           <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
           <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Role">
           <Key>
@@ -2157,6 +2179,8 @@
           <EntitySetMapping Name="Addresses">
             <EntityTypeMapping TypeName="angia_ivmModel.Address">
               <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Ja_Address" ColumnName="Ja_Address" />
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -2173,6 +2197,10 @@
           <EntitySetMapping Name="Banners">
             <EntityTypeMapping TypeName="angia_ivmModel.Banner">
               <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="Name3" ColumnName="Name3" />
+                <ScalarProperty Name="Link3" ColumnName="Link3" />
+                <ScalarProperty Name="ImagePath3" ColumnName="ImagePath3" />
+                <ScalarProperty Name="Ja_Caption" ColumnName="Ja_Caption" />
                 <ScalarProperty Name="IsLydo" ColumnName="IsLydo" />
                 <ScalarProperty Name="IsPlay" ColumnName="IsPlay" />
                 <ScalarProperty Name="IsWork" ColumnName="IsWork" />
@@ -2459,6 +2487,7 @@
           <EntitySetMapping Name="Introduces">
             <EntityTypeMapping TypeName="angia_ivmModel.Introduce">
               <MappingFragment StoreEntitySet="Introduce">
+                <ScalarProperty Name="Ja_Reason" ColumnName="Ja_Reason" />
                 <ScalarProperty Name="Eng_Reason" ColumnName="Eng_Reason" />
                 <ScalarProperty Name="Vi_Reason" ColumnName="Vi_Reason" />
                 <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
@@ -2680,6 +2709,10 @@
           <EntitySetMapping Name="Recruitments">
             <EntityTypeMapping TypeName="angia_ivmModel.Recruitment">
               <MappingFragment StoreEntitySet="Recruitment">
+                <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Ja_Address" ColumnName="Ja_Address" />
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
                 <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
                 <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
                 <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />

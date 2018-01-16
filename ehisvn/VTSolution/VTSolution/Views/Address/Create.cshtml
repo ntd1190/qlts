@@ -40,6 +40,15 @@
                         <br />
                         <div class="row">
                             <div class="col-md-3">
+                                <label for="Title">Tên tiếng nhật</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Ja_Name, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3">
                                 <label for="Title">Đia chỉ </label>
                             </div>
                             <div class="col-md-9">
@@ -53,6 +62,15 @@
                             </div>
                             <div class="col-md-9">
                                 @Html.TextAreaFor(model => model.Eng_Address, new { id = "Title", @class = "form-control" })
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="Title">Địa chỉ tiếng nhật</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Ja_Address, new { id = "Title", @class = "form-control" })
                             </div>
                         </div>
                     </div>

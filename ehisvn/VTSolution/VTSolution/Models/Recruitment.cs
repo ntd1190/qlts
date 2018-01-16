@@ -33,5 +33,9 @@ namespace VTSolution.Models
         public string Eng_MetaTitle { get; set; }
         public string Eng_MetaDescription { get; set; }
         public string Eng_MetaKeyword { get; set; }
+        public string Ja_Name { get; set; }
+        public string Ja_Address { get; set; }
+        public string Ja_Content { get; set; }
+        public string Ja_Description { get; set; }
     }
 }

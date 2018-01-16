@@ -24,5 +24,7 @@ namespace VTSolution.Models
         public string Email { get; set; }
         public string Longtitude { get; set; }
         public string Latitude { get; set; }
+        public string Ja_Name { get; set; }
+        public string Ja_Address { get; set; }
     }
 }

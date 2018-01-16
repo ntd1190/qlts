@@ -41,6 +41,7 @@ namespace VTSolution.Models
         public string Eng_MetaKeyword { get; set; }
         public string Vi_Reason { get; set; }
         public string Eng_Reason { get; set; }
+        public string Ja_Reason { get; set; }
     
         public virtual GroupIntroduce GroupIntroduce { get; set; }
     }
