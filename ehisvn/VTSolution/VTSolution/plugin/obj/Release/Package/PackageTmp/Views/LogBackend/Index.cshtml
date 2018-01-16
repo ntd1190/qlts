@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "List Error";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.LogIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Datecreate).Title("Ngày Phát Sinh").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Feature).Title("Chức Năng").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Error).Title("Lỗi Chi Tiết").Width(400).HeaderHtmlAttributes(new { style = "text-align:center" });
+    })
+    .ToolBar(toolbar => toolbar.Custom().Text("Xóa Log").Action("Delete", "LogBackend"))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:600px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                              .Read(read => read.Action("Log_Read", "LogBackend"))
+    )
+)
+
+
+
+

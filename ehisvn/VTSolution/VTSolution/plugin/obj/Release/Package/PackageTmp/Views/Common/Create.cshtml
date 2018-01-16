@@ -1,0 +1,430 @@
+﻿@model VTSolution.Models.News
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật ";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm Mới ";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "Common"))
+    {
+
+        @Html.HiddenFor(model => model.Id)
+        <div class="panel-heading">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1default" data-toggle="tab">Thông Tin Chung</a></li>
+                <li><a href="#tab2default" data-toggle="tab">Tiếng việt</a></li>
+                <li><a href="#tab3default" data-toggle="tab">Tiếng anh</a></li>
+            </ul>
+        </div>
+        <div class="panel-body">
+            <div class="tab-content">
+                <div class="tab-pane fade in active" id="tab1default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Thuộc Nhóm Tin</label>
+                        </div>
+                        <div class="col-md-9">
+                            @(Html.Kendo().DropDownListFor(model => model.GroupId)
+                            .HtmlAttributes(new { id = "CategoryId", style = "width:380px" })
+                            .Name("GroupId")
+                            .DataTextField("Name")
+                                        .DataValueField("Id")
+                                        .DataSource(source =>
+                                        {
+                                            source.Read(read =>
+                                            {
+                                                read.Action("GetCategory", "Common");
+                                            });
+                                        })
+                            )
+
+                        </div>
+                    </div>
+                    @*<br />
+                    <div class="row ProjectId">
+                        <div class="col-md-3">
+                            <label for="Title">Thuộc Dự Án</label>
+                        </div>
+                        <div class="col-md-9">
+                            @(Html.Kendo().DropDownListFor(model => model.ProjectId)
+                                        .HtmlAttributes(new { id = "ProjectId", style = "width:350px" })
+                                        .Name("ProjectId")
+                                        .DataTextField("Vi_Title")
+                                        .DataValueField("Id")
+                                        .DataSource(source =>
+                                        {
+                                            source.Read(read =>
+                                            {
+                                                read.Action("GetProject", "Common");
+                                            });
+                                        })
+                            )
+                        </div>
+                    </div>
+                    <br />*@
+                
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label for="Title">Hiện Trang Chủ</label>
+                            @Html.CheckBoxFor(model => model.IsShowHome)
+                            @*<label for="Title">Hot</label>
+                            @Html.CheckBoxFor(model => model.IsHot)
+                            <label for="Title">Là Con số sự kiện</label>
+                            @Html.CheckBoxFor(model => model.IsNumber)*@
+                        </div>
+                        @*<div class="col-md-4">
+                            <label for="Title">Nhập Số</label>
+                            @Html.TextBoxFor(model => model.Number)
+                        </div>*@
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-5">
+                                <label for="input_link">Hình Ảnh (500 x 335)</label>
+                            </div>
+                            <div class="col-md-7">
+                                <div class="row">
+                                    <button id="btninput_link">Chọn Hình</button>
+                                </div>
+                                <div class="row image">
+                                    @if (Model.ImagePath != null)
+                                    {
+                                        <div class="thaihoa">
+                                            <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.ImagePath' style="width: 150px;height: 100px;" />
+                                            <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade in" id="tab2default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Tiêu Đề Tiếng Việt</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Vi_Title, new { id = "input_Title", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Mô Tả Tiếng Việt</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Vi_Description, new { id = "Title", rows = "6", @class = "form-control", @maxlength = "128" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Title">Nội Dung Tiếng Việt</label>
+                        </div><div class="col-md-10">
+                            <textarea name="Vi_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Vi_Content)</textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaTitle">SEO Title</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_MetaTitle, new { id = "input_MetaTitle", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaDescription">SEO Description  </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_MetaDescription, new { id = "input_MetaDescription", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metatitlenote" style="color: #000">*The length of "SEO Title" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metadesnote" style="color: #000">*The length of "SEO Description" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaKeywords">Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_MetaKeyword, new { id = "input_MetaKeywords", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="checktext_En">Check SEO Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextArea("checktext", new { @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="editor-label col-md-3">
+                                @Html.Raw("Google Show:")
+                            </div>
+                            <div class="col-md-9">
+                                <a href="#" style="font-size: 18px; color: #1846dc" id="titlepreview"></a>
+                                <div style="" id="pageurl"></div>
+                                <div style="" id="descriptionpreview"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row" id="Article">
+                                <div class="col-md-3"></div>
+                                <div id="Articlelable" class="col-md-5">
+                                    <h5><b>Article Heading:</b></h5>
+                                </div>
+                                <h5 id="ArticleCheck"></h5>
+                            </div>
+                            <div class="row" id="Pagetitle">
+                                <div class="col-md-3"></div>
+                                <div id="Pagetitlelable" class="col-md-5">
+                                    <h5><b>Page title:</b></h5>
+                                </div>
+                                <h5 id="PagetitleCheck"></h5>
+                            </div>
+                            <div class="row" id="Contents">
+                                <div class="col-md-3"></div>
+                                <div id="Contentlable" class="col-md-5">
+                                    <h5><b>Content:</b></h5>
+                                </div>
+                                <h5 id="ContentCheck"></h5>
+                            </div>
+                            <div class="row" id="Metades">
+                                <div class="col-md-3"></div>
+                                <div id="Metadeslable" class="col-md-5">
+                                    <h5><b>Meta Description:</b></h5>
+                                </div>
+                                <h5 id="MetadesCheck"></h5>
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="tab-pane fade in" id="tab3default">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Tiêu Đề Tiếng Anh</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Eng_Title, new { id = "input_Title_En", @class = "form-control" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Mô Tả Tiếng Anh</label>
+                        </div>
+                        <div class="col-md-9">
+                            @Html.TextAreaFor(model => model.Eng_Description, new { id = "Title", @class = "form-control", rows = "6", @maxlength = "128" })
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="Title">Nội Dung Tiếng Anh</label>
+                        </div>
+                        <div class="col-md-10">
+                            @*@Html.TextAreaFor(model => model.Eng_Content, new { id = "Content1", @class = "form-control", rows = "2" })*@
+                            <textarea name="Eng_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Eng_Content)</textarea>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaTitle">SEO Title</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaTitle, new { id = "input_MetaTitle_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaDescription">SEO Description  </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaDescription, new { id = "input_MetaDescription_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metatitlenote_En" style="color: #000">*The length of "SEO Title" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3"></div>
+                            <div class="col-md-9">
+                                <h5 id="metadesnote_En" style="color: #000">*The length of "SEO Description" should be from 10-70 characters, the remaining characters </h5>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_MetaKeywords">Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_MetaKeyword, new { id = "input_MetaKeywords_En", @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="checktext_En">Check SEO Keyword SEO</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextArea("checktext_En", new { @class = "form-control", rows = "3" })
+                            </div>
+                        </div>
+
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="editor-label col-md-3">
+                                @Html.Raw("Google Show:")
+                            </div>
+                            <div class="col-md-9">
+                                <a href="#" style="font-size: 18px; color: #1846dc" id="titlepreview_En"></a>
+                                <div style="" id="pageurl_En"></div>
+                                <div style="" id="descriptionpreview_En"></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="row" id="Article_En">
+                                <div class="col-md-3"></div>
+                                <div id="Articlelable_En" class="col-md-5">
+                                    <h5><b>Article Heading:</b></h5>
+                                </div>
+                                <h5 id="ArticleCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Pagetitle_En">
+                                <div class="col-md-3"></div>
+                                <div id="Pagetitlelable_En" class="col-md-5">
+                                    <h5><b>Page title:</b></h5>
+                                </div>
+                                <h5 id="PagetitleCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Contents_En">
+                                <div class="col-md-3"></div>
+                                <div id="Contentlable_En" class="col-md-5">
+                                    <h5><b>Content:</b></h5>
+                                </div>
+                                <h5 id="ContentCheck_En"></h5>
+                            </div>
+                            <div class="row" id="Metades_En">
+                                <div class="col-md-3"></div>
+                                <div id="Metadeslable_En" class="col-md-5">
+                                    <h5><b>Meta Description:</b></h5>
+                                </div>
+                                <h5 id="MetadesCheck_En"></h5>
+                                <br />
+                            </div>
+                        </div>
+
+                    </div>
+                    <br />
+                </div>
+                <br />
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="box-footer">
+                <div class="col-md-4">
+                    <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                    <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/Common/Index" data-style="expand-right">Quay lại</a>
+                </div>
+            </div>
+        </div>
+
+    }
+}
+<script>
+    $('#btninput_link').on('click', function () {
+
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+<script>
+    //$(document).ready(function () {
+    //    if ($('#CategoryId').val() == 2) {
+    //        $('.ProjectId').show();
+    //    }
+    //    else {
+    //        $('.ProjectId').hide();
+    //    }
+
+
+    //})
+    //$('#CategoryId').change(function () {
+    //    if ($(this).val() == 2) {
+    //        $('.ProjectId').show();
+    //    }
+    //    else {
+    //        $('.ProjectId').hide();
+    //    }
+    //})
+</script>
+<script src="~/Scripts/jsForLayoutAdmin/CheckKeyWord.js"></script>
+<script src="~/Scripts/jsForLayoutAdmin/CheckKeyWord_En.js"></script>
+        

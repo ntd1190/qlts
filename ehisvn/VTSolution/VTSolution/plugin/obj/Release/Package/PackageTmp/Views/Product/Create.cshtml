@@ -1,0 +1,817 @@
+﻿@model VTSolution.Models.Product
+
+<link href="~/Scripts/Boostrap/bootstrap-datetimepicker.min.css" rel="stylesheet" />
+<script src="~/Scripts/jsForLayoutAdmin/jquery.qubit.js"></script>
+<script src="~/Scripts/Boostrap/bootstrap-datetimepicker.min.js"></script>
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật ";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm Mới ";
+    }
+    <input hidden value="@Model.Id" id="idpro" />
+}
+@section featured{
+
+
+    @Html.HiddenFor(model => model.Id)
+    <div class="row">
+        <div class="col-md-6">
+
+        </div>
+    </div>
+    <br />
+    <div class="box-body row">
+        <div class="panel with-nav-tabs panel-default">
+            <div class="panel-heading">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a href="#tab1default" data-toggle="tab">Thông Tin Chung</a></li>
+                    <li><a href="#tab2default" data-toggle="tab">Thông Số Chung Và Hình Ảnh</a></li>
+                    <li><a href="#tab3default" data-toggle="tab">Thông Số Kỹ Thuật</a></li>
+                    <li><a href="#tab4default" data-toggle="tab">File Liên Quan</a></li>
+                </ul>
+            </div>
+            <div class="panel-body">
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="tab1default">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Mã Sản Phẩm</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.Code, new { id = "Code", required = "required", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Công Nghệ</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownListFor(model => model.News.Id)
+.Name("IdTechnology")
+.HtmlAttributes(new { id = "IdTechnology", style = "width:359px" })
+.DataTextField("Vi_Title")
+              .DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetNews", "Product");
+                  });
+              })
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Nhóm SP</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownListFor(model => model.GroupProductSon.ParentId)
+.Name("categories")
+.HtmlAttributes(new { id = "categories", style = "width:359px" })
+  .DataTextField("Vi_Name")
+              .DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCategory", "GroupProductSon");
+                  });
+              })
+                                    )
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Loại SP </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownListFor(model => model.GroupId)
+                .Name("GroupId")
+              .HtmlAttributes(new { id = "GroupId", style = "width:359px" })
+              .DataTextField("Vi_Name")
+              .DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCategory", "Product")
+                          .Data("filterProducts");
+                  })
+                  .ServerFiltering(true);
+              })
+              .Enable(false)
+              .AutoBind(false)
+              .CascadeFrom("categories")
+                                    )
+                                    <script>
+                                        function filterProducts() {
+                                            return {
+                                                categories: $("#categories").val()
+                                            };
+                                        }
+                                    </script>
+                                    @*<input id="BrandId">*@
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Tên </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Vi_Name, new { id = "Vi_Name", required = "required", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Tên Tiếng Anh</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Eng_Name, new { id = "Eng_Name", required = "required", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Giá </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Price, new { id = "Price", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Giá Tiếng Anh</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Eng_Price, new { id = "Eng_Price", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Mô Tả </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Vi_Description, new { id = "Vi_Description", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Mô Tả Tiếng Anh</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Eng_Description, new { id = "Eng_Description", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Nổi Bật </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Vi_HotFeature, new { id = "Vi_HotFeature", @class = "form-control" })
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Nổi Bật Tiếng Anh</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextAreaFor(model => model.Eng_HotFeature, new { id = "Eng_HotFeature", @class = "form-control" })
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Ngày Tạo</label>
+                                </div>
+
+                                <div class="col-md-9">
+                                    @*<div id="datetimepicker4" class="input-append inline-date">
+                                            <input data-format="dd/MM/yyyy/hh:mm:ss" type="text" id="datecreate" class="form-control" required="required" name="data" placeholder="Date">
+                                            <span class="add-on glyphicon glyphicon-calendar" style="margin-top:-25px!important">
+                                                <i data-time-icon="icon-time" data-date-icon="icon-calendar">
+
+                                                </i>
+                                            </span>
+                                        </div>
+
+                                        <script type="text/javascript">
+                                            $(function () {
+                                                $('#datetimepicker4').datetimepicker({
+                                                    pickTime: false
+                                                });
+                                            });
+                                        </script>*@
+                                    <div style="margin-top: -6px; margin-left: 180px">
+                                        @(Html.Kendo().DatePickerFor(model => model.DateCreate)
+                                        .Name("datepicker")
+                                                       .HtmlAttributes(new { id = "datecreate" })
+
+                                        )
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Trạng Thái</label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownListFor(model => model.IdStatus)
+.Name("IdStatus")
+              .HtmlAttributes(new { id = "IdStatus", style = "width:359px" })
+.DataTextField("Name")
+.DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetStatus", "Product");
+                  });
+              })
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6" style="margin-left:20px;">
+                                <label for=" title">
+                                    Hiện Trang Chủ
+                                </label>
+                                @Html.CheckBoxFor(model => model.IsShowHome, new { id = "IsShowHome" })
+                            </div>
+                            <div class="col-md-6" style="margin-left:20px;">
+                                <label for=" title">
+                                    Ẩn Sản Phẩm
+                                </label>
+                                @Html.CheckBoxFor(model => model.IsDisable, new { id = "IsDisable" })
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade in" id="tab2default">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="input_link">Hình đại diện(1080 x 500)</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <button id="btninput_link">Chọn Hình</button>
+                                    </div>
+                                    <div class="row image">
+                                        @if (Model.ImagePath != null)
+                                        {
+                                            <div class="thaihoa">
+                                                <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.ImagePath' style="width: 150px;height: 100px;" />
+                                                <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                            </div>
+                                        }
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="input_link">Hình Chi Tiết(1080 x 500)</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <button id="btninput_link1">Chọn Hình</button>
+                                    </div>
+                                    <div class="row imagedetail">
+                                        @if (Model.ProductImages != null)
+                                        {
+                                            foreach (var it in Model.ProductImages)
+                                            {
+                                                <div class="thaihoa">
+                                                    <img id="ImagePath1" class="hoadeptrai" src='@it.ImagePath' style="width: 150px;height: 100px;" />
+                                                    <input type="hidden" name="ImagePath1" class="PTH" id="multi12" value="@it.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="Title">Thông Số Chung </label>
+                            </div><div class="col-md-9 pull-right">
+                                <textarea name="Vi_Content" id="Vi_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Vi_Content)</textarea>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-2">
+                                <label for="Title">Thông Số Chung Tiếng Anh</label>
+                            </div>
+                            <div class="col-md-9 pull-right">
+                                <textarea name="Eng_Content" id="Eng_Content" class="textcontent">@HttpUtility.HtmlDecode(Model == null ? "" : Model.Eng_Content)</textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tab-pane fade in" id="tab3default">
+                        <div class="row">
+                            <div class="col-md-6" style="padding:0;">
+                                <div class="col-md-4">
+                                    <label for="Title">Chọn Thuộc Tính</label>
+                                </div>
+                                <div class="col-md-8">
+                                    @(Html.Kendo().DropDownListFor(model => model.IdFeature)
+.Name("Feature")
+.HtmlAttributes(new { id = "Feature", style = "width:350px" })
+.OptionLabel("Chọn thuộc tính")
+.DataTextField("Name")
+              .DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetFeature", "Product");
+                  });
+              })
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cf nestable-lists">
+                            <div class="dd" id="nestable">
+                                <ol class="dd-list" id="dd-list"></ol>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="tab-pane fade in" id="tab4default">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Nhóm File </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownList()
+                                            .OptionLabel("Select...")
+                    .Name("categories1")
+                    .HtmlAttributes(new { style = "width:359px" })
+                    .DataTextField("Vi_Name")
+                    .DataValueField("Id")
+                      .DataSource(source =>
+                      {
+                          source.Read(read =>
+                          {
+                              read.Action("GetCategoryDad", "Product");
+                          });
+                      })
+                                    )
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn Loại File </label>
+                                </div>
+                                <div class="col-md-9">
+                                    @(Html.Kendo().DropDownList()
+                                             .OptionLabel("Select...")
+                .Name("GroupId1")
+              .HtmlAttributes(new { style = "width:359px" })
+              .DataTextField("Vi_Name")
+              .DataValueField("Id")
+              .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCategorySon", "Product")
+                          .Data("filterProducts1");
+                  })
+                  .ServerFiltering(true);
+              })
+              .Enable(false)
+              .AutoBind(false)
+              .CascadeFrom("categories1")
+                                    )
+                                    <script>
+                                        function filterProducts1() {
+                                            return {
+                                                categories: $("#categories1").val()
+                                            };
+                                        }
+                                    </script>
+                                    @*<input id="BrandId">*@
+                                </div>
+                            </div>
+                        </div>
+                        <br />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="Title">Chọn file </label>
+                                </div>
+                                <div class="col-md-9" id="filepro">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="updatemenu" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="true">
+                    <input type="hidden" id="menuid" value=null />
+                    <div class="modal-dialog modal-sm" style="width:501px;">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Đóng</span></button>
+                                <h4 class="modal-title" style="color:#6187cb">Giá Trị</h4>
+                            </div>
+                            <div class="modal-body">
+                                <div class="row" style="margin-left:-5px">
+                                    <label for="inputurl">Giá Trị </label>
+                                    @*<input type="text" id="inputvi" height="60" name="Vi_Value" class="form-control" />*@
+                                    <textarea name="Vi_Value" id="inputvi" class="symboys"></textarea>
+                                </div>
+                                <br />
+                                <div class="row" style="margin-left:-5px">
+                                    <label for="inputurl">Giá Trị Tiếng Anh</label>
+                                    <textarea name="Eng_Value" id="inputeng" class="symboys"></textarea>
+                                    @*<input type="text" id="inputeng" height="60" name="Eng_Value" class="form-control" />*@
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <div class="col-lg-12 text-center">
+                                    <a class="btn btn-success" data-dismiss="modal">Lưu</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="box-footer">
+                <div class="col-md-4">
+                    <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Save All</button>
+                    <a class="btn btn-danger ladda-button" id="btn_Canel" href="/Product/Index" data-style="expand-right">Quay lại</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="waiting" class="centered" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="false">
+        <button class="btn btn-lg btn-warning centered"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Vui lòng chờ trong giây lát...</button>
+    </div>
+}
+<style>
+    .centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+    }
+</style>
+<script>
+
+
+    $('#btninput_link').on('click', function () {
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    $('#btninput_link1').on('click', function () {
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce1', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+    $(document).ready(function () {
+        var categories = $("#categories").data("kendoDropDownList"),
+            products = $("#product.GroupId").data("kendoDropDownList")
+
+
+    });
+
+    $('#Feature').change(function () {
+
+        var value = $(this).val();
+        var _html = '';
+        $('#dd-list').html('');
+        $.ajax({
+            url: '@Url.Action("Change", "Product")',
+            type: 'POST',
+            data: { id: value },
+            dataType: 'json',
+            success: function (menuhome) {
+
+                if (menuhome.length > 0) {
+                    for (var i = 0; i < menuhome.length; i++) {
+                        var vi = menuhome[i].Vi_Value;
+                        var eng = menuhome[i].Eng_Value;
+
+                        _html2 = '<li class="dd-item dd3-item"  id="' + menuhome[i].Id + '"><input type="hidden" class="valuevi" id="vi' + menuhome[i].Id + '" value="' + vi + '" /><input type="hidden" id="Name2" value="' + menuhome[i].Eng_Name + '"/><input type="hidden" class="valueeng" id="eng' + menuhome[i].Id + '" value="' + eng + '" /><div class="dd-handle dd3-handle"></div><div class="dd3-content"><span id="span' + menuhome[i].Id + '">' + menuhome[i].Name + '</span><a href="#" class="glyphicon glyphicon-remove-circle"></a><a  href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#updatemenu"></a></div></li>';
+                        $('#dd-list').append(_html2);
+                    }
+                }
+                $('#nestable').nestable("init");
+                $('.glyphicon-remove-circle').click(function () {
+
+                    var elm = document.getElementById($(this).parent().parent().attr('id'));
+
+                    elm.remove();
+
+                });
+                $('.glyphicon-edit').click(function () {
+                    $('#menuid').val($(this).parent().parent().attr('id'));
+
+                    var menuid = $('#menuid').val();
+                    //$('#updatemenu').find('#inputvi').val($('#vi' + menuid).val());
+                    //$('#updatemenu').find('#inputeng').val($('#eng' + menuid).val());
+                    tinymce.get('inputvi').setContent($('#vi' + menuid).val());
+                    tinymce.get('inputeng').setContent($('#eng' + menuid).val());
+                })
+
+            }
+        });
+    });
+    $(document).ready(function () {
+        $('#waiting').modal({
+            backdrop: 'static',
+            keyboard: true,
+            show: false
+        })
+        var value = $('#Feature').val();
+
+        var _html = '';
+        $('#dd-list').html('');
+
+        if ($('#idpro').val() == 0) {
+            $.ajax({
+                url: '@Url.Action("Change", "Product")',
+                type: 'POST',
+                data: { id: value },
+                dataType: 'json',
+                success: function (menuhome) {
+
+                    if (menuhome.length > 0) {
+                        for (var i = 0; i < menuhome.length; i++) {
+                            var vi = menuhome[i].Vi_Value;
+                            var eng = menuhome[i].Eng_Value;
+                            _html2 = '<li class="dd-item dd3-item"  id="' + menuhome[i].Id + '"><input type="hidden" class="valuevi" id="vi' + menuhome[i].Id + '" value="' + vi + '" /><input type="hidden" id="Name2" value="' + menuhome[i].Eng_Name + '"/><input type="hidden" class="valueeng" id="eng' + menuhome[i].Id + '" value="' + eng + '" /><div class="dd-handle dd3-handle"></div><div class="dd3-content"><span id="span' + menuhome[i].Id + '">' + menuhome[i].Name + '</span><a href="#" class="glyphicon glyphicon-remove-circle"></a><a  href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#updatemenu"></a></div></li>';
+                            $('#dd-list').append(_html2);
+                        }
+                    }
+                    $('#nestable').nestable("init");
+                    $('.glyphicon-remove-circle').click(function () {
+
+                        var elm = document.getElementById($(this).parent().parent().attr('id'));
+
+                        elm.remove();
+
+                    });
+                    $('.glyphicon-edit').click(function () {
+                        $('#menuid').val($(this).parent().parent().attr('id'));
+
+                        var menuid = $('#menuid').val();
+                        //$('#updatemenu').find('#inputvi').val($('#vi' + menuid).val());
+                        //$('#updatemenu').find('#inputeng').val($('#eng' + menuid).val());
+                        tinymce.get('inputvi').setContent($('#vi' + menuid).val());
+                        tinymce.get('inputeng').setContent($('#eng' + menuid).val());
+                    })
+                }
+            });
+        }
+        else {
+
+            $.ajax({
+                url: '@Url.Action("GetOld", "Product")',
+                type: 'POST',
+                data: { id: $('#idpro').val() },
+                dataType: 'json',
+                success: function (menuhome) {
+                    if (menuhome.length > 0) {
+                        for (var i = 0; i < menuhome.length; i++) {
+                            var vi = menuhome[i].Vi_Value;
+                            var eng = menuhome[i].Eng_Value;
+                            _html2 = '<li class="dd-item dd3-item"  id="' + menuhome[i].Id + '"><input type="hidden" class="valuevi" id="vi' + menuhome[i].Id + '" value="' + vi + '" /><input type="hidden" id="Name2" value="' + menuhome[i].Eng_Name + '"/><input type="hidden" class="valueeng" id="eng' + menuhome[i].Id + '" value="' + eng + '" /><div class="dd-handle dd3-handle"></div><div class="dd3-content"><span id="span' + menuhome[i].Id + '">' + menuhome[i].Name + '</span><a href="#" class="glyphicon glyphicon-remove-circle"></a><a  href="#" class="glyphicon glyphicon-edit" data-toggle="modal" data-target="#updatemenu"></a></div></li>';
+                            $('#dd-list').append(_html2);
+
+                        }
+                    }
+                    $('#nestable').nestable("init");
+                    $('.glyphicon-remove-circle').click(function () {
+
+                        var elm = document.getElementById($(this).parent().parent().attr('id'));
+
+                        elm.remove();
+
+                    });
+                    $('.glyphicon-edit').click(function () {
+                        $('#menuid').val($(this).parent().parent().attr('id'));
+                        var menuid = $('#menuid').val();
+                        //$('#updatemenu').find('#inputvi').val($('#vi' + menuid).val());
+                        //$('#updatemenu').find('#inputeng').val($('#eng' + menuid).val());
+                        // ('#vi' + menuid).val()
+                        tinymce.get('inputvi').setContent($('#vi' + menuid).val());
+                        tinymce.get('inputeng').setContent($('#eng' + menuid).val());
+                    })
+                }
+            });
+
+
+            //get file product
+            var html1 = '';
+            $.ajax({
+                url: '@Url.Action("GetFilePro", "Product")',
+                type: 'POST',
+                data: { id: $('#idpro').val() },
+                dataType: 'json',
+                success: function (menuhome) {
+                    if (menuhome.firstList.length > 0) {
+                        for (var i = 0; i < menuhome.firstList.length; i++) {
+                            html1 = '<label><input class="filesproduct" checked type="checkbox" id="' + menuhome.firstList[i].Id + '" value="' + menuhome.firstList[i].Id + '"> ' + menuhome.firstList[i].Vi_Name + '</label><br>'
+                            $('#filepro').append(html1);
+
+                        }
+                    }
+
+                }
+            });
+        }
+    })
+    $('#updatemenu').find('.btn-success').click(function () {
+        var menuid = $('#menuid').val();
+        //var viv = $('#updatemenu').find('#inputvi').val();
+        //var engv = $('#updatemenu').find('#inputeng').val();
+        var viv = tinymce.get('inputvi').getContent();
+        var engv = tinymce.get('inputeng').getContent();
+        //var menuid = $('#menuid').val();
+        $('#vi' + menuid).val(viv);
+        $('#eng' + menuid).val(engv);
+
+    })
+
+    $('#GroupId1').change(function () {
+        var value = $(this).val();
+        var html = '';
+        $('#filepro').html('');
+        $.ajax({
+            url: '@Url.Action("GetFile", "Product")',
+            type: 'POST',
+            data: { id: value },
+            dataType: 'json',
+            success: function (menuhome) {
+                if (menuhome.length > 0) {
+                    for (var i = 0; i < menuhome.length; i++) {
+                        html = '<label><input class="filesproduct" type="checkbox" id="' + menuhome[i].Id + '" value="' + menuhome[i].Id + '"> ' + menuhome[i].Vi_Name + '</label><br>'
+                        $('#filepro').append(html);
+
+                    }
+                }
+
+            }
+        });
+    })
+
+    //click
+    var ArrInfo = [];
+    var Product = null;
+    var Image = [];
+    var File = [];
+    $('#Submit').click(function (e) {
+        $('#waiting').modal('show');
+        if ($('#Vi_Name').val().trim() == "" && $('#Eng_Name').val().trim() == "") {
+            alert("Nhập Tối Thiểu Tên Sản Phẩm");
+            return false;
+            e.preventdefault();
+
+        }
+
+        $('#filepro input:checked').each(function () {
+            var value = ($(this).attr('value'));
+            File.push({
+                File: value
+            });
+
+        });
+
+        $('.imagedetail .thaihoa').find('img').each(function () {
+            value = $(this).prop('src');
+            Image.push({
+                ImagePath: value
+            });
+
+        })
+        if ($('#IsShowHome').is(':checked')) {
+            $('#IsShowHome').val('true');
+        }
+        else {
+            $('#IsShowHome').val('false');
+        }
+        if ($('#IsDisable').is(':checked')) {
+            $('#IsDisable').val('true');
+        }
+        else {
+            $('#IsDisable').val('false');
+        }
+        Product = {
+            Id: $('#idpro').val(),
+            Vi_Name: $('#Vi_Name').val(),
+            Eng_Name: $('#Eng_Name').val(),
+            ImagePath: $('#ImagePath').prop('src'),
+            GroupId: $('#GroupId').val(),
+            Vi_Description: $('#Vi_Description').val(),
+            Eng_Description: $('#Eng_Description').val(),
+            Vi_Content: tinyMCE.get('Vi_Content').getContent(),
+            Eng_Content: tinyMCE.get('Eng_Content').getContent(),
+            IsShowHome: $('#IsShowHome').val(),
+            Code: $('#Code').val(),
+            Price: $('#Price').val(),
+            Eng_Price: $('#Eng_Price').val(),
+            Vi_HotFeature: $('#Vi_HotFeature').val(),
+            Eng_HotFeature: $('#Eng_HotFeature').val(),
+            IdTechnology: $('#IdTechnology').val(),
+            IdFeature: $('#Feature').val(),
+            IdStatus: $('#IdStatus').val(),
+            DateCreate: $('#datecreate').val(),
+            IsDisable: $('#IsDisable').val()
+        }
+
+        $('#dd-list >li').each(function () {
+
+            var info = {
+                IdProduct: $('#idpro').val(),
+                Name: $(this).text(),
+                Eng_Name: $(this).find('#Name2').val(),
+                Vi_Value: $(this).find('.valuevi').val(),
+                Eng_Value: $(this).find('.valueeng').val(),
+                IdParent: $('#Feature').val(),
+            };
+            ArrInfo.push(info);
+
+        })
+        //alert(JSON.stringify({ Product: Product, ArrInfo: ArrInfo, Image: Image })),
+        $.ajax({
+            url: this.action,
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            data: JSON.stringify({ Product: Product, ArrInfo: ArrInfo, Image: Image, File: File }),
+            success: function () {
+                $('#waiting').modal('hide');
+                ArrInfo = [];
+                alert("Lưu thông số thành công .");
+                window.location.reload();
+            }
+        });
+    })
+</script>
+
+<script>
+    $(".tab-pane").find("label").css("white-space", "nowrap")
+    $(document).ready(function () {
+        var categories = $("#categories1").data("kendoDropDownList"),
+            products = $("#GroupId1").data("kendoDropDownList")
+    });
+</script>
+<style>
+    .glyphicon {
+        float: right !important;
+        margin-right: 10px;
+    }
+</style>

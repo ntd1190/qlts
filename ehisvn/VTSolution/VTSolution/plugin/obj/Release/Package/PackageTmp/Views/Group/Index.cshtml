@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Nhóm ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.GroupIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id).Title("Mã Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Name).Title("Tên Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Group").Text("Sửa").Click("Edit_Group");
+            command.Edit().Text("Cập Nhật Vị Trí");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+        .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "Group", new { id = 0 }))
+              .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("Group_Read", "Group"))
+                                  .Update(update => update.Action("Group_Update", "Group"))
+                          .Destroy(update => update.Action("Group_Destroy", "Group"))
+    )
+)
+
+
+
+

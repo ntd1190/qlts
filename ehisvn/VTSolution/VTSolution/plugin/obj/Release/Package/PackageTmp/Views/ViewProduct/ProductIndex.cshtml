@@ -1,0 +1,86 @@
+﻿@using PagedList.Mvc
+@model PagedList.PagedList<VTSolution.Models.Project>
+@{
+    ViewBag.Title = Resource.duan;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var position = 0;
+}
+<script src="~/Scripts/JS-Paging/page-maker.js"></script>
+<input type='hidden' id='current_page' />
+<input type='hidden' id='show_per_page' />
+<div class="container">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1517px; height: 665px; opacity: 1;">
+        <div class="color-bg">
+            <img src="@Helper.GetBanner().ImagePath" alt="Background - Dự án" style="width: 1517px; height: 829.083px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND-->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <div class="next-prev-2">
+            <div class="nextslide disable"></div>
+            <div class="prevslide disable"></div>
+        </div>
+        @*<h2 class="hidden-xs hidden-sm">@Resource.duan</h2>*@
+        <div class="sub-nav page">
+            <ul>
+                <li class="current"><a href="" data-name="page-1" data-open="1" style="pointer-events: none; cursor: default;">01</a></li>
+            </ul>
+        </div>
+        <div class="content-page">
+            <div class="box-content">
+                <div class="colum-box project active" id="projectlist">
+                    @foreach (var item in Model)
+                    {
+                        position++;
+                        var classs = "";
+                        var color = "color-0" + position;
+                        classs = position % 2 == 0 ? "up" : "down";
+                        <div class="project-box @classs">
+                            <a class="details" href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan=Util.GenerateUrl(item.Vi_Title.Trim()),id = @item.Id})">@Resource.Xemchitiet<span></span></a>
+                            @*<div class="img-top">
+                                    <div class="title-show">@item.Vi_Title</div>
+                                    <a href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan=Util.GenerateUrl(item.Vi_Title.Trim()),id = @item.Id})">
+                                        <img src="@item.ImagePath" alt="@item.Vi_Title">
+                                    </a>
+                                </div>*@
+                            <div class="pic-pro">
+                                <div class="img-box" style="left:0;">
+                                    <a href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan = Util.GenerateUrl(item.Vi_Title.Trim()), id = @item.Id})">
+                                        <img src="@item.ImagePath" alt="@item.Vi_Title" style="width:100%" />
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="title-pro" style="background-color:white;">
+                                <h3 style="background:none;">@item.Vi_Title</h3>
+                                <p>@item.Vi_Description</p>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="page-product-index">
+                    <div class="page-list">
+                        @if (Model.PageCount > 1)
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action("ProductIndex", new { page = page }))
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<script>
+    $(document).ready(function () {
+        //how much items per page to show
+        pageMaker(4, '#projectlist', '#page_navigation');
+    });
+</script>
+
+

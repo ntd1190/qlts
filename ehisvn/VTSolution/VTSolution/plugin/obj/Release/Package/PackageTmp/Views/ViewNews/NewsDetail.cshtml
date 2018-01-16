@@ -1,0 +1,62 @@
+﻿@model VTSolution.ViewModel.Customer.NewsIndexModel
+@{
+    ViewBag.Title = Model.News.Vi_Title;
+    ViewBag.TitleSEO = Model.News.Vi_MetaTitle;
+    ViewBag.Description = Model.News.Vi_MetaDescription;
+    ViewBag.Keywords = Model.News.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tmphot = Model.ListNews.ToList();
+    var loophot = tmphot.Count() / 4;
+    var duhot = tmphot.Count() % 4;
+    var icounthot = 0;
+    if (duhot > 0)
+    {
+        loophot++;
+    }
+}
+<div class="container" id="news-details-page">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1517px; height: 665px; opacity: 1;">
+        <div class="color-bg">
+            <img src="@Helper.GetBanner().ImagePath" alt="Background - Tin tức và sự kiện" style="width: 1517px; height: 829.083px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND -->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <h2>@Resource.Tintuc</h2>
+        <div class="content-page news-full">
+            <div class="colum-box-news-details">
+                
+                <div class="colum-box-news">
+                    <div class="scrollE" tabindex="0">
+                        <div class="news-content">
+                            <div class="news-tab" style="opacity: 1;">
+                                <div class="detail-news">
+                                    <div class="news-text">
+                                        <h3>@Model.News.Vi_Title</h3>
+                                       
+                                        @Html.Raw(HttpUtility.HtmlDecode(Model.News.Vi_Content))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<script>
+    //$(function(){
+    //    ResizeWindows()
+    //});
+
+</script>

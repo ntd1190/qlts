@@ -1,0 +1,357 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.dataviz.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2014.1.415/kendo.dataviz.bootstrap.min.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.415/jquery.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.415/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2014.1.415/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+    <script src="~/Scripts/ckeditor/ckeditor.js"></script>
+    <script src="~/Scripts/ckfinder/ckfinder.js"></script>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="~/Content/Boostrap/bootstrap.css" rel="stylesheet" />
+    <!-- MetisMenu CSS -->
+    <link href="/Content/metisMenu/metisMenu.min.css" rel="stylesheet" />
+    <!-- Custom CSS -->
+    <link href="/Content/sb-admin-2.css" rel="stylesheet" />
+    <!-- Custom Fonts -->
+    <link href="/Content/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/quancuimia.css" rel="stylesheet" />
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!--css Js-Table-->
+    <link href="/Content/cssTable/csstable.css" rel="stylesheet" />
+    <link href="/Content/cssTable/jsgrid.css" rel="stylesheet" />
+    <link href="/Content/cssTable/theme.css" rel="stylesheet" />
+    <link href="/Content/themes/base/jquery-ui.css" rel="stylesheet" />
+    <link href="/Content/cssMultiSelect/multiselect.css" rel="stylesheet" />
+    <!--css nestable-->
+    <link href="~/Content/nestable.css" rel="stylesheet" />
+    <!--css loader-->
+    <link href="~/Content/loader/loaders.css" rel="stylesheet" />
+    <script src="~/tinymce/tinymce.min.js"></script>
+</head>
+<body>
+    <!-- Form logout submit -->
+    @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm" }))
+    {
+        @Html.AntiForgeryToken()
+
+    }
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;z-index:10;">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="javascript:;">SONG ÂN-TRANG QUẢN LÝ</a>
+            </div>
+            <ul class="nav navbar-top-links navbar-right">
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> @User.Identity.Name  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                      
+                        <li>
+                            <a href="javascript:document.getElementById('logoutForm').submit()">
+                                <i class="fa fa-sign-out fa-fw"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a href="/" target="_blank"><i class="fa fa-share"></i> Webstite</a>
+                </li>
+            </ul>
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        @{
+                            var menus = Helper.GetMenuAdmin();
+                        }
+
+                        @foreach (var m in menus)
+                        {
+                            <li>
+                                <a href="#">
+                                    <i></i> @m.MenuName<span class="fa arrow"></span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    @{
+                            var child = Helper.GetMenuChild(m.Id);
+                                    }
+                                    @foreach (var c in child)
+                                    {
+                                        <li><a href="@Url.Action(c.View, c.Controller)"> @c.MenuName</a></li>
+                                    }
+
+                                </ul>
+
+                            </li>
+
+                        }
+
+                    </ul>
+                </div>
+                <!-- /.sidebar-collapse -->
+            </div>
+            <!-- /.navbar-static-side -->
+        </nav>
+    </header>
+    <div id="page-wrapper">
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">@ViewBag.Title</h1>
+            </div>
+            <!-- /.col-lg-12 -->
+        </div>
+        <div class="row">
+            @RenderSection("featured", required: false)
+            <section class="content-wrapper main-content clear-fix">
+                @RenderBody()
+            </section>
+        </div>
+    </div>
+
+    <footer></footer>
+    <script src="~/tinymce/tinymce.min.js"></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="/Scripts/Boostrap/bootstrap.min.js"></script>
+    <!-- Metis Menu Plugin JavaScript -->
+    <script src="/Scripts/metisMenu/metisMenu.min.js"></script>
+    <!-- Custom Theme JavaScript -->
+    <script src="/Scripts/sbAdmin/sb-admin-2.js"></script>
+    <!--Bootstrap growl notification-->
+    <script src="/Scripts/jsBootstrapGrowl/jquery.bootstrap-growl.js"></script>
+    <!--Multi select-->
+    <script src="/Scripts/jquery-ui-1.8.24.js"></script>
+    <script src="/Scripts/jsMultiSelected/jquery.bsmselect.js"></script>
+    <script src="/Scripts/jsMultiSelected/jquery.bsmselect.sortable.js"></script>
+    <script src="/Scripts/jsMultiSelected/jquery.bsmselect.compatibility.js"></script>
+    <!--Nestable-->
+    <script src="~/Scripts/jquery.nestable.js"></script>
+    <script src="~/Scripts/jsForLayoutAdmin/control.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>
+<script type="text/javascript">
+    //tfm_path = '/TinyFileManager.NET';
+    //tinymce.init({
+    //    selector: ".textcontent",
+    //    plugins: [
+    //        'tinyfilemanager.net',
+    //            "searchreplace textcolor link advlist visualblocks code fullscreen",
+    //            "insertdatetime media table contextmenu paste youtube"
+    //    ],
+    //    height: 400,
+    //    encoding: "xml",
+    //    toolbar: "undo redo| fontsizeselect |forecolor backcolor | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect forecolor backcolor | link unlink anchor | image media | print preview code| doksoft_special_symbols"
+    //});
+
+    tfm_path = '/FileManager';
+    tinymce.init({
+        selector: ".textcontent",
+        theme: "modern",
+        plugins: [
+                "searchreplace textcolor image link advlist visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste youtube"
+        ],
+        textcolor_map: [
+    "000000", "Black",
+    "993300", "Burnt orange",
+    "333300", "Dark olive",
+    "003300", "Dark green",
+    "003366", "Dark azure",
+    "000080", "Navy Blue",
+    "333399", "Indigo",
+    "333333", "Very dark gray",
+    "800000", "Maroon",
+    "FF6600", "Orange",
+    "808000", "Olive",
+    "008000", "Green",
+    "008080", "Teal",
+    "0000FF", "Blue",
+    "666699", "Grayish blue",
+    "808080", "Gray",
+    "FF0000", "Red",
+    "FF9900", "Amber",
+    "99CC00", "Yellow green",
+    "339966", "Sea green",
+    "33CCCC", "Turquoise",
+    "3366FF", "Royal blue",
+    "800080", "Purple",
+    "999999", "Medium gray",
+    "FF00FF", "Magenta",
+    "FFCC00", "Gold",
+    "FFFF00", "Yellow",
+    "00FF00", "Lime",
+    "00FFFF", "Aqua",
+    "00CCFF", "Sky blue",
+    "993366", "Red violet",
+    "FFFFFF", "White",
+    "FF99CC", "Pink",
+    "FFCC99", "Peach",
+    "FFFF99", "Light yellow",
+    "CCFFCC", "Pale green",
+    "CCFFFF", "Pale cyan",
+    "99CCFF", "Light sky blue",
+    "CC99FF", "Plum",
+    "0082c9","xanh ehis",
+        ],
+        relative_urls: false,
+        remove_script_host: false,
+        height: 400,
+        encoding: "xml",
+        toolbar: "undo redo| fontsizeselect |forecolor backcolor | bold italic underline | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | styleselect forecolor backcolor | link unlink anchor | image media | print preview code ",
+        setup: function (editor) {
+            editor.on("SaveContent", function (i) {
+                i.content = i.content.replace(/&#39/g, "&apos");
+            });
+        }
+    });
+
+    tinymce.init({
+        selector: ".symboys",
+        theme: "modern",
+        plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor colorpicker textpattern"
+        ],
+        textcolor_map: [
+  "000000", "Black",
+  "993300", "Burnt orange",
+  "333300", "Dark olive",
+  "003300", "Dark green",
+  "003366", "Dark azure",
+  "000080", "Navy Blue",
+  "333399", "Indigo",
+  "333333", "Very dark gray",
+  "800000", "Maroon",
+  "FF6600", "Orange",
+  "808000", "Olive",
+  "008000", "Green",
+  "008080", "Teal",
+  "0000FF", "Blue",
+  "666699", "Grayish blue",
+  "808080", "Gray",
+  "FF0000", "Red",
+  "FF9900", "Amber",
+  "99CC00", "Yellow green",
+  "339966", "Sea green",
+  "33CCCC", "Turquoise",
+  "3366FF", "Royal blue",
+  "800080", "Purple",
+  "999999", "Medium gray",
+  "FF00FF", "Magenta",
+  "FFCC00", "Gold",
+  "FFFF00", "Yellow",
+  "00FF00", "Lime",
+  "00FFFF", "Aqua",
+  "00CCFF", "Sky blue",
+  "993366", "Red violet",
+  "FFFFFF", "White",
+  "FF99CC", "Pink",
+  "FFCC99", "Peach",
+  "FFFF99", "Light yellow",
+  "CCFFCC", "Pale green",
+  "CCFFFF", "Pale cyan",
+  "99CCFF", "Light sky blue",
+  "CC99FF", "Plum",
+  "0082c9", "xanh ehis",
+        ],
+        height: 400,
+        toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+        toolbar2: "print preview media | forecolor backcolor emoticons",
+        image_advtab: true,
+        templates: [
+            { title: 'Test template 1', content: 'Test 1' },
+            { title: 'Test template 2', content: 'Test 2' }
+        ]
+    });
+
+</script>
+<script type="text/javascript">
+    tinymce.init({
+        fontsize_formats: "8pt 10pt 12pt 14pt 18pt 24pt 36pt"
+    });
+    tfm_path = '/TinyFileManager.NET';
+    tinymce.init({
+        selector: ".Content",
+        plugins: [
+            'tinyfilemanager.net',
+            "  code ",
+            "insertdatetime contextmenu paste "
+        ],
+        textcolor_map: [
+  "000000", "Black",
+  "993300", "Burnt orange",
+  "333300", "Dark olive",
+  "003300", "Dark green",
+  "003366", "Dark azure",
+  "000080", "Navy Blue",
+  "333399", "Indigo",
+  "333333", "Very dark gray",
+  "800000", "Maroon",
+  "FF6600", "Orange",
+  "808000", "Olive",
+  "008000", "Green",
+  "008080", "Teal",
+  "0000FF", "Blue",
+  "666699", "Grayish blue",
+  "808080", "Gray",
+  "FF0000", "Red",
+  "FF9900", "Amber",
+  "99CC00", "Yellow green",
+  "339966", "Sea green",
+  "33CCCC", "Turquoise",
+  "3366FF", "Royal blue",
+  "800080", "Purple",
+  "999999", "Medium gray",
+  "FF00FF", "Magenta",
+  "FFCC00", "Gold",
+  "FFFF00", "Yellow",
+  "00FF00", "Lime",
+  "00FFFF", "Aqua",
+  "00CCFF", "Sky blue",
+  "993366", "Red violet",
+  "FFFFFF", "White",
+  "FF99CC", "Pink",
+  "FFCC99", "Peach",
+  "FFFF99", "Light yellow",
+  "CCFFCC", "Pale green",
+  "CCFFFF", "Pale cyan",
+  "99CCFF", "Light sky blue",
+  "CC99FF", "Plum",
+  "0082c9", "xanh ehis",
+        ],
+        width: "100%",
+        height: 300,
+        encoding: "xml",
+        toolbar: "bullist numlist outdent indent | image"
+    });
+
+
+</script>

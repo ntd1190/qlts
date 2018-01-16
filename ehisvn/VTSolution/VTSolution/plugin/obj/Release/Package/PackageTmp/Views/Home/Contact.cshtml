@@ -1,0 +1,298 @@
+﻿@model VTSolution.Models.AboutU
+@{
+    ViewBag.Title = Resource.Gioithieu;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var language = System.Threading.Thread.CurrentThread.CurrentCulture;
+}
+<script type="text/javascript" src="~/Scripts/Angia-Js/jquery.validationEngine.js"></script>
+<script type="text/javascript" src="~/Scripts/Angia-Js/validate.js"></script>
+<link href="~/Content/AngiaCss/contact.css" rel="stylesheet" />
+<input hidden value="@language.Name" id="lang" />
+<div class="container">
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;margin-top:75px;">
+        <div class="googlemap" style="width: 1366px; height: 599px;">
+            <div class="zoom-control">
+                <a id="zoom-in">+</a>
+                <a id="zoom-out">-</a>
+            </div>
+            <div id="map-canvas"></div>
+        </div>
+        <h2 class="lh">@Resource.Lienhe</h2>
+        <div class="contact-box">
+            <div class="contact-info">
+                <h3>
+                    @Model.Vi_Company
+                </h3>
+                <p>
+                    @Resource.Truso: <strong>Song An</strong>
+                </p>
+                <p>
+                    @Model.Address<br>
+                    @Resource.Dienthoai: @Model.Phone<br>
+                    Fax: @Model.Fax<br>
+                    Hotline: @Model.HotLine<br>
+
+                </p>
+            </div>
+            <div class="contact-form">
+                <form onsubmit="return validatecontact();" id="frm_contact" name="frm_contact" method="post">
+                    <div class="require-col">
+                        <div class="input-text">
+                            <input name="name" value="@Resource.Hoten (*)" id="name" type="text">
+                        </div>
+                        <div class="input-text">
+                            <input name="address" value="@Resource.Diachi" id="address" type="text">
+                        </div>
+                        <div class="input-text">
+                            <input name="phone" value="@Resource.Dienthoai (*)" id="phone" type="text">
+                        </div>
+                        <div class="input-text">
+                            <input name="email" value="Email (*)" id="email" type="text">
+                        </div>
+                        <div class="input-area">
+                            <textarea id="comments" name="comments">@Resource.Ykien (*)</textarea>
+                        </div>
+                        <div class="input-but">
+                            <input id="btn-contact-submit" type="button" value="@Resource.Gui">
+                            <input id="btn-contact-reset" type="reset" value="@Resource.Xoa">
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="contact-loader">
+
+        </div>
+    </div>
+    <div class="infobox-desc class-hidden">
+        @Resource.Truso : Song An
+
+        @Model.Address
+        @Resource.Dienthoai: @Model.Phone
+        Fax:@Model.Fax
+        Hotline: @Model.HotLine
+
+    </div>
+
+    @*<div class="infobox-location-lat class-hidden">10.806517</div>
+        <div class="infobox-location-lng class-hidden"> 106.676467</div>*@
+    <div class="infobox-location-lat class-hidden">@Model.Latitude</div>
+    <div class="infobox-location-lng class-hidden">@Model.Longtitude</div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<script>
+    function validatecontact() {
+        if ($('#lang').val() == "en-US") {
+            var flag = true;
+            var name = checkNull('name', 'Name can not be null!', 'Name (*)', '40', '-298');
+            var comments = checkNull('comments', 'Comment can not be null!', 'Comment (*)', '40', '-298');
+            var phone = checkNull('phone', 'Phone incorrect!', 'Phone (*)', '40', '-298');
+            var email = checkMail('email', 'Email incorrect!', 'Email (*)', '40', '-298');
+            var captcha = checkCaptcha('captcha', '', '', '40', '-298');
+
+            if (!name || !comments || !phone || !email || !captcha) {
+                flag = false;
+                setTimeout(hideerror, 5000);
+            }
+            return flag;
+        }
+        else {
+            var flag = true;
+            var name = checkNull('name', 'Vui lòng nhập tên!', 'Họ Tên (*)', '40', '-298');
+            var comments = checkNull('comments', 'Vui lòng nhập ý kiến!', 'Ý Kiến (*)', '40', '-298');
+            var phone = checkNull('phone', 'Điện thoại không hợp lệ!', 'Điện Thoại (*)', '40', '-298');
+            var email = checkMail('email', 'Email không hợp lệ!', 'Email (*)', '40', '-298');
+            var captcha = checkCaptcha('captcha', '', '', '40', '-298');
+
+            if (!name || !comments || !phone || !email || !captcha) {
+                flag = false;
+                setTimeout(hideerror, 5000);
+            }
+            return flag;
+        }
+
+
+    }
+
+    $(document).ready(function () {
+        $('#btn-contact-submit').click(function () {
+            if (validatecontact() == true) {
+                $("#contact-loader").show();
+                var mail = null;
+                mail = {
+                    Name: $('#name').val(),
+                    Address: $('#address').val(),
+                    Email: $('#email').val(),
+                    Phone: $('#phone').val(),
+                    Body: $('#comments').val(),
+                }
+                $.ajax({
+                    url: '@Url.Action("SendMail", "Home")',
+                    type: 'Post',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ model: mail }),
+                    success: function (success) {
+                        $("#contact-loader").hide();
+                        $('.contact-success').remove();
+                        if (success == '1') {
+                            $('#btn-contact-reset').trigger('click');
+                            if ($('#lang').val() == "en-US") {
+                                $('#contact-loader').after('<div  class="contact-success color-blue"> Success ! Thanks !</div>');
+                            }
+                            else {
+                                $('#contact-loader').after('<div  class="contact-success color-blue">Thông tin liên hệ của Bạn được gửi hoàn tất ! Cảm ơn Bạn !</div>');
+                            }
+                        } else {
+                            if ($('#lang').val() == "en-US") {
+                                $('#contact-loader').after('<div  class="contact-success color-blue"> Error ! Please try later !</div>');
+                            }
+                            else {
+                                $('#contact-loader').after('<div  class="contact-success color-red">Thông tin liên hệ của bạn không gửi được, vui lòng kiểm tra lại!</div>');
+                            }
+
+                        }
+                        $('html, body').animate({ scrollTop: 0 }, 'slow');
+                        setTimeout(hidemsg, 5000);
+                    }
+                }); //end ajax
+                return false;
+            } //end if
+
+            $(".formError").click(function () {
+                $(this).hide();
+            });
+
+            return false;
+        });
+
+        $('#btn-contact-reset').click(function () { hideerror(); });
+        $("#phone").numeric();
+
+        $('#frm_contact').keydown(function (e) {
+            if (!$("textarea").is(":focus")) {
+                if (e.keyCode == 13) {
+                    $('#btn-contact-submit').trigger('click');
+                }
+            }
+        });
+
+    });
+
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfmH8iOqrnFnMHAKvyuEqi_cur9PvUxyw&libraries=places&sensor=false"></script>
+
+
+<script src="~/Scripts/Angia-Js/infobox.js"></script>
+<script>
+    var Latitude = $("#Latitude").val();
+    var Longtitude = $("#Longtitude").val();
+    var Company = $("#Company").val();
+    var Phone = $("#PhoneCompany").val();
+    var Address = $("#Address").val();
+
+
+
+    function t() {
+        marker.setAnimation(null)
+    }
+
+    function e() {
+        t();
+        var e = document.createElement("div");
+        e.innerHTML = "<div class=''><img src='" + l + "' width='380px' height='132px'>" + s + "</div>";
+        //var i = {
+        //    content: e,
+        //    disableAutoPan: !0,
+        //    maxWidth: 400,
+        //    pixelOffset: new google.maps.Size(-150, -200),
+        //    boxStyle: {
+        //        background: "transparent",
+        //        opacity: 1,
+        //        width: "400px"
+        //    },
+        //    closeBoxMargin: "10px 0 0 60px",
+        //    closeBoxzIndex: "99999",
+        //    closeBoxPosition: "absolute",
+        //    closeBoxURL: o + "default/images/close_s.png",
+        //    infoBoxClearance: new google.maps.Size(1, 1),
+        //    isHidden: !1,
+        //    pane: "floatPane",
+        //    enableEventPropagation: !0
+        //},
+        //    a = new InfoBox(i);
+        //a.open(g, marker)
+    }
+    var i = $(".httpserver").text(),
+        o = $(".httptemplate").text(),
+        s = $(".infobox-desc").text(),
+        a = $(".infobox-location-lat").text(),
+        n = $(".infobox-location-lng").text(),
+        l = $(".infobox-image").text(),
+        h = $(".infobox-googlemap").text(),
+        c = [{
+            stylers: [{
+                hue: "#00619e"
+            }, {
+                saturation: -20
+            }]
+        }, {
+            featureType: "road",
+            elementType: "geometry",
+            stylers: [{
+                lightness: 100
+            }, {
+                visibility: "simplified"
+            }]
+        }, {
+            featureType: "road",
+            elementType: "labels",
+            stylers: [{
+                visibility: "on"
+            }]
+        }],
+        r = new google.maps.StyledMapType(c, {
+            name: "Styled Map"
+        }),
+        d = {
+            center: new google.maps.LatLng(a, n),
+            zoom: 17,
+            scrollwheel: !1,
+            draggable: !0,
+            draggingCursor: "move",
+            noclear: !0,
+            disableDefaultUI: !0,
+            disableDoubleClickZoom: !0,
+            mapTypeControlOptions: {
+                mapTypeIds: [google.maps.MapTypeId.ROADMAP, "map_style"],
+                position: google.maps.ControlPosition.TOP_RIGHT
+            }
+        },
+        g = new google.maps.Map(document.getElementById("map-canvas"), d);
+    g.mapTypes.set("map_style", r), g.setMapTypeId("map_style");
+    var p = i + "/Images/Angia-icon/maps.png";
+
+    marker = new google.maps.Marker({
+        map: g,
+        draggable: !1,
+        animation: google.maps.Animation.DROP,
+        zIndex: -1,
+        height: "170px",
+        width: "150px",
+        position: new google.maps.LatLng(a, n),
+        icon: p
+    });
+    var w = h;
+    $(window).width() > 1100 ? google.maps.event.addListener(marker, "click", e) : google.maps.event.addListener(marker, "click", function () {
+        window.open(w, "_blank")
+    }), ZoomControl(g)
+
+</script>
+@*<script src="~/Scripts/Angia-Js/common(1).js"></script>
+    <script src="~/Scripts/Angia-Js/controls.js"></script*@>

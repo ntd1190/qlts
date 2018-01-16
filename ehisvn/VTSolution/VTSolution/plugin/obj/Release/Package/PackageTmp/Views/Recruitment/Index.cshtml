@@ -1,0 +1,101 @@
+﻿@{
+    ViewBag.Title = "Danh Sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.RecruitmentIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+
+        //columns.Bound(p => p.GroupName).Title("Thuộc Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Name).Title("Tiêu Đề ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+
+
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Recruitment").Text("Sửa").Click("Edit_Recruitment");
+
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+      .ToolBar(toolbar =>
+      {
+
+
+          toolbar.Template(@<text>
+
+            <div class="row">
+                <div class="col-md-3">
+                    @(Html.Kendo().Button()
+                                    .Name("btn_Add")
+                                    .Icon("plus")
+                                    .Content("Thêm mới")
+                                            .Events(e => e.Click("addClick"))
+                    )
+                </div>
+
+            </div>
+        </text>);
+                })
+                   .Filterable()
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("Recruitment_Read", "Recruitment"))
+
+                          .Destroy(update => update.Action("Recruitment_Destroy", "Recruitment"))
+    )
+)
+<script>
+    function menumajorChange() {
+        var value = this.value();
+        var dropdownlist = $("#date1").data("kendoDropDownList");
+        dropdownlist.select(0);
+        grid = $("#grid").data("kendoGrid");
+        if (value) {
+            grid.dataSource.filter({ field: "GroupId", operator: "eq", value: parseInt(value) });
+
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+    function addClick() {
+        window.location.href = "/vi/Recruitment/Create/0";
+    }
+
+</script>
+<script>
+    function menumajorChange1() {
+        var gr = $('#groupid1').val();
+        var value = this.value();
+        grid = $("#grid").data("kendoGrid");
+        if (value) {
+            grid.dataSource.filter({
+                logic: "and",
+                filters: [
+                    { field: "GroupId", operator: "eq", value: parseInt(gr) },
+                    { field: "DateCreate", operator: "contains", value: value }
+                ]
+            });
+        } else {
+            grid.dataSource.filter({});
+        }
+    }
+
+</script>

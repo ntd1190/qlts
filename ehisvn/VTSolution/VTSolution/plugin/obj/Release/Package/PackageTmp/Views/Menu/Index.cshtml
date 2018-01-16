@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Menu List";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.MenuIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Eng_Name).Title("Tên tiếng anh").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Link).Title("Link").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Menu").Text("Sửa").Click("Edit_Menu");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+    .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "Menu", new { id = 0 }))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:600px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => model.Id(p => p.Id))
+
+                                  .Read(read => read.Action("Menu_Read", "Menu"))
+                                              .Destroy(update => update.Action("Menu_Destroy", "Menu"))
+    )
+)
+
+
+
+

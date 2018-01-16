@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewBag.Title = "Danh Sách Banner";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.BannerIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ImagePath).HeaderHtmlAttributes(new { style = "text-align:center" }).Width(350).Title("Hình ảnh").ClientTemplate("<img style='width:100%;'src='#=ImagePath#' />");
+        //columns.Bound(p => p.Link).Title("Tiêu Đề").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+      //  columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Banner").Text("Sửa").Click("Edit_Banner");
+            //command.Edit().Text("Vị Trí");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+    .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "Banner", new { id = 0 }))
+         .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+       
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("Banner_Read", "Banner"))
+                                       .Update(update => update.Action("Banner_Update", "Banner"))
+                                      .Destroy(update => update.Action("Banner_Destroy", "Banner"))
+    )
+)

@@ -1,0 +1,179 @@
+﻿@{
+    ViewBag.Title = Resource.KhachHang;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model VTSolution.ViewModel.Customer.CustomerIndexModel
+
+
+<input hidden id="gr" value="@ViewBag.idgroup" />
+<input hidden id="distr" value="@ViewBag.iddistrict" />
+<div class="testmap">
+    <table border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td>
+                <div id="dvMap" >
+                </div>
+            </td>
+            <td class="hidden-xs" id="legend"></td>
+        </tr>
+    </table>
+
+    <div class="danhsach">
+        <div class="row" style="left: 10px;top: 30%;position: absolute; right: 0;">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="row">
+                    <div style="font-size:20px;font-weight:bold;color:#0082c9;padding-left:20px;">
+                        @Resource.Danhsachkhachhang
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <span style="color:#0082c9;font-weight:bold;">
+                                @Resource.Khuvuc:
+                            </span>
+                        </div>
+                        <div class="col-md-9">
+                            <select class="select" id="khuvuc">
+                                @foreach (var item in Model.groupdist)
+                                {
+                                    <option value="@item.Id">@item.Vi_Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="col-md-3">
+                            <span style="color:#0082c9;font-weight:bold;"> @Resource.Tinhthanh:</span>
+                        </div>
+                        <div class="col-md-9">
+                            <select id="tinh" class="select">
+                                @foreach (var item in Model.district)
+                                {
+                                    <option value="@item.Id">@item.Vi_Name</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("../ViewPartial/_Footer")
+<script type="text/javascript">
+
+    var markers = [];
+
+    @foreach (var d in Model.customer)
+    {
+         @:markers.push({ "name": "@d.Name", "long": "@d.Long", "lat": "@d.Lat" });
+                                }
+
+    $(document).ready(function () {
+        LoadMap(markers)
+    })
+    function LoadMap(markers) {
+        var mapOptions = {
+            center: new google.maps.LatLng(markers[0].lat, markers[0].long),
+            mapTypeId: google.maps.MapTypeId.ROADMAP,
+            zoom: 10
+			
+
+        };
+        var infoWindow = new google.maps.InfoWindow();
+        var latlngbounds = new google.maps.LatLngBounds();
+        var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+        var legend = document.getElementById("legend");
+        legend.innerHTML = "";
+        for (var i = 0; i < markers.length; i++) {
+            var data = markers[i]
+            var myLatlng = new google.maps.LatLng(data.lat, data.long);
+            var marker = new google.maps.Marker({
+                position: myLatlng,
+                map: map,
+                title: data.name,
+				icon: 'http://ehis.vn/Images/Angia-icon/mapsbando.png'
+            });
+            (function (marker, data) {
+                //google.maps.event.addListener(marker, "click", function (e) {
+                //    infoWindow.setContent("<div style = 'width:100px;height:40px'>" + data.name + "</div>");
+                //    infoWindow.open(map, marker);
+                //});
+            })(marker, data);
+            latlngbounds.extend(marker.position);
+            legend.innerHTML += "<div style = 'margin:5px'><img align = 'middle' src = '/Images/Angia-icon/maps.png' />&nbsp;" + marker.name + "</div>";
+        }
+        var bounds = new google.maps.LatLngBounds();
+        //  map.setCenter(latlngbounds.getCenter());
+        // map.fitBounds(latlngbounds);
+    }
+    $('.turn').click(function () {
+        var href = $(this).attr('href');
+        window.location.href = href;
+    })
+
+    $('#tinh').change(function () {
+        var value = $('#tinh').val();
+        var gr = $('#khuvuc').val();
+        //ajax
+        $.ajax({
+
+            url: '@Url.Action("GetMap", "Home")',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify({ idgroup: gr, iddis: value }),
+            success: function (response) {
+
+                markers = [];
+                response.customer.forEach(function (item) {
+                    markers.push({ "name": item.Name, "long": item.Long, "lat": item.Lat });
+                });
+                LoadMap(markers);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("có sự cố trong lúc xử lý bản đồ,vui lòng thử lại sau");
+            }
+        });
+    })
+    $('#khuvuc').change(function () {
+        var idgroup = $(this).val();
+
+        $.ajax({
+
+            url: '@Url.Action("GetMap", "Home")',
+            type: 'Post',
+            contentType: 'application/json',
+            data: JSON.stringify({ idgroup: idgroup, iddis: null }),
+            success: function (response) {
+
+                $('#tinh').empty();
+                response.district.forEach(function (item) {
+                    $('#tinh').append("<option value=" + item.Id + "> " + item.Vi_Name + "</option>");
+                });
+                markers = [];
+                response.customer.forEach(function (item) {
+                    markers.push({ "name": item.Name, "long": item.Long, "lat": item.Lat });
+                });
+                LoadMap(markers);
+            },
+            error: function (jqXHR, textStatus, errorThrown) {
+                alert("có sự cố trong lúc xử lý bản đồ,vui lòng thử lại sau");
+            }
+        });
+    })
+</script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBfmH8iOqrnFnMHAKvyuEqi_cur9PvUxyw&libraries=places"></script>
+<style>
+    .select {
+        padding: 4px;
+        width: 200px;
+        border: 1px solid #0082c9;
+        color: #0082c9;
+        font-weight: bold;
+    }
+</style>

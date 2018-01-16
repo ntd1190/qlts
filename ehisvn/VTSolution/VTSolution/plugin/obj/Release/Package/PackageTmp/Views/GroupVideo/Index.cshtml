@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Nhóm ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.GroupVideoIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Id).Title("Mã Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Vi_Name).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Eng_Name).Title("Tên Tiếng Anh").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_GroupVideo").Text("Sửa").Click("Edit_GroupVideo");
+            command.Edit().Text("Cập Nhật Vị Trí");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+         .Editable(editable => editable.Mode(GridEditMode.PopUp))
+        .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "GroupVideo", new { id = 0 }))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("GroupVideo_Read", "GroupVideo"))
+                                         .Update(update => update.Action("GroupVideo_Update", "GroupVideo"))
+                                      .Destroy(update => update.Action("GroupVideo_Destroy", "GroupVideo"))
+    )
+)
+
+
+
+

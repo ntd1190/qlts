@@ -1,0 +1,84 @@
+﻿@model VTSolution.ViewModel.Customer.RecruitmentIndexModel
+@{
+    ViewBag.Title = Resource.KhachHang;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="center" style="opacity: 1;">
+        <div class="sub-click" style="display: none; opacity: 0;"></div>
+        <div class="sub-nav" style="height: 340px;">
+            <ul>
+                @for (int i = 0; i <= Model.ListRecruitment.Count() - 1; i++)
+                {
+                    if (@Model.ListRecruitment[i].Id == @ViewBag.idre)
+                    {
+                        <li class="current"><a data-name="@Model.ListRecruitment[i].Id" data-open="@Model.ListRecruitment[i].Id" style="pointer-events: none; cursor: default;">@Model.ListRecruitment[i].Name</a></li>
+                    }
+                    else
+                    {
+                        <li><a data-name="@Model.ListRecruitment[i].Id" data-open="@Model.ListRecruitment[i].Id">@Model.ListRecruitment[i].Name</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="content-page">
+
+            <div class="box-content">
+                @for (int i = 0; i <= Model.ListRecruitment.Count() - 1; i++)
+                {
+                    if (@Model.ListRecruitment[i].Id == @ViewBag.idre)
+                    {
+                        <div class="colum-box active" id="@Model.ListRecruitment[i].Id">
+                            <div class="about-box select">
+
+                                <div class="scrollA">
+                                    <div class="pic-right">
+                                        <img src="@Model.ListRecruitment[i].Imagepath" alt="@Model.ListRecruitment[i].Name">
+                                    </div>
+                                    <div class="content history">
+                                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ListRecruitment[i].Content))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="colum-box" id="@Model.ListRecruitment[i].Id">
+                            <div class="about-box select">
+
+                                <div class="scrollA">
+                                    <div class="pic-right">
+                                        <img src="@Model.ListRecruitment[i].Imagepath" alt="@Model.ListRecruitment[i].Name">
+                                    </div>
+                                    <div class="content history">
+                                        @Html.Raw(HttpUtility.HtmlDecode(@Model.ListRecruitment[i].Content))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<script>
+    function UploadFile() {
+        $('#file-field').val($('#browser-hide').val());
+        //do validation here
+        $('#upload').submit();
+    }
+</script>
+<style>
+    img {
+        width: 100%;
+    }
+</style>

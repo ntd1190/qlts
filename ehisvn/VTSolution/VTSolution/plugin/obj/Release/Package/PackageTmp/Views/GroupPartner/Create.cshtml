@@ -1,0 +1,57 @@
+﻿@model VTSolution.Models.GroupPartner
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật nhóm đối tác";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới nhóm đối tác";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "GroupPartner"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên nhóm TV</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên nhóm TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/GroupPartner/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+
+
+

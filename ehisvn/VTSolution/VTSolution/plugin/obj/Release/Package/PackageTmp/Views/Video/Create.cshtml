@@ -1,0 +1,172 @@
+﻿@model VTSolution.Models.Video
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật video";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới video";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "Video"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Thuộc Nhóm</label>
+                            </div>
+                            <div class="col-md-9">
+                                @*@(Html.Kendo().DropDownListFor(model => model.GroupId)
+                                                            .HtmlAttributes(new { id = "CategoryId", style = "width:350px" })
+                                    .Name("GroupId")
+                                    .DataTextField("Vi_Name")
+                                                            .DataValueField("Id")
+                                                            .DataSource(source =>
+                                                            {
+                                                                source.Read(read =>
+                                                                {
+                                                                    read.Action("GetCategory", "Video");
+                                                                });
+                                                            })
+                                                    )*@
+                                @(Html.Kendo().DropDownListFor(model => model.ProjectId)
+                                        .HtmlAttributes(new { id = "ProjectId", style = "width:350px" })
+                                        .Name("ProjectId")
+                                        .DataTextField("Vi_Title")
+                                        .DataValueField("Id")
+                                        .DataSource(source =>
+                                        {
+                                            source.Read(read =>
+                                            {
+                                                read.Action("GetProject", "Video");
+                                            });
+                                        })
+                                )
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Link Youtube</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Link, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-3">
+                            <label for="Title">Hiện Trang Chủ</label>
+                            @Html.CheckBoxFor(model => model.IsShowHome)
+                            @*<label for="Title">Hot</label>
+                            @Html.CheckBoxFor(model => model.IsHot)*@
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Title">Ngày Tạo</label>
+                            @(Html.Kendo().DatePickerFor(model => model.DateCreate)
+                                    .Name("DateCreate")
+                                                       .HtmlAttributes(new { id = "datecreate" })
+
+                            )
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_link">Hình Ảnh</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <button id="btninput_link">Chọn Hình</button>
+                                </div>
+                                <div class="row image">
+                                    @if (Model.ImagePath != null)
+                                    {
+                                        <div class="thaihoa">
+                                            <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.ImagePath' style="width: 150px;height: 100px;" />
+                                            <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="vi/Video/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+
+<script>
+    $('#btninput_link').on('click', function () {
+
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+
+    $('#btninput_link1').on('click', function () {
+
+        $('.image2 .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image2 .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce3', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+
+<style>
+    .image img {
+        width: 100px;
+        height: 100px;
+    }
+</style>
+

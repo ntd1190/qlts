@@ -1,0 +1,130 @@
+﻿@model VTSolution.ViewModel.Customer.NewsIndexModel
+@{
+    ViewBag.Title = Model.News.Vi_Title;
+    ViewBag.TitleSEO = Model.News.Vi_MetaTitle;
+    ViewBag.Description = Model.News.Vi_MetaDescription;
+    ViewBag.Keywords = Model.News.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tmphot = Model.ListNews.ToList();
+    var loophot = tmphot.Count() / 4;
+    var duhot = tmphot.Count() % 4;
+    var icounthot = 0;
+    if (duhot > 0)
+    {
+        loophot++;
+    }
+}
+<div class="container" id="news-details-page">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1517px; height: 665px; opacity: 1;">
+        <div class="color-bg">
+            <img src="@Helper.GetBanner().ImagePath" alt="Background - Tin tức và sự kiện" style="width: 1517px; height: 829.083px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND -->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <h2>Nhà đẹp</h2>
+        <div class="content-page news-full">
+            <div class="colum-box-news-details">
+                <div class="news-right">
+                    <div class="list-icon"><span>@Resource.Tintuc</span></div>
+                    <div class="list-close"></div>
+                    <div class="news-list">
+                        <div class="scroll-list">
+                            <ul>
+                                @for (int i = 1; i <= loophot; i++)
+                                {
+                                    <li data-number="@i" style="height: 18396px; ">
+                                        @for (int j = 0; j < tmphot.Count(); j++)
+                                        {
+                                            if (i == loophot)
+                                            {
+                                                if (duhot != 0)
+                                                {
+                                                    if (j == duhot)
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            if (j == 4)
+                                            {
+                                                break;
+                                            }
+                                            if (@ViewBag.idnews == @tmphot.ToList()[icounthot].Id)
+                                            {
+                                                <div class="link-page current">
+                                                    <a href="@Url.Action("HouseDetail", "ViewHouse", new {titlenhadep=Util.GenerateUrl(@tmphot.ToList()[icounthot].Vi_Title.Trim()), id = @tmphot.ToList()[icounthot].Id })">
+                                                        <h3>@tmphot.ToList()[icounthot].Vi_Title)</h3>
+                                                    </a>
+                                                </div>
+                                            }
+                                            else
+                                            {
+                                                <div class="link-page">
+                                                    <a href="@Url.Action("HouseDetail", "ViewHouse", new { titlenhadep=Util.GenerateUrl(@tmphot.ToList()[icounthot].Vi_Title.Trim()),id = @tmphot.ToList()[icounthot].Id })">
+                                                        <h3>@tmphot.ToList()[icounthot].Vi_Title)</h3>
+                                                    </a>
+                                                </div>
+                                            }
+                                            icounthot++;
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="news-nav">
+                        <ul>
+                            @for (int i = 1; i <= loophot; i++)
+                            {
+                                if (i == 1)
+                                {
+                                    <li><a class="current" href="javascript:void(0);" data-list="@i"></a></li>
+                                }
+                                else
+                                {
+                                    <li><a href="javascript:void(0);" data-list="@i"></a></li>
+
+                                }
+                            }
+
+                        </ul>
+                        <div class="numbers"><span class="start" style="opacity: 1;">1</span> / <span class="end">@loophot</span></div>
+                        <div class="prev-slide"></div>
+                        <div class="next-slide"></div>
+                    </div>
+                </div>
+                <div class="colum-box-news">
+                    <div class="scrollE" tabindex="0">
+                        <div class="news-content">
+                            <div class="news-tab" style="opacity: 1;">
+                                <div class="detail-news">
+                                    <div class="news-text">
+                                        <h3>@Model.News.Vi_Title</h3>
+                                        <p style="text-align: justify;">@Model.News.Vi_Description</p>
+                                        @Html.Raw(HttpUtility.HtmlDecode(Model.News.Vi_Content))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+<script>
+    //$(function(){
+    //    ResizeWindows()
+    //});
+
+</script>

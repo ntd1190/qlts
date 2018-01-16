@@ -1,0 +1,50 @@
+﻿@model VTSolution.Models.GroupRecruitment
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật vị trí tuyển dụng";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới vị trí tuyển dụng";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "GroupRecruitment"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên nhóm </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6"></div>
+                    </div>
+                    <br />
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/GroupRecruitment/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+
+
+

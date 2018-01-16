@@ -1,0 +1,59 @@
+﻿@model VTSolution.ViewModel.Customer.NewsIndexModel
+@{
+    ViewBag.Title = "Phong Thuy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    <script src="~/Scripts/JS-Paging/page-maker.js"></script>
+    <input type='hidden' id='current_page' />
+    <input type='hidden' id='show_per_page' />
+}
+
+<div class="container">
+    <!--BACKGROUND-->
+    <div class="bg-page" style="width: 1517px; height: 665px; opacity: 1;">
+        <div class="color-bg">
+            <img src="~/Images/Angia/news.jpg" alt="Background - Tin tức và sự kiện" style="width: 1517px; height: 829.083px; left: 0px; top: auto; bottom: 0px;">
+        </div>
+    </div>
+    <!--BACKGROUND-->
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <h2>Phong Thủy</h2>
+       @* <div class="sub-click" style="display: none; opacity: 0;"></div>*@
+        <div class="content-page content-bee">
+            <div class="news-bee" >
+                @foreach (var item in Model.ListNews)
+                {
+                    <div class="news-box col-lg-3" style="float: left;">
+                        <div class="news-img">
+                            <a href="@Url.Action("WaterDetail", "Water", new {titlephongthuy = Util.GenerateUrl(item.Vi_Title.Trim()), id = @item.Id})">
+                                <img src="@item.ImagePath" alt="Happy Women&#39;s Day!">
+                            </a>
+                        </div>
+                        <div class="news-text-box">
+                            <h3>@item.Vi_Title</h3>
+                            <p>@item.Vi_Description</p>
+                        </div>
+                        <a class="view-details" href="@Url.Action("WaterDetail", "Water", new {titlephongthuy = Util.GenerateUrl(item.Vi_Title.Trim()), id = @item.Id})">
+                            Xem chi tiết<span></span>
+                        </a>
+                    </div>
+                }
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-12"style="text-align: center">
+                <ul class="pagination" id="page_navigation"></ul>
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+
+</div>
+
+<script>
+    $(document).ready(function () {
+        //how much items per page to show
+        pageMaker(8, '.news-bee', '#page_navigation');
+    });
+</script>

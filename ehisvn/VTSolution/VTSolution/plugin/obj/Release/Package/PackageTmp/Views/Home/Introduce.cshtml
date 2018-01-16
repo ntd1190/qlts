@@ -1,0 +1,156 @@
+﻿@model VTSolution.ViewModel.Customer.IntroduceIndexModel
+@{
+    if (Model.Gioithieu.Vi_MetaTitle == null)
+    {
+        ViewBag.Title = Model.Gioithieu.Vi_Title.ToUpper();
+    }
+    else
+    {
+        ViewBag.Title = Model.Gioithieu.Vi_MetaTitle.ToUpper();
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Description = Model.Gioithieu.Vi_MetaDescription;
+    ViewBag.Keywords = Model.Gioithieu.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+}
+
+
+<div class="container" id="news-details-page">
+
+    <!--CENTER-->
+    <div class="center" style="opacity: 1;">
+        <div class="content-page news-full">
+            <div class="colum-box-news-details">
+                <div class="colum-box-news" style="height: 577px;width: 100%!important;max-width: 1452px;top: 0px;left: 65px;">
+                    <div class="scrollE" style="width: 100% !important;  height: 0px; padding: 10px !important" tabindex="0">
+
+                        <div class="hidden-xs hidden-sm">
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.Gioithieu.Vi_Content))
+                        </div>
+                        <div class="hidden-lg hidden-md imgxs">
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.Gioithieu.Vi_Content))
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <span style=" font-size: 36px; float: left; color: #fff; background: #0082c9; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 66px; height: 66px; line-height: 66px; text-align: center; left: 15px;">
+                                            <i class="fa fa-paper-plane"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-6 col-xs-12">
+                                        <h3 style="color: #0082c9;font-weight:bold;">@Resource.Tamnhin</h3>
+                                        <div class="imgcontent">
+                                            @Html.Raw(HttpUtility.HtmlDecode(Model.TamNhin.Vi_Content))
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <span style=" font-size: 36px; float: left; color: #fff; background: #0082c9; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 66px; height: 66px; line-height: 66px; text-align: center; left: 15px;">
+                                            <i class="fa fa-anchor"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-6 col-xs-12">
+                                        <h3 style="color: #0082c9;font-weight:bold;">@Resource.SuMenh</h3>
+                                        <div class="imgcontent">
+                                            @Html.Raw(HttpUtility.HtmlDecode(Model.SuMenh.Vi_Content))
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-4 col-xs-12">
+                                <div class="row">
+                                    <div class="col-md-3 col-sm-6 col-xs-12">
+                                        <span style=" font-size: 36px; float: left; color: #fff; background: #0082c9; -webkit-border-radius: 100%; -moz-border-radius: 100%; border-radius: 100%; width: 66px; height: 66px; line-height: 66px; text-align: center; left: 15px;">
+                                            <i class="fa fa-language"></i>
+                                        </span>
+                                    </div>
+                                    <div class="col-md-9 col-sm-6 col-xs-12">
+                                        <h3 style="color: #0082c9;font-weight:bold;">@Resource.ThongDiep</h3>
+                                        <div class="imgcontent">
+                                            @Html.Raw(HttpUtility.HtmlDecode(Model.ThongDiep.Vi_Content))
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <h3 class="text-center" style="color: red; font-weight: bold; color: #0082c9;margin-top:20px;">@Resource.Doitac</h3>
+
+                            @foreach (var item in Model.Partner)
+                            {
+                                <div class="item">
+                                    <ul id="content-slider" class="content-slider" style="text-align:center;">
+                                        @foreach (var item1 in item.Partners)
+                                        {
+                                            <li><img src="@item1.ImagePath" alt="@item1.ImagePath" style="width:120px;height:90px;"></li>
+                                        }
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+</div>
+<script>
+    //$(function(){
+    //    ResizeWindows()
+    //});
+
+</script>
+<style>
+    .nicescroll-rails {
+        display: none !important;
+    }
+
+    .imgcontent img {
+        width: 100% !important;
+    }
+
+    .imgxs img {
+        width: 100% !important;
+    }
+</style>
+<link href="~/Scripts/lightslider/lightslider.css" rel="stylesheet" />
+<script src="~/Scripts/lightslider/lightslider.js"></script>
+<script>
+    $(document).ready(function () {
+        $("#content-slider").lightSlider({
+            loop: true,
+            item: 6,
+            slideMove: 6,
+            minSlider: 1,
+            maxSlider: 6,
+            responsive: [
+            {
+                breakpoint: 800,
+                settings: {
+                    item: 3,
+                    slideMove: 1,
+                    slideMargin: 6,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    item: 1,
+                    slideMove: 1
+                }
+            }
+            ]
+        });
+
+    });
+</script>

@@ -1,0 +1,63 @@
+﻿@{
+    ViewBag.Title = "Danh Sách";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.CommonIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.ImageHome).HeaderHtmlAttributes(new { style = "text-align:center" }).Width(200).Title("Hình ảnh").ClientTemplate("<img style='width:100%;height:150px;'src='#=ImageHome#' />");
+        columns.Bound(p => p.GroupName).Title("Thuộc Nhóm").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Bound(p => p.Vi_Title).Title("Tiêu Đề ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+      //  columns.Bound(p => p.OrderBy).Title("Vị Trí").Width(30).HeaderHtmlAttributes(new { style = "text-align:center" });
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Common").Text("Sửa").Click("Edit_Common");
+            // command.Edit().Text("Cập Nhật Vị Trí");
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+      .ToolBar(toolbar =>
+      {
+      toolbar.Template(@<text>
+        <div class="row">
+            <div class="col-md-3">
+                @(Html.Kendo().Button()
+                                    .Name("btn_Add")
+                                    .Icon("plus")
+                                    .Content("Thêm mới")
+                                            .Events(e => e.Click("addClick"))
+                )
+            </div>
+        </div>
+    </text>);
+      })
+                   .Filterable()
+    .Editable(editable => editable.Mode(GridEditMode.PopUp))
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+        .Model(model => model.Id(p => p.Id))
+        .Read(read => read.Action("Common_Read", "Common"))
+        .Update(update => update.Action("Common_Update", "Common"))
+        .Destroy(update => update.Action("Common_Destroy", "Common"))
+    )
+)
+<script>
+
+    function addClick() {
+        window.location.href = "/vi/Common/Create/0";
+    }
+
+</script>

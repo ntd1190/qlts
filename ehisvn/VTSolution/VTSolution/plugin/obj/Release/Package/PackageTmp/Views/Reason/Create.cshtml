@@ -1,0 +1,86 @@
+﻿@model VTSolution.Models.District
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật tỉnh thành";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới tỉnh thành";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "Reason"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên TV </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Vi_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên TA </label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Eng_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Chọn vùng </label>
+                            </div>
+                            <div class="col-md-9">
+                                @(Html.Kendo().DropDownList()
+                                .Name("GroupId")
+                                .HtmlAttributes(new { style = "width:359px", id = "group" })
+                                .DataTextField("Vi_Name")
+                                .DataValueField("Id")
+                                .DataSource(source =>
+                              {
+                                  source.Read(read =>
+                                  {
+                                      read.Action("GetCategory", "Reason");
+                                  });
+                              })
+                                )
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="Title">Tọa độ chính của vùng</label>
+                            @Html.CheckBoxFor(model => model.IsMainGroup)
+                        </div>
+
+                    </div>
+                  
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/Reason/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+
+
+
+

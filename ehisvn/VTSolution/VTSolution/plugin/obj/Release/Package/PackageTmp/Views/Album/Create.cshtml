@@ -1,0 +1,146 @@
+﻿@model VTSolution.ViewModel.Manager.Album_Image
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+    if (Model.Album.Id != 0)
+    {
+        ViewBag.Title = "Cập nhật Album";
+    }
+    else
+    {
+        ViewBag.Title = "Thêm mới Album";
+    }
+
+}
+@section featured{
+    @using (Html.BeginForm("Create", "Album"))
+    {
+        <div class="box box-primary">
+            <form role="form">
+                @Html.HiddenFor(model => model.Album.Id)
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên TV</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Album.Vi_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Tên TA</label>
+                            </div>
+                            <div class="col-md-9">
+                                @Html.TextAreaFor(model => model.Album.Eng_Name, new { id = "Title", required = "required", @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Ngày Tạo</label>
+
+                            </div>
+                            <div class="col-md-5">
+
+                                @(Html.Kendo().DatePickerFor(model => model.Album.DateCreate)
+                    .Name("Album.DateCreate")
+                                                       .HtmlAttributes(new { id = "datecreate" })
+
+                                )
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_link">Hình Ảnh</label>
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <button id="btninput_link">Chọn Hình(312x250)</button>
+                                </div>
+                                <div class="row image">
+                                    @if (Model.Album.ImagePath != null)
+                                    {
+                                        <div class="thaihoa">
+                                            <img id="ImagePath" class="hoadeptrai" name="ImagePath" src='@Model.Album.ImagePath' style="width: 150px;height: 100px;" />
+                                            <input type="hidden" name="ImagePath" class="PTH" id="multi12" value="@Model.Album.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                        </div>
+                                    }
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    @*<div class="row">
+                            <div class="col-md-6">
+                                <div class="col-md-3">
+                                    <label for="input_link">Hình Album</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <div class="row">
+                                        <button id="btninput_link1">Chọn Hình</button>
+                                    </div>
+                                    <div class="row imagedetail">
+                                        @if (Model.ListImage != null)
+                                        {
+                                            foreach (var it in Model.ListImage)
+                                            {
+                                                <div class="thaihoa">
+                                                    <img id="ImagePath1" class="hoadeptrai" src='@it.ImagePath' style="width: 150px;height: 100px;" />
+                                                    <input type="hidden" name="ImagePath1" class="PTH" id="multi12" value="@it.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                                </div>
+                                            }
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>*@
+                    <br />
+                    <br />
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="submit" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/GroupImage/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    }
+}
+<script>
+    $('#btninput_link').on('click', function () {
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    $('#btninput_link1').on('click', function () {
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce1', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+
+
+

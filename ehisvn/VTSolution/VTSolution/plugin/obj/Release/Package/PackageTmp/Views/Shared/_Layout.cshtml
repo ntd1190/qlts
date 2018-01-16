@@ -1,0 +1,198 @@
+﻿@{
+
+    var about = Helper.GetData();
+    var currentCulture = System.Threading.Thread.CurrentThread.CurrentCulture;
+    var logo = Helper.GetLogo();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta content="vi-VN" itemprop="inLanguage" />
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    <meta http-equiv="content-language" content="vi" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="@ViewBag.Description">
+    <meta name="keywords" content="@ViewBag.Keywords">
+    <meta name="url" content="@ViewBag.Url">
+    <meta name="distribution" content="Global" />
+    <meta name="author" content=@about.MetaAuthor />
+    <meta property="og:locale" content="vi-VN" />
+    <meta property="og:type" content="website" />
+    <meta name="robots" content="index,follow" />
+    <meta property="og:title" content="@ViewBag.Title" />
+    <meta property="og:description" content="@about.HomePageDiscription" />
+    <meta property="og:url" content="@ViewBag.Url" />
+    <meta name="copyright" content=@about.MetaCopyRight />
+    <meta name="abstract" content=@about.MetaAbstract />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+
+    @*css*@
+    <link href="~/Content/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/AngiaCss/style.css" rel="stylesheet" />
+    <link href="~/Content/AngiaCss/1100.css" rel="stylesheet" />
+    <link href="~/Content/Boostrap/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/AngiaCss/validationEngine.jquery.css" rel="stylesheet" />
+    <link href="~/Content/AngiaCss/jquery-ui.min.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/Angia-Js/jquery.js"></script>
+    <script src="~/Scripts/Angia-Js/jsJqueryUI/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/Angia-Js/scroll.js"></script>
+    <script type="text/javascript" src="~/Scripts/Angia-Js/load.js"></script>
+    <!--google anylictic-->
+    <script>
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', 'UA-82277620-1', 'auto');
+        ga('send', 'pageview');
+
+    </script>
+</head>
+<body id="home-page">
+    <!--LOAD-PAGE-->
+    <div class="all-pics"></div>
+    <div class="all-album"></div>
+    <div class="allvideo"></div>
+    <div class="overlay-album" style="width: 1366px; height: 599px;"></div>
+    <div class="overlay-video"></div>
+    <div class="overlay-dark" style="width: 1366px; height: 599px;"></div>
+    <!--LOAD-PAGE-->
+    <!--TOP-->
+    @if (currentCulture.Name == "en-US")
+    {
+        <div class="logotop hidden-sm hidden-md hidden-lg" style="height:74px;background: rgba(0, 0, 0, 0) url('/../Images/enmenu.png')">
+        </div>
+
+        <div class="top" style="top: 0px;background: rgba(0, 0, 0, 0) url('/../Images/enmenu.png')">
+
+            <div class="line" style="width: 100%;"></div>
+            <div class="nav-option" style="display: none; opacity: 0;position:fixed;"></div>
+            <div class="nav-click" style="display: none; opacity: 0;position:fixed;"></div>
+            <div class="scroll-down" style="display: none; opacity: 0;"></div>
+            <!--LOGO-->
+            <div class="logo vi" style="display: block;">
+                <a href="@Url.Action("Index","Home")">
+                    <div style="width:160px;height:55px;">
+
+                    </div>
+                </a>
+            </div>
+            <!--LOGO-->
+            <div class="navigation menu-index" style="width: 100%;">
+                <div class="nav">
+                    <ul>
+                        <li class="home"><a class="turn" href='@Url.Action("Index","Home")'>@Resource.Trangchu</a></li>
+                        <li><a class="turn" href="@Url.Action("Introduce","Home")">@Resource.Gioithieu</a></li>
+                        <li><a class="turn" href="@Url.Action("Products","Home")">@Resource.Sanpham</a></li>
+                        <li><a class="turn" href="@Url.Action("TestMap", "Home", new { idgroup = 1, iddistrict=2 })">@Resource.KhachHang</a></li>
+                        <li class="duan"><a class="turn" href="@Url.Action("ProductIndex", "ViewProduct")">@Resource.duan</a></li>
+                      
+                        <li><a class="turn" href="@Url.Action("Album","ViewProduct")">@Resource.HinhAnh</a></li>
+                        <li><a class="turn" href="@Url.Action("Recruited","ViewProduct")">@Resource.Tuyendung</a></li>
+                        <li><a class="turn" href="@Url.Action("Contact","Home")">@Resource.Lienhe</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right" style="display: block;">
+                <div class="social ">
+                    <ul>
+                        <li><a class="google hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Google">fb</a></li>
+                        <li><a class="facebook hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Facebook">fb</a></li>
+                        <li><a class="youtube hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Twitter">fb</a></li>
+                        <li><a class="vi" href="@Url.Action("ChangeLanguage", "Home", new { lang = "vi", returnUrl = this.Request.RawUrl })">fb</a></li>
+                           
+                    </ul>
+                </div><!--SOCIAL-->
+            </div>
+            <!--RIGHT-->
+        </div>
+    }
+    else
+    {
+        <div class="logotop hidden-sm hidden-md hidden-lg" style="height:74px;background: rgba(0, 0, 0, 0) url('/../Images/vimenu.png')">
+        </div>
+
+        <div class="top" style="top: 0px;background: rgba(0, 0, 0, 0) url('/../Images/vimenu.png')">
+
+            <div class="line" style="width: 100%;"></div>
+            <div class="nav-option" style="display: none;right:10px; opacity: 0;position:fixed;"></div>
+            <div class="nav-click" style="display: none; opacity: 0;right:10px;position:fixed;"></div>
+            <div class="scroll-down" style="display: none; opacity: 0;"></div>
+            <!--LOGO-->
+            <div class="logo vi" style="display: block;">
+                <a href="@Url.Action("Index","Home")">
+                    <div style="width:160px;height:55px;">
+
+                    </div>
+                </a>
+            </div>
+            <!--LOGO-->
+            <div class="navigation menu-index" style="width: 100%;">
+                <div class="nav">
+                    <ul>
+                        <li class="home"><a class="turn" href='@Url.Action("Index","Home")'>@Resource.Trangchu</a></li>
+                        <li><a class="turn" href="@Url.Action("Introduce","Home")">@Resource.Gioithieu</a></li>
+                        <li><a class="turn" href="@Url.Action("Products","Home")">@Resource.Sanpham</a></li>
+                        <li><a class="turn" href="@Url.Action("TestMap", "Home", new { idgroup = 1, iddistrict=2 })">@Resource.KhachHang</a></li>
+                        <li class="duan"><a class="turn" href="@Url.Action("ProductIndex", "ViewProduct")">@Resource.duan</a></li>
+                        <li><a class="turn" href="@Url.Action("NewsIndex", "ViewNews")">@Resource.Tintuc</a></li>
+                        <li><a class="turn" href="@Url.Action("Album","ViewProduct")">@Resource.HinhAnh</a></li>
+                        <li><a class="turn" href="@Url.Action("Recruited","ViewProduct")">@Resource.Tuyendung</a></li>
+                        <li><a class="turn" href="@Url.Action("Contact","Home")">@Resource.Lienhe</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="right" style="display: block;">
+                <div class="social ">
+                    <ul>
+                        <li><a class="google hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Google">fb</a></li>
+                        <li><a class="facebook hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Facebook">fb</a></li>
+                        <li><a class="youtube hidden-xs hidden-sm" target="_blank" href="@Helper.GetData1().Twitter">fb</a></li>
+                        <li><a class="en" href="@Url.Action("ChangeLanguage", "Home", new { lang = "en", returnUrl = this.Request.RawUrl })">fb</a></li>
+                     </ul>
+                </div><!--SOCIAL-->
+            </div>
+            <!--RIGHT-->
+        </div>
+    }
+    <input hidden id="home" value="@ViewBag.home" />
+    <!--TOP-->
+    <!--CONTAINER-->
+    @RenderBody()
+    <!--CONTAINER-->
+    <script src="~/Scripts/Angia-Js/btq.js"></script>
+    <div class="overlay-menu" style="width: 0px; height: 0px; display: none;"></div>
+    <script>
+        var url = window.location;
+        var element = $('.menu-index .nav ul a').filter(function () {
+
+            return this.href == url || (url.href.indexOf(this.href) > -1 && this.href.length > url.origin.length + 1);
+        }).parent().addClass('current');
+        if (element.is('li')) {
+
+            element.addClass('current');
+            if ($('#home').val() == "") {
+                $('.home').removeClass('current');
+            }
+        }
+    </script>
+</body>
+</html>
+<script>
+    $("#qsearch").keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (code === 13) {
+            e.preventDefault();
+            $('#search').submit();
+
+        }
+    });
+
+</script>

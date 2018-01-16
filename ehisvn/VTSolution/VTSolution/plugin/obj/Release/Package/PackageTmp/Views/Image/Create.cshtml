@@ -1,0 +1,142 @@
+﻿@model VTSolution.ViewModel.Manager.ImageDetailModel
+@using Kendo.Mvc.UI
+@{
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@section featured{
+   
+        <div class="box box-primary">
+            <form role="form">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="Title">Chọn Album </label>
+                            </div>
+                            <div class="col-md-9">
+                                @(Html.Kendo().DropDownList()
+                .Name("GroupId")
+                .HtmlAttributes(new { style = "width:359px", id = "group" })
+                .DataTextField("Vi_Name")
+                .DataValueField("Id")
+                .DataSource(source =>
+              {
+                  source.Read(read =>
+                  {
+                      read.Action("GetCategory", "Image");
+                  });
+              })
+                                )
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="col-md-3">
+                                <label for="input_link">Hình Ảnh</label>
+                             
+                            </div>
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <button id="btninput_link1">Chọn Hình</button>
+                                </div>
+                                <div class="row imagedetail">
+                                    @*@if (Model.ListImage != null)
+                                        {
+                                            foreach (var it in Model)
+                                            {
+                                                <div class="thaihoa">
+                                                    <img id="ImagePath1" class="hoadeptrai" src='@it.ImagePath' style="width: 150px;height: 100px;" />
+                                                    <input type="hidden" name="ImagePath1" class="PTH" id="multi12" value="@it.ImagePath" /><a onclick="clickne(this);" class="glyphicon glyphicon-remove hidden-cus"></a>
+                                                </div>
+                                            }
+                                        }*@
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <br />
+                    <div class="box-footer">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <button type="button" id="Submit" class="btn btn-primary ladda-button Submit" data-style="expand-right">Cập nhật</button>
+                                <a class="btn btn-danger ladda-button" id="btn_Canel" href="/vi/Image/Index" data-style="expand-right">Quay lại</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+<div class="modal fade" id="waiting" class="centered" tabindex="-1" role="dialog" aria-labelledby="contactLabel" aria-hidden="false">
+    <button class="btn btn-lg btn-warning centered"><span class="glyphicon glyphicon-refresh glyphicon-refresh-animate"></span> Vui lòng chờ trong giây lát...</button>
+</div>
+}
+<style>
+    .centered {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        margin-top: -50px;
+        margin-left: -100px;
+    }
+</style>
+<script>
+    $('#btninput_link').on('click', function () {
+        $('.image .thaihoa').find('input').each(function () {
+            $(this).remove();
+        });
+        $('.image .thaihoa').find('img').each(function () {
+            $(this).remove();
+        });
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    $('#btninput_link1').on('click', function () {
+        window.open('/TinyFileManager.NET/dialog.aspx?profile=notinymce1', 'demo', 'toolbar=0,location=0,status=0,menubar=0,scrollbars=yes,resizable=1,width=900,height=600');
+        return false;
+    })
+    function clickne(e) {
+        var x = $(e).parent();
+        x.remove();
+    }
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('#waiting').modal({
+            backdrop: 'static',
+            keyboard: true,
+            show: false
+        })
+    })
+
+
+    var Image = [];
+    $('#Submit').click(function (e) {
+        $('#waiting').modal('show');
+        $('.imagedetail .thaihoa').find('img').each(function () {
+            value = $(this).prop('src');
+            Image.push({
+                ImagePath: value,
+                GroupId:$('#group').val()
+            });
+        })
+        $.ajax({
+            url: '/vi/Image/Create',
+            type: "POST",
+            contentType: "application/json; charset=utf-8",
+            dataType: "text",
+            data: JSON.stringify(Image),
+            success: function () {
+                $('#waiting').modal('hide');
+                ArrInfo = [];
+                window.location.href = "/vi/Image/Index";
+                return false;
+            }
+        });
+    })
+
+</script>
+

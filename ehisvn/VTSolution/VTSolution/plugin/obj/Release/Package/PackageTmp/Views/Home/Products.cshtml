@@ -1,0 +1,108 @@
+﻿@model VTSolution.ViewModel.Customer.IntroduceIndexModel
+@{
+
+    if (Model.SanPham.Vi_MetaTitle == null)
+    {
+        ViewBag.Title = Model.SanPham.Vi_Title.ToUpper();
+    }
+    else
+    {
+        ViewBag.Title = Model.SanPham.Vi_MetaTitle.ToUpper();
+    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Description = Model.SanPham.Vi_MetaDescription;
+    ViewBag.Keywords = Model.SanPham.Vi_MetaKeyword;
+    ViewBag.Url = Request.Url.AbsoluteUri;
+}
+<link href="~/Content/Boostrap/bootstrap.css" rel="stylesheet" />
+<script src="~/Scripts/Boostrap/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script>
+    var jq1102 = jQuery.noConflict();
+</script>
+<div class="container" id="news-details-page">
+    <div class="center" style="opacity: 1;">
+        <div class="content-page news-full">
+            <div class="colum-box-news-details">
+                <div class="colum-box-news" style="height: 577px; width: 100%!important; max-width: 1452px;top: 0px;left: 65px;">
+                    <div class="scrollE" style="width: 100% !important;height: 0px; padding: 10px !important" tabindex="0">
+
+                        <div class="imgcontent">
+                            @Html.Raw(HttpUtility.HtmlDecode(Model.SanPham.Vi_Content))
+                            <div id="accordion" role="tablist" aria-multiselectable="true">
+                                @foreach (var item in Model.SanPhamList)
+                                {
+                                    if (Model.SanPhamList.First() == item)
+                                    {
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-@item.Id">
+                                                <a style="color:white;" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                                                    <h3 class="panel-title">
+
+                                                        @item.Vi_Title
+
+                                                    </h3>
+                                                </a>
+                                            </div>
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse in padding" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                @Html.Raw(HttpUtility.HtmlDecode(item.Vi_Content))
+                                            </div>
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading" role="tab" id="heading-@item.Id">
+                                                <a style="color:white;" data-toggle="collapse" data-parent="#accordion" href="#collapse-@item.Id" aria-expanded="true" aria-controls="collapse-@item.Id">
+                                                    <h3 class="panel-title">
+                                                        @item.Vi_Title
+                                                    </h3>
+                                                </a>
+                                            </div>
+                                            <div id="collapse-@item.Id" class="panel-collapse collapse padding" role="tabpanel" aria-labelledby="heading-@item.Id">
+                                                @Html.Raw(HttpUtility.HtmlDecode(item.Vi_Content))
+                                            </div>
+                                        </div>
+                                    }
+                                }
+
+
+
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--CENTER-->
+    <!--BOTTOM-->
+    @Html.Partial("../ViewPartial/_Footer")
+    <!--BOTTOM-->
+</div>
+<style>
+    .nicescroll-rails {
+        display: none !important;
+    }
+
+    img {
+        width: 100% !important;
+    }
+
+    .panel-default > .panel-heading {
+        color: white;
+        background-color: #0082c9;
+        border-color: white;
+    }
+
+    .padding {
+        word-wrap: break-word !important;
+        padding: 10px !important;
+    }
+</style>
+<script>
+
+</script>

@@ -1,0 +1,48 @@
+﻿@{
+    ViewBag.Title = "Danh Sách Video ";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+@(Html.Kendo().Grid<VTSolution.ViewModel.Manager.VideoIndexModel>()
+    .Name("grid")
+    .Columns(columns =>
+    {
+        columns.Bound(p => p.Vi_Title).Title("Tên ").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+   
+        columns.Bound(p => p.Link).Title("Link").Width(100).HeaderHtmlAttributes(new { style = "text-align:center" });
+      
+        columns.Command(command =>
+        {
+            command.Custom("Edit_Video").Text("Sửa").Click("Edit_Video");
+           
+            command.Destroy().Text("Xóa");
+        }).Width(172);
+    })
+        .ToolBar(toolbar => toolbar.Custom().Text("Thêm mới").Action("Create", "Video", new { id = 0 }))
+             .Editable(editable => editable.Mode(GridEditMode.PopUp))
+             .Filterable()
+    .Pageable(pageable => pageable
+    .Refresh(true)
+    .PageSizes(true)
+    .ButtonCount(10))
+    .Sortable()
+    .Scrollable()
+    .Resizable(resize => resize.Columns(true))
+    .HtmlAttributes(new { style = "height:1000px;" })
+    .DataSource(dataSource => dataSource
+        .Ajax()
+        .PageSize(20)
+
+        .Model(model => model.Id(p => p.Id))
+
+                          .Read(read => read.Action("Video_Read", "Video"))
+                                       .Update(update => update.Action("Video_Update", "Video"))
+                                      .Destroy(update => update.Action("Video_Destroy", "Video"))
+    )
+)
+
+
+
+
