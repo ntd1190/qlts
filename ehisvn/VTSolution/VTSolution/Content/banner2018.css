@@ -1,0 +1,27 @@
+﻿#bannerleft {
+    left: 0px;
+    background: url(banner2018/LEFT.png) no-repeat scroll 0 0 transparent;
+}
+#bannerright {
+    right: 0px;
+    background: url(banner2018/right.png) no-repeat scroll 0 0 transparent;
+}
+.banner2018 {
+    position: absolute;
+    width: 170px;
+    height: 100%;
+    max-height:750px;
+    z-index:99;
+}
+.fix
+{
+    position:fixed!important;
+    top:10px!important;
+}
+#footer #footerbg {
+    background: url(banner2018/BFTET.png) center bottom no-repeat !important;
+    background-size: 100% 100% !important;
+}
+.fixbot {
+    position: absolute !important;
+}

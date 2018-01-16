@@ -1,0 +1,2806 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="angia_ivmModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AboutUs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Company" Type="nvarchar" MaxLength="250" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="150" />
+          <Property Name="HotLine" Type="nvarchar" MaxLength="150" />
+          <Property Name="Slogan" Type="nvarchar" MaxLength="350" />
+          <Property Name="Facebook" Type="nvarchar" MaxLength="150" />
+          <Property Name="Twitter" Type="nvarchar" MaxLength="150" />
+          <Property Name="Google" Type="nvarchar" MaxLength="150" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="EmailSent" Type="nvarchar" MaxLength="150" />
+          <Property Name="EmailReceive" Type="nvarchar" MaxLength="150" />
+          <Property Name="EmailPassword" Type="nvarchar" MaxLength="150" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="150" />
+          <Property Name="Websites" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Slogan" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ja_Slogan" Type="nvarchar" MaxLength="350" />
+          <Property Name="HomePageTitle" Type="nvarchar" MaxLength="350" />
+          <Property Name="HomePageDiscription" Type="nvarchar" MaxLength="350" />
+          <Property Name="HomePageKeywords" Type="nvarchar" MaxLength="350" />
+          <Property Name="MetaCopyRight" Type="nvarchar" MaxLength="350" />
+          <Property Name="MetaAbstract" Type="nvarchar" MaxLength="350" />
+          <Property Name="MetaAuthor" Type="nvarchar" MaxLength="350" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="LinkPopUp" Type="nvarchar" MaxLength="550" />
+          <Property Name="Longtitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+          <Property Name="ImagePath3" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Company" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Address" Type="nvarchar" MaxLength="350" />
+          <Property Name="Ja_Company" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Address" Type="nvarchar" MaxLength="350" />
+          <Property Name="SloganStaff" Type="nvarchar(max)" />
+          <Property Name="SloganAlbum" Type="nvarchar(max)" />
+          <Property Name="SloganReason" Type="nvarchar(max)" />
+          <Property Name="Eng_SloganStaff" Type="nvarchar(max)" />
+          <Property Name="Eng_SloganAlbum" Type="nvarchar(max)" />
+          <Property Name="Eng_SloganReason" Type="nvarchar(max)" />
+          <Property Name="Ja_SloganStaff" Type="nvarchar(max)" />
+          <Property Name="Ja_SloganAlbum" Type="nvarchar(max)" />
+          <Property Name="Ja_SloganReason" Type="nvarchar(max)" />
+          <Property Name="Vi_Product" Type="nvarchar(max)" />
+          <Property Name="Eng_Product" Type="nvarchar(max)" />
+          <Property Name="Ja_Product" Type="nvarchar(max)" />
+          <Property Name="Linkedin" Type="nvarchar" MaxLength="150" />
+          <Property Name="Instagram" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="150" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="RoleId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Vi_Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="150" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Longtitude" Type="nvarchar" MaxLength="150" />
+          <Property Name="Latitude" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsReason" Type="bit" Nullable="false" />
+          <Property Name="Vi_Caption" Type="nvarchar(max)" />
+          <Property Name="Eng_Caption" Type="nvarchar(max)" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="IsDistribution" Type="bit" Nullable="false" />
+          <Property Name="IsLogo" Type="bit" Nullable="false" />
+          <Property Name="ImagePath2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Link2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Name2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Isbanner" Type="bit" Nullable="false" />
+          <Property Name="IsPartner" Type="bit" Nullable="false" />
+          <Property Name="IsLearn" Type="bit" Nullable="false" />
+          <Property Name="IsWork" Type="bit" Nullable="false" />
+          <Property Name="IsPlay" Type="bit" Nullable="false" />
+          <Property Name="IsLydo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Certificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="350" />
+          <Property Name="Long" Type="nvarchar" MaxLength="350" />
+          <Property Name="Lat" Type="nvarchar" MaxLength="350" />
+          <Property Name="IsMain" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+        </EntityType>
+        <EntityType Name="Digital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Vi_Value" Type="nvarchar(max)" />
+          <Property Name="Eng_Value" Type="nvarchar(max)" />
+          <Property Name="IdProduct" Type="int" />
+          <Property Name="IdParent" Type="int" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="200" />
+          <Property Name="Ja_Value" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="IsMain" Type="bit" Nullable="false" />
+          <Property Name="IsMainGroup" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Content" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="DateCreate" Type="nvarchar" MaxLength="150" />
+          <Property Name="Company" Type="nvarchar" MaxLength="250" />
+          <Property Name="Project" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="FeatureSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Vi_Value" Type="nvarchar(max)" />
+          <Property Name="Eng_Value" Type="nvarchar(max)" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="IdParent" Type="int" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="300" />
+          <Property Name="Ja_Value" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="LinkDownload" Type="nvarchar" MaxLength="350" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="Downloaded" Type="int" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="FileSize" Type="nvarchar" MaxLength="50" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="Url" Type="nvarchar" MaxLength="350" />
+          <Property Name="LinkDownload2" Type="nvarchar" MaxLength="350" />
+          <Property Name="Url2" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_GroupName" Type="nvarchar" MaxLength="250" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="Ja_GroupName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="GroupDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="GroupFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupFileSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="Vi_Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Eng_Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="GRID" Type="int" />
+          <Property Name="IsWork" Type="bit" Nullable="false" />
+          <Property Name="IsLearn" Type="bit" Nullable="false" />
+          <Property Name="IsPlay" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupIntroduce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_GroupName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_GroupName" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_GroupName" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="GroupPartner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="350" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="GroupProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="150" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="GroupProductSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="ShowProduct" Type="bit" Nullable="false" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="GroupRecruitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="GroupStaff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Position" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Position" Type="nvarchar" MaxLength="250" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="GroupVideo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="IsIntroduce" Type="bit" Nullable="false" />
+          <Property Name="GroupBy" Type="int" />
+          <Property Name="IsShowHome" Type="bit" Nullable="false" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Introduce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Description" Type="nvarchar(max)" />
+          <Property Name="Eng_Description" Type="nvarchar(max)" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="IsHot" Type="bit" Nullable="false" />
+          <Property Name="IsShowHome" Type="bit" Nullable="false" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="Ja_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
+          <Property Name="Ja_Description" Type="nvarchar(max)" />
+          <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="Vi_Reason" Type="nvarchar(max)" />
+          <Property Name="Eng_Reason" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Log_Backend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="ErrorLog" Type="nvarchar(max)" />
+          <Property Name="Feature" Type="nvarchar" MaxLength="150" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Link" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="MenuAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MenuName" Type="nvarchar" MaxLength="150" />
+          <Property Name="Controller" Type="nvarchar" MaxLength="150" />
+          <Property Name="View" Type="nvarchar" MaxLength="150" />
+          <Property Name="Sequence" Type="int" />
+          <Property Name="IsParent" Type="bit" Nullable="false" />
+          <Property Name="ParentId" Type="int" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LinkDownload" Type="nvarchar" MaxLength="250" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="View" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Description" Type="nvarchar(max)" />
+          <Property Name="Eng_Description" Type="nvarchar(max)" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="IsHot" Type="bit" Nullable="false" />
+          <Property Name="IsShowHome" Type="bit" Nullable="false" />
+          <Property Name="IsDisable" Type="bit" Nullable="false" />
+          <Property Name="IsDelete" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="IsSecurity" Type="bit" />
+          <Property Name="IsTechnology" Type="bit" />
+          <Property Name="OrderBy" Type="int" />
+          <Property Name="ImagePath2" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Title" Type="nvarchar" MaxLength="250" />
+          <Property Name="Ja_Description" Type="nvarchar(max)" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
+          <Property Name="View" Type="int" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="IsNumber" Type="bit" />
+          <Property Name="Number" Type="nvarchar" MaxLength="50" />
+          <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="SeVi" Type="nvarchar" MaxLength="250" />
+          <Property Name="SeEn" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Link" Type="nvarchar" MaxLength="350" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ja_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Posintion" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ja_Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
+          <Property Name="IsShowHome" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="350" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="350" />
+          <Property Name="IsProject" Type="bit" Nullable="false" />
+          <Property Name="IsDepartment" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="Vi_Description" Type="nvarchar" MaxLength="550" />
+          <Property Name="Eng_Description" Type="nvarchar" MaxLength="550" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="DateCreate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="ProductFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FileId" Type="int" />
+          <Property Name="ProductId" Type="int" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductId" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Ja_Title" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Description" Type="nvarchar(max)" />
+          <Property Name="Eng_Description" Type="nvarchar(max)" />
+          <Property Name="Ja_Description" Type="nvarchar(max)" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="Ja_Content" Type="nvarchar(max)" />
+          <Property Name="IsHot" Type="bit" Nullable="false" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="DateUpdate" Type="datetime" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="SeVi" Type="nvarchar" MaxLength="250" />
+          <Property Name="SeEn" Type="nvarchar" MaxLength="250" />
+          <Property Name="SeJa" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ProjectImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdProject" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="350" />
+        </EntityType>
+        <EntityType Name="Recruitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="450" />
+          <Property Name="Address" Type="nvarchar" MaxLength="350" />
+          <Property Name="DateEnd" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="Content" Type="nvarchar(max)" />
+          <Property Name="Imagepath" Type="nvarchar" MaxLength="350" />
+          <Property Name="LinkDownload" Type="nvarchar" MaxLength="350" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Address" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="Description" Type="nvarchar" MaxLength="350" />
+          <Property Name="Eng_Description" Type="nvarchar" MaxLength="350" />
+          <Property Name="Vi_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Vi_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Vi_MetaKeyword" Type="nvarchar" MaxLength="225" />
+          <Property Name="Eng_MetaTitle" Type="nvarchar" MaxLength="255" />
+          <Property Name="Eng_MetaDescription" Type="nvarchar" MaxLength="3000" />
+          <Property Name="Eng_MetaKeyword" Type="nvarchar" MaxLength="225" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="150" />
+          <Property Name="Skype" Type="nvarchar" MaxLength="150" />
+          <Property Name="Yahoo" Type="nvarchar" MaxLength="150" />
+          <Property Name="Eng_Position" Type="nvarchar" MaxLength="150" />
+          <Property Name="Vi_Position" Type="nvarchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Status" Type="nvarchar" MaxLength="150" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="450" />
+        </EntityType>
+        <EntityType Name="ThongTinUngVien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HoTen" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="NgaySinh" Type="datetime" Nullable="false" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="KyNang" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GioiThieu" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Nam" Type="int" Nullable="false" />
+          <Property Name="TenTruong" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ChuyenNganh" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vi_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Eng_Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Link" Type="nvarchar" MaxLength="150" />
+          <Property Name="DateCreate" Type="datetime" />
+          <Property Name="GroupId" Type="int" />
+          <Property Name="IsHot" Type="bit" Nullable="false" />
+          <Property Name="Viewed" Type="int" />
+          <Property Name="Vi_Content" Type="nvarchar(max)" />
+          <Property Name="Eng_Content" Type="nvarchar(max)" />
+          <Property Name="OrderBy" Type="int" Nullable="false" />
+          <Property Name="IsShowHome" Type="bit" Nullable="false" />
+          <Property Name="IsIntroduce" Type="bit" Nullable="false" />
+          <Property Name="ProjectId" Type="int" />
+          <Property Name="ImagePath" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="VisitorID" />
+          </Key>
+          <Property Name="VisitorID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" />
+          <Property Name="Visitors" Type="int" />
+        </EntityType>
+        <Association Name="FK_Account_Role1">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="Account" Type="Self.Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Digital_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+          <End Role="Digital" Type="Self.Digital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Digital">
+              <PropertyRef Name="IdParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Digital_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Digital" Type="Self.Digital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Digital">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeatureSon_Feature">
+          <End Role="Feature" Type="Self.Feature" Multiplicity="0..1" />
+          <End Role="FeatureSon" Type="Self.FeatureSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeatureSon">
+              <PropertyRef Name="IdParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupFileSon_GroupFile">
+          <End Role="GroupFile" Type="Self.GroupFile" Multiplicity="0..1" />
+          <End Role="GroupFileSon" Type="Self.GroupFileSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupFileSon">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupProductSon_GroupProduct">
+          <End Role="GroupProduct" Type="Self.GroupProduct" Multiplicity="0..1" />
+          <End Role="GroupProductSon" Type="Self.GroupProductSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupProductSon">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_GroupImage1">
+          <End Role="GroupImage" Type="Self.GroupImage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Image" Type="Self.Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupImage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Introduce_GroupIntroduce">
+          <End Role="GroupIntroduce" Type="Self.GroupIntroduce" Multiplicity="0..1" />
+          <End Role="Introduce" Type="Self.Introduce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupIntroduce">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Introduce">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Group">
+          <End Role="Group" Type="Self.Group" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="News" Type="Self.News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFile_File">
+          <End Role="File" Type="Self.File" Multiplicity="0..1" />
+          <End Role="ProductFile" Type="Self.ProductFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductFile">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFile_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductFile" Type="Self.ProductFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductFile">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImage_Product1">
+          <End Role="Product" Type="Self.Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProductImage" Type="Self.ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectImage_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ProjectImage" Type="Self.ProjectImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectImage">
+              <PropertyRef Name="IdProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_GroupVideo">
+          <End Role="GroupVideo" Type="Self.GroupVideo" Multiplicity="0..1" />
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupVideo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_Project">
+          <End Role="Project" Type="Self.Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Video" Type="Self.Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="usp_Visitor_Edit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="angia_ivmModelStoreContainer">
+          <EntitySet Name="AboutUs" EntityType="Self.AboutUs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Account" EntityType="Self.Account" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Address" EntityType="Self.Address" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Banner" EntityType="Self.Banner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Certificate" EntityType="Self.Certificate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Digital" EntityType="Self.Digital" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="District" EntityType="Self.District" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Email" EntityType="Self.Email" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Feature" EntityType="Self.Feature" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="FeatureSon" EntityType="Self.FeatureSon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="File" EntityType="Self.File" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Group" EntityType="Self.Group" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupDistrict" EntityType="Self.GroupDistrict" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupFile" EntityType="Self.GroupFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupFileSon" EntityType="Self.GroupFileSon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupImage" EntityType="Self.GroupImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupIntroduce" EntityType="Self.GroupIntroduce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupPartner" EntityType="Self.GroupPartner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupProduct" EntityType="Self.GroupProduct" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupProductSon" EntityType="Self.GroupProductSon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupRecruitment" EntityType="Self.GroupRecruitment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupStaff" EntityType="Self.GroupStaff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupVideo" EntityType="Self.GroupVideo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Image" EntityType="Self.Image" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Introduce" EntityType="Self.Introduce" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Log_Backend" EntityType="Self.Log_Backend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Menu" EntityType="Self.Menu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MenuAdmin" EntityType="Self.MenuAdmin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Music" EntityType="Self.Music" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partner" EntityType="Self.Partner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductFile" EntityType="Self.ProductFile" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductImage" EntityType="Self.ProductImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Project" EntityType="Self.Project" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProjectImage" EntityType="Self.ProjectImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recruitment" EntityType="Self.Recruitment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ThongTinUngVien" EntityType="Self.ThongTinUngVien" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Video" EntityType="Self.Video" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Visitor" EntityType="Self.Visitor" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Account_Role1" Association="Self.FK_Account_Role1">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="Account" EntitySet="Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Digital_Feature" Association="Self.FK_Digital_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="Digital" EntitySet="Digital" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Digital_Product" Association="Self.FK_Digital_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Digital" EntitySet="Digital" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeatureSon_Feature" Association="Self.FK_FeatureSon_Feature">
+            <End Role="Feature" EntitySet="Feature" />
+            <End Role="FeatureSon" EntitySet="FeatureSon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupFileSon_GroupFile" Association="Self.FK_GroupFileSon_GroupFile">
+            <End Role="GroupFile" EntitySet="GroupFile" />
+            <End Role="GroupFileSon" EntitySet="GroupFileSon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupProductSon_GroupProduct" Association="Self.FK_GroupProductSon_GroupProduct">
+            <End Role="GroupProduct" EntitySet="GroupProduct" />
+            <End Role="GroupProductSon" EntitySet="GroupProductSon" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_GroupImage1" Association="Self.FK_Image_GroupImage1">
+            <End Role="GroupImage" EntitySet="GroupImage" />
+            <End Role="Image" EntitySet="Image" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Introduce_GroupIntroduce" Association="Self.FK_Introduce_GroupIntroduce">
+            <End Role="GroupIntroduce" EntitySet="GroupIntroduce" />
+            <End Role="Introduce" EntitySet="Introduce" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Group" Association="Self.FK_News_Group">
+            <End Role="Group" EntitySet="Group" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Project" Association="Self.FK_News_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFile_File" Association="Self.FK_ProductFile_File">
+            <End Role="File" EntitySet="File" />
+            <End Role="ProductFile" EntitySet="ProductFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFile_Product" Association="Self.FK_ProductFile_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductFile" EntitySet="ProductFile" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImage_Product1" Association="Self.FK_ProductImage_Product1">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="ProductImage" EntitySet="ProductImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectImage_Project" Association="Self.FK_ProjectImage_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="ProjectImage" EntitySet="ProjectImage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_GroupVideo" Association="Self.FK_Video_GroupVideo">
+            <End Role="GroupVideo" EntitySet="GroupVideo" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_Project" Association="Self.FK_Video_Project">
+            <End Role="Project" EntitySet="Project" />
+            <End Role="Video" EntitySet="Video" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="angia_ivmModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="angia_ivmEntities" annotation:LazyLoadingEnabled="true">
+          <FunctionImport Name="usp_Visitor_Edit" ReturnType="Collection(angia_ivmModel.usp_Visitor_Edit_Result)" />
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(angia_ivmModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(angia_ivmModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_alterdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(angia_ivmModel.sp_helpdiagramdefinition1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(angia_ivmModel.sp_helpdiagrams1_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram1">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams1" />
+          <EntitySet Name="AboutUs" EntityType="angia_ivmModel.AboutU" />
+          <EntitySet Name="Accounts" EntityType="angia_ivmModel.Account" />
+          <EntitySet Name="Addresses" EntityType="angia_ivmModel.Address" />
+          <EntitySet Name="Banners" EntityType="angia_ivmModel.Banner" />
+          <EntitySet Name="Certificates" EntityType="angia_ivmModel.Certificate" />
+          <EntitySet Name="Customers" EntityType="angia_ivmModel.Customer" />
+          <EntitySet Name="Digitals" EntityType="angia_ivmModel.Digital" />
+          <EntitySet Name="Districts" EntityType="angia_ivmModel.District" />
+          <EntitySet Name="Emails" EntityType="angia_ivmModel.Email" />
+          <EntitySet Name="Features" EntityType="angia_ivmModel.Feature" />
+          <EntitySet Name="FeatureSons" EntityType="angia_ivmModel.FeatureSon" />
+          <EntitySet Name="Files" EntityType="angia_ivmModel.File" />
+          <EntitySet Name="Groups" EntityType="angia_ivmModel.Group" />
+          <EntitySet Name="GroupDistricts" EntityType="angia_ivmModel.GroupDistrict" />
+          <EntitySet Name="GroupFiles" EntityType="angia_ivmModel.GroupFile" />
+          <EntitySet Name="GroupFileSons" EntityType="angia_ivmModel.GroupFileSon" />
+          <EntitySet Name="GroupImages" EntityType="angia_ivmModel.GroupImage" />
+          <EntitySet Name="GroupIntroduces" EntityType="angia_ivmModel.GroupIntroduce" />
+          <EntitySet Name="GroupPartners" EntityType="angia_ivmModel.GroupPartner" />
+          <EntitySet Name="GroupProducts" EntityType="angia_ivmModel.GroupProduct" />
+          <EntitySet Name="GroupProductSons" EntityType="angia_ivmModel.GroupProductSon" />
+          <EntitySet Name="GroupRecruitments" EntityType="angia_ivmModel.GroupRecruitment" />
+          <EntitySet Name="GroupStaffs" EntityType="angia_ivmModel.GroupStaff" />
+          <EntitySet Name="GroupVideos" EntityType="angia_ivmModel.GroupVideo" />
+          <EntitySet Name="Images" EntityType="angia_ivmModel.Image" />
+          <EntitySet Name="Introduces" EntityType="angia_ivmModel.Introduce" />
+          <EntitySet Name="Log_Backend" EntityType="angia_ivmModel.Log_Backend" />
+          <EntitySet Name="Menus" EntityType="angia_ivmModel.Menu" />
+          <EntitySet Name="MenuAdmins" EntityType="angia_ivmModel.MenuAdmin" />
+          <EntitySet Name="Musics" EntityType="angia_ivmModel.Music" />
+          <EntitySet Name="News" EntityType="angia_ivmModel.News" />
+          <EntitySet Name="Partners" EntityType="angia_ivmModel.Partner" />
+          <EntitySet Name="Positions" EntityType="angia_ivmModel.Position" />
+          <EntitySet Name="Products" EntityType="angia_ivmModel.Product" />
+          <EntitySet Name="ProductFiles" EntityType="angia_ivmModel.ProductFile" />
+          <EntitySet Name="ProductImages" EntityType="angia_ivmModel.ProductImage" />
+          <EntitySet Name="Projects" EntityType="angia_ivmModel.Project" />
+          <EntitySet Name="ProjectImages" EntityType="angia_ivmModel.ProjectImage" />
+          <EntitySet Name="Recruitments" EntityType="angia_ivmModel.Recruitment" />
+          <EntitySet Name="Roles" EntityType="angia_ivmModel.Role" />
+          <EntitySet Name="Staffs" EntityType="angia_ivmModel.Staff" />
+          <EntitySet Name="Status" EntityType="angia_ivmModel.Status" />
+          <EntitySet Name="ThongTinUngViens" EntityType="angia_ivmModel.ThongTinUngVien" />
+          <EntitySet Name="Videos" EntityType="angia_ivmModel.Video" />
+          <EntitySet Name="Visitors" EntityType="angia_ivmModel.Visitor" />
+          <AssociationSet Name="FK_Account_Role1" Association="angia_ivmModel.FK_Account_Role1">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="Account" EntitySet="Accounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Digital_Feature" Association="angia_ivmModel.FK_Digital_Feature">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="Digital" EntitySet="Digitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Digital_Product" Association="angia_ivmModel.FK_Digital_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Digital" EntitySet="Digitals" />
+          </AssociationSet>
+          <AssociationSet Name="FK_FeatureSon_Feature" Association="angia_ivmModel.FK_FeatureSon_Feature">
+            <End Role="Feature" EntitySet="Features" />
+            <End Role="FeatureSon" EntitySet="FeatureSons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFile_File" Association="angia_ivmModel.FK_ProductFile_File">
+            <End Role="File" EntitySet="Files" />
+            <End Role="ProductFile" EntitySet="ProductFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Group" Association="angia_ivmModel.FK_News_Group">
+            <End Role="Group" EntitySet="Groups" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupFileSon_GroupFile" Association="angia_ivmModel.FK_GroupFileSon_GroupFile">
+            <End Role="GroupFile" EntitySet="GroupFiles" />
+            <End Role="GroupFileSon" EntitySet="GroupFileSons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Image_GroupImage1" Association="angia_ivmModel.FK_Image_GroupImage1">
+            <End Role="GroupImage" EntitySet="GroupImages" />
+            <End Role="Image" EntitySet="Images" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Introduce_GroupIntroduce" Association="angia_ivmModel.FK_Introduce_GroupIntroduce">
+            <End Role="GroupIntroduce" EntitySet="GroupIntroduces" />
+            <End Role="Introduce" EntitySet="Introduces" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GroupProductSon_GroupProduct" Association="angia_ivmModel.FK_GroupProductSon_GroupProduct">
+            <End Role="GroupProduct" EntitySet="GroupProducts" />
+            <End Role="GroupProductSon" EntitySet="GroupProductSons" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_GroupVideo" Association="angia_ivmModel.FK_Video_GroupVideo">
+            <End Role="GroupVideo" EntitySet="GroupVideos" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_News_Project" Association="angia_ivmModel.FK_News_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="News" EntitySet="News" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductFile_Product" Association="angia_ivmModel.FK_ProductFile_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductFile" EntitySet="ProductFiles" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProductImage_Product1" Association="angia_ivmModel.FK_ProductImage_Product1">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="ProductImage" EntitySet="ProductImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ProjectImage_Project" Association="angia_ivmModel.FK_ProjectImage_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="ProjectImage" EntitySet="ProjectImages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Video_Project" Association="angia_ivmModel.FK_Video_Project">
+            <End Role="Project" EntitySet="Projects" />
+            <End Role="Video" EntitySet="Videos" />
+          </AssociationSet>
+          </EntityContainer>
+        <ComplexType Name="usp_Visitor_Edit_Result">
+          <Property Type="Int64" Name="HomNay" Nullable="true" />
+          <Property Type="Int64" Name="HomQua" Nullable="true" />
+          <Property Type="Int64" Name="TuanNay" Nullable="true" />
+          <Property Type="Int64" Name="TuanTruoc" Nullable="true" />
+          <Property Type="Int64" Name="ThangNay" Nullable="true" />
+          <Property Type="Int64" Name="ThangTruoc" Nullable="true" />
+          <Property Type="Int64" Name="TatCa" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition1_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams1_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="AboutU">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HotLine" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Facebook" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Twitter" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Google" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EmailSent" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EmailReceive" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EmailPassword" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Websites" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="HomePageTitle" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="HomePageDiscription" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="HomePageKeywords" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="MetaCopyRight" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="MetaAbstract" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="MetaAuthor" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="LinkPopUp" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath3" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Linkedin" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Instagram" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Slogan" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_SloganStaff" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_SloganAlbum" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_SloganReason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Product" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Account">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Role" Relationship="angia_ivmModel.FK_Account_Role1" FromRole="Account" ToRole="Role" />
+        </EntityType>
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Longtitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Latitude" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Banner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsReason" Type="Boolean" Nullable="false" />
+          <Property Name="Vi_Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Caption" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="IsDistribution" Type="Boolean" Nullable="false" />
+          <Property Name="IsLogo" Type="Boolean" Nullable="false" />
+          <Property Name="ImagePath2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Link2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Name2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Isbanner" Type="Boolean" Nullable="false" />
+          <Property Name="IsPartner" Type="Boolean" Nullable="false" />
+          <Property Name="IsLearn" Type="Boolean" Nullable="false" />
+          <Property Name="IsWork" Type="Boolean" Nullable="false" />
+          <Property Name="IsPlay" Type="Boolean" Nullable="false" />
+          <Property Name="IsLydo" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Certificate">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Long" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Lat" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="IsMain" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Digital">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IdProduct" Type="Int32" />
+          <Property Name="IdParent" Type="Int32" />
+          <Property Name="Ja_Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feature" Relationship="angia_ivmModel.FK_Digital_Feature" FromRole="Digital" ToRole="Feature" />
+          <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_Digital_Product" FromRole="Digital" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="District">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="IsMain" Type="Boolean" Nullable="false" />
+          <Property Name="IsMainGroup" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Email">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Email1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Company" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Project" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Feature">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Digitals" Relationship="angia_ivmModel.FK_Digital_Feature" FromRole="Feature" ToRole="Digital" />
+          <NavigationProperty Name="FeatureSons" Relationship="angia_ivmModel.FK_FeatureSon_Feature" FromRole="Feature" ToRole="FeatureSon" />
+        </EntityType>
+        <EntityType Name="FeatureSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Value" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="IdParent" Type="Int32" />
+          <Property Name="Ja_Name" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Value" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Feature" Relationship="angia_ivmModel.FK_FeatureSon_Feature" FromRole="FeatureSon" ToRole="Feature" />
+        </EntityType>
+        <EntityType Name="File">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LinkDownload" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="Downloaded" Type="Int32" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="FileSize" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="Url" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="LinkDownload2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Url2" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ProductFiles" Relationship="angia_ivmModel.FK_ProductFile_File" FromRole="File" ToRole="ProductFile" />
+        </EntityType>
+        <EntityType Name="Group">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="Ja_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="News" Relationship="angia_ivmModel.FK_News_Group" FromRole="Group" ToRole="News" />
+        </EntityType>
+        <EntityType Name="GroupDistrict">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupFileSons" Relationship="angia_ivmModel.FK_GroupFileSon_GroupFile" FromRole="GroupFile" ToRole="GroupFileSon" />
+        </EntityType>
+        <EntityType Name="GroupFileSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupFile" Relationship="angia_ivmModel.FK_GroupFileSon_GroupFile" FromRole="GroupFileSon" ToRole="GroupFile" />
+        </EntityType>
+        <EntityType Name="GroupImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="GRID" Type="Int32" />
+          <Property Name="IsWork" Type="Boolean" Nullable="false" />
+          <Property Name="IsLearn" Type="Boolean" Nullable="false" />
+          <Property Name="IsPlay" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Images" Relationship="angia_ivmModel.FK_Image_GroupImage1" FromRole="GroupImage" ToRole="Image" />
+        </EntityType>
+        <EntityType Name="GroupIntroduce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_GroupName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Introduces" Relationship="angia_ivmModel.FK_Introduce_GroupIntroduce" FromRole="GroupIntroduce" ToRole="Introduce" />
+        </EntityType>
+        <EntityType Name="GroupPartner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupProduct">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="ImagePath" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupProductSons" Relationship="angia_ivmModel.FK_GroupProductSon_GroupProduct" FromRole="GroupProduct" ToRole="GroupProductSon" />
+        </EntityType>
+        <EntityType Name="GroupProductSon">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="ShowProduct" Type="Boolean" Nullable="false" />
+          <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupProduct" Relationship="angia_ivmModel.FK_GroupProductSon_GroupProduct" FromRole="GroupProductSon" ToRole="GroupProduct" />
+        </EntityType>
+        <EntityType Name="GroupRecruitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupStaff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Position" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="GroupVideo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="IsIntroduce" Type="Boolean" Nullable="false" />
+          <Property Name="GroupBy" Type="Int32" />
+          <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Videos" Relationship="angia_ivmModel.FK_Video_GroupVideo" FromRole="GroupVideo" ToRole="Video" />
+        </EntityType>
+        <EntityType Name="Image">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GroupImage" Relationship="angia_ivmModel.FK_Image_GroupImage1" FromRole="Image" ToRole="GroupImage" />
+        </EntityType>
+        <EntityType Name="Introduce">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHot" Type="Boolean" Nullable="false" />
+          <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="Ja_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Reason" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupIntroduce" Relationship="angia_ivmModel.FK_Introduce_GroupIntroduce" FromRole="Introduce" ToRole="GroupIntroduce" />
+        </EntityType>
+        <EntityType Name="Log_Backend">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="ErrorLog" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Feature" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Menu">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MenuAdmin">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MenuName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Controller" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="View" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Sequence" Type="Int32" />
+          <Property Name="IsParent" Type="Boolean" Nullable="false" />
+          <Property Name="ParentId" Type="Int32" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Music">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LinkDownload" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHot" Type="Boolean" Nullable="false" />
+          <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+          <Property Name="IsDisable" Type="Boolean" Nullable="false" />
+          <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="IsSecurity" Type="Boolean" />
+          <Property Name="IsTechnology" Type="Boolean" />
+          <Property Name="OrderBy" Type="Int32" />
+          <Property Name="ImagePath2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Title" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="View" Type="Int32" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="IsNumber" Type="Boolean" />
+          <Property Name="Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="SeVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SeEn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Group" Relationship="angia_ivmModel.FK_News_Group" FromRole="News" ToRole="Group" />
+          <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_News_Project" FromRole="News" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Partner">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Link" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Posintion" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+          <Property Name="Ja_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="IsProject" Type="Boolean" Nullable="false" />
+          <Property Name="IsDepartment" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Description" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="550" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Digitals" Relationship="angia_ivmModel.FK_Digital_Product" FromRole="Product" ToRole="Digital" />
+          <NavigationProperty Name="ProductFiles" Relationship="angia_ivmModel.FK_ProductFile_Product" FromRole="Product" ToRole="ProductFile" />
+          <NavigationProperty Name="ProductImages" Relationship="angia_ivmModel.FK_ProductImage_Product1" FromRole="Product" ToRole="ProductImage" />
+        </EntityType>
+        <EntityType Name="ProductFile">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FileId" Type="Int32" />
+          <Property Name="ProductId" Type="Int32" />
+          <NavigationProperty Name="File" Relationship="angia_ivmModel.FK_ProductFile_File" FromRole="ProductFile" ToRole="File" />
+          <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_ProductFile_Product" FromRole="ProductFile" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="ProductImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductId" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Product" Relationship="angia_ivmModel.FK_ProductImage_Product1" FromRole="ProductImage" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Project">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsHot" Type="Boolean" Nullable="false" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="DateUpdate" Type="DateTime" Precision="3" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="SeVi" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="SeEn" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="News" Relationship="angia_ivmModel.FK_News_Project" FromRole="Project" ToRole="News" />
+          <NavigationProperty Name="ProjectImages" Relationship="angia_ivmModel.FK_ProjectImage_Project" FromRole="Project" ToRole="ProjectImage" />
+          <NavigationProperty Name="Videos" Relationship="angia_ivmModel.FK_Video_Project" FromRole="Project" ToRole="Video" />
+          <Property Name="Ja_Title" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Ja_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SeJa" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ProjectImage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdProject" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_ProjectImage_Project" FromRole="ProjectImage" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Recruitment">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="DateEnd" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Imagepath" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="LinkDownload" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Description" Type="String" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaDescription" Type="String" MaxLength="3000" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_MetaKeyword" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Accounts" Relationship="angia_ivmModel.FK_Account_Role1" FromRole="Role" ToRole="Account" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Skype" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Yahoo" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Vi_Position" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Status1" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePath" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="ThongTinUngVien">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HoTen" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="120" FixedLength="false" Unicode="true" />
+          <Property Name="KyNang" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="GioiThieu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Nam" Type="Int32" Nullable="false" />
+          <Property Name="TenTruong" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ChuyenNganh" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Video">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vi_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Link" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="DateCreate" Type="DateTime" Precision="3" />
+          <Property Name="GroupId" Type="Int32" />
+          <Property Name="IsHot" Type="Boolean" Nullable="false" />
+          <Property Name="Viewed" Type="Int32" />
+          <Property Name="Vi_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Eng_Content" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OrderBy" Type="Int32" Nullable="false" />
+          <Property Name="IsShowHome" Type="Boolean" Nullable="false" />
+          <Property Name="IsIntroduce" Type="Boolean" Nullable="false" />
+          <Property Name="ProjectId" Type="Int32" />
+          <Property Name="ImagePath" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="GroupVideo" Relationship="angia_ivmModel.FK_Video_GroupVideo" FromRole="Video" ToRole="GroupVideo" />
+          <NavigationProperty Name="Project" Relationship="angia_ivmModel.FK_Video_Project" FromRole="Video" ToRole="Project" />
+        </EntityType>
+        <EntityType Name="Visitor">
+          <Key>
+            <PropertyRef Name="VisitorID" />
+          </Key>
+          <Property Name="VisitorID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreateDate" Type="DateTime" Precision="3" />
+          <Property Name="Visitors" Type="Int32" />
+        </EntityType>
+        <Association Name="FK_Account_Role1">
+          <End Type="angia_ivmModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="angia_ivmModel.Account" Role="Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Account">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Digital_Feature">
+          <End Type="angia_ivmModel.Feature" Role="Feature" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.Digital" Role="Digital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Digital">
+              <PropertyRef Name="IdParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Digital_Product">
+          <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.Digital" Role="Digital" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Digital">
+              <PropertyRef Name="IdProduct" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_FeatureSon_Feature">
+          <End Type="angia_ivmModel.Feature" Role="Feature" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.FeatureSon" Role="FeatureSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Feature">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="FeatureSon">
+              <PropertyRef Name="IdParent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFile_File">
+          <End Type="angia_ivmModel.File" Role="File" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.ProductFile" Role="ProductFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="File">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductFile">
+              <PropertyRef Name="FileId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Group">
+          <End Type="angia_ivmModel.Group" Role="Group" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Group">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupFileSon_GroupFile">
+          <End Type="angia_ivmModel.GroupFile" Role="GroupFile" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.GroupFileSon" Role="GroupFileSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupFile">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupFileSon">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Image_GroupImage1">
+          <End Type="angia_ivmModel.GroupImage" Role="GroupImage" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.Image" Role="Image" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupImage">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Image">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Introduce_GroupIntroduce">
+          <End Type="angia_ivmModel.GroupIntroduce" Role="GroupIntroduce" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.Introduce" Role="Introduce" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupIntroduce">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Introduce">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GroupProductSon_GroupProduct">
+          <End Type="angia_ivmModel.GroupProduct" Role="GroupProduct" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.GroupProductSon" Role="GroupProductSon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupProduct">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="GroupProductSon">
+              <PropertyRef Name="ParentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_GroupVideo">
+          <End Type="angia_ivmModel.GroupVideo" Role="GroupVideo" Multiplicity="0..1" />
+          <End Type="angia_ivmModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GroupVideo">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="GroupId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_News_Project">
+          <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.News" Role="News" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="News">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductFile_Product">
+          <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.ProductFile" Role="ProductFile" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductFile">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProductImage_Product1">
+          <End Type="angia_ivmModel.Product" Role="Product" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.ProductImage" Role="ProductImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProductImage">
+              <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ProjectImage_Project">
+          <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.ProjectImage" Role="ProjectImage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="ProjectImage">
+              <PropertyRef Name="IdProject" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Video_Project">
+          <End Type="angia_ivmModel.Project" Role="Project" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="angia_ivmModel.Video" Role="Video" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Project">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Video">
+              <PropertyRef Name="ProjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="angia_ivmModelStoreContainer" CdmEntityContainer="angia_ivmEntities">
+          <FunctionImportMapping FunctionImportName="usp_Visitor_Edit" FunctionName="angia_ivmModel.Store.usp_Visitor_Edit">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="angia_ivmModel.usp_Visitor_Edit_Result">
+                <ScalarProperty Name="HomNay" ColumnName="HomNay" />
+                <ScalarProperty Name="HomQua" ColumnName="HomQua" />
+                <ScalarProperty Name="TuanNay" ColumnName="TuanNay" />
+                <ScalarProperty Name="TuanTruoc" ColumnName="TuanTruoc" />
+                <ScalarProperty Name="ThangNay" ColumnName="ThangNay" />
+                <ScalarProperty Name="ThangTruoc" ColumnName="ThangTruoc" />
+                <ScalarProperty Name="TatCa" ColumnName="TatCa" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="AboutUs">
+            <EntityTypeMapping TypeName="angia_ivmModel.AboutU">
+              <MappingFragment StoreEntitySet="AboutUs">
+                <ScalarProperty Name="Ja_Product" ColumnName="Ja_Product" />
+                <ScalarProperty Name="Ja_SloganReason" ColumnName="Ja_SloganReason" />
+                <ScalarProperty Name="Ja_SloganAlbum" ColumnName="Ja_SloganAlbum" />
+                <ScalarProperty Name="Ja_SloganStaff" ColumnName="Ja_SloganStaff" />
+                <ScalarProperty Name="Ja_Address" ColumnName="Ja_Address" />
+                <ScalarProperty Name="Ja_Company" ColumnName="Ja_Company" />
+                <ScalarProperty Name="Ja_Slogan" ColumnName="Ja_Slogan" />
+                <ScalarProperty Name="Instagram" ColumnName="Instagram" />
+                <ScalarProperty Name="Linkedin" ColumnName="Linkedin" />
+                <ScalarProperty Name="Eng_Product" ColumnName="Eng_Product" />
+                <ScalarProperty Name="Vi_Product" ColumnName="Vi_Product" />
+                <ScalarProperty Name="Eng_SloganReason" ColumnName="Eng_SloganReason" />
+                <ScalarProperty Name="Eng_SloganAlbum" ColumnName="Eng_SloganAlbum" />
+                <ScalarProperty Name="Eng_SloganStaff" ColumnName="Eng_SloganStaff" />
+                <ScalarProperty Name="SloganReason" ColumnName="SloganReason" />
+                <ScalarProperty Name="SloganAlbum" ColumnName="SloganAlbum" />
+                <ScalarProperty Name="SloganStaff" ColumnName="SloganStaff" />
+                <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+                <ScalarProperty Name="Eng_Company" ColumnName="Eng_Company" />
+                <ScalarProperty Name="ImagePath3" ColumnName="ImagePath3" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="LinkPopUp" ColumnName="LinkPopUp" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="MetaAuthor" ColumnName="MetaAuthor" />
+                <ScalarProperty Name="MetaAbstract" ColumnName="MetaAbstract" />
+                <ScalarProperty Name="MetaCopyRight" ColumnName="MetaCopyRight" />
+                <ScalarProperty Name="HomePageKeywords" ColumnName="HomePageKeywords" />
+                <ScalarProperty Name="HomePageDiscription" ColumnName="HomePageDiscription" />
+                <ScalarProperty Name="HomePageTitle" ColumnName="HomePageTitle" />
+                <ScalarProperty Name="Eng_Slogan" ColumnName="Eng_Slogan" />
+                <ScalarProperty Name="Websites" ColumnName="Websites" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="EmailPassword" ColumnName="EmailPassword" />
+                <ScalarProperty Name="EmailReceive" ColumnName="EmailReceive" />
+                <ScalarProperty Name="EmailSent" ColumnName="EmailSent" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Google" ColumnName="Google" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+                <ScalarProperty Name="HotLine" ColumnName="HotLine" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Vi_Company" ColumnName="Vi_Company" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="angia_ivmModel.Account">
+              <MappingFragment StoreEntitySet="Account">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="angia_ivmModel.Address">
+              <MappingFragment StoreEntitySet="Address">
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
+                <ScalarProperty Name="Longtitude" ColumnName="Longtitude" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+                <ScalarProperty Name="Vi_Address" ColumnName="Vi_Address" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Banners">
+            <EntityTypeMapping TypeName="angia_ivmModel.Banner">
+              <MappingFragment StoreEntitySet="Banner">
+                <ScalarProperty Name="IsLydo" ColumnName="IsLydo" />
+                <ScalarProperty Name="IsPlay" ColumnName="IsPlay" />
+                <ScalarProperty Name="IsWork" ColumnName="IsWork" />
+                <ScalarProperty Name="IsLearn" ColumnName="IsLearn" />
+                <ScalarProperty Name="IsPartner" ColumnName="IsPartner" />
+                <ScalarProperty Name="Isbanner" ColumnName="Isbanner" />
+                <ScalarProperty Name="Name2" ColumnName="Name2" />
+                <ScalarProperty Name="Link2" ColumnName="Link2" />
+                <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+                <ScalarProperty Name="IsLogo" ColumnName="IsLogo" />
+                <ScalarProperty Name="IsDistribution" ColumnName="IsDistribution" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="Eng_Caption" ColumnName="Eng_Caption" />
+                <ScalarProperty Name="Vi_Caption" ColumnName="Vi_Caption" />
+                <ScalarProperty Name="IsReason" ColumnName="IsReason" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Certificates">
+            <EntityTypeMapping TypeName="angia_ivmModel.Certificate">
+              <MappingFragment StoreEntitySet="Certificate">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="angia_ivmModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="Lat" ColumnName="Lat" />
+                <ScalarProperty Name="Long" ColumnName="Long" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Digitals">
+            <EntityTypeMapping TypeName="angia_ivmModel.Digital">
+              <MappingFragment StoreEntitySet="Digital">
+                <ScalarProperty Name="Ja_Value" ColumnName="Ja_Value" />
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+                <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+                <ScalarProperty Name="IdProduct" ColumnName="IdProduct" />
+                <ScalarProperty Name="Eng_Value" ColumnName="Eng_Value" />
+                <ScalarProperty Name="Vi_Value" ColumnName="Vi_Value" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Districts">
+            <EntityTypeMapping TypeName="angia_ivmModel.District">
+              <MappingFragment StoreEntitySet="District">
+                <ScalarProperty Name="IsMainGroup" ColumnName="IsMainGroup" />
+                <ScalarProperty Name="IsMain" ColumnName="IsMain" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Emails">
+            <EntityTypeMapping TypeName="angia_ivmModel.Email">
+              <MappingFragment StoreEntitySet="Email">
+                <ScalarProperty Name="Project" ColumnName="Project" />
+                <ScalarProperty Name="Company" ColumnName="Company" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="Email1" ColumnName="Email" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Features">
+            <EntityTypeMapping TypeName="angia_ivmModel.Feature">
+              <MappingFragment StoreEntitySet="Feature">
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FeatureSons">
+            <EntityTypeMapping TypeName="angia_ivmModel.FeatureSon">
+              <MappingFragment StoreEntitySet="FeatureSon">
+                <ScalarProperty Name="Ja_Value" ColumnName="Ja_Value" />
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+                <ScalarProperty Name="IdParent" ColumnName="IdParent" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="Eng_Value" ColumnName="Eng_Value" />
+                <ScalarProperty Name="Vi_Value" ColumnName="Vi_Value" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Files">
+            <EntityTypeMapping TypeName="angia_ivmModel.File">
+              <MappingFragment StoreEntitySet="File">
+                <ScalarProperty Name="Url2" ColumnName="Url2" />
+                <ScalarProperty Name="LinkDownload2" ColumnName="LinkDownload2" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Downloaded" ColumnName="Downloaded" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Groups">
+            <EntityTypeMapping TypeName="angia_ivmModel.Group">
+              <MappingFragment StoreEntitySet="Group">
+                <ScalarProperty Name="Ja_GroupName" ColumnName="Ja_GroupName" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="Eng_GroupName" ColumnName="Eng_GroupName" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupDistricts">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupDistrict">
+              <MappingFragment StoreEntitySet="GroupDistrict">
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupFiles">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupFile">
+              <MappingFragment StoreEntitySet="GroupFile">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupFileSons">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupFileSon">
+              <MappingFragment StoreEntitySet="GroupFileSon">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupImages">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupImage">
+              <MappingFragment StoreEntitySet="GroupImage">
+                <ScalarProperty Name="IsPlay" ColumnName="IsPlay" />
+                <ScalarProperty Name="IsLearn" ColumnName="IsLearn" />
+                <ScalarProperty Name="IsWork" ColumnName="IsWork" />
+                <ScalarProperty Name="GRID" ColumnName="GRID" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupIntroduces">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupIntroduce">
+              <MappingFragment StoreEntitySet="GroupIntroduce">
+                <ScalarProperty Name="Ja_GroupName" ColumnName="Ja_GroupName" />
+                <ScalarProperty Name="Eng_GroupName" ColumnName="Eng_GroupName" />
+                <ScalarProperty Name="Vi_GroupName" ColumnName="Vi_GroupName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupPartners">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupPartner">
+              <MappingFragment StoreEntitySet="GroupPartner">
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupProducts">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupProduct">
+              <MappingFragment StoreEntitySet="GroupProduct">
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupProductSons">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupProductSon">
+              <MappingFragment StoreEntitySet="GroupProductSon">
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+                <ScalarProperty Name="ShowProduct" ColumnName="ShowProduct" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupRecruitments">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupRecruitment">
+              <MappingFragment StoreEntitySet="GroupRecruitment">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupStaffs">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupStaff">
+              <MappingFragment StoreEntitySet="GroupStaff">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Eng_Position" ColumnName="Eng_Position" />
+                <ScalarProperty Name="Vi_Position" ColumnName="Vi_Position" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupVideos">
+            <EntityTypeMapping TypeName="angia_ivmModel.GroupVideo">
+              <MappingFragment StoreEntitySet="GroupVideo">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+                <ScalarProperty Name="GroupBy" ColumnName="GroupBy" />
+                <ScalarProperty Name="IsIntroduce" ColumnName="IsIntroduce" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Images">
+            <EntityTypeMapping TypeName="angia_ivmModel.Image">
+              <MappingFragment StoreEntitySet="Image">
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Introduces">
+            <EntityTypeMapping TypeName="angia_ivmModel.Introduce">
+              <MappingFragment StoreEntitySet="Introduce">
+                <ScalarProperty Name="Eng_Reason" ColumnName="Eng_Reason" />
+                <ScalarProperty Name="Vi_Reason" ColumnName="Vi_Reason" />
+                <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+                <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+                <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+                <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+                <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+                <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+                <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Ja_Title" ColumnName="Ja_Title" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+                <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+                <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Log_Backend">
+            <EntityTypeMapping TypeName="angia_ivmModel.Log_Backend">
+              <MappingFragment StoreEntitySet="Log_Backend">
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="Feature" ColumnName="Feature" />
+                <ScalarProperty Name="ErrorLog" ColumnName="ErrorLog" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Menus">
+            <EntityTypeMapping TypeName="angia_ivmModel.Menu">
+              <MappingFragment StoreEntitySet="Menu">
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MenuAdmins">
+            <EntityTypeMapping TypeName="angia_ivmModel.MenuAdmin">
+              <MappingFragment StoreEntitySet="MenuAdmin">
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+                <ScalarProperty Name="IsParent" ColumnName="IsParent" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Controller" ColumnName="Controller" />
+                <ScalarProperty Name="MenuName" ColumnName="MenuName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Musics">
+            <EntityTypeMapping TypeName="angia_ivmModel.Music">
+              <MappingFragment StoreEntitySet="Music">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="angia_ivmModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="SeEn" ColumnName="SeEn" />
+                <ScalarProperty Name="SeVi" ColumnName="SeVi" />
+                <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+                <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+                <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+                <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+                <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+                <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+                <ScalarProperty Name="Number" ColumnName="Number" />
+                <ScalarProperty Name="IsNumber" ColumnName="IsNumber" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="View" ColumnName="View" />
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+                <ScalarProperty Name="Ja_Title" ColumnName="Ja_Title" />
+                <ScalarProperty Name="ImagePath2" ColumnName="ImagePath2" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="IsTechnology" ColumnName="IsTechnology" />
+                <ScalarProperty Name="IsSecurity" ColumnName="IsSecurity" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+                <ScalarProperty Name="IsDisable" ColumnName="IsDisable" />
+                <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+                <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+                <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partners">
+            <EntityTypeMapping TypeName="angia_ivmModel.Partner">
+              <MappingFragment StoreEntitySet="Partner">
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Ja_Position" ColumnName="Ja_Position" />
+                <ScalarProperty Name="Ja_Name" ColumnName="Ja_Name" />
+                <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Eng_Position" ColumnName="Eng_Position" />
+                <ScalarProperty Name="Vi_Posintion" ColumnName="Vi_Posintion" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="angia_ivmModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="IsDepartment" ColumnName="IsDepartment" />
+                <ScalarProperty Name="IsProject" ColumnName="IsProject" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="angia_ivmModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductFiles">
+            <EntityTypeMapping TypeName="angia_ivmModel.ProductFile">
+              <MappingFragment StoreEntitySet="ProductFile">
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="FileId" ColumnName="FileId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProductImages">
+            <EntityTypeMapping TypeName="angia_ivmModel.ProductImage">
+              <MappingFragment StoreEntitySet="ProductImage">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Projects">
+            <EntityTypeMapping TypeName="angia_ivmModel.Project">
+              <MappingFragment StoreEntitySet="Project">
+                <ScalarProperty Name="SeJa" ColumnName="SeJa" />
+                <ScalarProperty Name="Ja_Content" ColumnName="Ja_Content" />
+                <ScalarProperty Name="Ja_Description" ColumnName="Ja_Description" />
+                <ScalarProperty Name="Ja_Title" ColumnName="Ja_Title" />
+                <ScalarProperty Name="SeEn" ColumnName="SeEn" />
+                <ScalarProperty Name="SeVi" ColumnName="SeVi" />
+                <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+                <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+                <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+                <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+                <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+                <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="DateUpdate" ColumnName="DateUpdate" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Vi_Description" ColumnName="Vi_Description" />
+                <ScalarProperty Name="Eng_Title" ColumnName="Eng_Title" />
+                <ScalarProperty Name="Vi_Title" ColumnName="Vi_Title" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ProjectImages">
+            <EntityTypeMapping TypeName="angia_ivmModel.ProjectImage">
+              <MappingFragment StoreEntitySet="ProjectImage">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="IdProject" ColumnName="IdProject" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recruitments">
+            <EntityTypeMapping TypeName="angia_ivmModel.Recruitment">
+              <MappingFragment StoreEntitySet="Recruitment">
+                <ScalarProperty Name="Eng_MetaKeyword" ColumnName="Eng_MetaKeyword" />
+                <ScalarProperty Name="Eng_MetaDescription" ColumnName="Eng_MetaDescription" />
+                <ScalarProperty Name="Eng_MetaTitle" ColumnName="Eng_MetaTitle" />
+                <ScalarProperty Name="Vi_MetaKeyword" ColumnName="Vi_MetaKeyword" />
+                <ScalarProperty Name="Vi_MetaDescription" ColumnName="Vi_MetaDescription" />
+                <ScalarProperty Name="Vi_MetaTitle" ColumnName="Vi_MetaTitle" />
+                <ScalarProperty Name="Eng_Description" ColumnName="Eng_Description" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Eng_Address" ColumnName="Eng_Address" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="LinkDownload" ColumnName="LinkDownload" />
+                <ScalarProperty Name="Imagepath" ColumnName="Imagepath" />
+                <ScalarProperty Name="Content" ColumnName="Content" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateEnd" ColumnName="DateEnd" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="angia_ivmModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="angia_ivmModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="Vi_Position" ColumnName="Vi_Position" />
+                <ScalarProperty Name="Eng_Position" ColumnName="Eng_Position" />
+                <ScalarProperty Name="Yahoo" ColumnName="Yahoo" />
+                <ScalarProperty Name="Skype" ColumnName="Skype" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="angia_ivmModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="Status1" ColumnName="Status" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ThongTinUngViens">
+            <EntityTypeMapping TypeName="angia_ivmModel.ThongTinUngVien">
+              <MappingFragment StoreEntitySet="ThongTinUngVien">
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="ChuyenNganh" ColumnName="ChuyenNganh" />
+                <ScalarProperty Name="TenTruong" ColumnName="TenTruong" />
+                <ScalarProperty Name="Nam" ColumnName="Nam" />
+                <ScalarProperty Name="GioiThieu" ColumnName="GioiThieu" />
+                <ScalarProperty Name="KyNang" ColumnName="KyNang" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="NgaySinh" ColumnName="NgaySinh" />
+                <ScalarProperty Name="HoTen" ColumnName="HoTen" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Videos">
+            <EntityTypeMapping TypeName="angia_ivmModel.Video">
+              <MappingFragment StoreEntitySet="Video">
+                <ScalarProperty Name="ImagePath" ColumnName="ImagePath" />
+                <ScalarProperty Name="ProjectId" ColumnName="ProjectId" />
+                <ScalarProperty Name="IsIntroduce" ColumnName="IsIntroduce" />
+                <ScalarProperty Name="IsShowHome" ColumnName="IsShowHome" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="Eng_Content" ColumnName="Eng_Content" />
+                <ScalarProperty Name="Vi_Content" ColumnName="Vi_Content" />
+                <ScalarProperty Name="Viewed" ColumnName="Viewed" />
+                <ScalarProperty Name="IsHot" ColumnName="IsHot" />
+                <ScalarProperty Name="GroupId" ColumnName="GroupId" />
+                <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="Link" ColumnName="Link" />
+                <ScalarProperty Name="Eng_Name" ColumnName="Eng_Name" />
+                <ScalarProperty Name="Vi_Name" ColumnName="Vi_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Visitors">
+            <EntityTypeMapping TypeName="angia_ivmModel.Visitor">
+              <MappingFragment StoreEntitySet="Visitor">
+                <ScalarProperty Name="Visitors" ColumnName="Visitors" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="VisitorID" ColumnName="VisitorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

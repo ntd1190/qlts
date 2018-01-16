@@ -1,0 +1,20 @@
+﻿.modal-dialog {
+        width: auto;
+    max-width: 500px;
+}
+.modal .close {
+        color: #1a81bb;
+    font-size: 40px;
+    font-weight: normal;
+    opacity: 1;
+    position: absolute;
+    top: -2px;
+    right: 5px;
+    left:auto
+}
+.modal .btn-send {
+    border-radius: 0;
+    background-color: #004e85;
+    color: #fff;
+    width: 100px;
+}

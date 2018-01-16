@@ -1,0 +1,42 @@
+﻿.hoadeptrai {
+        float: left;
+        width: 150px;
+        height: 150px;
+    }
+
+    .glyphicon {
+        position: relative;
+        top: 1px;
+        display: inline-block;
+        font-family: 'Glyphicons Halflings' !important;
+        font-style: normal;
+        font-weight: normal;
+        line-height: 1;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    .glyphicon-ok:before {
+        content: "\e013";
+    }
+
+    .thaihoa {
+        display: inline-block;
+        position: relative;
+    }
+
+    .hidden-cus {
+        opacity: 0;
+        font-size: 20px;
+        position: absolute;
+        left: 45%;
+        right:45%;
+        top: 40%;
+        bottom: 0;
+        transition: opacity 0.5s ease-in-out 0s, top 0.5s ease-in-out 0s;
+    }
+
+    .thaihoa:hover .hidden-cus {
+        cursor: pointer;
+        opacity: 0.8;
+    }

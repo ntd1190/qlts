@@ -1,0 +1,187 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MSSQL_QLDN_QLNS_DEMOModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KhachHangId" Type="int" Nullable="false" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="NguoiLienHe" Type="nvarchar" MaxLength="50" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="20" />
+          <Property Name="DiDong" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="TieuDe" Type="nvarchar" MaxLength="100" />
+          <Property Name="MoTa" Type="nvarchar" MaxLength="300" />
+          <Property Name="LoaiIssue" Type="smallint" />
+          <Property Name="NgayDeNghi" Type="datetime" />
+          <Property Name="NguoiXuLy" Type="int" />
+          <Property Name="NguoiTao" Type="int" Nullable="false" />
+          <Property Name="CachXuLy" Type="nvarchar(max)" />
+          <Property Name="HuongXuLy" Type="nvarchar(max)" />
+          <Property Name="DanhGiaId" Type="int" />
+          <Property Name="MaTrangThai" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="XoaYn" Type="char" MaxLength="1" />
+          <Property Name="CtrVersion" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="KhachHangId" />
+          </Key>
+          <Property Name="KhachHangId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Ma" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Ten" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Loai" Type="smallint" Nullable="false" />
+          <Property Name="DienThoai" Type="varchar" MaxLength="20" />
+          <Property Name="DiDong" Type="varchar" MaxLength="20" />
+          <Property Name="Email" Type="varchar" MaxLength="100" />
+          <Property Name="DiaChi" Type="nvarchar" MaxLength="200" />
+          <Property Name="TinhThanhPhoId" Type="int" />
+          <Property Name="QuanHuyenId" Type="int" />
+          <Property Name="PhuongXaId" Type="int" />
+          <Property Name="NgayTao" Type="datetime" />
+          <Property Name="AnyDesk" Type="nvarchar" MaxLength="50" />
+          <Property Name="NguoiTao" Type="int" />
+          <Property Name="XoaYN" Type="char" MaxLength="1" />
+          <Property Name="CtrVersion" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="MSSQL_QLDN_QLNS_DEMOModelStoreContainer">
+          <EntitySet Name="Issue" EntityType="Self.Issue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="KhachHang" EntityType="Self.KhachHang" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MSSQL_QLDN_QLNS_DEMOModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Issue">
+          <Key>
+            <PropertyRef Name="IssueId" />
+          </Key>
+          <Property Name="IssueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KhachHangId" Type="Int32" Nullable="false" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="NguoiLienHe" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DiDong" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="TieuDe" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MoTa" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="LoaiIssue" Type="Int16" />
+          <Property Name="NgayDeNghi" Type="DateTime" Precision="3" />
+          <Property Name="NguoiXuLy" Type="Int32" />
+          <Property Name="NguoiTao" Type="Int32" Nullable="false" />
+          <Property Name="CachXuLy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="HuongXuLy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DanhGiaId" Type="Int32" />
+          <Property Name="MaTrangThai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="XoaYn" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CtrVersion" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="KhachHang">
+          <Key>
+            <PropertyRef Name="KhachHangId" />
+          </Key>
+          <Property Name="KhachHangId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ma" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ten" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Loai" Type="Int16" Nullable="false" />
+          <Property Name="DienThoai" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="DiDong" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DiaChi" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TinhThanhPhoId" Type="Int32" />
+          <Property Name="QuanHuyenId" Type="Int32" />
+          <Property Name="PhuongXaId" Type="Int32" />
+          <Property Name="NgayTao" Type="DateTime" Precision="3" />
+          <Property Name="AnyDesk" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NguoiTao" Type="Int32" />
+          <Property Name="XoaYN" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="CtrVersion" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="QLDN_QLNS_DEMOEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Issues" EntityType="Self.Issue" />
+          <EntitySet Name="KhachHangs" EntityType="Self.KhachHang" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MSSQL_QLDN_QLNS_DEMOModelStoreContainer" CdmEntityContainer="QLDN_QLNS_DEMOEntities">
+          <EntitySetMapping Name="Issues">
+            <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.Issue">
+              <MappingFragment StoreEntitySet="Issue">
+                <ScalarProperty Name="IssueId" ColumnName="IssueId" />
+                <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="NguoiLienHe" ColumnName="NguoiLienHe" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="TieuDe" ColumnName="TieuDe" />
+                <ScalarProperty Name="MoTa" ColumnName="MoTa" />
+                <ScalarProperty Name="LoaiIssue" ColumnName="LoaiIssue" />
+                <ScalarProperty Name="NgayDeNghi" ColumnName="NgayDeNghi" />
+                <ScalarProperty Name="NguoiXuLy" ColumnName="NguoiXuLy" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="CachXuLy" ColumnName="CachXuLy" />
+                <ScalarProperty Name="HuongXuLy" ColumnName="HuongXuLy" />
+                <ScalarProperty Name="DanhGiaId" ColumnName="DanhGiaId" />
+                <ScalarProperty Name="MaTrangThai" ColumnName="MaTrangThai" />
+                <ScalarProperty Name="XoaYn" ColumnName="XoaYn" />
+                <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="KhachHangs">
+            <EntityTypeMapping TypeName="MSSQL_QLDN_QLNS_DEMOModel.KhachHang">
+              <MappingFragment StoreEntitySet="KhachHang">
+                <ScalarProperty Name="KhachHangId" ColumnName="KhachHangId" />
+                <ScalarProperty Name="Ma" ColumnName="Ma" />
+                <ScalarProperty Name="Ten" ColumnName="Ten" />
+                <ScalarProperty Name="Loai" ColumnName="Loai" />
+                <ScalarProperty Name="DienThoai" ColumnName="DienThoai" />
+                <ScalarProperty Name="DiDong" ColumnName="DiDong" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="DiaChi" ColumnName="DiaChi" />
+                <ScalarProperty Name="TinhThanhPhoId" ColumnName="TinhThanhPhoId" />
+                <ScalarProperty Name="QuanHuyenId" ColumnName="QuanHuyenId" />
+                <ScalarProperty Name="PhuongXaId" ColumnName="PhuongXaId" />
+                <ScalarProperty Name="NgayTao" ColumnName="NgayTao" />
+                <ScalarProperty Name="AnyDesk" ColumnName="AnyDesk" />
+                <ScalarProperty Name="NguoiTao" ColumnName="NguoiTao" />
+                <ScalarProperty Name="XoaYN" ColumnName="XoaYN" />
+                <ScalarProperty Name="CtrVersion" ColumnName="CtrVersion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
