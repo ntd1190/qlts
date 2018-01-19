@@ -395,6 +395,7 @@ namespace VTSolution.Controllers.User
                             item.Vi_MetaKeyword = item.Eng_MetaKeyword ?? item.Vi_MetaKeyword;
                             item.Vi_Title = item.Eng_Title ?? item.Vi_Title;
                             item.Vi_Content = item.Eng_Content ?? item.Vi_Content;
+                            item.Vi_Description = item.Eng_Description ?? item.Vi_Description;
                             item.SeVi = item.SeEn ?? item.SeVi;
                         }
                     }
@@ -412,6 +413,7 @@ namespace VTSolution.Controllers.User
                             item.Vi_MetaKeyword = item.Eng_MetaKeyword ?? item.Vi_MetaKeyword;
                             item.Vi_Title = item.Ja_Title ?? item.Vi_Title;
                             item.Vi_Content = item.Ja_Content ?? item.Vi_Content;
+                            item.Vi_Description = item.Ja_Description ?? item.Vi_Description;
                             item.SeVi = item.SeJa ?? item.SeVi;
                         }
                     }

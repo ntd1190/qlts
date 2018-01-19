@@ -163,6 +163,18 @@ namespace VTSolution.Controllers.User
                         }
                     }
                 }
+                else if (language.Name == "ja")
+                {
+                    if (re.ListRecruitment.Count() > 0)
+                    {
+                        foreach (var item in re.ListRecruitment)
+                        {
+                            item.Name = item.Ja_Name ?? item.Name;
+                            item.Content = item.Ja_Content ?? item.Content;
+                            item.Address = item.Ja_Address ?? item.Address;
+                        }
+                    }
+                }
                 return View(re);
             }
         }
@@ -184,6 +196,18 @@ namespace VTSolution.Controllers.User
                             item.Vi_Name = item.Eng_Name?? item.Vi_Name;
                             item.Vi_Posintion = item.Eng_Position??item.Vi_Posintion;
                             item.Vi_Content = item.Eng_Content??item.Vi_Content;
+                        }
+                    }
+                }
+                else if (language.Name == "ja")
+                {
+                    if (re.Partner.Count() > 0)
+                    {
+                        foreach (var item in re.Partner)
+                        {
+                            item.Vi_Name = item.Ja_Name ?? item.Vi_Name;
+                            item.Vi_Posintion = item.Ja_Position ?? item.Vi_Posintion;
+                            item.Vi_Content = item.Ja_Content ?? item.Vi_Content;
                         }
                     }
                 }
@@ -227,6 +251,18 @@ namespace VTSolution.Controllers.User
                             item.Vi_Title = item.Eng_Title;
                             item.Vi_Description = item.Eng_Description;
                             item.Vi_Content = item.Eng_Content;
+                        }
+                    }
+                }
+                else if (language.Name == "ja")
+                {
+                    if (model.Count() > 0)
+                    {
+                        foreach (var item in model)
+                        {
+                            item.Vi_Title = item.Ja_Title;
+                            item.Vi_Description = item.Ja_Description;
+                            item.Vi_Content = item.Ja_Content;
                         }
                     }
                 }

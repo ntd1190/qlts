@@ -30,7 +30,7 @@
             </div>
             <div class="col-md-6">
              @Html.Raw(HttpUtility.HtmlDecode(about.Vi_Product))
-
+               
             </div>
         </div>
         <h1 class="project-breadcrumb"><span>@Resource.Sanpham</span></h1>
@@ -39,7 +39,7 @@
                 @foreach (var item in Model.SanPhamList)
                 {
                     <div class="col-xs-6 col-sm-4 col-md-3" id="ga-788" style="position: relative;">
-                        <a class="item" href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan = Util.GenerateUrl(item.Vi_Title.Trim())})" title="@item.Vi_Title">
+                        <a class="item" href="@Url.Action("ProductDetail", "ViewProduct", new {titleduan = Util.GenerateUrl(item.Vi_Title.Trim())})" title="@item.Vi_Title 1">
                             <div class="item-img" style="text-align:center">
                                 <img src="@item.ImagePath" alt="@item.Vi_Title" width="80%" >
                                 <div class="item-bg"></div>
